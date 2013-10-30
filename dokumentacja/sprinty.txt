@@ -1,0 +1,18 @@
+***** SPRINTY *****
+
+============================================================================
+Sprint 1:
+„Szkielet” - Interfejs - Definicje klas - Wczytywanie do bazy - Wyświetlanie
+
+1) Pierwszy wyjebany User whatever....
+
+2)...
+
+============================================================================
+Sprint 2:
+Zapisywanie - Edycja - Statystyki - Analiza - Sortowanie - Wyszukiwanie
+
+
+============================================================================
+Sprint 3:
+Drzewo - „Grafika” - Testy
