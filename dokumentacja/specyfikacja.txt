@@ -1,0 +1,5 @@
+------------------------- Specyfikacja -------------------------
+
+(przykład)
+0	Janusz Korwin-Mikke		Tytuł zajebistego sprintu, który robi to, to, siamto i masakruje lewaków.
+	Treść specyfikacji (co, jak, dlaczego tak a nie inaczej i co powiedziałeś lewaku?)

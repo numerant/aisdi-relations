@@ -1,0 +1,34 @@
+------------------------------------ TODO ------------------------------------
+
+/* Jak ktoś ma coś na bieżąco do zanotowania to niech na lajcie edytuje ten plik i zapisuje pomysły na różne implementacje, podział zadań czy jakiekolwiek idee ogólne. Wszelkie sprawy w kokretnych miejscach kodu, proponuję notować za pomocą formułki  
+	//TODO co trzeba zrobić
+Code::Blocks to fajnie wyłapuje w jednym miejscu i nie trzeba szukać (jeśli ktoś używa, a zachęcam. Jak nie to i tak mu nie zaszkodzi). Proponuję kolejne punkty pisać nad poprzednimi, żeby nie przewijać całego pliku na sam dół, dziekuję, miłego czytania.	*/
+
+
+21.11.2013
+>>> Struktura programu - pliki/klasy (przydział zadań)
+	- main <PK>
+	- interface <KL>
+	- baza	}
+	- grupa	} <PŁ> & <MG>
+	- i/o	}
+	- email	} <MŻ> & <JM>
+	- drzewo <PK>
+
+	?	Piszemy szkielet pliku/klasy:
+		- komentarz do pliku (o co kaman)
+		- struktura klasy (ewentualnie jako szablon)
+		- pola
+		- metody
+		- operatory (jeśli wydają się sensowne)
+
+	?	Wybieramy swoje user stories z pliku 'sprinty.txt'
+	?	Jeśli się częściowo pokrywają lub można je scalić w jeden to to robimy, ale bez przesady
+	?	Zapisujemy w pliku 'specyfikacja.txt'
+		- numer sprintu/ów
+		- kto się tym zajmuje
+		- jakiś krótki tytuł sprintu (czego dotyczy)*
+		- specyfikacja
+	?	Oczywiście ten plik jest także dla laboranta, więc piszemy normalnym językiem, a nie "Tu trzeba opierdolić jakiegoś inta." :P
+	
+	*	Dlaczego nie edytować pliku 'sprinty.txt'? Chyba nie potrzebujemy takich długich opisów poszczególnych punktów, szczególnie ze zdaniami w stylu "Jako użytkownik...." :P Lepiej mieć to w innym miejscu, tak sądzę (PK).
