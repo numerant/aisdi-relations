@@ -1,0 +1,32 @@
+/*Klasa Database, przechowująca dane dotyczące grup oraz maili oraz udostępniająca 
+
+odpowiednie operacje na nich */
+
+Klasa Database:
+
+Pola:
+Emails	 //przechowujące ztablicowane obiekty klasy Email
+Groups	 //przechowujące ztablicowane obiekty klasy Group
+Users	   //przechowujące wszystkich nadawców i odbiorców emaili
+
+Metody:
+addEmail(Email)		  //metoda dodająca element klasy Email do pola emails
+deleteEmail(Email)  //metoda usuwająca podany e-mail z bazy danych
+deleteEmail(Email.messageID) //metoda usuwająca e-mail o podanym ID z bazy danych
+addGroup(Group)		  //metoda dodająca element klasy Group do pola groups
+deleteGroup(Group)	//metoda usuwająca podany element klasy Group z bazy
+select(key, value)	//metoda, która przeszukuje bazę danych pod kątem zadanego klucza
+			            //przekazanego jako parametr(key mógłby być intem albo enumem), 	
+			            //myślałem, że mógłby tworzyć sobie taką tymczasową listę maili 	
+			            //pasujących do klucza i zwracać referencję do niej, inne rozwiązanie 
+			            //to tworzenie takiej listy przez I/O i podawanie referencji do niej jako kolejny parametr.
+deleteList(List)	//usuwa listę emaili utworzoną przez metodę select, wywoływana 		
+		          	  //zaraz po niej
+sortBySender()		//metoda sortująca wg nadawcy
+sortByReceiver()	//metoda sortująca wg odbiorcy
+sortBySubject()		//metoda sortująca wg tematu
+sortByDate()		//metoda sortująca wg daty wysłania
+countEmails()		//metoda zwracająca liczbę e-maili znajdujących się w bazie
+countGroups()		//metoda zwracająca liczbę grup znajdujących się w bazie
+clear()			    //metoda usuwająca wszystkie maila i grupy z bazy
+getDatabase()		//metoda zwracająca referencję do bazy danych
