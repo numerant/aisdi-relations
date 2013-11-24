@@ -32,3 +32,8 @@ Code::Blocks to fajnie wyłapuje w jednym miejscu i nie trzeba szukać (jeśli k
 	?	Oczywiście ten plik jest także dla laboranta, więc piszemy normalnym językiem, a nie "Tu trzeba opierdolić jakiegoś inta." :P
 	
 	*	Dlaczego nie edytować pliku 'sprinty.txt'? Chyba nie potrzebujemy takich długich opisów poszczególnych punktów, szczególnie ze zdaniami w stylu "Jako użytkownik...." :P Lepiej mieć to w innym miejscu, tak sądzę (PK).
+
+24.11.2013
+>>> Doprecyzowanie założeń
+	- pytanie o możliwość zastosowania bazy danych SQL
+	- pytanie o to, na jakiej podstawie tworzymy podgrupy robocze (analiza adresów e-mail: analogicznie do adresów e-mail na WEiTI - stud.elka, prof.elka, dziek.elka, miłośnicyrosyjskichszampanów.elka)
