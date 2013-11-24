@@ -1,0 +1,2 @@
+- pytanie o możliwość zastosowania bazy danych SQL
+- pytanie o to, na jakiej podstawie tworzymy podgrupy robocze (analiza adresów e-mail: analogicznie do adresów e-mail na WEiTI - stud.elka, prof.elka, dziek.elka, miłośnicyrosyjskichszampanów.elka)
