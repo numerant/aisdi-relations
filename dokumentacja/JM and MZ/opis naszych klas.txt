@@ -1,0 +1,51 @@
+Klasa Workgroup - przechowuje informacje na temat danej grupy roboczej. Obiekt tej klasy jest tworzony przez funkcję odpowiedzialną za analizę relacji pomiędzy pracownikami firmy (analiza na podstawie niewiadomoczego).
+		Obiekty rzeczonej klasy muszą mieścić się w bazie danych.
+	Pola:
+		- nazwa grupy - string (albo podaje człowiek, albo jest to domena w adresie e-mail)
+		- wektor członków (obiektów klasy Member)
+		- pola zawierające statystyki (np. wektor grup zaprzyjaźnionych)
+
+	Metody:
+		- dodawanie członka  (nalezy się zastanowić nad warunkami wykonania tych operacji - uzależnione jest to od warunku podziału pracowników na grupy robocze)
+		- usuwanie członka
+		- generowanie statystyk (wywołane pośrednio przez Krzycha, ma zwrócić dane w formie Krzychu-friendly albo I/O-friendly jeśli chcemy to eksportować do pliku)
+		- 
+
+
+Klasa Member - mieszczą się w strukturze z dostępem swobodnym. Taki memberek będzie tworzony i modyfikowany w momencie analizy relacji
+	Pola:
+		- nazwa
+		- adres e-mail
+		- wskaźnik na grupę
+		- wektorki ze wskaźnikami na maile do i od membera
+	
+	Metody:
+		- generująca na podstawie wektorka z mailami listy:
+			- do kogo pisał
+			- kto do niego pisał
+			- że forwardy robił ("nie wiem czy to sensowne, ale pisz" - MŻ)
+			- które maile są jego autorskie, a nie forłerdnięte
+		- funkcje statystyczne (ile wysłał, ile odebrał etc) zwracające obiekt klasy Stats (żeby Krzyś to sobie wypisał)
+
+
+Klasa IOInterface - to pieroństwo zajmuje się jedynie operacjami na plikach (typu import, eksport czy zapisywanie raportów do pliku), nie ma nic wspólnego z wyświetlaniem. 
+		Nie uczestniczy jako pośrednik między interfejsem a bazą danych (np. przy wyświetlaniu raportów, statystyk i miliona innych rzeczy.
+	Pola:
+
+	Metody:
+		- import, dostaje ścieżkę do katalogu/pliku i opcje, zwraca obiekt ze statystykami importu. Korzysta z metod klasy Database do dodawania maili. Na podstawie tego, co zwróci analizator EML modyfikuje obiekt ze statystykami wczytywania.
+		- parser EML - dostaje ścieżkę do pliku, otwiera go, analizuje, jeśli jest OK, to wywołuje metodę bazy danych dodającą emalja.
+		- przeszukiwanie katalogów - po kolei wywołuje parser dla każdego maila. Może być rekurencyjne.
+		- wczytanie bazy - nie napiszemy, bo: patrz plik "co PiKej spierdolil.txt"  || trzeba wykrywać, że wczytywany plik jest zaszyfrowany, a nie błędny
+		- zapis bazy - jak wyżej
+		- szyfrowanie i deszyfrowanie
+		- zapisywanie raportów do pliku - dostaje obiekt klasy Report, w ładnej formie eksportuje 
+
+
+
+Sugestie dla innych:
+- klasa Database powinna zawierać jedynie pola odpowiedzialne za storage contentu, natomiast funkcje analityczne mogą znajdować się w wewnętrznej podklasie
+- ... tworzy obiekt klasy Member (np. memberToPut) i przekazuje referencję na stworzony obiekt jako parametr dla metody z klasy Database
+- metoda z klasy Database odpowiedzialna za dodawanie użytkownika powinna wrzucać go do seta, a jeśli istnieje, to modyfikować parametry (np. wysłane/odebrane maile)
+- IO i interfejs komunikują się czystym tekstem (np. ścieżki do wczytania plików), a jeśli nie da się tekstem, to rzucając obiekty
+- jak w opisie user story nr 11 - KONIECZNE stworzenie klasy (z podklasami) reprezentującej błędy - robota dla wszystkich, bo każdy kawałek programu może przecież generować błędy
