@@ -4,6 +4,28 @@
 	//TODO co trzeba zrobić
 Code::Blocks to fajnie wyłapuje w jednym miejscu i nie trzeba szukać (jeśli ktoś używa, a zachęcam. Jak nie to i tak mu nie zaszkodzi). Proponuję kolejne punkty pisać nad poprzednimi, żeby nie przewijać całego pliku na sam dół, dziekuję, miłego czytania.	*/
 
+-------------------------------------------------------------------------------
+
+25.11.2013
+>>> Analiza klas
+	- Email
+		- Czy naprawdę potrzebujemy pola 'references' ? Czy to nie za dużo zagłębień? Tak jest w standardzie eml, ale pytanie czy jest to konieczne.
+	- Database
+		- Jak usuwamy email, jeżeli nie mamy jego ID? W sensie, czym różnią się metody 'deleteEmail' różniące się argumentami?
+		- Pomysł z tworzeniem nowej listy przy wywołaniu select jest niezły. Przypominałoby to selecta z sql'a. Mielibyśmy taką mini-bazkę maili i można by z nią kombinować.
+	- Group
+		- Michał z Jakubem proponują klasę 'Member', myślę że nie powinnyśmy powielać userów z bazy do osobnej klasy. Dla danej grupy można po prostu trzymać ID wszystkich userów i tyle. Wszelkie operacje wypisywania, dodawania itp. będą bazowały na ID i odnosiły się do pól bazy, taka jest moja koncepcja. No chyba, że nie robimy idei bazy a'la sql, wtedy taka klasa będzie potrzebna, ale wciąż w jednym egzemplarzu.
+	- Error
+		- Jak zasugerowali MŻ i JM, klasa error'ów nie byłaby takim złym pomysłem. Taka idea była chyba przedstawiona u spider-man'a.  (PK)
+>>> Email do prowadzącego
+	- Jako S-master napiszę maila, żeby wyjaśnić nękające nas wątpliwości, który powstały w ciągu weekendu.
+>>> Interfejs graficzny (zmiana założeń)
+	- Jelon zaprezentował mi fajny interfejsik w Code::Blocksie - WxWidgets. Nie jest to pewnie jedyna jego implementacja, ale wygląda to fajnie (drag 'n drop, dodawanie eventów), działa płynnie i od razu mielibyśmy background pod rysowanie drzewa. Wrzucę do repo jakiś przykładowy kod, żebyśmy mogli się rozeznać i zdecydować, bo Krzychu siedzi i nic nie może robić biedny :D
+
+24.11.2013
+>>> Doprecyzowanie założeń
+	- pytanie o możliwość zastosowania bazy danych SQL
+	- pytanie o to, na jakiej podstawie tworzymy podgrupy robocze (analiza adresów e-mail: analogicznie do adresów e-mail na WEiTI - stud.elka, prof.elka, dziek.elka, miłośnicyrosyjskichszampanów.elka)
 
 21.11.2013
 >>> Struktura programu - pliki/klasy (przydział zadań)
@@ -32,8 +54,3 @@ Code::Blocks to fajnie wyłapuje w jednym miejscu i nie trzeba szukać (jeśli k
 	?	Oczywiście ten plik jest także dla laboranta, więc piszemy normalnym językiem, a nie "Tu trzeba opierdolić jakiegoś inta." :P
 	
 	*	Dlaczego nie edytować pliku 'sprinty.txt'? Chyba nie potrzebujemy takich długich opisów poszczególnych punktów, szczególnie ze zdaniami w stylu "Jako użytkownik...." :P Lepiej mieć to w innym miejscu, tak sądzę (PK).
-
-24.11.2013
->>> Doprecyzowanie założeń
-	- pytanie o możliwość zastosowania bazy danych SQL
-	- pytanie o to, na jakiej podstawie tworzymy podgrupy robocze (analiza adresów e-mail: analogicznie do adresów e-mail na WEiTI - stud.elka, prof.elka, dziek.elka, miłośnicyrosyjskichszampanów.elka)
