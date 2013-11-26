@@ -1,0 +1,52 @@
+/* Klasa Drzewo (nazwa robocza) tworząca strukturę 'drzewa multicastowego', które odtwarza drogę jednego maila. Interfejs graficzny będzie również korzystał z tej klasy to reprezentacji wizualnej zawartości tej klasy.
+----------------------------------------------------------------------
+Założenia:
+	- Drzewo tworzone jest na podstawie FORWARDU maili. Każdy obiekt tej klasy trzyma odpowiednie wskazanie obiekt klasy Email, gdyż Usember może w trakcie FORWARDU zmieniać treść (dopisywać, podkreślać pewne elementy) w stylu: "Zobacz co napisał mi Usember 369: <treść>"
+	- Jeżeli wystąpi cykl, czyli Usember1 prześle do Usembera2, ten do Usembera3, a ten spowrotem do Usembera1, ostatni FORWARD jest pomijany i rozpatrywany jako brak przesłania dalej dla Usembera3 (chyba, że wysłał innym, wtedy rozpatrujemy). Jest to konieczne, by było to drzewo a nie graf. Po drugie, Usember1 już kiedyś miał tego maila. Treść się nie zmienia, więc nie potrzebuje kolejnej jego kopii.
+
+Uwagi ogólne:
+	- Wszystkie obiekty będą dynamicznie alokowane (new, delete). Konieczność zadbania o pełne zwolnienie pamięci.
+	- Jeżeli obiektów będzie b. dużo, możliwe jest wypisanie tego (dodatkowo) w formie tekstowej z "wcięciami" jako potwierdzenie działania
+----------------------------------------------------------------------
+>>> Class MulTree
+
+> Pola:
+	- Email* email 			//wskazanie na rozważanego emaila
+
+	- struct Node				//węzeł drzewa
+		- Node* parent			//wskazanie na aktualnego nadawcę
+		- vector (Node*) 		//wektorek wskazań na następnych odbiorców (bo może być ich wielu)
+
+	opcjonalne pola w stylu 'height' czy 'elemCounter' mogą występować, lecz na tę chwilę nie mają specjalnego znaczenia implementacyjnego
+
+
+> Metody:
+		/* Zarządzające strukturą drzewa */
+	- getEmail (id lub wskazanie)   //bierze z bazy maila, którego będzie "rozpisywać"
+									//wywoływana razem z konstruktorem drzewa. (*)
+
+	- createNode (Node* parent)		//tworzy węzeł w dół od rodzica (uaktualnia vector wskazań)
+
+	- deleteNode (Node* node)	    //usuwa podany węzeł i dowiązania do niego
+									//możliwe usuwanie tylko węzłów, które nie mają "potomków"
+									//inaczej stracimy wskazania do potomków (nie zwolnimy pamięci)
+
+		/* Przypisane do przycisków/poleceń użytkownika */
+	- printEmail (Node* node)		//wyświetla informacje o emailu dla danego węzła (otrzymana wersja)
+	
+	- printRoute ()					//wyświetla w formie tekstowej (np. zagnieżdżenia tabulacją) strukturę drzewa
+									//sprawdzenie poprawności formy graficznej lub ewentualność na wypadek błędu
+									//bazuje na wytworzonej wcześniej strukturze drzewa
+									
+	- printUser (Node * node) 		//(opcjonalnie) info o danym userze
+									//wyswietlanie przy pomocy ID jest bez sensu, bo realizuje to Baza
+----------------------------------------------------------------------
+
+(*) Na podstawie pól forwardFrom, sendFrom oraz sendTo rekurencyjnie w górę i w dół metoda zaczyna tworzyć kolejne węzły drzewa. 
+Warunkami końcowymi są: 
+	- brak flagi forwardTo (jeśli istnieje) dla liścia  LUB  brak kolejnych FORWARDÓW tego samego maila z listy maili nadawanych przez danego Usembera
+	- forwardFrom == NULL dla korzenia. Ewentualnie idziemy w dół innymi gałęziami. 
+	- Jeżeli pierwszy mail, który był wczytany, nie ma flagi forwardFrom, to: 
+		- jest on korzeniem i w tym wypadku musimy przejrzeć maile odbiorcy pod kątem treści/tematu  LUB  flagi forwardTo,
+			albo
+		- możliwe że jest mailem "unikatowym" i drzewo nie istnieje (jeden węzeł).

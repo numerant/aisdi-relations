@@ -1,10 +1,60 @@
------------------------------------- TODO ------------------------------------
+-------------------------------- TODO -------------------------------------------
 
 /* Jak ktoś ma coś na bieżąco do zanotowania to niech na lajcie edytuje ten plik i zapisuje pomysły na różne implementacje, podział zadań czy jakiekolwiek idee ogólne. Wszelkie sprawy w kokretnych miejscach kodu, proponuję notować za pomocą formułki  
 	//TODO co trzeba zrobić
 Code::Blocks to fajnie wyłapuje w jednym miejscu i nie trzeba szukać (jeśli ktoś używa, a zachęcam. Jak nie to i tak mu nie zaszkodzi). Proponuję kolejne punkty pisać nad poprzednimi, żeby nie przewijać całego pliku na sam dół, dziekuję, miłego czytania.	*/
 
--------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+26.11.2013
+>>> Nowy przydział zadań - Update założeń - Nowe klasy
+	- Usember (KL)
+		- Nie ma żadnych Userów.
+		- Nie ma żadnych Memberów.
+		- Od teraz liczą się tylko Usemberzy.
+		- Zmiana odpowiednich pól/nazw w innych klasach na Usember (ewent. Usember*).
+		- Rozpisanie struktury klasy Usember (pola są znane, częściowo występują takżę w innych plikach z dokumentacji).
+	- Email (PŁ)
+		- Dodanie vectora "sendTO" (czy coś), który trzyma wskazania na Usemberów (zamiast pojedynczego pola sendTo).
+	!	- Nie potrzebujemy dwóch flag: forwardTo oraz forwardFrom. Mail jest tak naprawdę bytem pomiędzy dwoma Usemberami:
+			Usember1 >-----Mail-----< Usember2
+	!	  Każdy mail przekazany dalej miałby zatem dwie flagi nieaktywne albo aktywne jednocześnie.
+		- Tak naprawdę forwardTo jest tym samym co sendTo, dlatego wystarczy sama flaga forwardFrom, która:
+	!		- Założenie pierwsze: wskazuje nie na nadawcę, ale na jednego nadawcę wcześniej (nie widzę jeszcze zastosowań).
+			  lub
+	!		- Założenie drugie: wskazuje nie na nadawcę, ale na pierwszego Usembera, który wysłał tego maila (można znaleźć szybko korzeń drzewa).
+		- Rozpoznanie czy mail był przekazany dalej sprowadza się do porównania if (forwardFrom != NULL), a sama "flaga" jest wskazaniem.
+	!	- Flaga forwardTo miałaby sens, gdyby była wskazaniem na konkretnego maila. Wtedy mamy brak wymogu przeszukiwania maili Usembera przy przechodzeniu w dół drzewa
+	- Database (MG)
+		- W wyniku analizy tworzenia drzewa, stwierdziłem, że potrzebujemy w bazie pola, które trzyma korzeń drzewa multicastowego, bo nieładnie mieć to w zmiennej globalnej, a w bazie ładnie.
+		- Doprecyzowanie, że pola klasy są vectorami wskazań.
+	- Group & I/O (JM, MŻ)
+		- Proszę was Panowie, żeby to wylądowało w osobnych plikach i nie twórzcie proszę osobnych katalogów z waszymi inicjałami (polecenie 'git rm' usuwa plik).
+		- Ponadto nazywajcie pliki od ich zawartości (w tym wypadku nazwy klasy, pojedynczo) :D  Z góry dziękuję i pozdrawiam.
+	- Interface (PK)
+		- Postaram się w najbliższym czasie zrobić jakieś demo WxWidgets, żeby można było coś pokazać.
+		- Bardzo ważna jest współpraca interfejsu z klasami (tekstowo lub za pośrednictwem obiektów).
+	- Error/Exception (MS)
+		- Ogarnięcie klasy Exception z C++
+		- Zapisanie w jakimś pliku informacji o tym oraz jak to można podpiąć pod metody innych klas. W szczególności jakie dziedziczenia by nas interesowały oraz jakby to mogło współpracować z interfejsem WxWidgets.
+
+>>> Zestaw maili - Forward - Algorytmy
+	- Maile (MS)
+		- Zadanie dla Maćka: ogarnięcie jak i czy w ogóle .eml uwzględnia FORWARD gdzieś poza tytułem (bo chyba nie powtierdziliśmy w końcu żadnej wersji)
+		- oraz przygotowanie przykładowego zbioru maili (nie za mało).
+	- Algorytmy które musimy opisać
+		- "-1" (PŁ)
+			- Dotyczy analizy/tworzenia grup roboczych. Dwa, trzy szkice, krótki opis wystarczy, wiesz co masz robić
+		- Rekurencyjne tworzenie drzewa multicastowego (PK)
+		- Jakich algorytmow i skąd używamy do sortowania/wyszukiwania/dodawanie/usuwania ? (Wszyscy, każdy do swoich klas)
+			- Jakie założenia są z nimi związane (napisać w specyfikacji klasy) ? Np. że Usemberzy są trzymani alfabetycznie jako domyślna opcja.
+		- Propozycje dodatkowych algorytmów dzielenia na grupy robocze (poza domenowym jako sprawdzenie).
+			- Np. Wyszukiwanie grafów pełnych. Grupa, w której każdy z każdym intensywnie współpracuje.
+
+>>> Nazwy plików
+	- Michał i Jakub już wiedzą co mają zrobić :P
+	- Wiem, że to głupota, ale zapisujmy pliki tekstowe (dokumentacyjne) w formacie ".txt". Nic to nie zmieni w odczycie na Linuxie/Macu, ale dzisiaj chciałem sobie poczytać pliki na komie i już się pluł, że mu format nie pasuje (sorry Maćku G. :D ). Dzięki.
+
+-------------------------------ARCHIVE------------------------------------------
 
 25.11.2013
 >>>	Przydział zadań
@@ -21,10 +71,6 @@ Code::Blocks to fajnie wyłapuje w jednym miejscu i nie trzeba szukać (jeśli k
 		- Jak zasugerowali MŻ i JM, klasa error'ów nie byłaby takim złym pomysłem. Taka idea była chyba przedstawiona u spider-man'a.  (PK)
 >>> Interfejs graficzny (zmiana założeń)
 	- Jelon zaprezentował mi fajny interfejsik w Code::Blocksie - WxWidgets. Nie jest to pewnie jedyna jego implementacja, ale wygląda to fajnie (drag 'n drop, dodawanie eventów), działa płynnie i od razu mielibyśmy background pod rysowanie drzewa. Wrzucę do repo jakiś przykładowy kod, żebyśmy mogli się rozeznać i zdecydować, bo Krzychu siedzi i nic nie może robić biedny :D
-
-###### Email do prowadzącego
-######	- Jako S-master napiszę maila, żeby wyjaśnić nękające nas wątpliwości, który powstały w ciągu weekendu.
-
 
 21.11.2013
 >>> Struktura programu - pliki/klasy (przydział zadań)
@@ -53,11 +99,3 @@ Code::Blocks to fajnie wyłapuje w jednym miejscu i nie trzeba szukać (jeśli k
 	?	Oczywiście ten plik jest także dla laboranta, więc piszemy normalnym językiem, a nie "Tu trzeba opierdolić jakiegoś inta." :P
 	
 	*	Dlaczego nie edytować pliku 'sprinty.txt'? Chyba nie potrzebujemy takich długich opisów poszczególnych punktów, szczególnie ze zdaniami w stylu "Jako użytkownik...." :P Lepiej mieć to w innym miejscu, tak sądzę (PK).
-
--------------------------------DONE---------------------------------------------
-
-24.11.2013
->>> Doprecyzowanie założeń
-	- pytanie o możliwość zastosowania bazy danych SQL
-	- pytanie o to, na jakiej podstawie tworzymy podgrupy robocze (analiza adresów e-mail: analogicznie do adresów e-mail na WEiTI - stud.elka, prof.elka, dziek.elka, miłośnicyrosyjskichszampanów.elka)
-
