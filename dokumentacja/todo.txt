@@ -14,7 +14,8 @@ Code::Blocks to fajnie wyłapuje w jednym miejscu i nie trzeba szukać (jeśli k
 		- Zmiana odpowiednich pól/nazw w innych klasach na Usember (ewent. Usember*).
 		- Rozpisanie struktury klasy Usember (pola są znane, częściowo występują takżę w innych plikach z dokumentacji).
 	- Email (PŁ)
-		- Dodanie vectora "sendTO" (czy coś), który trzyma wskazania na Usemberów (zamiast pojedynczego pola sendTo).
+		- Dodanie vectora "sendTO" (czy coś), który trzyma wskazania na Usemberów (zamiast pojedynczego pola sendTo). //([PŁ EDIT] pole może być też vectorem, nie ma równoznaczności pole == zmienna, nie ma więc błędu,
+			jeśli jednak w całej dokumentacji od razu zawieramy w jakich strukturach to trzymamy, to niech będzie spójność i tak zmienimy[/PŁ EDIT])
 	!	- Nie potrzebujemy dwóch flag: forwardTo oraz forwardFrom. Mail jest tak naprawdę bytem pomiędzy dwoma Usemberami:
 			Usember1 >-----Mail-----< Usember2
 	!	  Każdy mail przekazany dalej miałby zatem dwie flagi nieaktywne albo aktywne jednocześnie.
