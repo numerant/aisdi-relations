@@ -5,9 +5,11 @@ odpowiednie operacje na nich */
 Klasa Database:
 
 Pola:
-Emails	 //przechowujące ztablicowane obiekty klasy Email
-Groups	 //przechowujące ztablicowane obiekty klasy Group
-Users	   //przechowujące wszystkich nadawców i odbiorców emaili
+Vector<Email>	 //przechowujące ztablicowane obiekty klasy Email
+Vector<Group>	 //przechowujące ztablicowane obiekty klasy Group
+Vector<Usember>	   //przechowujące wszystkich nadawców i odbiorców emaili, czyli Usemberów
+//Jako że sprawa jest jeszcze do przedyskutowania, na razie zostawiłem wektory jako wektory obiektów, nie wskaźników. 
+//Korzeń drzewa multicastowego? Chyba czegoś tu nie rozumiem, drzewo multicastowe będzie oddzielne dla każdego emaila, czyż nie?
 
 Metody:
 addEmail(Email)		  //metoda dodająca element klasy Email do pola emails
