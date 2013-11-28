@@ -13,5 +13,8 @@ Obsługa w IOInterface. W zależności od opcji wybranych w interfejsie (typu pr
 Metoda parsera EML w klasie IOInterface. Jeśli e-mail ma właściwą strukturę (wg specyfikacji formatu), możemy zrobić "new Mail" i dodać go do bazy. Jeśli nie, zwracamy odpowiedni wyjątek, np. DirectoryIsEmpty, TargetDoesNotExist, AccessDenied
 4	Michał Żołyniak			Po zakończeniu importu danych chcę otrzymać raport z tej operacji (ilość znalezionych plików, poprawnie wczytanych, zignorowanych).
 Gdy nie pojawi się któryś z powyższych błędów całkowicie przekreślających możliwość wczytania czegokolwiek, zwracamy obiekt zawierający pola typu int zawierające liczbę poprawnie i niepoprawnie wczytanych listów oraz ewentualnie ścieżki do nich.
-5	Jakub Maleszewski		Użytkownik ma mieć możliwość dodania pojedynczych maili lub ich zbioru do wcześniej stworzonej bazy.
+5	Jakub Maleszewski/Patryk Łucka	Użytkownik ma mieć możliwość dodania pojedynczych maili lub ich zbioru do wcześniej stworzonej bazy.
 Sprowadza się to do przypadku nr 2, trzeba jedynie używać istniejącego obiektu Database zamiast tworzyć nowy.
+6	Maciej Gańko/Patryk Łucka	Jako użytkownik chcę móc przeszukać bazę danych po określonych kryteriach, by łatwo dotrzeć do interesujących mnie wiadomości.
+Będzie to zrealizowane w zależności od kryterium albo przez prostą iterację po wiadomościach w celu sprawdzenia spełnienia kryterium, albo przez algorytm wyszukiwania binarnego, jeśli dane
+kryterium będzie tym, którym zbiór wiadomości jest posortowany.
