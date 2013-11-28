@@ -5,7 +5,7 @@
 „Szkielet” programu - Definicje klas -  Interfejs - Wczytywanie do bazy - Wyświetlanie - Wyszukiwanie
 --------------------------------------------------------------------------------------------------------------------------------------
 
-1) Jako użytkownik (end-user) chcę mieć możliwość prostego wybrania żądanej operacji poprzez nieskomplikowane tekstowe menu.
+1) [EDIT] Jako użytkownik (end-user) chcę mieć możliwość prostego wybrania żądanej operacji poprzez nieskomplikowane menu.
 
 2) Chcę mieć możliwość importu danych z podanego katalogu zawierającego pliki .eml (ewentualnie z przeszukiwaniem podfolderów).
 
@@ -23,7 +23,7 @@
 
 9) Dobrym pomysłem byłyby pytania potwierdzające ("czy na pewno?") przy wychodzeniu z programu, zapisywaniu i operacjach na bazie.
 
-10) Jako użytkownik chciałbym by interfejs nie był jednolity. Kolory czy pogrubienie tekstu na pewno pomogą w sprawnej jego obsłudze.
+10) [EDIT] Jako użytkownik chciałbym by interfejs nie był jednolity (ale był spójny). Kolory, pogrubienie tekstu czy forma tabeli na pewno pomogą w sprawnej jego obsłudze.
 
 11) Jako niezbyt pojętny użytkownik komputera chcę otrzymywać komunikaty o błędach jedynie w zrozumiałej dla CZŁOWIEKA formie. 
 

@@ -1,21 +1,21 @@
 Usember (user/member)
 
-Klasa usember - obiekty reprezentuj¹ wychwycone wszelkie to¿samoœci w polach od/do/dowielu/przekazanodalej. W momencie wczywania nowego maila do bazy, sprawdzane s¹ wszelkie adresy z tych pól, przeszukiwana jest baza usemberów i jeœli wystêpuje ju¿ nasz kontakt to tylko jest akutalizowany w przeciwnym razie tworzymy nowy kontakt.
+Klasa usember - obiekty reprezentujÄ… wychwycone wszelkie toÅ¼samoÅ›ci w polach od/do/dowielu/przekazanodalej. W momencie wczytywania nowego maila do bazy, sprawdzane sÄ… wszelkie adresy z tych pÃ³l, przeszukiwana jest baza usemberÃ³w i jeÅ›li wystÄ™puje juÅ¼ nasz kontakt to tylko jest akutalizowany w przeciwnym razie tworzymy nowy kontakt.
 
 
 ### Pola ###
 
-Dwa najwa¿niejsze pola bêd¹ce wype³nione zawsze, czyli adres mailowy rozmontowany na czynniki:
-- usembername - czyli to co jest przed @ w adresie (nie mam pomys³u na dobr¹ nazwê)
-- domain - czyli to co jest po @ w adresie (wykorzystamy do np przydzia³u do grup)
+Dwa najwaÅ¼niejsze pola bÄ™dÄ…ce wypeÅ‚nione zawsze, czyli adres mailowy rozmontowany na czynniki:
+- usembername - czyli to co jest przed @ w adresie
+- domain - czyli to co jest po @ w adresie (wykorzystamy do np przydziaÅ‚u do grup)
 
-Kolejne opcjonalnie uzupe³niane pola (domyœlnie puste):
-- realName - czyli na ogó³ powinno byæ to prawdziwe imie i nazwisko usembera (wychwytywane z pola Od - jeœli zosta³o zdefiniowane)
-- group - wskaŸnik na grupê - wype³niany po analizie maili
+Kolejne opcjonalnie uzupeÅ‚niane pola (domyÅ›lnie puste):
+- realName - czyli na ogÃ³Å‚ powinno byÄ‡ to prawdziwe imie i nazwisko usembera (wychwytywane z pola Od - jeÅ›li zostaÅ‚o zdefiniowane)
+- group - wskaÅºnik na grupÄ™ - wypeÅ‚niany po analizie maili
 
-I przechowywanie maili zwi¹zanym z tym usemberem (referencje pod rêk¹)
-- sendMails - wektor wskaŸników na maile wys³ane przez tego usembera
-- reseiveMails - wektor wspaŸników na maile które otrzyma³ ten usembera
+I przechowywanie maili zwiÄ…zanym z tym usemberem (referencje pod rÄ™kÄ…)
+- sendMails - wektor wskaÅºnikÃ³w na maile wysÅ‚ane przez tego usembera
+- reseiveMails - wektor wspaÅºnikÃ³w na maile ktÃ³re otrzymaÅ‚ ten usember
 
 
 
@@ -23,13 +23,9 @@ I przechowywanie maili zwi¹zanym z tym usemberem (referencje pod rêk¹)
 ### Metody ###
 
 - addMail(Email *, type [send/receive/forward...]) - dodaje list do odpowiedniego wektora
-- removeMail(Email *) - usuwa list z wektora (nie wiem czy potrzebne, ale mo¿e lepiej zaimplementowaæ - w praniu wyjdzie)
-- setGroup(Group *) - przydziela grupê - mo¿e dzia³aæ ci¹gle/ nie wa¿ne czy ju¿ jest ustawiona -> tzn dzia³aæ jako aktualizacja/czyszczenie pola
-- setRealName(string) - ustawia pole realName - dzia³a jak powy¿ej
-- getAdress() - zwraca ci¹g zawieraj¹cy pe³en adres email: [usembername]@[domain]
-- sendMailCount() - zwraca liczbê maili wys³anych przez tego usembera
-- receiveMailCount() - zwraca liczbê maili otrzymanych przez tego usembera
-
-I tutaj przychodz¹ mi do g³owy pomys³y na szereg metod-ciekawostek np:
-- wyszukuje i zwraca referencje na usembera z którym ten usember najczêœciej pisze
-Tylko nie wiem czy tak chcemy to implementowaæ (na poziomie wnêtrza tej klasy)
+- removeMail(Email *) - usuwa list z wektora (nie wiem czy potrzebne, ale moÅ¼e lepiej zaimplementowaÄ‡ - w praniu wyjdzie)
+- setGroup(Group *) - przydziela grupÄ™ - moÅ¼e dziaÅ‚aÄ‡ ciÄ…gle, nie waÅ¼ne czy juÅ¼ jest ustawiona -> tzn dziaÅ‚aÄ‡ jako aktualizacja/czyszczenie pola
+- setRealName(string) - ustawia pole realName - dziaÅ‚a jak powyÅ¼ej
+- getAdress() - zwraca ciÄ…g zawierajÄ…cy peÅ‚en adres email: [usembername]@[domain]
+- sendMailCount() - zwraca liczbÄ™ maili wysÅ‚anych przez tego usembera
+- receiveMailCount() - zwraca liczbÄ™ maili otrzymanych przez tego usembera
