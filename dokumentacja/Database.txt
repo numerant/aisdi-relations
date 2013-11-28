@@ -1,34 +1,30 @@
-/*Klasa Database, przechowująca dane dotyczące grup oraz maili oraz udostępniająca 
+/*Klasa Database, przechowująca dane dotyczące grup, maili oraz użytkowników oraz udostępniająca 
+odpowiednie operacje na nich.
 
-odpowiednie operacje na nich */
+Wszystkie wektory są uporządkowane niemalejąco. Ich przeszukiwanie odbywa się binarnie - vector dzielony jest
+na połowy i w zależności od tego czy element pomiędzy tymi połowami jest większy czy mniejszy od poszukiwanego,
+bierzemy lewą bądź prawą połowę, operację powtarzamy do znalezienia (lub stwierdzenia że go nie ma) poszukiwanego
+elementu.*/
 
 Klasa Database:
 
 Pola:
-Vector<Email>	 //przechowujące ztablicowane obiekty klasy Email
-Vector<Group>	 //przechowujące ztablicowane obiekty klasy Group
-Vector<Usember>	   //przechowujące wszystkich nadawców i odbiorców emaili, czyli naszych zajebistych Usemberów!!!
-//Jako że sprawa jest jeszcze do przedyskutowania, na razie zostawiłem wektory jako wektory obiektów, nie wskaźników. 
-//Korzeń drzewa multicastowego? Chyba czegoś tu nie rozumiem, drzewo multicastowe będzie oddzielne dla każdego emaila, czyż nie?
+Vector<Email>	 	//wektor przechowujący obiekty klasy Email, 
+Vector<Workgroup>	//wektor przechowujący obiekty klasy Group
+Vector<Usember>	 	//wektor przechowujący wszystkich nadawców i odbiorców emaili, czyli Usemberów
 
 Metody:
-addEmail(Email)		  //metoda dodająca element klasy Email do pola emails
-deleteEmail(Email)  //metoda usuwająca podany e-mail z bazy danych
-deleteEmail(Email.messageID) //metoda usuwająca e-mail o podanym ID z bazy danych
-addGroup(Group)		  //metoda dodająca element klasy Group do pola groups
-deleteGroup(Group)	//metoda usuwająca podany element klasy Group z bazy
-select(key, value)	//metoda, która przeszukuje bazę danych pod kątem zadanego klucza
-			            //przekazanego jako parametr(key mógłby być intem albo enumem), 	
-			            //myślałem, że mógłby tworzyć sobie taką tymczasową listę maili 	
-			            //pasujących do klucza i zwracać referencję do niej, inne rozwiązanie 
-			            //to tworzenie takiej listy przez I/O i podawanie referencji do niej jako kolejny parametr.
-deleteList(List)	//usuwa listę emaili utworzoną przez metodę select, wywoływana 		
-		          	  //zaraz po niej
-sortBySender()		//metoda sortująca wg nadawcy
-sortByReceiver()	//metoda sortująca wg odbiorcy
-sortBySubject()		//metoda sortująca wg tematu
-sortByDate()		//metoda sortująca wg daty wysłania
-countEmails()		//metoda zwracająca liczbę e-maili znajdujących się w bazie
-countGroups()		//metoda zwracająca liczbę grup znajdujących się w bazie
-clear()			    //metoda usuwająca wszystkie maila i grupy z bazy
-getDatabase()		//metoda zwracająca referencję do bazy danych
+addEmail(Email)		  	//metoda dodająca element klasy Email do wektora emaili
+deleteEmail(Email)  		//metoda usuwająca podany e-mail z wektora
+deleteEmail(Email.messageID) 	//metoda usuwająca e-mail o podanym ID z wektora
+addGroup(Group)		  	//metoda dodająca element klasy Workgroup do wektora grup
+deleteGroup(Group)		//metoda usuwająca podany element klasy Workgroup z wektora
+select(Query)			//metoda, która przeszukuje bazę danych na podstawie danego obiektu klasy Query
+			        //przekazanego jako parametr, pobiera informacje z Query, tworzy wektor 
+			        //wskaźników na maile/grupy/usemberów pasujących do kryteriów zapytania i odpowiednio posortowany
+			        //i zwraca referencję do niego
+deleteQueryResults(Vector)	//usuwa wektor wyników zapytania utworzonych przez metodę select, wywoływana zaraz po niej
+countEmails()			//metoda zwracająca liczbę e-maili znajdujących się w bazie
+countGroups()			//metoda zwracająca liczbę grup znajdujących się w bazie
+countUsembers()			//metoda zwracająca liczbę grup znajdujących się w bazie
+clear()				//metoda usuwająca wszystkie maile, grupy i usemberów z bazy
