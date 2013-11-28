@@ -5,3 +5,13 @@
 	Treść specyfikacji (co, jak, dlaczego tak a nie inaczej i co powiedziałeś lewaku?)
 1	Macielos			Dodana klasa Database
 	
+*** SPRINT 1 ****
+
+2	Jakub Maleszewski		Chcę mieć możliwość importu danych z podanego katalogu zawierającego pliki .eml (ewentualnie z przeszukiwaniem podfolderów).	
+Obsługa w IOInterface. W zależności od opcji wybranych w interfejsie (typu przeszukiwanie podfolderów, sprawdzanie plików niezaleznie od rozszerzenia - typ MIME: message/rfc822) wywołujemy odpowiednie metody IOInterface (dokładniejszy opis w IOInterface.txt).
+3	Michał Żołyniak			Chcę, by program sprawdzał poprawność wczytywanych listów, aby zapobiec katastrofie.
+Metoda parsera EML w klasie IOInterface. Jeśli e-mail ma właściwą strukturę (wg specyfikacji formatu), możemy zrobić "new Mail" i dodać go do bazy. Jeśli nie, zwracamy odpowiedni wyjątek, np. DirectoryIsEmpty, TargetDoesNotExist, AccessDenied
+4	Michał Żołyniak			Po zakończeniu importu danych chcę otrzymać raport z tej operacji (ilość znalezionych plików, poprawnie wczytanych, zignorowanych).
+Gdy nie pojawi się któryś z powyższych błędów całkowicie przekreślających możliwość wczytania czegokolwiek, zwracamy obiekt zawierający pola typu int zawierające liczbę poprawnie i niepoprawnie wczytanych listów oraz ewentualnie ścieżki do nich.
+5	Jakub Maleszewski		Użytkownik ma mieć możliwość dodania pojedynczych maili lub ich zbioru do wcześniej stworzonej bazy.
+Sprowadza się to do przypadku nr 2, trzeba jedynie używać istniejącego obiektu Database zamiast tworzyć nowy.
