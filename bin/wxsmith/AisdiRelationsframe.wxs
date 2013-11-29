@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxFrame" name="AisdiRelationsFrame">
+		<title>Analiza Relacji Biznesowych</title>
+		<centered>1</centered>
+		<icon>/home/panda/Pobrane/mail.png</icon>
+		<pos>0,0</pos>
+		<size>1300,700</size>
+		<font>
+			<size>12</size>
+			<style>normal</style>
+			<weight>normal</weight>
+			<underlined>0</underlined>
+			<face>Ubuntu</face>
+		</font>
+		<style>wxDEFAULT_FRAME_STYLE|wxMAXIMIZE_BOX</style>
+		<object class="wxPanel" name="ID_PANEL1" variable="Panel1" member="yes">
+			<pos>440,232</pos>
+			<bg>#000000</bg>
+			<object class="wxStaticText" name="ID_STATICTEXT1" variable="MainTitle" member="yes">
+				<label>Analiza Relacji Biznesowych</label>
+				<pos>16,16</pos>
+				<fg>#E0E0E0</fg>
+				<font>
+					<size>16</size>
+					<style>normal</style>
+					<weight>normal</weight>
+					<underlined>0</underlined>
+					<face>Ubuntu</face>
+				</font>
+			</object>
+			<object class="wxButton" name="ID_BUTTON1" variable="Button1" member="yes">
+				<label>Buton</label>
+				<pos>24,80</pos>
+			</object>
+			<object class="wxSearchCtrl" name="ID_SEARCHCTRL1" variable="SearchCtrl1" member="yes">
+				<pos>24,128</pos>
+			</object>
+		</object>
+		<object class="wxMenuBar" variable="MenuBar1" member="no">
+			<object class="wxMenu" variable="Menu1" member="no">
+				<label>&amp;File</label>
+				<object class="wxMenuItem" name="idMenuNew" variable="MenuItem8" member="yes">
+					<label>New</label>
+					<accel>CTRL+N</accel>
+					<help>Creates an empty database</help>
+				</object>
+				<object class="separator" />
+				<object class="wxMenuItem" name="idMenuOpen" variable="MenuItem3" member="yes">
+					<label>Open</label>
+					<accel>CTRL+O</accel>
+					<help>Open file/s</help>
+				</object>
+				<object class="wxMenuItem" name="idMenuOpenFolder" variable="MenuItem4" member="yes">
+					<label>Open folder</label>
+					<accel>CTRL+SHIFT+O</accel>
+					<help>Open all files in a folder</help>
+				</object>
+				<object class="separator" />
+				<object class="wxMenuItem" name="idMenuSave" variable="MenuItem5" member="yes">
+					<label>Save</label>
+					<accel>CTRL+S</accel>
+					<help>Save your work</help>
+				</object>
+				<object class="separator" />
+				<object class="wxMenuItem" name="idMenuProperties" variable="MenuItem9" member="yes">
+					<label>Properties</label>
+					<accel>CTRL+P</accel>
+					<help>Program settings</help>
+				</object>
+				<object class="separator" />
+				<object class="wxMenuItem" name="idMenuQuit" variable="MenuItem1" member="no">
+					<label>Quit</label>
+					<accel>Alt-F4</accel>
+					<help>Quit the application</help>
+					<handler function="OnQuit" entry="EVT_MENU" />
+				</object>
+			</object>
+			<object class="wxMenu" variable="Menu3" member="yes">
+				<label>&amp;Import/Export</label>
+				<object class="wxMenuItem" name="idMenuImportText" variable="MenuItem7" member="yes">
+					<label>Import from text</label>
+					<help>Load a database from a text file</help>
+				</object>
+				<object class="wxMenuItem" name="idMenuImportBin" variable="MenuItem10" member="yes">
+					<label>Import from binary</label>
+					<help>Load database from a binary file</help>
+				</object>
+				<object class="separator" />
+				<object class="wxMenuItem" name="idMenuExportText" variable="MenuItem6" member="yes">
+					<label>Export to text</label>
+					<help>Copy database to a text file</help>
+				</object>
+				<object class="wxMenuItem" name="idMenuExportBin" variable="MenuItem11" member="yes">
+					<label>Export to bin</label>
+					<help>Stores databse in a binary file</help>
+				</object>
+			</object>
+			<object class="wxMenu" variable="Menu2" member="no">
+				<label>Help</label>
+				<object class="wxMenuItem" name="idMenuAbout" variable="MenuItem2" member="no">
+					<label>About</label>
+					<accel>F1</accel>
+					<help>Show info about this application</help>
+					<handler function="OnAbout" entry="EVT_MENU" />
+				</object>
+				<object class="wxMenuItem" name="idMenuHelp" variable="MenuItem12" member="yes">
+					<label>Help</label>
+					<accel>F2</accel>
+					<help>General application manual</help>
+				</object>
+			</object>
+		</object>
+	</object>
+</wxsmith>
