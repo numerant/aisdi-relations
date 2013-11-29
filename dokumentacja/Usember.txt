@@ -14,8 +14,8 @@ Kolejne opcjonalnie uzupełniane pola (domyślnie puste):
 - group - wskaźnik na grupę - wypełniany po analizie maili
 
 I przechowywanie maili związanym z tym usemberem (referencje pod ręką)
-- sendMails - wektor wskaźników na maile wysłane przez tego usembera
-- reseiveMails - wektor wspaźników na maile które otrzymał ten usember
+- sentMails - wektor wskaźników na maile wysłane przez tego usembera
+- receivedMails - wektor wspaźników na maile które otrzymał ten usember
 
 
 

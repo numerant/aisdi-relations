@@ -5,6 +5,10 @@
 Code::Blocks to fajnie wyłapuje w jednym miejscu i nie trzeba szukać (jeśli ktoś używa, a zachęcam. Jak nie to i tak mu nie zaszkodzi). Proponuję kolejne punkty pisać nad poprzednimi, żeby nie przewijać całego pliku na sam dół, dziekuję, miłego czytania.	*/
 
 ---------------------------------------------------------------------------------
+29.11.2013
+>>> Do ogarnięcia wg Zalewskiego
+	- Rodzina zbiorów rozłącznych
+	
 26.11.2013
 >>> Nowy przydział zadań - Update założeń - Nowe klasy
 	- Interface (PK)
