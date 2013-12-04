@@ -6,7 +6,10 @@ Code::Blocks to fajnie wyłapuje w jednym miejscu i nie trzeba szukać (jeśli k
 
 ---------------------------------------------------------------------------------
 04.12.2013
+>>> Ustalenie założeń dotyczących współpracy pomiędzy metodą emlParser (klasa IOInterface) a metodami klasy Email, szczególnie istotne tworzenie nowego maila, jakie argumenty dla metod "get...".
+
 >>> Do omówienia: sposób nazewnictwa klas/metod/pól, formatowania i komentowania kodu 
+
 
 29.11.2013
 >>> Do ogarnięcia wg Zalewskiego
