@@ -9,6 +9,8 @@
 class IOInterface
 {
     public:
+    // Classes
+        struct ImportStats { }                                                      // IOInterface::ImportStats
 
     // Methods:
         IOInterface();                                                              // trzeba zadbać o wskaźnik na bazę danych
@@ -16,7 +18,7 @@ class IOInterface
 
         ImportStats importMail(string path, MailImportParam *parameters);
 
-        void exportDatabase (string file_path, ExportParam *parameters);            // można zrobić klasę Parameters, a ImportParamteres i ExportParameters bedą po niej dziedziczyć
+        void exportDatabase (string file_path, ExportParam *parameters);            // można zrobić klasę Param, a ImportParam i ExportParam bedą po niej dziedziczyć
         void importDatabase (string file_path, DbImportParam * parameters);
         void exportReport (string path, Report report);
 
