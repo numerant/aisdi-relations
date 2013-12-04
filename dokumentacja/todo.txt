@@ -5,6 +5,9 @@
 Code::Blocks to fajnie wyłapuje w jednym miejscu i nie trzeba szukać (jeśli ktoś używa, a zachęcam. Jak nie to i tak mu nie zaszkodzi). Proponuję kolejne punkty pisać nad poprzednimi, żeby nie przewijać całego pliku na sam dół, dziekuję, miłego czytania.	*/
 
 ---------------------------------------------------------------------------------
+04.12.2013
+>>> Do omówienia: sposób nazewnictwa klas/metod/pól, formatowania i komentowania kodu 
+
 29.11.2013
 >>> Do ogarnięcia wg Zalewskiego
 	- Rodzina zbiorów rozłącznych
