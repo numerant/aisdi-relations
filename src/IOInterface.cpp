@@ -1,5 +1,5 @@
-# IOInterface class
-# This class is responsible for all file operations, like database import / export, e-mail import etc.
+// IOInterface class
+// This class is responsible for all file operations, like database import / export, e-mail import etc.
 
 #include "IOInterface.h"
 
