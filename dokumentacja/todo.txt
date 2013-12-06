@@ -5,16 +5,17 @@
 Code::Blocks to fajnie wyłapuje w jednym miejscu i nie trzeba szukać (jeśli ktoś używa, a zachęcam. Jak nie to i tak mu nie zaszkodzi). Proponuję kolejne punkty pisać nad poprzednimi, żeby nie przewijać całego pliku na sam dół, dziekuję, miłego czytania.	*/
 
 ---------------------------------------------------------------------------------
+06.12.2013
+>>> JM: Jeśli chodzi o parser, to Patryk zaproponował, by działał on na strumieniach. Stąd moja sugestia, by go (parser, nie Patryka) nieco zmodyfikować - niech dostaje ścieżkę do pliku, otwiera jako ifstream, później analizuje i zamyka.
+
 05.12.2013
 >>> W pliku parser.cpp znajduje się program prezentujący działanie parsera. Dobrze byłoby sprawdzić, czy funkcjonuje odpowiednio.
     Po ewentualnych poprawkach można będzie dodać go do klasy IOInterface oraz zadbać o obsługiwanie metod z klasy Email (set...)
-
 
 04.12.2013
 >>> Ustalenie założeń dotyczących współpracy pomiędzy metodą emlParser (klasa IOInterface) a metodami klasy Email, szczególnie istotne tworzenie nowego maila, jakie argumenty dla metod "get...".
 
 >>> Do omówienia: sposób nazewnictwa klas/metod/pól, formatowania i komentowania kodu 
-
 
 29.11.2013
 >>> Do ogarnięcia wg Zalewskiego
