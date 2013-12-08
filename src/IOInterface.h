@@ -12,7 +12,7 @@
 #include "boost/filesystem.hpp"         // do wczytywania plików z katalogu - także rekursywnie
 #include "Database.h"
 #include "Email.h"
-#include "Param.h"
+#include "Parameters.h"
 
 using namespace std;
 
@@ -32,10 +32,10 @@ class IOInterface
         IOInterface();                                                              // trzeba zadbać o wskaźnik na bazę danych
         ~IOInterface();
 
-        ImportStats importMail(MailParam *parameters);
+        ImportStats importMail(MailParameters *parameters);
 
-        void exportDatabase (string filePath, DbParam *parameters);                 // opis klas MailParam i DbParam jest w Param.h
-        void importDatabase (string filePath, DbParam *parameters);
+        void exportDatabase (string filePath, DbParameters *parameters);                 // opis klas MailParameters i DbParameters jest w Param.h
+        void importDatabase (string filePath, DbParameters *parameters);
         void exportReport (string path, Report report);
 
     private:

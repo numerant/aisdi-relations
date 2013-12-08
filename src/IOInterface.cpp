@@ -15,7 +15,7 @@ IOInterface::ImportStats::ImportStats()
     existingCount = 0;
 }
 
-ImportStats IOInterface::importMail(MailParam *parameters)
+ImportStats IOInterface::importMail(MailParameters *parameters)
 {
     Email *tempEmail;       //pamiętać o delete!
     ImportStats stats;
