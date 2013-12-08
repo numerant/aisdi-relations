@@ -34,8 +34,8 @@ ImportStats IOInterface::importMail(MailParameters *parameters)
             if (iter->path().extension() == ".eml")
             {
                 try tempEmail = emlParser( iter->path() );
-                catch ( /* mail nie jest poprawny */ )
-                {
+                catch ( IOException error )                                             // mail nie jest poprawny składniowo
+                {                                                                       // właściwie powinno być EmlSyntaxIncorrect, ale póki co niezależnie od rzuconego przez parser wyjątku jedynie inkrementujemy failCount
                     stats->failCount++;
                     break;
                 }
@@ -52,7 +52,7 @@ ImportStats IOInterface::importMail(MailParameters *parameters)
     else
     {
         try tempEmail = emlParser(parameters->path);
-        catch ( /* mail nie jest poprawny */ )
+        catch ( IOException error )
         {
             stats->failCount++;
             break;                      //wyskoczenie z bloku else

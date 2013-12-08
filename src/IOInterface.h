@@ -12,6 +12,7 @@
 #include "boost/filesystem.hpp"         // do wczytywania plików z katalogu - także rekursywnie
 #include "Database.h"
 #include "Email.h"
+#include "IOException.h"
 #include "Parameters.h"
 
 using namespace std;
