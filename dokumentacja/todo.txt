@@ -5,6 +5,9 @@
 Code::Blocks to fajnie wyłapuje w jednym miejscu i nie trzeba szukać (jeśli ktoś używa, a zachęcam. Jak nie to i tak mu nie zaszkodzi). Proponuję kolejne punkty pisać nad poprzednimi, żeby nie przewijać całego pliku na sam dół, dziekuję, miłego czytania.	*/
 
 ---------------------------------------------------------------------------------
+08.12.2013
+>>> JM: Dla zachowania porządku w plikach można by pliki klas opisujących wyjątki trzymać w podkatalogu np. Exceptions. Co wy na to?
+
 06.12.2013
 >>> JM: Jeśli chodzi o parser, to Patryk zaproponował, by działał on na strumieniach. Stąd moja sugestia, by go (parser, nie Patryka) nieco zmodyfikować - niech dostaje ścieżkę do pliku, otwiera jako ifstream, później analizuje i zamyka.
 
