@@ -19,6 +19,8 @@
 #include "../src/UsemberQuery.h"
 #include "../src/WorkgroupQuery.h" */
 
+/** Pliki  zarządzające widokiem (panelami) */
+//#include "view/PanelTitleMaintance.h"
 
 //(*AppHeaders
 #include "AisdiRelationsMain.h"
@@ -39,6 +41,7 @@ bool AisdiRelationsApp::OnInit()
     	SetTopWindow(Frame);
     }
     //*)
+
     return wxsOK;
 
 }

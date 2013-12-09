@@ -41,6 +41,18 @@
 		<Unit filename="AisdiRelationsApp.h" />
 		<Unit filename="AisdiRelationsMain.cpp" />
 		<Unit filename="AisdiRelationsMain.h" />
+		<Unit filename="view/PanelGroupsMaintance.cpp" />
+		<Unit filename="view/PanelGroupsMaintance.h" />
+		<Unit filename="view/PanelInboxMaintance.cpp" />
+		<Unit filename="view/PanelInboxMaintance.h" />
+		<Unit filename="view/PanelMulTreeMaintance.cpp" />
+		<Unit filename="view/PanelMulTreeMaintance.h" />
+		<Unit filename="view/PanelStatisticsMaintance.cpp" />
+		<Unit filename="view/PanelStatisticsMaintance.h" />
+		<Unit filename="view/PanelTitleMaintance.cpp" />
+		<Unit filename="view/PanelTitleMaintance.h" />
+		<Unit filename="view/PanelUsembersMaintance.cpp" />
+		<Unit filename="view/PanelUsembersMaintance.h" />
 		<Unit filename="wxsmith/AisdiRelationsframe.wxs" />
 		<Extensions>
 			<envvars />

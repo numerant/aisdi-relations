@@ -1043,7 +1043,7 @@
 	<string>
 	"Group.h"
 
-1386606867 source:/home/panda/aisdi-relations2/bin/AisdiRelationsApp.cpp
+1386627467 source:/home/panda/aisdi-relations2/bin/AisdiRelationsApp.cpp
 	"AisdiRelationsApp.h"
 	"../src/EmailQuery.h"
 	"../src/IOInterface.h"
@@ -1055,10 +1055,10 @@
 	"AisdiRelationsMain.h"
 	<wx/image.h>
 
-1386606867 /home/panda/aisdi-relations2/bin/AisdiRelationsApp.h
+1386618848 /home/panda/aisdi-relations2/bin/AisdiRelationsApp.h
 	<wx/app.h>
 
-1386606867 /home/panda/aisdi-relations2/bin/AisdiRelationsMain.h
+1386630398 /home/panda/aisdi-relations2/bin/AisdiRelationsMain.h
 	<wx/listctrl.h>
 	<wx/menu.h>
 	<wx/panel.h>
@@ -1072,9 +1072,14 @@
 	<wx/image.h>
 	<wx/html/htmlwin.h>
 
-1386602153 source:/home/panda/aisdi-relations2/bin/AisdiRelationsMain.cpp
+1386630297 source:/home/panda/aisdi-relations2/bin/AisdiRelationsMain.cpp
+	"view/PanelTitleMaintance.h"
+	"view/PanelInboxMaintance.h"
+	"view/PanelUsembersMaintance.h"
+	"view/PanelGroupsMaintance.h"
+	"view/PanelStatisticsMaintance.h"
+	"view/PanelMulTreeMaintance.h"
 	"AisdiRelationsMain.h"
-	"view/TitleScreen.h"
 	<wx/msgdlg.h>
 	<wx/stattext.h>
 	<wx/settings.h>
@@ -1196,7 +1201,7 @@
 	"wx/list.h"
 	"wx/icon.h"
 
-1386553231 /home/panda/aisdi-relations2/bin/view/TitleScreen.h
+1386618849 /home/panda/aisdi-relations2/bin/view/TitleScreen.h
 
 1386541148 /home/panda/aisdi-relations2/bin/AisdiRelationsMain.cpp
 	"AisdiRelationsMain.h"
@@ -1366,5 +1371,51 @@
 	"wx/defs.h"
 	"wx/filesys.h"
 
-1386552608 /home/panda/aisdi-relations2/src/IOException.h
+1386618849 /home/panda/aisdi-relations2/src/IOException.h
+
+1329067347 /usr/include/wx-2.8/wx/animate.h
+	"wx/defs.h"
+	"wx/animdecod.h"
+	"wx/control.h"
+	"wx/timer.h"
+	"wx/bitmap.h"
+	"wx/gtk/animate.h"
+	"wx/generic/animate.h"
+
+1329067347 /usr/include/wx-2.8/wx/animdecod.h
+	"wx/defs.h"
+	"wx/colour.h"
+	"wx/gdicmn.h"
+
+1329067347 /usr/include/wx-2.8/wx/gtk/animate.h
+
+1329067347 /usr/include/wx-2.8/wx/generic/animate.h
+	"wx/bitmap.h"
+
+1386627125 /home/panda/aisdi-relations2/bin/view/PanelTitle.h
+	"../AisdiRelationsMain.h"
+
+1386627361 /home/panda/aisdi-relations2/bin/view/PanelTitleMaintance.h
+	"../AisdiRelationsMain.h"
+
+1386628156 source:/home/panda/aisdi-relations2/bin/view/PanelTitleMaintance.cpp
+	"PanelTitleMaintance.h"
+
+1386629936 /home/panda/aisdi-relations2/bin/view/PanelInboxMaintance.h
+	"../AisdiRelationsMain.h"
+
+1386629952 /home/panda/aisdi-relations2/bin/view/PanelUsembersMaintance.h
+	"../AisdiRelationsMain.h"
+
+1386629917 /home/panda/aisdi-relations2/bin/view/PanelGroupsMaintance.h
+	"../AisdiRelationsMain.h"
+
+1386629928 /home/panda/aisdi-relations2/bin/view/PanelStatisticsMaintance.h
+	"../AisdiRelationsMain.h"
+
+1386629915 /home/panda/aisdi-relations2/bin/view/PanelMulTreeMaintance.h
+	"../AisdiRelationsMain.h"
+
+1386630186 source:/home/panda/aisdi-relations2/bin/view/PanelGroupsMaintance.cpp
+	"PanelGroupsMaintance.h"
 

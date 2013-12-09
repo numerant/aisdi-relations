@@ -19,11 +19,87 @@
 			<pos>0,0</pos>
 			<bg>#000000</bg>
 			<object class="wxPanel" name="ID_PANEL3" variable="PanelTitle" member="yes">
-				<pos>0,0</pos>
+				<pos>1366,0</pos>
 				<size>1366,768</size>
+				<hidden>1</hidden>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP2" variable="BitmapBackgroundTitle" member="yes">
 					<bitmap>/home/panda/aisdi-relations2/bin/resources/background3.jpg</bitmap>
 					<pos>0,0</pos>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT9" variable="T_StaticTextTitle1" member="yes">
+					<label>Analiza</label>
+					<pos>400,40</pos>
+					<fg>#C8C8C8</fg>
+					<font>
+						<size>60</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT10" variable="T_StaticTextTitle2" member="yes">
+					<label>Relacji</label>
+					<pos>500,120</pos>
+					<fg>#A0A0A0</fg>
+					<font>
+						<size>60</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT11" variable="T_StaticTextTitle3" member="yes">
+					<label>Biznesowych</label>
+					<pos>450,200</pos>
+					<fg>#787878</fg>
+					<font>
+						<size>60</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+				</object>
+				<object class="wxStaticLine" name="ID_STATICLINE2" variable="T_StaticLineAddV" member="yes">
+					<pos>647,450</pos>
+					<size>3,150</size>
+					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+					<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
+					<style>wxLI_VERTICAL</style>
+				</object>
+				<object class="wxStaticLine" name="ID_STATICLINE3" variable="T_StaticLineAddH" member="yes">
+					<pos>573,597</pos>
+					<size>150,5</size>
+					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+					<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
+				</object>
+				<object class="wxStaticLine" name="ID_STATICLINE5" variable="T_StaticLineImportV" member="yes">
+					<pos>1000,562</pos>
+					<size>3,75</size>
+					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+					<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
+					<style>wxLI_VERTICAL</style>
+				</object>
+				<object class="wxStaticLine" name="ID_STATICLINE4" variable="T_StaticLineImportH" member="yes">
+					<pos>851,597</pos>
+					<size>150,5</size>
+					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+					<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
+				</object>
+				<object class="wxStaticLine" name="ID_STATICLINE7" variable="T_StaticLineOpenV" member="yes">
+					<pos>300,562</pos>
+					<size>3,75</size>
+					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+					<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
+					<style>wxLI_VERTICAL</style>
+				</object>
+				<object class="wxStaticLine" name="ID_STATICLINE6" variable="T_StaticLineOpenH" member="yes">
+					<pos>300,597</pos>
+					<size>150,5</size>
+					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+					<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL4" variable="PanelUsembers" member="yes">
@@ -33,57 +109,7 @@
 					<bitmap>/home/panda/aisdi-relations2/bin/resources/background3.jpg</bitmap>
 					<pos>0,0</pos>
 				</object>
-			</object>
-			<object class="wxPanel" name="ID_PANEL5" variable="PanelStatistics" member="yes">
-				<pos>0,0</pos>
-				<size>1366,768</size>
-				<object class="wxStaticBitmap" name="ID_STATICBITMAP4" variable="BitmapBackgroundStatistics" member="yes">
-					<bitmap>/home/panda/aisdi-relations2/bin/resources/background3.jpg</bitmap>
-					<pos>0,0</pos>
-				</object>
-			</object>
-			<object class="wxPanel" name="ID_PANEL6" variable="PanelGroups" member="yes">
-				<pos>0,0</pos>
-				<size>1366,768</size>
-				<object class="wxStaticBitmap" name="ID_STATICBITMAP5" variable="BitmapBackgroundGroups" member="yes">
-					<bitmap>/home/panda/aisdi-relations2/bin/resources/background3.jpg</bitmap>
-					<pos>0,0</pos>
-					<size>1366,768</size>
-				</object>
-			</object>
-			<object class="wxPanel" name="ID_PANEL7" variable="PanelTree" member="yes">
-				<pos>0,0</pos>
-				<size>1366,768</size>
-				<object class="wxStaticBitmap" name="ID_STATICBITMAP6" variable="BitmapBackgroundTree" member="yes">
-					<bitmap>/home/panda/aisdi-relations2/bin/resources/background3.jpg</bitmap>
-					<pos>0,0</pos>
-					<size>1366,768</size>
-				</object>
-			</object>
-			<object class="wxPanel" name="ID_PANEL2" variable="PanelInbox" member="yes">
-				<pos>0,0</pos>
-				<size>1366,768</size>
-				<style>wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL</style>
-				<object class="wxStaticBitmap" name="ID_STATICBITMAP1" variable="BitmapBackgroundInbox" member="yes">
-					<bitmap>/home/panda/aisdi-relations/bin/resources/background3.jpg</bitmap>
-					<pos>0,0</pos>
-					<size>1366,768</size>
-				</object>
-				<object class="wxStaticBox" name="ID_STATICBOX1" variable="InboxBorder" member="yes">
-					<label>  Skrzynka Email  </label>
-					<pos>15,90</pos>
-					<size>570,610</size>
-					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
-					<bg>wxSYS_COLOUR_HIGHLIGHT</bg>
-					<font>
-						<size>16</size>
-						<style>normal</style>
-						<weight>normal</weight>
-						<underlined>0</underlined>
-						<face>Ubuntu</face>
-					</font>
-				</object>
-				<object class="wxListCtrl" name="ID_LISTCTRL1" variable="Inbox" member="yes">
+				<object class="wxListCtrl" name="ID_LISTCTRL2" variable="U_ListUsembers" member="yes">
 					<pos>25,120</pos>
 					<size>550,570</size>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
@@ -97,13 +123,81 @@
 					</font>
 					<style>wxLC_REPORT</style>
 				</object>
-				<object class="wxStaticBox" name="ID_STATICBOX2" variable="EmailContentBorder" member="yes">
+			</object>
+			<object class="wxPanel" name="ID_PANEL5" variable="PanelStatistics" member="yes">
+				<pos>1366,0</pos>
+				<size>1366,768</size>
+				<hidden>1</hidden>
+				<object class="wxStaticBitmap" name="ID_STATICBITMAP4" variable="BitmapBackgroundStatistics" member="yes">
+					<bitmap>/home/panda/aisdi-relations2/bin/resources/background3.jpg</bitmap>
+					<pos>0,0</pos>
+				</object>
+			</object>
+			<object class="wxPanel" name="ID_PANEL6" variable="PanelGroups" member="yes">
+				<pos>1366,0</pos>
+				<size>1366,768</size>
+				<hidden>1</hidden>
+				<object class="wxStaticBitmap" name="ID_STATICBITMAP5" variable="BitmapBackgroundGroups" member="yes">
+					<bitmap>/home/panda/aisdi-relations2/bin/resources/background3.jpg</bitmap>
+					<pos>0,0</pos>
+					<size>1366,768</size>
+				</object>
+			</object>
+			<object class="wxPanel" name="ID_PANEL7" variable="PanelMulTree" member="yes">
+				<pos>1366,0</pos>
+				<size>1366,768</size>
+				<hidden>1</hidden>
+				<object class="wxStaticBitmap" name="ID_STATICBITMAP6" variable="BitmapBackgroundTree" member="yes">
+					<bitmap>/home/panda/aisdi-relations2/bin/resources/background3.jpg</bitmap>
+					<pos>0,0</pos>
+					<size>1366,768</size>
+				</object>
+			</object>
+			<object class="wxPanel" name="ID_PANEL2" variable="PanelInbox" member="yes">
+				<pos>1366,0</pos>
+				<size>1366,768</size>
+				<hidden>1</hidden>
+				<style>wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL</style>
+				<object class="wxStaticBitmap" name="ID_STATICBITMAP1" variable="I_BitmapBackground" member="yes">
+					<bitmap>/home/panda/aisdi-relations/bin/resources/background3.jpg</bitmap>
+					<pos>0,0</pos>
+					<size>1366,768</size>
+				</object>
+				<object class="wxStaticBox" name="ID_STATICBOX1" variable="I_InboxBorder" member="yes">
+					<label>  Skrzynka Email  </label>
+					<pos>15,90</pos>
+					<size>570,610</size>
+					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+					<bg>wxSYS_COLOUR_HIGHLIGHT</bg>
+					<font>
+						<size>16</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+				</object>
+				<object class="wxListCtrl" name="ID_LISTCTRL1" variable="I_ListInbox" member="yes">
+					<pos>25,120</pos>
+					<size>550,570</size>
+					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+					<bg>#141414</bg>
+					<font>
+						<size>10</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxLC_REPORT</style>
+				</object>
+				<object class="wxStaticBox" name="ID_STATICBOX2" variable="I_EmailContentBorder" member="yes">
 					<pos>650,93</pos>
 					<size>600,500</size>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
 				</object>
-				<object class="wxStaticText" name="ID_STATICTEXT1" variable="LabelFrom" member="yes">
+				<object class="wxStaticText" name="ID_STATICTEXT1" variable="I_LabelFrom" member="yes">
 					<label>Od: </label>
 					<pos>670,120</pos>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
@@ -115,7 +209,7 @@
 						<face>Ubuntu</face>
 					</font>
 				</object>
-				<object class="wxStaticText" name="ID_STATICTEXT2" variable="LabelTo" member="yes">
+				<object class="wxStaticText" name="ID_STATICTEXT2" variable="I_LabelTo" member="yes">
 					<label>Do:</label>
 					<pos>670,145</pos>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
@@ -127,7 +221,7 @@
 						<face>Ubuntu</face>
 					</font>
 				</object>
-				<object class="wxStaticText" name="ID_STATICTEXT5" variable="LabelSubject" member="yes">
+				<object class="wxStaticText" name="ID_STATICTEXT5" variable="I_LabelSubject" member="yes">
 					<label>Temat:</label>
 					<pos>670,170</pos>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
@@ -139,11 +233,11 @@
 						<face>Ubuntu</face>
 					</font>
 				</object>
-				<object class="wxStaticLine" name="ID_STATICLINE1" variable="LineContentSeparator" member="yes">
+				<object class="wxStaticLine" name="ID_STATICLINE1" variable="I_LineContentSeparator" member="yes">
 					<pos>665,210</pos>
 					<size>560,10</size>
 				</object>
-				<object class="wxHtmlWindow" name="ID_HTMLWINDOW1" variable="HtmlEmailContent" member="yes">
+				<object class="wxHtmlWindow" name="ID_HTMLWINDOW1" variable="I_HtmlEmailContent" member="yes">
 					<htmlcode>&lt;p align=&quot;justify&quot;&gt;&lt;font color=&quot;white&quot;&gt;Donec pretium velit nisi, id euismod libero mattis sit amet. Quisque eu volutpat lectus. Nam lacus urna, tincidunt vitae convallis ut, commodo eget augue. Phasellus ornare lacus sapien, sit amet hendrerit neque scelerisque a. Praesent dapibus massa magna, vitae rhoncus turpis malesuada et. Nulla vel suscipit nunc. Integer metus turpis, consectetur non lacinia et, molestie sit amet velit.Donec pretium velit nisi, id euismod libero mattis sit amet. Quisque eu volutpat lectus. Nam lacus urna, tincidunt vitae convallis ut, commodo eget augue. Phasellus ornare lacus sapien, sit amet hendrerit neque scelerisque a. Praesent dapibus massa magna, vitae rhoncus turpis malesuada et. Nulla vel suscipit nunc. Integer metus turpis, consectetur non lacinia et, molestie sit amet velit.Donec pretium velit nisi, id euismod libero mattis sit amet. Quisque eu volutpat lectus. Nam lacus urna, tincidunt vitae convallis ut, commodo eget augue. Phasellus ornare lacus sapien, sit amet hendrerit neque scelerisque a. Praesent dapibus massa magna, vitae rhoncus turpis malesuada et. Nulla vel suscipit nunc. Integer metus turpis, consectetur non lacinia et, molestie sit amet velit.&lt;/font&gt;&lt;/p&gt;</htmlcode>
 					<pos>670,230</pos>
 					<size>560,350</size>
@@ -158,8 +252,8 @@
 					</font>
 					<style>wxHW_SCROLLBAR_AUTO|wxNO_BORDER|wxTAB_TRAVERSAL</style>
 				</object>
-				<object class="wxStaticText" name="ID_STATICTEXT6" variable="StaticTextSubject" member="yes">
-					<label>a</label>
+				<object class="wxStaticText" name="ID_STATICTEXT6" variable="I_StaticTextSubject" member="yes">
+					<label></label>
 					<pos>735,170</pos>
 					<fg>wxSYS_COLOUR_BACKGROUND</fg>
 					<font>
@@ -170,8 +264,8 @@
 						<face>Ubuntu</face>
 					</font>
 				</object>
-				<object class="wxStaticText" name="ID_STATICTEXT4" variable="StaticTextTo" member="yes">
-					<label>b</label>
+				<object class="wxStaticText" name="ID_STATICTEXT4" variable="I_StaticTextTo" member="yes">
+					<label></label>
 					<pos>710,145</pos>
 					<fg>wxSYS_COLOUR_ACTIVEBORDER</fg>
 					<font>
@@ -182,10 +276,34 @@
 						<face>Ubuntu</face>
 					</font>
 				</object>
-				<object class="wxStaticText" name="ID_STATICTEXT3" variable="StaticTextFrom" member="yes">
-					<label>c</label>
+				<object class="wxStaticText" name="ID_STATICTEXT3" variable="I_StaticTextFrom" member="yes">
+					<label></label>
 					<pos>710,120</pos>
 					<fg>wxSYS_COLOUR_ACTIVEBORDER</fg>
+					<font>
+						<size>13</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT8" variable="I_StaticTextDate" member="yes">
+					<label>25.12.2013</label>
+					<pos>1150,120</pos>
+					<fg>wxSYS_COLOUR_ACTIVEBORDER</fg>
+					<font>
+						<size>13</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT7" variable="I_LabelDate" member="yes">
+					<label>Data:</label>
+					<pos>1100,120</pos>
+					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<font>
 						<size>13</size>
 						<style>normal</style>
