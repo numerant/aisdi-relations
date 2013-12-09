@@ -44,19 +44,29 @@ class AisdiRelationsFrame: public wxFrame
         //*)
 
         //(*Identifiers(AisdiRelationsFrame)
+        static const long ID_STATICBITMAP2;
+        static const long ID_PANEL3;
+        static const long ID_STATICBITMAP3;
+        static const long ID_PANEL4;
+        static const long ID_STATICBITMAP4;
+        static const long ID_PANEL5;
+        static const long ID_STATICBITMAP5;
+        static const long ID_PANEL6;
+        static const long ID_STATICBITMAP6;
+        static const long ID_PANEL7;
         static const long ID_STATICBITMAP1;
+        static const long ID_STATICBOX1;
         static const long ID_LISTCTRL1;
-        static const long ID_STATICTEXT4;
-        static const long ID_STATICTEXT3;
+        static const long ID_STATICBOX2;
         static const long ID_STATICTEXT1;
         static const long ID_STATICTEXT2;
-        static const long ID_STATICBOX1;
         static const long ID_STATICTEXT5;
-        static const long ID_STATICTEXT6;
-        static const long ID_STATICTEXT7;
-        static const long ID_STATICBOX2;
         static const long ID_STATICLINE1;
         static const long ID_HTMLWINDOW1;
+        static const long ID_STATICTEXT6;
+        static const long ID_STATICTEXT4;
+        static const long ID_STATICTEXT3;
+        static const long ID_PANEL2;
         static const long ID_PANEL1;
         static const long idMenuNew;
         static const long idMenuOpen;
@@ -73,24 +83,30 @@ class AisdiRelationsFrame: public wxFrame
         //*)
 
         //(*Declarations(AisdiRelationsFrame)
+        wxStaticBitmap* BitmapBackgroundTitle;
         wxListCtrl* Inbox;
-        wxHtmlWindow* Text;
-        wxStaticBitmap* BackgroundImage;
+        wxPanel* PanelStatistics;
+        wxHtmlWindow* HtmlEmailContent;
         wxMenuItem* MenuItem12;
-        wxPanel* InboxPanel;
+        wxStaticBitmap* BitmapBackgroundGroups;
+        wxPanel* PanelGroups;
         wxMenu* Menu3;
         wxStaticText* StaticTextSubject;
-        wxStaticText* StaticTextContent;
         wxStaticLine* LineContentSeparator;
         wxStaticText* LabelSubject;
         wxStaticText* LabelFrom;
+        wxPanel* PanelTree;
         wxBitmap              *Image1_BMP;
         wxStaticText* LabelTo;
+        wxPanel* PanelMain;
         wxMenuItem* MenuItem3;
+        wxStaticBitmap* BitmapBackgroundUsembers;
+        wxStaticBitmap* BitmapBackgroundTree;
         wxMenuItem* MenuItem9;
         wxMenuItem* MenuItem11;
         wxStaticBox* InboxBorder;
         wxImageList* ImageList1;
+        wxPanel* PanelInbox;
         wxMenuItem* MenuItem5;
         wxImage               *Image1;
         wxMenuItem* MenuItem10;
@@ -98,9 +114,13 @@ class AisdiRelationsFrame: public wxFrame
         wxMenuItem* MenuItem7;
         wxMenuItem* MenuItem4;
         wxStaticText* StaticTextTo;
+        wxPanel* PanelTitle;
+        wxStaticBitmap* BitmapBackgroundInbox;
         wxStaticBox* EmailContentBorder;
+        wxPanel* PanelUsembers;
         wxStaticText* StaticTextFrom;
         wxMenuItem* MenuItem8;
+        wxStaticBitmap* BitmapBackgroundStatistics;
         //*)
 
         DECLARE_EVENT_TABLE()
