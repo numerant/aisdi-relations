@@ -5,20 +5,16 @@
 Code::Blocks to fajnie wyłapuje w jednym miejscu i nie trzeba szukać (jeśli ktoś używa, a zachęcam. Jak nie to i tak mu nie zaszkodzi). Proponuję kolejne punkty pisać nad poprzednimi, żeby nie przewijać całego pliku na sam dół, dziekuję, miłego czytania.	*/
 
 ---------------------------------------------------------------------------------
-08.12.2013
->>> JM: Dla zachowania porządku w plikach można by pliki klas opisujących wyjątki trzymać w podkatalogu np. Exceptions. Co wy na to?
+09.12.2013
+>>> Exceptions
+	- Proponuję zachować konwencję JM: 
+		- Klasy wyjątków dla każdego działu (email, iointerface, usember itd.) o nazwach w stylu EmailException, IOException itp.
+		- Pochodne klas obsługujące konkretne wyjątki (np. EmlSyntaxIncorrect : public IOException).
+		- Wszystkie pliki wpierdzielić do osobnego katalogu 'exception'
+		- Pochodne klas trzymać w tym samym pliku, co klasa główna
 
 06.12.2013
 >>> JM: Jeśli chodzi o parser, to Patryk zaproponował, by działał on na strumieniach. Stąd moja sugestia, by go (parser, nie Patryka) nieco zmodyfikować - niech dostaje ścieżkę do pliku, otwiera jako ifstream, później analizuje i zamyka.
-
-05.12.2013
->>> W pliku parser.cpp znajduje się program prezentujący działanie parsera. Dobrze byłoby sprawdzić, czy funkcjonuje odpowiednio.
-    Po ewentualnych poprawkach można będzie dodać go do klasy IOInterface oraz zadbać o obsługiwanie metod z klasy Email (set...)
-
-04.12.2013
->>> Ustalenie założeń dotyczących współpracy pomiędzy metodą emlParser (klasa IOInterface) a metodami klasy Email, szczególnie istotne tworzenie nowego maila, jakie argumenty dla metod "get...".
-
->>> Do omówienia: sposób nazewnictwa klas/metod/pól, formatowania i komentowania kodu 
 
 29.11.2013
 >>> Do ogarnięcia wg Zalewskiego
@@ -26,22 +22,9 @@ Code::Blocks to fajnie wyłapuje w jednym miejscu i nie trzeba szukać (jeśli k
 	
 26.11.2013
 >>> Nowy przydział zadań - Update założeń - Nowe klasy
-	- Interface (PK)
-		- Postaram się w najbliższym czasie zrobić jakieś demo WxWidgets, żeby można było coś pokazać.
-		- Bardzo ważna jest współpraca interfejsu z klasami (tekstowo lub za pośrednictwem obiektów).
 	- Error/Exception (MS)
 		- Ogarnięcie klasy Exception z C++
 		- Zapisanie w jakimś pliku informacji o tym oraz jak to można podpiąć pod metody innych klas. W szczególności jakie dziedziczenia by nas interesowały oraz jakby to mogło współpracować z interfejsem WxWidgets.
-
->>> Zestaw maili - Forward - Algorytmy
-	- Maile (MS)
-		- Zadanie dla Maćka: ogarnięcie jak i czy w ogóle .eml uwzględnia FORWARD gdzieś poza tytułem (bo chyba nie powtierdziliśmy w końcu żadnej wersji)
-		- oraz przygotowanie przykładowego zbioru maili (nie za mało).
-	- Algorytmy które musimy opisać
-		- Jakich algorytmow i skąd używamy do sortowania/wyszukiwania/dodawanie/usuwania ? (Wszyscy, każdy do swoich klas)
-			- Jakie założenia są z nimi związane (napisać w specyfikacji klasy) ? Np. że Usemberzy są trzymani alfabetycznie jako domyślna opcja.
-		- Propozycje dodatkowych algorytmów dzielenia na grupy robocze (poza domenowym jako sprawdzenie).
-			- Np. Wyszukiwanie grafów pełnych. Grupa, w której każdy z każdym intensywnie współpracuje.
 
 -------------------------------ARCHIVE------------------------------------------
 
