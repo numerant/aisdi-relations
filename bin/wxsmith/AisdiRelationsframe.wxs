@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxFrame" name="AisdiRelationsFrame">
+		<title>Analiza Relacji Biznesowych</title>
+		<centered>1</centered>
+		<icon>/home/panda/Pobrane/mail.ico</icon>
+		<pos>0,0</pos>
+		<size>1300,700</size>
+		<font>
+			<size>12</size>
+			<style>normal</style>
+			<weight>normal</weight>
+			<underlined>0</underlined>
+			<face>Ubuntu</face>
+		</font>
+		<id_arg>0</id_arg>
+		<style>wxDEFAULT_FRAME_STYLE|wxMAXIMIZE_BOX</style>
+		<object class="wxPanel" name="ID_PANEL1" variable="InboxPanel" member="yes">
+			<pos>440,232</pos>
+			<bg>#000000</bg>
+			<object class="wxStaticBitmap" name="ID_STATICBITMAP1" variable="BackgroundImage" member="yes">
+				<bitmap>/home/panda/aisdi-relations/bin/resources/background3.jpg</bitmap>
+				<pos>-5,0</pos>
+				<size>1366,768</size>
+			</object>
+			<object class="wxListCtrl" name="ID_LISTCTRL1" variable="Inbox" member="yes">
+				<pos>35,120</pos>
+				<size>550,570</size>
+				<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+				<bg>#141414</bg>
+				<font>
+					<size>10</size>
+					<style>normal</style>
+					<weight>normal</weight>
+					<underlined>0</underlined>
+					<face>Ubuntu</face>
+				</font>
+				<style>wxLC_REPORT</style>
+			</object>
+			<object class="wxStaticText" name="ID_STATICTEXT4" variable="StaticTextTo" member="yes">
+				<label></label>
+				<pos>680,145</pos>
+				<fg>wxSYS_COLOUR_ACTIVEBORDER</fg>
+				<font>
+					<size>13</size>
+					<style>normal</style>
+					<weight>normal</weight>
+					<underlined>0</underlined>
+					<face>Ubuntu</face>
+				</font>
+			</object>
+			<object class="wxStaticText" name="ID_STATICTEXT3" variable="StaticTextFrom" member="yes">
+				<label></label>
+				<pos>680,120</pos>
+				<fg>wxSYS_COLOUR_ACTIVEBORDER</fg>
+				<font>
+					<size>13</size>
+					<style>normal</style>
+					<weight>normal</weight>
+					<underlined>0</underlined>
+					<face>Ubuntu</face>
+				</font>
+			</object>
+			<object class="wxStaticText" name="ID_STATICTEXT1" variable="LabelFrom" member="yes">
+				<label>Od: </label>
+				<pos>640,120</pos>
+				<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+				<font>
+					<size>13</size>
+					<style>normal</style>
+					<weight>normal</weight>
+					<underlined>0</underlined>
+					<face>Ubuntu</face>
+				</font>
+			</object>
+			<object class="wxStaticText" name="ID_STATICTEXT2" variable="LabelTo" member="yes">
+				<label>Do:</label>
+				<pos>640,145</pos>
+				<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+				<font>
+					<size>13</size>
+					<style>normal</style>
+					<weight>normal</weight>
+					<underlined>0</underlined>
+					<face>Ubuntu</face>
+				</font>
+			</object>
+			<object class="wxStaticBox" name="ID_STATICBOX1" variable="InboxBorder" member="yes">
+				<label>  Skrzynka Email  </label>
+				<pos>25,90</pos>
+				<size>570,610</size>
+				<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+				<bg>wxSYS_COLOUR_HIGHLIGHT</bg>
+				<font>
+					<size>16</size>
+					<style>normal</style>
+					<weight>normal</weight>
+					<underlined>0</underlined>
+					<face>Ubuntu</face>
+				</font>
+			</object>
+			<object class="wxStaticText" name="ID_STATICTEXT5" variable="LabelSubject" member="yes">
+				<label>Temat:</label>
+				<pos>640,170</pos>
+				<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+				<font>
+					<size>13</size>
+					<style>normal</style>
+					<weight>normal</weight>
+					<underlined>0</underlined>
+					<face>Ubuntu</face>
+				</font>
+			</object>
+			<object class="wxStaticText" name="ID_STATICTEXT6" variable="StaticTextSubject" member="yes">
+				<label></label>
+				<pos>705,170</pos>
+				<fg>wxSYS_COLOUR_BACKGROUND</fg>
+				<font>
+					<size>13</size>
+					<style>normal</style>
+					<weight>normal</weight>
+					<underlined>0</underlined>
+					<face>Ubuntu</face>
+				</font>
+			</object>
+			<object class="wxStaticText" name="ID_STATICTEXT7" variable="StaticTextContent" member="yes">
+				<label>ssss</label>
+				<pos>645,220</pos>
+				<size>560,370</size>
+				<fg>wxSYS_COLOUR_WINDOW</fg>
+				<font>
+					<size>11</size>
+					<style>normal</style>
+					<weight>normal</weight>
+					<underlined>0</underlined>
+					<face>Ubuntu</face>
+				</font>
+				<style>wxST_NO_AUTORESIZE|wxALIGN_LEFT|wxTAB_TRAVERSAL|wxVSCROLL</style>
+			</object>
+			<object class="wxStaticBox" name="ID_STATICBOX2" variable="EmailContentBorder" member="yes">
+				<pos>620,93</pos>
+				<size>600,500</size>
+				<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+				<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
+			</object>
+			<object class="wxStaticLine" name="ID_STATICLINE1" variable="LineContentSeparator" member="yes">
+				<pos>640,200</pos>
+				<size>560,10</size>
+			</object>
+			<object class="wxHtmlWindow" name="ID_HTMLWINDOW1" variable="Text" member="yes">
+				<htmlcode>&lt;p align=&quot;justify&quot;&gt;&lt;font color=&quot;white&quot;&gt;Donec pretium velit nisi, id euismod libero mattis sit amet. Quisque eu volutpat lectus. Nam lacus urna, tincidunt vitae convallis ut, commodo eget augue. Phasellus ornare lacus sapien, sit amet hendrerit neque scelerisque a. Praesent dapibus massa magna, vitae rhoncus turpis malesuada et. Nulla vel suscipit nunc. Integer metus turpis, consectetur non lacinia et, molestie sit amet velit.Donec pretium velit nisi, id euismod libero mattis sit amet. Quisque eu volutpat lectus. Nam lacus urna, tincidunt vitae convallis ut, commodo eget augue. Phasellus ornare lacus sapien, sit amet hendrerit neque scelerisque a. Praesent dapibus massa magna, vitae rhoncus turpis malesuada et. Nulla vel suscipit nunc. Integer metus turpis, consectetur non lacinia et, molestie sit amet velit.Donec pretium velit nisi, id euismod libero mattis sit amet. Quisque eu volutpat lectus. Nam lacus urna, tincidunt vitae convallis ut, commodo eget augue. Phasellus ornare lacus sapien, sit amet hendrerit neque scelerisque a. Praesent dapibus massa magna, vitae rhoncus turpis malesuada et. Nulla vel suscipit nunc. Integer metus turpis, consectetur non lacinia et, molestie sit amet velit.&lt;/font&gt;&lt;/p&gt;</htmlcode>
+				<pos>640,225</pos>
+				<size>560,350</size>
+				<fg>wxSYS_COLOUR_WINDOW</fg>
+				<bg>#141414</bg>
+				<font>
+					<size>10</size>
+					<style>normal</style>
+					<weight>normal</weight>
+					<underlined>0</underlined>
+					<face>Ubuntu</face>
+				</font>
+				<style>wxHW_SCROLLBAR_AUTO|wxNO_BORDER|wxTAB_TRAVERSAL</style>
+			</object>
+		</object>
+		<object class="wxMenuBar" variable="MenuBar1" member="no">
+			<object class="wxMenu" variable="Menu1" member="no">
+				<label>&amp;File</label>
+				<object class="wxMenuItem" name="idMenuNew" variable="MenuItem8" member="yes">
+					<label>New</label>
+					<accel>CTRL+N</accel>
+					<help>Creates an empty database</help>
+				</object>
+				<object class="separator" />
+				<object class="wxMenuItem" name="idMenuOpen" variable="MenuItem3" member="yes">
+					<label>Open</label>
+					<accel>CTRL+O</accel>
+					<help>Open file/s</help>
+				</object>
+				<object class="wxMenuItem" name="idMenuOpenFolder" variable="MenuItem4" member="yes">
+					<label>Open folder</label>
+					<accel>CTRL+SHIFT+O</accel>
+					<help>Open all files in a folder</help>
+				</object>
+				<object class="separator" />
+				<object class="wxMenuItem" name="idMenuSave" variable="MenuItem5" member="yes">
+					<label>Save</label>
+					<accel>CTRL+S</accel>
+					<help>Save your work</help>
+				</object>
+				<object class="separator" />
+				<object class="wxMenuItem" name="idMenuProperties" variable="MenuItem9" member="yes">
+					<label>Properties</label>
+					<accel>CTRL+P</accel>
+					<help>Program settings</help>
+				</object>
+				<object class="separator" />
+				<object class="wxMenuItem" name="idMenuQuit" variable="MenuItem1" member="no">
+					<label>Quit</label>
+					<accel>Alt-F4</accel>
+					<help>Quit the application</help>
+					<handler function="OnQuit" entry="EVT_MENU" />
+				</object>
+			</object>
+			<object class="wxMenu" variable="Menu3" member="yes">
+				<label>&amp;Import/Export</label>
+				<object class="wxMenuItem" name="idMenuImportText" variable="MenuItem7" member="yes">
+					<label>Import from text</label>
+					<help>Load a database from a text file</help>
+				</object>
+				<object class="wxMenuItem" name="idMenuImportBin" variable="MenuItem10" member="yes">
+					<label>Import from binary</label>
+					<help>Load database from a binary file</help>
+				</object>
+				<object class="separator" />
+				<object class="wxMenuItem" name="idMenuExportText" variable="MenuItem6" member="yes">
+					<label>Export to text</label>
+					<help>Copy database to a text file</help>
+				</object>
+				<object class="wxMenuItem" name="idMenuExportBin" variable="MenuItem11" member="yes">
+					<label>Export to bin</label>
+					<help>Stores databse in a binary file</help>
+				</object>
+			</object>
+			<object class="wxMenu" variable="Menu2" member="no">
+				<label>Help</label>
+				<object class="wxMenuItem" name="idMenuAbout" variable="MenuItem2" member="no">
+					<label>About</label>
+					<accel>F1</accel>
+					<help>Show info about this application</help>
+					<handler function="OnAbout" entry="EVT_MENU" />
+				</object>
+				<object class="wxMenuItem" name="idMenuHelp" variable="MenuItem12" member="yes">
+					<label>Help</label>
+					<accel>F2</accel>
+					<help>General application manual</help>
+				</object>
+			</object>
+		</object>
+		<object class="wxImage" variable="Image1" member="yes" />
+		<object class="wxImageList" variable="ImageList1" member="yes">
+			<image_list>
+				<item>16</item>
+				<item>16</item>
+			</image_list>
+			<image_text>
+				<item2>16</item2>
+				<item2>16</item2>
+			</image_text>
+		</object>
+	</object>
+</wxsmith>
