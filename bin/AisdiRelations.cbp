@@ -51,6 +51,7 @@
 				<gui name="wxWidgets" src="AisdiRelationsApp.cpp" main="AisdiRelationsFrame" init_handlers="necessary" language="CPP" />
 				<resources>
 					<wxFrame wxs="wxsmith/AisdiRelationsframe.wxs" src="AisdiRelationsMain.cpp" hdr="AisdiRelationsMain.h" fwddecl="0" i18n="1" name="AisdiRelationsFrame" language="CPP" />
+					<wxPanel wxs="wxsmith/MainPanel.wxs" src="MainPanel.cpp" hdr="MainPanel.h" fwddecl="0" i18n="1" name="MainPanel" language="CPP" />
 				</resources>
 			</wxsmith>
 			<DoxyBlocks>
