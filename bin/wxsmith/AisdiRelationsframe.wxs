@@ -3,7 +3,11 @@
 	<object class="wxFrame" name="AisdiRelationsFrame">
 		<title>Analiza Relacji Biznesowych</title>
 		<centered>1</centered>
+<<<<<<< HEAD
 		<icon>/home/panda/Pobrane/mail.ico</icon>
+=======
+		<icon>/home/panda/Pobrane/mail.png</icon>
+>>>>>>> 75207318f5c8ed59cfc6835e9d4135bd5c643e72
 		<pos>0,0</pos>
 		<size>1300,700</size>
 		<font>
@@ -13,6 +17,7 @@
 			<underlined>0</underlined>
 			<face>Ubuntu</face>
 		</font>
+<<<<<<< HEAD
 		<id_arg>0</id_arg>
 		<style>wxDEFAULT_FRAME_STYLE|wxMAXIMIZE_BOX</style>
 		<object class="wxPanel" name="ID_PANEL1" variable="InboxPanel" member="yes">
@@ -91,6 +96,16 @@
 				<size>570,610</size>
 				<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 				<bg>wxSYS_COLOUR_HIGHLIGHT</bg>
+=======
+		<style>wxDEFAULT_FRAME_STYLE|wxMAXIMIZE_BOX</style>
+		<object class="wxPanel" name="ID_PANEL1" variable="Panel1" member="yes">
+			<pos>440,232</pos>
+			<bg>#000000</bg>
+			<object class="wxStaticText" name="ID_STATICTEXT1" variable="MainTitle" member="yes">
+				<label>Analiza Relacji Biznesowych</label>
+				<pos>16,16</pos>
+				<fg>#E0E0E0</fg>
+>>>>>>> 75207318f5c8ed59cfc6835e9d4135bd5c643e72
 				<font>
 					<size>16</size>
 					<style>normal</style>
@@ -99,6 +114,7 @@
 					<face>Ubuntu</face>
 				</font>
 			</object>
+<<<<<<< HEAD
 			<object class="wxStaticText" name="ID_STATICTEXT5" variable="LabelSubject" member="yes">
 				<label>Temat:</label>
 				<pos>640,170</pos>
@@ -161,6 +177,14 @@
 					<face>Ubuntu</face>
 				</font>
 				<style>wxHW_SCROLLBAR_AUTO|wxNO_BORDER|wxTAB_TRAVERSAL</style>
+=======
+			<object class="wxButton" name="ID_BUTTON1" variable="Button1" member="yes">
+				<label>Buton</label>
+				<pos>24,80</pos>
+			</object>
+			<object class="wxSearchCtrl" name="ID_SEARCHCTRL1" variable="SearchCtrl1" member="yes">
+				<pos>24,128</pos>
+>>>>>>> 75207318f5c8ed59cfc6835e9d4135bd5c643e72
 			</object>
 		</object>
 		<object class="wxMenuBar" variable="MenuBar1" member="no">
@@ -237,6 +261,7 @@
 				</object>
 			</object>
 		</object>
+<<<<<<< HEAD
 		<object class="wxImage" variable="Image1" member="yes" />
 		<object class="wxImageList" variable="ImageList1" member="yes">
 			<image_list>
@@ -248,5 +273,7 @@
 				<item2>16</item2>
 			</image_text>
 		</object>
+=======
+>>>>>>> 75207318f5c8ed59cfc6835e9d4135bd5c643e72
 	</object>
 </wxsmith>

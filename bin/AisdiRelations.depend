@@ -1,10 +1,18 @@
 # depslib dependency file v1.0
+<<<<<<< HEAD
 1386244588 source:/home/panda/aisdi-relations/bin/AisdiRelationsApp.cpp
+=======
+1385713886 source:/home/panda/aisdi-relations/bin/AisdiRelationsApp.cpp
+>>>>>>> 75207318f5c8ed59cfc6835e9d4135bd5c643e72
 	"AisdiRelationsApp.h"
 	"AisdiRelationsMain.h"
 	<wx/image.h>
 
+<<<<<<< HEAD
 1386244588 /home/panda/aisdi-relations/bin/AisdiRelationsApp.h
+=======
+1385713885 /home/panda/aisdi-relations/bin/AisdiRelationsApp.h
+>>>>>>> 75207318f5c8ed59cfc6835e9d4135bd5c643e72
 	<wx/app.h>
 
 1329067344 /usr/include/wx-2.8/wx/app.h
@@ -346,12 +354,22 @@
 
 1329067346 /usr/include/wx-2.8/wx/gtk/app.h
 
+<<<<<<< HEAD
 1386520701 /home/panda/aisdi-relations/bin/AisdiRelationsMain.h
 	<wx/bmpbuttn.h>
 	<wx/menu.h>
 	<wx/panel.h>
 	<wx/frame.h>
 	<wx/statbmp.h>
+=======
+1385716853 /home/panda/aisdi-relations/bin/AisdiRelationsMain.h
+	<wx/button.h>
+	<wx/menu.h>
+	<wx/panel.h>
+	<wx/srchctrl.h>
+	<wx/frame.h>
+	<wx/stattext.h>
+>>>>>>> 75207318f5c8ed59cfc6835e9d4135bd5c643e72
 
 1329067345 /usr/include/wx-2.8/wx/menu.h
 	"wx/defs.h"
@@ -705,6 +723,7 @@
 1329067346 /usr/include/wx-2.8/wx/imagiff.h
 	"wx/image.h"
 
+<<<<<<< HEAD
 1386285271 source:/home/panda/aisdi-relations/bin/AisdiRelationsMain.cpp
 	"AisdiRelationsMain.h"
 	<wx/msgdlg.h>
@@ -717,6 +736,11 @@
 	"../src/UsemberQuery.h"
 	"../src/WorkgroupQuery.h"
 	<wx/settings.h>
+=======
+1385720308 source:/home/panda/aisdi-relations/bin/AisdiRelationsMain.cpp
+	"AisdiRelationsMain.h"
+	<wx/msgdlg.h>
+>>>>>>> 75207318f5c8ed59cfc6835e9d4135bd5c643e72
 	<wx/string.h>
 	<wx/intl.h>
 	<wx/font.h>
@@ -958,6 +982,7 @@
 1329067346 /usr/include/wx-2.8/wx/generic/icon.h
 	"wx/bitmap.h"
 
+<<<<<<< HEAD
 1329067345 /usr/include/wx-2.8/wx/listbox.h
 	"wx/defs.h"
 	"wx/ctrlsub.h"
@@ -1365,3 +1390,5 @@
 	"wx/defs.h"
 	"wx/filesys.h"
 
+=======
+>>>>>>> 75207318f5c8ed59cfc6835e9d4135bd5c643e72
