@@ -11,7 +11,6 @@
 #define AISDIRELATIONSMAIN_H
 
 //(*Headers(AisdiRelationsFrame)
-<<<<<<< HEAD
 #include <wx/listctrl.h>
 #include <wx/menu.h>
 #include <wx/panel.h>
@@ -24,14 +23,6 @@
 #include <wx/statbmp.h>
 #include <wx/image.h>
 #include <wx/html/htmlwin.h>
-=======
-#include <wx/button.h>
-#include <wx/menu.h>
-#include <wx/panel.h>
-#include <wx/srchctrl.h>
-#include <wx/frame.h>
-#include <wx/stattext.h>
->>>>>>> 75207318f5c8ed59cfc6835e9d4135bd5c643e72
 //*)
 
 class AisdiRelationsFrame: public wxFrame
@@ -41,18 +32,14 @@ class AisdiRelationsFrame: public wxFrame
         AisdiRelationsFrame(wxWindow* parent,wxWindowID id = -1);
         virtual ~AisdiRelationsFrame();
 
-<<<<<<< HEAD
         /** Dopisane metody */
         void  ShowTitle(void);
 
-=======
->>>>>>> 75207318f5c8ed59cfc6835e9d4135bd5c643e72
     private:
 
         //(*Handlers(AisdiRelationsFrame)
         void OnQuit(wxCommandEvent& event);
         void OnAbout(wxCommandEvent& event);
-<<<<<<< HEAD
         void OnButton1Click(wxCommandEvent& event);
         //*)
 
@@ -70,14 +57,6 @@ class AisdiRelationsFrame: public wxFrame
         static const long ID_STATICBOX2;
         static const long ID_STATICLINE1;
         static const long ID_HTMLWINDOW1;
-=======
-        //*)
-
-        //(*Identifiers(AisdiRelationsFrame)
-        static const long ID_STATICTEXT1;
-        static const long ID_BUTTON1;
-        static const long ID_SEARCHCTRL1;
->>>>>>> 75207318f5c8ed59cfc6835e9d4135bd5c643e72
         static const long ID_PANEL1;
         static const long idMenuNew;
         static const long idMenuOpen;
@@ -94,7 +73,6 @@ class AisdiRelationsFrame: public wxFrame
         //*)
 
         //(*Declarations(AisdiRelationsFrame)
-<<<<<<< HEAD
         wxListCtrl* Inbox;
         wxHtmlWindow* Text;
         wxStaticBitmap* BackgroundImage;
@@ -115,28 +93,13 @@ class AisdiRelationsFrame: public wxFrame
         wxImageList* ImageList1;
         wxMenuItem* MenuItem5;
         wxImage               *Image1;
-=======
-        wxStaticText* MainTitle;
-        wxPanel* Panel1;
-        wxMenuItem* MenuItem12;
-        wxMenu* Menu3;
-        wxButton* Button1;
-        wxSearchCtrl* SearchCtrl1;
-        wxMenuItem* MenuItem3;
-        wxMenuItem* MenuItem9;
-        wxMenuItem* MenuItem11;
-        wxMenuItem* MenuItem5;
->>>>>>> 75207318f5c8ed59cfc6835e9d4135bd5c643e72
         wxMenuItem* MenuItem10;
         wxMenuItem* MenuItem6;
         wxMenuItem* MenuItem7;
         wxMenuItem* MenuItem4;
-<<<<<<< HEAD
         wxStaticText* StaticTextTo;
         wxStaticBox* EmailContentBorder;
         wxStaticText* StaticTextFrom;
-=======
->>>>>>> 75207318f5c8ed59cfc6835e9d4135bd5c643e72
         wxMenuItem* MenuItem8;
         //*)
 

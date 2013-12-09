@@ -9,7 +9,6 @@
 
 #include "AisdiRelationsApp.h"
 
-<<<<<<< HEAD
 /**  Pliki nagłówkowe klas projektu */
 /**#include "../src/Database.h"
 #include "../src/EmailQuery.h"
@@ -21,8 +20,6 @@
 #include "../src/WorkgroupQuery.h" */
 
 
-=======
->>>>>>> 75207318f5c8ed59cfc6835e9d4135bd5c643e72
 //(*AppHeaders
 #include "AisdiRelationsMain.h"
 #include <wx/image.h>

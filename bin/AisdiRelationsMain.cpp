@@ -8,7 +8,6 @@
  **************************************************************/
 
 #include "AisdiRelationsMain.h"
-<<<<<<< HEAD
 #include "view/TitleScreen.h"
 #include <wx/msgdlg.h>
 #include <wx/stattext.h>
@@ -19,17 +18,6 @@
 #include <wx/intl.h>
 #include <wx/font.h>
 #include <wx/icon.h>
-=======
-#include <wx/msgdlg.h>
-
-//(*InternalHeaders(AisdiRelationsFrame)
-#include <wx/string.h>
-#include <wx/intl.h>
-#include <wx/font.h>
-#include <wx/bitmap.h>
-#include <wx/icon.h>
-#include <wx/image.h>
->>>>>>> 75207318f5c8ed59cfc6835e9d4135bd5c643e72
 //*)
 
 //helper functions
@@ -59,7 +47,6 @@ wxString wxbuildinfo(wxbuildinfoformat format)
 }
 
 //(*IdInit(AisdiRelationsFrame)
-<<<<<<< HEAD
 const long AisdiRelationsFrame::ID_STATICBITMAP1 = wxNewId();
 const long AisdiRelationsFrame::ID_LISTCTRL1 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT4 = wxNewId();
@@ -73,11 +60,6 @@ const long AisdiRelationsFrame::ID_STATICTEXT7 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICBOX2 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICLINE1 = wxNewId();
 const long AisdiRelationsFrame::ID_HTMLWINDOW1 = wxNewId();
-=======
-const long AisdiRelationsFrame::ID_STATICTEXT1 = wxNewId();
-const long AisdiRelationsFrame::ID_BUTTON1 = wxNewId();
-const long AisdiRelationsFrame::ID_SEARCHCTRL1 = wxNewId();
->>>>>>> 75207318f5c8ed59cfc6835e9d4135bd5c643e72
 const long AisdiRelationsFrame::ID_PANEL1 = wxNewId();
 const long AisdiRelationsFrame::idMenuNew = wxNewId();
 const long AisdiRelationsFrame::idMenuOpen = wxNewId();
@@ -107,18 +89,13 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     wxMenuBar* MenuBar1;
     wxMenu* Menu2;
 
-<<<<<<< HEAD
     Create(parent, wxID_ANY, _("Analiza Relacji Biznesowych"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE|wxMAXIMIZE_BOX, _T("wxID_ANY"));
-=======
-    Create(parent, id, _("Analiza Relacji Biznesowych"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE|wxMAXIMIZE_BOX, _T("id"));
->>>>>>> 75207318f5c8ed59cfc6835e9d4135bd5c643e72
     SetClientSize(wxSize(1300,700));
     Move(wxPoint(0,0));
     wxFont thisFont(12,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     SetFont(thisFont);
     {
     	wxIcon FrameIcon;
-<<<<<<< HEAD
     	FrameIcon.CopyFromBitmap(wxBitmap(wxImage(_T("/home/panda/Pobrane/mail.ico"))));
     	SetIcon(FrameIcon);
     }
@@ -173,19 +150,6 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Text->SetBackgroundColour(wxColour(20,20,20));
     wxFont TextFont(10,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     Text->SetFont(TextFont);
-=======
-    	FrameIcon.CopyFromBitmap(wxBitmap(wxImage(_T("/home/panda/Pobrane/mail.png"))));
-    	SetIcon(FrameIcon);
-    }
-    Panel1 = new wxPanel(this, ID_PANEL1, wxPoint(440,232), wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL1"));
-    Panel1->SetBackgroundColour(wxColour(0,0,0));
-    MainTitle = new wxStaticText(Panel1, ID_STATICTEXT1, _("Analiza Relacji Biznesowych"), wxPoint(16,16), wxDefaultSize, 0, _T("ID_STATICTEXT1"));
-    MainTitle->SetForegroundColour(wxColour(224,224,224));
-    wxFont MainTitleFont(16,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
-    MainTitle->SetFont(MainTitleFont);
-    Button1 = new wxButton(Panel1, ID_BUTTON1, _("Buton"), wxPoint(24,80), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
-    SearchCtrl1 = new wxSearchCtrl(Panel1, ID_SEARCHCTRL1, wxEmptyString, wxPoint(24,128), wxDefaultSize, 0, wxDefaultValidator, _T("ID_SEARCHCTRL1"));
->>>>>>> 75207318f5c8ed59cfc6835e9d4135bd5c643e72
     MenuBar1 = new wxMenuBar();
     Menu1 = new wxMenu();
     MenuItem8 = new wxMenuItem(Menu1, idMenuNew, _("New\tCTRL+N"), _("Creates an empty database"), wxITEM_NORMAL);
@@ -223,18 +187,14 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Menu2->Append(MenuItem12);
     MenuBar1->Append(Menu2, _("Help"));
     SetMenuBar(MenuBar1);
-<<<<<<< HEAD
     Image1 = new wxImage();
     Image1_BMP = new wxBitmap();
     ImageList1 = new wxImageList(16, 16, 1);
-=======
->>>>>>> 75207318f5c8ed59cfc6835e9d4135bd5c643e72
     Center();
 
     Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnQuit);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnAbout);
     //*)
-<<<<<<< HEAD
 
 
      ShowTitle();
@@ -293,19 +253,14 @@ void AisdiRelationsFrame::ShowTitle (void ) {
         StaticTextTo->SetLabel(_("stevee@apple.com"));
         StaticTextSubject->SetLabel(_("RE: Bowling meeting on Sunday"));
         //StaticTextContent->SetLabel(_("Donec pretium velit nisi, id euismod libero mattis sit amet. Quisque eu volutpat lectus. Nam lacus urna, tincidunt vitae convallis ut, commodo eget augue. Phasellus ornare lacus sapien, sit amet hendrerit neque scelerisque a. Praesent dapibus massa magna, vitae rhoncus turpis malesuada et. Nulla vel suscipit nunc. Integer metus turpis, consectetur non lacinia et, molestie sit amet velit."));
-=======
->>>>>>> 75207318f5c8ed59cfc6835e9d4135bd5c643e72
 }
 
 AisdiRelationsFrame::~AisdiRelationsFrame()
 {
     //(*Destroy(AisdiRelationsFrame)
     //*)
-<<<<<<< HEAD
 
     //delete (Title1);
-=======
->>>>>>> 75207318f5c8ed59cfc6835e9d4135bd5c643e72
 }
 
 void AisdiRelationsFrame::OnQuit(wxCommandEvent& event)
@@ -313,20 +268,13 @@ void AisdiRelationsFrame::OnQuit(wxCommandEvent& event)
     Close();
 }
 
-<<<<<<< HEAD
 /** Informacje o autorach i wersji aplikacji */
 void AisdiRelationsFrame::OnAbout(wxCommandEvent& event)
 {
-=======
-void AisdiRelationsFrame::OnAbout(wxCommandEvent& event)
-{
-    //wxString msg = wxbuildinfo(long_f);
->>>>>>> 75207318f5c8ed59cfc6835e9d4135bd5c643e72
     wxString msg = _("Autorzy:\n  Maciej Gańko\n  Krzysztof Lisocki\n  Patryk Łucka\n  Jakub Maleszewski\n  Paweł Kaczyński\n  Maciej Safarzyński\n  Michał Żołyniak\n\n");
     msg += _("---------------------------------------------------\nVersion:  0.1");
     wxMessageBox(msg, _("About"));
 }
-<<<<<<< HEAD
 
 /*void AisdiRelationsFrame::OnButton1Click1(wxCommandEvent& event)
 {
@@ -345,5 +293,3 @@ void AisdiRelationsFrame::OnAbout(wxCommandEvent& event)
     BackgroundImage->SetBitmap(newB);
     BackgroundImage->Refresh();
 }*/
-=======
->>>>>>> 75207318f5c8ed59cfc6835e9d4135bd5c643e72
