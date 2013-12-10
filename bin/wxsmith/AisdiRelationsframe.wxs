@@ -3,9 +3,9 @@
 	<object class="wxFrame" name="AisdiRelationsFrame">
 		<title>Analiza Relacji Biznesowych</title>
 		<centered>1</centered>
-		<icon>/home/panda/Pobrane/mail.ico</icon>
+		<icon>/home/panda/aisdi-relations2/bin/resources/iconProgram.png</icon>
 		<pos>0,0</pos>
-		<size>1300,700</size>
+		<size>1366,768</size>
 		<font>
 			<size>12</size>
 			<style>normal</style>
@@ -19,11 +19,11 @@
 			<pos>0,0</pos>
 			<bg>#000000</bg>
 			<object class="wxPanel" name="ID_PANEL3" variable="PanelTitle" member="yes">
-				<pos>1366,0</pos>
+				<pos>0,0</pos>
 				<size>1366,768</size>
 				<hidden>1</hidden>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP2" variable="BitmapBackgroundTitle" member="yes">
-					<bitmap>/home/panda/aisdi-relations2/bin/resources/background3.jpg</bitmap>
+					<bitmap>/home/panda/aisdi-relations2/bin/resources/background.jpg</bitmap>
 					<pos>0,0</pos>
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT9" variable="T_StaticTextTitle1" member="yes">
@@ -62,56 +62,407 @@
 						<face>Ubuntu</face>
 					</font>
 				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON32" variable="T_ImageButtonSettings" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>1200,15</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON18" variable="T_ImageButtonTxt" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>990,424</pos>
+					<size>112,112</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON17" variable="T_ImageButtonBin" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>990,564</pos>
+					<size>112,112</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON16" variable="T_ImageButtonFolder" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>200,564</pos>
+					<size>112,112</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON15" variable="T_ImageButtonFiles" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>200,424</pos>
+					<size>112,112</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON14" variable="T_ImageButtonLoad" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>445,494</pos>
+					<size>112,112</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON13" variable="T_ImageButtonImport" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>740,494</pos>
+					<size>112,112</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON12" variable="T_ImageButtonAdd" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>592,315</pos>
+					<size>112,112</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
 				<object class="wxStaticLine" name="ID_STATICLINE2" variable="T_StaticLineAddV" member="yes">
-					<pos>647,450</pos>
-					<size>3,150</size>
+					<pos>647,460</pos>
+					<size>3,90</size>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
 					<style>wxLI_VERTICAL</style>
 				</object>
 				<object class="wxStaticLine" name="ID_STATICLINE3" variable="T_StaticLineAddH" member="yes">
-					<pos>573,597</pos>
+					<pos>573,547</pos>
 					<size>150,5</size>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
-				</object>
-				<object class="wxStaticLine" name="ID_STATICLINE5" variable="T_StaticLineImportV" member="yes">
-					<pos>1000,562</pos>
-					<size>3,75</size>
-					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
-					<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
-					<style>wxLI_VERTICAL</style>
 				</object>
 				<object class="wxStaticLine" name="ID_STATICLINE4" variable="T_StaticLineImportH" member="yes">
-					<pos>851,597</pos>
+					<pos>871,547</pos>
 					<size>150,5</size>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
-				</object>
-				<object class="wxStaticLine" name="ID_STATICLINE7" variable="T_StaticLineOpenV" member="yes">
-					<pos>300,562</pos>
-					<size>3,75</size>
-					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
-					<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
-					<style>wxLI_VERTICAL</style>
 				</object>
 				<object class="wxStaticLine" name="ID_STATICLINE6" variable="T_StaticLineOpenH" member="yes">
-					<pos>300,597</pos>
+					<pos>280,547</pos>
 					<size>150,5</size>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT30" variable="T_LabelBin" member="yes">
+					<label>Importuj plik BIN</label>
+					<pos>1115,610</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>14</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT31" variable="T_LabelSettings" member="yes">
+					<label>Ustawienia</label>
+					<pos>1195,75</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT29" variable="T_LabelTxt" member="yes">
+					<label>Importuj plik TXT</label>
+					<pos>1115,470</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>14</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT28" variable="T_LabelFolder" member="yes">
+					<label>Dodaj folder</label>
+					<pos>85,610</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>14</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT27" variable="T_LabelFiles" member="yes">
+					<label>Dodaj pliki</label>
+					<pos>95,470</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>14</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT26" variable="T_LabelLoad" member="yes">
+					<label>Wczytaj z dysku</label>
+					<pos>435,610</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>14</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT25" variable="T_LabelImport" member="yes">
+					<label>Importuj dane</label>
+					<pos>735,610</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>14</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT24" variable="T_LabelAdd" member="yes">
+					<label>Dodaj Emaile</label>
+					<pos>595,430</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>14</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL4" variable="PanelUsembers" member="yes">
 				<pos>0,0</pos>
 				<size>1366,768</size>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP3" variable="BitmapBackgroundUsembers" member="yes">
-					<bitmap>/home/panda/aisdi-relations2/bin/resources/background3.jpg</bitmap>
+					<bitmap>/home/panda/aisdi-relations2/bin/resources/background.jpg</bitmap>
 					<pos>0,0</pos>
 				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT54" variable="U_LabelSwitchContent" member="yes">
+					<label>Przełącz&#x0A;zawartość</label>
+					<pos>1188,685</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT55" variable="U_LabelSwitchList" member="yes">
+					<label>Przełącz&#x0A;listę</label>
+					<pos>523,70</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT53" variable="U_LabelShowGroup" member="yes">
+					<label>Pokaż&#x0A;grupę</label>
+					<pos>750,685</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT52" variable="U_LabelDelete" member="yes">
+					<label>Usuń</label>
+					<pos>663,685</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT51" variable="U_LabelInbox" member="yes">
+					<label>Skrzynka&#x0A;emaili</label>
+					<pos>1180,70</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT50" variable="U_LabelGroups" member="yes">
+					<label>Grupy</label>
+					<pos>1100,70</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT49" variable="U_LabelStats" member="yes">
+					<label>Statystyki</label>
+					<pos>998,70</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT48" variable="U_LabelMulTree" member="yes">
+					<label>Drzewo&#x0A;Multicastowe</label>
+					<pos>895,70</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT47" variable="U_LabelSettings" member="yes">
+					<label>Ustawienia</label>
+					<pos>275,70</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT46" variable="U_LabelSearch" member="yes">
+					<label>Wyszukaj</label>
+					<pos>190,70</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT45" variable="U_LabelSave" member="yes">
+					<label>Zapisz</label>
+					<pos>108,70</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT44" variable="U_LabelAdd" member="yes">
+					<label>Dodaj</label>
+					<pos>20,70</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticBox" name="ID_STATICBOX3" variable="U_StaticBoxUsembers" member="yes">
+					<label>  Usembers  </label>
+					<pos>15,100</pos>
+					<size>570,610</size>
+					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+					<bg>wxSYS_COLOUR_HIGHLIGHT</bg>
+					<font>
+						<size>16</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+				</object>
+				<object class="wxStaticBox" name="ID_STATICBOX4" variable="U_StaticBoxInfo" member="yes">
+					<pos>650,103</pos>
+					<size>600,500</size>
+					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+					<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
+				</object>
+				<object class="wxStaticBitmap" name="ID_STATICBITMAP7" variable="U_BitmapUsember" member="yes">
+					<bitmap>/home/panda/aisdi-relations2/bin/resources/iconsBig/iconUsember.png</bitmap>
+					<pos>670,135</pos>
+					<size>100,100</size>
+				</object>
 				<object class="wxListCtrl" name="ID_LISTCTRL2" variable="U_ListUsembers" member="yes">
-					<pos>25,120</pos>
+					<pos>25,130</pos>
 					<size>550,570</size>
+					<hidden>1</hidden>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<bg>#141414</bg>
 					<font>
@@ -123,13 +474,337 @@
 					</font>
 					<style>wxLC_REPORT</style>
 				</object>
+				<object class="wxListCtrl" name="ID_LISTCTRL4" variable="U_ListOutbox" member="yes">
+					<pos>25,425</pos>
+					<size>550,275</size>
+					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+					<bg>#141414</bg>
+					<font>
+						<size>10</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxLC_REPORT</style>
+				</object>
+				<object class="wxListCtrl" name="ID_LISTCTRL3" variable="U_ListInbox" member="yes">
+					<pos>25,130</pos>
+					<size>550,275</size>
+					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+					<bg>#141414</bg>
+					<font>
+						<size>10</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxLC_REPORT</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT17" variable="U_StaticTextGroup" member="yes">
+					<label></label>
+					<pos>845,185</pos>
+					<fg>wxSYS_COLOUR_ACTIVEBORDER</fg>
+					<font>
+						<size>13</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT16" variable="U_StaticTextEmail" member="yes">
+					<label></label>
+					<pos>845,160</pos>
+					<fg>wxSYS_COLOUR_ACTIVEBORDER</fg>
+					<font>
+						<size>13</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT15" variable="U_StaticTextName" member="yes">
+					<label></label>
+					<pos>845,135</pos>
+					<fg>wxSYS_COLOUR_ACTIVEBORDER</fg>
+					<font>
+						<size>13</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT13" variable="U_LabelEmail" member="yes">
+					<label>Email:</label>
+					<pos>780,160</pos>
+					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+					<font>
+						<size>13</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT14" variable="U_LabelGroup" member="yes">
+					<label>Grupa:</label>
+					<pos>780,185</pos>
+					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+					<font>
+						<size>13</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT12" variable="U_LabelName" member="yes">
+					<label>Nazwa:</label>
+					<pos>780,135</pos>
+					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+					<font>
+						<size>13</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+				</object>
+				<object class="wxPanel" name="ID_PANEL9" variable="U_PanelStats" member="yes">
+					<pos>670,245</pos>
+					<size>560,345</size>
+					<bg>#202020</bg>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL</style>
+				</object>
+				<object class="wxPanel" name="ID_PANEL8" variable="U_PanelEmail" member="yes">
+					<pos>670,245</pos>
+					<size>560,345</size>
+					<bg>#202020</bg>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL</style>
+					<object class="wxStaticText" name="ID_STATICTEXT19" variable="U_LabelSubject" member="yes">
+						<label>Temat:</label>
+						<pos>15,35</pos>
+						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+						<font>
+							<size>13</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT23" variable="U_StaticTextSubject" member="yes">
+						<label></label>
+						<pos>75,35</pos>
+						<fg>wxSYS_COLOUR_ACTIVEBORDER</fg>
+						<font>
+							<size>13</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT22" variable="U_StaticTextFromTo" member="yes">
+						<label></label>
+						<pos>55,15</pos>
+						<fg>wxSYS_COLOUR_ACTIVEBORDER</fg>
+						<font>
+							<size>13</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT21" variable="U_StaticTextDate" member="yes">
+						<label></label>
+						<pos>460,20</pos>
+						<fg>wxSYS_COLOUR_ACTIVEBORDER</fg>
+						<font>
+							<size>13</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT20" variable="U_LabelDate" member="yes">
+						<label>Data:</label>
+						<pos>410,20</pos>
+						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+						<font>
+							<size>13</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT18" variable="U_LabelFromTo" member="yes">
+						<label>Od:</label>
+						<pos>15,15</pos>
+						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+						<font>
+							<size>13</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+					</object>
+					<object class="wxHtmlWindow" name="ID_HTMLWINDOW2" variable="U_HtmlContent" member="yes">
+						<htmlcode>&lt;p align=&quot;justify&quot;&gt;&lt;font color=&quot;lightgray&quot;&gt;Donec pretium velit nisi, id euismod libero mattis sit amet. Quisque eu volutpat lectus. Nam lacus urna, tincidunt vitae convallis ut, commodo eget augue. Phasellus ornare lacus sapien, sit amet hendrerit neque scelerisque a. Praesent dapibus massa magna, vitae rhoncus turpis malesuada et. Nulla vel suscipit nunc. Integer metus turpis, consectetur non lacinia et, molestie sit amet velit.Donec pretium velit nisi, id euismod libero mattis sit amet. Quisque eu volutpat lectus. Nam lacus urna, tincidunt vitae convallis ut, commodo eget augue. Phasellus ornare lacus sapien, sit amet hendrerit neque scelerisque a. Praesent dapibus massa magna, vitae rhoncus turpis malesuada et. Nulla vel suscipit nunc. Integer metus turpis, consectetur non lacinia et, molestie sit amet velit.Donec pretium velit nisi, id euismod libero mattis sit amet. Quisque eu volutpat lectus. Nam lacus urna, tincidunt vitae convallis ut, commodo eget augue. Phasellus ornare lacus sapien, sit amet hendrerit neque scelerisque a. Praesent dapibus massa magna, vitae rhoncus turpis malesuada et. Nulla vel suscipit nunc. Integer metus turpis, consectetur non lacinia et, molestie sit amet velit.&lt;/font&gt;&lt;/p&gt;</htmlcode>
+						<pos>15,80</pos>
+						<size>530,255</size>
+						<fg>wxSYS_COLOUR_WINDOW</fg>
+						<bg>#202020</bg>
+						<font>
+							<size>10</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+						<style>wxHW_SCROLLBAR_AUTO|wxNO_BORDER|wxTAB_TRAVERSAL</style>
+					</object>
+					<object class="wxStaticLine" name="ID_STATICLINE8" variable="U_LineContentSeparator" member="yes">
+						<pos>20,60</pos>
+						<size>520,15</size>
+						<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
+					</object>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON10" variable="U_ImageButtonSwitchList" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>520,10</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON11" variable="U_ImageButtonSwitchContent" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>1190,620</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON9" variable="U_ImageButtonShowGroup" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>740,620</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON8" variable="U_ImageButtonDelete" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>650,620</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON7" variable="U_ImageButtonMulTree" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>910,10</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON6" variable="U_ImageButtonStats" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>1000,10</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON5" variable="U_ImageButtonGroups" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>1090,10</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON4" variable="U_ImageButtonInbox" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>1180,10</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON31" variable="U_ImageButtonSettings" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>280,10</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON3" variable="U_ImageButtonSearch" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>190,10</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON2" variable="U_ImageButtonSave" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>100,10</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON1" variable="U_ImageButtonAdd" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>10,10</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL5" variable="PanelStatistics" member="yes">
 				<pos>1366,0</pos>
 				<size>1366,768</size>
 				<hidden>1</hidden>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP4" variable="BitmapBackgroundStatistics" member="yes">
-					<bitmap>/home/panda/aisdi-relations2/bin/resources/background3.jpg</bitmap>
+					<bitmap>/home/panda/aisdi-relations2/bin/resources/background.jpg</bitmap>
 					<pos>0,0</pos>
 				</object>
 			</object>
@@ -138,7 +813,7 @@
 				<size>1366,768</size>
 				<hidden>1</hidden>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP5" variable="BitmapBackgroundGroups" member="yes">
-					<bitmap>/home/panda/aisdi-relations2/bin/resources/background3.jpg</bitmap>
+					<bitmap>/home/panda/aisdi-relations2/bin/resources/background.jpg</bitmap>
 					<pos>0,0</pos>
 					<size>1366,768</size>
 				</object>
@@ -148,7 +823,7 @@
 				<size>1366,768</size>
 				<hidden>1</hidden>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP6" variable="BitmapBackgroundTree" member="yes">
-					<bitmap>/home/panda/aisdi-relations2/bin/resources/background3.jpg</bitmap>
+					<bitmap>/home/panda/aisdi-relations2/bin/resources/background.jpg</bitmap>
 					<pos>0,0</pos>
 					<size>1366,768</size>
 				</object>
@@ -156,16 +831,171 @@
 			<object class="wxPanel" name="ID_PANEL2" variable="PanelInbox" member="yes">
 				<pos>1366,0</pos>
 				<size>1366,768</size>
-				<hidden>1</hidden>
 				<style>wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL</style>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP1" variable="I_BitmapBackground" member="yes">
-					<bitmap>/home/panda/aisdi-relations/bin/resources/background3.jpg</bitmap>
+					<bitmap>/home/panda/aisdi-relations2/bin/resources/background.jpg</bitmap>
 					<pos>0,0</pos>
 					<size>1366,768</size>
 				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT35" variable="I_LabelAdd" member="yes">
+					<label>Dodaj</label>
+					<pos>20,70</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT34" variable="I_LabelSave" member="yes">
+					<label>Zapisz</label>
+					<pos>108,70</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT33" variable="I_LabelSearch" member="yes">
+					<label>Wyszukaj</label>
+					<pos>190,70</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT32" variable="I_LabelSettings" member="yes">
+					<label>Ustawienia</label>
+					<pos>275,70</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT39" variable="I_LabelMulTree" member="yes">
+					<label>Drzewo&#x0A;Multicastowe</label>
+					<pos>895,70</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT38" variable="I_LabelStats" member="yes">
+					<label>Statystyki</label>
+					<pos>998,70</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT37" variable="I_LabelGroups" member="yes">
+					<label>Grupy</label>
+					<pos>1100,70</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT36" variable="I_LabelUsembers" member="yes">
+					<label>Usembers</label>
+					<pos>1177,70</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT43" variable="I_LabelShowTree" member="yes">
+					<label>Utwórz&#x0A;drzewo</label>
+					<pos>925,685</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT42" variable="I_LabelReceiver" member="yes">
+					<label>Pokaż&#x0A;odbiorcę</label>
+					<pos>830,685</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT41" variable="I_LabelSender" member="yes">
+					<label>Pokaż&#x0A;nadawcę</label>
+					<pos>740,685</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT40" variable="I_LabelDelete" member="yes">
+					<label>Usuń</label>
+					<pos>663,685</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
 				<object class="wxStaticBox" name="ID_STATICBOX1" variable="I_InboxBorder" member="yes">
 					<label>  Skrzynka Email  </label>
-					<pos>15,90</pos>
+					<pos>15,100</pos>
 					<size>570,610</size>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<bg>wxSYS_COLOUR_HIGHLIGHT</bg>
@@ -178,7 +1008,7 @@
 					</font>
 				</object>
 				<object class="wxListCtrl" name="ID_LISTCTRL1" variable="I_ListInbox" member="yes">
-					<pos>25,120</pos>
+					<pos>25,130</pos>
 					<size>550,570</size>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<bg>#141414</bg>
@@ -192,14 +1022,14 @@
 					<style>wxLC_REPORT</style>
 				</object>
 				<object class="wxStaticBox" name="ID_STATICBOX2" variable="I_EmailContentBorder" member="yes">
-					<pos>650,93</pos>
+					<pos>650,103</pos>
 					<size>600,500</size>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT1" variable="I_LabelFrom" member="yes">
 					<label>Od: </label>
-					<pos>670,120</pos>
+					<pos>670,130</pos>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<font>
 						<size>13</size>
@@ -211,7 +1041,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT2" variable="I_LabelTo" member="yes">
 					<label>Do:</label>
-					<pos>670,145</pos>
+					<pos>670,155</pos>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<font>
 						<size>13</size>
@@ -223,7 +1053,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT5" variable="I_LabelSubject" member="yes">
 					<label>Temat:</label>
-					<pos>670,170</pos>
+					<pos>670,180</pos>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<font>
 						<size>13</size>
@@ -234,12 +1064,12 @@
 					</font>
 				</object>
 				<object class="wxStaticLine" name="ID_STATICLINE1" variable="I_LineContentSeparator" member="yes">
-					<pos>665,210</pos>
+					<pos>665,220</pos>
 					<size>560,10</size>
 				</object>
 				<object class="wxHtmlWindow" name="ID_HTMLWINDOW1" variable="I_HtmlEmailContent" member="yes">
-					<htmlcode>&lt;p align=&quot;justify&quot;&gt;&lt;font color=&quot;white&quot;&gt;Donec pretium velit nisi, id euismod libero mattis sit amet. Quisque eu volutpat lectus. Nam lacus urna, tincidunt vitae convallis ut, commodo eget augue. Phasellus ornare lacus sapien, sit amet hendrerit neque scelerisque a. Praesent dapibus massa magna, vitae rhoncus turpis malesuada et. Nulla vel suscipit nunc. Integer metus turpis, consectetur non lacinia et, molestie sit amet velit.Donec pretium velit nisi, id euismod libero mattis sit amet. Quisque eu volutpat lectus. Nam lacus urna, tincidunt vitae convallis ut, commodo eget augue. Phasellus ornare lacus sapien, sit amet hendrerit neque scelerisque a. Praesent dapibus massa magna, vitae rhoncus turpis malesuada et. Nulla vel suscipit nunc. Integer metus turpis, consectetur non lacinia et, molestie sit amet velit.Donec pretium velit nisi, id euismod libero mattis sit amet. Quisque eu volutpat lectus. Nam lacus urna, tincidunt vitae convallis ut, commodo eget augue. Phasellus ornare lacus sapien, sit amet hendrerit neque scelerisque a. Praesent dapibus massa magna, vitae rhoncus turpis malesuada et. Nulla vel suscipit nunc. Integer metus turpis, consectetur non lacinia et, molestie sit amet velit.&lt;/font&gt;&lt;/p&gt;</htmlcode>
-					<pos>670,230</pos>
+					<htmlcode>&lt;p align=&quot;justify&quot;&gt;&lt;font color=&quot;lightgray&quot;&gt;Donec pretium velit nisi, id euismod libero mattis sit amet. Quisque eu volutpat lectus. Nam lacus urna, tincidunt vitae convallis ut, commodo eget augue. Phasellus ornare lacus sapien, sit amet hendrerit neque scelerisque a. Praesent dapibus massa magna, vitae rhoncus turpis malesuada et. Nulla vel suscipit nunc. Integer metus turpis, consectetur non lacinia et, molestie sit amet velit.Donec pretium velit nisi, id euismod libero mattis sit amet. Quisque eu volutpat lectus. Nam lacus urna, tincidunt vitae convallis ut, commodo eget augue. Phasellus ornare lacus sapien, sit amet hendrerit neque scelerisque a. Praesent dapibus massa magna, vitae rhoncus turpis malesuada et. Nulla vel suscipit nunc. Integer metus turpis, consectetur non lacinia et, molestie sit amet velit.Donec pretium velit nisi, id euismod libero mattis sit amet. Quisque eu volutpat lectus. Nam lacus urna, tincidunt vitae convallis ut, commodo eget augue. Phasellus ornare lacus sapien, sit amet hendrerit neque scelerisque a. Praesent dapibus massa magna, vitae rhoncus turpis malesuada et. Nulla vel suscipit nunc. Integer metus turpis, consectetur non lacinia et, molestie sit amet velit.&lt;/font&gt;&lt;/p&gt;</htmlcode>
+					<pos>670,240</pos>
 					<size>560,350</size>
 					<fg>wxSYS_COLOUR_WINDOW</fg>
 					<bg>#141414</bg>
@@ -254,7 +1084,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT6" variable="I_StaticTextSubject" member="yes">
 					<label></label>
-					<pos>735,170</pos>
+					<pos>735,180</pos>
 					<fg>wxSYS_COLOUR_BACKGROUND</fg>
 					<font>
 						<size>13</size>
@@ -266,7 +1096,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT4" variable="I_StaticTextTo" member="yes">
 					<label></label>
-					<pos>710,145</pos>
+					<pos>710,155</pos>
 					<fg>wxSYS_COLOUR_ACTIVEBORDER</fg>
 					<font>
 						<size>13</size>
@@ -278,7 +1108,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT3" variable="I_StaticTextFrom" member="yes">
 					<label></label>
-					<pos>710,120</pos>
+					<pos>710,130</pos>
 					<fg>wxSYS_COLOUR_ACTIVEBORDER</fg>
 					<font>
 						<size>13</size>
@@ -290,7 +1120,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT8" variable="I_StaticTextDate" member="yes">
 					<label>25.12.2013</label>
-					<pos>1150,120</pos>
+					<pos>1150,130</pos>
 					<fg>wxSYS_COLOUR_ACTIVEBORDER</fg>
 					<font>
 						<size>13</size>
@@ -302,7 +1132,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT7" variable="I_LabelDate" member="yes">
 					<label>Data:</label>
-					<pos>1100,120</pos>
+					<pos>1100,130</pos>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<font>
 						<size>13</size>
@@ -311,6 +1141,126 @@
 						<underlined>0</underlined>
 						<face>Ubuntu</face>
 					</font>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON29" variable="I_ImageButtonShowTree" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>920,620</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON28" variable="I_ImageButtonReceiver" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>830,620</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON27" variable="I_ImageButtonSender" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>740,620</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON26" variable="I_ImageButtonDelete" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>650,620</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON25" variable="I_ImageButtonMulTree" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>910,10</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON24" variable="I_ImageButtonStats" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>1000,10</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON23" variable="I_ImageButtonGroups" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>1090,10</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON22" variable="I_ImageButtonUsembers" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>1180,10</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON30" variable="I_ImageButtonSettings" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>280,10</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON21" variable="I_ImageButtonSearch" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>190,10</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON20" variable="I_ImageButtonSave" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>100,10</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON19" variable="I_ImageButtonAdd" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>10,10</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
 				</object>
 			</object>
 		</object>
@@ -387,17 +1337,6 @@
 					<help>General application manual</help>
 				</object>
 			</object>
-		</object>
-		<object class="wxImage" variable="Image1" member="yes" />
-		<object class="wxImageList" variable="ImageList1" member="yes">
-			<image_list>
-				<item>16</item>
-				<item>16</item>
-			</image_list>
-			<image_text>
-				<item2>16</item2>
-				<item2>16</item2>
-			</image_text>
 		</object>
 	</object>
 </wxsmith>
