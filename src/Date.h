@@ -20,6 +20,10 @@ class Date
 	int hour;
 	//minuta
 	int minute;
+	//sekunda
+	int second;
+	//strefa czasowa;
+	int timeZone;
 
 
 public:
@@ -93,6 +97,26 @@ public:
 	void setMinute(int newMinute)
 	{
 		minute = newMinute;
+	}
+	
+	int getSecond()
+	{
+		return second;
+	}
+	
+	void setSecond(int newSecond)
+	{
+		second = newSecond;
+	}
+	
+	int getTimeZone()
+	{
+		return timeZone;
+	}
+	
+	void setTimeZone(int newTimeZone)
+	{
+		timeZone = newTimeZone;
 	}
 	
 	/*porównuje dwie daty, format: Date.compare(Date2)
