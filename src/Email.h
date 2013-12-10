@@ -1,4 +1,5 @@
 #include "Usember.h"
+#include "Date.h"
 #include <string>
 
 using namespace std;
@@ -9,7 +10,7 @@ private:
 	//przechowujące adres e-mail nadawcy
 	Usember *from;
 	//przechowujące datę nadania
-	string date;
+	Date date;
 	//przechowujące adres e-mail, na który ma zostać wysłana odpowiedź do danego maila
 	Usember *replyTo;
 	//przechowujące ID wiadomości, na którą dana wiadomość jest odpowiedzią
@@ -40,11 +41,11 @@ public:
 		from = user;
 	}
 	
-	string getDate()
+	Date getDate()
 	{
 		return date;
 	}
-	void setDate(string newDate)
+	void setDate(Date &newDate)
 	{
 		date = newDate;
 	}
