@@ -71,3 +71,137 @@ ImportStats IOInterface::importMail(MailParameters *parameters)
 
     return stats;
 }
+
+Email* IOInterface::emlParser (string path)
+{
+	fstream plik;
+	plik.open(paht, std::ios::in);
+	if( plik.good() == true )
+	{
+		Email mail;
+		Usember usemberFrom, usemberTo;
+		string wiersz, fromRN, fromLOGIN, fromDOMAIN, toRN, toLOGIN, toDOMAIN, subject, MID, date, content;
+		regex regFrom("From:\s+(\"(.+)\")?\s*<(.+)@(.+)>");
+		regex regTo("To:\s+(\"(.+)\")?\s*<(.+)@(.+)>");
+		regex regSubject("Subject:\s+(.*)");
+		regex regMID("Message-ID:\s+<(.+)>");
+		regex regDate("Date:\s+(\u\l{2},\s+\d{1,2}\s+\u\l+\s+\d{4}\s+\d{2}:\d{2}:\d{2}\s+\+\d{4})");
+		
+		
+		
+		
+		do
+		{
+			getline(plik, wiersz);
+		}
+		while ( trim(wiersz).size() == 0 ) // pomija przypadkowe puste linie na początku pliku
+		
+		// wczytanie FROM
+		smatch wynik;
+		if ( regex_search( wiersz, wynik, regFrom) )
+		{
+			if (wynik.size() == 2) // odczytano tylko goły adres
+			{
+				fromLOGIN = wynik[0];
+				fromDOMAIN = wynik[1];
+			}
+			else
+			{
+				fromRN = wynik[1];
+				fromLOGIN = wynik[2];
+				fromDOMAIN = wynik[3];
+			}
+		}
+		else
+		{
+			throw UnableToOpenFile();
+		}
+		
+		// wczytanie TO
+		wynik.clear();
+		if ( regex_search( wiersz, wynik, regTo) )
+		{
+			if (wynik.size() == 2) // odczytano tylko goły adres
+			{
+				toLOGIN = wynik[0];
+				toDOMAIN = wynik[1];
+			}
+			else
+			{
+				toRN = wynik[1];
+				toLOGIN = wynik[2];
+				toDOMAIN = wynik[3];
+			}
+		}
+		else
+		{
+			throw UnableToOpenFile();
+		}
+		
+		// wczytanie SUBJECT
+		wynik.clear();
+		if ( regex_search( wiersz, wynik, regSubject) )
+		{
+			subject = wynik[0];
+		}
+		else
+		{
+			throw UnableToOpenFile();
+		}
+		
+		// wczytanie MID
+		wynik.clear();
+		if ( regex_search( wiersz, wynik, regMID) )
+		{
+			MID = wynik[0];
+		}
+		else
+		{
+			throw UnableToOpenFile();
+		}
+		
+		// wczytanie DATE
+		wynik.clear();
+		if ( regex_search( wiersz, wynik, regDate) )
+		{
+			date = wynik[0];
+		}
+		else
+		{
+			throw UnableToOpenFile();
+		}
+		
+		// wczytanie treści
+		while (wiersz.size() != 0)
+			getline(plik, wiersz); // przejście do momentu pustej linii
+			
+		while (plik != EOT) // wczytanie tego co zostało jako treść
+		{
+			plik >> content;
+		}
+		
+		plik.close();
+		
+		// ustawienie atrybutów maila
+		mail = new Email();
+		
+
+		usemberFrom = new Usember(fromLOGIN, fromDOMAIN, fromRN);
+		usemberTo = new Usember(toLOGIN, toDOMAIN, toRN);
+		
+		usemberFrom = database.addUsember( usemberFrom );
+		usemberTo = database.addUsember( usemberTo );
+		
+		mail.setFrom( usemberFrom );
+		mail.setTo( usemberTo );
+		mail.setSubject( subject );
+		mail.setContent( content );
+		mail.setDate( new Date(date) );
+		
+		return mail;
+	}
+	else // nie można otworzyć pliku
+	{
+		throw UnableToOpenFile();
+	}
+}
