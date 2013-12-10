@@ -12,20 +12,29 @@ Database::~Database()
 
 bool Database::addEmail(Email* email)
 {
-	if(findEmail(email->getID())==-1)
+	if(findEmail(email->getID())==-1){
 		emailVector.push_back(email);
+		return true;
+	}else
+		return false;
 }
 
 bool Database::addWorkgroup(Workgroup* workgroup)
 {
-	if(findWorkgroup(workgroup->getID())==-1)
+	if(findWorkgroup(workgroup->getID())==-1){
 		workgroupVector.push_back(workgroup);
+		return true;
+	}else
+		return false;
 }
 
 bool Database::addUsember(Usember* usember)
 {
-	if(findUsember(usember->getAddress())==-1)
+	if(findUsember(usember->getAddress())==-1){
 		usemberVector.push_back(usember);
+		return true;
+	}else
+		return false;
 }
 
 void Database::deleteEmail(Email* email)
