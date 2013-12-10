@@ -119,6 +119,7 @@ Email* IOInterface::emlParser (string path)
 		
 		// wczytanie TO
 		wynik.clear();
+		getline(plik, wiersz);
 		if ( regex_search( wiersz, wynik, regTo) )
 		{
 			if (wynik.size() == 2) // odczytano tylko goły adres
@@ -140,6 +141,7 @@ Email* IOInterface::emlParser (string path)
 		
 		// wczytanie SUBJECT
 		wynik.clear();
+		getline(plik, wiersz);
 		if ( regex_search( wiersz, wynik, regSubject) )
 		{
 			subject = wynik[0];
@@ -151,6 +153,7 @@ Email* IOInterface::emlParser (string path)
 		
 		// wczytanie MID
 		wynik.clear();
+		getline(plik, wiersz);
 		if ( regex_search( wiersz, wynik, regMID) )
 		{
 			MID = wynik[0];
@@ -162,6 +165,7 @@ Email* IOInterface::emlParser (string path)
 		
 		// wczytanie DATE
 		wynik.clear();
+		getline(plik, wiersz);
 		if ( regex_search( wiersz, wynik, regDate) )
 		{
 			date = wynik[0];
