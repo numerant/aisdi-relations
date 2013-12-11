@@ -8,33 +8,11 @@
 #include <string>
 #include <exception>
 
-class IOException : public exception
-{
-private:
-    static int nrexceptions;
-public:
-    IOException();
-    showException();
-    
-};
 
-class UnableToOpenFile : public IOException
-{
-public:
-    string showException();
-};
+class IOException : public std::exception {};
 
-class EmlSyntaxIncorrect : public IOException
-{
-public:
-    string showException();
-};
-
-class EmlExists() : public IOException
-{
-    public
-    string showException();
-}
+class UnableToOpenFile : public IOException {};
+class EmlSyntaxIncorrect : public IOException {};
 
 
 #endif
