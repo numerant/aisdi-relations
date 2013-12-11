@@ -7,4 +7,4 @@ Macielos
 numerant
 PatrykLucka
 MichalZolyniak
-Maciek Safarzyński Weszło
+Maciek Safarzyński
