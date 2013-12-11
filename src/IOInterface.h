@@ -12,7 +12,7 @@
 #include <string>
 #include <regex>
 #include "boost/filesystem.hpp"         // do wczytywania plików z katalogu - także rekursywnie
-//#include "boost/algorithm/string.hpp"	// do zaawansowanych operacji na stringach
+#include "boost/algorithm/string.hpp"	// do zaawansowanych operacji na stringach
 #include "Database.h"
 #include "Email.h"
 #include "Exception/IOException.h"

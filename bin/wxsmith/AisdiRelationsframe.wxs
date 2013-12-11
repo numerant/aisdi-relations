@@ -3,7 +3,7 @@
 	<object class="wxFrame" name="AisdiRelationsFrame">
 		<title>Analiza Relacji Biznesowych</title>
 		<centered>1</centered>
-		<icon>/home/panda/aisdi-relations2/bin/resources/iconProgram.png</icon>
+		<icon>resources/iconProgram.png</icon>
 		<pos>0,0</pos>
 		<size>1366,768</size>
 		<font>
@@ -569,7 +569,7 @@
 					<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
 				</object>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP7" variable="U_BitmapUsember" member="yes">
-					<bitmap>/home/panda/aisdi-relations2/bin/resources/iconsBig/iconUsember.png</bitmap>
+					<bitmap>resources/iconsBig/iconUsember.png</bitmap>
 					<pos>670,135</pos>
 					<size>100,100</size>
 				</object>
