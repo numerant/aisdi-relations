@@ -75,7 +75,7 @@ ImportStats IOInterface::importMail(MailParameters *parameters)
 Email* IOInterface::emlParser (string path)
 {
 	fstream plik;
-	plik.open(paht, std::ios::in);
+	plik.open(path.c_str(), std::ios::in);
 	if( plik.good() == true )
 	{
 		Email mail;
@@ -94,7 +94,7 @@ Email* IOInterface::emlParser (string path)
 		{
 			getline(plik, wiersz);
 		}
-		while ( trim(wiersz).size() == 0 ) // pomija przypadkowe puste linie na początku pliku
+		while ( trim(wiersz).size() == 0 ); // pomija przypadkowe puste linie na początku pliku
 		
 		// wczytanie FROM
 		smatch wynik;
@@ -118,7 +118,6 @@ Email* IOInterface::emlParser (string path)
 		}
 		
 		// wczytanie TO
-		wynik.clear();
 		getline(plik, wiersz);
 		if ( regex_search( wiersz, wynik, regTo) )
 		{
@@ -140,7 +139,6 @@ Email* IOInterface::emlParser (string path)
 		}
 		
 		// wczytanie SUBJECT
-		wynik.clear();
 		getline(plik, wiersz);
 		if ( regex_search( wiersz, wynik, regSubject) )
 		{
@@ -152,7 +150,6 @@ Email* IOInterface::emlParser (string path)
 		}
 		
 		// wczytanie MID
-		wynik.clear();
 		getline(plik, wiersz);
 		if ( regex_search( wiersz, wynik, regMID) )
 		{
@@ -164,7 +161,6 @@ Email* IOInterface::emlParser (string path)
 		}
 		
 		// wczytanie DATE
-		wynik.clear();
 		getline(plik, wiersz);
 		if ( regex_search( wiersz, wynik, regDate) )
 		{
