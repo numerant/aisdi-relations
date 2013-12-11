@@ -19,7 +19,7 @@ IOInterface::ImportStats IOInterface::importMail(MailParameters *parameters)
 {
     Email *tempEmail;       //pamiętać o delete!
     ImportStats stats;
-/*
+
     if (parameters->isDirectory)
     {
       boost::filesystem::path currentDir(parameters->path);                           // stworzenie boostowej zmiennej określającej ścieżkę
@@ -29,46 +29,62 @@ IOInterface::ImportStats IOInterface::importMail(MailParameters *parameters)
         else
             boost::filesystem::directory_iterator iter(currentDir), end;                // ten pomija podkatalogi
 
-        for (; iter != end; ++iter)                                                     // przejechanie iteratorem po katalogu
+        //for (boost::filesystem::recursive_directory_iterator iter(currentDir); iter != end; ++iter)                                                     // przejechanie iteratorem po katalogu
+        for (boost::filesystem::recursive_directory_iterator iter(currentDir), end; iter != end; ++iter)
+        {
+
             if (iter->path().extension() == ".eml")
             {
-                try tempEmail = emlParser( iter->path() );
+                try
+                {
+                    tempEmail = emlParser( iter->path().c_str() );
+                }
                 catch ( IOException error )                                             // mail nie jest poprawny składniowo
                 {
                     // właściwie powinno być EmlSyntaxIncorrect, ale póki co niezależnie od rzuconego przez parser wyjątku jedynie inkrementujemy failCount
-                    stats->failCount++;
+                    stats.failCount++;
                     break;
                 }
 
-                try database->addEmail(*tempEmail)
-                    catch () //mail istnieje już w bazie
+                try
+                {
+                    database->addEmail(tempEmail);
+                }
+                catch ( IOException error )    // do zmiany
                     {
-                        stats->existingCount++;
+                        stats.existingCount++;
                         break;
                     }
             }
+        }
         delete tempEmail;   //break przerwie chyba tylko blok if, więc może być tutaj?
     }
     else
     {
-        try tempEmail = emlParser(parameters->path);
+        try
+        {
+            tempEmail = emlParser(parameters->path);
+        }
         catch ( IOException error )
         {
-            stats->failCount++;
-            break;                      //wyskoczenie z bloku else
+            stats.failCount++;
+           // break;                      //wyskoczenie z bloku else
         }
 
-        try database->addEmail(*tempEmail)
-            catch ()  //mail istnieje już w bazie
+        try
+        {
+            database->addEmail(tempEmail);
+        }
+            catch ( IOException error)  //mail istnieje już w bazie
             {
-                stats->existingCount++;
+                stats.existingCount++;
                 delete tempEmail;
-                break;
+              //  break;
             }
-        stats->successCount++;
+        stats.successCount++;
         delete tempEmail;
     }
-*/
+
     return stats;
 }
 

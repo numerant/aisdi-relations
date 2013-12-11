@@ -9,7 +9,7 @@ using namespace std;
 
 class Parameters
 {
-private:
+public:
     string path;
 public:
     Parameters();

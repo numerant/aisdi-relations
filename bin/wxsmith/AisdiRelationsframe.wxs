@@ -22,7 +22,7 @@
 				<pos>0,0</pos>
 				<size>1366,768</size>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP2" variable="BitmapBackgroundTitle" member="yes">
-					<bitmap>/home/panda/aisdi-relations2/bin/resources/background.jpg</bitmap>
+					<bitmap>/home/kuba/Programowanie/aisdi-relations/bin/resources/background.jpg</bitmap>
 					<pos>0,0</pos>
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT9" variable="T_StaticTextTitle1" member="yes">
@@ -389,7 +389,7 @@
 				<pos>1366,0</pos>
 				<size>1366,768</size>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP3" variable="BitmapBackgroundUsembers" member="yes">
-					<bitmap>/home/panda/aisdi-relations2/bin/resources/background.jpg</bitmap>
+					<bitmap>resources/background.jpg</bitmap>
 					<pos>0,0</pos>
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT54" variable="U_LabelSwitchContent" member="yes">
@@ -918,7 +918,7 @@
 				<size>1366,768</size>
 				<hidden>1</hidden>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP4" variable="BitmapBackgroundStatistics" member="yes">
-					<bitmap>/home/panda/aisdi-relations2/bin/resources/background.jpg</bitmap>
+					<bitmap>resources/background.jpg</bitmap>
 					<pos>0,0</pos>
 				</object>
 			</object>
@@ -927,7 +927,7 @@
 				<size>1366,768</size>
 				<hidden>1</hidden>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP5" variable="BitmapBackgroundGroups" member="yes">
-					<bitmap>/home/panda/aisdi-relations2/bin/resources/background.jpg</bitmap>
+					<bitmap>resources/background.jpg</bitmap>
 					<pos>0,0</pos>
 					<size>1366,768</size>
 				</object>
@@ -937,7 +937,7 @@
 				<size>1366,768</size>
 				<hidden>1</hidden>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP6" variable="BitmapBackgroundTree" member="yes">
-					<bitmap>/home/panda/aisdi-relations2/bin/resources/background.jpg</bitmap>
+					<bitmap>resources/background.jpg</bitmap>
 					<pos>0,0</pos>
 					<size>1366,768</size>
 				</object>
@@ -947,7 +947,7 @@
 				<size>1366,768</size>
 				<style>wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL</style>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP1" variable="I_BitmapBackground" member="yes">
-					<bitmap>/home/panda/aisdi-relations2/bin/resources/background.jpg</bitmap>
+					<bitmap>resources/background.jpg</bitmap>
 					<pos>0,0</pos>
 					<size>1366,768</size>
 				</object>
