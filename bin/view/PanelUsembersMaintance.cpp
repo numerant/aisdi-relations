@@ -1,12 +1,14 @@
 #include "PanelUsembersMaintance.h"
 #include <wx/msgdlg.h>
 
-PanelUsembersMaintance::PanelUsembersMaintance() {
+PanelUsembersMaintance::PanelUsembersMaintance()
+{
     usembersListEnabled = true;
     emailContentEnabled = true;
 }
 
-void PanelUsembersMaintance::ShowPanel(AisdiRelationsFrame* Frame) {
+void PanelUsembersMaintance::ShowPanel(AisdiRelationsFrame* Frame)
+{
     Frame->PanelTitle->Hide();
     Frame->PanelGroups->Hide();
     Frame->PanelInbox->Hide();
@@ -16,43 +18,50 @@ void PanelUsembersMaintance::ShowPanel(AisdiRelationsFrame* Frame) {
     Frame->PanelUsembers->SetPosition(wxPoint(0,0));
     Frame->PanelUsembers->Show();
 
-    if (usembersListEnabled) {
+    if (usembersListEnabled)
+    {
         Frame->U_ListUsembers->Show();
         Frame->U_ListInbox->Hide();
         Frame->U_ListOutbox->Hide();
         Frame->U_StaticBoxUsembers->SetLabel(_("  Usembers  "));
     }
-    else {
+    else
+    {
         Frame->U_ListUsembers->Hide();
         Frame->U_ListInbox->Show();
         Frame->U_ListOutbox->Show();
         Frame->U_StaticBoxUsembers->SetLabel(_("  Odebrane/Wysłane Emaile  "));
     }
-    if (emailContentEnabled) {
+    if (emailContentEnabled)
+    {
         Frame->U_PanelEmail->Show();
         Frame->U_PanelStats->Hide();
     }
-    else {
+    else
+    {
         Frame->U_PanelEmail->Hide();
         Frame->U_PanelStats->Show();
     }
 }
 
-void PanelUsembersMaintance:: SetLabels(AisdiRelationsFrame* Frame) {
+void PanelUsembersMaintance:: SetLabels(AisdiRelationsFrame* Frame)
+{
     wxListItem col;
 
     wxString labels1[3] = {_("Nazwa:"), _("Email:"), _("Grupa:")};    //etykiety do przypasowania liście usemberów
     wxString labels2[4] = {_("Data:"), _("Tytuł:"), _("Od:"), _("Do:")};    //oraz skrzynkom emailowym
     int width[3] = {80, 290, 180};
 
-    for (int i = 0; i < 3; i++) {       //przypisujemy etykiety do kolumn w pętli
+    for (int i = 0; i < 3; i++)         //przypisujemy etykiety do kolumn w pętli
+    {
         col.SetId(i);
         col.SetText(labels1[i]);
         i < 2 ? col.SetWidth(200) : col.SetWidth(150);
         Frame->U_ListUsembers->InsertColumn(i, col);
     }
 
-     for (int i = 0; i < 3; i++) {       //tak samo dla skrzynek
+    for (int i = 0; i < 3; i++)         //tak samo dla skrzynek
+    {
         col.SetId(i);
         col.SetText(labels2[i]);
         col.SetWidth(width[i]);
@@ -63,7 +72,8 @@ void PanelUsembersMaintance:: SetLabels(AisdiRelationsFrame* Frame) {
     }
 }
 
-void PanelUsembersMaintance::SetIcons(AisdiRelationsFrame* Frame) {
+void PanelUsembersMaintance::SetIcons(AisdiRelationsFrame* Frame)
+{
     wxString path(_("resources/icons/icon"));
     wxString format (_(".png"));
 
@@ -82,15 +92,18 @@ void PanelUsembersMaintance::SetIcons(AisdiRelationsFrame* Frame) {
 
 }
 
-void PanelUsembersMaintance:: SwitchList(AisdiRelationsFrame * Frame) {
-    if (usembersListEnabled) {
+void PanelUsembersMaintance:: SwitchList(AisdiRelationsFrame * Frame)
+{
+    if (usembersListEnabled)
+    {
         usembersListEnabled = false;
         Frame->U_ListUsembers->Hide();
         Frame->U_ListInbox->Show();
         Frame->U_ListOutbox->Show();
         Frame->U_StaticBoxUsembers->SetLabel(_("  Odebrane/Wysłane Emaile  "));
     }
-    else {
+    else
+    {
         usembersListEnabled = true;
         Frame->U_ListUsembers->Show();
         Frame->U_ListInbox->Hide();
@@ -99,12 +112,15 @@ void PanelUsembersMaintance:: SwitchList(AisdiRelationsFrame * Frame) {
     }
 }
 
-void PanelUsembersMaintance::SwitchContent(AisdiRelationsFrame* Frame) {
-     if (emailContentEnabled) {
+void PanelUsembersMaintance::SwitchContent(AisdiRelationsFrame* Frame)
+{
+    if (emailContentEnabled)
+    {
         Frame->U_PanelEmail->Hide();
         Frame->U_PanelStats->Show();
     }
-    else {
+    else
+    {
         Frame->U_PanelEmail->Show();
         Frame->U_PanelStats->Hide();
     }

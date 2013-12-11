@@ -8,6 +8,10 @@
  **************************************************************/
 
 /** Klasy projektu */
+#include "../src/Date.h"
+#include "../src/Email.h"
+#include "../src/Usember.h"
+
 
 /** Pliki klas widoku (paneli) */
 #include "view/PanelTitleMaintance.h"
@@ -32,8 +36,10 @@
 //*)
 
 //helper functions
-enum wxbuildinfoformat {
-    short_f, long_f };
+enum wxbuildinfoformat
+{
+    short_f, long_f
+};
 
 wxString wxbuildinfo(wxbuildinfoformat format)
 {
@@ -221,9 +227,9 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     wxFont thisFont(12,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     SetFont(thisFont);
     {
-    	wxIcon FrameIcon;
-    	FrameIcon.CopyFromBitmap(wxBitmap(wxImage(_T("/home/panda/aisdi-relations2/bin/resources/iconProgram.png"))));
-    	SetIcon(FrameIcon);
+        wxIcon FrameIcon;
+        FrameIcon.CopyFromBitmap(wxBitmap(wxImage(_T("/home/panda/aisdi-relations2/bin/resources/iconProgram.png"))));
+        SetIcon(FrameIcon);
     }
     PanelMain = new wxPanel(this, ID_PANEL1, wxPoint(0,0), wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL1"));
     PanelMain->SetBackgroundColour(wxColour(0,0,0));
@@ -633,26 +639,27 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     //*)
 
     /** Alokacja pamięci dla obiektów zarządzających panelami */
-     P_Title = new PanelTitleMaintance();
-     P_Groups = new PanelGroupsMaintance();
-     P_Inbox = new PanelInboxMaintance();
-     P_MulTree = new PanelMulTreeMaintance();
-     P_Stats = new PanelStatisticsMaintance();
-     P_Usembers = new PanelUsembersMaintance();
+    P_Title = new PanelTitleMaintance();
+    P_Groups = new PanelGroupsMaintance();
+    P_Inbox = new PanelInboxMaintance();
+    P_MulTree = new PanelMulTreeMaintance();
+    P_Stats = new PanelStatisticsMaintance();
+    P_Usembers = new PanelUsembersMaintance();
 
-     ShowTitle();
+    ShowTitle();
 }
 
 /** PODSTAWOWE FUNKCJE PROGRAMU */
 
-void AisdiRelationsFrame::ShowTitle (void ) {
-        P_Usembers->SetLabels(this);
-        P_Usembers->SetIcons(this);
-        P_Inbox->SetIcons(this);
-        P_Inbox->SetLabels(this);
-        P_Title->SetIcons(this);
+void AisdiRelationsFrame::ShowTitle (void )
+{
+    P_Usembers->SetLabels(this);
+    P_Usembers->SetIcons(this);
+    P_Inbox->SetIcons(this);
+    P_Inbox->SetLabels(this);
+    P_Title->SetIcons(this);
 
-        P_Title->ShowPanel(this);
+    P_Title->ShowPanel(this);
 }
 
 AisdiRelationsFrame::~AisdiRelationsFrame()
@@ -700,36 +707,36 @@ void AisdiRelationsFrame::OnAbout(wxCommandEvent& event)
     BackgroundImage->Refresh();
 }*/
 
- //Testowe wyświetlanie pól listy (inbox)
-      /*wxListItem col0;
-        col0.SetId(0);
-        col0.SetText( _("Data:") );
-        col0.SetWidth(80);
-        I_ListInbox->InsertColumn(0, col0);
-      wxListItem col1;
-        col1.SetId(1);
-        col1.SetText( _("Tytuł:") );
-        col1.SetWidth(210);
-        I_ListInbox->InsertColumn(1, col1);
-    wxListItem col2;
-        col2.SetId(2);
-        col2.SetText( _("Od:") );
-        col2.SetWidth(130);
-        I_ListInbox->InsertColumn(2, col2);
-        wxListItem col3;
-        col3.SetId(3);
-        col3.SetText( _("Do:") );
-        col3.SetWidth(130);
-        I_ListInbox->InsertColumn(3, col3);
-         wxListItem item;
-            item.SetId(10);
-            item.SetText( _("25.12.2013") );
-        I_ListInbox->InsertItem( item );
-        I_ListInbox->SetItem(0,1, wxT("RE: Bowling meeting on Sunday"));
-        I_ListInbox->SetItem(0,2, wxT("billee@ms.com"));
-        I_ListInbox->SetItem(0,3, wxT("stevee@apple.com"));
+//Testowe wyświetlanie pól listy (inbox)
+/*wxListItem col0;
+  col0.SetId(0);
+  col0.SetText( _("Data:") );
+  col0.SetWidth(80);
+  I_ListInbox->InsertColumn(0, col0);
+wxListItem col1;
+  col1.SetId(1);
+  col1.SetText( _("Tytuł:") );
+  col1.SetWidth(210);
+  I_ListInbox->InsertColumn(1, col1);
+wxListItem col2;
+  col2.SetId(2);
+  col2.SetText( _("Od:") );
+  col2.SetWidth(130);
+  I_ListInbox->InsertColumn(2, col2);
+  wxListItem col3;
+  col3.SetId(3);
+  col3.SetText( _("Do:") );
+  col3.SetWidth(130);
+  I_ListInbox->InsertColumn(3, col3);
+   wxListItem item;
+      item.SetId(10);
+      item.SetText( _("25.12.2013") );
+  I_ListInbox->InsertItem( item );
+  I_ListInbox->SetItem(0,1, wxT("RE: Bowling meeting on Sunday"));
+  I_ListInbox->SetItem(0,2, wxT("billee@ms.com"));
+  I_ListInbox->SetItem(0,3, wxT("stevee@apple.com"));
 
-        I_StaticTextFrom->SetLabel(_("billee@ms.com"));
-        I_StaticTextTo->SetLabel(_("stevee@apple.com"));
-        I_StaticTextSubject->SetLabel(_("RE: Bowling meeting on Sunday"));
-        I_StaticTextDate->SetLabel(_("25.12.2013"));*/
+  I_StaticTextFrom->SetLabel(_("billee@ms.com"));
+  I_StaticTextTo->SetLabel(_("stevee@apple.com"));
+  I_StaticTextSubject->SetLabel(_("RE: Bowling meeting on Sunday"));
+  I_StaticTextDate->SetLabel(_("25.12.2013"));*/

@@ -13,8 +13,14 @@
 				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
+					<Add option="-std=c++11" />
+					<Add option="-std=c++0x" />
 					<Add option="-g" />
 				</Compiler>
+				<Linker>
+					<Add library="/usr/lib/libboost_filesystem.so" />
+					<Add library="/usr/lib/libboost_system.so" />
+				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/AisdiRelations" prefix_auto="1" extension_auto="1" />
@@ -37,6 +43,28 @@
 		<Linker>
 			<Add option="`wx-config --libs`" />
 		</Linker>
+		<Unit filename="../src/Criteria.cpp" />
+		<Unit filename="../src/Criteria.h" />
+		<Unit filename="../src/Database.cpp" />
+		<Unit filename="../src/Database.h" />
+		<Unit filename="../src/Date.h" />
+		<Unit filename="../src/Email.h" />
+		<Unit filename="../src/EmailQuery.h" />
+		<Unit filename="../src/Exception/IOException.cpp" />
+		<Unit filename="../src/Exception/IOException.h" />
+		<Unit filename="../src/Group.cpp" />
+		<Unit filename="../src/Group.h" />
+		<Unit filename="../src/GroupQuery.h" />
+		<Unit filename="../src/IOInterface.cpp" />
+		<Unit filename="../src/IOInterface.h" />
+		<Unit filename="../src/Parameters.cpp" />
+		<Unit filename="../src/Parameters.h" />
+		<Unit filename="../src/Query.h" />
+		<Unit filename="../src/Report.cpp" />
+		<Unit filename="../src/Report.h" />
+		<Unit filename="../src/Usember.cpp" />
+		<Unit filename="../src/Usember.h" />
+		<Unit filename="../src/UsemberQuery.h" />
 		<Unit filename="AisdiRelationsApp.cpp" />
 		<Unit filename="AisdiRelationsApp.h" />
 		<Unit filename="AisdiRelationsMain.cpp" />

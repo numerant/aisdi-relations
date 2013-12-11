@@ -1043,7 +1043,7 @@
 	<string>
 	"Group.h"
 
-1386751210 source:/home/panda/aisdi-relations2/bin/AisdiRelationsApp.cpp
+1386755111 source:/home/panda/aisdi-relations2/bin/AisdiRelationsApp.cpp
 	"AisdiRelationsApp.h"
 	"../src/EmailQuery.h"
 	"../src/IOInterface.h"
@@ -1055,10 +1055,10 @@
 	"AisdiRelationsMain.h"
 	<wx/image.h>
 
-1386751210 /home/panda/aisdi-relations2/bin/AisdiRelationsApp.h
+1386755111 /home/panda/aisdi-relations2/bin/AisdiRelationsApp.h
 	<wx/app.h>
 
-1386753674 /home/panda/aisdi-relations2/bin/AisdiRelationsMain.h
+1386755111 /home/panda/aisdi-relations2/bin/AisdiRelationsMain.h
 	<wx/bmpbuttn.h>
 	<wx/listctrl.h>
 	<wx/menu.h>
@@ -1070,7 +1070,10 @@
 	<wx/statbmp.h>
 	<wx/html/htmlwin.h>
 
-1386753537 source:/home/panda/aisdi-relations2/bin/AisdiRelationsMain.cpp
+1386755223 source:/home/panda/aisdi-relations2/bin/AisdiRelationsMain.cpp
+	"../src/Date.h"
+	"../src/Email.h"
+	"../src/Usember.h"
 	"view/PanelTitleMaintance.h"
 	"view/PanelInboxMaintance.h"
 	"view/PanelUsembersMaintance.h"
@@ -1088,45 +1091,54 @@
 	<wx/icon.h>
 	<wx/image.h>
 
-1386751210 /home/panda/aisdi-relations2/src/Database.h
+1386756948 /home/panda/aisdi-relations2/src/Database.h
 	"EmailQuery.h"
-	"WorkgroupQuery.h"
+	"GroupQuery.h"
 	"UsemberQuery.h"
 	<vector>
 
-1386522439 /home/panda/aisdi-relations2/src/EmailQuery.h
-	"query.h"
+1386756417 /home/panda/aisdi-relations2/src/EmailQuery.h
+	"Query.h"
+	"Email.h"
 
-1386522439 /home/panda/aisdi-relations2/src/WorkgroupQuery.h
-	"query.h"
+1386756707 /home/panda/aisdi-relations2/src/WorkgroupQuery.h
+	"Query.h"
+	"Group.h"
 
-1386522439 /home/panda/aisdi-relations2/src/UsemberQuery.h
-	"query.h"
+1386756713 /home/panda/aisdi-relations2/src/UsemberQuery.h
+	"Query.h"
 
-1386751210 /home/panda/aisdi-relations2/src/IOInterface.h
+1386759789 /home/panda/aisdi-relations2/src/IOInterface.h
 	<vector>
 	<fstream>
+	<string>
+	<regex>
 	"boost/filesystem.hpp"
 	"Database.h"
 	"Email.h"
-	"IOException.h"
+	"Exception/IOException.h"
 	"Parameters.h"
+	"Report.h"
 
-1386751210 /home/panda/aisdi-relations2/src/Email.h
+1386759679 /home/panda/aisdi-relations2/src/Email.h
 	"Usember.h"
+	"Date.h"
 	<string>
 
-1386751210 /home/panda/aisdi-relations2/src/Usember.h
+1386756579 /home/panda/aisdi-relations2/src/Usember.h
 	<string>
+	<vector>
 	"Group.h"
+	"Email.h"
 
-1386522439 /home/panda/aisdi-relations2/src/Parameters.h
+1386759566 /home/panda/aisdi-relations2/src/Parameters.h
+	<string>
 
-1386522439 /home/panda/aisdi-relations2/src/Query.h
-	"criteria.h"
+1386756626 /home/panda/aisdi-relations2/src/Query.h
+	"Criteria.h"
 	<vector>
 
-1386522439 /home/panda/aisdi-relations2/src/Report.h
+1386755813 /home/panda/aisdi-relations2/src/Report.h
 
 1329067347 /usr/include/wx-2.8/wx/bmpcbox.h
 	"wx/defs.h"
@@ -1395,40 +1407,80 @@
 1386627125 /home/panda/aisdi-relations2/bin/view/PanelTitle.h
 	"../AisdiRelationsMain.h"
 
-1386753279 /home/panda/aisdi-relations2/bin/view/PanelTitleMaintance.h
+1386755111 /home/panda/aisdi-relations2/bin/view/PanelTitleMaintance.h
 	"../AisdiRelationsMain.h"
 
-1386753572 source:/home/panda/aisdi-relations2/bin/view/PanelTitleMaintance.cpp
+1386755111 source:/home/panda/aisdi-relations2/bin/view/PanelTitleMaintance.cpp
 	"PanelTitleMaintance.h"
 
-1386751901 /home/panda/aisdi-relations2/bin/view/PanelInboxMaintance.h
+1386755111 /home/panda/aisdi-relations2/bin/view/PanelInboxMaintance.h
 	"../AisdiRelationsMain.h"
 
-1386751769 /home/panda/aisdi-relations2/bin/view/PanelUsembersMaintance.h
+1386755111 /home/panda/aisdi-relations2/bin/view/PanelUsembersMaintance.h
 	"../AisdiRelationsMain.h"
 
-1386751842 /home/panda/aisdi-relations2/bin/view/PanelGroupsMaintance.h
+1386755086 /home/panda/aisdi-relations2/bin/view/PanelGroupsMaintance.h
 	"../AisdiRelationsMain.h"
 
-1386751945 /home/panda/aisdi-relations2/bin/view/PanelStatisticsMaintance.h
+1386755110 /home/panda/aisdi-relations2/bin/view/PanelStatisticsMaintance.h
 	"../AisdiRelationsMain.h"
 
-1386751936 /home/panda/aisdi-relations2/bin/view/PanelMulTreeMaintance.h
+1386755111 /home/panda/aisdi-relations2/bin/view/PanelMulTreeMaintance.h
 	"../AisdiRelationsMain.h"
 
-1386751866 source:/home/panda/aisdi-relations2/bin/view/PanelGroupsMaintance.cpp
+1386755080 source:/home/panda/aisdi-relations2/bin/view/PanelGroupsMaintance.cpp
 	"PanelGroupsMaintance.h"
 
-1386752091 source:/home/panda/aisdi-relations2/bin/view/PanelInboxMaintance.cpp
+1386755111 source:/home/panda/aisdi-relations2/bin/view/PanelInboxMaintance.cpp
 	"PanelInboxMaintance.h"
 
-1386751934 source:/home/panda/aisdi-relations2/bin/view/PanelMulTreeMaintance.cpp
+1386755111 source:/home/panda/aisdi-relations2/bin/view/PanelMulTreeMaintance.cpp
 	"PanelMulTreeMaintance.h"
 
-1386751961 source:/home/panda/aisdi-relations2/bin/view/PanelStatisticsMaintance.cpp
+1386755111 source:/home/panda/aisdi-relations2/bin/view/PanelStatisticsMaintance.cpp
 	"PanelStatisticsMaintance.h"
 
-1386751764 source:/home/panda/aisdi-relations2/bin/view/PanelUsembersMaintance.cpp
+1386755111 source:/home/panda/aisdi-relations2/bin/view/PanelUsembersMaintance.cpp
 	"PanelUsembersMaintance.h"
 	<wx/msgdlg.h>
+
+1386759763 /home/panda/aisdi-relations2/src/Date.h
+	<string>
+
+1386756926 /home/panda/aisdi-relations2/src/Group.h
+
+1386759648 source:/home/panda/aisdi-relations2/src/Group.cpp
+	"Group.h"
+
+1386759582 source:/home/panda/aisdi-relations2/src/Usember.cpp
+	"Usember.h"
+
+1386755843 /home/panda/aisdi-relations2/src/Criteria.h
+
+1386755864 source:/home/panda/aisdi-relations2/src/Criteria.cpp
+	"Criteria.h"
+
+1386756824 /home/panda/aisdi-relations2/src/GroupQuery.h
+	"Query.h"
+	"Group.h"
+
+1386756894 source:/home/panda/aisdi-relations2/src/Database.cpp
+	"Database.h"
+
+1386758457 /home/panda/aisdi-relations2/src/Exception/IOException.h
+	<iostream>
+	<string>
+	<exception>
+
+1386758467 source:/home/panda/aisdi-relations2/src/Exception/IOException.cpp
+	"IOException.h"
+
+1386759514 source:/home/panda/aisdi-relations2/src/IOInterface.cpp
+	"IOInterface.h"
+
+1386522439 source:/home/panda/aisdi-relations2/src/Parameters.cpp
+	"Parameters.h"
+
+1386522439 source:/home/panda/aisdi-relations2/src/Report.cpp
+	"Report.h"
 

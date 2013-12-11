@@ -1,10 +1,12 @@
 #include "PanelInboxMaintance.h"
 
-PanelInboxMaintance::PanelInboxMaintance(){
+PanelInboxMaintance::PanelInboxMaintance()
+{
 
 }
 
-void PanelInboxMaintance::ShowPanel(AisdiRelationsFrame* Frame) {
+void PanelInboxMaintance::ShowPanel(AisdiRelationsFrame* Frame)
+{
     Frame->PanelUsembers->Hide();
     Frame->PanelGroups->Hide();
     Frame->PanelTitle->Hide();
@@ -15,7 +17,8 @@ void PanelInboxMaintance::ShowPanel(AisdiRelationsFrame* Frame) {
     Frame->PanelInbox->Show();
 }
 
-void PanelInboxMaintance::SetLabels(AisdiRelationsFrame* Frame) {
+void PanelInboxMaintance::SetLabels(AisdiRelationsFrame* Frame)
+{
     /*wxListItem col;
 
     wxString labels1[3] = {_("Nazwa:"), _("Email:"), _("Grupa:")};    //etykiety do przypasowania liście usemberów
@@ -40,7 +43,8 @@ void PanelInboxMaintance::SetLabels(AisdiRelationsFrame* Frame) {
     }*/
 }
 
-void PanelInboxMaintance::SetIcons(AisdiRelationsFrame* Frame) {
+void PanelInboxMaintance::SetIcons(AisdiRelationsFrame* Frame)
+{
     wxString path(_("resources/icons/icon"));
     wxString format (_(".png"));
 

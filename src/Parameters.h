@@ -3,27 +3,31 @@
 
 #ifndef PARAMETERS_H
 #define PARAMETERS_H
+#include <string>
 
+using namespace std;
 
-virtual class Parameters
+class Parameters
 {
-    private:
-        string path;
+private:
+    string path;
+public:
+    Parameters();
 };
 
 class MailParameters : public Parameters          // parametry wczytywania maili, wskazują jak zachować ma się IOInterface
 {
-    private:
-        bool isDirectory;
-        bool recursiveImport;
-}
+public:
+    bool isDirectory;
+    bool recursiveImport;
+};
 
 class DbParameters : public Parameters            // parametry importu / eksportu bazy danych
 {
-    private:
-        bool isPasswordProtected;
-        string password;
-}
+private:
+    bool isPasswordProtected;
+    string password;
+};
 
 
 #endif // PARAMETERS_H

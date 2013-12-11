@@ -1,4 +1,5 @@
-#include "criteria.h"
+#pragma once
+#include "Criteria.h"
 #include <vector>
 using namespace std;
 
@@ -10,9 +11,9 @@ using namespace std;
 class Query
 {
 private:
-	vector<DataType> sortingOrder;
-	vector<Criteria> criteriaVector;
+    //vector<DataType> sortingOrder;
+    vector<Criteria> criteriaVector;
 public:
-	Query();
-	~Query();
+    Query();
+    ~Query();
 };

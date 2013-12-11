@@ -1,15 +1,15 @@
 #pragma once
-#include "query.h"
+#include "Query.h"
 
-enum DataType {NAME, EMAIL_ADDRESS, GROUP_DOMAIN, GROUP};
+//enum DataType {NAME, EMAIL_ADDRESS, GROUP_DOMAIN, GROUP};
 
 class UsemberQuery :
-	public Query
+    public Query
 {
 private:
-	vector<Usember*> searchResultVector;
+    vector<Usember*> searchResultVector;
 public:
-	UsemberQuery();
-	~UsemberQuery();
+    UsemberQuery();
+    ~UsemberQuery();
 };
 

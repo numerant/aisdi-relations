@@ -8,11 +8,11 @@
 
 class Report
 {
-    public:
-        Report();
-        ~Report();
-    protected:
-    private:
+public:
+    Report();
+    ~Report();
+protected:
+private:
 };
 
 #endif // REPORT_H

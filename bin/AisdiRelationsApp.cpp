@@ -36,9 +36,9 @@ bool AisdiRelationsApp::OnInit()
     wxInitAllImageHandlers();
     if ( wxsOK )
     {
-    	AisdiRelationsFrame* Frame = new AisdiRelationsFrame(0);
-    	Frame->Show();
-    	SetTopWindow(Frame);
+        AisdiRelationsFrame* Frame = new AisdiRelationsFrame(0);
+        Frame->Show();
+        SetTopWindow(Frame);
     }
     //*)
 

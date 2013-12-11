@@ -1,14 +1,13 @@
 #pragma once
-#include "query.h"
-
-enum DataType {FROM, DATE, REPLY_TO, IN_REPLY_TO, MESSAGE_ID, TO, SUBJECT};
+#include "Query.h"
+#include "Email.h"
 
 class EmailQuery :
-	public Query
+    public Query
 {
 private:
-	vector<Email*> searchResultVector;
+    vector<Email*> searchResultVector;
 public:
-	EmailQuery();
-	~EmailQuery();
+    EmailQuery();
+    ~EmailQuery();
 };

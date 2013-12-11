@@ -8,138 +8,142 @@ using namespace std;
 
 class Date
 {
-	//dzień tygodnia
-	string weekDay;
-	//dzień
-	int day;
-	//miesiąc
-	int month;
-	//rok
-	int year;
-	//godzina
-	int hour;
-	//minuta
-	int minute;
-	//sekunda
-	int second;
-	//strefa czasowa;
-	int timeZone;
+    //dzień tygodnia
+    string weekDay;
+    //dzień
+    int day;
+    //miesiąc
+    int month;
+    //rok
+    int year;
+    //godzina
+    int hour;
+    //minuta
+    int minute;
+    //sekunda
+    int second;
+    //strefa czasowa;
+    int timeZone;
 
 
 public:
-	Date();
-	Date(const Date &date)
-	{
-		weekDay = date.weekDay;
-		day = date.day;
-		month = date.month;
-		year = date.year;
-		hour = date.hour;
-		minute = date.minute;
-	}
-	~Date();
+    Date() {};
+    Date(const Date &date)
+    {
+        weekDay = date.weekDay;
+        day = date.day;
+        month = date.month;
+        year = date.year;
+        hour = date.hour;
+        minute = date.minute;
+    }
+    Date (string newDate)
+    {
 
-	string getweekDat()
-	{
-		return weekDay;
-	}
+    }
+    ~Date() {};
 
-	void setWeekDay(string newWeekDay)
-	{
-		weekDay = newWeekDay;
-	}
+    string getweekDat()
+    {
+        return weekDay;
+    }
 
-	int getDay()
-	{
-		return day;
-	}
+    void setWeekDay(string newWeekDay)
+    {
+        weekDay = newWeekDay;
+    }
 
-	void setDay(int newDay)
-	{
-		day = newDay;
-	}
+    int getDay()
+    {
+        return day;
+    }
 
-	int getMonth()
-	{
-		return month;
-	}
+    void setDay(int newDay)
+    {
+        day = newDay;
+    }
 
-	void setMonth(int newMonth)
-	{
-		month = newMonth;
-	}
+    int getMonth()
+    {
+        return month;
+    }
 
-	int getYear()
-	{
-		return year;
-	}
+    void setMonth(int newMonth)
+    {
+        month = newMonth;
+    }
 
-	void setYear(int newYear)
-	{
-		year = newYear;
-	}
+    int getYear()
+    {
+        return year;
+    }
 
-	int getHour()
-	{
-		return hour;
-	}
+    void setYear(int newYear)
+    {
+        year = newYear;
+    }
 
-	void setHour(int newHour)
-	{
-		hour = newHour;
-	}
+    int getHour()
+    {
+        return hour;
+    }
 
-	int getMinute()
-	{
-		return minute;
-	}
+    void setHour(int newHour)
+    {
+        hour = newHour;
+    }
 
-	void setMinute(int newMinute)
-	{
-		minute = newMinute;
-	}
-	
-	int getSecond()
-	{
-		return second;
-	}
-	
-	void setSecond(int newSecond)
-	{
-		second = newSecond;
-	}
-	
-	int getTimeZone()
-	{
-		return timeZone;
-	}
-	
-	void setTimeZone(int newTimeZone)
-	{
-		timeZone = newTimeZone;
-	}
-	
-	/*porównuje dwie daty, format: Date.compare(Date2)
-	jako wynik zwraca: 1 - Date > Date2 | -1 - Date < Date2 | 0 - Date == Date2*/
-	int compare(Date &date2)
-	{
-		if(year > date2.year)
-			return 1;
-		if(year < date2.year)
-			return -1;
-		if(month > date2.month)
-			return 1;
-		if(month < date2.month)
-			return -1;
-		if(day > date2.day)
-			return 1;
-		if(day < date2.day)
-			return -1;
-		if(hour > date2.hour)
-			return 1;
-		if(minute < date2.minute)
-			return -1;
-		return 0;
-	}
-	
+    int getMinute()
+    {
+        return minute;
+    }
+
+    void setMinute(int newMinute)
+    {
+        minute = newMinute;
+    }
+
+    int getSecond()
+    {
+        return second;
+    }
+
+    void setSecond(int newSecond)
+    {
+        second = newSecond;
+    }
+
+    int getTimeZone()
+    {
+        return timeZone;
+    }
+
+    void setTimeZone(int newTimeZone)
+    {
+        timeZone = newTimeZone;
+    }
+
+    /*porównuje dwie daty, format: Date.compare(Date2)
+    jako wynik zwraca: 1 - Date > Date2 | -1 - Date < Date2 | 0 - Date == Date2*/
+    int compare(Date &date2)
+    {
+        if(year > date2.year)
+            return 1;
+        if(year < date2.year)
+            return -1;
+        if(month > date2.month)
+            return 1;
+        if(month < date2.month)
+            return -1;
+        if(day > date2.day)
+            return 1;
+        if(day < date2.day)
+            return -1;
+        if(hour > date2.hour)
+            return 1;
+        if(minute < date2.minute)
+            return -1;
+        return 0;
+    }
+
 };

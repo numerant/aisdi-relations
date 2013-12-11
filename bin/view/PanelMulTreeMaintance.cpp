@@ -1,10 +1,12 @@
 #include "PanelMulTreeMaintance.h"
 
-PanelMulTreeMaintance::PanelMulTreeMaintance() {
-	
+PanelMulTreeMaintance::PanelMulTreeMaintance()
+{
+
 }
 
-void PanelMulTreeMaintance::ShowPanel(AisdiRelationsFrame* Frame) {
+void PanelMulTreeMaintance::ShowPanel(AisdiRelationsFrame* Frame)
+{
     Frame->PanelUsembers->Hide();
     Frame->PanelGroups->Hide();
     Frame->PanelInbox->Hide();

@@ -1,10 +1,12 @@
 #include "PanelTitleMaintance.h"
 
-PanelTitleMaintance::PanelTitleMaintance () {
+PanelTitleMaintance::PanelTitleMaintance ()
+{
     noData = false;
 }
 
-void PanelTitleMaintance::ShowPanel(AisdiRelationsFrame* Frame) {
+void PanelTitleMaintance::ShowPanel(AisdiRelationsFrame* Frame)
+{
     Frame->PanelUsembers->Hide();
     Frame->PanelGroups->Hide();
     Frame->PanelInbox->Hide();
@@ -15,7 +17,8 @@ void PanelTitleMaintance::ShowPanel(AisdiRelationsFrame* Frame) {
     Frame->PanelTitle->Show();
 }
 
-void PanelTitleMaintance::SetIcons(AisdiRelationsFrame* Frame) {
+void PanelTitleMaintance::SetIcons(AisdiRelationsFrame* Frame)
+{
     wxString pathBig(_("resources/iconsBig/icon"));
     wxString path(_("resources/icons/icon"));
     wxString format (_(".png"));
@@ -35,8 +38,10 @@ void PanelTitleMaintance::SetIcons(AisdiRelationsFrame* Frame) {
     Frame->T_ImageButtonMulTree->SetBitmapLabel(pathBig+imagePaths[12]+format);
 }
 
-void PanelTitleMaintance::SwitchIcons (AisdiRelationsFrame* Frame) {
-    if (noData) {
+void PanelTitleMaintance::SwitchIcons (AisdiRelationsFrame* Frame)
+{
+    if (noData)
+    {
         Frame->T_ImageButtonAdd->Hide();
         Frame->T_ImageButtonImport->Hide();
         Frame->T_ImageButtonTxt->Hide();
@@ -51,7 +56,8 @@ void PanelTitleMaintance::SwitchIcons (AisdiRelationsFrame* Frame) {
         Frame->T_ImageButtonStats->Show();
         Frame->T_ImageButtonMulTree->Show();
     }
-    else {
+    else
+    {
         Frame->T_ImageButtonAdd->Show();
         Frame->T_ImageButtonImport->Show();
         Frame->T_ImageButtonTxt->Show();

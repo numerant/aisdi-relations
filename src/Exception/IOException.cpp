@@ -7,7 +7,7 @@ using namespace std;
 
 IOException::IOException(string mess)
 {
-    strcpy(message, mess);
+   //strcpy(message, mess);
 }
 
 string IOException::show()

@@ -1,13 +1,14 @@
 #pragma once
 #include "../AisdiRelationsMain.h"
 
-class PanelMulTreeMaintance {
+class PanelMulTreeMaintance
+{
     friend class AisdiRelationsFrame;
-    
-    private:
-    	bool panelEnabled = false;
 
-    public:
-    	PanelMulTreeMaintance ();
-        void ShowPanel(AisdiRelationsFrame* Frame);
+private:
+    bool panelEnabled = false;
+
+public:
+    PanelMulTreeMaintance ();
+    void ShowPanel(AisdiRelationsFrame* Frame);
 };

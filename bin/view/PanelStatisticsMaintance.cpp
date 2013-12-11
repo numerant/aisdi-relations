@@ -1,10 +1,12 @@
 #include "PanelStatisticsMaintance.h"
 
-PanelStatisticsMaintance::PanelStatisticsMaintance () {
-	
+PanelStatisticsMaintance::PanelStatisticsMaintance ()
+{
+
 }
 
-void PanelStatisticsMaintance::ShowPanel(AisdiRelationsFrame* Frame) {
+void PanelStatisticsMaintance::ShowPanel(AisdiRelationsFrame* Frame)
+{
     Frame->PanelUsembers->Hide();
     Frame->PanelGroups->Hide();
     Frame->PanelInbox->Hide();
