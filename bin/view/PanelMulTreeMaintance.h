@@ -3,7 +3,11 @@
 
 class PanelMulTreeMaintance {
     friend class AisdiRelationsFrame;
+    
     private:
+    	bool panelEnabled = false;
+
     public:
+    	PanelMulTreeMaintance ();
         void ShowPanel(AisdiRelationsFrame* Frame);
 };

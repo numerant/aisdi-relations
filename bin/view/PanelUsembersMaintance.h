@@ -5,6 +5,7 @@ class PanelUsembersMaintance {
     friend class AisdiRelationsFrame;
 
     private:
+        bool panelEnabled = true;
         bool usembersListEnabled;
         bool emailContentEnabled;
         const wxString imagePaths[12] = {

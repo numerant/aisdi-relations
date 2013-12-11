@@ -61,6 +61,11 @@ class AisdiRelationsFrame: public wxFrame
         static const long ID_STATICTEXT9;
         static const long ID_STATICTEXT10;
         static const long ID_STATICTEXT11;
+        static const long ID_IMAGEBUTTON37;
+        static const long ID_IMAGEBUTTON36;
+        static const long ID_IMAGEBUTTON35;
+        static const long ID_IMAGEBUTTON34;
+        static const long ID_IMAGEBUTTON33;
         static const long ID_IMAGEBUTTON32;
         static const long ID_IMAGEBUTTON18;
         static const long ID_IMAGEBUTTON17;
@@ -73,6 +78,11 @@ class AisdiRelationsFrame: public wxFrame
         static const long ID_STATICLINE3;
         static const long ID_STATICLINE4;
         static const long ID_STATICLINE6;
+        static const long ID_STATICTEXT60;
+        static const long ID_STATICTEXT59;
+        static const long ID_STATICTEXT58;
+        static const long ID_STATICTEXT57;
+        static const long ID_STATICTEXT56;
         static const long ID_STATICTEXT30;
         static const long ID_STATICTEXT31;
         static const long ID_STATICTEXT29;
@@ -193,10 +203,13 @@ class AisdiRelationsFrame: public wxFrame
         //(*Declarations(AisdiRelationsFrame)
         wxStaticBitmap* BitmapBackgroundTitle;
         wxStaticBox* U_StaticBoxUsembers;
+        wxBitmapButton        *T_ImageButtonUsembers;
         wxStaticText* I_LabelFrom;
+        wxStaticText* T_LabelUsembers;
         wxBitmapButton        *U_ImageButtonSearch;
         wxPanel* U_PanelStats;
         wxStaticText* T_LabelFiles;
+        wxStaticText* T_LabelMulTree;
         wxHtmlWindow* U_HtmlContent;
         wxStaticText* U_LabelDate;
         wxStaticText* U_LabelMulTree;
@@ -225,6 +238,7 @@ class AisdiRelationsFrame: public wxFrame
         wxBitmapButton        *U_ImageButtonShowGroup;
         wxStaticBitmap* I_BitmapBackground;
         wxPanel* PanelGroups;
+        wxStaticText* T_LabelGroups;
         wxMenu* Menu3;
         wxStaticText* U_StaticTextDate;
         wxStaticText* T_LabelAdd;
@@ -236,14 +250,17 @@ class AisdiRelationsFrame: public wxFrame
         wxBitmapButton        *T_ImageButtonFiles;
         wxBitmapButton        *U_ImageButtonMulTree;
         wxStaticText* I_LabelTo;
+        wxStaticText* T_LabelStats;
         wxStaticText* I_LabelMulTree;
         wxStaticText* U_LabelEmail;
         wxStaticLine* T_StaticLineOpenH;
+        wxBitmapButton        *T_ImageButtonStats;
         wxStaticText* I_StaticTextFrom;
         wxBitmapButton        *U_ImageButtonSwitchList;
         wxBitmapButton        *T_ImageButtonTxt;
         wxStaticLine* T_StaticLineImportH;
         wxPanel* PanelMain;
+        wxBitmapButton        *T_ImageButtonGroups;
         wxBitmapButton        *U_ImageButtonStats;
         wxStaticText* I_LabelAdd;
         wxStaticText* T_LabelTxt;
@@ -264,6 +281,7 @@ class AisdiRelationsFrame: public wxFrame
         wxBitmapButton        *T_ImageButtonLoad;
         wxStaticLine* U_LineContentSeparator;
         wxStaticText* U_LabelShowGroup;
+        wxBitmapButton        *T_ImageButtonMulTree;
         wxBitmapButton        *U_ImageButtonSave;
         wxBitmapButton        *U_ImageButtonGroups;
         wxStaticText* U_LabelGroup;
@@ -289,6 +307,7 @@ class AisdiRelationsFrame: public wxFrame
         wxBitmapButton        *I_ImageButtonGroups;
         wxStaticText* U_StaticTextFromTo;
         wxStaticText* U_LabelSearch;
+        wxStaticText* T_LabelInbox;
         wxMenuItem* MenuItem6;
         wxMenuItem* MenuItem7;
         wxMenuItem* MenuItem4;
@@ -301,6 +320,7 @@ class AisdiRelationsFrame: public wxFrame
         wxStaticText* U_LabelSwitchList;
         wxBitmapButton        *I_ImageButtonSave;
         wxStaticLine* T_StaticLineAddV;
+        wxBitmapButton        *T_ImageButtonInbox;
         wxStaticText* U_StaticTextGroup;
         wxStaticText* T_LabelLoad;
         wxListCtrl* U_ListInbox;

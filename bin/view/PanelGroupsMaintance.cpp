@@ -1,5 +1,9 @@
 #include "PanelGroupsMaintance.h"
 
+PanelGroupsMaintance::PanelGroupsMaintance() {
+	
+}
+
 void PanelGroupsMaintance::ShowPanel(AisdiRelationsFrame* Frame) {
     Frame->PanelUsembers->Hide();
     Frame->PanelTitle->Hide();

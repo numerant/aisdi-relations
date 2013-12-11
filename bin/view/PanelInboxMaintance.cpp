@@ -1,5 +1,9 @@
 #include "PanelInboxMaintance.h"
 
+PanelInboxMaintance::PanelInboxMaintance(){
+
+}
+
 void PanelInboxMaintance::ShowPanel(AisdiRelationsFrame* Frame) {
     Frame->PanelUsembers->Hide();
     Frame->PanelGroups->Hide();
@@ -11,7 +15,7 @@ void PanelInboxMaintance::ShowPanel(AisdiRelationsFrame* Frame) {
     Frame->PanelInbox->Show();
 }
 
-void PanelInboxMaintance:: SetLabels(AisdiRelationsFrame* Frame) {
+void PanelInboxMaintance::SetLabels(AisdiRelationsFrame* Frame) {
     /*wxListItem col;
 
     wxString labels1[3] = {_("Nazwa:"), _("Email:"), _("Grupa:")};    //etykiety do przypasowania liście usemberów
