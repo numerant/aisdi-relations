@@ -17,81 +17,50 @@ IOInterface::ImportStats::ImportStats()
 
 IOInterface::ImportStats IOInterface::importMail(MailParameters *parameters)
 {
-    Email *tempEmail;       //pamiętać o delete!
     ImportStats stats;
 
     if (parameters->isDirectory)
     {
-      boost::filesystem::path currentDir(parameters->path);                           // stworzenie boostowej zmiennej określającej ścieżkę
-
         if (parameters->recursiveImport)
-            boost::filesystem::recursive_directory_iterator iter(currentDir), end;      // boostowy iterator przechodzący katalog i podkatalogi
+            for (boost::filesystem::recursive_directory_iterator iter(parameters->path), end; iter != end; ++iter)      // przejechanie iteratorem po katalogu
+                importSingleMail( iter->path(), stats );                                                                // import do bazy maila, na który wskazuje iterator
         else
-            boost::filesystem::directory_iterator iter(currentDir), end;                // ten pomija podkatalogi
-
-        //for (boost::filesystem::recursive_directory_iterator iter(currentDir); iter != end; ++iter)                                                     // przejechanie iteratorem po katalogu
-        for (boost::filesystem::recursive_directory_iterator iter(currentDir), end; iter != end; ++iter)
-        {
-
-            if (iter->path().extension() == ".eml")
-            {
-                try
-                {
-                    tempEmail = emlParser( iter->path().c_str() );
-                }
-                catch ( IOException error )                                             // mail nie jest poprawny składniowo
-                {
-                    // właściwie powinno być EmlSyntaxIncorrect, ale póki co niezależnie od rzuconego przez parser wyjątku jedynie inkrementujemy failCount
-                    stats.failCount++;
-                    break;
-                }
-
-                try
-                {
-                    database->addEmail(tempEmail);
-                }
-                catch ( IOException error )    // do zmiany
-                    {
-                        stats.existingCount++;
-                        break;
-                    }
-            }
-        }
-        delete tempEmail;   //break przerwie chyba tylko blok if, więc może być tutaj?
+            for (boost::filesystem::directory_iterator iter(parameters->path), end; iter != end; ++iter)                // jak wyżej, tylko bez rekursji
+                importSingleMail( iter->path(), stats );
     }
     else
+        importSingleMail(parameters->path, stats);
+
+    return stats;
+}
+
+void IOInterface::importSingleMail(boost::filesystem::path path, ImportStats &stats)
+{
+    Email *tempEmail;
+    if (path.extension() == ".eml")
     {
         try
         {
-            tempEmail = emlParser(parameters->path);
+            tempEmail = emlParser( path.c_str() );
+            database->addEmail(tempEmail);
+            stats.successCount++;
         }
-        catch ( IOException error )
+        catch ( IOException error )                                             // mail nie jest poprawny składniowo
         {
             stats.failCount++;
-           // break;                      //wyskoczenie z bloku else
         }
-
-        try
+        catch ( ... /* tu ma być błąd bazy danych! */ )
         {
-            database->addEmail(tempEmail);
+            stats.existingCount++;
         }
-            catch ( IOException error)  //mail istnieje już w bazie
-            {
-                stats.existingCount++;
-                delete tempEmail;
-              //  break;
-            }
-        stats.successCount++;
-        delete tempEmail;
     }
-
-    return stats;
+    delete tempEmail;
 }
 
 Email* IOInterface::emlParser (string path)
 {
     fstream plik;
-    plik.open(path.c_str(), std::ios::in);
+    plik.open(path.c_str(), ios::in);
     if( plik.good() == true )
     {
         Email* mail;
@@ -104,13 +73,8 @@ Email* IOInterface::emlParser (string path)
         regex regMID("Message-ID:\s+<(.+)>");
         regex regDate("Date:\s+(\\u\l{2},\s+\d{1,2}\s+\\u\l+\s+\d{4}\s+\d{2}:\d{2}:\d{2}\s+\+\d{4})");
 
-
-
-
         do
-        {
             getline(plik, wiersz);
-        }
         while ( (wiersz).size() == 0 ); // pomija przypadkowe puste linie na początku pliku
 
         // wczytanie FROM
@@ -129,10 +93,8 @@ Email* IOInterface::emlParser (string path)
                 fromDOMAIN = wynik[3];
             }
         }
-        else
-        {
-            //throw UnableToOpenFile();
-        }
+        else throw EmlSyntaxIncorrect();
+
 
         // wczytanie TO
         getline(plik, wiersz);
@@ -150,10 +112,7 @@ Email* IOInterface::emlParser (string path)
                 toDOMAIN = wynik[3];
             }
         }
-        else
-        {
-            //throw UnableToOpenFile();
-        }
+        else throw EmlSyntaxIncorrect();
 
         // wczytanie SUBJECT
         getline(plik, wiersz);
@@ -161,10 +120,7 @@ Email* IOInterface::emlParser (string path)
         {
             subject = wynik[0];
         }
-        else
-        {
-            //throw UnableToOpenFile();
-        }
+        else throw EmlSyntaxIncorrect();
 
         // wczytanie MID
         getline(plik, wiersz);
@@ -172,10 +128,7 @@ Email* IOInterface::emlParser (string path)
         {
             MID = wynik[0];
         }
-        else
-        {
-            //throw UnableToOpenFile();
-        }
+        else throw EmlSyntaxIncorrect();
 
         // wczytanie DATE
         getline(plik, wiersz);
@@ -183,25 +136,19 @@ Email* IOInterface::emlParser (string path)
         {
             date = wynik[0];
         }
-        else
-        {
-            //throw UnableToOpenFile();
-        }
+        else throw EmlSyntaxIncorrect();
 
         // wczytanie treści
         while (wiersz.size() != 0)
             getline(plik, wiersz); // przejście do momentu pustej linii
 
         while (plik.eof() != EOF) // wczytanie tego co zostało jako treść
-        {
             plik >> content;
-        }
 
         plik.close();
 
         // ustawienie atrybutów maila
         mail = new Email();
-
 
         usemberFrom = new Usember(fromLOGIN, fromDOMAIN, fromRN);
         usemberTo = new Usember(toLOGIN, toDOMAIN, toRN);
@@ -217,8 +164,5 @@ Email* IOInterface::emlParser (string path)
 
         return mail;
     }
-    else // nie można otworzyć pliku
-    {
-       // throw UnableToOpenFile();
-    }
+    else throw UnableToOpenFile();
 }

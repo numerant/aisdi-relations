@@ -50,7 +50,6 @@
 		<Unit filename="../src/Date.h" />
 		<Unit filename="../src/Email.h" />
 		<Unit filename="../src/EmailQuery.h" />
-		<Unit filename="../src/Exception/IOException.cpp" />
 		<Unit filename="../src/Exception/IOException.h" />
 		<Unit filename="../src/Group.cpp" />
 		<Unit filename="../src/Group.h" />

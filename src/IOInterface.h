@@ -15,9 +15,9 @@
 #include "boost/algorithm/string.hpp"	// do zaawansowanych operacji na stringach
 #include "Database.h"
 #include "Email.h"
-#include "Exception/IOException.h"
 #include "Parameters.h"
 #include "Report.h"
+#include "Exception/IOException.h"
 
 using namespace std;
 
@@ -49,6 +49,7 @@ private:
     //vector<char> *binary_file;                // trzyma zserializowaną bazę danych w formie binarnej - chyba lepiej tworzyć lokalnie, wewnątrz metody
 
     // Methods:
+    void importSingleMail(boost::filesystem::path path, ImportStats &stats);
     Email* emlParser (string path);             //sprawdza poprawność maili
     void encryptFile (string password);
     void decryptFile (string password);
