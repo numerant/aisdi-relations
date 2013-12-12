@@ -44,7 +44,6 @@ public:
     void clearEmails();											//metoda usuwająca wszystkie maile z bazy
     void clearGroups();										//metoda usuwająca wszystkie grupy z bazy
     void clearUsembers();										//metoda usuwająca wszystkich usemberów z bazy
-    int compareStrings(string string1, string string2, int position);	//metoda do sortowania alfabetycznego stringów
     void swapEmails(int position1, int position2);				//metoda zamieniająca dwa maile w wektorze
     void swapGroups(int position1, int position2);			//metoda zamieniająca dwie grupy w wektorze
     void swapUsembers(int position1, int position2);			//metoda zamieniająca dwóch usemberów w wektorze
