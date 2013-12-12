@@ -47,7 +47,7 @@ void IOInterface::importSingleMail(boost::filesystem::path path, ImportStats &st
         try
         {
             tempEmail = emlParser( path.c_str() );
-            database->addEmail(tempEmail);
+           // database->addEmail(tempEmail);
             stats.successCount++;
         }
         catch ( IOException error )                                             // mail nie jest poprawny składniowo
@@ -59,7 +59,7 @@ void IOInterface::importSingleMail(boost::filesystem::path path, ImportStats &st
             stats.existingCount++;
         }
     }
-    delete tempEmail;
+    //delete tempEmail;
 }
 
 Email* IOInterface::emlParser (string path)
@@ -129,11 +129,14 @@ Email* IOInterface::emlParser (string path)
         else throw EmlSyntaxIncorrect();
 
         // wczytanie treści
-        while (wiersz.size() != 0)
-            getline(plik, wiersz); // przejście do momentu pustej linii
+        // while (wiersz.size() != 0)
+        //    getline(plik, wiersz); // przejście do momentu pustej linii
 
         while ( !plik.eof() ) // wczytanie tego co zostało jako treść
-            plik >> content;
+        {
+            getline (plik, wiersz);
+            content+=wiersz;
+        }
 
         plik.close();
 
