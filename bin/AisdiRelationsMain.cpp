@@ -8,9 +8,10 @@
  **************************************************************/
 
 /** Klasy projektu */
-#include "../src/Date.h"
+/*#include "../src/Date.h"
 #include "../src/Email.h"
-#include "../src/Usember.h"
+#include "../src/Usember.h"*/
+
 
 
 /** Pliki klas widoku (paneli) */
@@ -382,7 +383,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     U_StaticBoxInfo = new wxStaticBox(PanelUsembers, ID_STATICBOX4, wxEmptyString, wxPoint(650,103), wxSize(600,500), 0, _T("ID_STATICBOX4"));
     U_StaticBoxInfo->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
     U_StaticBoxInfo->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
-    U_BitmapUsember = new wxStaticBitmap(PanelUsembers, ID_STATICBITMAP7, wxBitmap(wxImage(_T("/home/panda/aisdi-relations2/bin/resources/iconsBig/iconUsember.png")).Rescale(wxSize(100,100).GetWidth(),wxSize(100,100).GetHeight())), wxPoint(670,135), wxSize(100,100), wxSIMPLE_BORDER, _T("ID_STATICBITMAP7"));
+    U_BitmapUsember = new wxStaticBitmap(PanelUsembers, ID_STATICBITMAP7, wxBitmap(wxImage(_T("resources/iconsBig/iconUsember.png")).Rescale(wxSize(100,100).GetWidth(),wxSize(100,100).GetHeight())), wxPoint(670,135), wxSize(100,100), wxSIMPLE_BORDER, _T("ID_STATICBITMAP7"));
     U_ListUsembers = new wxListCtrl(PanelUsembers, ID_LISTCTRL2, wxPoint(25,130), wxSize(550,570), wxLC_REPORT, wxDefaultValidator, _T("ID_LISTCTRL2"));
     U_ListUsembers->Hide();
     U_ListUsembers->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));

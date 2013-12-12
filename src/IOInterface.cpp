@@ -156,11 +156,12 @@ Email* IOInterface::emlParser (string path)
 //        usemberFrom = database.addUsember( usemberFrom );
 //        usemberTo = database.addUsember( usemberTo );
 
+        Date* newDate = new Date(date);
         mail->setFrom( usemberFrom );
         mail->setTo( usemberTo );
         mail->setSubject( subject );
         mail->setContent( content );
-        mail->setDate( new Date(date) );
+        mail->setDate(newDate);
 
         return mail;
     }

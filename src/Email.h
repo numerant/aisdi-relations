@@ -51,6 +51,7 @@ public:
     {
         return date;
     }
+
     void setDate(Date* newDate)
     {
         date = *newDate;

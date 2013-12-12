@@ -47,6 +47,7 @@
 		<Unit filename="../src/Criteria.h" />
 		<Unit filename="../src/Database.cpp" />
 		<Unit filename="../src/Database.h" />
+		<Unit filename="../src/Date.cpp" />
 		<Unit filename="../src/Date.h" />
 		<Unit filename="../src/Email.h" />
 		<Unit filename="../src/EmailQuery.h" />

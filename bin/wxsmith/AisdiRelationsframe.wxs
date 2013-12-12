@@ -22,7 +22,7 @@
 				<pos>0,0</pos>
 				<size>1366,768</size>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP2" variable="BitmapBackgroundTitle" member="yes">
-					<bitmap>/home/kuba/Programowanie/aisdi-relations/bin/resources/background.jpg</bitmap>
+					<bitmap>resources/background.jpg</bitmap>
 					<pos>0,0</pos>
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT9" variable="T_StaticTextTitle1" member="yes">
