@@ -1058,10 +1058,12 @@
 1386755111 /home/panda/aisdi-relations2/bin/AisdiRelationsApp.h
 	<wx/app.h>
 
-1386814077 /home/panda/aisdi-relations2/bin/AisdiRelationsMain.h
+1386874511 /home/panda/aisdi-relations2/bin/AisdiRelationsMain.h
 	<wx/bmpbuttn.h>
 	<wx/listctrl.h>
 	<wx/menu.h>
+	<wx/dirdlg.h>
+	<wx/filedlg.h>
 	<wx/panel.h>
 	<wx/srchctrl.h>
 	<wx/statbox.h>
@@ -1071,7 +1073,7 @@
 	<wx/statbmp.h>
 	<wx/html/htmlwin.h>
 
-1386813533 source:/home/panda/aisdi-relations2/bin/AisdiRelationsMain.cpp
+1386873250 source:/home/panda/aisdi-relations2/bin/AisdiRelationsMain.cpp
 	"../src/Email.h"
 	"../src/Usember.h"
 	"view/PanelTitleMaintance.h"
@@ -1091,7 +1093,7 @@
 	<wx/icon.h>
 	<wx/image.h>
 
-1386756948 /home/panda/aisdi-relations2/src/Database.h
+1386872567 /home/panda/aisdi-relations2/src/Database.h
 	"EmailQuery.h"
 	"GroupQuery.h"
 	"UsemberQuery.h"
@@ -1135,7 +1137,7 @@
 1386763249 /home/panda/aisdi-relations2/src/Parameters.h
 	<string>
 
-1386756626 /home/panda/aisdi-relations2/src/Query.h
+1386872357 /home/panda/aisdi-relations2/src/Query.h
 	"Criteria.h"
 	<vector>
 
@@ -1408,10 +1410,10 @@
 1386627125 /home/panda/aisdi-relations2/bin/view/PanelTitle.h
 	"../AisdiRelationsMain.h"
 
-1386809963 /home/panda/aisdi-relations2/bin/view/PanelTitleMaintance.h
+1386873281 /home/panda/aisdi-relations2/bin/view/PanelTitleMaintance.h
 	"../AisdiRelationsMain.h"
 
-1386810528 source:/home/panda/aisdi-relations2/bin/view/PanelTitleMaintance.cpp
+1386872911 source:/home/panda/aisdi-relations2/bin/view/PanelTitleMaintance.cpp
 	"PanelTitleMaintance.h"
 
 1386813418 /home/panda/aisdi-relations2/bin/view/PanelInboxMaintance.h
@@ -1432,10 +1434,10 @@
 1386810989 source:/home/panda/aisdi-relations2/bin/view/PanelGroupsMaintance.cpp
 	"PanelGroupsMaintance.h"
 
-1386813921 source:/home/panda/aisdi-relations2/bin/view/PanelInboxMaintance.cpp
+1386814204 source:/home/panda/aisdi-relations2/bin/view/PanelInboxMaintance.cpp
 	"PanelInboxMaintance.h"
 
-1386810382 source:/home/panda/aisdi-relations2/bin/view/PanelMulTreeMaintance.cpp
+1386814204 source:/home/panda/aisdi-relations2/bin/view/PanelMulTreeMaintance.cpp
 	"PanelMulTreeMaintance.h"
 
 1386811009 source:/home/panda/aisdi-relations2/bin/view/PanelStatisticsMaintance.cpp
@@ -1466,7 +1468,7 @@
 	"Query.h"
 	"Group.h"
 
-1386756894 source:/home/panda/aisdi-relations2/src/Database.cpp
+1386872567 source:/home/panda/aisdi-relations2/src/Database.cpp
 	"Database.h"
 
 1386803636 /home/panda/aisdi-relations2/src/Exception/IOException.h
@@ -1665,4 +1667,48 @@
 	<string>
 	<sstream>
 	"Date.h"
+
+1386872455 source:/home/panda/aisdi-relations2/src/Query.cpp
+	"Query.h"
+
+1329067345 /usr/include/wx-2.8/wx/dirdlg.h
+	"wx/dialog.h"
+	"wx/generic/dirdlgg.h"
+	"wx/generic/dirdlgg.h"
+	"wx/generic/dirdlgg.h"
+	"wx/msw/dirdlg.h"
+	"wx/gtk/dirdlg.h"
+	"wx/generic/dirdlgg.h"
+	"wx/mac/dirdlg.h"
+	"wx/cocoa/dirdlg.h"
+	"wx/generic/dirdlgg.h"
+
+1329067346 /usr/include/wx-2.8/wx/generic/dirdlgg.h
+	"wx/dialog.h"
+
+1329067347 /usr/include/wx-2.8/wx/gtk/dirdlg.h
+	"wx/generic/dirdlgg.h"
+
+1329067345 /usr/include/wx-2.8/wx/filedlg.h
+	"wx/defs.h"
+	"wx/dialog.h"
+	"wx/arrstr.h"
+	"wx/generic/filedlgg.h"
+	"wx/msw/filedlg.h"
+	"wx/motif/filedlg.h"
+	"wx/gtk/filedlg.h"
+	"wx/generic/filedlgg.h"
+	"wx/gtk1/filedlg.h"
+	"wx/mac/filedlg.h"
+	"wx/cocoa/filedlg.h"
+	"wx/os2/filedlg.h"
+
+1329067345 /usr/include/wx-2.8/wx/generic/filedlgg.h
+	"wx/listctrl.h"
+	"wx/datetime.h"
+	"wx/filefn.h"
+	"wx/filedlg.h"
+
+1329067347 /usr/include/wx-2.8/wx/gtk/filedlg.h
+	"wx/generic/filedlgg.h"
 

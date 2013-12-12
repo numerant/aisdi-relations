@@ -23,6 +23,8 @@ class PanelUsembersMaintance;
 #include <wx/bmpbuttn.h>
 #include <wx/listctrl.h>
 #include <wx/menu.h>
+#include <wx/dirdlg.h>
+#include <wx/filedlg.h>
 #include <wx/panel.h>
 #include <wx/srchctrl.h>
 #include <wx/statbox.h>
@@ -68,6 +70,8 @@ private:
     void OnI_ImageButtonSearchClick(wxCommandEvent& event);
     void OnU_ImageButtonSearchClick(wxCommandEvent& event);
     void OnU_ImageButtonSwitchListClick(wxCommandEvent& event);
+    void OnT_ImageButtonFolderClick(wxCommandEvent& event);
+    void OnT_ImageButtonFilesClick(wxCommandEvent& event);
     //*)
 
     //(*Identifiers(AisdiRelationsFrame)
@@ -242,6 +246,7 @@ private:
     wxListCtrl* U_ListUsembers;
     wxBitmapButton        *I_ImageButtonUsembers;
     wxStaticText* U_LabelTitle;
+    wxFileDialog* FileDialog;
     wxPanel* U_PanelEmail;
     wxStaticText* I_LabelSubject;
     wxStaticText* U_LabelSettings;
@@ -287,6 +292,7 @@ private:
     wxBitmapButton        *U_ImageButtonStats;
     wxStaticText* I_LabelAdd;
     wxStaticText* T_LabelTxt;
+    wxDirDialog* DirDialog;
     wxStaticText* U_LabelInbox;
     wxStaticText* U_LabelAdd;
     wxMenuItem* MenuItem3;

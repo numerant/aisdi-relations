@@ -331,7 +331,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     T_LabelAdd->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
     wxFont T_LabelAddFont(14,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     T_LabelAdd->SetFont(T_LabelAddFont);
-    PanelUsembers = new wxPanel(PanelMain, ID_PANEL4, wxPoint(0,0), wxSize(1366,768), wxTAB_TRAVERSAL, _T("ID_PANEL4"));
+    PanelUsembers = new wxPanel(PanelMain, ID_PANEL4, wxPoint(1366,0), wxSize(1366,768), wxTAB_TRAVERSAL, _T("ID_PANEL4"));
     BitmapBackgroundUsembers = new wxStaticBitmap(PanelUsembers, ID_STATICBITMAP3, wxBitmap(wxImage(_T("resources/background.jpg"))), wxPoint(0,0), wxDefaultSize, wxSIMPLE_BORDER, _T("ID_STATICBITMAP3"));
     U_LabelSwitchContent = new wxStaticText(PanelUsembers, ID_STATICTEXT54, _("Przełącz\nzawartość"), wxPoint(1188,685), wxDefaultSize, wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_STATICTEXT54"));
     U_LabelSwitchContent->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
@@ -654,10 +654,14 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Menu2->Append(MenuItem12);
     MenuBar1->Append(Menu2, _("Help"));
     SetMenuBar(MenuBar1);
+    DirDialog = new wxDirDialog(this, _("Wybierz folder"), _("~/"), wxDD_CHANGE_DIR, wxDefaultPosition, wxDefaultSize, _T("wxDirDialog"));
+    FileDialog = new wxFileDialog(this, _("Wybierz pliki:"), _("~/"), wxEmptyString, _("*.eml"), wxFD_OPEN|wxFD_MULTIPLE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
     Center();
 
     Connect(ID_IMAGEBUTTON34,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonUsembersClick);
     Connect(ID_IMAGEBUTTON33,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonInboxClick);
+    Connect(ID_IMAGEBUTTON16,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonFolderClick);
+    Connect(ID_IMAGEBUTTON15,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonFilesClick);
     Connect(ID_IMAGEBUTTON14,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonLoadClick);
     Connect(ID_IMAGEBUTTON13,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonImportClick);
     Connect(ID_IMAGEBUTTON12,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonAddClick);
@@ -800,6 +804,13 @@ wxListItem col2;
 void AisdiRelationsFrame::OnT_ImageButtonAddClick(wxCommandEvent& event)
 {
     P_Title->SetClickedAdd();
+    if (! P_Title->GetClickedAdd())         //TODO napraw
+    {
+        if ( P_Title->GetClickedLoad() )
+            P_Title->SetClickedLoad();
+        if ( P_Title->GetClickedImport() )
+            P_Title->SetClickedImport();
+    }
     P_Title->UpdateLoadingIcons(this);
 }
 
@@ -866,4 +877,21 @@ void AisdiRelationsFrame::OnU_ImageButtonSearchClick(wxCommandEvent& event)
 void AisdiRelationsFrame::OnU_ImageButtonSwitchListClick(wxCommandEvent& event)
 {
     P_Usembers->SwitchList(this);
+}
+
+void AisdiRelationsFrame::OnT_ImageButtonFolderClick(wxCommandEvent& event)
+{
+    if (DirDialog->ShowModal() == wxID_OK)
+        wxMessageBox(DirDialog->GetPath());
+}
+
+void AisdiRelationsFrame::OnT_ImageButtonFilesClick(wxCommandEvent& event)
+{
+    if (FileDialog->ShowModal() == wxID_OK)
+    {
+        wxArrayString paths;
+        FileDialog->GetPaths(paths);
+        for (int i = 0; i < paths.GetCount(); i++ )
+            wxMessageBox(paths[i]);
+    }
 }

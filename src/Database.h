@@ -31,7 +31,7 @@ public:
     vector<Email*>& select(EmailQuery& emailQuery);				//metody, które przeszukują bazę danych na podstawie danego obiektu klasy Query
     vector<Group*>& select(GroupQuery& groupQuery);	//przekazanego jako parametr, pobierają informacje z Query, tworzą odpowiednio posortowany wektor
     vector<Usember*>& select(UsemberQuery& usemberQuery);		//wskaźników na maile/grupy/usemberów pasujących do kryteriów zapytania i zwraca referencję na niego														//i zwracają referencję do niego
-    void deleteQueryResults(Query& query);						//metoda usuwająca wektor wyników zapytania utworzonych przez metodę select, wywoływana zaraz po niej
+    void deleteQueryResults(Query* query);						//metoda usuwająca wektor wyników zapytania utworzonych przez metodę select, wywoływana zaraz po niej
     void sortEmails();											//metoda sortująca maile wg ID
     void sortGroups();										//metoda sortująca grupy robocze
     void sortUsembers();										//metoda sortująca usemberów alfabetycznie
@@ -47,7 +47,7 @@ public:
     void swapEmails(int position1, int position2);				//metoda zamieniająca dwa maile w wektorze
     void swapGroups(int position1, int position2);			//metoda zamieniająca dwie grupy w wektorze
     void swapUsembers(int position1, int position2);			//metoda zamieniająca dwóch usemberów w wektorze
-	Email* getEmail(int position);
-	Group* getGroup(int position);
-	Usember* getUsember(int position);
+    Email* getEmail(int position);
+    Group* getGroup(int position);
+    Usember* getUsember(int position);
 };

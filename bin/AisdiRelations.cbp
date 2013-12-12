@@ -59,6 +59,7 @@
 		<Unit filename="../src/IOInterface.h" />
 		<Unit filename="../src/Parameters.cpp" />
 		<Unit filename="../src/Parameters.h" />
+		<Unit filename="../src/Query.cpp" />
 		<Unit filename="../src/Query.h" />
 		<Unit filename="../src/Report.cpp" />
 		<Unit filename="../src/Report.h" />

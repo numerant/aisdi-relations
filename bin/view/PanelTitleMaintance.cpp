@@ -212,3 +212,18 @@ bool PanelTitleMaintance::GetNoData (void)
 {
     return noData;
 }
+
+bool PanelTitleMaintance::GetClickedAdd (void)
+{
+    return clickedAdd;
+}
+
+bool PanelTitleMaintance::GetClickedLoad (void)
+{
+    return clickedLoad;
+}
+
+bool PanelTitleMaintance::GetClickedImport (void)
+{
+    return clickedImport;
+}

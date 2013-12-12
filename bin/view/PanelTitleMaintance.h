@@ -7,7 +7,7 @@ class PanelTitleMaintance
 
 private:
     bool panelEnabled = true;       //dostępność panelu
-    bool noData = false;                 //czy dane zostały już zaimportowane (wtedy nie pokazuje ikonek dodawania)
+    bool noData = true;                 //czy dane zostały już zaimportowane (wtedy nie pokazuje ikonek dodawania)
     bool clickedAdd = false;                    //dostępność poszczególnych przycisków dodawania danych;
     bool clickedLoad = false;
     bool clickedImport = false;
@@ -30,4 +30,7 @@ public:
     void SetClickedImport (void);
 
     bool GetNoData (void);
+    bool GetClickedAdd (void);
+    bool GetClickedLoad (void);
+    bool GetClickedImport (void);
 };

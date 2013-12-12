@@ -16,4 +16,5 @@ private:
 public:
     Query();
     ~Query();
+    void clear();
 };

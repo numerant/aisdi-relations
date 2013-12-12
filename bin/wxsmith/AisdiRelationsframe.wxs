@@ -152,6 +152,7 @@
 					<pos>200,564</pos>
 					<size>112,112</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnT_ImageButtonFolderClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON15" variable="T_ImageButtonFiles" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -162,6 +163,7 @@
 					<pos>200,424</pos>
 					<size>112,112</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnT_ImageButtonFilesClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON14" variable="T_ImageButtonLoad" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -391,7 +393,7 @@
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL4" variable="PanelUsembers" member="yes">
-				<pos>0,0</pos>
+				<pos>1366,0</pos>
 				<size>1366,768</size>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP3" variable="BitmapBackgroundUsembers" member="yes">
 					<bitmap>resources/background.jpg</bitmap>
@@ -1521,6 +1523,17 @@
 					<help>General application manual</help>
 				</object>
 			</object>
+		</object>
+		<object class="wxDirDialog" variable="DirDialog" member="yes">
+			<message>Wybierz folder</message>
+			<default_path>~/</default_path>
+			<style>wxDD_CHANGE_DIR</style>
+		</object>
+		<object class="wxFileDialog" variable="FileDialog" member="yes">
+			<message>Wybierz pliki:</message>
+			<default_dir>~/</default_dir>
+			<wildcard>*.eml</wildcard>
+			<style>wxFD_OPEN|wxFD_MULTIPLE</style>
 		</object>
 	</object>
 </wxsmith>
