@@ -21,7 +21,7 @@ Date::Date(const Date &date)
 Date::Date (string newDate)
 {
     string tempString;
-<<<<<<< HEAD
+
     stringstream stream;
     //weekDay
     stream<<newDate;
