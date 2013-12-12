@@ -47,4 +47,7 @@ public:
     void swapEmails(int position1, int position2);				//metoda zamieniająca dwa maile w wektorze
     void swapGroups(int position1, int position2);			//metoda zamieniająca dwie grupy w wektorze
     void swapUsembers(int position1, int position2);			//metoda zamieniająca dwóch usemberów w wektorze
+	Email* getEmail(int position);
+	Group* getGroup(int position);
+	Usember* getUsember(int position);
 };
