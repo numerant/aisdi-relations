@@ -11,7 +11,7 @@ class Parameters
 {
 public:
     string path;
-public:
+
     Parameters();
 };
 

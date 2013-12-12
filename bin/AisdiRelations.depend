@@ -1058,7 +1058,10 @@
 1386755111 /home/panda/aisdi-relations2/bin/AisdiRelationsApp.h
 	<wx/app.h>
 
-1386874511 /home/panda/aisdi-relations2/bin/AisdiRelationsMain.h
+1386876778 /home/panda/aisdi-relations2/bin/AisdiRelationsMain.h
+	"../src/Database.h"
+	"../src/IOInterface.h"
+	"../src/Parameters.h"
 	<wx/bmpbuttn.h>
 	<wx/listctrl.h>
 	<wx/menu.h>
@@ -1073,7 +1076,7 @@
 	<wx/statbmp.h>
 	<wx/html/htmlwin.h>
 
-1386873250 source:/home/panda/aisdi-relations2/bin/AisdiRelationsMain.cpp
+1386878005 source:/home/panda/aisdi-relations2/bin/AisdiRelationsMain.cpp
 	"../src/Email.h"
 	"../src/Usember.h"
 	"view/PanelTitleMaintance.h"
@@ -1093,7 +1096,7 @@
 	<wx/icon.h>
 	<wx/image.h>
 
-1386872567 /home/panda/aisdi-relations2/src/Database.h
+1386876802 /home/panda/aisdi-relations2/src/Database.h
 	"EmailQuery.h"
 	"GroupQuery.h"
 	"UsemberQuery.h"
@@ -1110,11 +1113,12 @@
 1386756713 /home/panda/aisdi-relations2/src/UsemberQuery.h
 	"Query.h"
 
-1386803636 /home/panda/aisdi-relations2/src/IOInterface.h
+1386878516 /home/panda/aisdi-relations2/src/IOInterface.h
 	<vector>
 	<fstream>
 	<string>
 	<regex>
+	<boost/regex.hpp>
 	"boost/filesystem.hpp"
 	"boost/algorithm/string.hpp"
 	"Database.h"
@@ -1134,7 +1138,7 @@
 	"Group.h"
 	"Email.h"
 
-1386763249 /home/panda/aisdi-relations2/src/Parameters.h
+1386876658 /home/panda/aisdi-relations2/src/Parameters.h
 	<string>
 
 1386872357 /home/panda/aisdi-relations2/src/Query.h
@@ -1479,7 +1483,7 @@
 1386758467 source:/home/panda/aisdi-relations2/src/Exception/IOException.cpp
 	"IOException.h"
 
-1386806210 source:/home/panda/aisdi-relations2/src/IOInterface.cpp
+1386878727 source:/home/panda/aisdi-relations2/src/IOInterface.cpp
 	"IOInterface.h"
 
 1386522439 source:/home/panda/aisdi-relations2/src/Parameters.cpp

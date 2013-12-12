@@ -684,6 +684,11 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     P_Stats = new PanelStatisticsMaintance();
     P_Usembers = new PanelUsembersMaintance();
 
+    /** Alokacja głównych obiektów programu dla zarządania mailami i usemberami */
+    database = new Database();
+    iointerface = new IOInterface();
+    iointerface->setDatabasePointer(database);
+
     ShowTitle();
 }
 
@@ -882,7 +887,16 @@ void AisdiRelationsFrame::OnU_ImageButtonSwitchListClick(wxCommandEvent& event)
 void AisdiRelationsFrame::OnT_ImageButtonFolderClick(wxCommandEvent& event)
 {
     if (DirDialog->ShowModal() == wxID_OK)
-        wxMessageBox(DirDialog->GetPath());
+    {
+        MailParameters * param = new MailParameters();
+        wxString str = DirDialog->GetPath();
+        param->path = str.To8BitData();
+        param->isDirectory = true;
+        param->recursiveImport = false;
+
+        IOInterface::ImportStats stats;
+        stats = iointerface->importMail(param);
+    }
 }
 
 void AisdiRelationsFrame::OnT_ImageButtonFilesClick(wxCommandEvent& event)
@@ -891,7 +905,7 @@ void AisdiRelationsFrame::OnT_ImageButtonFilesClick(wxCommandEvent& event)
     {
         wxArrayString paths;
         FileDialog->GetPaths(paths);
-        for (int i = 0; i < paths.GetCount(); i++ )
+        for (unsigned int i = 0; i < paths.GetCount(); i++ )
             wxMessageBox(paths[i]);
     }
 }

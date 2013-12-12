@@ -1,3 +1,4 @@
+#pragma once
 #include "EmailQuery.h"
 #include "GroupQuery.h"
 #include "UsemberQuery.h"

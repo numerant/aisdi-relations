@@ -11,6 +11,7 @@
 #include <fstream>
 #include <string>
 #include <regex>
+#include <boost/regex.hpp>
 #include "boost/filesystem.hpp"         // do wczytywania plików z katalogu - także rekursywnie
 #include "boost/algorithm/string.hpp"	// do zaawansowanych operacji na stringach
 #include "Database.h"
@@ -20,6 +21,7 @@
 #include "Exception/IOException.h"
 
 using namespace std;
+using namespace boost;
 
 class IOInterface
 {
@@ -42,10 +44,11 @@ public:
     void exportDatabase (string filePath, DbParameters *parameters);                 // opis klas MailParameters i DbParameters jest w Param.h
     void importDatabase (string filePath, DbParameters *parameters);
     void exportReport (string path, Report report);
+    void setDatabasePointer (Database * db);
 
 private:
     // Fields:
-    Database *database;                         // baza tworzona w momencie uruchomienia programu, czy przy imporcie maili?
+    Database *database;                         // baza tworzona w momencie uruchomienia programu
     //vector<char> *binary_file;                // trzyma zserializowaną bazę danych w formie binarnej - chyba lepiej tworzyć lokalnie, wewnątrz metody
 
     // Methods:

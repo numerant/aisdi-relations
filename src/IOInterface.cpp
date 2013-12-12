@@ -7,6 +7,11 @@
 #include "IOInterface.h"
 
 using namespace std;
+using namespace boost;
+
+IOInterface::IOInterface() {
+
+}
 
 IOInterface::ImportStats::ImportStats()
 {
@@ -23,7 +28,7 @@ IOInterface::ImportStats IOInterface::importMail(MailParameters *parameters)
     {
         if (parameters->recursiveImport)
             for (boost::filesystem::recursive_directory_iterator iter(parameters->path), end; iter != end; ++iter)      // przejechanie iteratorem po katalogu
-                importSingleMail( iter->path(), stats );                                                                // import do bazy maila, na który wskazuje iterator
+                importSingleMail( iter->path(), stats);                                                                // import do bazy maila, na który wskazuje iterator
         else
             for (boost::filesystem::directory_iterator iter(parameters->path), end; iter != end; ++iter)                // jak wyżej, tylko bez rekursji
                 importSingleMail( iter->path(), stats );
@@ -67,18 +72,18 @@ Email* IOInterface::emlParser (string path)
         Usember* usemberFrom;
         Usember* usemberTo;
         string wiersz, fromRN, fromLOGIN, fromDOMAIN, toRN, toLOGIN, toDOMAIN, subject, MID, date, content;
-        regex regFrom("From:\s+(\"(.+)\")?\s*<(.+)@(.+)>");
-        regex regTo("To:\s+(\"(.+)\")?\s*<(.+)@(.+)>");
-        regex regSubject("Subject:\s+(.*)");
-        regex regMID("Message-ID:\s+<(.+)>");
-        regex regDate("Date:\s+(\\u\l{2},\s+\d{1,2}\s+\\u\l+\s+\d{4}\s+\d{2}:\d{2}:\d{2}\s+\+\d{4})");
+        std::regex regFrom("From:\s+(\"(.+)\")?\s*<(.+)@(.+)>");
+        std::regex regTo("To:\s+(\"(.+)\")?\s*<(.+)@(.+)>");
+        std::regex regSubject("Subject:\s+(.*)");
+        std::regex regMID("Message-ID:\s+<(.+)>");
+        std::regex regDate("Date:\s+(\\u\l{2},\s+\d{1,2}\s+\\u\l+\s+\d{4}\s+\d{2}:\d{2}:\d{2}\s+\+\d{4})");
 
         do
             getline(plik, wiersz);
         while ( (wiersz).size() == 0 ); // pomija przypadkowe puste linie na początku pliku
 
         // wczytanie FROM
-        smatch wynik;
+        std::smatch wynik;
         if ( regex_search( wiersz, wynik, regFrom) )
         {
             if (wynik.size() == 2) // odczytano tylko goły adres
@@ -166,4 +171,9 @@ Email* IOInterface::emlParser (string path)
         return mail;
     }
     else throw UnableToOpenFile();
+}
+
+void IOInterface::setDatabasePointer (Database * db)
+{
+    this->database = db;
 }

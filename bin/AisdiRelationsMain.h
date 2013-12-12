@@ -18,6 +18,10 @@ class PanelMulTreeMaintance;
 class PanelStatisticsMaintance;
 class PanelUsembersMaintance;
 
+/** Include'y klas projektu */
+#include "../src/Database.h"
+#include "../src/IOInterface.h"
+#include "../src/Parameters.h"
 
 //(*Headers(AisdiRelationsFrame)
 #include <wx/bmpbuttn.h>
@@ -381,6 +385,8 @@ private:
     PanelMulTreeMaintance * P_MulTree;
     PanelStatisticsMaintance * P_Stats ;
     PanelUsembersMaintance * P_Usembers ;
+    Database * database;
+    IOInterface * iointerface;
     DECLARE_EVENT_TABLE()
 };
 
