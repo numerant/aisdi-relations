@@ -76,6 +76,8 @@ private:
     void OnU_ImageButtonSwitchListClick(wxCommandEvent& event);
     void OnT_ImageButtonFolderClick(wxCommandEvent& event);
     void OnT_ImageButtonFilesClick(wxCommandEvent& event);
+    void OnI_ListInboxItemSelect(wxListEvent& event);
+    void OnI_ListInboxItemActivated(wxListEvent& event);
     //*)
 
     //(*Identifiers(AisdiRelationsFrame)

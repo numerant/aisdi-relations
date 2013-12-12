@@ -11,6 +11,12 @@ Database::~Database()
 
 bool Database::addEmail(Email* email)
 {
+    if (emailVector.size()==0)              //analogiczne sprawdzenie warunku należy dodać do addGroup i addUsember
+    {
+        emailVector.push_back(email);
+        return true;
+    }
+
     if(findEmail(email->getID())==-1)
     {
         emailVector.push_back(email);
@@ -154,9 +160,9 @@ int Database::countUsembers()
     return usemberVector.size();
 }
 
-int Database::findEmail(int messageId)
+int Database::findEmail(string messageId)
 {
-    int position=emailVector.size();
+    int position=emailVector.size()-1;
     int range=emailVector.size()/2;
     while(range>=1)
     {

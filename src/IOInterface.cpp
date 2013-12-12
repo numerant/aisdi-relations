@@ -47,7 +47,7 @@ void IOInterface::importSingleMail(boost::filesystem::path path, ImportStats &st
         try
         {
             tempEmail = emlParser( path.c_str() );
-           // database->addEmail(tempEmail);
+            database->addEmail(tempEmail);
             stats.successCount++;
         }
         catch ( IOException error )                                             // mail nie jest poprawny składniowo
@@ -87,7 +87,7 @@ Email* IOInterface::emlParser (string path)
         if ( regex_search( wiersz, wynik, regFrom) )
         {
 
-        	fromRN = wynik[2];
+            fromRN = wynik[2];
             fromLOGIN = wynik[3];
             fromDOMAIN = wynik[4];
         }
@@ -155,6 +155,7 @@ Email* IOInterface::emlParser (string path)
         mail->setSubject( subject );
         mail->setContent( content );
         mail->setDate(newDate);
+        mail->setID(MID);
 
         return mail;
     }
@@ -164,4 +165,32 @@ Email* IOInterface::emlParser (string path)
 void IOInterface::setDatabasePointer (Database * db)
 {
     this->database = db;
+}
+
+string IOInterface::strSequenceReplace(const string& searched, const string& replaced, string subject)
+{
+    string buffer;
+
+    int sealeng = searched.length();
+    int strleng = subject.length();
+
+    if (sealeng==0)
+        return subject;//no change
+
+    for(int i=0, j=0; i<strleng; j=0 )
+    {
+        while (i+j<strleng && j<sealeng && subject[i+j]==searched[j])
+            j++;
+        if (j==sealeng)//found 'search'
+        {
+            buffer.append(replaced);
+            i+=sealeng;
+        }
+        else
+        {
+            buffer.append( &subject[i++], 1);
+        }
+    }
+    subject = buffer;
+    return subject;
 }

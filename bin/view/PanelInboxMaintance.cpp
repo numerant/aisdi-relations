@@ -23,10 +23,10 @@ void PanelInboxMaintance::ShowPanel(AisdiRelationsFrame* Frame)
 void PanelInboxMaintance::SetLabels(AisdiRelationsFrame* Frame)
 {
     wxListItem col;     //obiekt reprezentujący etykietę
-    const int COLUMN_COUNT = 4;   //liczba kolumns
+    const int COLUMN_COUNT = 5;   //liczba kolumns
 
-    wxString labels[COLUMN_COUNT] = {_("Data:"), _("Temat:"), _("Od:"), _("Do:")};      //etykiety
-    int width[COLUMN_COUNT] = {80, 220, 125, 125};      //szerokości kolumn, sumuje się do 550px
+    wxString labels[COLUMN_COUNT] = {_("Data:"), _("Temat:"), _("Od:"), _("Do:"), _("Treść")};      //etykiety
+    int width[COLUMN_COUNT] = {80, 220, 125, 125, 1};      //szerokości kolumn, sumuje się do 550px
 
     for (int i = 0; i < COLUMN_COUNT; i++)         //przypisujemy w pętli etykiety do kolumn listy
     {
@@ -35,6 +35,21 @@ void PanelInboxMaintance::SetLabels(AisdiRelationsFrame* Frame)
         col.SetWidth(width[i]);
         Frame->I_ListInbox->InsertColumn(i, col);
     }
+    /*wxListItem item;
+    item.SetId(10);
+    item.SetText( _("25.12.2013") );
+    Frame->I_ListInbox->InsertItem( item );
+    Frame->I_ListInbox->SetItem(0,1, wxT("RE: Bowling meeting on Sunday"));
+    Frame->I_ListInbox->SetItem(0,2, wxT("billee@ms.com"));
+    Frame->I_ListInbox->SetItem(0,3, wxT("stevee@apple.com"));
+    Frame->I_ListInbox->SetItem(0,4, wxT("Hey, I'm looking forward to beat You man! :D\n\nCya!!!"));
+    item.SetId(11);
+    item.SetText( _("13.13.2013" ) );
+    Frame->I_ListInbox->InsertItem( item );
+    Frame->I_ListInbox->SetItem(1,1, wxT("Welcome to AISDI-Relations Beta!!!"));
+    Frame->I_ListInbox->SetItem(1,2, wxT("aisdi@elka.pw.edu.pl"));
+    Frame->I_ListInbox->SetItem(1,3, wxT("zalewski@ii.pw.edu.pl"));
+    Frame->I_ListInbox->SetItem(1,4, wxT("Witamy w Becie projektu AISDI-Relations!!!"));*/
 }
 
 void PanelInboxMaintance::SetIcons(AisdiRelationsFrame* Frame)
@@ -55,6 +70,29 @@ void PanelInboxMaintance::SetIcons(AisdiRelationsFrame* Frame)
     Frame->I_ImageButtonReceiver->SetBitmapLabel(path+imagePaths[10]+format);
     Frame->I_ImageButtonShowTree->SetBitmapLabel(path+imagePaths[11]+format);
     Frame->I_ImageButtonTitle->SetBitmapLabel(path+imagePaths[12]+format);
+}
+
+void PanelInboxMaintance::SetEmails (AisdiRelationsFrame* Frame)
+{
+    if (Frame->database->countEmails() > 0)
+    {
+        //Frame->I_ListInbox->ClearAll();
+        for (int i = 0; i < Frame->database->countEmails(); i++)
+        {
+            Email * email = Frame->database->getEmail(i);
+            wxListItem item;
+            item.SetId(i);
+            Frame->I_ListInbox->InsertItem( item );
+
+            string sourceString = email->getContent();
+            wxString content(sourceString.c_str(), wxConvUTF8);
+            Frame->I_ListInbox->SetItem(i,4, content);
+
+            sourceString = email->getSubject();
+            wxString subject(sourceString.c_str(), wxConvUTF8);
+            Frame->I_ListInbox->SetItem(i,1,subject);
+        }
+    }
 }
 
 void PanelInboxMaintance::SetSearchEnabled()

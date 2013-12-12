@@ -1,5 +1,6 @@
 #pragma once
 #include "../AisdiRelationsMain.h"
+#include "wx/msgdlg.h"
 
 class PanelInboxMaintance
 {
@@ -20,6 +21,7 @@ public:
     void ShowPanel(AisdiRelationsFrame* Frame);
     void SetLabels(AisdiRelationsFrame* Frame);
     void SetIcons(AisdiRelationsFrame* Frame);
+    void SetEmails (AisdiRelationsFrame* Frame);
     void SetSearchEnabled();
 
     bool GetSearchEnabled();

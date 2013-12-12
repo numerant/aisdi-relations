@@ -20,6 +20,7 @@
 				<Linker>
 					<Add library="/usr/lib/libboost_filesystem.so" />
 					<Add library="/usr/lib/libboost_system.so" />
+					<Add library="/usr/lib/libboost_regex.so" />
 				</Linker>
 			</Target>
 			<Target title="Release">

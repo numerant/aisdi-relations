@@ -45,6 +45,7 @@ public:
     void importDatabase (string filePath, DbParameters *parameters);
     void exportReport (string path, Report report);
     void setDatabasePointer (Database * db);
+    string strSequenceReplace(const string& searched, const string& replaced, string subject);
 
 private:
     // Fields:

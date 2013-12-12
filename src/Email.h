@@ -22,7 +22,7 @@ private:
     //przechowujące ID wiadomości, na którą dana wiadomość jest odpowiedzią
     int inReplyTo;
     //przechowujące ID wiadomości nadane przez bazę danych
-    int messageID;
+    string messageID;
     //przechowujące adres e-mail odbiorcy
     Usember *to;
     //przechowujące temat wiadomości
@@ -75,12 +75,12 @@ public:
         inReplyTo = newInReplyTo;
     }
 
-    int getID()
+    string getID()
     {
         return messageID;
     }
 
-    void setID(int ID)
+    void setID(string ID)
     {
         messageID = ID;
     }

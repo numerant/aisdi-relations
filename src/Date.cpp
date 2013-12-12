@@ -23,30 +23,30 @@ Date::Date (string newDate)
     string tempString;
     stringstream stream;
     //weekDay
-    stream>>newDate;
-    stream<<tempString;
+    stream<<newDate;
+    stream>>tempString;
     tempString.erase(tempString.end()-1, tempString.end());
     weekDay = tempString;
 
     //day
-    stream>>newDate;
-    stream<<tempString;
+    stream<<newDate;
+    stream>>tempString;
     day = atoi(tempString.c_str());
 
     //month
-    stream>>newDate;
-    stream<<tempString;
+    stream<<newDate;
+    stream>>tempString;
     month = tempString;
     monthInt = monthToInt(month);
 
     //year
-    stream>>newDate;
-    stream<<tempString;
+    stream<<newDate;
+    stream>>tempString;
     year = atoi(tempString.c_str());
 
     //hour:minute:second
-    stream>>newDate;
-    stream<<tempString;
+    stream<<newDate;
+    stream>>tempString;
     string tempHour(tempString, 0, 2);
     hour = atoi(tempHour.c_str());
     string tempMin(tempString, 3, 2);
@@ -55,10 +55,9 @@ Date::Date (string newDate)
     second = atoi(tempSec.c_str());
 
     //timeZone
-    stream>>newDate;
-    stream<<timeZone;
+    stream<<newDate;
+    stream>>timeZone;
 }
-
 Date::~Date() {}
 
 string Date::getWeekDate(void)
