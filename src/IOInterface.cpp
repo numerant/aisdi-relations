@@ -129,9 +129,15 @@ Email* IOInterface::emlParser (string path)
         else throw EmlSyntaxIncorrect();
 
         // wczytanie treści
-        // while (wiersz.size() != 0)
-        //    getline(plik, wiersz); // przejście do momentu pustej linii
-
+					// #### rozwiązanie tymczasowe - przejście 5 lini 
+					getline(plik, wiersz); // przejście do treści
+					getline(plik, wiersz);
+					getline(plik, wiersz);
+					getline(plik, wiersz);
+					getline(plik, wiersz);
+					// #### rozwiązanie tymczasowe
+					
+					
         while ( !plik.eof() ) // wczytanie tego co zostało jako treść
         {
             getline (plik, wiersz);
