@@ -142,6 +142,7 @@ Email* IOInterface::emlParser (string path)
         {
             getline (plik, wiersz);
             content+=wiersz;
+			content+= "\n";
         }
 
         plik.close();
