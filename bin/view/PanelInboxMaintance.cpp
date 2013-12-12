@@ -7,40 +7,34 @@ PanelInboxMaintance::PanelInboxMaintance()
 
 void PanelInboxMaintance::ShowPanel(AisdiRelationsFrame* Frame)
 {
-    Frame->PanelUsembers->Hide();
-    Frame->PanelGroups->Hide();
-    Frame->PanelTitle->Hide();
-    Frame->PanelStatistics->Hide();
-    Frame->PanelMulTree->Hide();
+    if (panelEnabled)
+    {
+        Frame->PanelUsembers->Hide();
+        Frame->PanelGroups->Hide();
+        Frame->PanelTitle->Hide();
+        Frame->PanelStatistics->Hide();
+        Frame->PanelMulTree->Hide();
 
-    Frame->PanelInbox->SetPosition(wxPoint(0,0));
-    Frame->PanelInbox->Show();
+        Frame->PanelInbox->SetPosition(wxPoint(0,0));
+        Frame->PanelInbox->Show();
+    }
 }
 
 void PanelInboxMaintance::SetLabels(AisdiRelationsFrame* Frame)
 {
-    /*wxListItem col;
+    wxListItem col;     //obiekt reprezentujący etykietę
+    const int COLUMN_COUNT = 4;   //liczba kolumns
 
-    wxString labels1[3] = {_("Nazwa:"), _("Email:"), _("Grupa:")};    //etykiety do przypasowania liście usemberów
-    wxString labels2[4] = {_("Data:"), _("Tytuł:"), _("Od:"), _("Do:")};    //oraz skrzynkom emailowym
-    int width[3] = {80, 290, 180};
+    wxString labels[COLUMN_COUNT] = {_("Data:"), _("Temat:"), _("Od:"), _("Do:")};      //etykiety
+    int width[COLUMN_COUNT] = {80, 220, 125, 125};      //szerokości kolumn, sumuje się do 550px
 
-    for (int i = 0; i < 3; i++) {       //przypisujemy etykiety do kolumn w pętli
+    for (int i = 0; i < COLUMN_COUNT; i++)         //przypisujemy w pętli etykiety do kolumn listy
+    {
         col.SetId(i);
-        col.SetText(labels1[i]);
-        i < 2 ? col.SetWidth(200) : col.SetWidth(150);
-        Frame->U_ListUsembers->InsertColumn(i, col);
-    }
-
-     for (int i = 0; i < 3; i++) {       //tak samo dla skrzynek
-        col.SetId(i);
-        col.SetText(labels2[i]);
+        col.SetText(labels[i]);
         col.SetWidth(width[i]);
-        Frame->U_ListInbox->InsertColumn(i, col);
-        if (i == 2)
-            col.SetText(labels2[i+1]);
-        Frame->U_ListOutbox->InsertColumn(i, col);
-    }*/
+        Frame->I_ListInbox->InsertColumn(i, col);
+    }
 }
 
 void PanelInboxMaintance::SetIcons(AisdiRelationsFrame* Frame)
@@ -60,5 +54,15 @@ void PanelInboxMaintance::SetIcons(AisdiRelationsFrame* Frame)
     Frame->I_ImageButtonSender->SetBitmapLabel(path+imagePaths[9]+format);
     Frame->I_ImageButtonReceiver->SetBitmapLabel(path+imagePaths[10]+format);
     Frame->I_ImageButtonShowTree->SetBitmapLabel(path+imagePaths[11]+format);
+    Frame->I_ImageButtonTitle->SetBitmapLabel(path+imagePaths[12]+format);
+}
 
+void PanelInboxMaintance::SetSearchEnabled()
+{
+    searchEnabled = !searchEnabled;
+}
+
+bool PanelInboxMaintance::GetSearchEnabled()
+{
+    return searchEnabled;
 }

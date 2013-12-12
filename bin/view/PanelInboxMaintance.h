@@ -7,15 +7,20 @@ class PanelInboxMaintance
 
 private:
     bool panelEnabled = true;
-    const wxString imagePaths[12] =
+    bool searchEnabled = false;
+    const wxString imagePaths[13] =
     {
         _("Add"),  _("Floppy"),  _("Search"),  _("Settings"),  _("Usember"),  _("Workgroups"),
-        _("Statistics"),  _("Tree"),  _("Remove"),  _("Sender"),  _("Receiver"),  _("ShowTree")
-    };
+        _("Statistics"),  _("Tree"),  _("Remove"),  _("Sender"),  _("Receiver"),  _("ShowTree"),
+        _("Title")
+    };                               //ścieżki plików z grafikami do przycisków panelu
 
 public:
     PanelInboxMaintance ();
     void ShowPanel(AisdiRelationsFrame* Frame);
     void SetLabels(AisdiRelationsFrame* Frame);
     void SetIcons(AisdiRelationsFrame* Frame);
+    void SetSearchEnabled();
+
+    bool GetSearchEnabled();
 };

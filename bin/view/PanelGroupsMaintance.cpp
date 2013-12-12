@@ -7,12 +7,20 @@ PanelGroupsMaintance::PanelGroupsMaintance()
 
 void PanelGroupsMaintance::ShowPanel(AisdiRelationsFrame* Frame)
 {
-    Frame->PanelUsembers->Hide();
-    Frame->PanelTitle->Hide();
-    Frame->PanelInbox->Hide();
-    Frame->PanelStatistics->Hide();
-    Frame->PanelMulTree->Hide();
+    if (panelEnabled)
+    {
+        Frame->PanelUsembers->Hide();
+        Frame->PanelTitle->Hide();
+        Frame->PanelInbox->Hide();
+        Frame->PanelStatistics->Hide();
+        Frame->PanelMulTree->Hide();
 
-    Frame->PanelGroups->SetPosition(wxPoint(0,0));
-    Frame->PanelGroups->Show();
+        Frame->PanelGroups->SetPosition(wxPoint(0,0));
+        Frame->PanelGroups->Show();
+    }
+}
+
+bool PanelGroupsMaintance::GetPanelEnabled ()
+{
+    return panelEnabled;
 }

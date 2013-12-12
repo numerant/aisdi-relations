@@ -11,4 +11,6 @@ private:
 public:
     PanelStatisticsMaintance ();
     void ShowPanel(AisdiRelationsFrame* Frame);
+
+    bool GetPanelEnabled ();
 };

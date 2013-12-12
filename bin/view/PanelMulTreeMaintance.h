@@ -11,4 +11,6 @@ private:
 public:
     PanelMulTreeMaintance ();
     void ShowPanel(AisdiRelationsFrame* Frame);
+
+    bool GetPanelEnabled ();
 };

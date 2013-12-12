@@ -67,7 +67,7 @@
 					<disabled_index>&lt;none&gt;</disabled_index>
 					<selected_index>&lt;none&gt;</selected_index>
 					<focus_index>&lt;none&gt;</focus_index>
-					<pos>700,430</pos>
+					<pos>700,450</pos>
 					<size>112,112</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
 				</object>
@@ -77,7 +77,7 @@
 					<disabled_index>&lt;none&gt;</disabled_index>
 					<selected_index>&lt;none&gt;</selected_index>
 					<focus_index>&lt;none&gt;</focus_index>
-					<pos>500,430</pos>
+					<pos>500,450</pos>
 					<size>112,112</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
 				</object>
@@ -100,6 +100,7 @@
 					<pos>600,300</pos>
 					<size>112,112</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnT_ImageButtonUsembersClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON33" variable="T_ImageButtonInbox" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -110,6 +111,7 @@
 					<pos>400,300</pos>
 					<size>112,112</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnT_ImageButtonInboxClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON32" variable="T_ImageButtonSettings" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -170,6 +172,7 @@
 					<pos>445,494</pos>
 					<size>112,112</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnT_ImageButtonLoadClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON13" variable="T_ImageButtonImport" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -180,6 +183,7 @@
 					<pos>740,494</pos>
 					<size>112,112</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnT_ImageButtonImportClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON12" variable="T_ImageButtonAdd" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -190,6 +194,7 @@
 					<pos>592,315</pos>
 					<size>112,112</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnT_ImageButtonAddClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxStaticLine" name="ID_STATICLINE2" variable="T_StaticLineAddV" member="yes">
 					<pos>647,460</pos>
@@ -218,7 +223,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT60" variable="T_LabelMulTree" member="yes">
 					<label>Drzewo&#x0A;Multicastowe</label>
-					<pos>700,545</pos>
+					<pos>700,565</pos>
 					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
 					<font>
 						<size>14</size>
@@ -231,7 +236,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT59" variable="T_LabelStats" member="yes">
 					<label>Statystyki</label>
-					<pos>515,545</pos>
+					<pos>515,565</pos>
 					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
 					<font>
 						<size>14</size>
@@ -386,7 +391,7 @@
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL4" variable="PanelUsembers" member="yes">
-				<pos>1366,0</pos>
+				<pos>0,0</pos>
 				<size>1366,768</size>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP3" variable="BitmapBackgroundUsembers" member="yes">
 					<bitmap>resources/background.jpg</bitmap>
@@ -498,7 +503,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT47" variable="U_LabelSettings" member="yes">
 					<label>Ustawienia</label>
-					<pos>275,70</pos>
+					<pos>365,70</pos>
 					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
 					<font>
 						<size>11</size>
@@ -511,7 +516,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT46" variable="U_LabelSearch" member="yes">
 					<label>Wyszukaj</label>
-					<pos>190,70</pos>
+					<pos>280,70</pos>
 					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
 					<font>
 						<size>11</size>
@@ -524,7 +529,20 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT45" variable="U_LabelSave" member="yes">
 					<label>Zapisz</label>
-					<pos>108,70</pos>
+					<pos>198,70</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT62" variable="U_LabelTitle" member="yes">
+					<label>Menu</label>
+					<pos>22,70</pos>
 					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
 					<font>
 						<size>11</size>
@@ -537,7 +555,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT44" variable="U_LabelAdd" member="yes">
 					<label>Dodaj</label>
-					<pos>20,70</pos>
+					<pos>110,70</pos>
 					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
 					<font>
 						<size>11</size>
@@ -801,6 +819,7 @@
 					<pos>520,10</pos>
 					<size>60,60</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnU_ImageButtonSwitchListClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON11" variable="U_ImageButtonSwitchContent" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -871,6 +890,7 @@
 					<pos>1180,10</pos>
 					<size>60,60</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnU_ImageButtonInboxClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON31" variable="U_ImageButtonSettings" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -878,7 +898,7 @@
 					<disabled_index>&lt;none&gt;</disabled_index>
 					<selected_index>&lt;none&gt;</selected_index>
 					<focus_index>&lt;none&gt;</focus_index>
-					<pos>280,10</pos>
+					<pos>370,10</pos>
 					<size>60,60</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
 				</object>
@@ -888,9 +908,10 @@
 					<disabled_index>&lt;none&gt;</disabled_index>
 					<selected_index>&lt;none&gt;</selected_index>
 					<focus_index>&lt;none&gt;</focus_index>
-					<pos>190,10</pos>
+					<pos>280,10</pos>
 					<size>60,60</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnU_ImageButtonSearchClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON2" variable="U_ImageButtonSave" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -898,7 +919,7 @@
 					<disabled_index>&lt;none&gt;</disabled_index>
 					<selected_index>&lt;none&gt;</selected_index>
 					<focus_index>&lt;none&gt;</focus_index>
-					<pos>100,10</pos>
+					<pos>190,10</pos>
 					<size>60,60</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
 				</object>
@@ -908,9 +929,26 @@
 					<disabled_index>&lt;none&gt;</disabled_index>
 					<selected_index>&lt;none&gt;</selected_index>
 					<focus_index>&lt;none&gt;</focus_index>
+					<pos>100,10</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON39" variable="U_ImageButtonTitle" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
 					<pos>10,10</pos>
 					<size>60,60</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnU_ImageButtonTitleClick" entry="EVT_BUTTON" />
+				</object>
+				<object class="wxSearchCtrl" name="ID_SEARCHCTRL2" variable="U_SearchCtrl" member="yes">
+					<pos>25,130</pos>
+					<size>550,25</size>
+					<hidden>1</hidden>
+					<fg>wxSYS_COLOUR_HIGHLIGHT</fg>
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL5" variable="PanelStatistics" member="yes">
@@ -951,9 +989,22 @@
 					<pos>0,0</pos>
 					<size>1366,768</size>
 				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT61" variable="I_LabelTitle" member="yes">
+					<label>Menu</label>
+					<pos>22,70</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT35" variable="I_LabelAdd" member="yes">
 					<label>Dodaj</label>
-					<pos>20,70</pos>
+					<pos>110,70</pos>
 					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
 					<font>
 						<size>11</size>
@@ -966,7 +1017,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT34" variable="I_LabelSave" member="yes">
 					<label>Zapisz</label>
-					<pos>108,70</pos>
+					<pos>198,70</pos>
 					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
 					<font>
 						<size>11</size>
@@ -979,7 +1030,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT33" variable="I_LabelSearch" member="yes">
 					<label>Wyszukaj</label>
-					<pos>190,70</pos>
+					<pos>280,70</pos>
 					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
 					<font>
 						<size>11</size>
@@ -992,7 +1043,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT32" variable="I_LabelSettings" member="yes">
 					<label>Ustawienia</label>
-					<pos>275,70</pos>
+					<pos>365,70</pos>
 					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
 					<font>
 						<size>11</size>
@@ -1335,6 +1386,7 @@
 					<pos>1180,10</pos>
 					<size>60,60</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnI_ImageButtonUsembersClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON30" variable="I_ImageButtonSettings" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -1342,7 +1394,7 @@
 					<disabled_index>&lt;none&gt;</disabled_index>
 					<selected_index>&lt;none&gt;</selected_index>
 					<focus_index>&lt;none&gt;</focus_index>
-					<pos>280,10</pos>
+					<pos>370,10</pos>
 					<size>60,60</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
 				</object>
@@ -1352,11 +1404,33 @@
 					<disabled_index>&lt;none&gt;</disabled_index>
 					<selected_index>&lt;none&gt;</selected_index>
 					<focus_index>&lt;none&gt;</focus_index>
+					<pos>280,10</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnI_ImageButtonSearchClick" entry="EVT_BUTTON" />
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON20" variable="I_ImageButtonSave" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
 					<pos>190,10</pos>
 					<size>60,60</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
 				</object>
-				<object class="wxImageButton" name="ID_IMAGEBUTTON20" variable="I_ImageButtonSave" member="yes">
+				<object class="wxImageButton" name="ID_IMAGEBUTTON38" variable="I_ImageButtonTitle" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>10,10</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnI_ImageButtonTitleClick" entry="EVT_BUTTON" />
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON19" variable="I_ImageButtonAdd" member="yes">
 					<image_list>&lt;none&gt;</image_list>
 					<label_index>&lt;none&gt;</label_index>
 					<disabled_index>&lt;none&gt;</disabled_index>
@@ -1366,16 +1440,11 @@
 					<size>60,60</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
 				</object>
-				<object class="wxImageButton" name="ID_IMAGEBUTTON19" variable="I_ImageButtonAdd" member="yes">
-					<image_list>&lt;none&gt;</image_list>
-					<label_index>&lt;none&gt;</label_index>
-					<disabled_index>&lt;none&gt;</disabled_index>
-					<selected_index>&lt;none&gt;</selected_index>
-					<focus_index>&lt;none&gt;</focus_index>
-					<pos>10,10</pos>
-					<size>60,60</size>
-					<enabled>0</enabled>
-					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+				<object class="wxSearchCtrl" name="ID_SEARCHCTRL1" variable="I_SearchCtrl" member="yes">
+					<pos>25,130</pos>
+					<size>550,25</size>
+					<hidden>1</hidden>
+					<fg>wxSYS_COLOUR_HIGHLIGHT</fg>
 				</object>
 			</object>
 		</object>

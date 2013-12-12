@@ -2,19 +2,25 @@
 
 PanelTitleMaintance::PanelTitleMaintance ()
 {
-    noData = false;
+
 }
 
 void PanelTitleMaintance::ShowPanel(AisdiRelationsFrame* Frame)
 {
-    Frame->PanelUsembers->Hide();
-    Frame->PanelGroups->Hide();
-    Frame->PanelInbox->Hide();
-    Frame->PanelStatistics->Hide();
-    Frame->PanelMulTree->Hide();
+    if (panelEnabled)
+    {
+        Frame->PanelUsembers->Hide();       //przywrócenie widoczności panelu i ukrycie pozostałych
+        Frame->PanelGroups->Hide();
+        Frame->PanelInbox->Hide();
+        Frame->PanelStatistics->Hide();
+        Frame->PanelMulTree->Hide();
 
-    Frame->PanelTitle->SetPosition(wxPoint(0,0));
-    Frame->PanelTitle->Show();
+        Frame->PanelTitle->SetPosition(wxPoint(0,0));
+        Frame->PanelTitle->Show();
+
+        Frame->P_Title->SetNoData( ! (Frame->P_Title->GetNoData() ) ); //Zmień ikony, ale z zanegowaną wartością parametru
+        Frame->P_Title->SwitchIcons(Frame);                                                    //Więc de facto tylko je wyświetl
+    }
 }
 
 void PanelTitleMaintance::SetIcons(AisdiRelationsFrame* Frame)
@@ -23,7 +29,7 @@ void PanelTitleMaintance::SetIcons(AisdiRelationsFrame* Frame)
     wxString path(_("resources/icons/icon"));
     wxString format (_(".png"));
 
-    Frame->T_ImageButtonAdd->SetBitmapLabel(pathBig+imagePaths[0]+format);
+    Frame->T_ImageButtonAdd->SetBitmapLabel(pathBig+imagePaths[0]+format);      //załadowanie grafik pod przyciski
     Frame->T_ImageButtonImport->SetBitmapLabel(pathBig+imagePaths[1]+format);
     Frame->T_ImageButtonLoad->SetBitmapLabel(pathBig+imagePaths[2]+format);
     Frame->T_ImageButtonFiles->SetBitmapLabel(pathBig+imagePaths[3]+format);
@@ -42,36 +48,167 @@ void PanelTitleMaintance::SwitchIcons (AisdiRelationsFrame* Frame)
 {
     if (noData)
     {
-        Frame->T_ImageButtonAdd->Hide();
+        Frame->T_ImageButtonAdd->Hide();            //ukryj przyciski dodawania maili
         Frame->T_ImageButtonImport->Hide();
         Frame->T_ImageButtonTxt->Hide();
         Frame->T_ImageButtonBin->Hide();
         Frame->T_ImageButtonLoad->Hide();
         Frame->T_ImageButtonFolder->Hide();
         Frame->T_ImageButtonFiles->Hide();
+        Frame->T_LabelAdd->Hide();
+        Frame->T_LabelImport->Hide();
+        Frame->T_LabelTxt->Hide();
+        Frame->T_LabelBin->Hide();
+        Frame->T_LabelLoad->Hide();
+        Frame->T_LabelFolder->Hide();
+        Frame->T_LabelFiles->Hide();
+        Frame->T_StaticLineAddH->Hide();
+        Frame->T_StaticLineAddV->Hide();
+        Frame->T_StaticLineImportH->Hide();
+        Frame->T_StaticLineOpenH->Hide();
 
-        Frame->T_ImageButtonInbox->Show();
+        Frame->T_ImageButtonInbox->Show();          //pokaż przycisku menu
         Frame->T_ImageButtonGroups->Show();
         Frame->T_ImageButtonUsembers->Show();
         Frame->T_ImageButtonStats->Show();
         Frame->T_ImageButtonMulTree->Show();
+        Frame->T_LabelInbox->Show();
+        Frame->T_LabelGroups->Show();
+        Frame->T_LabelUsembers->Show();
+        Frame->T_LabelStats->Show();
+        Frame->T_LabelMulTree->Show();
     }
     else
     {
-        Frame->T_ImageButtonAdd->Show();
-        Frame->T_ImageButtonImport->Show();
-        Frame->T_ImageButtonTxt->Show();
-        Frame->T_ImageButtonBin->Show();
-        Frame->T_ImageButtonLoad->Show();
-        Frame->T_ImageButtonFolder->Show();
-        Frame->T_ImageButtonFiles->Show();
+        UpdateLoadingIcons(Frame);      //pokaż, ale tylko te które były poprzednio aktywne
 
-        Frame->T_ImageButtonInbox->Hide();
+        Frame->T_ImageButtonInbox->Hide();          //ukryj przyciski menu
         Frame->T_ImageButtonGroups->Hide();
         Frame->T_ImageButtonUsembers->Hide();
         Frame->T_ImageButtonStats->Hide();
         Frame->T_ImageButtonMulTree->Hide();
+        Frame->T_LabelInbox->Hide();
+        Frame->T_LabelGroups->Hide();
+        Frame->T_LabelUsembers->Hide();
+        Frame->T_LabelStats->Hide();
+        Frame->T_LabelMulTree->Hide();
     }
 
     noData = !noData;
+}
+
+void PanelTitleMaintance::UpdateLoadingIcons (AisdiRelationsFrame* Frame)
+{
+    Frame->T_ImageButtonAdd->Show();  //ten przycisk jest zawsze dla  noData == true
+    Frame->T_LabelAdd->Show();
+
+    if ( !clickedAdd )
+    {
+        //ukryj przyciski dodawania maili
+        Frame->T_ImageButtonImport->Hide();
+        Frame->T_ImageButtonTxt->Hide();
+        Frame->T_ImageButtonBin->Hide();
+        Frame->T_ImageButtonLoad->Hide();
+        Frame->T_ImageButtonFolder->Hide();
+        Frame->T_ImageButtonFiles->Hide();
+        Frame->T_LabelImport->Hide();
+        Frame->T_LabelTxt->Hide();
+        Frame->T_LabelBin->Hide();
+        Frame->T_LabelLoad->Hide();
+        Frame->T_LabelFolder->Hide();
+        Frame->T_LabelFiles->Hide();
+        Frame->T_StaticLineAddH->Hide();
+        Frame->T_StaticLineAddV->Hide();
+        Frame->T_StaticLineImportH->Hide();
+        Frame->T_StaticLineOpenH->Hide();
+    }
+    else if ( (clickedAdd) && ( !clickedImport) && ( !clickedLoad) )
+    {
+        Frame->T_ImageButtonImport->Show();
+        Frame->T_ImageButtonLoad->Show();
+        Frame->T_LabelImport->Show();
+        Frame->T_LabelLoad->Show();
+        Frame->T_StaticLineAddH->Show();
+        Frame->T_StaticLineAddV->Show();
+
+        Frame->T_ImageButtonTxt->Hide();
+        Frame->T_ImageButtonBin->Hide();
+        Frame->T_ImageButtonFolder->Hide();
+        Frame->T_ImageButtonFiles->Hide();
+        Frame->T_LabelTxt->Hide();
+        Frame->T_LabelBin->Hide();
+        Frame->T_LabelFolder->Hide();
+        Frame->T_LabelFiles->Hide();
+        Frame->T_StaticLineImportH->Hide();
+        Frame->T_StaticLineOpenH->Hide();
+    }
+    else if ( (clickedAdd) && (!clickedImport) && ( clickedLoad) )
+    {
+        Frame->T_ImageButtonImport->Show();
+        Frame->T_ImageButtonLoad->Show();
+        Frame->T_ImageButtonFolder->Show();
+        Frame->T_ImageButtonFiles->Show();
+        Frame->T_LabelImport->Show();
+        Frame->T_LabelLoad->Show();
+        Frame->T_LabelFolder->Show();
+        Frame->T_LabelFiles->Show();
+        Frame->T_StaticLineAddH->Show();
+        Frame->T_StaticLineAddV->Show();
+        Frame->T_StaticLineOpenH->Show();
+
+        Frame->T_ImageButtonTxt->Hide();
+        Frame->T_ImageButtonBin->Hide();
+        Frame->T_LabelTxt->Hide();
+        Frame->T_LabelBin->Hide();
+        Frame->T_StaticLineImportH->Hide();
+    }
+    else if ( (clickedAdd) && ( clickedImport) && ( !clickedLoad) )
+    {
+        Frame->T_ImageButtonImport->Show();
+        Frame->T_ImageButtonLoad->Show();
+        Frame->T_ImageButtonTxt->Show();
+        Frame->T_ImageButtonBin->Show();
+        Frame->T_LabelLoad->Show();
+        Frame->T_LabelImport->Show();
+        Frame->T_LabelTxt->Show();
+        Frame->T_LabelBin->Show();
+        Frame->T_StaticLineAddH->Show();
+        Frame->T_StaticLineAddV->Show();
+        Frame->T_StaticLineImportH->Show();
+
+        Frame->T_ImageButtonFolder->Hide();
+        Frame->T_ImageButtonFiles->Hide();
+        Frame->T_LabelFolder->Hide();
+        Frame->T_LabelFiles->Hide();
+        Frame->T_StaticLineOpenH->Hide();
+    }
+}
+
+void PanelTitleMaintance::SetNoData (bool value)
+{
+    noData = value;
+}
+
+void PanelTitleMaintance::SetClickedAdd (void)
+{
+    clickedAdd = !clickedAdd;
+}
+
+void PanelTitleMaintance::SetClickedLoad (void)
+{
+    clickedLoad = !clickedLoad;
+    if (clickedLoad)
+        clickedImport = false;
+}
+
+void PanelTitleMaintance::SetClickedImport (void)
+{
+    clickedImport = !clickedImport;
+    if (clickedImport)
+        clickedLoad = false;
+}
+
+bool PanelTitleMaintance::GetNoData (void)
+{
+    return noData;
 }

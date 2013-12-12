@@ -24,6 +24,7 @@ class PanelUsembersMaintance;
 #include <wx/listctrl.h>
 #include <wx/menu.h>
 #include <wx/panel.h>
+#include <wx/srchctrl.h>
 #include <wx/statbox.h>
 #include <wx/statline.h>
 #include <wx/frame.h>
@@ -40,6 +41,7 @@ class AisdiRelationsFrame: public wxFrame
     friend class PanelMulTreeMaintance;
     friend class PanelStatisticsMaintance;
     friend class PanelUsembersMaintance;
+    bool settingsEnabled = false;
 public:
 
     AisdiRelationsFrame(wxWindow* parent,wxWindowID id = -1);
@@ -54,6 +56,18 @@ private:
     void OnQuit(wxCommandEvent& event);
     void OnAbout(wxCommandEvent& event);
     void OnButton1Click(wxCommandEvent& event);
+    void OnT_ImageButtonAddClick(wxCommandEvent& event);
+    void OnT_ImageButtonImportClick(wxCommandEvent& event);
+    void OnT_ImageButtonLoadClick(wxCommandEvent& event);
+    void OnT_ImageButtonInboxClick(wxCommandEvent& event);
+    void OnT_ImageButtonUsembersClick(wxCommandEvent& event);
+    void OnI_ImageButtonTitleClick(wxCommandEvent& event);
+    void OnI_ImageButtonUsembersClick(wxCommandEvent& event);
+    void OnU_ImageButtonInboxClick(wxCommandEvent& event);
+    void OnU_ImageButtonTitleClick(wxCommandEvent& event);
+    void OnI_ImageButtonSearchClick(wxCommandEvent& event);
+    void OnU_ImageButtonSearchClick(wxCommandEvent& event);
+    void OnU_ImageButtonSwitchListClick(wxCommandEvent& event);
     //*)
 
     //(*Identifiers(AisdiRelationsFrame)
@@ -104,6 +118,7 @@ private:
     static const long ID_STATICTEXT47;
     static const long ID_STATICTEXT46;
     static const long ID_STATICTEXT45;
+    static const long ID_STATICTEXT62;
     static const long ID_STATICTEXT44;
     static const long ID_STATICBOX3;
     static const long ID_STATICBOX4;
@@ -139,6 +154,8 @@ private:
     static const long ID_IMAGEBUTTON3;
     static const long ID_IMAGEBUTTON2;
     static const long ID_IMAGEBUTTON1;
+    static const long ID_IMAGEBUTTON39;
+    static const long ID_SEARCHCTRL2;
     static const long ID_PANEL4;
     static const long ID_STATICBITMAP4;
     static const long ID_PANEL5;
@@ -147,6 +164,7 @@ private:
     static const long ID_STATICBITMAP6;
     static const long ID_PANEL7;
     static const long ID_STATICBITMAP1;
+    static const long ID_STATICTEXT61;
     static const long ID_STATICTEXT35;
     static const long ID_STATICTEXT34;
     static const long ID_STATICTEXT33;
@@ -183,7 +201,9 @@ private:
     static const long ID_IMAGEBUTTON30;
     static const long ID_IMAGEBUTTON21;
     static const long ID_IMAGEBUTTON20;
+    static const long ID_IMAGEBUTTON38;
     static const long ID_IMAGEBUTTON19;
+    static const long ID_SEARCHCTRL1;
     static const long ID_PANEL2;
     static const long ID_PANEL1;
     static const long idMenuNew;
@@ -221,6 +241,7 @@ private:
     wxStaticText* I_LabelSettings;
     wxListCtrl* U_ListUsembers;
     wxBitmapButton        *I_ImageButtonUsembers;
+    wxStaticText* U_LabelTitle;
     wxPanel* U_PanelEmail;
     wxStaticText* I_LabelSubject;
     wxStaticText* U_LabelSettings;
@@ -252,6 +273,7 @@ private:
     wxStaticText* I_LabelTo;
     wxStaticText* T_LabelStats;
     wxStaticText* I_LabelMulTree;
+    wxBitmapButton        *U_ImageButtonTitle;
     wxStaticText* U_LabelEmail;
     wxStaticLine* T_StaticLineOpenH;
     wxBitmapButton        *T_ImageButtonStats;
@@ -261,6 +283,7 @@ private:
     wxStaticLine* T_StaticLineImportH;
     wxPanel* PanelMain;
     wxBitmapButton        *T_ImageButtonGroups;
+    wxSearchCtrl* I_SearchCtrl;
     wxBitmapButton        *U_ImageButtonStats;
     wxStaticText* I_LabelAdd;
     wxStaticText* T_LabelTxt;
@@ -299,6 +322,7 @@ private:
     wxStaticLine* T_StaticLineAddH;
     wxBitmapButton        *I_ImageButtonSettings;
     wxStaticText* U_StaticTextEmail;
+    wxSearchCtrl* U_SearchCtrl;
     wxStaticText* U_LabelSave;
     wxStaticText* T_LabelFolder;
     wxStaticText* U_LabelDelete;
@@ -325,6 +349,7 @@ private:
     wxStaticText* T_LabelLoad;
     wxListCtrl* U_ListInbox;
     wxStaticText* I_LabelShowTree;
+    wxBitmapButton        *I_ImageButtonTitle;
     wxBitmapButton        *I_ImageButtonSearch;
     wxPanel* PanelUsembers;
     wxStaticText* I_LabelUsembers;
@@ -333,6 +358,7 @@ private:
     wxStaticText* T_StaticTextTitle2;
     wxMenuItem* MenuItem8;
     wxStaticBitmap* BitmapBackgroundStatistics;
+    wxStaticText* I_LabelTitle;
     wxStaticText* T_LabelImport;
     wxStaticText* I_LabelReceiver;
     wxStaticText* U_LabelStats;

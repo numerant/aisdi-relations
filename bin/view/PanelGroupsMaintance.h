@@ -11,4 +11,6 @@ private:
 public:
     PanelGroupsMaintance ();
     void ShowPanel(AisdiRelationsFrame* Frame);
+
+    bool GetPanelEnabled ();
 };
