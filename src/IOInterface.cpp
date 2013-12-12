@@ -47,7 +47,7 @@ void IOInterface::importSingleMail(boost::filesystem::path path, ImportStats &st
         try
         {
             tempEmail = emlParser( path.c_str() );
-           // database->addEmail(tempEmail);
+            database->addEmail(tempEmail);
             stats.successCount++;
         }
         catch ( IOException error )                                             // mail nie jest poprawny składniowo
