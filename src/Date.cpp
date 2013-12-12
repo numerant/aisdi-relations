@@ -21,44 +21,43 @@ Date::Date(const Date &date)
 Date::Date (string newDate)
 {
     string tempString;
-    stringstream stream;
-    //weekDay
-    stream>>newDate;
-    stream<<tempString;
-    tempString.erase(tempString.end()-1, tempString.end());
-    weekDay = tempString;
+	stringstream stream;
+	//weekDay
+	stream<<newDate;
+	stream>>tempString;
+	tempString.erase(tempString.end()-1, tempString.end());
+	weekDay = tempString;
 
-    //day
-    stream>>newDate;
-    stream<<tempString;
-    day = atoi(tempString.c_str());
+	//day
+	stream<<newDate;
+	stream>>tempString;
+	day = atoi(tempString.c_str());
 
-    //month
-    stream>>newDate;
-    stream<<tempString;
-    month = tempString;
-    monthInt = monthToInt(month);
+	//month
+	stream<<newDate;
+	stream>>tempString;
+	month = tempString;
+	monthInt = monthToInt(month);
 
-    //year
-    stream>>newDate;
-    stream<<tempString;
-    year = atoi(tempString.c_str());
+	//year
+	stream<<newDate;
+	stream>>tempString;
+	year = atoi(tempString.c_str());
 
-    //hour:minute:second
-    stream>>newDate;
-    stream<<tempString;
-    string tempHour(tempString, 0, 2);
-    hour = atoi(tempHour.c_str());
-    string tempMin(tempString, 3, 2);
-    minute = atoi(tempMin.c_str());
-    string tempSec(tempString, 5, 2);
-    second = atoi(tempSec.c_str());
+	//hour:minute:second
+	stream<<newDate;
+	stream>>tempString;
+	string tempTime(tempString, 0, 2);
+	hour = atoi(tempTime.c_str());
+	string tempTime(tempString, 3, 2);
+	minute = atoi(tempTime.c_str());
+	string tempTime(tempString, 5, 2);
+	second = atoi(tempTime.c_str());
 
-    //timeZone
-    stream>>newDate;
-    stream<<timeZone;
+	//timeZone
+	stream<<newDate;
+	stream>>timeZone;
 }
-
 Date::~Date() {}
 
 string Date::getWeekDate(void)
