@@ -72,31 +72,24 @@ Email* IOInterface::emlParser (string path)
         Usember* usemberFrom;
         Usember* usemberTo;
         string wiersz, fromRN, fromLOGIN, fromDOMAIN, toRN, toLOGIN, toDOMAIN, subject, MID, date, content;
-        std::regex regFrom("From:\s+(\"(.+)\")?\s*<(.+)@(.+)>");
-        std::regex regTo("To:\s+(\"(.+)\")?\s*<(.+)@(.+)>");
-        std::regex regSubject("Subject:\s+(.*)");
-        std::regex regMID("Message-ID:\s+<(.+)>");
-        std::regex regDate("Date:\s+(\\u\l{2},\s+\d{1,2}\s+\\u\l+\s+\d{4}\s+\d{2}:\d{2}:\d{2}\s+\+\d{4})");
+        boost::regex regFrom("From:\\s+(\"(.+)\")?\\s*<(.+)@(.+)>");
+        boost::regex regTo("To:\\s+(\"(.+)\")?\\s*<(.+)@(.+)>");
+        boost::regex regSubject("Subject:\\s+(.*)");
+        boost::regex regMID("Message-ID:\\s+<(.+)>");
+        boost::regex regDate("Date:\\s+(\\u\\l{2},\\s+\\d{1,2}\\s+\\u\\l+\\s+\\d{4}\\s+\\d{2}:\\d{2}:\\d{2}\\s+\\+\\d{4})");
 
         do
             getline(plik, wiersz);
         while ( (wiersz).size() == 0 ); // pomija przypadkowe puste linie na początku pliku
 
         // wczytanie FROM
-        std::smatch wynik;
+        boost::smatch wynik;
         if ( regex_search( wiersz, wynik, regFrom) )
         {
-            if (wynik.size() == 2) // odczytano tylko goły adres
-            {
-                fromLOGIN = wynik[0];
-                fromDOMAIN = wynik[1];
-            }
-            else
-            {
-                fromRN = wynik[1];
-                fromLOGIN = wynik[2];
-                fromDOMAIN = wynik[3];
-            }
+
+        	fromRN = wynik[2];
+            fromLOGIN = wynik[3];
+            fromDOMAIN = wynik[4];
         }
         else throw EmlSyntaxIncorrect();
 
@@ -105,17 +98,9 @@ Email* IOInterface::emlParser (string path)
         getline(plik, wiersz);
         if ( regex_search( wiersz, wynik, regTo) )
         {
-            if (wynik.size() == 2) // odczytano tylko goły adres
-            {
-                toLOGIN = wynik[0];
-                toDOMAIN = wynik[1];
-            }
-            else
-            {
-                toRN = wynik[1];
-                toLOGIN = wynik[2];
-                toDOMAIN = wynik[3];
-            }
+            toRN = wynik[2];
+            toLOGIN = wynik[3];
+            toDOMAIN = wynik[4];
         }
         else throw EmlSyntaxIncorrect();
 
@@ -123,7 +108,7 @@ Email* IOInterface::emlParser (string path)
         getline(plik, wiersz);
         if ( regex_search( wiersz, wynik, regSubject) )
         {
-            subject = wynik[0];
+            subject = wynik[1];
         }
         else throw EmlSyntaxIncorrect();
 
@@ -131,7 +116,7 @@ Email* IOInterface::emlParser (string path)
         getline(plik, wiersz);
         if ( regex_search( wiersz, wynik, regMID) )
         {
-            MID = wynik[0];
+            MID = wynik[1];
         }
         else throw EmlSyntaxIncorrect();
 
@@ -139,7 +124,7 @@ Email* IOInterface::emlParser (string path)
         getline(plik, wiersz);
         if ( regex_search( wiersz, wynik, regDate) )
         {
-            date = wynik[0];
+            date = wynik[1];
         }
         else throw EmlSyntaxIncorrect();
 
@@ -147,7 +132,7 @@ Email* IOInterface::emlParser (string path)
         while (wiersz.size() != 0)
             getline(plik, wiersz); // przejście do momentu pustej linii
 
-        while (plik.eof() != EOF) // wczytanie tego co zostało jako treść
+        while ( !plik.eof() ) // wczytanie tego co zostało jako treść
             plik >> content;
 
         plik.close();
@@ -158,8 +143,8 @@ Email* IOInterface::emlParser (string path)
         usemberFrom = new Usember(fromLOGIN, fromDOMAIN, fromRN);
         usemberTo = new Usember(toLOGIN, toDOMAIN, toRN);
 
-//        usemberFrom = database.addUsember( usemberFrom );
-//        usemberTo = database.addUsember( usemberTo );
+// usemberFrom = database.addUsember( usemberFrom );
+// usemberTo = database.addUsember( usemberTo );
 
         Date* newDate = new Date(date);
         mail->setFrom( usemberFrom );
