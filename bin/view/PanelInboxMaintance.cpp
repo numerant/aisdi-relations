@@ -27,7 +27,7 @@ void PanelInboxMaintance::SetLabels(AisdiRelationsFrame* Frame)
 
     // TODO Rozszerzyć adresy w liście a zwęzić pole contentu (analogicznie dla Usembera!!!!!!!)
     wxString labels[COLUMN_COUNT] = {_("Data:"), _("Temat:"), _("Od:"), _("Do:"), _("Treść")};      //etykiety
-    int width[COLUMN_COUNT] = {90, 210, 125, 125, 1};      //szerokości kolumn, sumuje się do 550px
+    int width[COLUMN_COUNT] = {90, 220, 160, 160, 1};      //szerokości kolumn, sumuje się do 630px
 
     for (int i = 0; i < COLUMN_COUNT; i++)         //przypisujemy w pętli etykiety do kolumn listy
     {
@@ -60,7 +60,7 @@ void PanelInboxMaintance::SetIcons(AisdiRelationsFrame* Frame)
 
 void PanelInboxMaintance::SetEmails (AisdiRelationsFrame* Frame)
 {
-    if (Frame->database->countEmails() > 0)
+    if (Frame->database->countEmails() > 0)     //TODO Zmienić wyświetlanie za pomocą Query
     {
         //Frame->I_ListInbox->ClearAll();
         for (int i = 0; i < Frame->database->countEmails(); i++)

@@ -1,6 +1,5 @@
 #include "Database.h"
 
-
 Database::Database()
 {
 }
@@ -20,6 +19,7 @@ bool Database::addEmail(Email* email)
     if(findEmail(email->getID())==-1)
     {
         emailVector.push_back(email);
+        sort (emailVector.begin(), emailVector.end()); 
         return true;
     }
     else

@@ -3,6 +3,7 @@
 #include "GroupQuery.h"
 #include "UsemberQuery.h"
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 /*Klasa Database, przechowująca dane dotyczące grup, maili oraz użytkowników oraz udostępniająca

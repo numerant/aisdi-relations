@@ -52,14 +52,14 @@ void PanelUsembersMaintance:: SetLabels(AisdiRelationsFrame* Frame)
     wxListItem col;
 
     wxString labels1[3] = {_("Nazwa:"), _("Email:"), _("Grupa:")};    //etykiety do przypasowania liście usemberów
-    wxString labels2[4] = {_("Data:"), _("Temat:"), _("Od:"), _("Do:")};    //oraz skrzynkom emailowym
-    int width[3] = {80, 290, 180};
+    wxString labels2[4] = {_("Data:"), _("Temat:"), _("Od:"), _("Do:"), _("Treść")};    //oraz skrzynkom emailowym
+    int width[4] = {90, 290, 250, 1};
 
-    for (int i = 0; i < 3; i++)         //przypisujemy etykiety do kolumn w pętli
+    for (int i = 0; i < 3; i++)         //przypisujemy etykiety dla Usemberów do kolumn w pętli
     {
         col.SetId(i);
         col.SetText(labels1[i]);
-        i < 2 ? col.SetWidth(200) : col.SetWidth(150);
+        i < 2 ? col.SetWidth(215) : col.SetWidth(200);
         Frame->U_ListUsembers->InsertColumn(i, col);
     }
 

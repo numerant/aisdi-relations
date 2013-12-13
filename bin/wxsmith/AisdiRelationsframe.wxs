@@ -4,7 +4,6 @@
 		<title>Analiza Relacji Biznesowych</title>
 		<centered>1</centered>
 		<icon>resources/iconProgram.png</icon>
-		<pos>0,0</pos>
 		<size>1366,768</size>
 		<font>
 			<size>12</size>
@@ -14,7 +13,7 @@
 			<face>Ubuntu</face>
 		</font>
 		<id_arg>0</id_arg>
-		<style>wxDEFAULT_FRAME_STYLE|wxMAXIMIZE_BOX</style>
+		<style>wxDEFAULT_FRAME_STYLE|wxMAXIMIZE_BOX|wxVSCROLL|wxHSCROLL</style>
 		<object class="wxPanel" name="ID_PANEL1" variable="PanelMain" member="yes">
 			<pos>0,0</pos>
 			<bg>#000000</bg>
@@ -395,7 +394,7 @@
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL4" variable="PanelUsembers" member="yes">
-				<pos>1366,0</pos>
+				<pos>0,0</pos>
 				<size>1366,768</size>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP3" variable="BitmapBackgroundUsembers" member="yes">
 					<bitmap>resources/background.jpg</bitmap>
@@ -416,7 +415,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT55" variable="U_LabelSwitchList" member="yes">
 					<label>Przełącz&#x0A;listę</label>
-					<pos>523,70</pos>
+					<pos>603,70</pos>
 					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
 					<font>
 						<size>11</size>
@@ -429,7 +428,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT53" variable="U_LabelShowGroup" member="yes">
 					<label>Pokaż&#x0A;grupę</label>
-					<pos>750,685</pos>
+					<pos>800,685</pos>
 					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
 					<font>
 						<size>11</size>
@@ -442,7 +441,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT52" variable="U_LabelDelete" member="yes">
 					<label>Usuń</label>
-					<pos>663,685</pos>
+					<pos>713,685</pos>
 					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
 					<font>
 						<size>11</size>
@@ -573,7 +572,7 @@
 				<object class="wxStaticBox" name="ID_STATICBOX3" variable="U_StaticBoxUsembers" member="yes">
 					<label>  Usembers  </label>
 					<pos>15,100</pos>
-					<size>570,610</size>
+					<size>650,610</size>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<bg>wxSYS_COLOUR_HIGHLIGHT</bg>
 					<font>
@@ -585,14 +584,14 @@
 					</font>
 				</object>
 				<object class="wxStaticBox" name="ID_STATICBOX4" variable="U_StaticBoxInfo" member="yes">
-					<pos>650,103</pos>
-					<size>600,500</size>
+					<pos>700,103</pos>
+					<size>550,500</size>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
 				</object>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP7" variable="U_BitmapUsember" member="yes">
 					<bitmap>resources/iconsBig/iconUsember.png</bitmap>
-					<pos>670,135</pos>
+					<pos>720,135</pos>
 					<size>100,100</size>
 				</object>
 				<object class="wxListCtrl" name="ID_LISTCTRL2" variable="U_ListUsembers" member="yes">
@@ -612,7 +611,7 @@
 				</object>
 				<object class="wxListCtrl" name="ID_LISTCTRL4" variable="U_ListOutbox" member="yes">
 					<pos>25,425</pos>
-					<size>550,275</size>
+					<size>630,275</size>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<bg>#141414</bg>
 					<font>
@@ -626,7 +625,7 @@
 				</object>
 				<object class="wxListCtrl" name="ID_LISTCTRL3" variable="U_ListInbox" member="yes">
 					<pos>25,130</pos>
-					<size>550,275</size>
+					<size>630,275</size>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<bg>#141414</bg>
 					<font>
@@ -640,7 +639,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT17" variable="U_StaticTextGroup" member="yes">
 					<label></label>
-					<pos>845,185</pos>
+					<pos>895,185</pos>
 					<fg>wxSYS_COLOUR_ACTIVEBORDER</fg>
 					<font>
 						<size>13</size>
@@ -652,7 +651,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT16" variable="U_StaticTextEmail" member="yes">
 					<label></label>
-					<pos>845,160</pos>
+					<pos>895,160</pos>
 					<fg>wxSYS_COLOUR_ACTIVEBORDER</fg>
 					<font>
 						<size>13</size>
@@ -664,7 +663,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT15" variable="U_StaticTextName" member="yes">
 					<label></label>
-					<pos>845,135</pos>
+					<pos>895,135</pos>
 					<fg>wxSYS_COLOUR_ACTIVEBORDER</fg>
 					<font>
 						<size>13</size>
@@ -676,7 +675,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT13" variable="U_LabelEmail" member="yes">
 					<label>Email:</label>
-					<pos>780,160</pos>
+					<pos>830,160</pos>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<font>
 						<size>13</size>
@@ -688,7 +687,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT14" variable="U_LabelGroup" member="yes">
 					<label>Grupa:</label>
-					<pos>780,185</pos>
+					<pos>830,185</pos>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<font>
 						<size>13</size>
@@ -700,7 +699,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT12" variable="U_LabelName" member="yes">
 					<label>Nazwa:</label>
-					<pos>780,135</pos>
+					<pos>830,135</pos>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<font>
 						<size>13</size>
@@ -711,14 +710,14 @@
 					</font>
 				</object>
 				<object class="wxPanel" name="ID_PANEL9" variable="U_PanelStats" member="yes">
-					<pos>670,245</pos>
-					<size>560,345</size>
+					<pos>720,245</pos>
+					<size>510,345</size>
 					<bg>#202020</bg>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL</style>
 				</object>
 				<object class="wxPanel" name="ID_PANEL8" variable="U_PanelEmail" member="yes">
-					<pos>670,245</pos>
-					<size>560,345</size>
+					<pos>720,245</pos>
+					<size>510,345</size>
 					<bg>#202020</bg>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL</style>
 					<object class="wxStaticText" name="ID_STATICTEXT19" variable="U_LabelSubject" member="yes">
@@ -771,7 +770,7 @@
 					</object>
 					<object class="wxStaticText" name="ID_STATICTEXT20" variable="U_LabelDate" member="yes">
 						<label>Data:</label>
-						<pos>395,20</pos>
+						<pos>345,20</pos>
 						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 						<font>
 							<size>13</size>
@@ -796,7 +795,7 @@
 					<object class="wxHtmlWindow" name="ID_HTMLWINDOW2" variable="U_HtmlContent" member="yes">
 						<htmlcode>&lt;p align=&quot;justify&quot;&gt;&lt;font color=&quot;lightgray&quot;&gt;Donec pretium velit nisi, id euismod libero mattis sit amet. Quisque eu volutpat lectus. Nam lacus urna, tincidunt vitae convallis ut, commodo eget augue. Phasellus ornare lacus sapien, sit amet hendrerit neque scelerisque a. Praesent dapibus massa magna, vitae rhoncus turpis malesuada et. Nulla vel suscipit nunc. Integer metus turpis, consectetur non lacinia et, molestie sit amet velit.Donec pretium velit nisi, id euismod libero mattis sit amet. Quisque eu volutpat lectus. Nam lacus urna, tincidunt vitae convallis ut, commodo eget augue. Phasellus ornare lacus sapien, sit amet hendrerit neque scelerisque a. Praesent dapibus massa magna, vitae rhoncus turpis malesuada et. Nulla vel suscipit nunc. Integer metus turpis, consectetur non lacinia et, molestie sit amet velit.Donec pretium velit nisi, id euismod libero mattis sit amet. Quisque eu volutpat lectus. Nam lacus urna, tincidunt vitae convallis ut, commodo eget augue. Phasellus ornare lacus sapien, sit amet hendrerit neque scelerisque a. Praesent dapibus massa magna, vitae rhoncus turpis malesuada et. Nulla vel suscipit nunc. Integer metus turpis, consectetur non lacinia et, molestie sit amet velit.&lt;/font&gt;&lt;/p&gt;</htmlcode>
 						<pos>15,80</pos>
-						<size>530,255</size>
+						<size>480,255</size>
 						<fg>wxSYS_COLOUR_WINDOW</fg>
 						<bg>#202020</bg>
 						<font>
@@ -810,7 +809,7 @@
 					</object>
 					<object class="wxStaticLine" name="ID_STATICLINE8" variable="U_LineContentSeparator" member="yes">
 						<pos>20,60</pos>
-						<size>520,15</size>
+						<size>470,15</size>
 						<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
 					</object>
 				</object>
@@ -820,7 +819,7 @@
 					<disabled_index>&lt;none&gt;</disabled_index>
 					<selected_index>&lt;none&gt;</selected_index>
 					<focus_index>&lt;none&gt;</focus_index>
-					<pos>520,10</pos>
+					<pos>600,10</pos>
 					<size>60,60</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
 					<handler function="OnU_ImageButtonSwitchListClick" entry="EVT_BUTTON" />
@@ -842,7 +841,7 @@
 					<disabled_index>&lt;none&gt;</disabled_index>
 					<selected_index>&lt;none&gt;</selected_index>
 					<focus_index>&lt;none&gt;</focus_index>
-					<pos>740,620</pos>
+					<pos>790,620</pos>
 					<size>60,60</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
 				</object>
@@ -852,7 +851,7 @@
 					<disabled_index>&lt;none&gt;</disabled_index>
 					<selected_index>&lt;none&gt;</selected_index>
 					<focus_index>&lt;none&gt;</focus_index>
-					<pos>650,620</pos>
+					<pos>700,620</pos>
 					<size>60,60</size>
 					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
@@ -955,7 +954,7 @@
 				</object>
 				<object class="wxSearchCtrl" name="ID_SEARCHCTRL2" variable="U_SearchCtrl" member="yes">
 					<pos>25,130</pos>
-					<size>550,25</size>
+					<size>630,25</size>
 					<hidden>1</hidden>
 					<fg>wxSYS_COLOUR_HIGHLIGHT</fg>
 				</object>
@@ -992,7 +991,7 @@
 			<object class="wxPanel" name="ID_PANEL2" variable="PanelInbox" member="yes">
 				<pos>1366,0</pos>
 				<size>1366,768</size>
-				<style>wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL</style>
+				<style>wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxVSCROLL|wxHSCROLL</style>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP1" variable="I_BitmapBackground" member="yes">
 					<bitmap>resources/background.jpg</bitmap>
 					<pos>0,0</pos>
@@ -1117,7 +1116,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT43" variable="I_LabelShowTree" member="yes">
 					<label>Utwórz&#x0A;drzewo</label>
-					<pos>925,685</pos>
+					<pos>975,685</pos>
 					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
 					<font>
 						<size>11</size>
@@ -1130,7 +1129,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT42" variable="I_LabelReceiver" member="yes">
 					<label>Pokaż&#x0A;odbiorcę</label>
-					<pos>830,685</pos>
+					<pos>880,685</pos>
 					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
 					<font>
 						<size>11</size>
@@ -1143,7 +1142,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT41" variable="I_LabelSender" member="yes">
 					<label>Pokaż&#x0A;nadawcę</label>
-					<pos>740,685</pos>
+					<pos>790,685</pos>
 					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
 					<font>
 						<size>11</size>
@@ -1156,7 +1155,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT40" variable="I_LabelDelete" member="yes">
 					<label>Usuń</label>
-					<pos>663,685</pos>
+					<pos>713,685</pos>
 					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
 					<font>
 						<size>11</size>
@@ -1170,7 +1169,7 @@
 				<object class="wxStaticBox" name="ID_STATICBOX1" variable="I_InboxBorder" member="yes">
 					<label>  Skrzynka Email  </label>
 					<pos>15,100</pos>
-					<size>570,610</size>
+					<size>650,610</size>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<bg>wxSYS_COLOUR_HIGHLIGHT</bg>
 					<font>
@@ -1183,7 +1182,7 @@
 				</object>
 				<object class="wxListCtrl" name="ID_LISTCTRL1" variable="I_ListInbox" member="yes">
 					<pos>25,130</pos>
-					<size>550,570</size>
+					<size>630,570</size>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<bg>#141414</bg>
 					<font>
@@ -1197,14 +1196,14 @@
 					<handler function="OnI_ListInboxItemSelect" entry="EVT_LIST_ITEM_SELECTED" />
 				</object>
 				<object class="wxStaticBox" name="ID_STATICBOX2" variable="I_EmailContentBorder" member="yes">
-					<pos>650,103</pos>
-					<size>600,500</size>
+					<pos>700,103</pos>
+					<size>550,500</size>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT1" variable="I_LabelFrom" member="yes">
 					<label>Od: </label>
-					<pos>670,130</pos>
+					<pos>720,130</pos>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<font>
 						<size>13</size>
@@ -1216,7 +1215,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT2" variable="I_LabelTo" member="yes">
 					<label>Do:</label>
-					<pos>670,155</pos>
+					<pos>720,155</pos>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<font>
 						<size>13</size>
@@ -1228,7 +1227,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT5" variable="I_LabelSubject" member="yes">
 					<label>Temat:</label>
-					<pos>670,180</pos>
+					<pos>720,180</pos>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<font>
 						<size>13</size>
@@ -1239,13 +1238,13 @@
 					</font>
 				</object>
 				<object class="wxStaticLine" name="ID_STATICLINE1" variable="I_LineContentSeparator" member="yes">
-					<pos>665,220</pos>
-					<size>560,10</size>
+					<pos>715,220</pos>
+					<size>510,10</size>
 				</object>
 				<object class="wxHtmlWindow" name="ID_HTMLWINDOW1" variable="I_HtmlEmailContent" member="yes">
 					<htmlcode>&lt;p align=&quot;justify&quot;&gt;&lt;font color=&quot;lightgray&quot;&gt;Donec&lt;br&gt;&lt;br&gt; pretium velit nisi, id euismod libero mattis sit amet. Quisque eu volutpat lectus. Nam lacus urna, tincidunt vitae convallis ut, commodo eget augue. Phasellus ornare lacus sapien, sit amet hendrerit neque scelerisque a. Praesent dapibus massa magna, vitae rhoncus turpis malesuada et. Nulla vel suscipit nunc. Integer metus turpis, consectetur non lacinia et, molestie sit amet velit.Donec pretium velit nisi, id euismod libero mattis sit amet. Quisque eu volutpat lectus. Nam lacus urna, tincidunt vitae convallis ut, commodo eget augue. Phasellus ornare lacus sapien, sit amet hendrerit neque scelerisque a. Praesent dapibus massa magna, vitae rhoncus turpis malesuada et. Nulla vel suscipit nunc. Integer metus turpis, consectetur non lacinia et, molestie sit amet velit.Donec pretium velit nisi, id euismod libero mattis sit amet. Quisque eu volutpat lectus. Nam lacus urna, tincidunt vitae convallis ut, commodo eget augue. Phasellus ornare lacus sapien, sit amet hendrerit neque scelerisque a. Praesent dapibus massa magna, vitae rhoncus turpis malesuada et. Nulla vel suscipit nunc. Integer metus turpis, consectetur non lacinia et, molestie sit amet velit.&lt;/font&gt;&lt;/p&gt;</htmlcode>
-					<pos>670,240</pos>
-					<size>560,350</size>
+					<pos>720,240</pos>
+					<size>510,350</size>
 					<fg>wxSYS_COLOUR_WINDOW</fg>
 					<bg>#141414</bg>
 					<font>
@@ -1323,7 +1322,7 @@
 					<disabled_index>&lt;none&gt;</disabled_index>
 					<selected_index>&lt;none&gt;</selected_index>
 					<focus_index>&lt;none&gt;</focus_index>
-					<pos>920,620</pos>
+					<pos>970,620</pos>
 					<size>60,60</size>
 					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
@@ -1334,7 +1333,7 @@
 					<disabled_index>&lt;none&gt;</disabled_index>
 					<selected_index>&lt;none&gt;</selected_index>
 					<focus_index>&lt;none&gt;</focus_index>
-					<pos>830,620</pos>
+					<pos>880,620</pos>
 					<size>60,60</size>
 					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
@@ -1345,7 +1344,7 @@
 					<disabled_index>&lt;none&gt;</disabled_index>
 					<selected_index>&lt;none&gt;</selected_index>
 					<focus_index>&lt;none&gt;</focus_index>
-					<pos>740,620</pos>
+					<pos>790,620</pos>
 					<size>60,60</size>
 					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
@@ -1356,7 +1355,7 @@
 					<disabled_index>&lt;none&gt;</disabled_index>
 					<selected_index>&lt;none&gt;</selected_index>
 					<focus_index>&lt;none&gt;</focus_index>
-					<pos>650,620</pos>
+					<pos>700,620</pos>
 					<size>60,60</size>
 					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
@@ -1459,7 +1458,7 @@
 				</object>
 				<object class="wxSearchCtrl" name="ID_SEARCHCTRL1" variable="I_SearchCtrl" member="yes">
 					<pos>25,130</pos>
-					<size>550,25</size>
+					<size>630,25</size>
 					<hidden>1</hidden>
 					<fg>wxSYS_COLOUR_HIGHLIGHT</fg>
 				</object>

@@ -1076,7 +1076,7 @@
 	<wx/statbmp.h>
 	<wx/html/htmlwin.h>
 
-1386894467 source:/home/panda/aisdi-relations2/bin/AisdiRelationsMain.cpp
+1386937460 source:/home/panda/aisdi-relations2/bin/AisdiRelationsMain.cpp
 	"../src/Email.h"
 	"../src/Usember.h"
 	"view/PanelTitleMaintance.h"
@@ -1096,11 +1096,12 @@
 	<wx/icon.h>
 	<wx/image.h>
 
-1386886480 /home/panda/aisdi-relations2/src/Database.h
+1386926694 /home/panda/aisdi-relations2/src/Database.h
 	"EmailQuery.h"
 	"GroupQuery.h"
 	"UsemberQuery.h"
 	<vector>
+	<algorithm>
 
 1386756417 /home/panda/aisdi-relations2/src/EmailQuery.h
 	"Query.h"
@@ -1440,7 +1441,7 @@
 1386810989 source:/home/panda/aisdi-relations2/bin/view/PanelGroupsMaintance.cpp
 	"PanelGroupsMaintance.h"
 
-1386894344 source:/home/panda/aisdi-relations2/bin/view/PanelInboxMaintance.cpp
+1386936544 source:/home/panda/aisdi-relations2/bin/view/PanelInboxMaintance.cpp
 	"PanelInboxMaintance.h"
 
 1386814204 source:/home/panda/aisdi-relations2/bin/view/PanelMulTreeMaintance.cpp
@@ -1474,7 +1475,7 @@
 	"Query.h"
 	"Group.h"
 
-1386893831 source:/home/panda/aisdi-relations2/src/Database.cpp
+1386926752 source:/home/panda/aisdi-relations2/src/Database.cpp
 	"Database.h"
 
 1386803636 /home/panda/aisdi-relations2/src/Exception/IOException.h
@@ -1485,7 +1486,7 @@
 1386758467 source:/home/panda/aisdi-relations2/src/Exception/IOException.cpp
 	"IOException.h"
 
-1386890432 source:/home/panda/aisdi-relations2/src/IOInterface.cpp
+1386895112 source:/home/panda/aisdi-relations2/src/IOInterface.cpp
 	"IOInterface.h"
 
 1386522439 source:/home/panda/aisdi-relations2/src/Parameters.cpp
