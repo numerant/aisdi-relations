@@ -14,7 +14,7 @@ private:
     const wxString imagePaths[13] =
     {
         _("Add"),  _("Import"),  _("FolderTree"),  _("Files"),  _("Folder"),  _("Bin"),
-        _("Txt"),  _("Settings"),  _("Add"),  _("Usember"),  _("Workgroups"),  _("Statistics"),
+        _("Txt"),  _("Settings"),  _("Mailbox"),  _("Usember"),  _("Workgroups"),  _("Statistics"),
         _("Tree")
     };                                  //ścieżki plików z grafikami do przycisków panelu
 

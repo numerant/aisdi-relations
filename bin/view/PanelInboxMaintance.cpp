@@ -25,8 +25,9 @@ void PanelInboxMaintance::SetLabels(AisdiRelationsFrame* Frame)
     wxListItem col;     //obiekt reprezentujący etykietę
     const int COLUMN_COUNT = 5;   //liczba kolumns
 
+    // TODO Rozszerzyć adresy w liście a zwęzić pole contentu (analogicznie dla Usembera!!!!!!!)
     wxString labels[COLUMN_COUNT] = {_("Data:"), _("Temat:"), _("Od:"), _("Do:"), _("Treść")};      //etykiety
-    int width[COLUMN_COUNT] = {80, 220, 125, 125, 1};      //szerokości kolumn, sumuje się do 550px
+    int width[COLUMN_COUNT] = {90, 210, 125, 125, 1};      //szerokości kolumn, sumuje się do 550px
 
     for (int i = 0; i < COLUMN_COUNT; i++)         //przypisujemy w pętli etykiety do kolumn listy
     {
@@ -67,6 +68,8 @@ void PanelInboxMaintance::SetEmails (AisdiRelationsFrame* Frame)
             Email * email = Frame->database->getEmail(i);
             wxListItem item;
             item.SetId(i);
+            if (i % 2 == 0)
+                item.SetTextColour(wxColor(200,200,200));
             Frame->I_ListInbox->InsertItem( item );
 
             string sourceString = email->getContent();
@@ -81,9 +84,27 @@ void PanelInboxMaintance::SetEmails (AisdiRelationsFrame* Frame)
             int day =date.getDay();
             string month = date.getMonth();
             int year = date.getYear();
-            ostringstream ss;
-            ss << day;
-            string strdate = ss.str();
+            ostringstream ssday;
+            ssday << day;
+            string strdate = ssday.str();
+            strdate+= " "+month+" ";
+            ostringstream ssyear;
+            ssyear << year;
+            strdate += ssyear.str();
+
+            sourceString = strdate;
+            wxString wxdate(sourceString.c_str(), wxConvUTF8);
+            Frame->I_ListInbox->SetItem(i,0,wxdate);
+
+            Usember* from = email->getFrom();
+            sourceString = from->getAddress();
+            wxString wxfrom(sourceString.c_str(), wxConvUTF8);
+            Frame->I_ListInbox->SetItem(i,2,wxfrom);
+
+            Usember* to = email->getTo();
+            sourceString = to->getAddress();
+            wxString wxto(sourceString.c_str(), wxConvUTF8);
+            Frame->I_ListInbox->SetItem(i,3,wxto);
         }
     }
 }

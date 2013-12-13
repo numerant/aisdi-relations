@@ -131,6 +131,7 @@
 					<focus_index>&lt;none&gt;</focus_index>
 					<pos>990,424</pos>
 					<size>112,112</size>
+					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON17" variable="T_ImageButtonBin" member="yes">
@@ -141,6 +142,7 @@
 					<focus_index>&lt;none&gt;</focus_index>
 					<pos>990,564</pos>
 					<size>112,112</size>
+					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON16" variable="T_ImageButtonFolder" member="yes">
@@ -757,7 +759,7 @@
 					</object>
 					<object class="wxStaticText" name="ID_STATICTEXT21" variable="U_StaticTextDate" member="yes">
 						<label></label>
-						<pos>460,20</pos>
+						<pos>445,20</pos>
 						<fg>wxSYS_COLOUR_ACTIVEBORDER</fg>
 						<font>
 							<size>13</size>
@@ -769,7 +771,7 @@
 					</object>
 					<object class="wxStaticText" name="ID_STATICTEXT20" variable="U_LabelDate" member="yes">
 						<label>Data:</label>
-						<pos>410,20</pos>
+						<pos>395,20</pos>
 						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 						<font>
 							<size>13</size>
@@ -831,6 +833,7 @@
 					<focus_index>&lt;none&gt;</focus_index>
 					<pos>1190,620</pos>
 					<size>60,60</size>
+					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON9" variable="U_ImageButtonShowGroup" member="yes">
@@ -851,6 +854,7 @@
 					<focus_index>&lt;none&gt;</focus_index>
 					<pos>650,620</pos>
 					<size>60,60</size>
+					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON7" variable="U_ImageButtonMulTree" member="yes">
@@ -902,6 +906,7 @@
 					<focus_index>&lt;none&gt;</focus_index>
 					<pos>370,10</pos>
 					<size>60,60</size>
+					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON3" variable="U_ImageButtonSearch" member="yes">
@@ -923,6 +928,7 @@
 					<focus_index>&lt;none&gt;</focus_index>
 					<pos>190,10</pos>
 					<size>60,60</size>
+					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON1" variable="U_ImageButtonAdd" member="yes">
@@ -933,6 +939,7 @@
 					<focus_index>&lt;none&gt;</focus_index>
 					<pos>100,10</pos>
 					<size>60,60</size>
+					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON39" variable="U_ImageButtonTitle" member="yes">
@@ -983,7 +990,7 @@
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL2" variable="PanelInbox" member="yes">
-				<pos>0,0</pos>
+				<pos>1366,0</pos>
 				<size>1366,768</size>
 				<style>wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL</style>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP1" variable="I_BitmapBackground" member="yes">
@@ -1288,7 +1295,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT8" variable="I_StaticTextDate" member="yes">
 					<label>25.12.2013</label>
-					<pos>1150,130</pos>
+					<pos>1135,130</pos>
 					<fg>wxSYS_COLOUR_ACTIVEBORDER</fg>
 					<font>
 						<size>13</size>
@@ -1300,7 +1307,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT7" variable="I_LabelDate" member="yes">
 					<label>Data:</label>
-					<pos>1100,130</pos>
+					<pos>1085,130</pos>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<font>
 						<size>13</size>
@@ -1318,6 +1325,7 @@
 					<focus_index>&lt;none&gt;</focus_index>
 					<pos>920,620</pos>
 					<size>60,60</size>
+					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON28" variable="I_ImageButtonReceiver" member="yes">
@@ -1328,6 +1336,7 @@
 					<focus_index>&lt;none&gt;</focus_index>
 					<pos>830,620</pos>
 					<size>60,60</size>
+					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON27" variable="I_ImageButtonSender" member="yes">
@@ -1338,6 +1347,7 @@
 					<focus_index>&lt;none&gt;</focus_index>
 					<pos>740,620</pos>
 					<size>60,60</size>
+					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON26" variable="I_ImageButtonDelete" member="yes">
@@ -1348,6 +1358,7 @@
 					<focus_index>&lt;none&gt;</focus_index>
 					<pos>650,620</pos>
 					<size>60,60</size>
+					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON25" variable="I_ImageButtonMulTree" member="yes">
@@ -1399,6 +1410,7 @@
 					<focus_index>&lt;none&gt;</focus_index>
 					<pos>370,10</pos>
 					<size>60,60</size>
+					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON21" variable="I_ImageButtonSearch" member="yes">
@@ -1420,6 +1432,7 @@
 					<focus_index>&lt;none&gt;</focus_index>
 					<pos>190,10</pos>
 					<size>60,60</size>
+					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON38" variable="I_ImageButtonTitle" member="yes">
@@ -1441,6 +1454,7 @@
 					<focus_index>&lt;none&gt;</focus_index>
 					<pos>100,10</pos>
 					<size>60,60</size>
+					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
 				</object>
 				<object class="wxSearchCtrl" name="ID_SEARCHCTRL1" variable="I_SearchCtrl" member="yes">

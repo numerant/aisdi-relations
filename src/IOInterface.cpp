@@ -9,7 +9,8 @@
 using namespace std;
 using namespace boost;
 
-IOInterface::IOInterface() {
+IOInterface::IOInterface()
+{
 
 }
 
@@ -129,20 +130,20 @@ Email* IOInterface::emlParser (string path)
         else throw EmlSyntaxIncorrect();
 
         // wczytanie treści
-					// #### rozwiązanie tymczasowe - przejście 5 lini 
-					getline(plik, wiersz); // przejście do treści
-					getline(plik, wiersz);
-					getline(plik, wiersz);
-					getline(plik, wiersz);
-					getline(plik, wiersz);
-					// #### rozwiązanie tymczasowe
-					
-					
+        // #### rozwiązanie tymczasowe - przejście 5 lini
+        getline(plik, wiersz); // przejście do treści
+        getline(plik, wiersz);
+        getline(plik, wiersz);
+        getline(plik, wiersz);
+        getline(plik, wiersz);
+        // #### rozwiązanie tymczasowe
+
+
         while ( !plik.eof() ) // wczytanie tego co zostało jako treść
         {
             getline (plik, wiersz);
             content+=wiersz;
-			content+= "\n";
+            content+= "\n";
         }
 
         plik.close();

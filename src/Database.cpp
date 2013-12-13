@@ -162,11 +162,10 @@ int Database::countUsembers()
 
 int Database::findEmail(string messageId)
 {
-    int position=emailVector.size()-1;
+    int position=emailVector.size()/2;
     int range=emailVector.size()/2;
     while(range>=1)
     {
-        position/=2;
         range/=2;
         if(messageId==emailVector[position]->getID())
             return position;
