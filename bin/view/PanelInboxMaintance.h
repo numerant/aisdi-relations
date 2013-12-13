@@ -1,6 +1,7 @@
 #pragma once
 #include "../AisdiRelationsMain.h"
 #include "wx/msgdlg.h"
+#include <sstream>
 
 class PanelInboxMaintance
 {

@@ -773,40 +773,6 @@ void AisdiRelationsFrame::OnAbout(wxCommandEvent& event)
     wxMessageBox(msg, _("About"));
 }
 
-//Testowe wyświetlanie pól listy (inbox)
-/*wxListItem col0;
-  col0.SetId(0);
-  col0.SetText( _("Data:") );
-  col0.SetWidth(80);
-  I_ListInbox->InsertColumn(0, col0);
-wxListItem col1;
-  col1.SetId(1);
-  col1.SetText( _("Tytuł:") );
-  col1.SetWidth(210);
-  I_ListInbox->InsertColumn(1, col1);
-wxListItem col2;
-  col2.SetId(2);
-  col2.SetText( _("Od:") );
-  col2.SetWidth(130);
-  I_ListInbox->InsertColumn(2, col2);
-  wxListItem col3;
-  col3.SetId(3);
-  col3.SetText( _("Do:") );
-  col3.SetWidth(130);
-  I_ListInbox->InsertColumn(3, col3);
-   wxListItem item;
-      item.SetId(10);
-      item.SetText( _("25.12.2013") );
-  I_ListInbox->InsertItem( item );
-  I_ListInbox->SetItem(0,1, wxT("RE: Bowling meeting on Sunday"));
-  I_ListInbox->SetItem(0,2, wxT("billee@ms.com"));
-  I_ListInbox->SetItem(0,3, wxT("stevee@apple.com"));
-
-  I_StaticTextFrom->SetLabel(_("billee@ms.com"));
-  I_StaticTextTo->SetLabel(_("stevee@apple.com"));
-  I_StaticTextSubject->SetLabel(_("RE: Bowling meeting on Sunday"));
-  I_StaticTextDate->SetLabel(_("25.12.2013"));*/
-
 void AisdiRelationsFrame::OnT_ImageButtonAddClick(wxCommandEvent& event)
 {
     P_Title->SetClickedAdd();
@@ -893,7 +859,7 @@ void AisdiRelationsFrame::OnT_ImageButtonFolderClick(wxCommandEvent& event)
         wxString str = DirDialog->GetPath();
         param->path = str.mb_str();
         param->isDirectory = true;
-        param->recursiveImport = true;
+        param->recursiveImport = false;
 
         IOInterface::ImportStats stats;
         stats = iointerface->importMail(param);
@@ -917,8 +883,6 @@ void AisdiRelationsFrame::OnT_ImageButtonFilesClick(wxCommandEvent& event)
         param->path = paths[0].mb_str();
         param->isDirectory = false;
         param->recursiveImport = false;
-        for (unsigned int i = 0; i < paths.GetCount(); i++ )
-            wxMessageBox(paths[i]);
 
         IOInterface::ImportStats stats;
         stats = iointerface->importMail(param);
@@ -962,7 +926,6 @@ void AisdiRelationsFrame::OnI_ListInboxItemSelect(wxListEvent& event)
     string htmlContent = iointerface->strSequenceReplace("\n", "<br>", subject);    //TODO Naprawić szukanie znaków nowego wiersza
 
     wxString pContent (htmlContent.c_str(), wxConvUTF8 );
-    wxMessageBox(pContent);
     I_HtmlEmailContent->SetPage(pOpen+pContent+pClose);
     I_HtmlEmailContent->SetBackgroundColour(wxColor(20,20,20));
 }

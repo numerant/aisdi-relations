@@ -35,21 +35,6 @@ void PanelInboxMaintance::SetLabels(AisdiRelationsFrame* Frame)
         col.SetWidth(width[i]);
         Frame->I_ListInbox->InsertColumn(i, col);
     }
-    /*wxListItem item;
-    item.SetId(10);
-    item.SetText( _("25.12.2013") );
-    Frame->I_ListInbox->InsertItem( item );
-    Frame->I_ListInbox->SetItem(0,1, wxT("RE: Bowling meeting on Sunday"));
-    Frame->I_ListInbox->SetItem(0,2, wxT("billee@ms.com"));
-    Frame->I_ListInbox->SetItem(0,3, wxT("stevee@apple.com"));
-    Frame->I_ListInbox->SetItem(0,4, wxT("Hey, I'm looking forward to beat You man! :D\n\nCya!!!"));
-    item.SetId(11);
-    item.SetText( _("13.13.2013" ) );
-    Frame->I_ListInbox->InsertItem( item );
-    Frame->I_ListInbox->SetItem(1,1, wxT("Welcome to AISDI-Relations Beta!!!"));
-    Frame->I_ListInbox->SetItem(1,2, wxT("aisdi@elka.pw.edu.pl"));
-    Frame->I_ListInbox->SetItem(1,3, wxT("zalewski@ii.pw.edu.pl"));
-    Frame->I_ListInbox->SetItem(1,4, wxT("Witamy w Becie projektu AISDI-Relations!!!"));*/
 }
 
 void PanelInboxMaintance::SetIcons(AisdiRelationsFrame* Frame)
@@ -91,6 +76,14 @@ void PanelInboxMaintance::SetEmails (AisdiRelationsFrame* Frame)
             sourceString = email->getSubject();
             wxString subject(sourceString.c_str(), wxConvUTF8);
             Frame->I_ListInbox->SetItem(i,1,subject);
+
+            Date date = email->getDate();
+            int day =date.getDay();
+            string month = date.getMonth();
+            int year = date.getYear();
+            ostringstream ss;
+            ss << day;
+            string strdate = ss.str();
         }
     }
 }
