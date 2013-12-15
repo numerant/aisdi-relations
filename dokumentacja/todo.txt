@@ -5,6 +5,24 @@
 Code::Blocks to fajnie wyłapuje w jednym miejscu i nie trzeba szukać (jeśli ktoś używa, a zachęcam. Jak nie to i tak mu nie zaszkodzi). Proponuję kolejne punkty pisać nad poprzednimi, żeby nie przewijać całego pliku na sam dół, dziekuję, miłego czytania.	*/
 
 ---------------------------------------------------------------------------------
+15.12.2013
+>>> Parser - obsługa dziwacznych maili
+	- Zła kolejność pól: Temu można zaradzić wczytując całego stringa (maila), szukać jakiegoś regex'a, jeśli jest to zapisywać go i wywalać go z maila, szukać kolejnego itd. Na końcu zostaną same śmieci, które olewamy. Pytanie tylko jak odróżnić content od śmieci?
+	- Zły format daty: Trzeba koniecznie dodać sprawdzanie, czy np. nie uzyskaliśmy daty 37.15.3450 i nazwy dnia/miesiąca która nie istnieje.
+	- Nadmiarowe spacje/Brak spacji: Jak coś się jebnie i dostaniemy np. Sat,2Nov201216:45:21+0200 - wciąż poprawna data, to wypadałoby to i tak wczytać Proponowane rozwiązanie: zrobić drugą analizę maila z wyciętymi znakami spacji i nowego wiersza dla odpowiednio przygotowanego nowego zestawu regexów bez spacji (tam gdzie jest to możliwe).
+	- Regex'y dla kodowań maila: W ten sposób elegancko oddzielimy kodowanie od treści. A jak nie ma kodowania to chuj, nic się nie dzieje.
+
+>>> Parser - opierdalanie treści/tytułu/usemberów pod względem RE: oraz FWD:
+
+>>> Przemyślenie i reorganizacja User stories
+
+>>> Zbiór maili nadający się do analizy
+	- Na jakimś spotkanku zrobimy szkic przykładowej firmy, stworzymy działy/grupy i podzielimy się na role, by napisać parę maili z sensownym adresowaniem (domenami), contentem, odpowiedziami, forwardami itp.
+
+>>> Analiza relacji
+	- Pomyślałem, że fajnie będzie podzielić algorytm analizy grup roboczych na 'podalgorytmy', które będą realizowały inne założenia wzajemnie się NIE wykluczające, a wręcz dążące do uzupełniania się. W ten sposób użytkownik może wybrać jak chce tworzyć zależności, a my możemy pokazać Zalewskiemu jak dany podalgorytm działa i co się wyświetla. Po drugie, podział prac będzie w ten sposób ułatwiony. Trzeba tylko wydzielić kolejność, które etapy idą najpierw, które później (efekt progresu na ekranie = max pkt. za analizę :D).
+
+-------------------------------ARCHIVE------------------------------------------
 09.12.2013
 >>> Exceptions
 	- Proponuję zachować konwencję JM: 
@@ -13,9 +31,6 @@ Code::Blocks to fajnie wyłapuje w jednym miejscu i nie trzeba szukać (jeśli k
 		- Wszystkie pliki wpierdzielić do osobnego katalogu 'exception'
 		- Pochodne klas trzymać w tym samym pliku, co klasa główna
 	JM: przeniosłem katalog Exception do src, bo to też jest kod źródłowy
-
-06.12.2013
->>> JM: Jeśli chodzi o parser, to Patryk zaproponował, by działał on na strumieniach. Stąd moja sugestia, by go (parser, nie Patryka) nieco zmodyfikować - niech dostaje ścieżkę do pliku, otwiera jako ifstream, później analizuje i zamyka.
 
 29.11.2013
 >>> Do ogarnięcia wg Zalewskiego
@@ -26,8 +41,6 @@ Code::Blocks to fajnie wyłapuje w jednym miejscu i nie trzeba szukać (jeśli k
 	- Error/Exception (MS)
 		- Ogarnięcie klasy Exception z C++
 		- Zapisanie w jakimś pliku informacji o tym oraz jak to można podpiąć pod metody innych klas. W szczególności jakie dziedziczenia by nas interesowały oraz jakby to mogło współpracować z interfejsem WxWidgets.
-
--------------------------------ARCHIVE------------------------------------------
 
 25.11.2013
 >>>	Przydział zadań
