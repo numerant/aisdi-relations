@@ -2,5 +2,5 @@
 
 int Group::getID()
 {
-    return 0;
+    return id;
 }

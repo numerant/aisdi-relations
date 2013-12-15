@@ -1,11 +1,10 @@
-// Struktury zawierające parametry wczytywania / zapisywania maili bądź bazy danych.
-// Można to podzielić na kilka plików, ale to chyba bez sensu (bo i metod za wielu nie będzie, bałagan się nie zrobi, a wszystko będzie w jednym miejscu).
-
-#ifndef PARAMETERS_H
-#define PARAMETERS_H
+#pragma once
 #include <string>
 
 using namespace std;
+
+// Struktury zawierające parametry wczytywania / zapisywania maili bądź bazy danych.
+// Można to podzielić na kilka plików, ale to chyba bez sensu (bo i metod za wielu nie będzie, bałagan się nie zrobi, a wszystko będzie w jednym miejscu).
 
 class Parameters
 {
@@ -28,6 +27,3 @@ private:
     bool isPasswordProtected;
     string password;
 };
-
-
-#endif // PARAMETERS_H

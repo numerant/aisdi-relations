@@ -8,6 +8,7 @@ Date::Date()
 {
 
 }
+
 Date::Date(const Date &date)
 {
     weekDay = date.weekDay;
@@ -21,8 +22,8 @@ Date::Date(const Date &date)
 Date::Date (string newDate)
 {
     string tempString;
-
     stringstream stream;
+
     //weekDay
     stream<<newDate;
     stream>>tempString;
@@ -59,6 +60,7 @@ Date::Date (string newDate)
     stream<<newDate;
     stream>>timeZone;
 }
+
 Date::~Date() {}
 
 string Date::getWeekDate(void)

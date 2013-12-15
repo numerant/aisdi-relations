@@ -35,89 +35,25 @@ private:
     int references;
 
 public:
-    Email() {}
-    ~Email() {}
+    Email();
+    ~Email();
 
-    Usember* getFrom()
-    {
-        return from;
-    }
-    void setFrom(Usember *user)
-    {
-        from = user;
-    }
-
-    Date getDate()
-    {
-        return date;
-    }
-
-    void setDate(Date* newDate)
-    {
-        date = *newDate;
-    }
-
-    Usember* getReplyTo()
-    {
-        return replyTo;
-    }
-    void setReplyTo(Usember *newReplyTo)
-    {
-        replyTo = newReplyTo;
-    }
-
-    int getInReplyTo()
-    {
-        return inReplyTo;
-    }
-    void setInReplyTo(int newInReplyTo)
-    {
-        inReplyTo = newInReplyTo;
-    }
-
-    string getID()
-    {
-        return messageID;
-    }
-
-    void setID(string ID)
-    {
-        messageID = ID;
-    }
-
-    Usember* getTo()
-    {
-        return to;
-    }
-    void setTo(Usember *newTo)
-    {
-        to = newTo;
-    }
-
-    string getSubject()
-    {
-        return subject;
-    }
-    void setSubject(string newSubject)
-    {
-        subject = newSubject;
-    }
-
-    string getContent()
-    {
-        return content;
-    }
-    void setContent(string newContent)
-    {
-        content = newContent;
-    }
-
-    int getReferences()
-    {
-        return references;
-    }
-    void setReferences( int newReferences)
-    {
-        references = newReferences;
-    }
+    Usember* getFrom();
+    void setFrom(Usember *user);
+    Date getDate();
+    void setDate(Date* newDate);
+    Usember* getReplyTo();
+    void setReplyTo(Usember *newReplyTo);
+    int getInReplyTo();
+    void setInReplyTo(int newInReplyTo);
+    string getID();
+    void setID(string ID);
+    Usember* getTo();
+    void setTo(Usember *newTo);
+    string getSubject();
+    void setSubject(string newSubject);
+    string getContent();
+    void setContent(string newContent);
+    int getReferences();
+    void setReferences( int newReferences);
 };

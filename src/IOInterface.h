@@ -1,19 +1,11 @@
-// IOInterface class
-// This class is responsible for all file operations, like database import / export, e-mail import etc.
-
-// Klasa IOInterface
-// Odpowiedzialna za operacje na plikach, takie jak wczytywanie maili do bazy danych, import / eksport bazy, zapisywanie raportów do pliku
-
-#ifndef IOINTERFACE_H
-#define IOINTERFACE_H
-
+#pragma once
 #include <vector>
 #include <fstream>
 #include <string>
 #include <regex>
 #include <boost/regex.hpp>
 #include "boost/filesystem.hpp"         // do wczytywania plików z katalogu - także rekursywnie
-#include "boost/algorithm/string.hpp"	// do zaawansowanych operacji na stringach
+#include "boost/algorithm/string.hpp"   // do zaawansowanych operacji na stringach
 #include "Database.h"
 #include "Email.h"
 #include "Parameters.h"
@@ -22,6 +14,12 @@
 
 using namespace std;
 using namespace boost;
+
+// IOInterface class
+// This class is responsible for all file operations, like database import / export, e-mail import etc.
+
+// Klasa IOInterface
+// Odpowiedzialna za operacje na plikach, takie jak wczytywanie maili do bazy danych, import / eksport bazy, zapisywanie raportów do pliku
 
 class IOInterface
 {
@@ -58,5 +56,3 @@ private:
     void encryptFile (string password);
     void decryptFile (string password);
 };
-
-#endif // IOINTERFACE_H

@@ -1,7 +1,4 @@
-// klasa Usember
-
 #include "Usember.h"
-
 
 Usember::Usember(string usemberName, string domain, string realName)
 {
