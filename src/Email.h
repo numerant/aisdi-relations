@@ -46,7 +46,7 @@ public:
     void setReplyTo(Usember *newReplyTo);
     int getInReplyTo();
     void setInReplyTo(int newInReplyTo);
-    string getID();
+    string getID(void);
     void setID(string ID);
     Usember* getTo();
     void setTo(Usember *newTo);

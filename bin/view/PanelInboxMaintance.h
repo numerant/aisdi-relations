@@ -26,4 +26,7 @@ public:
     void SetSearchEnabled();
 
     bool GetSearchEnabled();
+
+    void EventButtonSearchClick (AisdiRelationsFrame* Frame);
+    void EventListInboxItemSelect (AisdiRelationsFrame* Frame);
 };

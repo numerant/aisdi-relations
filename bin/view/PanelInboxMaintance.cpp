@@ -118,3 +118,46 @@ bool PanelInboxMaintance::GetSearchEnabled()
 {
     return searchEnabled;
 }
+
+void PanelInboxMaintance::EventButtonSearchClick (AisdiRelationsFrame* Frame)
+{
+    if (Frame->P_Inbox->GetSearchEnabled())
+        Frame->I_SearchCtrl->Hide();
+    else
+        Frame->I_SearchCtrl->Show();
+    Frame->P_Inbox->SetSearchEnabled();
+}
+
+void PanelInboxMaintance::EventListInboxItemSelect (AisdiRelationsFrame* Frame)
+{
+	const int COL_COUNT = 5;	//TODO wrzucić to do private
+    long itemIndex = -1;
+    itemIndex = Frame->I_ListInbox->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+
+    wxListItem item;
+    wxString contents[COL_COUNT];
+    wxString pOpen = _("<p align=\"justify\"><font color=\"lightgray\">");
+    wxString pClose = _("</font></p>");
+    item.m_itemId = itemIndex;
+    item.m_mask = wxLIST_MASK_TEXT;
+
+    for (int i = 0; i < COL_COUNT; i++)
+    {
+        item.m_col = i;
+        Frame->I_ListInbox->GetItem( item );
+        contents[i] = item.m_text;
+    }
+    Frame->I_StaticTextDate->SetLabel(contents[0]);
+    Frame->I_StaticTextSubject->SetLabel(contents[1]);
+    Frame->I_StaticTextFrom->SetLabel(contents[2]);
+    Frame->I_StaticTextTo->SetLabel(contents[3]);
+
+    const string search = "\n";
+    const string replace = "<br>";
+    string subject = string (contents[4].mb_str());
+    string htmlContent = Frame->iointerface->strSequenceReplace("\n", "<br>", subject);    //TODO Naprawić szukanie znaków nowego wiersza
+
+    wxString pContent (htmlContent.c_str(), wxConvUTF8 );
+    Frame->I_HtmlEmailContent->SetPage(pOpen+pContent+pClose);
+    Frame->I_HtmlEmailContent->SetBackgroundColour(wxColor(20,20,20));
+}

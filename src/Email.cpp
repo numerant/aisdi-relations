@@ -43,7 +43,7 @@ void Email::setInReplyTo(int newInReplyTo)
     inReplyTo = newInReplyTo;
 }
 
-string Email::getID()
+string Email::getID(void)
 {
     return messageID;
 }

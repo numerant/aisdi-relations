@@ -395,7 +395,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     U_StaticBoxInfo->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
     U_StaticBoxInfo->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
     U_BitmapUsember = new wxStaticBitmap(PanelUsembers, ID_STATICBITMAP7, wxBitmap(wxImage(_T("resources/iconsBig/iconUsember.png")).Rescale(wxSize(100,100).GetWidth(),wxSize(100,100).GetHeight())), wxPoint(720,135), wxSize(100,100), wxSIMPLE_BORDER, _T("ID_STATICBITMAP7"));
-    U_ListUsembers = new wxListCtrl(PanelUsembers, ID_LISTCTRL2, wxPoint(25,130), wxSize(550,570), wxLC_REPORT, wxDefaultValidator, _T("ID_LISTCTRL2"));
+    U_ListUsembers = new wxListCtrl(PanelUsembers, ID_LISTCTRL2, wxPoint(25,130), wxSize(630,570), wxLC_REPORT, wxDefaultValidator, _T("ID_LISTCTRL2"));
     U_ListUsembers->Hide();
     U_ListUsembers->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
     U_ListUsembers->SetBackgroundColour(wxColour(20,20,20));
@@ -501,7 +501,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     PanelMulTree = new wxPanel(PanelMain, ID_PANEL7, wxPoint(1366,0), wxSize(1366,768), wxTAB_TRAVERSAL, _T("ID_PANEL7"));
     PanelMulTree->Hide();
     BitmapBackgroundTree = new wxStaticBitmap(PanelMulTree, ID_STATICBITMAP6, wxBitmap(wxImage(_T("resources/background.jpg")).Rescale(wxSize(1366,768).GetWidth(),wxSize(1366,768).GetHeight())), wxPoint(0,0), wxSize(1366,768), wxSIMPLE_BORDER, _T("ID_STATICBITMAP6"));
-    PanelInbox = new wxPanel(PanelMain, ID_PANEL2, wxPoint(1366,0), wxSize(1366,768), wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxVSCROLL|wxHSCROLL, _T("ID_PANEL2"));
+    PanelInbox = new wxPanel(PanelMain, ID_PANEL2, wxPoint(0,0), wxSize(1366,768), wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxVSCROLL|wxHSCROLL, _T("ID_PANEL2"));
     I_BitmapBackground = new wxStaticBitmap(PanelInbox, ID_STATICBITMAP1, wxBitmap(wxImage(_T("resources/background.jpg")).Rescale(wxSize(1366,768).GetWidth(),wxSize(1366,768).GetHeight())), wxPoint(0,0), wxSize(1366,768), wxSIMPLE_BORDER, _T("ID_STATICBITMAP1"));
     I_LabelTitle = new wxStaticText(PanelInbox, ID_STATICTEXT61, _("Menu"), wxPoint(22,70), wxDefaultSize, wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_STATICTEXT61"));
     I_LabelTitle->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
@@ -582,20 +582,20 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     I_LabelSubject->SetFont(I_LabelSubjectFont);
     I_LineContentSeparator = new wxStaticLine(PanelInbox, ID_STATICLINE1, wxPoint(715,220), wxSize(510,10), wxLI_HORIZONTAL, _T("ID_STATICLINE1"));
     I_HtmlEmailContent = new wxHtmlWindow(PanelInbox, ID_HTMLWINDOW1, wxPoint(720,240), wxSize(510,350), wxHW_SCROLLBAR_AUTO|wxNO_BORDER|wxTAB_TRAVERSAL, _T("ID_HTMLWINDOW1"));
-    I_HtmlEmailContent->SetPage(_("<p align=\"justify\"><font color=\"lightgray\">Donec<br><br> pretium velit nisi, id euismod libero mattis sit amet. Quisque eu volutpat lectus. Nam lacus urna, tincidunt vitae convallis ut, commodo eget augue. Phasellus ornare lacus sapien, sit amet hendrerit neque scelerisque a. Praesent dapibus massa magna, vitae rhoncus turpis malesuada et. Nulla vel suscipit nunc. Integer metus turpis, consectetur non lacinia et, molestie sit amet velit.Donec pretium velit nisi, id euismod libero mattis sit amet. Quisque eu volutpat lectus. Nam lacus urna, tincidunt vitae convallis ut, commodo eget augue. Phasellus ornare lacus sapien, sit amet hendrerit neque scelerisque a. Praesent dapibus massa magna, vitae rhoncus turpis malesuada et. Nulla vel suscipit nunc. Integer metus turpis, consectetur non lacinia et, molestie sit amet velit.Donec pretium velit nisi, id euismod libero mattis sit amet. Quisque eu volutpat lectus. Nam lacus urna, tincidunt vitae convallis ut, commodo eget augue. Phasellus ornare lacus sapien, sit amet hendrerit neque scelerisque a. Praesent dapibus massa magna, vitae rhoncus turpis malesuada et. Nulla vel suscipit nunc. Integer metus turpis, consectetur non lacinia et, molestie sit amet velit.</font></p>"));
+    I_HtmlEmailContent->SetPage(_("<p align=\"justify\"><font color=\"lightgray\"></font></p>"));
     I_HtmlEmailContent->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW));
     I_HtmlEmailContent->SetBackgroundColour(wxColour(20,20,20));
     wxFont I_HtmlEmailContentFont(10,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     I_HtmlEmailContent->SetFont(I_HtmlEmailContentFont);
-    I_StaticTextSubject = new wxStaticText(PanelInbox, ID_STATICTEXT6, wxEmptyString, wxPoint(735,180), wxDefaultSize, 0, _T("ID_STATICTEXT6"));
+    I_StaticTextSubject = new wxStaticText(PanelInbox, ID_STATICTEXT6, wxEmptyString, wxPoint(785,180), wxDefaultSize, 0, _T("ID_STATICTEXT6"));
     I_StaticTextSubject->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_BACKGROUND));
     wxFont I_StaticTextSubjectFont(13,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     I_StaticTextSubject->SetFont(I_StaticTextSubjectFont);
-    I_StaticTextTo = new wxStaticText(PanelInbox, ID_STATICTEXT4, wxEmptyString, wxPoint(710,155), wxDefaultSize, 0, _T("ID_STATICTEXT4"));
+    I_StaticTextTo = new wxStaticText(PanelInbox, ID_STATICTEXT4, wxEmptyString, wxPoint(760,155), wxDefaultSize, 0, _T("ID_STATICTEXT4"));
     I_StaticTextTo->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVEBORDER));
     wxFont I_StaticTextToFont(13,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     I_StaticTextTo->SetFont(I_StaticTextToFont);
-    I_StaticTextFrom = new wxStaticText(PanelInbox, ID_STATICTEXT3, wxEmptyString, wxPoint(710,130), wxDefaultSize, 0, _T("ID_STATICTEXT3"));
+    I_StaticTextFrom = new wxStaticText(PanelInbox, ID_STATICTEXT3, wxEmptyString, wxPoint(760,130), wxDefaultSize, 0, _T("ID_STATICTEXT3"));
     I_StaticTextFrom->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVEBORDER));
     wxFont I_StaticTextFromFont(13,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     I_StaticTextFrom->SetFont(I_StaticTextFromFont);
@@ -788,15 +788,7 @@ void AisdiRelationsFrame::OnAbout(wxCommandEvent& event)
 
 void AisdiRelationsFrame::OnT_ImageButtonAddClick(wxCommandEvent& event)
 {
-    P_Title->SetClickedAdd();
-    if (! P_Title->GetClickedAdd())
-    {
-        if ( P_Title->GetClickedLoad() )
-            P_Title->SetClickedLoad();
-        if ( P_Title->GetClickedImport() )
-            P_Title->SetClickedImport();
-    }
-    P_Title->UpdateLoadingIcons(this);
+    P_Title->EventButtonAddClick(this);
 }
 
 void AisdiRelationsFrame::OnT_ImageButtonImportClick(wxCommandEvent& event)
@@ -843,20 +835,12 @@ void AisdiRelationsFrame::OnU_ImageButtonTitleClick(wxCommandEvent& event)
 
 void AisdiRelationsFrame::OnI_ImageButtonSearchClick(wxCommandEvent& event)
 {
-    if (P_Inbox->GetSearchEnabled())
-        I_SearchCtrl->Hide();
-    else
-        I_SearchCtrl->Show();
-    P_Inbox->SetSearchEnabled();
+    P_Inbox->EventButtonSearchClick(this);
 }
 
 void AisdiRelationsFrame::OnU_ImageButtonSearchClick(wxCommandEvent& event)
 {
-    if (P_Usembers->GetSearchEnabled())
-        U_SearchCtrl->Hide();
-    else
-        U_SearchCtrl->Show();
-    P_Usembers->SetSearchEnabled();
+    P_Usembers->EventButtonSearchClick(this);
 }
 
 void AisdiRelationsFrame::OnU_ImageButtonSwitchListClick(wxCommandEvent& event)
@@ -866,79 +850,15 @@ void AisdiRelationsFrame::OnU_ImageButtonSwitchListClick(wxCommandEvent& event)
 
 void AisdiRelationsFrame::OnT_ImageButtonFolderClick(wxCommandEvent& event)
 {
-    if (DirDialog->ShowModal() == wxID_OK)
-    {
-        MailParameters * param = new MailParameters();
-        wxString str = DirDialog->GetPath();
-        param->path = str.mb_str();
-        param->isDirectory = true;
-        param->recursiveImport = false;
-
-        IOInterface::ImportStats stats;
-        stats = iointerface->importMail(param);
-
-        P_Inbox->SetEmails(this);
-        if (stats.successCount > 0)
-        {
-            P_Title->SwitchIcons(this);
-            wxMessageBox(_("Pomyślnie wczytano!"));
-        }
-    }
+   P_Title->EventButtonFolderClick(this);
 }
 
 void AisdiRelationsFrame::OnT_ImageButtonFilesClick(wxCommandEvent& event)
 {
-    if (FileDialog->ShowModal() == wxID_OK)
-    {
-        wxArrayString paths;
-        FileDialog->GetPaths(paths);
-        MailParameters * param = new MailParameters();
-        param->path = paths[0].mb_str();
-        param->isDirectory = false;
-        param->recursiveImport = false;
-
-        IOInterface::ImportStats stats;
-        stats = iointerface->importMail(param);
-
-        P_Inbox->SetEmails(this);
-        if (stats.successCount > 0)
-        {
-            P_Title->SwitchIcons(this);
-            wxMessageBox(_("Pomyślnie wczytano!"));
-        }
-    }
+    P_Title->EventButtonFilesClick(this);
 }
 
 void AisdiRelationsFrame::OnI_ListInboxItemSelect(wxListEvent& event)
 {
-    const int COL_COUNT = 5;
-    long itemIndex = -1;
-    itemIndex = I_ListInbox->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
-
-    wxListItem item;
-    wxString contents[COL_COUNT];
-    wxString pOpen = _("<p align=\"justify\"><font color=\"lightgray\">");
-    wxString pClose = _("</font></p>");
-    item.m_itemId = itemIndex;
-    item.m_mask = wxLIST_MASK_TEXT;
-
-    for (int i = 0; i < COL_COUNT; i++)
-    {
-        item.m_col = i;
-        I_ListInbox->GetItem( item );
-        contents[i] = item.m_text;
-    }
-    I_StaticTextDate->SetLabel(contents[0]);
-    I_StaticTextSubject->SetLabel(contents[1]);
-    I_StaticTextFrom->SetLabel(contents[2]);
-    I_StaticTextTo->SetLabel(contents[3]);
-
-    const string search = "\n";
-    const string replace = "<br>";
-    string subject = string (contents[4].mb_str());
-    string htmlContent = iointerface->strSequenceReplace("\n", "<br>", subject);    //TODO Naprawić szukanie znaków nowego wiersza
-
-    wxString pContent (htmlContent.c_str(), wxConvUTF8 );
-    I_HtmlEmailContent->SetPage(pOpen+pContent+pClose);
-    I_HtmlEmailContent->SetBackgroundColour(wxColor(20,20,20));
+    P_Inbox->EventListInboxItemSelect(this);
 }

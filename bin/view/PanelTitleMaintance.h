@@ -1,5 +1,7 @@
 #pragma once
 #include "../AisdiRelationsMain.h"
+#include <wx/msgdlg.h>
+#include "PanelInboxMaintance.h"
 
 class PanelTitleMaintance
 {
@@ -33,4 +35,8 @@ public:
     bool GetClickedAdd (void);
     bool GetClickedLoad (void);
     bool GetClickedImport (void);
+
+    void EventButtonAddClick (AisdiRelationsFrame* Frame);
+    void EventButtonFolderClick (AisdiRelationsFrame* Frame);
+    void EventButtonFilesClick (AisdiRelationsFrame* Frame);
 };

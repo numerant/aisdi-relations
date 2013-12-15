@@ -227,3 +227,61 @@ bool PanelTitleMaintance::GetClickedImport (void)
 {
     return clickedImport;
 }
+
+void PanelTitleMaintance::EventButtonAddClick (AisdiRelationsFrame* Frame)
+{
+	Frame->P_Title->SetClickedAdd();
+    if (! Frame->P_Title->GetClickedAdd())
+    {
+        if ( Frame->P_Title->GetClickedLoad() )
+            Frame->P_Title->SetClickedLoad();
+        if ( Frame->P_Title->GetClickedImport() )
+            Frame->P_Title->SetClickedImport();
+    }
+    Frame->P_Title->UpdateLoadingIcons(Frame);
+}
+
+void PanelTitleMaintance::EventButtonFolderClick (AisdiRelationsFrame* Frame)
+{
+ if (Frame->DirDialog->ShowModal() == wxID_OK)
+    {
+        MailParameters * param = new MailParameters();
+        wxString str = Frame->DirDialog->GetPath();
+        param->path = str.mb_str();
+        param->isDirectory = true;                  //TODO podpiąć warunki pod pola panelu Options...
+        param->recursiveImport = false;         //...którego  trzeba najpierw zrobić
+
+        IOInterface::ImportStats stats;
+        stats = Frame->iointerface->importMail(param);
+
+        Frame->P_Inbox->SetEmails(Frame);
+        if (stats.successCount > 0)
+        {
+            Frame->P_Title->SwitchIcons(Frame);
+            wxMessageBox(_("Pomyślnie wczytano!"));     //TODO Zamienić na wyświetlanie raportu
+        }
+    }
+}
+
+void PanelTitleMaintance::EventButtonFilesClick (AisdiRelationsFrame* Frame)
+{
+ if (Frame->FileDialog->ShowModal() == wxID_OK)
+    {
+        wxArrayString paths;
+        Frame->FileDialog->GetPaths(paths);
+        MailParameters * param = new MailParameters();
+        param->path = paths[0].mb_str();
+        param->isDirectory = false;
+        param->recursiveImport = false;
+
+        IOInterface::ImportStats stats;
+        stats = Frame->iointerface->importMail(param);
+
+        Frame->P_Inbox->SetEmails(Frame);
+        if (stats.successCount > 0)
+        {
+            Frame->P_Title->SwitchIcons(Frame);
+            wxMessageBox(_("Pomyślnie wczytano!"));
+        }
+    }
+}

@@ -52,7 +52,7 @@ void PanelUsembersMaintance:: SetLabels(AisdiRelationsFrame* Frame)
     wxListItem col;
 
     wxString labels1[3] = {_("Nazwa:"), _("Email:"), _("Grupa:")};    //etykiety do przypasowania liście usemberów
-    wxString labels2[4] = {_("Data:"), _("Temat:"), _("Od:"), _("Do:"), _("Treść")};    //oraz skrzynkom emailowym
+    wxString labels2[5] = {_("Data:"), _("Temat:"), _("Od:"), _("Do:"), _("Treść")};    //oraz skrzynkom emailowym
     int width[4] = {90, 290, 250, 1};
 
     for (int i = 0; i < 3; i++)         //przypisujemy etykiety dla Usemberów do kolumn w pętli
@@ -137,4 +137,13 @@ void PanelUsembersMaintance::SetSearchEnabled()
 bool PanelUsembersMaintance::GetSearchEnabled()
 {
     return searchEnabled;
+}
+
+void PanelUsembersMaintance::EventButtonSearchClick (AisdiRelationsFrame* Frame)
+{
+ if (Frame->P_Usembers->GetSearchEnabled())
+        Frame->U_SearchCtrl->Hide();
+    else
+        Frame->U_SearchCtrl->Show();
+    Frame->P_Usembers->SetSearchEnabled();
 }

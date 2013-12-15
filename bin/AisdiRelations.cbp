@@ -50,6 +50,7 @@
 		<Unit filename="../src/Database.h" />
 		<Unit filename="../src/Date.cpp" />
 		<Unit filename="../src/Date.h" />
+		<Unit filename="../src/Email.cpp" />
 		<Unit filename="../src/Email.h" />
 		<Unit filename="../src/EmailQuery.h" />
 		<Unit filename="../src/Exception/IOException.h" />

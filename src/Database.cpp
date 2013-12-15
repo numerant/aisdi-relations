@@ -16,10 +16,10 @@ bool Database::addEmail(Email* email)
         return true;
     }
 
-    if(findEmail(email->getID())==-1)
+    if(findEmail(email->getID()) ==-1)
     {
         emailVector.push_back(email);
-        sort (emailVector.begin(), emailVector.end()); 
+        sort (emailVector.begin(), emailVector.end());
         return true;
     }
     else

@@ -27,4 +27,6 @@ public:
     void SetSearchEnabled();
 
     bool GetSearchEnabled();
+
+    void EventButtonSearchClick (AisdiRelationsFrame* Frame);
 };
