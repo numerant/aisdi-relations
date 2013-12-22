@@ -14,13 +14,13 @@ Code::Blocks to fajnie wyłapuje w jednym miejscu i nie trzeba szukać (jeśli k
 
 >>> Parser - opierdalanie treści/tytułu/usemberów pod względem RE: oraz FWD:
 
->>> Przemyślenie i reorganizacja User stories
-
 >>> Zbiór maili nadający się do analizy
-	- Na jakimś spotkanku zrobimy szkic przykładowej firmy, stworzymy działy/grupy i podzielimy się na role, by napisać parę maili z sensownym adresowaniem (domenami), contentem, odpowiedziami, forwardami itp.
+	- Proponowane rozwiązanie to generowanie losowego grafu firmy, przydział maili do usemberów i na tej podstawie odtwarzane będą w programie zależności
 
 >>> Analiza relacji
 	- Pomyślałem, że fajnie będzie podzielić algorytm analizy grup roboczych na 'podalgorytmy', które będą realizowały inne założenia wzajemnie się NIE wykluczające, a wręcz dążące do uzupełniania się. W ten sposób użytkownik może wybrać jak chce tworzyć zależności, a my możemy pokazać Zalewskiemu jak dany podalgorytm działa i co się wyświetla. Po drugie, podział prac będzie w ten sposób ułatwiony. Trzeba tylko wydzielić kolejność, które etapy idą najpierw, które później (efekt progresu na ekranie = max pkt. za analizę :D).
+
+>>> Zrobienie i wysłanie specyfikacji z uaktualnionym podziałem zadań odnośnie sprintu II
 
 -------------------------------ARCHIVE------------------------------------------
 09.12.2013

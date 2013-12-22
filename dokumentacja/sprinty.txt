@@ -2,7 +2,7 @@
 
 ======================================================================================================================================
 *** SPRINT 1 ****
-„Szkielet” programu - Definicje klas -  Interfejs - Wczytywanie do bazy - Wyświetlanie - Wyszukiwanie
+„Szkielet” programu - Definicje klas -  Interfejs - Wczytywanie do bazy - Wyświetlanie - Grafika
 --------------------------------------------------------------------------------------------------------------------------------------
 
 1) [EDIT] Jako użytkownik (end-user) chcę mieć możliwość prostego wybrania żądanej operacji poprzez nieskomplikowane menu.
@@ -29,7 +29,7 @@
 
 ======================================================================================================================================
 *** SPRINT 2 ***
-Zapisywanie - Edycja - Statystyki - Analiza - Sortowanie
+Zapisywanie - Statystyki - Analiza - Sortowanie - Wyszukiwanie
 --------------------------------------------------------------------------------------------------------------------------------------
 
 1) Chcę, by bazę danych można było wyeksportować do pliku.
@@ -50,11 +50,9 @@ Zapisywanie - Edycja - Statystyki - Analiza - Sortowanie
 
 9) Jako szef firmy chcę mieć możliwość otrzymania listy grup roboczych i ich członków oraz zależności między grupami (np. wyświetlenie grup komunikujących się z podaną).
 
-10) Jako administrator bazy danych chcę, by dostęp do danych chroniony był hasłem celem uniemożliwienia niepowołanego dostępu.
-
 ======================================================================================================================================
 *** SPRINT 3 ***
-Drzewo - „Grafika” - Ulepszenia "Front-endu/Back-endu" - Testy
+Drzewo - Ulepszenia "Front-endu/Back-endu" - Testy
 --------------------------------------------------------------------------------------------------------------------------------------
 
 1) Autoimport i autoaktualizacja baz danych (przy wczytaniu bazy katalog z listami jest skanowany, czy nie pojawiły się jakieś nowe)
@@ -65,6 +63,8 @@ Drzewo - „Grafika” - Ulepszenia "Front-endu/Back-endu" - Testy
 
 4) Przechowywanie wiadomości w zaszyfrowanej formie i deszyfrowanie podczas uruchamiania programu, po autoryzacji użytkownika.
 
-5) Reprezentacja zależności pomiędzy grupami oraz pomiędzy członkami danej grupy w formie grafu.
+5) Reprezentacja zależności pomiędzy grupami oraz pomiędzy członkami danej grupy w formie grafu.\
+
+6) Jako administrator bazy danych chcę, by dostęp do danych chroniony był hasłem celem uniemożliwienia niepowołanego dostępu.
 
 ======================================================================================================================================
