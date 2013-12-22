@@ -6,7 +6,7 @@ class PanelStatisticsMaintance
     friend class AisdiRelationsFrame;
 
 private:
-    bool panelEnabled = false;
+    bool panelEnabled = true;
 
 public:
     PanelStatisticsMaintance ();

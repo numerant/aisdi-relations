@@ -25,7 +25,6 @@ void PanelInboxMaintance::SetLabels(AisdiRelationsFrame* Frame)
     wxListItem col;     //obiekt reprezentujący etykietę
     const int COLUMN_COUNT = 5;   //liczba kolumns
 
-    // TODO Rozszerzyć adresy w liście a zwęzić pole contentu (analogicznie dla Usembera!!!!!!!)
     wxString labels[COLUMN_COUNT] = {_("Data:"), _("Temat:"), _("Od:"), _("Do:"), _("Treść")};      //etykiety
     int width[COLUMN_COUNT] = {90, 220, 160, 160, 1};      //szerokości kolumn, sumuje się do 630px
 
@@ -130,7 +129,7 @@ void PanelInboxMaintance::EventButtonSearchClick (AisdiRelationsFrame* Frame)
 
 void PanelInboxMaintance::EventListInboxItemSelect (AisdiRelationsFrame* Frame)
 {
-	const int COL_COUNT = 5;	//TODO wrzucić to do private
+    const int COL_COUNT = 5;	//TODO wrzucić to do private
     long itemIndex = -1;
     itemIndex = Frame->I_ListInbox->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
 

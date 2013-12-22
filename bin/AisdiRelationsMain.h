@@ -47,11 +47,13 @@ class AisdiRelationsFrame: public wxFrame
     friend class PanelMulTreeMaintance;
     friend class PanelStatisticsMaintance;
     friend class PanelUsembersMaintance;
-    bool settingsEnabled = false;
 public:
 
     AisdiRelationsFrame(wxWindow* parent,wxWindowID id = -1);
     virtual ~AisdiRelationsFrame();
+
+    /** Dopisane pola */
+    bool settingsEnabled = true;
 
     /** Dopisane metody */
     void  ShowTitle(void);
@@ -78,6 +80,41 @@ private:
     void OnT_ImageButtonFilesClick(wxCommandEvent& event);
     void OnI_ListInboxItemSelect(wxListEvent& event);
     void OnI_ListInboxItemActivated(wxListEvent& event);
+    void OnI_ImageButtonAddClick(wxCommandEvent& event);
+    void OnI_ImageButtonSaveClick(wxCommandEvent& event);
+    void OnI_ImageButtonSettingsClick(wxCommandEvent& event);
+    void OnI_ImageButtonMulTreeClick(wxCommandEvent& event);
+    void OnI_ImageButtonStatsClick(wxCommandEvent& event);
+    void OnI_ImageButtonGroupsClick(wxCommandEvent& event);
+    void OnI_ImageButtonDeleteClick(wxCommandEvent& event);
+    void OnI_ImageButtonSenderClick(wxCommandEvent& event);
+    void OnI_ImageButtonReceiverClick(wxCommandEvent& event);
+    void OnI_ImageButtonShowTreeClick(wxCommandEvent& event);
+    void OnI_SearchCtrlTextEnter(wxCommandEvent& event);
+    void OnI_ListInboxColumnClick(wxListEvent& event);
+    void OnU_ImageButtonAddClick(wxCommandEvent& event);
+    void OnU_ImageButtonSaveClick(wxCommandEvent& event);
+    void OnU_ImageButtonSettingsClick(wxCommandEvent& event);
+    void OnU_ImageButtonMulTreeClick(wxCommandEvent& event);
+    void OnU_ImageButtonDeleteClick(wxCommandEvent& event);
+    void OnU_ImageButtonShowGroupClick(wxCommandEvent& event);
+    void OnU_ImageButtonGroupsClick(wxCommandEvent& event);
+    void OnU_ImageButtonStatsClick(wxCommandEvent& event);
+    void OnU_ImageButtonDeleteClick1(wxCommandEvent& event);
+    void OnU_ImageButtonSwitchContentClick(wxCommandEvent& event);
+    void OnU_SearchCtrlTextEnter(wxCommandEvent& event);
+    void OnU_ListUsembersItemSelect(wxListEvent& event);
+    void OnU_ListUsembersColumnClick(wxListEvent& event);
+    void OnU_ListOutboxItemSelect(wxListEvent& event);
+    void OnU_ListOutboxColumnClick(wxListEvent& event);
+    void OnU_ListInboxItemSelect(wxListEvent& event);
+    void OnU_ListInboxColumnClick(wxListEvent& event);
+    void OnT_ImageButtonMulTreeClick(wxCommandEvent& event);
+    void OnT_ImageButtonStatsClick(wxCommandEvent& event);
+    void OnT_ImageButtonGroupsClick(wxCommandEvent& event);
+    void OnT_ImageButtonSettingsClick(wxCommandEvent& event);
+    void OnT_ImageButtonTxtClick(wxCommandEvent& event);
+    void OnT_ImageButtonBinClick(wxCommandEvent& event);
     //*)
 
     //(*Identifiers(AisdiRelationsFrame)

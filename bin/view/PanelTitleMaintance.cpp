@@ -230,7 +230,7 @@ bool PanelTitleMaintance::GetClickedImport (void)
 
 void PanelTitleMaintance::EventButtonAddClick (AisdiRelationsFrame* Frame)
 {
-	Frame->P_Title->SetClickedAdd();
+    Frame->P_Title->SetClickedAdd();
     if (! Frame->P_Title->GetClickedAdd())
     {
         if ( Frame->P_Title->GetClickedLoad() )
@@ -243,7 +243,7 @@ void PanelTitleMaintance::EventButtonAddClick (AisdiRelationsFrame* Frame)
 
 void PanelTitleMaintance::EventButtonFolderClick (AisdiRelationsFrame* Frame)
 {
- if (Frame->DirDialog->ShowModal() == wxID_OK)
+    if (Frame->DirDialog->ShowModal() == wxID_OK)
     {
         MailParameters * param = new MailParameters();
         wxString str = Frame->DirDialog->GetPath();
@@ -265,7 +265,7 @@ void PanelTitleMaintance::EventButtonFolderClick (AisdiRelationsFrame* Frame)
 
 void PanelTitleMaintance::EventButtonFilesClick (AisdiRelationsFrame* Frame)
 {
- if (Frame->FileDialog->ShowModal() == wxID_OK)
+    if (Frame->FileDialog->ShowModal() == wxID_OK)
     {
         wxArrayString paths;
         Frame->FileDialog->GetPaths(paths);

@@ -3,8 +3,8 @@
 class Group
 {
 private:
-	unsigned int id;
-	
+    unsigned int id;
+
 public:
     int getID();
 };

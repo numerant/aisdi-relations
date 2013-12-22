@@ -11,13 +11,13 @@ using namespace std;
 class Date
 {
 private:
-        //pola przechowujące wszystkie elementy daty emaila
+    //pola przechowujące wszystkie elementy daty emaila
     string weekDay;
-    int day;  
-    string month;   
+    int day;
+    string month;
     int monthInt;
-    int year;  
-    int hour;   
+    int year;
+    int hour;
     int minute;
     int second;
     string timeZone;

@@ -18,7 +18,7 @@
 			<pos>0,0</pos>
 			<bg>#000000</bg>
 			<object class="wxPanel" name="ID_PANEL3" variable="PanelTitle" member="yes">
-				<pos>0,0</pos>
+				<pos>1366,0</pos>
 				<size>1366,768</size>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP2" variable="BitmapBackgroundTitle" member="yes">
 					<bitmap>resources/background.jpg</bitmap>
@@ -69,6 +69,7 @@
 					<pos>700,450</pos>
 					<size>112,112</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnT_ImageButtonMulTreeClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON36" variable="T_ImageButtonStats" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -79,6 +80,7 @@
 					<pos>500,450</pos>
 					<size>112,112</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnT_ImageButtonStatsClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON35" variable="T_ImageButtonGroups" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -89,6 +91,7 @@
 					<pos>800,300</pos>
 					<size>112,112</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnT_ImageButtonGroupsClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON34" variable="T_ImageButtonUsembers" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -121,6 +124,7 @@
 					<pos>1200,15</pos>
 					<size>60,60</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnT_ImageButtonSettingsClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON18" variable="T_ImageButtonTxt" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -130,8 +134,8 @@
 					<focus_index>&lt;none&gt;</focus_index>
 					<pos>990,424</pos>
 					<size>112,112</size>
-					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnT_ImageButtonTxtClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON17" variable="T_ImageButtonBin" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -141,8 +145,8 @@
 					<focus_index>&lt;none&gt;</focus_index>
 					<pos>990,564</pos>
 					<size>112,112</size>
-					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnT_ImageButtonBinClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON16" variable="T_ImageButtonFolder" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -394,7 +398,7 @@
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL4" variable="PanelUsembers" member="yes">
-				<pos>0,0</pos>
+				<pos>1366,0</pos>
 				<size>1366,768</size>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP3" variable="BitmapBackgroundUsembers" member="yes">
 					<bitmap>resources/background.jpg</bitmap>
@@ -608,6 +612,8 @@
 						<face>Ubuntu</face>
 					</font>
 					<style>wxLC_REPORT</style>
+					<handler function="OnU_ListUsembersItemSelect" entry="EVT_LIST_ITEM_SELECTED" />
+					<handler function="OnU_ListUsembersColumnClick" entry="EVT_LIST_COL_CLICK" />
 				</object>
 				<object class="wxListCtrl" name="ID_LISTCTRL4" variable="U_ListOutbox" member="yes">
 					<pos>25,425</pos>
@@ -622,6 +628,8 @@
 						<face>Ubuntu</face>
 					</font>
 					<style>wxLC_REPORT</style>
+					<handler function="OnU_ListOutboxItemSelect" entry="EVT_LIST_ITEM_SELECTED" />
+					<handler function="OnU_ListOutboxColumnClick" entry="EVT_LIST_COL_CLICK" />
 				</object>
 				<object class="wxListCtrl" name="ID_LISTCTRL3" variable="U_ListInbox" member="yes">
 					<pos>25,130</pos>
@@ -636,6 +644,8 @@
 						<face>Ubuntu</face>
 					</font>
 					<style>wxLC_REPORT</style>
+					<handler function="OnU_ListInboxItemSelect" entry="EVT_LIST_ITEM_SELECTED" />
+					<handler function="OnU_ListInboxColumnClick" entry="EVT_LIST_COL_CLICK" />
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT17" variable="U_StaticTextGroup" member="yes">
 					<label></label>
@@ -832,8 +842,8 @@
 					<focus_index>&lt;none&gt;</focus_index>
 					<pos>1190,620</pos>
 					<size>60,60</size>
-					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnU_ImageButtonSwitchContentClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON9" variable="U_ImageButtonShowGroup" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -844,6 +854,7 @@
 					<pos>790,620</pos>
 					<size>60,60</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnU_ImageButtonShowGroupClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON8" variable="U_ImageButtonDelete" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -853,8 +864,8 @@
 					<focus_index>&lt;none&gt;</focus_index>
 					<pos>700,620</pos>
 					<size>60,60</size>
-					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnU_ImageButtonDeleteClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON7" variable="U_ImageButtonMulTree" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -865,6 +876,7 @@
 					<pos>910,10</pos>
 					<size>60,60</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnU_ImageButtonMulTreeClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON6" variable="U_ImageButtonStats" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -875,6 +887,7 @@
 					<pos>1000,10</pos>
 					<size>60,60</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnU_ImageButtonStatsClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON5" variable="U_ImageButtonGroups" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -885,6 +898,7 @@
 					<pos>1090,10</pos>
 					<size>60,60</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnU_ImageButtonGroupsClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON4" variable="U_ImageButtonInbox" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -905,8 +919,8 @@
 					<focus_index>&lt;none&gt;</focus_index>
 					<pos>370,10</pos>
 					<size>60,60</size>
-					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnU_ImageButtonSettingsClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON3" variable="U_ImageButtonSearch" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -927,8 +941,8 @@
 					<focus_index>&lt;none&gt;</focus_index>
 					<pos>190,10</pos>
 					<size>60,60</size>
-					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnU_ImageButtonSaveClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON1" variable="U_ImageButtonAdd" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -938,8 +952,8 @@
 					<focus_index>&lt;none&gt;</focus_index>
 					<pos>100,10</pos>
 					<size>60,60</size>
-					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnU_ImageButtonAddClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON39" variable="U_ImageButtonTitle" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -957,12 +971,13 @@
 					<size>630,25</size>
 					<hidden>1</hidden>
 					<fg>wxSYS_COLOUR_HIGHLIGHT</fg>
+					<style>wxTE_PROCESS_ENTER</style>
+					<handler function="OnU_SearchCtrlTextEnter" entry="EVT_TEXT_ENTER" />
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL5" variable="PanelStatistics" member="yes">
-				<pos>1366,0</pos>
+				<pos>0,0</pos>
 				<size>1366,768</size>
-				<hidden>1</hidden>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP4" variable="BitmapBackgroundStatistics" member="yes">
 					<bitmap>resources/background.jpg</bitmap>
 					<pos>0,0</pos>
@@ -989,7 +1004,7 @@
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL2" variable="PanelInbox" member="yes">
-				<pos>0,0</pos>
+				<pos>1366,0</pos>
 				<size>1366,768</size>
 				<style>wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxVSCROLL|wxHSCROLL</style>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP1" variable="I_BitmapBackground" member="yes">
@@ -1194,6 +1209,7 @@
 					</font>
 					<style>wxLC_REPORT</style>
 					<handler function="OnI_ListInboxItemSelect" entry="EVT_LIST_ITEM_SELECTED" />
+					<handler function="OnI_ListInboxColumnClick" entry="EVT_LIST_COL_CLICK" />
 				</object>
 				<object class="wxStaticBox" name="ID_STATICBOX2" variable="I_EmailContentBorder" member="yes">
 					<pos>700,103</pos>
@@ -1324,8 +1340,8 @@
 					<focus_index>&lt;none&gt;</focus_index>
 					<pos>970,620</pos>
 					<size>60,60</size>
-					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnI_ImageButtonShowTreeClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON28" variable="I_ImageButtonReceiver" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -1335,8 +1351,8 @@
 					<focus_index>&lt;none&gt;</focus_index>
 					<pos>880,620</pos>
 					<size>60,60</size>
-					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnI_ImageButtonReceiverClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON27" variable="I_ImageButtonSender" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -1346,8 +1362,8 @@
 					<focus_index>&lt;none&gt;</focus_index>
 					<pos>790,620</pos>
 					<size>60,60</size>
-					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnI_ImageButtonSenderClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON26" variable="I_ImageButtonDelete" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -1357,8 +1373,8 @@
 					<focus_index>&lt;none&gt;</focus_index>
 					<pos>700,620</pos>
 					<size>60,60</size>
-					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnI_ImageButtonDeleteClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON25" variable="I_ImageButtonMulTree" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -1369,6 +1385,7 @@
 					<pos>910,10</pos>
 					<size>60,60</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnI_ImageButtonMulTreeClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON24" variable="I_ImageButtonStats" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -1379,6 +1396,7 @@
 					<pos>1000,10</pos>
 					<size>60,60</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnI_ImageButtonStatsClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON23" variable="I_ImageButtonGroups" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -1389,6 +1407,7 @@
 					<pos>1090,10</pos>
 					<size>60,60</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnI_ImageButtonGroupsClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON22" variable="I_ImageButtonUsembers" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -1409,8 +1428,8 @@
 					<focus_index>&lt;none&gt;</focus_index>
 					<pos>370,10</pos>
 					<size>60,60</size>
-					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnI_ImageButtonSettingsClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON21" variable="I_ImageButtonSearch" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -1431,8 +1450,8 @@
 					<focus_index>&lt;none&gt;</focus_index>
 					<pos>190,10</pos>
 					<size>60,60</size>
-					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnI_ImageButtonSaveClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON38" variable="I_ImageButtonTitle" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -1453,14 +1472,16 @@
 					<focus_index>&lt;none&gt;</focus_index>
 					<pos>100,10</pos>
 					<size>60,60</size>
-					<enabled>0</enabled>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnI_ImageButtonAddClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxSearchCtrl" name="ID_SEARCHCTRL1" variable="I_SearchCtrl" member="yes">
 					<pos>25,130</pos>
 					<size>630,25</size>
 					<hidden>1</hidden>
 					<fg>wxSYS_COLOUR_HIGHLIGHT</fg>
+					<style>wxTE_PROCESS_ENTER</style>
+					<handler function="OnI_SearchCtrlTextEnter" entry="EVT_TEXT_ENTER" />
 				</object>
 			</object>
 		</object>

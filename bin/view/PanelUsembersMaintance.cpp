@@ -141,7 +141,7 @@ bool PanelUsembersMaintance::GetSearchEnabled()
 
 void PanelUsembersMaintance::EventButtonSearchClick (AisdiRelationsFrame* Frame)
 {
- if (Frame->P_Usembers->GetSearchEnabled())
+    if (Frame->P_Usembers->GetSearchEnabled())
         Frame->U_SearchCtrl->Hide();
     else
         Frame->U_SearchCtrl->Show();
