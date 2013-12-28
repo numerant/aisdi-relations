@@ -160,3 +160,9 @@ void PanelInboxMaintance::EventListInboxItemSelect (AisdiRelationsFrame* Frame)
     Frame->I_HtmlEmailContent->SetPage(pOpen+pContent+pClose);
     Frame->I_HtmlEmailContent->SetBackgroundColour(wxColor(20,20,20));
 }
+
+void PanelInboxMaintance::EventButtonAddClick (AisdiRelationsFrame * Frame)
+{
+
+}
+

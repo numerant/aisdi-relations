@@ -25,6 +25,7 @@ class PanelUsembersMaintance;
 
 //(*Headers(AisdiRelationsFrame)
 #include <wx/bmpbuttn.h>
+#include <wx/checkbox.h>
 #include <wx/listctrl.h>
 #include <wx/menu.h>
 #include <wx/dirdlg.h>
@@ -115,6 +116,7 @@ private:
     void OnT_ImageButtonSettingsClick(wxCommandEvent& event);
     void OnT_ImageButtonTxtClick(wxCommandEvent& event);
     void OnT_ImageButtonBinClick(wxCommandEvent& event);
+    void OnT_CheckBoxRecursiveClick(wxCommandEvent& event);
     //*)
 
     //(*Identifiers(AisdiRelationsFrame)
@@ -152,6 +154,9 @@ private:
     static const long ID_STATICTEXT26;
     static const long ID_STATICTEXT25;
     static const long ID_STATICTEXT24;
+    static const long ID_STATICBOX5;
+    static const long ID_CHECKBOX1;
+    static const long ID_PANEL10;
     static const long ID_PANEL3;
     static const long ID_STATICBITMAP3;
     static const long ID_STATICTEXT54;
@@ -331,6 +336,7 @@ private:
     wxStaticLine* T_StaticLineImportH;
     wxPanel* PanelMain;
     wxBitmapButton        *T_ImageButtonGroups;
+    wxPanel* T_PanelSettings;
     wxSearchCtrl* I_SearchCtrl;
     wxBitmapButton        *U_ImageButtonStats;
     wxStaticText* I_LabelAdd;
@@ -381,6 +387,7 @@ private:
     wxStaticText* U_StaticTextFromTo;
     wxStaticText* U_LabelSearch;
     wxStaticText* T_LabelInbox;
+    wxStaticBox* T_BorderSettings;
     wxMenuItem* MenuItem6;
     wxMenuItem* MenuItem7;
     wxMenuItem* MenuItem4;
@@ -407,6 +414,7 @@ private:
     wxStaticText* T_StaticTextTitle2;
     wxMenuItem* MenuItem8;
     wxStaticBitmap* BitmapBackgroundStatistics;
+    wxCheckBox* T_CheckBoxRecursive;
     wxStaticText* I_LabelTitle;
     wxStaticText* T_LabelImport;
     wxStaticText* I_LabelReceiver;

@@ -4,7 +4,7 @@
 		<title>Analiza Relacji Biznesowych</title>
 		<centered>1</centered>
 		<icon>resources/iconProgram.png</icon>
-		<size>1366,768</size>
+		<size>1366,750</size>
 		<font>
 			<size>12</size>
 			<style>normal</style>
@@ -13,13 +13,13 @@
 			<face>Ubuntu</face>
 		</font>
 		<id_arg>0</id_arg>
-		<style>wxDEFAULT_FRAME_STYLE|wxMAXIMIZE_BOX|wxVSCROLL|wxHSCROLL</style>
+		<style>wxDEFAULT_FRAME_STYLE|wxVSCROLL|wxHSCROLL</style>
 		<object class="wxPanel" name="ID_PANEL1" variable="PanelMain" member="yes">
 			<pos>0,0</pos>
 			<bg>#000000</bg>
 			<object class="wxPanel" name="ID_PANEL3" variable="PanelTitle" member="yes">
-				<pos>1366,0</pos>
-				<size>1366,768</size>
+				<pos>0,0</pos>
+				<size>1366,750</size>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP2" variable="BitmapBackgroundTitle" member="yes">
 					<bitmap>resources/background.jpg</bitmap>
 					<pos>0,0</pos>
@@ -396,10 +396,34 @@
 						<face>Ubuntu</face>
 					</font>
 				</object>
+				<object class="wxStaticBox" name="ID_STATICBOX5" variable="T_BorderSettings" member="yes">
+					<pos>925,5</pos>
+					<size>230,80</size>
+					<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
+				</object>
+				<object class="wxPanel" name="ID_PANEL10" variable="T_PanelSettings" member="yes">
+					<pos>930,20</pos>
+					<size>220,60</size>
+					<bg>#323232</bg>
+					<object class="wxCheckBox" name="ID_CHECKBOX1" variable="T_CheckBoxRecursive" member="yes">
+						<label>Wczytywanie rekursywne &#x0A;folderów</label>
+						<pos>5,5</pos>
+						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+						<bg>#A0A0A0</bg>
+						<font>
+							<size>11</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+						<handler function="OnT_CheckBoxRecursiveClick" entry="EVT_CHECKBOX" />
+					</object>
+				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL4" variable="PanelUsembers" member="yes">
 				<pos>1366,0</pos>
-				<size>1366,768</size>
+				<size>1366,750</size>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP3" variable="BitmapBackgroundUsembers" member="yes">
 					<bitmap>resources/background.jpg</bitmap>
 					<pos>0,0</pos>
@@ -976,8 +1000,8 @@
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL5" variable="PanelStatistics" member="yes">
-				<pos>0,0</pos>
-				<size>1366,768</size>
+				<pos>1366,0</pos>
+				<size>1366,750</size>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP4" variable="BitmapBackgroundStatistics" member="yes">
 					<bitmap>resources/background.jpg</bitmap>
 					<pos>0,0</pos>
@@ -985,7 +1009,7 @@
 			</object>
 			<object class="wxPanel" name="ID_PANEL6" variable="PanelGroups" member="yes">
 				<pos>1366,0</pos>
-				<size>1366,768</size>
+				<size>1366,750</size>
 				<hidden>1</hidden>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP5" variable="BitmapBackgroundGroups" member="yes">
 					<bitmap>resources/background.jpg</bitmap>
@@ -995,7 +1019,7 @@
 			</object>
 			<object class="wxPanel" name="ID_PANEL7" variable="PanelMulTree" member="yes">
 				<pos>1366,0</pos>
-				<size>1366,768</size>
+				<size>1366,750</size>
 				<hidden>1</hidden>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP6" variable="BitmapBackgroundTree" member="yes">
 					<bitmap>resources/background.jpg</bitmap>
@@ -1005,7 +1029,7 @@
 			</object>
 			<object class="wxPanel" name="ID_PANEL2" variable="PanelInbox" member="yes">
 				<pos>1366,0</pos>
-				<size>1366,768</size>
+				<size>1366,750</size>
 				<style>wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxVSCROLL|wxHSCROLL</style>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP1" variable="I_BitmapBackground" member="yes">
 					<bitmap>resources/background.jpg</bitmap>

@@ -18,8 +18,11 @@ void PanelTitleMaintance::ShowPanel(AisdiRelationsFrame* Frame)
         Frame->PanelTitle->SetPosition(wxPoint(0,0));
         Frame->PanelTitle->Show();
 
+        Frame->T_PanelSettings->Hide();	//ukrycie panelu opcji wraz z obramowaniem
+        Frame->T_BorderSettings->Hide();
+
         Frame->P_Title->SetNoData( ! (Frame->P_Title->GetNoData() ) ); //Zmień ikony, ale z zanegowaną wartością parametru
-        Frame->P_Title->SwitchIcons(Frame);                                                    //Więc de facto tylko je wyświetl
+        Frame->P_Title->SwitchIcons(Frame);                            //Więc de facto tylko je wyświetl
     }
 }
 
@@ -77,6 +80,13 @@ void PanelTitleMaintance::SwitchIcons (AisdiRelationsFrame* Frame)
         Frame->T_LabelUsembers->Show();
         Frame->T_LabelStats->Show();
         Frame->T_LabelMulTree->Show();
+        if (Frame->P_Title->GetClickedSettings())
+        {
+            Frame->P_Title->SetClickedSettings();
+            Frame->T_PanelSettings->Hide();
+            Frame->T_BorderSettings->Hide();
+        }
+
     }
     else
     {
@@ -189,6 +199,11 @@ void PanelTitleMaintance::SetNoData (bool value)
     noData = value;
 }
 
+void PanelTitleMaintance::SetRecursiveLoad (bool value)
+{
+    recursiveLoad = value;
+}
+
 void PanelTitleMaintance::SetClickedAdd (void)
 {
     clickedAdd = !clickedAdd;
@@ -208,9 +223,19 @@ void PanelTitleMaintance::SetClickedImport (void)
         clickedLoad = false;
 }
 
+void PanelTitleMaintance::SetClickedSettings (void)
+{
+    clickedSettings = !clickedSettings;
+}
+
 bool PanelTitleMaintance::GetNoData (void)
 {
     return noData;
+}
+
+bool PanelTitleMaintance::GetRecursiveLoad (void)
+{
+    return recursiveLoad;
 }
 
 bool PanelTitleMaintance::GetClickedAdd (void)
@@ -228,6 +253,11 @@ bool PanelTitleMaintance::GetClickedImport (void)
     return clickedImport;
 }
 
+bool PanelTitleMaintance::GetClickedSettings (void)
+{
+    return clickedSettings;
+}
+
 void PanelTitleMaintance::EventButtonAddClick (AisdiRelationsFrame* Frame)
 {
     Frame->P_Title->SetClickedAdd();
@@ -243,18 +273,18 @@ void PanelTitleMaintance::EventButtonAddClick (AisdiRelationsFrame* Frame)
 
 void PanelTitleMaintance::EventButtonFolderClick (AisdiRelationsFrame* Frame)
 {
-    if (Frame->DirDialog->ShowModal() == wxID_OK)
-    {
-        MailParameters * param = new MailParameters();
-        wxString str = Frame->DirDialog->GetPath();
+    if (Frame->DirDialog->ShowModal() == wxID_OK)		//uruchomienie panelu wybierania folderu
+    {													//jeśli wybrano folder:
+        MailParameters * param = new MailParameters();	//nowe parametry wczytywania maili
+        wxString str = Frame->DirDialog->GetPath();		//weź ścieżkę do folderu z Directory Dialog
         param->path = str.mb_str();
-        param->isDirectory = true;                  //TODO podpiąć warunki pod pola panelu Options...
-        param->recursiveImport = false;         //...którego  trzeba najpierw zrobić
+        param->isDirectory = true;            
+        param->recursiveImport = GetRecursiveLoad();
 
-        IOInterface::ImportStats stats;
+        IOInterface::ImportStats stats;					//statystyki wczytania
         stats = Frame->iointerface->importMail(param);
 
-        Frame->P_Inbox->SetEmails(Frame);
+        Frame->P_Inbox->SetEmails(Frame);				//załadowanie listy maili do komponentu T_ListInbox
         if (stats.successCount > 0)
         {
             Frame->P_Title->SwitchIcons(Frame);
@@ -265,23 +295,38 @@ void PanelTitleMaintance::EventButtonFolderClick (AisdiRelationsFrame* Frame)
 
 void PanelTitleMaintance::EventButtonFilesClick (AisdiRelationsFrame* Frame)
 {
-    if (Frame->FileDialog->ShowModal() == wxID_OK)
-    {
-        wxArrayString paths;
+    if (Frame->FileDialog->ShowModal() == wxID_OK)		//uruchomienie panelu wybierania folderu
+    {													//jeśli wybrano pliki:
+        wxArrayString paths;							//tablica plików do wczytania
         Frame->FileDialog->GetPaths(paths);
         MailParameters * param = new MailParameters();
-        param->path = paths[0].mb_str();
-        param->isDirectory = false;
+        param->path = paths[0].mb_str();				//TODO Zmienić, bo na razie bierze tylko pierwszy z tablicy
+        param->isDirectory = false;						//Tutaj domyślne opcje na 'false' (bo wybieramy pliki, nie folder)
         param->recursiveImport = false;
 
-        IOInterface::ImportStats stats;
+        IOInterface::ImportStats stats;					//statystyki importu maili
         stats = Frame->iointerface->importMail(param);
 
-        Frame->P_Inbox->SetEmails(Frame);
+        Frame->P_Inbox->SetEmails(Frame);				//załadowanie listy Emaili z bazy
         if (stats.successCount > 0)
         {
             Frame->P_Title->SwitchIcons(Frame);
-            wxMessageBox(_("Pomyślnie wczytano!"));
+            wxMessageBox(_("Pomyślnie wczytano!"));		//TODO zmienić na wyświetlanie raportu wczytania
         }
     }
+}
+
+void PanelTitleMaintance::EventButtonSettingsClick (AisdiRelationsFrame * Frame)
+{
+	if (GetClickedSettings())
+	{
+		Frame->T_PanelSettings->Hide();
+		Frame->T_BorderSettings->Hide();
+	}
+	else
+	{
+		Frame->T_PanelSettings->Show();
+		Frame->T_BorderSettings->Show();
+	}
+	SetClickedSettings();
 }

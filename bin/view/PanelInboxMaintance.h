@@ -29,4 +29,5 @@ public:
 
     void EventButtonSearchClick (AisdiRelationsFrame* Frame);
     void EventListInboxItemSelect (AisdiRelationsFrame* Frame);
+    void EventButtonAddClick (AisdiRelationsFrame * Frame);
 };
