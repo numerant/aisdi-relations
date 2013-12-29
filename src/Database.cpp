@@ -19,7 +19,7 @@ bool Database::addEmail(Email* email)
     if(findEmail(email->getID()) ==-1)
     {
         emailVector.push_back(email);
-        sort (emailVector.begin(), emailVector.end());
+        sort (emailVector.begin(), emailVector.end(), compareEmails);
         return true;
     }
     else
