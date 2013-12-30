@@ -30,4 +30,12 @@ public:
     void EventButtonSearchClick (AisdiRelationsFrame* Frame);
     void EventListInboxItemSelect (AisdiRelationsFrame* Frame);
     void EventButtonAddClick (AisdiRelationsFrame * Frame);
+    void EventButtonSaveClick (AisdiRelationsFrame * Frame);
+    void EventButtonSettingsClick (AisdiRelationsFrame * Frame);
+    void EventButtonDeleteClick (AisdiRelationsFrame * Frame);
+    void EventButtonSenderClick (AisdiRelationsFrame * Frame);
+    void EventButtonReceiverClick (AisdiRelationsFrame * Frame);
+    void EventButtonShowTreeClick (AisdiRelationsFrame * Frame);
+    void EventSearchCtrlTextEnter (AisdiRelationsFrame * Frame);
+    void EventListInboxColumnClick (AisdiRelationsFrame * Frame);
 };

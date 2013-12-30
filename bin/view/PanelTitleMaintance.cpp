@@ -334,3 +334,13 @@ void PanelTitleMaintance::EventButtonSettingsClick (AisdiRelationsFrame * Frame)
 	}
 	SetClickedSettings();
 }
+
+void PanelTitleMaintance::TxtImport ()
+{
+
+}
+
+void PanelTitleMaintance::BinImport ()
+{
+
+}

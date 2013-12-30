@@ -166,3 +166,42 @@ void PanelInboxMaintance::EventButtonAddClick (AisdiRelationsFrame * Frame)
 
 }
 
+void PanelInboxMaintance::EventButtonSaveClick (AisdiRelationsFrame * Frame)
+{
+
+}
+
+void PanelInboxMaintance::EventButtonSettingsClick (AisdiRelationsFrame * Frame)
+{
+
+}
+
+void PanelInboxMaintance::EventButtonDeleteClick (AisdiRelationsFrame * Frame)
+{
+
+}
+
+void PanelInboxMaintance::EventButtonSenderClick (AisdiRelationsFrame * Frame)
+{
+
+}
+
+void PanelInboxMaintance::EventButtonReceiverClick (AisdiRelationsFrame * Frame)
+{
+
+}
+
+void PanelInboxMaintance::EventButtonShowTreeClick (AisdiRelationsFrame * Frame)
+{
+
+}
+
+void PanelInboxMaintance::EventSearchCtrlTextEnter (AisdiRelationsFrame * Frame)
+{
+
+}
+
+void PanelInboxMaintance::EventListInboxColumnClick (AisdiRelationsFrame * Frame)
+{
+
+}

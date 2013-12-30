@@ -998,10 +998,12 @@ void AisdiRelationsFrame::OnT_ImageButtonSettingsClick(wxCommandEvent& event)
 
 void AisdiRelationsFrame::OnT_ImageButtonTxtClick(wxCommandEvent& event)
 {
+    P_Title->TxtImport();
 }
 
 void AisdiRelationsFrame::OnT_ImageButtonBinClick(wxCommandEvent& event)
 {
+    P_Title->BinImport();
 }
 
 void AisdiRelationsFrame::OnT_CheckBoxRecursiveClick(wxCommandEvent& event)
@@ -1022,6 +1024,7 @@ void AisdiRelationsFrame::OnI_ImageButtonAddClick(wxCommandEvent& event)
 
 void AisdiRelationsFrame::OnI_ImageButtonSaveClick(wxCommandEvent& event)
 {
+    P_Inbox->EventButtonSaveClick(this);
 }
 
 void AisdiRelationsFrame::OnI_ImageButtonSearchClick(wxCommandEvent& event)
@@ -1031,6 +1034,7 @@ void AisdiRelationsFrame::OnI_ImageButtonSearchClick(wxCommandEvent& event)
 
 void AisdiRelationsFrame::OnI_ImageButtonSettingsClick(wxCommandEvent& event)
 {
+    P_Inbox->EventButtonSettingsClick(this);
 }
 
 void AisdiRelationsFrame::OnI_ImageButtonMulTreeClick(wxCommandEvent& event)
@@ -1055,18 +1059,22 @@ void AisdiRelationsFrame::OnI_ImageButtonUsembersClick(wxCommandEvent& event)
 
 void AisdiRelationsFrame::OnI_ImageButtonDeleteClick(wxCommandEvent& event)
 {
+    P_Inbox->EventButtonDeleteClick(this);
 }
 
 void AisdiRelationsFrame::OnI_ImageButtonSenderClick(wxCommandEvent& event)
 {
+    P_Inbox->EventButtonSenderClick(this);
 }
 
 void AisdiRelationsFrame::OnI_ImageButtonReceiverClick(wxCommandEvent& event)
 {
+    P_Inbox->EventButtonReceiverClick(this);
 }
 
 void AisdiRelationsFrame::OnI_ImageButtonShowTreeClick(wxCommandEvent& event)
 {
+    P_Inbox->EventButtonShowTreeClick(this);
 }
 
 void AisdiRelationsFrame::OnI_ListInboxItemSelect(wxListEvent& event)
@@ -1076,10 +1084,12 @@ void AisdiRelationsFrame::OnI_ListInboxItemSelect(wxListEvent& event)
 
 void AisdiRelationsFrame::OnI_SearchCtrlTextEnter(wxCommandEvent& event)
 {
+    P_Inbox->EventSearchCtrlTextEnter(this);
 }
 
 void AisdiRelationsFrame::OnI_ListInboxColumnClick(wxListEvent& event)
 {
+    P_Inbox->EventListInboxColumnClick(this);
 }
 
 /** ============= Eventy panelu USEMBERS ============= */
