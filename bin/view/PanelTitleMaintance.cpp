@@ -278,11 +278,13 @@ void PanelTitleMaintance::EventButtonFolderClick (AisdiRelationsFrame* Frame)
         MailParameters * param = new MailParameters();	//nowe parametry wczytywania maili
         wxString str = Frame->DirDialog->GetPath();		//weź ścieżkę do folderu z Directory Dialog
         param->path = str.mb_str();
-        param->isDirectory = true;            
+        param->isDirectory = true;
         param->recursiveImport = GetRecursiveLoad();
 
         IOInterface::ImportStats stats;					//statystyki wczytania
-        stats = Frame->iointerface->importMail(param);
+        Frame->iointerface->importMail(param);
+        stats = Frame->iointerface->getImportStats();
+        Frame->iointerface->clearImportStats();
 
         Frame->P_Inbox->SetEmails(Frame);				//załadowanie listy maili do komponentu T_ListInbox
         if (stats.successCount > 0)
@@ -305,7 +307,9 @@ void PanelTitleMaintance::EventButtonFilesClick (AisdiRelationsFrame* Frame)
         param->recursiveImport = false;
 
         IOInterface::ImportStats stats;					//statystyki importu maili
-        stats = Frame->iointerface->importMail(param);
+        Frame->iointerface->importMail(param);
+        stats = Frame->iointerface->getImportStats();
+        Frame->iointerface->clearImportStats();
 
         Frame->P_Inbox->SetEmails(Frame);				//załadowanie listy Emaili z bazy
         if (stats.successCount > 0)

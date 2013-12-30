@@ -28,6 +28,7 @@ public:
     struct ImportStats                                                          // struktura zawierająca statystyki importu - ile udało się wczytać, ile nie itp.
     {
         ImportStats();
+        void clearStats();
         unsigned int successCount;                                              // niech ktoś mądry się wypowie czy tak jest OK, czy lepiej bawić się w set/get
         unsigned int failCount;
         unsigned int existingCount;                                             // maile, które już istniały w bazie
@@ -37,17 +38,21 @@ public:
     IOInterface();                                                              // trzeba zadbać o wskaźnik na bazę danych
     ~IOInterface();
 
-    ImportStats importMail(MailParameters *parameters);
+    void importMail(MailParameters *parameters);
+    ImportStats getImportStats();
+    void clearImportStats();
 
-    void exportDatabase (string filePath, DbParameters *parameters);                 // opis klas MailParameters i DbParameters jest w Param.h
+    void exportDatabase (string filePath, DbParameters *parameters);            // opis klas MailParameters i DbParameters jest w Param.h
     void importDatabase (string filePath, DbParameters *parameters);
     void exportReport (string path, Report report);
+
     void setDatabasePointer (Database * db);
     string strSequenceReplace(const string& searched, const string& replaced, string subject);
 
 private:
     // Fields:
     Database *database;                         // baza tworzona w momencie uruchomienia programu
+    ImportStats stats;
     //vector<char> *binary_file;                // trzyma zserializowaną bazę danych w formie binarnej - chyba lepiej tworzyć lokalnie, wewnątrz metody
 
     // Methods:

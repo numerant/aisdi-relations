@@ -16,15 +16,18 @@ IOInterface::IOInterface()
 
 IOInterface::ImportStats::ImportStats()
 {
+    clearStats();
+}
+
+void IOInterface::ImportStats::clearStats()
+{
     successCount = 0;
     failCount = 0;
     existingCount = 0;
 }
 
-IOInterface::ImportStats IOInterface::importMail(MailParameters *parameters)
+void IOInterface::importMail(MailParameters *parameters)
 {
-    ImportStats stats;
-
     if (parameters->isDirectory)
     {
         if (parameters->recursiveImport)
@@ -36,8 +39,6 @@ IOInterface::ImportStats IOInterface::importMail(MailParameters *parameters)
     }
     else
         importSingleMail(parameters->path, stats);
-
-    return stats;
 }
 
 void IOInterface::importSingleMail(boost::filesystem::path path, ImportStats &stats)
@@ -61,6 +62,16 @@ void IOInterface::importSingleMail(boost::filesystem::path path, ImportStats &st
         }
     }
     //delete tempEmail;
+}
+
+IOInterface::ImportStats IOInterface::getImportStats()
+{
+    return stats;
+}
+
+void IOInterface::clearImportStats()
+{
+    stats.clearStats();
 }
 
 Email* IOInterface::emlParser (string path)
