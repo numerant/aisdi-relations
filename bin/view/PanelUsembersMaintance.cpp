@@ -147,3 +147,63 @@ void PanelUsembersMaintance::EventButtonSearchClick (AisdiRelationsFrame* Frame)
         Frame->U_SearchCtrl->Show();
     Frame->P_Usembers->SetSearchEnabled();
 }
+
+void PanelUsembersMaintance::EventButtonAddClick (AisdiRelationsFrame* Frame)
+{
+
+}
+
+void PanelUsembersMaintance::EventButtonSaveClick (AisdiRelationsFrame* Frame)
+{
+
+}
+
+void PanelUsembersMaintance::EventButtonSettingsClick (AisdiRelationsFrame* Frame)
+{
+
+}
+
+void PanelUsembersMaintance::EventButtonDeleteClick (AisdiRelationsFrame* Frame)
+{
+
+}
+
+void PanelUsembersMaintance::EventButtonShowGroupClick (AisdiRelationsFrame* Frame)
+{
+
+}
+
+void PanelUsembersMaintance::EventButtonSwitchContentClick (AisdiRelationsFrame* Frame)
+{
+
+}
+
+void PanelUsembersMaintance::EventSearchCtrlTextEnter (AisdiRelationsFrame* Frame)
+{
+
+}
+
+void PanelUsembersMaintance::EventListUsembersItemSelect (AisdiRelationsFrame* Frame)
+{
+
+}
+
+void PanelUsembersMaintance::EventListUsembersColumnClick (AisdiRelationsFrame* Frame)
+{
+
+}
+
+void PanelUsembersMaintance::EventListOutboxColumnClick (AisdiRelationsFrame* Frame)
+{
+
+}
+
+void PanelUsembersMaintance::EventListInboxItemSelect (AisdiRelationsFrame* Frame)
+{
+
+}
+
+void PanelUsembersMaintance::EventListInboxColumnClick (AisdiRelationsFrame* Frame)
+{
+
+}

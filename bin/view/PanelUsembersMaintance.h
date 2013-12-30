@@ -29,4 +29,17 @@ public:
     bool GetSearchEnabled();
 
     void EventButtonSearchClick (AisdiRelationsFrame* Frame);
+    void EventButtonAddClick (AisdiRelationsFrame* Frame);
+    void EventButtonSaveClick (AisdiRelationsFrame* Frame);
+    void EventButtonSettingsClick (AisdiRelationsFrame* Frame);
+    void EventButtonDeleteClick (AisdiRelationsFrame* Frame);
+    void EventButtonShowGroupClick (AisdiRelationsFrame* Frame);
+    void EventButtonSwitchContentClick (AisdiRelationsFrame* Frame);
+    void EventSearchCtrlTextEnter (AisdiRelationsFrame* Frame);
+    void EventListUsembersItemSelect (AisdiRelationsFrame* Frame);
+    void EventListUsembersColumnClick (AisdiRelationsFrame* Frame);
+    void EventListOutboxItemSelect (AisdiRelationsFrame* Frame);
+    void EventListOutboxColumnClick (AisdiRelationsFrame* Frame);
+    void EventListInboxItemSelect (AisdiRelationsFrame* Frame);
+    void EventListInboxColumnClick (AisdiRelationsFrame* Frame);
 };

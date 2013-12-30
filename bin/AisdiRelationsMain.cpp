@@ -1100,10 +1100,12 @@ void AisdiRelationsFrame::OnU_ImageButtonTitleClick(wxCommandEvent& event)
 
 void AisdiRelationsFrame::OnU_ImageButtonAddClick(wxCommandEvent& event)
 {
+    P_Usembers->EventButtonAddClick(this);
 }
 
 void AisdiRelationsFrame::OnU_ImageButtonSaveClick(wxCommandEvent& event)
 {
+    P_Usembers->EventButtonSaveClick(this);
 }
 
 void AisdiRelationsFrame::OnU_ImageButtonSearchClick(wxCommandEvent& event)
@@ -1113,6 +1115,7 @@ void AisdiRelationsFrame::OnU_ImageButtonSearchClick(wxCommandEvent& event)
 
 void AisdiRelationsFrame::OnU_ImageButtonSettingsClick(wxCommandEvent& event)
 {
+    P_Usembers->EventButtonSettingsClick(this);
 }
 
 void AisdiRelationsFrame::OnU_ImageButtonSwitchListClick(wxCommandEvent& event)
@@ -1142,42 +1145,52 @@ void AisdiRelationsFrame::OnU_ImageButtonInboxClick(wxCommandEvent& event)
 
 void AisdiRelationsFrame::OnU_ImageButtonDeleteClick(wxCommandEvent& event)
 {
+    P_Usembers->EventButtonDeleteClick(this);
 }
 
 void AisdiRelationsFrame::OnU_ImageButtonShowGroupClick(wxCommandEvent& event)
 {
+    P_Usembers->EventButtonShowGroupClick(this);
 }
 
 void AisdiRelationsFrame::OnU_ImageButtonSwitchContentClick(wxCommandEvent& event)
 {
+    P_Usembers->EventButtonSwitchContentClick(this);
 }
 
 void AisdiRelationsFrame::OnU_SearchCtrlTextEnter(wxCommandEvent& event)
 {
+    P_Usembers->EventSearchCtrlTextEnter(this);
 }
 
 void AisdiRelationsFrame::OnU_ListUsembersItemSelect(wxListEvent& event)
 {
+    P_Usembers->EventListUsembersItemSelect(this);
 }
 
 void AisdiRelationsFrame::OnU_ListUsembersColumnClick(wxListEvent& event)
 {
+    P_Usembers->EventListUsembersColumnClick(this);
 }
 
 void AisdiRelationsFrame::OnU_ListOutboxItemSelect(wxListEvent& event)
 {
+    P_Usembers->EventListOutboxItemSelect(this);
 }
 
 void AisdiRelationsFrame::OnU_ListOutboxColumnClick(wxListEvent& event)
 {
+    P_Usembers->EventListOutboxColumnClick(this);
 }
 
 void AisdiRelationsFrame::OnU_ListInboxItemSelect(wxListEvent& event)
 {
+    P_Usembers->EventListInboxItemSelect(this);
 }
 
 void AisdiRelationsFrame::OnU_ListInboxColumnClick(wxListEvent& event)
 {
+    P_Usembers->EventListInboxColumnClick(this);
 }
 
 
