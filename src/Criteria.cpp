@@ -57,21 +57,21 @@ string StringCriteria::getName()
 
 Date* DateCriteria::getEquals()
 {
-    if(equals.getDay()==0 && equals.getMonthInt()==0 && equals.getYear()==0)
+    if(equals.getDay()==0 && equals.monthToInt(equals.getMonth())==0 && equals.getYear()==0)
         return nullptr;
     return &equals;
 }
 
 Date* DateCriteria::getLess()
 {
-    if(less.getDay()==0 && less.getMonthInt()==0 && less.getYear()==0)
+    if(less.getDay()==0 && less.monthToInt(equals.getMonth())==0 && less.getYear()==0)
         return nullptr;
     return &less;
 }
 
 Date* DateCriteria::getGreater()
 {
-    if(greater.getDay()==0 && greater.getMonthInt()==0 && greater.getYear()==0)
+    if(greater.getDay()==0 && greater.monthToInt(equals.getMonth())==0 && greater.getYear()==0)
         return nullptr;
     return &greater;
 }
