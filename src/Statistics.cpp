@@ -10,6 +10,8 @@ Statistics::Statistics(Database* database)
     emailsPerDay=0;
     emailsPerUser=0;
     averageEmailLength=0;
+    for(int i=0; i<12; ++i)
+        emailsCountInMonth[i]=0;
 }
 
 Statistics::~Statistics()
@@ -76,6 +78,13 @@ Usember* Statistics::getTopReceiver(int position)
         return nullptr;
 }
 
+int Statistics::getEmailsCountInMonth(int month)
+{
+    if(month>=1 && month<=12)
+        return emailsCountInMonth[month-1];
+    else
+        return 0;
+}
 
 void Statistics::updateVectorSizes()
 {
@@ -106,7 +115,15 @@ void Statistics::updateEmailStatistics()
             sum+=database->getEmail(i)->getContent().length();
         }
         averageEmailLength=(double)sum/(double)emails;
+        int month;
+        for(int i=0; i<database->countEmails(); ++i)
+        {
+            month=database->getEmail(i)->getDate().monthToInt(database->getEmail(i)->getDate().getMonth());
+            if(month>=1 && month<=12)
+                ++emailsCountInMonth[month-1];
+        }
     }
+
 }
 
 void Statistics::updateTopUsembers()
@@ -128,17 +145,17 @@ void Statistics::updateTopUsembers()
 
 int Statistics::getDateDifferenceInMonths(Date* date1, Date* date2)
 {
-    return (date2->getYear()-date1->getYear())*12+date2->getMonthInt()-date1->getMonthInt();
+    return (date2->getYear()-date1->getYear())*12+date2->monthToInt(date2->getMonth())-date1->monthToInt(date1->getMonth());
 }
 
 int Statistics::getDateDifferenceInDays(Date* date1, Date* date2)
 {
-    return (date2->getYear()-date1->getYear())*365+(date2->getMonthInt()-date1->getMonthInt())*30+date2->getDay()-date1->getDay();
+    return (date2->getYear()-date1->getYear())*365+(date2->monthToInt(date2->getMonth())-date1->monthToInt(date1->getMonth()))*30+date2->getDay()-date1->getDay();
 }
 
 bool Statistics::compareUsembersSentEmails(Usember* usember1, Usember* usember2)
 {
-    if(usember1->sentMailCount()>=usember2->sentMailCount())
+    if(usember1->sendMailCount()>=usember2->sendMailCount())
         return true;
     else
         return false;
@@ -146,7 +163,7 @@ bool Statistics::compareUsembersSentEmails(Usember* usember1, Usember* usember2)
 
 bool Statistics::compareUsembersReceivedEmails(Usember* usember1, Usember* usember2)
 {
-    if(usember1->receivedMailCount()>=usember2->receivedMailCount())
+    if(usember1->receiveMailCount()>=usember2->receiveMailCount())
         return true;
     else
         return false;
