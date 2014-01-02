@@ -17,6 +17,7 @@ void PanelStatisticsMaintance::ShowPanel(AisdiRelationsFrame* Frame)
         Frame->PanelMulTree->Hide();
 
         Frame->PanelStatistics->SetPosition(wxPoint(0,0));
+        Frame->S_PanelEmailPerMonth->Refresh();
         Frame->PanelStatistics->Show();
     }
 }
@@ -46,8 +47,6 @@ void PanelStatisticsMaintance::EventPanelEmailPerMonthPaint (AisdiRelationsFrame
 
     dc.SetTextForeground(wxColour(230,230,230));
     dc.SetFont(wxFont(11, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, _("Ubuntu")));
-
-    int emailsPerMonth[12];
 
     for (int i = 0; i < 12; i++)    //Wypisanie nazw miesięcy u dołu
     {

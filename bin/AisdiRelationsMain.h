@@ -140,6 +140,7 @@ private:
     void OnTimer1Trigger(wxTimerEvent& event);
     void OnPanelStatisticsPaint(wxPaintEvent& event);
     void OnS_PanelEmailPerMonthPaint(wxPaintEvent& event);
+    void OnS_PanelEmailPerMonthLeftDClick(wxMouseEvent& event);
     //*)
 
     //(*Identifiers(AisdiRelationsFrame)

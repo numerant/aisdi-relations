@@ -294,6 +294,7 @@ void PanelTitleMaintance::EventButtonFolderClick (AisdiRelationsFrame* Frame)
             Frame->P_Notify->SetLabels(Frame, "Zakończono wczytywanie!", "Wczytano poprawnie:", "Niepoprawne emaile:");
             Frame->P_Notify->SetValues(Frame, stats.successCount, stats.failCount);
             Frame->P_Notify->ShowPanel(Frame, 5000);
+            Frame->statistics->update();
         }
     }
 }
@@ -321,6 +322,7 @@ void PanelTitleMaintance::EventButtonFilesClick (AisdiRelationsFrame* Frame)
             Frame->P_Notify->SetLabels(Frame, "Zakończono wczytywanie!", "Wczytano poprawnie:", "Niepoprawne emaile:");
             Frame->P_Notify->SetValues(Frame, stats.successCount, stats.failCount);
             Frame->P_Notify->ShowPanel(Frame, 5000);
+            Frame->statistics->update();
         }
     }
 }

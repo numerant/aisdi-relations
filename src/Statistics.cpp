@@ -96,7 +96,8 @@ void Statistics::updateVectorSizes()
 
 void Statistics::updateEmailStatistics()
 {
-    if(emails>0){
+    if(emails>0)
+    {
         Date earliestDate=database->getEmail(0)->getDate();
         Date latestDate=database->getEmail(0)->getDate();
         for(int i=0; i<database->countEmails(); ++i)
@@ -108,14 +109,17 @@ void Statistics::updateEmailStatistics()
         }
         emailsPerMonth=(double)emails/(double)getDateDifferenceInMonths(&earliestDate, &latestDate);
         emailsPerDay=(double)emails/(double)getDateDifferenceInDays(&earliestDate, &latestDate);
+
         if(usembers>0)
             emailsPerUser=(double)emails/(double)usembers;
+
         long sum=0;
         for(int i=0; i<database->countEmails(); ++i)
         {
             sum+=database->getEmail(i)->getContent().length();
         }
         averageEmailLength=(double)sum/(double)emails;
+
         int month;
         for(int i=0; i<database->countEmails(); ++i)
         {
@@ -126,7 +130,6 @@ void Statistics::updateEmailStatistics()
                 maxEmailsInMonth = emailsCountInMonth[month-1];
         }
     }
-
 }
 
 void Statistics::updateTopUsembers()

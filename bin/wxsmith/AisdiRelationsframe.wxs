@@ -683,6 +683,7 @@
 					<bg>#303030</bg>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL</style>
 					<handler function="OnS_PanelEmailPerMonthPaint" entry="EVT_PAINT" />
+					<handler function="OnS_PanelEmailPerMonthLeftDClick" entry="EVT_LEFT_DCLICK" />
 					<object class="wxStaticBox" name="ID_STATICBOX7" variable="S_BorderEPM" member="yes">
 						<pos>0,-10</pos>
 						<size>500,310</size>

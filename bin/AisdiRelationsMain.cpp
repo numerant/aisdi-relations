@@ -834,6 +834,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_IMAGEBUTTON51,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_ImageButtonInboxClick);
     Connect(ID_IMAGEBUTTON42,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_ImageButtonTitleClick);
     S_PanelEmailPerMonth->Connect(wxEVT_PAINT,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_PanelEmailPerMonthPaint,0,this);
+    S_PanelEmailPerMonth->Connect(wxEVT_LEFT_DCLICK,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_PanelEmailPerMonthLeftDClick,0,this);
     Connect(ID_IMAGEBUTTON50,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnG_ImageButtonMulTreeClick);
     Connect(ID_IMAGEBUTTON49,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnG_ImageButtonStatsClick);
     Connect(ID_IMAGEBUTTON48,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnG_ImageButtonUsembersClick);
@@ -1295,7 +1296,7 @@ void AisdiRelationsFrame::OnS_ImageButtonMulTreeClick(wxCommandEvent& event)
 
 void AisdiRelationsFrame::OnS_PanelEmailPerMonthPaint(wxPaintEvent& event)
 {
-    P_Stats->EventPanelEmailPerMonthPaint(this);
+
 }
 
 
@@ -1331,4 +1332,9 @@ void AisdiRelationsFrame::OnM_ImageButtonInboxClick(wxCommandEvent& event)
 void AisdiRelationsFrame::OnTimer1Trigger(wxTimerEvent& event)
 {
     PanelNotify->Hide();
+}
+
+void AisdiRelationsFrame::OnS_PanelEmailPerMonthLeftDClick(wxMouseEvent& event)
+{
+    P_Stats->EventPanelEmailPerMonthPaint(this);
 }
