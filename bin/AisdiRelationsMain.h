@@ -17,6 +17,7 @@ class PanelInboxMaintance;
 class PanelMulTreeMaintance;
 class PanelStatisticsMaintance;
 class PanelUsembersMaintance;
+class PanelNotifyMaintance;
 
 /** Include'y klas projektu */
 #include "../src/Database.h"
@@ -36,6 +37,7 @@ class PanelUsembersMaintance;
 #include <wx/statline.h>
 #include <wx/frame.h>
 #include <wx/stattext.h>
+#include <wx/timer.h>
 #include <wx/statbmp.h>
 #include <wx/html/htmlwin.h>
 //*)
@@ -48,6 +50,8 @@ class AisdiRelationsFrame: public wxFrame
     friend class PanelMulTreeMaintance;
     friend class PanelStatisticsMaintance;
     friend class PanelUsembersMaintance;
+    friend class PanelNotifyMaintance;
+
 public:
 
     AisdiRelationsFrame(wxWindow* parent,wxWindowID id = -1);
@@ -132,6 +136,7 @@ private:
     void OnS_ImageButtonUsembersClick(wxCommandEvent& event);
     void OnS_ImageButtonGroupsClick(wxCommandEvent& event);
     void OnS_ImageButtonMulTreeClick(wxCommandEvent& event);
+    void OnTimer1Trigger(wxTimerEvent& event);
     //*)
 
     //(*Identifiers(AisdiRelationsFrame)
@@ -302,6 +307,13 @@ private:
     static const long ID_IMAGEBUTTON19;
     static const long ID_SEARCHCTRL1;
     static const long ID_PANEL2;
+    static const long ID_STATICBOX6;
+    static const long ID_STATICTEXT78;
+    static const long ID_STATICTEXT79;
+    static const long ID_STATICTEXT80;
+    static const long ID_STATICTEXT83;
+    static const long ID_STATICTEXT82;
+    static const long ID_PANEL11;
     static const long ID_PANEL1;
     static const long idMenuNew;
     static const long idMenuOpen;
@@ -315,10 +327,12 @@ private:
     static const long idMenuExportBin;
     static const long idMenuAbout;
     static const long idMenuHelp;
+    static const long ID_TIMER1;
     //*)
 
     //(*Declarations(AisdiRelationsFrame)
     wxBitmapButton        *M_ImageButtonInbox;
+    wxStaticText* N_StaticTextTitle;
     wxBitmapButton        *I_ImageButtonSave;
     wxStaticText* U_LabelInbox;
     wxMenuItem* MenuItem8;
@@ -327,10 +341,12 @@ private:
     wxStaticText* S_LabelUsembers;
     wxBitmapButton        *S_ImageButtonGroups;
     wxBitmapButton        *S_ImageButtonTitle;
+    wxTimer Timer1;
     wxBitmapButton        *S_ImageButtonMulTree;
     wxStaticText* S_LabelGroups;
     wxBitmapButton        *T_ImageButtonImport;
     wxFileDialog* FileDialog;
+    wxPanel* PanelNotify;
     wxStaticText* I_LabelShowTree;
     wxStaticText* I_LabelDate;
     wxBitmapButton        *U_ImageButtonTitle;
@@ -351,6 +367,7 @@ private:
     wxStaticText* M_LabelUsembers;
     wxStaticText* S_LabelTitle;
     wxBitmapButton        *I_ImageButtonMulTree;
+    wxStaticText* N_StaticTextValue2;
     wxBitmapButton        *U_ImageButtonSwitchList;
     wxBitmapButton        *M_ImageButtonGroups;
     wxStaticText* T_LabelBin;
@@ -377,6 +394,7 @@ private:
     wxDirDialog* DirDialog;
     wxBitmapButton        *I_ImageButtonUsembers;
     wxBitmapButton        *S_ImageButtonInbox;
+    wxStaticText* N_StaticTextOption1;
     wxStaticText* S_LabelMulTree;
     wxStaticText* U_LabelSearch;
     wxBitmapButton        *G_ImageButtonUsembers;
@@ -398,6 +416,7 @@ private:
     wxStaticText* T_StaticTextTitle3;
     wxStaticText* I_LabelGroups;
     wxMenuItem* MenuItem3;
+    wxStaticText* N_StaticTextValue1;
     wxStaticText* I_LabelSender;
     wxStaticLine* I_LineContentSeparator;
     wxMenuItem* MenuItem6;
@@ -412,8 +431,10 @@ private:
     wxStaticText* I_LabelTo;
     wxStaticText* T_LabelAdd;
     wxMenuItem* MenuItem10;
+    wxStaticText* N_StaticTextOption2;
     wxBitmapButton        *T_ImageButtonInbox;
     wxStaticText* I_StaticTextFrom;
+    wxStaticBox* N_Border;
     wxListCtrl* U_ListInbox;
     wxMenu* Menu3;
     wxStaticText* I_LabelSettings;
@@ -509,6 +530,7 @@ private:
     PanelMulTreeMaintance * P_MulTree;
     PanelStatisticsMaintance * P_Stats ;
     PanelUsembersMaintance * P_Usembers ;
+    PanelNotifyMaintance * P_Notify ;
     Database * database;
     IOInterface * iointerface;
     DECLARE_EVENT_TABLE()

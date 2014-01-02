@@ -290,7 +290,12 @@ void PanelTitleMaintance::EventButtonFolderClick (AisdiRelationsFrame* Frame)
         if (stats.successCount > 0)
         {
             Frame->P_Title->SwitchIcons(Frame);
-            wxMessageBox(_("Pomyślnie wczytano!"));     //TODO Zamienić na wyświetlanie raportu
+            //wxMessageBox(_("Pomyślnie wczytano!"));     //TODO Zamienić na wyświetlanie raportu
+            /*Frame->PanelNotify->Show();
+            stats.
+            wxString content(sourceString.c_str(), wxConvUTF8);
+            Frame->N_StaticTextValue1->SetLabel()
+            Frame->Timer1->Start(2000, wxTIMER_CONTINUOUS);*/
         }
     }
 }

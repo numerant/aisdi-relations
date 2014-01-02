@@ -21,6 +21,7 @@
 #include "view/PanelGroupsMaintance.h"
 #include "view/PanelStatisticsMaintance.h"
 #include "view/PanelMulTreeMaintance.h"
+#include "view/PanelNotifyMaintance.h"
 
 #include "AisdiRelationsMain.h"
 #include <wx/msgdlg.h>
@@ -232,6 +233,13 @@ const long AisdiRelationsFrame::ID_IMAGEBUTTON38 = wxNewId();
 const long AisdiRelationsFrame::ID_IMAGEBUTTON19 = wxNewId();
 const long AisdiRelationsFrame::ID_SEARCHCTRL1 = wxNewId();
 const long AisdiRelationsFrame::ID_PANEL2 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICBOX6 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICTEXT78 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICTEXT79 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICTEXT80 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICTEXT83 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICTEXT82 = wxNewId();
+const long AisdiRelationsFrame::ID_PANEL11 = wxNewId();
 const long AisdiRelationsFrame::ID_PANEL1 = wxNewId();
 const long AisdiRelationsFrame::idMenuNew = wxNewId();
 const long AisdiRelationsFrame::idMenuOpen = wxNewId();
@@ -245,6 +253,7 @@ const long AisdiRelationsFrame::idMenuExportText = wxNewId();
 const long AisdiRelationsFrame::idMenuExportBin = wxNewId();
 const long AisdiRelationsFrame::idMenuAbout = wxNewId();
 const long AisdiRelationsFrame::idMenuHelp = wxNewId();
+const long AisdiRelationsFrame::ID_TIMER1 = wxNewId();
 //*)
 
 BEGIN_EVENT_TABLE(AisdiRelationsFrame,wxFrame)
@@ -373,7 +382,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     T_CheckBoxRecursive->SetBackgroundColour(wxColour(160,160,160));
     wxFont T_CheckBoxRecursiveFont(11,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     T_CheckBoxRecursive->SetFont(T_CheckBoxRecursiveFont);
-    PanelMulTree = new wxPanel(PanelMain, ID_PANEL7, wxPoint(0,0), wxSize(1366,750), wxTAB_TRAVERSAL, _T("ID_PANEL7"));
+    PanelMulTree = new wxPanel(PanelMain, ID_PANEL7, wxPoint(1366,0), wxSize(1366,750), wxTAB_TRAVERSAL, _T("ID_PANEL7"));
     BitmapBackgroundTree = new wxStaticBitmap(PanelMulTree, ID_STATICBITMAP6, wxBitmap(wxImage(_T("resources/background.jpg")).Rescale(wxSize(1366,768).GetWidth(),wxSize(1366,768).GetHeight())), wxPoint(0,0), wxSize(1366,768), wxSIMPLE_BORDER, _T("ID_STATICBITMAP6"));
     M_LabelTitle = new wxStaticText(PanelMulTree, ID_STATICTEXT63, _("Menu"), wxPoint(22,70), wxDefaultSize, wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_STATICTEXT63"));
     M_LabelTitle->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
@@ -400,7 +409,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     M_ImageButtonGroups = new wxBitmapButton(PanelMulTree, ID_IMAGEBUTTON44, wxNullBitmap, wxPoint(1090,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON44"));
     M_ImageButtonStats = new wxBitmapButton(PanelMulTree, ID_IMAGEBUTTON43, wxNullBitmap, wxPoint(1180,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON43"));
     M_ImageButtonTitle = new wxBitmapButton(PanelMulTree, ID_IMAGEBUTTON40, wxNullBitmap, wxPoint(10,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON40"));
-    PanelStatistics = new wxPanel(PanelMain, ID_PANEL5, wxPoint(0,0), wxSize(1366,750), wxTAB_TRAVERSAL, _T("ID_PANEL5"));
+    PanelStatistics = new wxPanel(PanelMain, ID_PANEL5, wxPoint(1366,0), wxSize(1366,750), wxTAB_TRAVERSAL, _T("ID_PANEL5"));
     BitmapBackgroundStatistics = new wxStaticBitmap(PanelStatistics, ID_STATICBITMAP4, wxBitmap(wxImage(_T("resources/background.jpg"))), wxPoint(0,0), wxDefaultSize, wxSIMPLE_BORDER, _T("ID_STATICBITMAP4"));
     S_LabelMulTree = new wxStaticText(PanelStatistics, ID_STATICTEXT77, _("Drzewo\nMulticastowe"), wxPoint(1166,70), wxDefaultSize, wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_STATICTEXT77"));
     S_LabelMulTree->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
@@ -731,6 +740,26 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     I_SearchCtrl = new wxSearchCtrl(PanelInbox, ID_SEARCHCTRL1, wxEmptyString, wxPoint(25,130), wxSize(630,25), wxTE_PROCESS_ENTER, wxDefaultValidator, _T("ID_SEARCHCTRL1"));
     I_SearchCtrl->Hide();
     I_SearchCtrl->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_HIGHLIGHT));
+    PanelNotify = new wxPanel(PanelMain, ID_PANEL11, wxPoint(10,10), wxSize(250,100), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL, _T("ID_PANEL11"));
+    PanelNotify->SetBackgroundColour(wxColour(48,48,48));
+    N_Border = new wxStaticBox(PanelNotify, ID_STATICBOX6, wxEmptyString, wxPoint(0,-10), wxSize(250,110), 0, _T("ID_STATICBOX6"));
+    N_Border->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
+    N_StaticTextTitle = new wxStaticText(PanelNotify, ID_STATICTEXT78, _("Zakończono wczytywanie"), wxPoint(10,10), wxDefaultSize, 0, _T("ID_STATICTEXT78"));
+    N_StaticTextTitle->SetForegroundColour(wxColour(255,255,255));
+    wxFont N_StaticTextTitleFont(12,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
+    N_StaticTextTitle->SetFont(N_StaticTextTitleFont);
+    N_StaticTextOption1 = new wxStaticText(PanelNotify, ID_STATICTEXT79, _("Wczytano poprawnie:"), wxPoint(10,35), wxDefaultSize, 0, _T("ID_STATICTEXT79"));
+    N_StaticTextOption1->SetForegroundColour(wxColour(192,192,192));
+    wxFont N_StaticTextOption1Font(12,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
+    N_StaticTextOption1->SetFont(N_StaticTextOption1Font);
+    N_StaticTextOption2 = new wxStaticText(PanelNotify, ID_STATICTEXT80, _("Emaile niepoprawne:"), wxPoint(10,60), wxDefaultSize, 0, _T("ID_STATICTEXT80"));
+    N_StaticTextOption2->SetForegroundColour(wxColour(192,192,192));
+    wxFont N_StaticTextOption2Font(12,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
+    N_StaticTextOption2->SetFont(N_StaticTextOption2Font);
+    N_StaticTextValue1 = new wxStaticText(PanelNotify, ID_STATICTEXT83, _("0"), wxPoint(170,35), wxDefaultSize, wxALIGN_LEFT, _T("ID_STATICTEXT83"));
+    N_StaticTextValue1->SetForegroundColour(wxColour(16,178,31));
+    N_StaticTextValue2 = new wxStaticText(PanelNotify, ID_STATICTEXT82, _("0"), wxPoint(170,60), wxDefaultSize, wxALIGN_LEFT, _T("ID_STATICTEXT82"));
+    N_StaticTextValue2->SetForegroundColour(wxColour(178,28,16));
     MenuBar1 = new wxMenuBar();
     Menu1 = new wxMenu();
     MenuItem8 = new wxMenuItem(Menu1, idMenuNew, _("New\tCTRL+N"), _("Creates an empty database"), wxITEM_NORMAL);
@@ -770,6 +799,8 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     SetMenuBar(MenuBar1);
     DirDialog = new wxDirDialog(this, _("Wybierz folder"), _("~/"), wxDD_CHANGE_DIR, wxDefaultPosition, wxDefaultSize, _T("wxDirDialog"));
     FileDialog = new wxFileDialog(this, _("Wybierz pliki:"), _("~/"), wxEmptyString, _("*.eml"), wxFD_OPEN|wxFD_MULTIPLE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
+    Timer1.SetOwner(this, ID_TIMER1);
+    Timer1.Start(500, false);
     Center();
 
     Connect(ID_IMAGEBUTTON37,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonMulTreeClick);
@@ -839,6 +870,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_SEARCHCTRL1,wxEVT_COMMAND_TEXT_ENTER,(wxObjectEventFunction)&AisdiRelationsFrame::OnI_SearchCtrlTextEnter);
     Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnQuit);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnAbout);
+    Connect(ID_TIMER1,wxEVT_TIMER,(wxObjectEventFunction)&AisdiRelationsFrame::OnTimer1Trigger);
     //*)
 
     /** Alokacja pamięci dla obiektów zarządzających panelami */
@@ -861,11 +893,15 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
 
 void AisdiRelationsFrame::ShowTitle (void )
 {
-    P_Usembers->SetLabels(this);        //inicjalizacja ikon oraz etykiet w panelach
+    P_Title->SetIcons(this);                //inicjalizacja ikon oraz etykiet w panelach
+    P_Usembers->SetLabels(this);
     P_Usembers->SetIcons(this);
     P_Inbox->SetIcons(this);
     P_Inbox->SetLabels(this);
-    P_Title->SetIcons(this);
+    P_Groups->SetIcons(this);
+    P_Stats->SetIcons(this);
+    P_MulTree->SetIcons(this);
+    PanelNotify->Hide();
 
     if (! P_MulTree->GetPanelEnabled())     //wyłączenie funkcjonowania panelu Multicast Tree
     {
@@ -873,8 +909,8 @@ void AisdiRelationsFrame::ShowTitle (void )
         I_ImageButtonMulTree->Disable();
         I_ImageButtonShowTree->Disable();
         U_ImageButtonMulTree->Disable();
-        //S_ImageButtonMulTree->Disable();        // TODO odkomentować po zrobieniu panelu Stats (poniżej też)
-        //G_ImageButtonMulTree->Disable();        // TODO odkomentować po zrobieniu panelu Groups (poniżej też)
+        S_ImageButtonMulTree->Disable();
+        G_ImageButtonMulTree->Disable();
     }
 
     if (! P_Stats->GetPanelEnabled())       //wyłączenie funcjonowania panelu Statistics
@@ -883,8 +919,8 @@ void AisdiRelationsFrame::ShowTitle (void )
         I_ImageButtonStats->Disable();
         U_ImageButtonStats->Disable();
         U_ImageButtonSwitchContent->Disable();
-        //G_ImageButtonStats->Disable();
-        //M_ImageButtonStats->Disable();        // TODO odkomentować po zrobieniu panelu MulTree (poniżej też)
+        G_ImageButtonStats->Disable();
+        M_ImageButtonStats->Disable();
     }
 
     if (! P_Groups->GetPanelEnabled())       //wyłączenie funcjonowania panelu Groups
@@ -893,8 +929,8 @@ void AisdiRelationsFrame::ShowTitle (void )
         I_ImageButtonGroups->Disable();
         U_ImageButtonGroups->Disable();
         U_ImageButtonShowGroup->Disable();
-        //S_ImageButtonGroups->Disable();
-        //M_ImageButtonGroups->Disable();
+        S_ImageButtonGroups->Disable();
+        M_ImageButtonGroups->Disable();
     }
 
     if (! this->settingsEnabled)
@@ -902,7 +938,7 @@ void AisdiRelationsFrame::ShowTitle (void )
         T_ImageButtonSettings->Disable();
         I_ImageButtonSettings->Disable();
         U_ImageButtonSettings->Disable();
-        //S_ImageButtonSettings->Disable();
+        //S_ImageButtonSettings->Disable();         //TODO odkomentować po dodaniu przycisków settings
         //M_ImageButtonSettings->Disable();
         //G_ImageButtonSettings->Disable();
     }
@@ -933,7 +969,7 @@ void AisdiRelationsFrame::OnQuit(wxCommandEvent& event)
 void AisdiRelationsFrame::OnAbout(wxCommandEvent& event)
 {
     wxString msg = _("Autorzy:\n  Maciej Gańko\n  Paweł Kaczyński\n  Krzysztof Lisocki\n  Patryk Łucka\n  Jakub Maleszewski\n  Maciej Safarzyński\n  Michał Żołyniak\n\n");
-    msg += _("---------------------------------------------------\nVersion:  0.8");
+    msg += _("---------------------------------------------------\nVersion:  1.3.7");
     wxMessageBox(msg, _("About"));
 }
 
@@ -1277,3 +1313,8 @@ void AisdiRelationsFrame::OnM_ImageButtonInboxClick(wxCommandEvent& event)
     P_Inbox->ShowPanel(this);
 }
 
+/** ============= Eventy Timera ============= */
+
+void AisdiRelationsFrame::OnTimer1Trigger(wxTimerEvent& event)
+{
+}

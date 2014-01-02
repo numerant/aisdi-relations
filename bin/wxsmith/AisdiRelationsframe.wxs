@@ -422,7 +422,7 @@
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL7" variable="PanelMulTree" member="yes">
-				<pos>0,0</pos>
+				<pos>1366,0</pos>
 				<size>1366,750</size>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP6" variable="BitmapBackgroundTree" member="yes">
 					<bitmap>resources/background.jpg</bitmap>
@@ -551,7 +551,7 @@
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL5" variable="PanelStatistics" member="yes">
-				<pos>0,0</pos>
+				<pos>1366,0</pos>
 				<size>1366,750</size>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP4" variable="BitmapBackgroundStatistics" member="yes">
 					<bitmap>resources/background.jpg</bitmap>
@@ -1866,6 +1866,65 @@
 					<handler function="OnI_SearchCtrlTextEnter" entry="EVT_TEXT_ENTER" />
 				</object>
 			</object>
+			<object class="wxPanel" name="ID_PANEL11" variable="PanelNotify" member="yes">
+				<pos>10,10</pos>
+				<size>250,100</size>
+				<bg>#303030</bg>
+				<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL</style>
+				<object class="wxStaticBox" name="ID_STATICBOX6" variable="N_Border" member="yes">
+					<pos>0,-10</pos>
+					<size>250,110</size>
+					<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT78" variable="N_StaticTextTitle" member="yes">
+					<label>Zakończono wczytywanie</label>
+					<pos>10,10</pos>
+					<fg>#FFFFFF</fg>
+					<font>
+						<size>12</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT79" variable="N_StaticTextOption1" member="yes">
+					<label>Wczytano poprawnie:</label>
+					<pos>10,35</pos>
+					<fg>#C0C0C0</fg>
+					<font>
+						<size>12</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT80" variable="N_StaticTextOption2" member="yes">
+					<label>Emaile niepoprawne:</label>
+					<pos>10,60</pos>
+					<fg>#C0C0C0</fg>
+					<font>
+						<size>12</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT83" variable="N_StaticTextValue1" member="yes">
+					<label>0</label>
+					<pos>170,35</pos>
+					<fg>#10B21F</fg>
+					<style>wxALIGN_LEFT</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT82" variable="N_StaticTextValue2" member="yes">
+					<label>0</label>
+					<pos>170,60</pos>
+					<fg>#B21C10</fg>
+					<style>wxALIGN_LEFT</style>
+				</object>
+			</object>
 		</object>
 		<object class="wxMenuBar" variable="MenuBar1" member="no">
 			<object class="wxMenu" variable="Menu1" member="no">
@@ -1951,6 +2010,10 @@
 			<default_dir>~/</default_dir>
 			<wildcard>*.eml</wildcard>
 			<style>wxFD_OPEN|wxFD_MULTIPLE</style>
+		</object>
+		<object class="wxTimer" name="ID_TIMER1" variable="Timer1" member="yes">
+			<interval>500</interval>
+			<handler function="OnTimer1Trigger" entry="EVT_TIMER" />
 		</object>
 	</object>
 </wxsmith>
