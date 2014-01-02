@@ -37,7 +37,7 @@ public:
     vector<Usember*>& select(UsemberQuery& usemberQuery);       //wskaźników na maile/grupy/usemberów pasujących do kryteriów zapytania i zwraca referencję na niego                                                        //i zwracają referencję do niego
     void deleteQueryResults(Query* query);                      //metoda usuwająca wektor wyników zapytania utworzonych przez metodę select, wywoływana zaraz po niej
     int findEmail(string messageId);                            //metoda wyszukujące email w bazie
-    int findGroup(string groupId);                              //metoda wyszukujące grupę w bazie
+    int findGroup(int groupId);                              //metoda wyszukujące grupę w bazie
     int findUsember(string name);                               //metoda wyszukujące usembera w bazie
     void clearEmails();                                         //metoda usuwająca wszystkie maile z bazy
     void clearGroups();                                         //metoda usuwająca wszystkie grupy z bazy
