@@ -160,7 +160,7 @@ int Database::findEmail(string messageId)
         return -1;
 }
 
-int Database::findGroup(string groupId)
+int Database::findGroup(int groupId)
 {
     if(groupVector.size()==0)
         return -1;
@@ -169,9 +169,9 @@ int Database::findGroup(string groupId)
     while(range>=1)
     {
         range/=2;
-        if(groupId.compare(groupVector[position]->getID())==0)
+        if(groupId==groupVector[position]->getID())
             return position;
-        if(groupId.compare(groupVector[position]->getID())>0)
+        if(groupId>groupVector[position]->getID())
             position+=range;
         else
             position-=range;
@@ -203,19 +203,6 @@ int Database::findUsember(string name)
     else
         return -1;
 }
-/*
-void insertAddedEmail()
-{
-    if(EmailVector.size()==0)
-        return;
-    Email* temp = EmailVector[EmailVector.size()-1];
-    for(i=EmailVector.size()-1; i>0; --i)
-    {
-        if(compareEmails(temp, EmailVector[i-1]<0))
-            EmailVector[i]=EmailVector[i-1];
-
-    }
-}*/
 
 void Database::clearEmails()
 {
@@ -245,7 +232,7 @@ bool Database::matches(Email& email, StringCriteria& stringCriteria)
             return true;
         return false;
     case E_REPLY_TO:
-        if(email.getReplyTo()->getID()==stringCriteria.getName())
+        if(email.getReplyTo()->getAddress()==stringCriteria.getName())
             return true;
         return false;
     case E_TO:
@@ -321,7 +308,7 @@ bool Database::compareEmails(Email* email1, Email* email2)
 
 bool Database::compareGroups(Group* group1, Group* group2)
 {
-    if(group1->getID().compare(group2->getID())<=0)
+    if(group1->getID()<=group2->getID())
         return true;
     else
         return false;
