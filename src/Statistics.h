@@ -23,6 +23,7 @@ private:
     double averageEmailLength;
     vector<Usember*> topSenders;        //powiedzmy, pieciu usemberow, ktorzy maja najwiecej wyslanych maili, mozna na wykresie pokazac dla kazdego ile maili wyslal
     vector<Usember*> topReceivers;      //jw, tyle ze odebranych
+    int emailsCountInMonth[12];
 
 public:
     Statistics(Database* database);
@@ -37,6 +38,7 @@ public:
     double getAverageEmailLength();
     Usember* getTopSender(int position);
     Usember* getTopReceiver(int position);
+    int getEmailsCountInMonth(int month);
 
 private:
     void updateVectorSizes();
