@@ -551,7 +551,7 @@
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL5" variable="PanelStatistics" member="yes">
-				<pos>1366,0</pos>
+				<pos>0,0</pos>
 				<size>1366,750</size>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP4" variable="BitmapBackgroundStatistics" member="yes">
 					<bitmap>resources/background.jpg</bitmap>
@@ -676,6 +676,18 @@
 					<size>60,60</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
 					<handler function="OnS_ImageButtonTitleClick" entry="EVT_BUTTON" />
+				</object>
+				<object class="wxPanel" name="ID_PANEL12" variable="S_PanelEmailPerMonth" member="yes">
+					<pos>300,120</pos>
+					<size>500,300</size>
+					<bg>#303030</bg>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL</style>
+					<handler function="OnS_PanelEmailPerMonthPaint" entry="EVT_PAINT" />
+					<object class="wxStaticBox" name="ID_STATICBOX7" variable="S_BorderEPM" member="yes">
+						<pos>0,-10</pos>
+						<size>500,310</size>
+						<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
+					</object>
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL6" variable="PanelGroups" member="yes">

@@ -26,6 +26,7 @@
 #include "AisdiRelationsMain.h"
 #include <wx/msgdlg.h>
 #include <wx/stattext.h>
+#include <wx/dcclient.h>
 
 //(*InternalHeaders(AisdiRelationsFrame)
 #include <wx/settings.h>
@@ -127,6 +128,8 @@ const long AisdiRelationsFrame::ID_IMAGEBUTTON53 = wxNewId();
 const long AisdiRelationsFrame::ID_IMAGEBUTTON52 = wxNewId();
 const long AisdiRelationsFrame::ID_IMAGEBUTTON51 = wxNewId();
 const long AisdiRelationsFrame::ID_IMAGEBUTTON42 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICBOX7 = wxNewId();
+const long AisdiRelationsFrame::ID_PANEL12 = wxNewId();
 const long AisdiRelationsFrame::ID_PANEL5 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICBITMAP5 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT73 = wxNewId();
@@ -409,7 +412,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     M_ImageButtonGroups = new wxBitmapButton(PanelMulTree, ID_IMAGEBUTTON44, wxNullBitmap, wxPoint(1090,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON44"));
     M_ImageButtonStats = new wxBitmapButton(PanelMulTree, ID_IMAGEBUTTON43, wxNullBitmap, wxPoint(1180,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON43"));
     M_ImageButtonTitle = new wxBitmapButton(PanelMulTree, ID_IMAGEBUTTON40, wxNullBitmap, wxPoint(10,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON40"));
-    PanelStatistics = new wxPanel(PanelMain, ID_PANEL5, wxPoint(1366,0), wxSize(1366,750), wxTAB_TRAVERSAL, _T("ID_PANEL5"));
+    PanelStatistics = new wxPanel(PanelMain, ID_PANEL5, wxPoint(0,0), wxSize(1366,750), wxTAB_TRAVERSAL, _T("ID_PANEL5"));
     BitmapBackgroundStatistics = new wxStaticBitmap(PanelStatistics, ID_STATICBITMAP4, wxBitmap(wxImage(_T("resources/background.jpg"))), wxPoint(0,0), wxDefaultSize, wxSIMPLE_BORDER, _T("ID_STATICBITMAP4"));
     S_LabelMulTree = new wxStaticText(PanelStatistics, ID_STATICTEXT77, _("Drzewo\nMulticastowe"), wxPoint(1166,70), wxDefaultSize, wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_STATICTEXT77"));
     S_LabelMulTree->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
@@ -436,6 +439,10 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     S_ImageButtonUsembers = new wxBitmapButton(PanelStatistics, ID_IMAGEBUTTON52, wxNullBitmap, wxPoint(1000,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON52"));
     S_ImageButtonInbox = new wxBitmapButton(PanelStatistics, ID_IMAGEBUTTON51, wxNullBitmap, wxPoint(910,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON51"));
     S_ImageButtonTitle = new wxBitmapButton(PanelStatistics, ID_IMAGEBUTTON42, wxNullBitmap, wxPoint(10,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON42"));
+    S_PanelEmailPerMonth = new wxPanel(PanelStatistics, ID_PANEL12, wxPoint(300,120), wxSize(500,300), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL, _T("ID_PANEL12"));
+    S_PanelEmailPerMonth->SetBackgroundColour(wxColour(48,48,48));
+    S_BorderEPM = new wxStaticBox(S_PanelEmailPerMonth, ID_STATICBOX7, wxEmptyString, wxPoint(0,-10), wxSize(500,310), 0, _T("ID_STATICBOX7"));
+    S_BorderEPM->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
     PanelGroups = new wxPanel(PanelMain, ID_PANEL6, wxPoint(1366,0), wxSize(1366,750), wxTAB_TRAVERSAL, _T("ID_PANEL6"));
     BitmapBackgroundGroups = new wxStaticBitmap(PanelGroups, ID_STATICBITMAP5, wxBitmap(wxImage(_T("resources/background.jpg")).Rescale(wxSize(1366,768).GetWidth(),wxSize(1366,768).GetHeight())), wxPoint(0,0), wxSize(1366,768), wxSIMPLE_BORDER, _T("ID_STATICBITMAP5"));
     G_LabelMulTree = new wxStaticText(PanelGroups, ID_STATICTEXT73, _("Drzewo\nMulticastowe"), wxPoint(1166,70), wxDefaultSize, wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_STATICTEXT73"));
@@ -826,6 +833,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_IMAGEBUTTON52,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_ImageButtonUsembersClick);
     Connect(ID_IMAGEBUTTON51,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_ImageButtonInboxClick);
     Connect(ID_IMAGEBUTTON42,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_ImageButtonTitleClick);
+    S_PanelEmailPerMonth->Connect(wxEVT_PAINT,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_PanelEmailPerMonthPaint,0,this);
     Connect(ID_IMAGEBUTTON50,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnG_ImageButtonMulTreeClick);
     Connect(ID_IMAGEBUTTON49,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnG_ImageButtonStatsClick);
     Connect(ID_IMAGEBUTTON48,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnG_ImageButtonUsembersClick);
@@ -884,6 +892,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     database = new Database();
     iointerface = new IOInterface();
     iointerface->setDatabasePointer(database);
+    statistics = new Statistics(database);
 
     ShowTitle();
 }
@@ -1284,6 +1293,11 @@ void AisdiRelationsFrame::OnS_ImageButtonMulTreeClick(wxCommandEvent& event)
     P_MulTree->ShowPanel(this);
 }
 
+void AisdiRelationsFrame::OnS_PanelEmailPerMonthPaint(wxPaintEvent& event)
+{
+    P_Stats->EventPanelEmailPerMonthPaint(this);
+}
+
 
 /** ============= Eventy panelu MULTREE ============= */
 
@@ -1317,5 +1331,4 @@ void AisdiRelationsFrame::OnM_ImageButtonInboxClick(wxCommandEvent& event)
 void AisdiRelationsFrame::OnTimer1Trigger(wxTimerEvent& event)
 {
     PanelNotify->Hide();
-    //Timer1.Stop();
 }

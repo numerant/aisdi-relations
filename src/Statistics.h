@@ -24,6 +24,7 @@ private:
     vector<Usember*> topSenders;        //powiedzmy, pieciu usemberow, ktorzy maja najwiecej wyslanych maili, mozna na wykresie pokazac dla kazdego ile maili wyslal
     vector<Usember*> topReceivers;      //jw, tyle ze odebranych
     int emailsCountInMonth[12];
+    int maxEmailsInMonth;
 
 public:
     Statistics(Database* database);

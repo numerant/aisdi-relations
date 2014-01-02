@@ -12,6 +12,7 @@ Statistics::Statistics(Database* database)
     averageEmailLength=0;
     for(int i=0; i<12; ++i)
         emailsCountInMonth[i]=0;
+    maxEmailsInMonth = 0;
 }
 
 Statistics::~Statistics()
@@ -121,6 +122,8 @@ void Statistics::updateEmailStatistics()
             month=database->getEmail(i)->getDate().monthToInt(database->getEmail(i)->getDate().getMonth());
             if(month>=1 && month<=12)
                 ++emailsCountInMonth[month-1];
+            if (emailsCountInMonth[month-1] > maxEmailsInMonth)
+                maxEmailsInMonth = emailsCountInMonth[month-1];
         }
     }
 

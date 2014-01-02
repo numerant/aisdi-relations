@@ -23,6 +23,7 @@ class PanelNotifyMaintance;
 #include "../src/Database.h"
 #include "../src/IOInterface.h"
 #include "../src/Parameters.h"
+#include "../src/Statistics.h"
 
 //(*Headers(AisdiRelationsFrame)
 #include <wx/bmpbuttn.h>
@@ -137,6 +138,8 @@ private:
     void OnS_ImageButtonGroupsClick(wxCommandEvent& event);
     void OnS_ImageButtonMulTreeClick(wxCommandEvent& event);
     void OnTimer1Trigger(wxTimerEvent& event);
+    void OnPanelStatisticsPaint(wxPaintEvent& event);
+    void OnS_PanelEmailPerMonthPaint(wxPaintEvent& event);
     //*)
 
     //(*Identifiers(AisdiRelationsFrame)
@@ -201,6 +204,8 @@ private:
     static const long ID_IMAGEBUTTON52;
     static const long ID_IMAGEBUTTON51;
     static const long ID_IMAGEBUTTON42;
+    static const long ID_STATICBOX7;
+    static const long ID_PANEL12;
     static const long ID_PANEL5;
     static const long ID_STATICBITMAP5;
     static const long ID_STATICTEXT73;
@@ -400,6 +405,7 @@ private:
     wxBitmapButton        *G_ImageButtonUsembers;
     wxStaticBitmap* BitmapBackgroundGroups;
     wxStaticText* T_StaticTextTitle2;
+    wxStaticBox* S_BorderEPM;
     wxStaticText* U_LabelSwitchList;
     wxStaticText* U_LabelSettings;
     wxBitmapButton        *M_ImageButtonUsembers;
@@ -435,6 +441,7 @@ private:
     wxBitmapButton        *T_ImageButtonInbox;
     wxStaticText* I_StaticTextFrom;
     wxStaticBox* N_Border;
+    wxPanel* S_PanelEmailPerMonth;
     wxListCtrl* U_ListInbox;
     wxMenu* Menu3;
     wxStaticText* I_LabelSettings;
@@ -533,6 +540,7 @@ private:
     PanelNotifyMaintance * P_Notify ;
     Database * database;
     IOInterface * iointerface;
+    Statistics * statistics;
     DECLARE_EVENT_TABLE()
 };
 
