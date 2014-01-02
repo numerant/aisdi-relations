@@ -75,6 +75,8 @@
 		<Unit filename="view/PanelInboxMaintance.h" />
 		<Unit filename="view/PanelMulTreeMaintance.cpp" />
 		<Unit filename="view/PanelMulTreeMaintance.h" />
+		<Unit filename="view/PanelNotifyMaintance.cpp" />
+		<Unit filename="view/PanelNotifyMaintance.h" />
 		<Unit filename="view/PanelStatisticsMaintance.cpp" />
 		<Unit filename="view/PanelStatisticsMaintance.h" />
 		<Unit filename="view/PanelTitleMaintance.cpp" />

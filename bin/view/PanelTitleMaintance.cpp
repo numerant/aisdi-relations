@@ -1,4 +1,5 @@
 #include "PanelTitleMaintance.h"
+#include "PanelNotifyMaintance.h"
 
 PanelTitleMaintance::PanelTitleMaintance ()
 {
@@ -290,12 +291,9 @@ void PanelTitleMaintance::EventButtonFolderClick (AisdiRelationsFrame* Frame)
         if (stats.successCount > 0)
         {
             Frame->P_Title->SwitchIcons(Frame);
-            //wxMessageBox(_("Pomyślnie wczytano!"));     //TODO Zamienić na wyświetlanie raportu
-            /*Frame->PanelNotify->Show();
-            stats.
-            wxString content(sourceString.c_str(), wxConvUTF8);
-            Frame->N_StaticTextValue1->SetLabel()
-            Frame->Timer1->Start(2000, wxTIMER_CONTINUOUS);*/
+            Frame->P_Notify->SetLabels(Frame, "Zakończono wczytywanie!", "Wczytano poprawnie:", "Niepoprawne emaile:");
+            Frame->P_Notify->SetValues(Frame, stats.successCount, stats.failCount);
+            Frame->P_Notify->ShowPanel(Frame, 5000);
         }
     }
 }
@@ -320,7 +318,9 @@ void PanelTitleMaintance::EventButtonFilesClick (AisdiRelationsFrame* Frame)
         if (stats.successCount > 0)
         {
             Frame->P_Title->SwitchIcons(Frame);
-            wxMessageBox(_("Pomyślnie wczytano!"));		//TODO zmienić na wyświetlanie raportu wczytania
+            Frame->P_Notify->SetLabels(Frame, "Zakończono wczytywanie!", "Wczytano poprawnie:", "Niepoprawne emaile:");
+            Frame->P_Notify->SetValues(Frame, stats.successCount, stats.failCount);
+            Frame->P_Notify->ShowPanel(Frame, 5000);
         }
     }
 }

@@ -10,7 +10,7 @@ class PanelTitleMaintance
 private:
     bool panelEnabled = true;       //dostępność panelu
     bool noData = true;             //czy dane zostały już zaimportowane (wtedy nie pokazuje ikonek dodawania)
-    bool recursiveLoad = true;		//wczytywanie rekursywne maili z podanego folderu
+    bool recursiveLoad = false;		//wczytywanie rekursywne maili z podanego folderu
     bool clickedAdd = false;            //dostępność poszczególnych przycisków dodawania danych;
     bool clickedLoad = false;
     bool clickedImport = false;
