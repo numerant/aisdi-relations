@@ -198,6 +198,11 @@ void PanelUsembersMaintance::EventListOutboxColumnClick (AisdiRelationsFrame* Fr
 
 }
 
+void PanelUsembersMaintance::EventListOutboxItemSelect (AisdiRelationsFrame* Frame)
+{
+
+}
+
 void PanelUsembersMaintance::EventListInboxItemSelect (AisdiRelationsFrame* Frame)
 {
 

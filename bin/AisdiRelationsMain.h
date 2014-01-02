@@ -501,6 +501,8 @@ private:
     wxBitmapButton        *U_ImageButtonAdd;
     //*)
 
+
+    /** Wskaźniki na obiekty paneli, bazy oraz IO */
     PanelTitleMaintance* P_Title;
     PanelGroupsMaintance * P_Groups;
     PanelInboxMaintance * P_Inbox;

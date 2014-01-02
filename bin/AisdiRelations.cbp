@@ -37,9 +37,9 @@
 		</Compiler>
 		<Linker>
 			<Add option="`wx-config --libs`" />
-			<Add option="-llibboost_filesystem" />
-			<Add option="-llibboost_system" />
-			<Add option="-llibboost_regex" />
+			<Add option="-lboost_filesystem" />
+			<Add option="-lboost_system" />
+			<Add option="-lboost_regex" />
 		</Linker>
 		<Unit filename="../src/Criteria.cpp" />
 		<Unit filename="../src/Criteria.h" />
