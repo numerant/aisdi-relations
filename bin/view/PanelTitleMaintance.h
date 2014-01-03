@@ -2,6 +2,8 @@
 #include "../AisdiRelationsMain.h"
 #include <wx/msgdlg.h>
 #include "PanelInboxMaintance.h"
+#include "PanelNotifyMaintance.h"
+#include "PanelStatisticsMaintance.h"
 
 class PanelTitleMaintance
 {

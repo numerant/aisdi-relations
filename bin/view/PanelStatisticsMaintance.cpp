@@ -17,7 +17,12 @@ void PanelStatisticsMaintance::ShowPanel(AisdiRelationsFrame* Frame)
         Frame->PanelMulTree->Hide();
 
         Frame->PanelStatistics->SetPosition(wxPoint(0,0));
-        Frame->S_PanelEmailPerMonth->Refresh();
+        if (!GetIsUpdated())    //jeżeli był jakiś update w międzyczasie
+        {
+            Frame->S_PanelEmailPerMonth->Refresh();     //uaktualnij statystyki
+            Frame->S_PanelCounters->Refresh();
+        }
+
         Frame->PanelStatistics->Show();
     }
 }
@@ -34,9 +39,19 @@ void PanelStatisticsMaintance::SetIcons(AisdiRelationsFrame * Frame)
     Frame->S_ImageButtonMulTree->SetBitmapLabel(path+imagePaths[4]+format);
 }
 
+void PanelStatisticsMaintance::SetIsUpdated()
+{
+    isUpdated = !isUpdated;
+}
+
 bool PanelStatisticsMaintance::GetPanelEnabled ()
 {
     return panelEnabled;
+}
+
+bool PanelStatisticsMaintance::GetIsUpdated ()
+{
+    return isUpdated;
 }
 
 void PanelStatisticsMaintance::EventPanelEmailPerMonthPaint (AisdiRelationsFrame * Frame)
@@ -62,20 +77,61 @@ void PanelStatisticsMaintance::EventPanelEmailPerMonthPaint (AisdiRelationsFrame
     }
 
     dc.DrawLine(wxPoint(10,260), wxPoint(490,260));
+}
 
-    /*dc.SetPen(wxPen(wxColour(255, 255, 255)));
-    dc.SetBrush(wxBrush(wxColour(255, 255, 255)));
-    dc.DrawLine(x-13,y-2,26,4);
-    dc.DrawLine(x-2,y-13,4,26);
+void PanelStatisticsMaintance::EventPanelCountersPaint (AisdiRelationsFrame * Frame)
+{
+    int iCounter;
+    double dCounter;
+    string sCounter;
+    ostringstream ss;
 
-    dc.SetPen(wxPen(wxColour(0, 255, 0)));
-    dc.SetBrush(wxBrush(wxColour(0, 255, 0)));
-    dc.DrawEllipse(x-17,y-5,10,10);
-    dc.DrawEllipse(x+7,y-5,10,10);
+    iCounter = Frame->statistics->getEmails();
+    ss << iCounter;
+    sCounter = ss.str();
+    Frame->S_StaticTextC_Value1->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
+    ss.str("");
 
-    dc.SetPen(wxPen(wxColour(255, 0, 0)));
-    dc.SetBrush(wxBrush(wxColour(255, 0, 0)));
-    dc.DrawEllipse(x-5,y-17,10,10);
-    dc.DrawEllipse(x-5,y+7,10,10);*/
+    iCounter = Frame->statistics->getUsembers();
+    ss << iCounter;
+    sCounter = ss.str();
+    Frame->S_StaticTextC_Value2->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
+    ss.str("");
+
+    iCounter = Frame->statistics->getGroups();
+    ss << iCounter;
+    sCounter = ss.str();
+    Frame->S_StaticTextC_Value3->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
+    ss.str("");
+
+    /*iCounter = Frame->statistics->getMaxEmailsInMonth();
+    ss << iCounter;
+    sCounter = ss.str();
+    Frame->S_StaticTextC_Value8->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
+    ss.str("");*/
+
+    dCounter = Frame->statistics->getEmailsPerMonth();
+    ss << dCounter;
+    sCounter = ss.str();
+    Frame->S_StaticTextC_Value4->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
+    ss.str("");
+
+    dCounter = Frame->statistics->getEmailsPerDay();
+    ss << dCounter;
+    sCounter = ss.str();
+    Frame->S_StaticTextC_Value5->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
+    ss.str("");
+
+    dCounter = Frame->statistics->getEmailsPerUser();
+    ss << dCounter;
+    sCounter = ss.str();
+    Frame->S_StaticTextC_Value6->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
+    ss.str("");
+
+    dCounter = Frame->statistics->getAverageEmailLength();
+    ss << dCounter;
+    sCounter = ss.str();
+    Frame->S_StaticTextC_Value7->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
+    ss.str("");
 }
 

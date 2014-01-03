@@ -62,9 +62,12 @@
 		<Unit filename="../src/Query.h" />
 		<Unit filename="../src/Report.cpp" />
 		<Unit filename="../src/Report.h" />
+		<Unit filename="../src/Statistics.cpp" />
+		<Unit filename="../src/Statistics.h" />
 		<Unit filename="../src/Usember.cpp" />
 		<Unit filename="../src/Usember.h" />
 		<Unit filename="../src/UsemberQuery.h" />
+		<Unit filename="../src/WorkgroupQuery.h" />
 		<Unit filename="AisdiRelationsApp.cpp" />
 		<Unit filename="AisdiRelationsApp.h" />
 		<Unit filename="AisdiRelationsMain.cpp" />

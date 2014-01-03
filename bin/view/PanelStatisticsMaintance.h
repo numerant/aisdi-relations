@@ -1,5 +1,6 @@
 #pragma once
 #include "../AisdiRelationsMain.h"
+#include <sstream>
 
 class PanelStatisticsMaintance
 {
@@ -7,6 +8,7 @@ class PanelStatisticsMaintance
 
 private:
     bool panelEnabled = true;
+    bool isUpdated = false;
     const wxString imagePaths[5] =
     {
         _("Title"),  _("Mailbox"),  _("Usember"),  _("Workgroups"),  _("Tree")
@@ -21,8 +23,11 @@ public:
     PanelStatisticsMaintance ();
     void ShowPanel(AisdiRelationsFrame* Frame);
     void SetIcons(AisdiRelationsFrame* Frame);
+    void SetIsUpdated();
 
     bool GetPanelEnabled ();
+    bool GetIsUpdated ();
 
     void EventPanelEmailPerMonthPaint (AisdiRelationsFrame * Frame);
+    void EventPanelCountersPaint (AisdiRelationsFrame * Frame);
 };
