@@ -396,30 +396,6 @@
 						<face>Ubuntu</face>
 					</font>
 				</object>
-				<object class="wxStaticBox" name="ID_STATICBOX5" variable="T_BorderSettings" member="yes">
-					<pos>925,5</pos>
-					<size>230,80</size>
-					<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
-				</object>
-				<object class="wxPanel" name="ID_PANEL10" variable="T_PanelSettings" member="yes">
-					<pos>930,20</pos>
-					<size>220,60</size>
-					<bg>#323232</bg>
-					<object class="wxCheckBox" name="ID_CHECKBOX1" variable="T_CheckBoxRecursive" member="yes">
-						<label>Wczytywanie rekursywne &#x0A;folderów</label>
-						<pos>5,5</pos>
-						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
-						<bg>#A0A0A0</bg>
-						<font>
-							<size>11</size>
-							<style>normal</style>
-							<weight>normal</weight>
-							<underlined>0</underlined>
-							<face>Ubuntu</face>
-						</font>
-						<handler function="OnT_CheckBoxRecursiveClick" entry="EVT_CHECKBOX" />
-					</object>
-				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL7" variable="PanelMulTree" member="yes">
 				<pos>1366,0</pos>
@@ -551,7 +527,7 @@
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL5" variable="PanelStatistics" member="yes">
-				<pos>0,0</pos>
+				<pos>1366,0</pos>
 				<size>1366,750</size>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP4" variable="BitmapBackgroundStatistics" member="yes">
 					<bitmap>resources/background.jpg</bitmap>
@@ -2112,6 +2088,30 @@
 					<pos>170,60</pos>
 					<fg>#B21C10</fg>
 					<style>wxALIGN_LEFT</style>
+				</object>
+			</object>
+			<object class="wxPanel" name="ID_PANEL10" variable="PanelSettings" member="yes">
+				<pos>930,20</pos>
+				<size>240,60</size>
+				<bg>#323232</bg>
+				<object class="wxStaticBox" name="ID_STATICBOX5" variable="Set_BorderSettings" member="yes">
+					<pos>0,-10</pos>
+					<size>240,70</size>
+					<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
+				</object>
+				<object class="wxCheckBox" name="ID_CHECKBOX1" variable="Set_CheckBoxRecursive" member="yes">
+					<label>Wczytywanie rekursywne &#x0A;folderów</label>
+					<pos>10,8</pos>
+					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+					<bg>#A0A0A0</bg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<handler function="OnT_CheckBoxRecursiveClick" entry="EVT_CHECKBOX" />
 				</object>
 			</object>
 		</object>

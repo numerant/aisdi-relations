@@ -18,8 +18,8 @@ void PanelTitleMaintance::ShowPanel(AisdiRelationsFrame* Frame)
         Frame->PanelTitle->SetPosition(wxPoint(0,0));
         Frame->PanelTitle->Show();
 
-        Frame->T_PanelSettings->Hide();	//ukrycie panelu opcji wraz z obramowaniem
-        Frame->T_BorderSettings->Hide();
+        Frame->PanelSettings->Hide();	//ukrycie panelu opcji wraz z obramowaniem
+        Frame->Set_BorderSettings->Hide();
 
         Frame->P_Title->SetNoData( ! (Frame->P_Title->GetNoData() ) ); //Zmień ikony, ale z zanegowaną wartością parametru
         Frame->P_Title->SwitchIcons(Frame);                            //Więc de facto tylko je wyświetl
@@ -83,8 +83,8 @@ void PanelTitleMaintance::SwitchIcons (AisdiRelationsFrame* Frame)
         if (Frame->P_Title->GetClickedSettings())
         {
             Frame->P_Title->SetClickedSettings();
-            Frame->T_PanelSettings->Hide();
-            Frame->T_BorderSettings->Hide();
+            Frame->PanelSettings->Hide();
+            Frame->Set_BorderSettings->Hide();
         }
 
     }
@@ -334,23 +334,24 @@ void PanelTitleMaintance::EventButtonSettingsClick (AisdiRelationsFrame * Frame)
 {
 	if (GetClickedSettings())
 	{
-		Frame->T_PanelSettings->Hide();
-		Frame->T_BorderSettings->Hide();
+		Frame->PanelSettings->Hide();
+		Frame->Set_BorderSettings->Hide();
 	}
 	else
 	{
-		Frame->T_PanelSettings->Show();
-		Frame->T_BorderSettings->Show();
+	    Frame->PanelSettings->SetPosition(wxPoint(930,20));
+		Frame->PanelSettings->Show();
+		Frame->Set_BorderSettings->Show();
 	}
 	SetClickedSettings();
 }
 
-void PanelTitleMaintance::TxtImport ()
+void PanelTitleMaintance::EventButtonBinClick()
 {
 
 }
 
-void PanelTitleMaintance::BinImport ()
+void PanelTitleMaintance::EventButtonTxtClick()
 {
 
 }

@@ -179,9 +179,6 @@ private:
     static const long ID_STATICTEXT26;
     static const long ID_STATICTEXT25;
     static const long ID_STATICTEXT24;
-    static const long ID_STATICBOX5;
-    static const long ID_CHECKBOX1;
-    static const long ID_PANEL10;
     static const long ID_PANEL3;
     static const long ID_STATICBITMAP6;
     static const long ID_STATICTEXT63;
@@ -342,6 +339,9 @@ private:
     static const long ID_STATICTEXT83;
     static const long ID_STATICTEXT82;
     static const long ID_PANEL11;
+    static const long ID_STATICBOX5;
+    static const long ID_CHECKBOX1;
+    static const long ID_PANEL10;
     static const long ID_PANEL1;
     static const long idMenuNew;
     static const long idMenuOpen;
@@ -400,9 +400,9 @@ private:
     wxStaticText* N_StaticTextValue2;
     wxBitmapButton        *U_ImageButtonSwitchList;
     wxBitmapButton        *M_ImageButtonGroups;
+    wxPanel* PanelSettings;
     wxStaticText* T_LabelBin;
     wxStaticBox* I_InboxBorder;
-    wxPanel* T_PanelSettings;
     wxPanel* PanelMulTree;
     wxBitmapButton        *U_ImageButtonSearch;
     wxPanel* PanelGroups;
@@ -413,7 +413,6 @@ private:
     wxStaticText* U_LabelDelete;
     wxStaticText* T_LabelTxt;
     wxStaticLine* U_LineContentSeparator;
-    wxStaticBox* T_BorderSettings;
     wxBitmapButton        *T_ImageButtonMulTree;
     wxStaticText* S_StaticTextC_MaxEmailsInMonth;
     wxPanel* PanelStatistics;
@@ -464,6 +463,7 @@ private:
     wxBitmapButton        *I_ImageButtonGroups;
     wxStaticText* I_StaticTextDate;
     wxBitmapButton        *M_ImageButtonTitle;
+    wxStaticBox* Set_BorderSettings;
     wxStaticBitmap* BitmapBackgroundTitle;
     wxStaticText* I_StaticTextSubject;
     wxStaticText* I_LabelTo;
@@ -513,6 +513,7 @@ private:
     wxStaticText* G_LabelInbox;
     wxStaticBox* U_StaticBoxUsembers;
     wxStaticText* I_LabelSubject;
+    wxCheckBox* Set_CheckBoxRecursive;
     wxStaticText* G_LabelUsembers;
     wxStaticText* T_LabelFolder;
     wxBitmapButton        *T_ImageButtonFiles;
@@ -567,7 +568,6 @@ private:
     wxStaticText* G_LabelMulTree;
     wxStaticText* S_StaticTextC_Value1;
     wxBitmapButton        *G_ImageButtonStats;
-    wxCheckBox* T_CheckBoxRecursive;
     wxStaticBox* U_StaticBoxInfo;
     wxStaticText* U_StaticTextFromTo;
     wxBitmapButton        *U_ImageButtonAdd;

@@ -48,7 +48,6 @@ public:
     void EventButtonFolderClick (AisdiRelationsFrame* Frame);
     void EventButtonFilesClick (AisdiRelationsFrame* Frame);
     void EventButtonSettingsClick (AisdiRelationsFrame * Frame);
-
-    void TxtImport (void);
-    void BinImport (void);
+    void EventButtonTxtClick (void);
+    void EventButtonBinClick (void);
 };

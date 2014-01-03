@@ -101,9 +101,6 @@ const long AisdiRelationsFrame::ID_STATICTEXT27 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT26 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT25 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT24 = wxNewId();
-const long AisdiRelationsFrame::ID_STATICBOX5 = wxNewId();
-const long AisdiRelationsFrame::ID_CHECKBOX1 = wxNewId();
-const long AisdiRelationsFrame::ID_PANEL10 = wxNewId();
 const long AisdiRelationsFrame::ID_PANEL3 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICBITMAP6 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT63 = wxNewId();
@@ -264,6 +261,9 @@ const long AisdiRelationsFrame::ID_STATICTEXT80 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT83 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT82 = wxNewId();
 const long AisdiRelationsFrame::ID_PANEL11 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICBOX5 = wxNewId();
+const long AisdiRelationsFrame::ID_CHECKBOX1 = wxNewId();
+const long AisdiRelationsFrame::ID_PANEL10 = wxNewId();
 const long AisdiRelationsFrame::ID_PANEL1 = wxNewId();
 const long AisdiRelationsFrame::idMenuNew = wxNewId();
 const long AisdiRelationsFrame::idMenuOpen = wxNewId();
@@ -396,16 +396,6 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     T_LabelAdd->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
     wxFont T_LabelAddFont(14,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     T_LabelAdd->SetFont(T_LabelAddFont);
-    T_BorderSettings = new wxStaticBox(PanelTitle, ID_STATICBOX5, wxEmptyString, wxPoint(925,5), wxSize(230,80), 0, _T("ID_STATICBOX5"));
-    T_BorderSettings->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
-    T_PanelSettings = new wxPanel(PanelTitle, ID_PANEL10, wxPoint(930,20), wxSize(220,60), wxTAB_TRAVERSAL, _T("ID_PANEL10"));
-    T_PanelSettings->SetBackgroundColour(wxColour(50,50,50));
-    T_CheckBoxRecursive = new wxCheckBox(T_PanelSettings, ID_CHECKBOX1, _("Wczytywanie rekursywne \nfolderów"), wxPoint(5,5), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX1"));
-    T_CheckBoxRecursive->SetValue(false);
-    T_CheckBoxRecursive->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
-    T_CheckBoxRecursive->SetBackgroundColour(wxColour(160,160,160));
-    wxFont T_CheckBoxRecursiveFont(11,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
-    T_CheckBoxRecursive->SetFont(T_CheckBoxRecursiveFont);
     PanelMulTree = new wxPanel(PanelMain, ID_PANEL7, wxPoint(1366,0), wxSize(1366,750), wxTAB_TRAVERSAL, _T("ID_PANEL7"));
     BitmapBackgroundTree = new wxStaticBitmap(PanelMulTree, ID_STATICBITMAP6, wxBitmap(wxImage(_T("resources/background.jpg")).Rescale(wxSize(1366,768).GetWidth(),wxSize(1366,768).GetHeight())), wxPoint(0,0), wxSize(1366,768), wxSIMPLE_BORDER, _T("ID_STATICBITMAP6"));
     M_LabelTitle = new wxStaticText(PanelMulTree, ID_STATICTEXT63, _("Menu"), wxPoint(22,70), wxDefaultSize, wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_STATICTEXT63"));
@@ -433,7 +423,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     M_ImageButtonGroups = new wxBitmapButton(PanelMulTree, ID_IMAGEBUTTON44, wxNullBitmap, wxPoint(1090,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON44"));
     M_ImageButtonStats = new wxBitmapButton(PanelMulTree, ID_IMAGEBUTTON43, wxNullBitmap, wxPoint(1180,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON43"));
     M_ImageButtonTitle = new wxBitmapButton(PanelMulTree, ID_IMAGEBUTTON40, wxNullBitmap, wxPoint(10,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON40"));
-    PanelStatistics = new wxPanel(PanelMain, ID_PANEL5, wxPoint(0,0), wxSize(1366,750), wxTAB_TRAVERSAL, _T("ID_PANEL5"));
+    PanelStatistics = new wxPanel(PanelMain, ID_PANEL5, wxPoint(1366,0), wxSize(1366,750), wxTAB_TRAVERSAL, _T("ID_PANEL5"));
     BitmapBackgroundStatistics = new wxStaticBitmap(PanelStatistics, ID_STATICBITMAP4, wxBitmap(wxImage(_T("resources/background.jpg"))), wxPoint(0,0), wxDefaultSize, wxSIMPLE_BORDER, _T("ID_STATICBITMAP4"));
     S_LabelMulTree = new wxStaticText(PanelStatistics, ID_STATICTEXT77, _("Drzewo\nMulticastowe"), wxPoint(1166,70), wxDefaultSize, wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_STATICTEXT77"));
     S_LabelMulTree->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
@@ -846,6 +836,16 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     N_StaticTextValue1->SetForegroundColour(wxColour(16,178,31));
     N_StaticTextValue2 = new wxStaticText(PanelNotify, ID_STATICTEXT82, _("0"), wxPoint(170,60), wxDefaultSize, wxALIGN_LEFT, _T("ID_STATICTEXT82"));
     N_StaticTextValue2->SetForegroundColour(wxColour(178,28,16));
+    PanelSettings = new wxPanel(PanelMain, ID_PANEL10, wxPoint(930,20), wxSize(240,60), wxTAB_TRAVERSAL, _T("ID_PANEL10"));
+    PanelSettings->SetBackgroundColour(wxColour(50,50,50));
+    Set_BorderSettings = new wxStaticBox(PanelSettings, ID_STATICBOX5, wxEmptyString, wxPoint(0,-10), wxSize(240,70), 0, _T("ID_STATICBOX5"));
+    Set_BorderSettings->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
+    Set_CheckBoxRecursive = new wxCheckBox(PanelSettings, ID_CHECKBOX1, _("Wczytywanie rekursywne \nfolderów"), wxPoint(10,8), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX1"));
+    Set_CheckBoxRecursive->SetValue(false);
+    Set_CheckBoxRecursive->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
+    Set_CheckBoxRecursive->SetBackgroundColour(wxColour(160,160,160));
+    wxFont Set_CheckBoxRecursiveFont(11,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
+    Set_CheckBoxRecursive->SetFont(Set_CheckBoxRecursiveFont);
     MenuBar1 = new wxMenuBar();
     Menu1 = new wxMenu();
     MenuItem8 = new wxMenuItem(Menu1, idMenuNew, _("New\tCTRL+N"), _("Creates an empty database"), wxITEM_NORMAL);
@@ -901,7 +901,6 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_IMAGEBUTTON14,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonLoadClick);
     Connect(ID_IMAGEBUTTON13,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonImportClick);
     Connect(ID_IMAGEBUTTON12,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonAddClick);
-    Connect(ID_CHECKBOX1,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_CheckBoxRecursiveClick);
     Connect(ID_IMAGEBUTTON46,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnM_ImageButtonInboxClick);
     Connect(ID_IMAGEBUTTON45,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnM_ImageButtonUsembersClick);
     Connect(ID_IMAGEBUTTON44,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnM_ImageButtonGroupsClick);
@@ -956,6 +955,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_IMAGEBUTTON38,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnI_ImageButtonTitleClick);
     Connect(ID_IMAGEBUTTON19,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnI_ImageButtonAddClick);
     Connect(ID_SEARCHCTRL1,wxEVT_COMMAND_TEXT_ENTER,(wxObjectEventFunction)&AisdiRelationsFrame::OnI_SearchCtrlTextEnter);
+    Connect(ID_CHECKBOX1,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_CheckBoxRecursiveClick);
     Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnQuit);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnAbout);
     Connect(ID_TIMER1,wxEVT_TIMER,(wxObjectEventFunction)&AisdiRelationsFrame::OnTimer1Trigger);
@@ -1123,17 +1123,17 @@ void AisdiRelationsFrame::OnT_ImageButtonSettingsClick(wxCommandEvent& event)
 
 void AisdiRelationsFrame::OnT_ImageButtonTxtClick(wxCommandEvent& event)
 {
-    P_Title->TxtImport();
+    P_Title->EventButtonTxtClick();
 }
 
 void AisdiRelationsFrame::OnT_ImageButtonBinClick(wxCommandEvent& event)
 {
-    P_Title->BinImport();
+    P_Title->EventButtonBinClick();
 }
 
 void AisdiRelationsFrame::OnT_CheckBoxRecursiveClick(wxCommandEvent& event)
 {
-    P_Title->SetRecursiveLoad(T_CheckBoxRecursive->GetValue());
+    P_Title->SetRecursiveLoad(Set_CheckBoxRecursive->GetValue());
 }
 
 /** ============= Eventy panelu INBOX ============= */
