@@ -2184,16 +2184,16 @@
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL10" variable="PanelSettings" member="yes">
-				<pos>930,20</pos>
-				<size>240,60</size>
+				<pos>860,20</pos>
+				<size>300,140</size>
 				<bg>#323232</bg>
 				<object class="wxStaticBox" name="ID_STATICBOX5" variable="Set_BorderSettings" member="yes">
 					<pos>0,-10</pos>
-					<size>240,70</size>
+					<size>300,150</size>
 					<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
 				</object>
 				<object class="wxCheckBox" name="ID_CHECKBOX1" variable="Set_CheckBoxRecursive" member="yes">
-					<label>Wczytywanie rekursywne &#x0A;folderów</label>
+					<label>Wczytywanie rekursywne folderów</label>
 					<pos>10,8</pos>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<bg>#A0A0A0</bg>
@@ -2205,6 +2205,31 @@
 						<face>Ubuntu</face>
 					</font>
 					<handler function="OnT_CheckBoxRecursiveClick" entry="EVT_CHECKBOX" />
+				</object>
+				<object class="wxSlider" name="ID_SLIDER1" variable="Set_SliderNotifyTime" member="yes">
+					<value>3</value>
+					<min>1</min>
+					<max>10</max>
+					<linesize>10</linesize>
+					<thumb>10</thumb>
+					<tick>1</tick>
+					<pos>20,65</pos>
+					<size>260,50</size>
+					<fg>wxSYS_COLOUR_SCROLLBAR</fg>
+					<style>wxSL_HORIZONTAL|wxSL_AUTOTICKS|wxSL_LABELS</style>
+					<handler function="OnSet_SliderNotifyTimeCmdScrollChanged" entry="EVT_COMMAND_SCROLL_CHANGED" />
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT110" variable="Set_LabelNotify" member="yes">
+					<label>Czas wyświetlania powiadomień [s]</label>
+					<pos>30,45</pos>
+					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
 				</object>
 			</object>
 		</object>

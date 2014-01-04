@@ -292,7 +292,7 @@ void PanelTitleMaintance::EventButtonFolderClick (AisdiRelationsFrame* Frame)
             Frame->P_Title->SwitchIcons(Frame);
             Frame->P_Notify->SetLabels(Frame, "Zakończono wczytywanie!", "Wczytano poprawnie:", "Niepoprawne emaile:");
             Frame->P_Notify->SetValues(Frame, stats.successCount, stats.failCount);
-            Frame->P_Notify->ShowPanel(Frame, 5000);
+            Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime()*1000);
             Frame->statistics->update();              //TODO odkomentować
             if (Frame->P_Stats->GetIsUpdated())
                 Frame->P_Stats->SetIsUpdated();
@@ -322,7 +322,7 @@ void PanelTitleMaintance::EventButtonFilesClick (AisdiRelationsFrame* Frame)
             Frame->P_Title->SwitchIcons(Frame);
             Frame->P_Notify->SetLabels(Frame, "Zakończono wczytywanie!", "Wczytano poprawnie:", "Niepoprawne emaile:");
             Frame->P_Notify->SetValues(Frame, stats.successCount, stats.failCount);
-            Frame->P_Notify->ShowPanel(Frame, 5000);
+            Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime()*1000);
             Frame->statistics->update();              //TODO odkomentować
             if (Frame->P_Stats->GetIsUpdated())
                 Frame->P_Stats->SetIsUpdated();
@@ -339,7 +339,7 @@ void PanelTitleMaintance::EventButtonSettingsClick (AisdiRelationsFrame * Frame)
 	}
 	else
 	{
-	    Frame->PanelSettings->SetPosition(wxPoint(930,20));
+	    Frame->PanelSettings->SetPosition(wxPoint(870,20));
 		Frame->PanelSettings->Show();
 		Frame->Set_BorderSettings->Show();
 	}

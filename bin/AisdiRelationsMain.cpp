@@ -274,6 +274,8 @@ const long AisdiRelationsFrame::ID_STATICTEXT82 = wxNewId();
 const long AisdiRelationsFrame::ID_PANEL11 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICBOX5 = wxNewId();
 const long AisdiRelationsFrame::ID_CHECKBOX1 = wxNewId();
+const long AisdiRelationsFrame::ID_SLIDER1 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICTEXT110 = wxNewId();
 const long AisdiRelationsFrame::ID_PANEL10 = wxNewId();
 const long AisdiRelationsFrame::ID_PANEL1 = wxNewId();
 const long AisdiRelationsFrame::idMenuNew = wxNewId();
@@ -878,16 +880,25 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     N_StaticTextValue1->SetForegroundColour(wxColour(16,178,31));
     N_StaticTextValue2 = new wxStaticText(PanelNotify, ID_STATICTEXT82, _("0"), wxPoint(170,60), wxDefaultSize, wxALIGN_LEFT, _T("ID_STATICTEXT82"));
     N_StaticTextValue2->SetForegroundColour(wxColour(178,28,16));
-    PanelSettings = new wxPanel(PanelMain, ID_PANEL10, wxPoint(930,20), wxSize(240,60), wxTAB_TRAVERSAL, _T("ID_PANEL10"));
+    PanelSettings = new wxPanel(PanelMain, ID_PANEL10, wxPoint(860,20), wxSize(300,140), wxTAB_TRAVERSAL, _T("ID_PANEL10"));
     PanelSettings->SetBackgroundColour(wxColour(50,50,50));
-    Set_BorderSettings = new wxStaticBox(PanelSettings, ID_STATICBOX5, wxEmptyString, wxPoint(0,-10), wxSize(240,70), 0, _T("ID_STATICBOX5"));
+    Set_BorderSettings = new wxStaticBox(PanelSettings, ID_STATICBOX5, wxEmptyString, wxPoint(0,-10), wxSize(300,150), 0, _T("ID_STATICBOX5"));
     Set_BorderSettings->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
-    Set_CheckBoxRecursive = new wxCheckBox(PanelSettings, ID_CHECKBOX1, _("Wczytywanie rekursywne \nfolderów"), wxPoint(10,8), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX1"));
+    Set_CheckBoxRecursive = new wxCheckBox(PanelSettings, ID_CHECKBOX1, _("Wczytywanie rekursywne folderów"), wxPoint(10,8), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX1"));
     Set_CheckBoxRecursive->SetValue(false);
     Set_CheckBoxRecursive->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
     Set_CheckBoxRecursive->SetBackgroundColour(wxColour(160,160,160));
     wxFont Set_CheckBoxRecursiveFont(11,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     Set_CheckBoxRecursive->SetFont(Set_CheckBoxRecursiveFont);
+    Set_SliderNotifyTime = new wxSlider(PanelSettings, ID_SLIDER1, 3, 1, 10, wxPoint(20,65), wxSize(260,50), wxSL_HORIZONTAL|wxSL_AUTOTICKS|wxSL_LABELS, wxDefaultValidator, _T("ID_SLIDER1"));
+    Set_SliderNotifyTime->SetLineSize(10);
+    Set_SliderNotifyTime->SetThumbLength(10);
+    Set_SliderNotifyTime->SetTick(1);
+    Set_SliderNotifyTime->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
+    Set_LabelNotify = new wxStaticText(PanelSettings, ID_STATICTEXT110, _("Czas wyświetlania powiadomień [s]"), wxPoint(30,45), wxDefaultSize, 0, _T("ID_STATICTEXT110"));
+    Set_LabelNotify->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
+    wxFont Set_LabelNotifyFont(11,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
+    Set_LabelNotify->SetFont(Set_LabelNotifyFont);
     MenuBar1 = new wxMenuBar();
     Menu1 = new wxMenu();
     MenuItem8 = new wxMenuItem(Menu1, idMenuNew, _("New\tCTRL+N"), _("Creates an empty database"), wxITEM_NORMAL);
@@ -997,6 +1008,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_IMAGEBUTTON19,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnI_ImageButtonAddClick);
     Connect(ID_SEARCHCTRL1,wxEVT_COMMAND_TEXT_ENTER,(wxObjectEventFunction)&AisdiRelationsFrame::OnI_SearchCtrlTextEnter);
     Connect(ID_CHECKBOX1,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_CheckBoxRecursiveClick);
+    Connect(ID_SLIDER1,wxEVT_SCROLL_CHANGED,(wxObjectEventFunction)&AisdiRelationsFrame::OnSet_SliderNotifyTimeCmdScrollChanged);
     Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnQuit);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnAbout);
     Connect(ID_TIMER1,wxEVT_TIMER,(wxObjectEventFunction)&AisdiRelationsFrame::OnTimer1Trigger);
@@ -1074,6 +1086,11 @@ void AisdiRelationsFrame::ShowTitle (void )
     }
 
     P_Title->ShowPanel(this);
+}
+
+int AisdiRelationsFrame::GetNotifyTime(void)
+{
+    return notifyTime;
 }
 
 AisdiRelationsFrame::~AisdiRelationsFrame()
@@ -1458,4 +1475,9 @@ void AisdiRelationsFrame::OnM_ImageButtonInboxClick(wxCommandEvent& event)
 void AisdiRelationsFrame::OnTimer1Trigger(wxTimerEvent& event)
 {
     PanelNotify->Hide();
+}
+
+void AisdiRelationsFrame::OnSet_SliderNotifyTimeCmdScrollChanged(wxScrollEvent& event)
+{
+    notifyTime = Set_SliderNotifyTime->GetValue();
 }

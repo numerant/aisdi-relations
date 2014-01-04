@@ -87,30 +87,50 @@ void PanelStatisticsMaintance::EventPanelCountersPaint (AisdiRelationsFrame * Fr
     string sCounter;
     ostringstream ss;
 
-    iCounter = Frame->statistics->getEmails();
+    /** === Całkowite === */
+    iCounter = Frame->statistics->getEmails();      //liczba wszystkich maili
     ss << iCounter;
     sCounter = ss.str();
     Frame->S_StaticTextC_Value1->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
     ss.str("");
 
-    iCounter = Frame->statistics->getUsembers();
+    iCounter = Frame->statistics->getUsembers();    //liczba wszystkich Usemberów
     ss << iCounter;
     sCounter = ss.str();
     Frame->S_StaticTextC_Value2->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
     ss.str("");
 
-    iCounter = Frame->statistics->getGroups();
+    iCounter = Frame->statistics->getGroups();      //liczba wszystkich Grup
     ss << iCounter;
     sCounter = ss.str();
     Frame->S_StaticTextC_Value3->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
     ss.str("");
 
-    /*iCounter = Frame->statistics->getMaxEmailsInMonth();
+    /* iCounter = Frame->statistics->getMaxEmailsInMonth();      //maksymalna liczba emaili w miesiącu
     ss << iCounter;
     sCounter = ss.str();
     Frame->S_StaticTextC_Value8->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
-    ss.str("");*/
+    ss.str("");
 
+    iCounter = Frame->statistics->getForwards();        //TODO Zmienić nazwy funkcji (chyba że pasują)
+    ss << iCounter;
+    sCounter = ss.str();
+    Frame->S_StaticTextC_Value9->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
+    ss.str("");
+
+    iCounter = Frame->statistics->getReplies();
+    ss << iCounter;
+    sCounter = ss.str();
+    Frame->S_StaticTextC_Value10->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
+    ss.str("");
+
+    iCounter = Frame->statistics->getDuration();
+    ss << iCounter;
+    sCounter = ss.str();
+    Frame->S_StaticTextC_Value13,,->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
+    ss.str("");  */
+
+    /** === Rzeczywiste === */
     dCounter = Frame->statistics->getEmailsPerMonth();
     ss << dCounter;
     sCounter = ss.str();
@@ -134,5 +154,11 @@ void PanelStatisticsMaintance::EventPanelCountersPaint (AisdiRelationsFrame * Fr
     sCounter = ss.str();
     Frame->S_StaticTextC_Value7->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
     ss.str("");
-}
 
+    /** === Tekstowe === */
+    /*sCounter = Frame->statistics->getEarliest();
+    Frame->S_StaticTextC_Value11->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
+
+    sCounter = Frame->statistics->getLatest();
+    Frame->S_StaticTextC_Value12->SetLabel(wxString(sCounter.c_str(), wxConvUTF8)); */
+}

@@ -33,6 +33,7 @@ class PanelNotifyMaintance;
 #include <wx/dirdlg.h>
 #include <wx/filedlg.h>
 #include <wx/panel.h>
+#include <wx/slider.h>
 #include <wx/srchctrl.h>
 #include <wx/statbox.h>
 #include <wx/statline.h>
@@ -60,9 +61,11 @@ public:
 
     /** Dopisane pola */
     bool settingsEnabled = true;
+    int notifyTime = 3;
 
     /** Dopisane metody */
     void  ShowTitle(void);
+    int GetNotifyTime (void);
 
 private:
 
@@ -142,6 +145,7 @@ private:
     void OnS_PanelEmailPerMonthPaint(wxPaintEvent& event);
     void OnS_PanelEmailPerMonthLeftDClick(wxMouseEvent& event);
     void OnS_PanelCountersPaint(wxPaintEvent& event);
+    void OnSet_SliderNotifyTimeCmdScrollChanged(wxScrollEvent& event);
     //*)
 
     //(*Identifiers(AisdiRelationsFrame)
@@ -352,6 +356,8 @@ private:
     static const long ID_PANEL11;
     static const long ID_STATICBOX5;
     static const long ID_CHECKBOX1;
+    static const long ID_SLIDER1;
+    static const long ID_STATICTEXT110;
     static const long ID_PANEL10;
     static const long ID_PANEL1;
     static const long idMenuNew;
@@ -375,6 +381,7 @@ private:
     wxBitmapButton        *I_ImageButtonSave;
     wxStaticText* U_LabelInbox;
     wxMenuItem* MenuItem8;
+    wxStaticText* Set_LabelNotify;
     wxStaticText* M_LabelGroups;
     wxStaticLine* T_StaticLineImportH;
     wxStaticText* S_LabelUsembers;
@@ -411,6 +418,7 @@ private:
     wxBitmapButton        *T_ImageButtonUsembers;
     wxStaticText* M_LabelUsembers;
     wxStaticText* S_LabelTitle;
+    wxSlider* Set_SliderNotifyTime;
     wxBitmapButton        *I_ImageButtonMulTree;
     wxStaticText* N_StaticTextValue2;
     wxBitmapButton        *U_ImageButtonSwitchList;
