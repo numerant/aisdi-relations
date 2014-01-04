@@ -127,6 +127,11 @@ const long AisdiRelationsFrame::ID_IMAGEBUTTON51 = wxNewId();
 const long AisdiRelationsFrame::ID_IMAGEBUTTON42 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICBOX9 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT84 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICTEXT104 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICTEXT103 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICTEXT102 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICTEXT101 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICTEXT100 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT91 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT90 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT89 = wxNewId();
@@ -135,6 +140,7 @@ const long AisdiRelationsFrame::ID_STATICTEXT86 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT87 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT81 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT85 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICLINE9 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICLINE7 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICLINE5 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT92 = wxNewId();
@@ -145,6 +151,11 @@ const long AisdiRelationsFrame::ID_STATICTEXT96 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT97 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT98 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT99 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICTEXT105 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICTEXT106 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICTEXT107 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICTEXT108 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICTEXT109 = wxNewId();
 const long AisdiRelationsFrame::ID_PANEL13 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICBOX7 = wxNewId();
 const long AisdiRelationsFrame::ID_PANEL12 = wxNewId();
@@ -423,7 +434,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     M_ImageButtonGroups = new wxBitmapButton(PanelMulTree, ID_IMAGEBUTTON44, wxNullBitmap, wxPoint(1090,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON44"));
     M_ImageButtonStats = new wxBitmapButton(PanelMulTree, ID_IMAGEBUTTON43, wxNullBitmap, wxPoint(1180,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON43"));
     M_ImageButtonTitle = new wxBitmapButton(PanelMulTree, ID_IMAGEBUTTON40, wxNullBitmap, wxPoint(10,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON40"));
-    PanelStatistics = new wxPanel(PanelMain, ID_PANEL5, wxPoint(1366,0), wxSize(1366,750), wxTAB_TRAVERSAL, _T("ID_PANEL5"));
+    PanelStatistics = new wxPanel(PanelMain, ID_PANEL5, wxPoint(0,0), wxSize(1366,750), wxTAB_TRAVERSAL, _T("ID_PANEL5"));
     BitmapBackgroundStatistics = new wxStaticBitmap(PanelStatistics, ID_STATICBITMAP4, wxBitmap(wxImage(_T("resources/background.jpg"))), wxPoint(0,0), wxDefaultSize, wxSIMPLE_BORDER, _T("ID_STATICBITMAP4"));
     S_LabelMulTree = new wxStaticText(PanelStatistics, ID_STATICTEXT77, _("Drzewo\nMulticastowe"), wxPoint(1166,70), wxDefaultSize, wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_STATICTEXT77"));
     S_LabelMulTree->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
@@ -458,11 +469,31 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     S_StaticTextC_Title->SetForegroundColour(wxColour(255,255,255));
     wxFont S_StaticTextC_TitleFont(12,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     S_StaticTextC_Title->SetFont(S_StaticTextC_TitleFont);
+    S_StaticTextC_Duration = new wxStaticText(S_PanelCounters, ID_STATICTEXT104, _("Okres wysyłania emaili:\n\n\t\t\t\t\tdni"), wxPoint(45,500), wxDefaultSize, 0, _T("ID_STATICTEXT104"));
+    S_StaticTextC_Duration->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
+    wxFont S_StaticTextC_DurationFont(12,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
+    S_StaticTextC_Duration->SetFont(S_StaticTextC_DurationFont);
+    S_StaticTextC_Latest = new wxStaticText(S_PanelCounters, ID_STATICTEXT103, _("Najpóźniejszy email:"), wxPoint(55,440), wxDefaultSize, 0, _T("ID_STATICTEXT103"));
+    S_StaticTextC_Latest->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
+    wxFont S_StaticTextC_LatestFont(12,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
+    S_StaticTextC_Latest->SetFont(S_StaticTextC_LatestFont);
+    S_StaticTextC_Earliest = new wxStaticText(S_PanelCounters, ID_STATICTEXT102, _("Najwcześniejszy email:"), wxPoint(45,380), wxDefaultSize, 0, _T("ID_STATICTEXT102"));
+    S_StaticTextC_Earliest->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
+    wxFont S_StaticTextC_EarliestFont(12,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
+    S_StaticTextC_Earliest->SetFont(S_StaticTextC_EarliestFont);
+    S_StaticTextC_Replies = new wxStaticText(S_PanelCounters, ID_STATICTEXT101, _("Liczba odpowiedzi:"), wxPoint(10,335), wxDefaultSize, 0, _T("ID_STATICTEXT101"));
+    S_StaticTextC_Replies->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
+    wxFont S_StaticTextC_RepliesFont(12,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
+    S_StaticTextC_Replies->SetFont(S_StaticTextC_RepliesFont);
+    S_StaticTextC_Forwards = new wxStaticText(S_PanelCounters, ID_STATICTEXT100, _("Liczba forwardów:"), wxPoint(10,305), wxDefaultSize, 0, _T("ID_STATICTEXT100"));
+    S_StaticTextC_Forwards->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
+    wxFont S_StaticTextC_ForwardsFont(12,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
+    S_StaticTextC_Forwards->SetFont(S_StaticTextC_ForwardsFont);
     S_StaticTextC_MaxEmailsInMonth = new wxStaticText(S_PanelCounters, ID_STATICTEXT91, _("Najwięcej emaili w miesiącu:"), wxPoint(10,275), wxDefaultSize, 0, _T("ID_STATICTEXT91"));
     S_StaticTextC_MaxEmailsInMonth->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
     wxFont S_StaticTextC_MaxEmailsInMonthFont(12,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     S_StaticTextC_MaxEmailsInMonth->SetFont(S_StaticTextC_MaxEmailsInMonthFont);
-    S_StaticTextC_AverageEmailLength = new wxStaticText(S_PanelCounters, ID_STATICTEXT90, _("Średnia długość emaila:"), wxPoint(10,245), wxDefaultSize, 0, _T("ID_STATICTEXT90"));
+    S_StaticTextC_AverageEmailLength = new wxStaticText(S_PanelCounters, ID_STATICTEXT90, _("Średnia dł. emaila:              znaków"), wxPoint(10,245), wxDefaultSize, 0, _T("ID_STATICTEXT90"));
     S_StaticTextC_AverageEmailLength->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
     wxFont S_StaticTextC_AverageEmailLengthFont(12,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     S_StaticTextC_AverageEmailLength->SetFont(S_StaticTextC_AverageEmailLengthFont);
@@ -490,6 +521,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     S_StaticTextC_Emails->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
     wxFont S_StaticTextC_EmailsFont(12,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     S_StaticTextC_Emails->SetFont(S_StaticTextC_EmailsFont);
+    S_LineC_3 = new wxStaticLine(S_PanelCounters, ID_STATICLINE9, wxPoint(10,365), wxSize(250,-1), wxLI_HORIZONTAL, _T("ID_STATICLINE9"));
     S_LineC_2 = new wxStaticLine(S_PanelCounters, ID_STATICLINE7, wxPoint(10,230), wxSize(250,-1), wxLI_HORIZONTAL, _T("ID_STATICLINE7"));
     S_LineC_1 = new wxStaticLine(S_PanelCounters, ID_STATICLINE5, wxPoint(10,125), wxSize(250,-1), wxLI_HORIZONTAL, _T("ID_STATICLINE5"));
     S_StaticTextC_Value1 = new wxStaticText(S_PanelCounters, ID_STATICTEXT92, _("-"), wxPoint(110,35), wxDefaultSize, wxALIGN_LEFT, _T("ID_STATICTEXT92"));
@@ -504,10 +536,20 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     S_StaticTextC_Value5->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
     S_StaticTextC_Value6 = new wxStaticText(S_PanelCounters, ID_STATICTEXT97, _("-"), wxPoint(200,200), wxDefaultSize, wxALIGN_LEFT, _T("ID_STATICTEXT97"));
     S_StaticTextC_Value6->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
-    S_StaticTextC_Value7 = new wxStaticText(S_PanelCounters, ID_STATICTEXT98, _("-"), wxPoint(185,245), wxDefaultSize, wxALIGN_LEFT, _T("ID_STATICTEXT98"));
+    S_StaticTextC_Value7 = new wxStaticText(S_PanelCounters, ID_STATICTEXT98, _("-"), wxPoint(150,245), wxDefaultSize, wxALIGN_LEFT, _T("ID_STATICTEXT98"));
     S_StaticTextC_Value7->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
     S_StaticTextC_Value8 = new wxStaticText(S_PanelCounters, ID_STATICTEXT99, _("-"), wxPoint(220,275), wxDefaultSize, wxALIGN_LEFT, _T("ID_STATICTEXT99"));
     S_StaticTextC_Value8->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
+    S_StaticTextC_Value9 = new wxStaticText(S_PanelCounters, ID_STATICTEXT105, _("-"), wxPoint(147,305), wxDefaultSize, wxALIGN_LEFT, _T("ID_STATICTEXT105"));
+    S_StaticTextC_Value9->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
+    S_StaticTextC_Value10 = new wxStaticText(S_PanelCounters, ID_STATICTEXT106, _("-"), wxPoint(155,335), wxDefaultSize, wxALIGN_LEFT, _T("ID_STATICTEXT106"));
+    S_StaticTextC_Value10->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
+    S_StaticTextC_Value11 = new wxStaticText(S_PanelCounters, ID_STATICTEXT107, _("-"), wxPoint(125,410), wxDefaultSize, wxST_NO_AUTORESIZE|wxALIGN_CENTRE|wxTAB_TRAVERSAL|wxFULL_REPAINT_ON_RESIZE, _T("ID_STATICTEXT107"));
+    S_StaticTextC_Value11->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
+    S_StaticTextC_Value12 = new wxStaticText(S_PanelCounters, ID_STATICTEXT108, _("-"), wxPoint(125,470), wxDefaultSize, wxST_NO_AUTORESIZE|wxALIGN_CENTRE|wxTAB_TRAVERSAL|wxFULL_REPAINT_ON_RESIZE, _T("ID_STATICTEXT108"));
+    S_StaticTextC_Value12->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
+    S_StaticTextC_Value13 = new wxStaticText(S_PanelCounters, ID_STATICTEXT109, _("-"), wxPoint(125,538), wxDefaultSize, wxST_NO_AUTORESIZE|wxALIGN_CENTRE|wxTAB_TRAVERSAL|wxFULL_REPAINT_ON_RESIZE, _T("ID_STATICTEXT109"));
+    S_StaticTextC_Value13->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
     S_PanelEmailPerMonth = new wxPanel(PanelStatistics, ID_PANEL12, wxPoint(300,120), wxSize(500,300), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL, _T("ID_PANEL12"));
     S_PanelEmailPerMonth->SetBackgroundColour(wxColour(48,48,48));
     S_BorderEPM = new wxStaticBox(S_PanelEmailPerMonth, ID_STATICBOX7, wxEmptyString, wxPoint(0,-10), wxSize(500,310), 0, _T("ID_STATICBOX7"));
@@ -913,7 +955,6 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_IMAGEBUTTON42,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_ImageButtonTitleClick);
     S_PanelCounters->Connect(wxEVT_PAINT,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_PanelCountersPaint,0,this);
     S_PanelEmailPerMonth->Connect(wxEVT_PAINT,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_PanelEmailPerMonthPaint,0,this);
-    S_PanelEmailPerMonth->Connect(wxEVT_LEFT_DCLICK,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_PanelEmailPerMonthLeftDClick,0,this);
     Connect(ID_IMAGEBUTTON50,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnG_ImageButtonMulTreeClick);
     Connect(ID_IMAGEBUTTON49,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnG_ImageButtonStatsClick);
     Connect(ID_IMAGEBUTTON48,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnG_ImageButtonUsembersClick);
@@ -1375,11 +1416,6 @@ void AisdiRelationsFrame::OnS_ImageButtonMulTreeClick(wxCommandEvent& event)
 }
 
 void AisdiRelationsFrame::OnS_PanelEmailPerMonthPaint(wxPaintEvent& event)
-{
-    //TODO Przenieść zawartość z DCLICK tutaj (PAINT)
-}
-
-void AisdiRelationsFrame::OnS_PanelEmailPerMonthLeftDClick(wxMouseEvent& event)
 {
     P_Stats->EventPanelEmailPerMonthPaint(this);
 }

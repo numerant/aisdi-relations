@@ -527,7 +527,7 @@
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL5" variable="PanelStatistics" member="yes">
-				<pos>1366,0</pos>
+				<pos>0,0</pos>
 				<size>1366,750</size>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP4" variable="BitmapBackgroundStatistics" member="yes">
 					<bitmap>resources/background.jpg</bitmap>
@@ -676,6 +676,66 @@
 							<face>Ubuntu</face>
 						</font>
 					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT104" variable="S_StaticTextC_Duration" member="yes">
+						<label>Okres wysyłania emaili:&#x0A;&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;dni</label>
+						<pos>45,500</pos>
+						<fg>wxSYS_COLOUR_SCROLLBAR</fg>
+						<font>
+							<size>12</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT103" variable="S_StaticTextC_Latest" member="yes">
+						<label>Najpóźniejszy email:</label>
+						<pos>55,440</pos>
+						<fg>wxSYS_COLOUR_SCROLLBAR</fg>
+						<font>
+							<size>12</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT102" variable="S_StaticTextC_Earliest" member="yes">
+						<label>Najwcześniejszy email:</label>
+						<pos>45,380</pos>
+						<fg>wxSYS_COLOUR_SCROLLBAR</fg>
+						<font>
+							<size>12</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT101" variable="S_StaticTextC_Replies" member="yes">
+						<label>Liczba odpowiedzi:</label>
+						<pos>10,335</pos>
+						<fg>wxSYS_COLOUR_SCROLLBAR</fg>
+						<font>
+							<size>12</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT100" variable="S_StaticTextC_Forwards" member="yes">
+						<label>Liczba forwardów:</label>
+						<pos>10,305</pos>
+						<fg>wxSYS_COLOUR_SCROLLBAR</fg>
+						<font>
+							<size>12</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+					</object>
 					<object class="wxStaticText" name="ID_STATICTEXT91" variable="S_StaticTextC_MaxEmailsInMonth" member="yes">
 						<label>Najwięcej emaili w miesiącu:</label>
 						<pos>10,275</pos>
@@ -689,7 +749,7 @@
 						</font>
 					</object>
 					<object class="wxStaticText" name="ID_STATICTEXT90" variable="S_StaticTextC_AverageEmailLength" member="yes">
-						<label>Średnia długość emaila:</label>
+						<label>Średnia dł. emaila:              znaków</label>
 						<pos>10,245</pos>
 						<fg>wxSYS_COLOUR_SCROLLBAR</fg>
 						<font>
@@ -772,6 +832,10 @@
 							<face>Ubuntu</face>
 						</font>
 					</object>
+					<object class="wxStaticLine" name="ID_STATICLINE9" variable="S_LineC_3" member="yes">
+						<pos>10,365</pos>
+						<size>250,-1</size>
+					</object>
 					<object class="wxStaticLine" name="ID_STATICLINE7" variable="S_LineC_2" member="yes">
 						<pos>10,230</pos>
 						<size>250,-1</size>
@@ -818,7 +882,7 @@
 					</object>
 					<object class="wxStaticText" name="ID_STATICTEXT98" variable="S_StaticTextC_Value7" member="yes">
 						<label>-</label>
-						<pos>185,245</pos>
+						<pos>150,245</pos>
 						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 						<style>wxALIGN_LEFT</style>
 					</object>
@@ -828,6 +892,36 @@
 						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 						<style>wxALIGN_LEFT</style>
 					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT105" variable="S_StaticTextC_Value9" member="yes">
+						<label>-</label>
+						<pos>147,305</pos>
+						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+						<style>wxALIGN_LEFT</style>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT106" variable="S_StaticTextC_Value10" member="yes">
+						<label>-</label>
+						<pos>155,335</pos>
+						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+						<style>wxALIGN_LEFT</style>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT107" variable="S_StaticTextC_Value11" member="yes">
+						<label>-</label>
+						<pos>125,410</pos>
+						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+						<style>wxST_NO_AUTORESIZE|wxALIGN_CENTRE|wxTAB_TRAVERSAL|wxFULL_REPAINT_ON_RESIZE</style>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT108" variable="S_StaticTextC_Value12" member="yes">
+						<label>-</label>
+						<pos>125,470</pos>
+						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+						<style>wxST_NO_AUTORESIZE|wxALIGN_CENTRE|wxTAB_TRAVERSAL|wxFULL_REPAINT_ON_RESIZE</style>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT109" variable="S_StaticTextC_Value13" member="yes">
+						<label>-</label>
+						<pos>125,538</pos>
+						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+						<style>wxST_NO_AUTORESIZE|wxALIGN_CENTRE|wxTAB_TRAVERSAL|wxFULL_REPAINT_ON_RESIZE</style>
+					</object>
 				</object>
 				<object class="wxPanel" name="ID_PANEL12" variable="S_PanelEmailPerMonth" member="yes">
 					<pos>300,120</pos>
@@ -835,7 +929,6 @@
 					<bg>#303030</bg>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL</style>
 					<handler function="OnS_PanelEmailPerMonthPaint" entry="EVT_PAINT" />
-					<handler function="OnS_PanelEmailPerMonthLeftDClick" entry="EVT_LEFT_DCLICK" />
 					<object class="wxStaticBox" name="ID_STATICBOX7" variable="S_BorderEPM" member="yes">
 						<pos>0,-10</pos>
 						<size>500,310</size>

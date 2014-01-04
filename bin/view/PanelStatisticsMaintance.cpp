@@ -19,9 +19,9 @@ void PanelStatisticsMaintance::ShowPanel(AisdiRelationsFrame* Frame)
         Frame->PanelStatistics->SetPosition(wxPoint(0,0));
         if (!GetIsUpdated())    //jeżeli był jakiś update w międzyczasie
         {
-            Frame->statistics->update();
             Frame->S_PanelEmailPerMonth->Refresh();     //uaktualnij statystyki
             Frame->S_PanelCounters->Refresh();
+            Frame->P_Stats->SetIsUpdated();
         }
 
         Frame->PanelStatistics->Show();
