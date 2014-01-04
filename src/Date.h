@@ -12,6 +12,7 @@ class Date
 {
 private:
     //pola przechowujące wszystkie elementy daty emaila
+	string fullDate;
     string weekDay;
     int day;
     string month;
@@ -28,6 +29,7 @@ public:
     Date (string newDate);
     ~Date();
 
+	string getFullDate();
     void setWeekDay(string );
     string getWeekDate(void);
     int getDay();
@@ -47,4 +49,3 @@ public:
     int compare(Date &);
     int monthToInt(string );
 };
-
