@@ -120,10 +120,13 @@ void Statistics::updateEmailStatistics()
         }
         averageEmailLength=(double)sum/(double)emails;
 
-        int month;
+        int month=1;
         for(int i=0; i<database->countEmails(); ++i)
         {
-            month=database->getEmail(i)->getDate().monthToInt(database->getEmail(i)->getDate().getMonth());
+            month=(month+4)%12;       //tymczasowe, po to by na wykresie nie bylo samych zer
+
+            //month=database->getEmail(i)->getDate().monthToInt(database->getEmail(i)->getDate().getMonth());
+            //linijka powyzej powoduje crash
             if(month>=1 && month<=12)
                 ++emailsCountInMonth[month-1];
             if (emailsCountInMonth[month-1] > maxEmailsInMonth)
