@@ -24,7 +24,8 @@ Date::Date (string newDate)
     string tempString;
     stringstream stream;
 
-    //weekDay
+    fullDate = newDate;
+	//weekDay
     stream<<newDate;
     stream>>tempString;
     tempString.erase(tempString.end()-1, tempString.end());
@@ -62,6 +63,11 @@ Date::Date (string newDate)
 }
 
 Date::~Date() {}
+
+string Date::getFullDate()
+{
+	return fullDate;
+}
 
 string Date::getWeekDate(void)
 {
@@ -192,5 +198,6 @@ int Date::monthToInt(string stringMonth)
         monthInt = 11;
     if(stringMonth == "Dec")
         monthInt = 12;
-}
 
+	return monthInt;
+}
