@@ -12,7 +12,10 @@ Statistics::Statistics(Database* database)
     averageEmailLength=0;
     for(int i=0; i<12; ++i)
         emailsCountInMonth[i]=0;
-    maxEmailsInMonth = 0;
+    maxEmailsInMonth=0;
+    replyCount=0;
+    forwardCount=0;
+    duration=0;
 }
 
 Statistics::~Statistics()
@@ -63,6 +66,44 @@ double Statistics::getEmailsPerUser()
     return emailsPerUser;
 }
 
+int Statistics::getEmailsCountInMonth(int month)
+{
+    if(month>=1 && month<=12)
+        return emailsCountInMonth[month-1];
+    else
+        return 0;
+}
+
+int Statistics::getMaxEmailsInMonth()
+{
+    return maxEmailsInMonth;
+}
+
+int Statistics::getForwards()
+{
+    return forwardCount;
+}
+
+int Statistics::getReplies()
+{
+    return replyCount;
+}
+
+Date* Statistics::getEarliest()
+{
+    return &earliestDate;
+}
+
+Date* Statistics::getLatest()
+{
+    return &latestDate;
+}
+
+int Statistics::getDuration()
+{
+    return duration;
+}
+
 Usember* Statistics::getTopSender(int position)
 {
     if(position>=0 && position<topSenders.size())
@@ -79,14 +120,6 @@ Usember* Statistics::getTopReceiver(int position)
         return nullptr;
 }
 
-int Statistics::getEmailsCountInMonth(int month)
-{
-    if(month>=1 && month<=12)
-        return emailsCountInMonth[month-1];
-    else
-        return 0;
-}
-
 void Statistics::updateVectorSizes()
 {
     emails=database->countEmails();
@@ -98,8 +131,9 @@ void Statistics::updateEmailStatistics()
 {
     if(emails>0)
     {
-        Date earliestDate=database->getEmail(0)->getDate();
-        Date latestDate=database->getEmail(0)->getDate();
+        earliestDate=database->getEmail(0)->getDate();
+        latestDate=database->getEmail(0)->getDate();
+
         for(int i=0; i<database->countEmails(); ++i)
         {
             if(database->getEmail(i)->getDate().compare(earliestDate)<0)
@@ -107,8 +141,10 @@ void Statistics::updateEmailStatistics()
             if(database->getEmail(i)->getDate().compare(latestDate)>0)
                 latestDate=database->getEmail(i)->getDate();
         }
+
+        duration=getDateDifferenceInDays(&earliestDate, &latestDate);
         emailsPerMonth=(double)emails/(double)getDateDifferenceInMonths(&earliestDate, &latestDate);
-        emailsPerDay=(double)emails/(double)getDateDifferenceInDays(&earliestDate, &latestDate);
+        emailsPerDay=(double)emails/(double)duration;
 
         if(usembers>0)
             emailsPerUser=(double)emails/(double)usembers;
@@ -120,13 +156,21 @@ void Statistics::updateEmailStatistics()
         }
         averageEmailLength=(double)sum/(double)emails;
 
+        int replies=0;
+        for(int i=0; i<database->countEmails(); ++i)
+            if(database->getEmail(i)->getInReplyTo()!="")
+                ++replies;
+        replyCount=replies;
+
+        int forwards=0;
+        for(int i=0; i<database->countEmails(); ++i)
+            forwards+=database->getEmail(i)->getForwards().size();
+        forwardCount=forwards;
+
         int month=1;
         for(int i=0; i<database->countEmails(); ++i)
         {
-            month=(month+4)%12;       //tymczasowe, po to by na wykresie nie bylo samych zer
-
-            //month=database->getEmail(i)->getDate().monthToInt(database->getEmail(i)->getDate().getMonth());
-            //linijka powyzej powoduje crash
+            month=database->getEmail(i)->getDate().monthToInt(database->getEmail(i)->getDate().getMonth());
             if(month>=1 && month<=12)
                 ++emailsCountInMonth[month-1];
             if (emailsCountInMonth[month-1] > maxEmailsInMonth)
@@ -138,6 +182,8 @@ void Statistics::updateEmailStatistics()
 void Statistics::updateTopUsembers()
 {
     if(usembers>0){
+        topSenders.clear();
+        topReceivers.clear();
         for(int i=0; i<database->countUsembers(); ++i)
         {
             topSenders.push_back(database->getUsember(i));
@@ -156,7 +202,6 @@ int Statistics::getDateDifferenceInMonths(Date* date1, Date* date2)
 {
     return (date2->getYear()-date1->getYear())*12+date2->monthToInt(date2->getMonth())-date1->monthToInt(date1->getMonth());
 }
-
 int Statistics::getDateDifferenceInDays(Date* date1, Date* date2)
 {
     return (date2->getYear()-date1->getYear())*365+(date2->monthToInt(date2->getMonth())-date1->monthToInt(date1->getMonth()))*30+date2->getDay()-date1->getDay();
