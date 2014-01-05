@@ -3,6 +3,7 @@
 #include <string>
 #include "Usember.h"
 #include "Database.h"
+#include "Date.h"
 using namespace std;
 
 /*Klasa Statistics, przechowujaca zestaw statystyk z bazy, udostepnianych GUI, ktory bedzie wyswietlal je w formie tabel, wykresow, itp.
@@ -21,10 +22,15 @@ private:
     double emailsPerDay;
     double emailsPerUser;
     double averageEmailLength;
-    vector<Usember*> topSenders;        //powiedzmy, pieciu usemberow, ktorzy maja najwiecej wyslanych maili, mozna na wykresie pokazac dla kazdego ile maili wyslal
-    vector<Usember*> topReceivers;      //jw, tyle ze odebranych
     int emailsCountInMonth[12];
     int maxEmailsInMonth;
+    int forwardCount;
+    int replyCount;
+    Date earliestDate;
+    Date latestDate;
+    int duration;
+    vector<Usember*> topSenders;        //powiedzmy, pieciu usemberow, ktorzy maja najwiecej wyslanych maili, mozna na wykresie pokazac dla kazdego ile maili wyslal
+    vector<Usember*> topReceivers;      //jw, tyle ze odebranych
 
 public:
     Statistics(Database* database);
@@ -37,9 +43,15 @@ public:
     double getEmailsPerDay();
     double getEmailsPerUser();
     double getAverageEmailLength();
+    int getEmailsCountInMonth(int month);
+    int getMaxEmailsInMonth();
+    int getForwards();
+    int getReplies();
+    Date* getEarliest();
+    Date* getLatest();
+    int getDuration();
     Usember* getTopSender(int position);
     Usember* getTopReceiver(int position);
-    int getEmailsCountInMonth(int month);
 
 private:
     void updateVectorSizes();
