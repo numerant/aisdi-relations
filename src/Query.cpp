@@ -17,21 +17,21 @@ void Query::clear()
 
 IntCriteria* Query::getIntCriteria(int position)
 {
-    if(position>=0 && position<intCriteriaVector.size())
+    if(position>=0 && position< (int)intCriteriaVector.size())
         return &intCriteriaVector[position];
     return nullptr;
 }
 
 StringCriteria* Query::getStringCriteria(int position)
 {
-    if(position>=0 && position<stringCriteriaVector.size())
+    if(position>=0 && position< (int)stringCriteriaVector.size())
         return &stringCriteriaVector[position];
     return nullptr;
 }
 
 DateCriteria* Query::getDateCriteria(int position)
 {
-     if(position>=0 && position<dateCriteriaVector.size())
+     if(position>=0 && position< (int)dateCriteriaVector.size())
         return &dateCriteriaVector[position];
     return nullptr;
 }

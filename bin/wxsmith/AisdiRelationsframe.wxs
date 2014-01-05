@@ -677,8 +677,8 @@
 						</font>
 					</object>
 					<object class="wxStaticText" name="ID_STATICTEXT104" variable="S_StaticTextC_Duration" member="yes">
-						<label>Okres wysyłania emaili:&#x0A;&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;dni</label>
-						<pos>45,500</pos>
+						<label>Okres wysyłania emaili:&#x09;&#x09;dni</label>
+						<pos>10,500</pos>
 						<fg>wxSYS_COLOUR_SCROLLBAR</fg>
 						<font>
 							<size>12</size>
@@ -749,7 +749,7 @@
 						</font>
 					</object>
 					<object class="wxStaticText" name="ID_STATICTEXT90" variable="S_StaticTextC_AverageEmailLength" member="yes">
-						<label>Średnia dł. emaila:              znaków</label>
+						<label>Średnia dł. emaila:                znaków</label>
 						<pos>10,245</pos>
 						<fg>wxSYS_COLOUR_SCROLLBAR</fg>
 						<font>
@@ -882,7 +882,7 @@
 					</object>
 					<object class="wxStaticText" name="ID_STATICTEXT98" variable="S_StaticTextC_Value7" member="yes">
 						<label>-</label>
-						<pos>150,245</pos>
+						<pos>148,245</pos>
 						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 						<style>wxALIGN_LEFT</style>
 					</object>
@@ -906,19 +906,22 @@
 					</object>
 					<object class="wxStaticText" name="ID_STATICTEXT107" variable="S_StaticTextC_Value11" member="yes">
 						<label>-</label>
-						<pos>125,410</pos>
+						<pos>80,410</pos>
+						<size>200,-1</size>
 						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 						<style>wxST_NO_AUTORESIZE|wxALIGN_CENTRE|wxTAB_TRAVERSAL|wxFULL_REPAINT_ON_RESIZE</style>
 					</object>
 					<object class="wxStaticText" name="ID_STATICTEXT108" variable="S_StaticTextC_Value12" member="yes">
 						<label>-</label>
-						<pos>125,470</pos>
+						<pos>80,470</pos>
+						<size>200,-1</size>
 						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 						<style>wxST_NO_AUTORESIZE|wxALIGN_CENTRE|wxTAB_TRAVERSAL|wxFULL_REPAINT_ON_RESIZE</style>
 					</object>
 					<object class="wxStaticText" name="ID_STATICTEXT109" variable="S_StaticTextC_Value13" member="yes">
 						<label>-</label>
-						<pos>125,538</pos>
+						<pos>185,500</pos>
+						<size>43,-1</size>
 						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 						<style>wxST_NO_AUTORESIZE|wxALIGN_CENTRE|wxTAB_TRAVERSAL|wxFULL_REPAINT_ON_RESIZE</style>
 					</object>
@@ -933,6 +936,146 @@
 						<pos>0,-10</pos>
 						<size>500,310</size>
 						<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT111" variable="S_StaticTextEPM_Title" member="yes">
+						<label>Wykres liczby emaili na miesiąc</label>
+						<pos>130,10</pos>
+						<fg>#FFFFFF</fg>
+						<font>
+							<size>12</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+					</object>
+				</object>
+				<object class="wxPanel" name="ID_PANEL14" variable="S_PanelTops" member="yes">
+					<pos>815,120</pos>
+					<size>450,300</size>
+					<bg>#303030</bg>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL</style>
+					<object class="wxStaticText" name="ID_STATICTEXT112" variable="S_StaticTextT_TitleSenders" member="yes">
+						<label>Top 5 wysyłających</label>
+						<pos>150,10</pos>
+						<fg>#FFFFFF</fg>
+						<font>
+							<size>12</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+					</object>
+					<object class="wxStaticBox" name="ID_STATICBOX8" variable="S_BorderT" member="yes">
+						<pos>0,-10</pos>
+						<size>450,310</size>
+						<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT113" variable="S_StaticTextT_SendersPos1" member="yes">
+						<label>1.</label>
+						<pos>15,40</pos>
+						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT114" variable="S_StaticTextT_SendersPos2" member="yes">
+						<label>2.</label>
+						<pos>15,65</pos>
+						<fg>wxSYS_COLOUR_SCROLLBAR</fg>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT115" variable="S_StaticTextT_SendersPos3" member="yes">
+						<label>3.</label>
+						<pos>15,90</pos>
+						<fg>wxSYS_COLOUR_SCROLLBAR</fg>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT116" variable="S_StaticTextT_SendersPos4" member="yes">
+						<label>4.</label>
+						<pos>15,115</pos>
+						<fg>wxSYS_COLOUR_SCROLLBAR</fg>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT117" variable="S_StaticTextT_SendersPos5" member="yes">
+						<label>5.</label>
+						<pos>15,140</pos>
+						<fg>wxSYS_COLOUR_SCROLLBAR</fg>
+					</object>
+					<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL1" variable="S_HyperLinkT_SendersPos1" member="yes">
+						<label>Nick Fury &lt;nfury@shield.gov&gt;</label>
+						<normal_colour>wxSYS_COLOUR_ACTIVECAPTION</normal_colour>
+						<hover_colour>#FFFFFF</hover_colour>
+						<visited_colour>wxSYS_COLOUR_ACTIVECAPTION</visited_colour>
+						<pos>40,40</pos>
+						<bg>#303030</bg>
+						<font>
+							<size>12</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+						<style>wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+					</object>
+					<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL2" variable="S_HyperLinkT_SendersPos2" member="yes">
+						<label>Natasha Romanov &lt;nromanov@russia.ru&gt;</label>
+						<normal_colour>wxSYS_COLOUR_SCROLLBAR</normal_colour>
+						<hover_colour>wxSYS_COLOUR_WINDOW</hover_colour>
+						<visited_colour>wxSYS_COLOUR_SCROLLBAR</visited_colour>
+						<pos>40,65</pos>
+						<bg>#303030</bg>
+						<font>
+							<size>12</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+						<style>wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+					</object>
+					<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL3" variable="S_HyperLinkT_SendersPos3" member="yes">
+						<label>Tony Stary &lt;ironman@starkindustries.com&gt;</label>
+						<normal_colour>wxSYS_COLOUR_SCROLLBAR</normal_colour>
+						<hover_colour>wxSYS_COLOUR_WINDOW</hover_colour>
+						<visited_colour>wxSYS_COLOUR_SCROLLBAR</visited_colour>
+						<pos>40,90</pos>
+						<bg>#303030</bg>
+						<font>
+							<size>12</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+						<style>wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+					</object>
+					<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL4" variable="S_HyperLinkT_SendersPos4" member="yes">
+						<label>Steve Rogers &lt;cptamerica@army.gov&gt;</label>
+						<normal_colour>wxSYS_COLOUR_SCROLLBAR</normal_colour>
+						<hover_colour>wxSYS_COLOUR_WINDOW</hover_colour>
+						<visited_colour>wxSYS_COLOUR_WINDOW</visited_colour>
+						<pos>40,115</pos>
+						<bg>#303030</bg>
+						<font>
+							<size>12</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+						<style>wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+					</object>
+					<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL5" variable="S_HyperLinkT_SendersPos5" member="yes">
+						<label>Clint Barton &lt;hawkeye@avengers.com&gt;</label>
+						<normal_colour>wxSYS_COLOUR_SCROLLBAR</normal_colour>
+						<hover_colour>wxSYS_COLOUR_ACTIVECAPTION</hover_colour>
+						<visited_colour>wxSYS_COLOUR_SCROLLBAR</visited_colour>
+						<pos>40,140</pos>
+						<bg>#303030</bg>
+						<font>
+							<size>12</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+						<style>wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
 					</object>
 				</object>
 			</object>
@@ -2127,6 +2270,7 @@
 			<object class="wxPanel" name="ID_PANEL11" variable="PanelNotify" member="yes">
 				<pos>10,10</pos>
 				<size>250,100</size>
+				<hidden>1</hidden>
 				<bg>#303030</bg>
 				<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL</style>
 				<object class="wxStaticBox" name="ID_STATICBOX6" variable="N_Border" member="yes">
@@ -2186,6 +2330,7 @@
 			<object class="wxPanel" name="ID_PANEL10" variable="PanelSettings" member="yes">
 				<pos>860,20</pos>
 				<size>300,140</size>
+				<hidden>1</hidden>
 				<bg>#323232</bg>
 				<object class="wxStaticBox" name="ID_STATICBOX5" variable="Set_BorderSettings" member="yes">
 					<pos>0,-10</pos>

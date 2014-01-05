@@ -13,7 +13,7 @@ Do uaktualnienia danych sluzy metoda update(), ktora pobiera odpowiednie dane z 
 class Statistics
 {
 private:
-    const int TOP_USEMBERS_COUNT=5;
+    const unsigned int TOP_USEMBERS_COUNT=5;
     Database* database;
     int emails;                         //
     int groups;                         //ile maili, grup, usemberow w bazie

@@ -88,24 +88,24 @@ void Database::deleteUsember(Usember* usember)
 
 vector<Email*>& Database::select(EmailQuery& emailQuery)
 {
-    for(int i=0; i<emailVector.size(); ++i){
-        if(emailQuery.getIntCriteriaVectorSize()>0){
+    for(int i=0; i< (int)emailVector.size(); ++i)
+    {
+        if(emailQuery.getIntCriteriaVectorSize()>0)
+        {
             //for(int j=0; i<emailQuery.getIntCriteriaVectorSize(); ++j){
             //   ;
             //}
         }
-        if(emailQuery.getStringCriteriaVectorSize()>0){
-           for(int j=0; i<emailQuery.getStringCriteriaVectorSize(); ++j){
+
+        if(emailQuery.getStringCriteriaVectorSize()>0)
+           for(unsigned int j=0; i<emailQuery.getStringCriteriaVectorSize(); ++j)
                if(matches(*emailVector[j], *emailQuery.getStringCriteria(j)))
                   emailSearchResultVector.push_back(emailVector[j]);
-           }
-        }
-        if(emailQuery.getDateCriteriaVectorSize()>0){
-           for(int j=0; i<emailQuery.getDateCriteriaVectorSize(); ++j){
+
+        if(emailQuery.getDateCriteriaVectorSize()>0)
+           for(unsigned int j=0; i<emailQuery.getDateCriteriaVectorSize(); ++j)
                if(matches(*emailVector[j], *emailQuery.getDateCriteria(j)))
                   emailSearchResultVector.push_back(emailVector[j]);
-           }
-        }
     }
     if(emailSearchResultVector.size()>1)
         sort(emailSearchResultVector.begin(), emailSearchResultVector.end());
@@ -138,7 +138,7 @@ int Database::findEmail(string messageId)
 {
     if(emailVector.size()==0)
         return -1;
-    int position=emailVector.size()/2;
+    unsigned int position=emailVector.size()/2;
     int range=emailVector.size()/2;
     while(range>=1)
     {
@@ -273,7 +273,7 @@ bool Database::matches(Email& email, DateCriteria& dateCriteria)
 
 void Database::swapEmails(int position1, int position2)
 {
-    if(position1>=emailVector.size() || position2>=emailVector.size() || position1<0 || position2<0)
+    if(position1>= (int)emailVector.size() || position2>= (int)emailVector.size() || position1<0 || position2<0)
         return;
     Email* temp = emailVector[position1];
     emailVector[position1]=emailVector[position2];
@@ -282,7 +282,7 @@ void Database::swapEmails(int position1, int position2)
 
 void Database::swapGroups(int position1, int position2)
 {
-    if(position1>=groupVector.size() || position2>=groupVector.size() || position1<0 || position2<0)
+    if(position1>= (int)groupVector.size() || position2>= (int)groupVector.size() || position1<0 || position2<0)
         return;
     Group* temp = groupVector[position1];
     groupVector[position1]=groupVector[position2];
@@ -291,7 +291,7 @@ void Database::swapGroups(int position1, int position2)
 
 void Database::swapUsembers(int position1, int position2)
 {
-    if(position1>=usemberVector.size() || position2>=usemberVector.size() || position1<0 || position2<0)
+    if(position1>= (int)usemberVector.size() || position2>= (int)usemberVector.size() || position1<0 || position2<0)
         return;
     Usember* temp = usemberVector[position1];
     usemberVector[position1]=usemberVector[position2];
@@ -338,7 +338,7 @@ int Database::countUsembers()
 
 Email* Database::getEmail(int position)
 {
-    if(position<0 || position>=emailVector.size())
+    if(position<0 || position>= (int)emailVector.size())
         return nullptr;
     else
         return emailVector[position];
@@ -346,7 +346,7 @@ Email* Database::getEmail(int position)
 
 Group* Database::getGroup(int position)
 {
-    if(position<0 || position>=groupVector.size())
+    if(position<0 || position>= (int)groupVector.size())
         return nullptr;
     else
         return groupVector[position];
@@ -354,7 +354,7 @@ Group* Database::getGroup(int position)
 
 Usember* Database::getUsember(int position)
 {
-    if(position<0 || position>=usemberVector.size())
+    if(position<0 || position>= (int)usemberVector.size())
         return nullptr;
     else
         return usemberVector[position];

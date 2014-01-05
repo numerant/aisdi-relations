@@ -106,7 +106,7 @@ int Statistics::getDuration()
 
 Usember* Statistics::getTopSender(int position)
 {
-    if(position>=0 && position<topSenders.size())
+    if(position>=0 && position< (int)topSenders.size())
         return topSenders[position];
     else
         return nullptr;
@@ -114,7 +114,7 @@ Usember* Statistics::getTopSender(int position)
 
 Usember* Statistics::getTopReceiver(int position)
 {
-    if(position>=0 && position<topReceivers.size())
+    if(position>=0 && position< (int)topReceivers.size())
         return topReceivers[position];
     else
         return nullptr;
