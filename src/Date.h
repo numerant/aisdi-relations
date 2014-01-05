@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <sstream>
+#include <boost/serialization/base_object.hpp>
+#include "SerializationInit.h"
 
 using namespace std;
 
@@ -10,6 +12,8 @@ using namespace std;
 
 class Date
 {
+    template<class Archive> friend void  boost::serialization::serialize(Archive &, Date &, const unsigned int);  //potrzebne do serializacji
+
 private:
     //pola przechowujące wszystkie elementy daty emaila
 	string fullDate;

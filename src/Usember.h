@@ -2,8 +2,10 @@
 
 #include <string>
 #include <vector>
+#include <boost/serialization/base_object.hpp>
 #include "Group.h"
 #include "Email.h"
+#include "SerializationInit.h"
 
 /*
 	Klasa tożsamości wyodrębnionych z maili w polach od/do/dowielu/przekazanodalej.
@@ -21,6 +23,7 @@ using namespace std;
 
 class Usember
 {
+    template<class Archive> friend void  boost::serialization::serialize(Archive &, Usember &, const unsigned int);  //potrzebne do serializacji
 public:
     Usember(string usemberName, string domain, string realName);
     ~Usember();

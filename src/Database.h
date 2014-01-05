@@ -1,9 +1,12 @@
 #pragma once
 #include "Email.h"
 #include "Query.h"
+#include "SerializationInit.h"
 #include <vector>
 #include <algorithm>
 #include <iostream>
+#include <boost/serialization/base_object.hpp>
+#include <boost/archive/text_oarchive.hpp>
 using namespace std;
 
 /*Klasa Database, przechowująca dane dotyczące grup, maili oraz użytkowników oraz udostępniająca
@@ -16,6 +19,8 @@ elementu.*/
 
 class Database
 {
+public:
+    template<class Archive> friend void  boost::serialization::serialize(Archive &, Database &, const unsigned int);  //potrzebne do serializacji
 private:
     vector<Email*> emailVector;                 //wektor przechowujący obiekty klasy Email,
     vector<Group*> groupVector;                 //wektor przechowujący obiekty klasy Group

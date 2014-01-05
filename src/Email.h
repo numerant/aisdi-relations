@@ -1,7 +1,9 @@
 #pragma once
 #include "Usember.h"
 #include "Date.h"
+#include "SerializationInit.h"
 #include <string>
+#include <boost/serialization/base_object.hpp>
 
 //typedef enum DataType {FROM, DATE, REPLY_TO, IN_REPLY_TO, MESSAGE_ID, TO, SUBJECT} DataType;
 
@@ -12,6 +14,8 @@ using namespace std;
 
 class Email
 {
+    template<class Archive> friend void  boost::serialization::serialize(Archive &, Email &, const unsigned int);  //potrzebne do serializacji
+
 private:
     //przechowujące adres e-mail nadawcy
     Usember *from;
