@@ -33,17 +33,17 @@ void Email::setReplyTo(Usember *newReplyTo)
     replyTo = newReplyTo;
 }
 
-int Email::getInReplyTo()
+string Email::getInReplyTo()
 {
     return inReplyTo;
 }
 
-void Email::setInReplyTo(int newInReplyTo)
+void Email::setInReplyTo(string newInReplyTo)
 {
     inReplyTo = newInReplyTo;
 }
 
-string Email::getID(void)
+string Email::getID()
 {
     return messageID;
 }
@@ -81,6 +81,11 @@ string Email::getContent()
 void Email::setContent(string newContent)
 {
     content = newContent;
+}
+
+vector<string>& Email::getForwards()
+{
+    return forwards;
 }
 
 int Email::getReferences()
