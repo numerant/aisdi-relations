@@ -178,15 +178,15 @@ int Date::monthToInt(string stringMonth)
         monthInt = 1;
     if(stringMonth == "Feb")
         monthInt = 2;
-    if(stringMonth == "March")
+    if(stringMonth == "Mar")
         monthInt = 3;
     if(stringMonth == "Apr")
         monthInt = 4;
     if(stringMonth == "May")
         monthInt = 5;
-    if(stringMonth == "June")
+    if(stringMonth == "Jun")
         monthInt = 6;
-    if(stringMonth == "July")
+    if(stringMonth == "Jul")
         monthInt = 7;
     if(stringMonth == "Aug")
         monthInt = 8;
