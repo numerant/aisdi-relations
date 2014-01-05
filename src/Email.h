@@ -20,7 +20,7 @@ private:
     //przechowujące adres e-mail, na który ma zostać wysłana odpowiedź do danego maila
     Usember *replyTo;
     //przechowujące ID wiadomości, na którą dana wiadomość jest odpowiedzią
-    int inReplyTo;
+    string inReplyTo;
     //przechowujące ID wiadomości nadane przez bazę danych
     string messageID;
     //przechowujące adres e-mail odbiorcy
@@ -29,6 +29,8 @@ private:
     string subject;
     //przechowujące treść wiadomości
     string content;
+    //przechowujace ID forwardow tej wiadomosci
+    vector<string> forwards;
     //opcjonalne pole przechowujące ID wiadomości, na którą dana wiadomość jest odpowiedzią oraz
     //ID wiadomości, na którą odpowiedzią jest wiadomość, na którą dana wiadomość jest odpowiedzią
     //tzn. ID1->ID2->ID3 (gdzie ID3 to ID danej wiadomośći, pole to przechowuje ID2 oraz ID1)
@@ -44,8 +46,8 @@ public:
     void setDate(Date* newDate);
     Usember* getReplyTo();
     void setReplyTo(Usember *newReplyTo);
-    int getInReplyTo();
-    void setInReplyTo(int newInReplyTo);
+    string getInReplyTo();
+    void setInReplyTo(string newInReplyTo);
     string getID(void);
     void setID(string ID);
     Usember* getTo();
@@ -54,6 +56,7 @@ public:
     void setSubject(string newSubject);
     string getContent();
     void setContent(string newContent);
+    vector<string>& getForwards();
     int getReferences();
     void setReferences( int newReferences);
 };
