@@ -1,5 +1,12 @@
 #include "PanelInboxMaintance.h"
 
+// TEMP - serializacja!
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/archive/tmpdir.hpp>
+#include <fstream>
+#include "../../src/Serialization.h"
+
 PanelInboxMaintance::PanelInboxMaintance()
 {
 
@@ -168,7 +175,12 @@ void PanelInboxMaintance::EventButtonAddClick (AisdiRelationsFrame * Frame)
 
 void PanelInboxMaintance::EventButtonSaveClick (AisdiRelationsFrame * Frame)
 {
+    std::string filename;
+    filename = "/home/kuba/demo-out.eml";
 
+    std::ofstream ofs(filename);
+    boost::archive::text_oarchive oa(ofs);
+    oa << Frame->database;
 }
 
 void PanelInboxMaintance::EventButtonSettingsClick (AisdiRelationsFrame * Frame)

@@ -49,5 +49,5 @@ public:
     void EventButtonFilesClick (AisdiRelationsFrame* Frame);
     void EventButtonSettingsClick (AisdiRelationsFrame * Frame);
     void EventButtonTxtClick (void);
-    void EventButtonBinClick (void);
+    void EventButtonBinClick (AisdiRelationsFrame* Frame);
 };

@@ -1,5 +1,10 @@
 #include "Usember.h"
 
+Usember::Usember()
+{
+
+}
+
 Usember::Usember(string usemberName, string domain, string realName)
 {
     //ctor

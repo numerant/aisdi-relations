@@ -28,7 +28,7 @@ namespace boost
         {
             archive & database.emailVector;
             //archive & database.groupVector;                    //zakomentowane - grupy chyba jeszcze nie działają?
-            archive & database.usemberVector;
+            //archive & database.usemberVector;                  //usember nie jest jeszcze dodawany
             //archive & database.emailSearchResultVector;
             //archive & database.groupSearchResultVector;        //to chyba są wektory tymczasowe?
             //archive & database.usemberSearchResultVector;
@@ -39,7 +39,7 @@ namespace boost
         {
             archive & email.from;
             archive & email.date;
-            archive & email.replyTo;
+            //archive & email.replyTo;
             archive & email.inReplyTo;
             archive & email.messageID;
             archive & email.to;
@@ -52,9 +52,9 @@ namespace boost
             //Usember
         template<class Archive> void serialize(Archive &archive, Usember &usember, const unsigned int version)
         {
-            //archive & usember.usemberName;
-            //archive & usember.domain;
-            //archive & usember.realName;         //czy to czasem nie jest puste?
+            archive & usember.usemberName;
+            archive & usember.domain;
+            archive & usember.realName;         //czy to czasem nie jest puste?
             //archive & usember.group;			// grupy nie działają - koment
             //archive & usember.sentMails;
             //archive & usember.receivedMails;

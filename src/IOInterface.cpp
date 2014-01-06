@@ -165,8 +165,8 @@ Email* IOInterface::emlParser (string path)
         usemberFrom = new Usember(fromLOGIN, fromDOMAIN, fromRN);
         usemberTo = new Usember(toLOGIN, toDOMAIN, toRN);
 
-// usemberFrom = database.addUsember( usemberFrom );
-// usemberTo = database.addUsember( usemberTo );
+        //database->addUsember( usemberFrom );
+        //database->addUsember( usemberTo );
 
         Date* newDate = new Date(date);
         mail->setFrom( usemberFrom );

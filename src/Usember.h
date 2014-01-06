@@ -25,6 +25,7 @@ class Usember
 {
     template<class Archive> friend void  boost::serialization::serialize(Archive &, Usember &, const unsigned int);  //potrzebne do serializacji
 public:
+    Usember();                                      //potrzebne do serializacji
     Usember(string usemberName, string domain, string realName);
     ~Usember();
 

@@ -12,12 +12,6 @@
 #include "../src/Email.h"
 #include "../src/Usember.h"*/
 
-// TEMP - serializacja!
-#include <boost/archive/text_oarchive.hpp>
-#include <boost/archive/text_iarchive.hpp>
-#include <boost/archive/tmpdir.hpp>
-#include <fstream>
-#include "../src/Serialization.h"
 
 /** Pliki klas widoku (paneli) */
 #include "view/PanelTitleMaintance.h"
@@ -1264,7 +1258,7 @@ void AisdiRelationsFrame::OnT_ImageButtonTxtClick(wxCommandEvent& event)
 
 void AisdiRelationsFrame::OnT_ImageButtonBinClick(wxCommandEvent& event)
 {
-    P_Title->EventButtonBinClick();
+    P_Title->EventButtonBinClick(this);
 }
 
 void AisdiRelationsFrame::OnT_CheckBoxRecursiveClick(wxCommandEvent& event)
@@ -1300,14 +1294,7 @@ void AisdiRelationsFrame::OnI_ImageButtonSettingsClick(wxCommandEvent& event)
 
 void AisdiRelationsFrame::OnI_ImageButtonMulTreeClick(wxCommandEvent& event)
 {
-    //P_MulTree->ShowPanel(this);       //debug!
-
-    std::string filename(boost::archive::tmpdir());
-    filename += "/demo-out.txt";
-
-    std::ofstream ofs(filename);
-    boost::archive::text_oarchive oa(ofs);
-    oa << database;
+    P_MulTree->ShowPanel(this);
 }
 
 void AisdiRelationsFrame::OnI_ImageButtonStatsClick(wxCommandEvent& event)

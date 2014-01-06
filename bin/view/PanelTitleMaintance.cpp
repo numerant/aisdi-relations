@@ -1,5 +1,12 @@
 #include "PanelTitleMaintance.h"
 
+// TEMP - serializacja!
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/archive/tmpdir.hpp>
+#include <fstream>
+#include "../../src/Serialization.h"
+
 PanelTitleMaintance::PanelTitleMaintance ()
 {
 
@@ -346,9 +353,19 @@ void PanelTitleMaintance::EventButtonSettingsClick (AisdiRelationsFrame * Frame)
 	SetClickedSettings();
 }
 
-void PanelTitleMaintance::EventButtonBinClick()
+void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
 {
+    if (Frame->FileDialog->ShowModal() == wxID_OK)		//uruchomienie panelu wybierania folderu
+    {													//jeśli wybrano pliki:
+        wxArrayString paths;							//tablica plików do wczytania
+        Frame->FileDialog->GetPaths(paths);
 
+        std::ifstream ifs(paths[0].mb_str());
+        boost::archive::text_iarchive ia(ifs);
+        ia >> Frame->database;
+
+        Frame->P_Inbox->SetEmails(Frame);				//załadowanie listy Emaili z bazy
+    }
 }
 
 void PanelTitleMaintance::EventButtonTxtClick()
