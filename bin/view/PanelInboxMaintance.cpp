@@ -161,7 +161,7 @@ void PanelInboxMaintance::EventListInboxItemSelect (AisdiRelationsFrame* Frame)
     const string search = "\n";
     const string replace = "<br>";
     string subject = string (contents[4].mb_str());
-    string htmlContent = Frame->iointerface->strSequenceReplace("\n", "<br>", subject);    //TODO Naprawić szukanie znaków nowego wiersza
+    string htmlContent = Frame->iointerface->strSequenceReplace("\n", "<br>", subject); 
 
     wxString pContent (htmlContent.c_str(), wxConvUTF8 );
     Frame->I_HtmlEmailContent->SetPage(pOpen+pContent+pClose);

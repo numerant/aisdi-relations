@@ -134,6 +134,11 @@ void PanelUsembersMaintance::SetSearchEnabled()
     searchEnabled = !searchEnabled;
 }
 
+void PanelUsembersMaintance::SetUsemberViewed(const string usember)
+{
+
+}
+
 bool PanelUsembersMaintance::GetSearchEnabled()
 {
     return searchEnabled;
