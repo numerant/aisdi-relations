@@ -551,7 +551,7 @@
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL5" variable="PanelStatistics" member="yes">
-				<pos>1366,0</pos>
+				<pos>0,0</pos>
 				<size>1366,750</size>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP4" variable="BitmapBackgroundStatistics" member="yes">
 					<bitmap>resources/background.jpg</bitmap>
@@ -706,7 +706,6 @@
 					<size>270,600</size>
 					<bg>#303030</bg>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE</style>
-					<handler function="OnS_PanelCountersPaint" entry="EVT_PAINT" />
 					<object class="wxStaticBox" name="ID_STATICBOX9" variable="S_BorderC" member="yes">
 						<pos>0,-10</pos>
 						<size>270,610</size>
@@ -2643,6 +2642,7 @@
 			<style>wxFD_OPEN|wxFD_MULTIPLE</style>
 		</object>
 		<object class="wxTimer" name="ID_TIMER1" variable="Timer1" member="yes">
+			<oneshot>1</oneshot>
 			<handler function="OnTimer1Trigger" entry="EVT_TIMER" />
 		</object>
 		<object class="wxFileDialog" variable="FileDialogDatabaseImport" member="yes">

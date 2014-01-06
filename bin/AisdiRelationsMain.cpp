@@ -470,7 +470,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     M_ImageButtonGroups = new wxBitmapButton(PanelMulTree, ID_IMAGEBUTTON44, wxNullBitmap, wxPoint(1090,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON44"));
     M_ImageButtonStats = new wxBitmapButton(PanelMulTree, ID_IMAGEBUTTON43, wxNullBitmap, wxPoint(1180,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON43"));
     M_ImageButtonTitle = new wxBitmapButton(PanelMulTree, ID_IMAGEBUTTON40, wxNullBitmap, wxPoint(10,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON40"));
-    PanelStatistics = new wxPanel(PanelMain, ID_PANEL5, wxPoint(1366,0), wxSize(1366,750), wxTAB_TRAVERSAL, _T("ID_PANEL5"));
+    PanelStatistics = new wxPanel(PanelMain, ID_PANEL5, wxPoint(0,0), wxSize(1366,750), wxTAB_TRAVERSAL, _T("ID_PANEL5"));
     BitmapBackgroundStatistics = new wxStaticBitmap(PanelStatistics, ID_STATICBITMAP4, wxBitmap(wxImage(_T("resources/background.jpg"))), wxPoint(0,0), wxDefaultSize, wxSIMPLE_BORDER, _T("ID_STATICBITMAP4"));
     S_LabelMulTree = new wxStaticText(PanelStatistics, ID_STATICTEXT77, _("Drzewo\nMulticastowe"), wxPoint(1166,70), wxDefaultSize, wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_STATICTEXT77"));
     S_LabelMulTree->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
@@ -1116,7 +1116,6 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_IMAGEBUTTON51,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_ImageButtonInboxClick);
     Connect(ID_IMAGEBUTTON55,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_ImageButtonRefreshClick);
     Connect(ID_IMAGEBUTTON42,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_ImageButtonTitleClick);
-    S_PanelCounters->Connect(wxEVT_PAINT,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_PanelCountersPaint,0,this);
     S_PanelEmailPerMonth->Connect(wxEVT_PAINT,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_PanelEmailPerMonthPaint,0,this);
     Connect(ID_HYPERLINKCTRL1,wxEVT_COMMAND_HYPERLINK,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_HyperLinkT_SendersPos1Click);
     Connect(ID_HYPERLINKCTRL2,wxEVT_COMMAND_HYPERLINK,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_HyperLinkT_SendersPos1Click);
@@ -1602,11 +1601,6 @@ void AisdiRelationsFrame::OnS_ImageButtonMulTreeClick(wxCommandEvent& event)
 void AisdiRelationsFrame::OnS_PanelEmailPerMonthPaint(wxPaintEvent& event)
 {
     P_Stats->EventPanelEmailPerMonthPaint(this);
-}
-
-void AisdiRelationsFrame::OnS_PanelCountersPaint(wxPaintEvent& event)
-{
-    P_Stats->EventPanelCountersPaint(this);
 }
 
 void AisdiRelationsFrame::OnS_HyperLinkT_SendersPos1Click(wxCommandEvent& event)

@@ -144,8 +144,6 @@ private:
     void OnTimer1Trigger(wxTimerEvent& event);
     void OnPanelStatisticsPaint(wxPaintEvent& event);
     void OnS_PanelEmailPerMonthPaint(wxPaintEvent& event);
-    void OnS_PanelEmailPerMonthLeftDClick(wxMouseEvent& event);
-    void OnS_PanelCountersPaint(wxPaintEvent& event);
     void OnSet_SliderNotifyTimeCmdScrollChanged(wxScrollEvent& event);
     void OnS_HyperLinkT_SendersPos1Click(wxCommandEvent& event);
     void OnS_ImageButtonRefreshClick(wxCommandEvent& event);
