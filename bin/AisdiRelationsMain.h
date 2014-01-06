@@ -425,7 +425,6 @@ private:
     wxBitmapButton        *T_ImageButtonImport;
     wxStaticText* S_StaticTextC_Value10;
     wxFileDialog* FileDialog;
-    wxFileDialog* ImportDatabaseDialog;
     wxPanel* PanelNotify;
     wxStaticText* I_LabelShowTree;
     wxStaticText* I_LabelDate;
@@ -539,6 +538,7 @@ private:
     wxStaticText* N_StaticTextOption2;
     wxStaticLine* S_LineC_3;
     wxStaticText* S_StaticTextC_Value8;
+    wxFileDialog* FileDialogDatabaseImport;
     wxStaticText* S_StaticTextC_Value9;
     wxHyperlinkCtrl* S_HyperLinkT_ReceiverPos4;
     wxBitmapButton        *T_ImageButtonInbox;

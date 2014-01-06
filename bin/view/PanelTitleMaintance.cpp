@@ -300,7 +300,7 @@ void PanelTitleMaintance::EventButtonFolderClick (AisdiRelationsFrame* Frame)
             Frame->P_Notify->SetLabels(Frame, "Zakończono wczytywanie!", "Wczytano poprawnie:", "Niepoprawne emaile:");
             Frame->P_Notify->SetValues(Frame, stats.successCount, stats.failCount);
             Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime()*1000);
-            Frame->statistics->update();              //TODO odkomentować
+            Frame->statistics->update();            
             if (Frame->P_Stats->GetIsUpdated())
                 Frame->P_Stats->SetIsUpdated();
         }
@@ -330,7 +330,7 @@ void PanelTitleMaintance::EventButtonFilesClick (AisdiRelationsFrame* Frame)
             Frame->P_Notify->SetLabels(Frame, "Zakończono wczytywanie!", "Wczytano poprawnie:", "Niepoprawne emaile:");
             Frame->P_Notify->SetValues(Frame, stats.successCount, stats.failCount);
             Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime()*1000);
-            Frame->statistics->update();              //TODO odkomentować
+            Frame->statistics->update();             
             if (Frame->P_Stats->GetIsUpdated())
                 Frame->P_Stats->SetIsUpdated();
         }
@@ -355,10 +355,10 @@ void PanelTitleMaintance::EventButtonSettingsClick (AisdiRelationsFrame * Frame)
 
 void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
 {
-    if (Frame->ImportDatabaseDialog->ShowModal() == wxID_OK)
+    if (Frame->FileDialogDatabaseImport->ShowModal() == wxID_OK)
     {
         wxArrayString paths;
-        Frame->ImportDatabaseDialog->GetPaths(paths);
+        Frame->FileDialogDatabaseImport->GetPaths(paths);
 
         std::ifstream ifs(paths[0].mb_str());
         boost::archive::text_iarchive ia(ifs);
@@ -366,6 +366,9 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
 
         Frame->P_Inbox->SetEmails(Frame);				//załadowanie listy Emaili z bazy
         Frame->P_Title->SwitchIcons(Frame);
+        Frame->statistics->update();             
+        if (Frame->P_Stats->GetIsUpdated())
+            Frame->P_Stats->SetIsUpdated();
 
     }
 }

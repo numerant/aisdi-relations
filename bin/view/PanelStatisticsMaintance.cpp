@@ -68,25 +68,28 @@ void PanelStatisticsMaintance::EventPanelEmailPerMonthPaint (AisdiRelationsFrame
     dc.SetTextForeground(wxColour(230,230,230));
     dc.SetFont(wxFont(11, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, _("Ubuntu")));
 
-    int maxHeight = Frame->statistics->getMaxEmailsInMonth();
     int posCorrection = 0;
-    for (int i = 0; i < 12; i++)    //Wypisanie nazw miesięcy u dołu
+    int maxHeight = Frame->statistics->getMaxEmailsInMonth();
+    if (maxHeight)  //jeżeli jakikolwiek mail wczytany
     {
-         if (i == 6)
-                posCorrection = 2;
-        dc.DrawText(months[i], wxPoint(i*40+20+posCorrection, 270));      //wypisz nazwę miesiąca
-
-        int month = Frame->statistics->getEmailsCountInMonth(i+1);  //pobranie wartości z danego miesiąca
-        ostringstream ss;               //konwersja int -> string -> wxString
-        ss << month;
-        string strMonth = ss.str();
-        if (month)  //jeżeli jest co rysować, to rysuj prostokąt o zmiennym wypełnieniu
+         for (int i = 0; i < 12; i++)    //Wypisanie nazw miesięcy u dołu
         {
-            dc.SetBrush(wxBrush(wxColour(red+(int)(255-red-month*(255-red)/maxHeight),green+(int)(255-green-month*(255-green)/maxHeight),blue+(int)(255-blue-month*(255-blue)/maxHeight))));      //ustal kolor słupka
-            dc.DrawRectangle(wxPoint(17+i*40,250),wxSize(32, (int)-month*(200/maxHeight)));
+             if (i == 6)
+                    posCorrection = 2;
+            dc.DrawText(months[i], wxPoint(i*40+20+posCorrection, 270));      //wypisz nazwę miesiąca
+
+            int month = Frame->statistics->getEmailsCountInMonth(i+1);  //pobranie wartości z danego miesiąca
+            ostringstream ss;               //konwersja int -> string -> wxString
+            ss << month;
+            string strMonth = ss.str();
+            if (month)  //jeżeli jest co rysować, to rysuj prostokąt o zmiennym wypełnieniu
+            {
+                dc.SetBrush(wxBrush(wxColour(red+(int)(255-red-month*(255-red)/maxHeight),green+(int)(255-green-month*(255-green)/maxHeight),blue+(int)(255-blue-month*(255-blue)/maxHeight))));      //ustal kolor słupka
+                dc.DrawRectangle(wxPoint(17+i*40,250),wxSize(32, (int)-month*(200/maxHeight)));
+            }
+            //a potem wypisz tekst, nawet dla zera
+            dc.DrawText(wxString(strMonth.c_str(), wxConvUTF8), wxPoint(i*40+28, (int)250-month*(200/maxHeight)-20));
         }
-        //a potem wypisz tekst, nawet dla zera
-        dc.DrawText(wxString(strMonth.c_str(), wxConvUTF8), wxPoint(i*40+28, (int)250-month*(200/maxHeight)-20));
     }
     dc.DrawLine(wxPoint(10,260), wxPoint(490,260));
 }

@@ -2597,5 +2597,11 @@
 		<object class="wxTimer" name="ID_TIMER1" variable="Timer1" member="yes">
 			<handler function="OnTimer1Trigger" entry="EVT_TIMER" />
 		</object>
+		<object class="wxFileDialog" variable="FileDialogDatabaseImport" member="yes">
+			<message>Wybierz plik:</message>
+			<default_dir>~/</default_dir>
+			<wildcard>*.bin</wildcard>
+			<style>wxFD_OPEN</style>
+		</object>
 	</object>
 </wxsmith>
