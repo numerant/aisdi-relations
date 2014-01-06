@@ -49,7 +49,7 @@ bool Database::addUsember(Usember* usember)
         usemberVector.push_back(usember);
         return true;
     }
-    if(findUsember(usember->getAddress())==-1)
+    if(findUsember(usember->getAddress())==-1 && usemberVector.size()<16)
     {
         usemberVector.push_back(usember);
         sort (usemberVector.begin(), usemberVector.end(), Database::compareUsembers);
@@ -178,6 +178,10 @@ int Database::findGroup(int groupId)
     }
     if(groupVector[position]->getID()==groupId)
         return position;
+    else if(position+1<groupVector.size() && groupId==groupVector[position+1]->getID())
+        return position+1;
+    else if(position>0 && groupId==groupVector[position-1]->getID())
+        return position-1;
     else
         return -1;
 }
@@ -200,6 +204,10 @@ int Database::findUsember(string name)
     }
     if(name.compare(usemberVector[position]->getAddress())==0)
         return position;
+    else if(position+1<usemberVector.size() && name.compare(usemberVector[position+1]->getAddress())==0)
+        return position+1;
+    else if(position>0 && name.compare(usemberVector[position-1]->getAddress())==0)
+        return position-1;
     else
         return -1;
 }
