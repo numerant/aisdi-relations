@@ -952,9 +952,25 @@
 				</object>
 				<object class="wxPanel" name="ID_PANEL14" variable="S_PanelTops" member="yes">
 					<pos>815,120</pos>
-					<size>450,300</size>
+					<size>450,360</size>
 					<bg>#303030</bg>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL</style>
+					<object class="wxStaticLine" name="ID_STATICLINE10" variable="S_LineT_1" member="yes">
+						<pos>10,175</pos>
+						<size>430,-1</size>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT123" variable="S_StaticTextT_TitleReceivers" member="yes">
+						<label>Top 5 odbierających</label>
+						<pos>150,190</pos>
+						<fg>#FFFFFF</fg>
+						<font>
+							<size>12</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+					</object>
 					<object class="wxStaticText" name="ID_STATICTEXT112" variable="S_StaticTextT_TitleSenders" member="yes">
 						<label>Top 5 wysyłających</label>
 						<pos>150,10</pos>
@@ -969,7 +985,7 @@
 					</object>
 					<object class="wxStaticBox" name="ID_STATICBOX8" variable="S_BorderT" member="yes">
 						<pos>0,-10</pos>
-						<size>450,310</size>
+						<size>450,370</size>
 						<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
 					</object>
 					<object class="wxStaticText" name="ID_STATICTEXT113" variable="S_StaticTextT_SendersPos1" member="yes">
@@ -997,6 +1013,31 @@
 						<pos>15,140</pos>
 						<fg>wxSYS_COLOUR_SCROLLBAR</fg>
 					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT118" variable="S_StaticTextT_ReceiversPos1" member="yes">
+						<label>1.</label>
+						<pos>15,220</pos>
+						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT119" variable="S_StaticTextT_ReceiversPos2" member="yes">
+						<label>2.</label>
+						<pos>15,245</pos>
+						<fg>wxSYS_COLOUR_SCROLLBAR</fg>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT120" variable="S_StaticTextT_ReceiversPos3" member="yes">
+						<label>3.</label>
+						<pos>15,270</pos>
+						<fg>wxSYS_COLOUR_SCROLLBAR</fg>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT121" variable="S_StaticTextT_ReceiversPos4" member="yes">
+						<label>4.</label>
+						<pos>15,295</pos>
+						<fg>wxSYS_COLOUR_SCROLLBAR</fg>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT122" variable="S_StaticTextT_ReceiversPos5" member="yes">
+						<label>5.</label>
+						<pos>15,320</pos>
+						<fg>wxSYS_COLOUR_SCROLLBAR</fg>
+					</object>
 					<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL1" variable="S_HyperLinkT_SendersPos1" member="yes">
 						<label>Nick Fury &lt;nfury@shield.gov&gt;</label>
 						<normal_colour>wxSYS_COLOUR_ACTIVECAPTION</normal_colour>
@@ -1012,6 +1053,7 @@
 							<face>Ubuntu</face>
 						</font>
 						<style>wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+						<handler function="OnS_HyperLinkT_SendersPos1Click" entry="EVT_HYPERLINK" />
 					</object>
 					<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL2" variable="S_HyperLinkT_SendersPos2" member="yes">
 						<label>Natasha Romanov &lt;nromanov@russia.ru&gt;</label>
@@ -1028,9 +1070,10 @@
 							<face>Ubuntu</face>
 						</font>
 						<style>wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+						<handler function="OnS_HyperLinkT_SendersPos1Click" entry="EVT_HYPERLINK" />
 					</object>
 					<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL3" variable="S_HyperLinkT_SendersPos3" member="yes">
-						<label>Tony Stary &lt;ironman@starkindustries.com&gt;</label>
+						<label>Tony Stark &lt;ironman@starkindustries.com&gt;</label>
 						<normal_colour>wxSYS_COLOUR_SCROLLBAR</normal_colour>
 						<hover_colour>wxSYS_COLOUR_WINDOW</hover_colour>
 						<visited_colour>wxSYS_COLOUR_SCROLLBAR</visited_colour>
@@ -1044,12 +1087,13 @@
 							<face>Ubuntu</face>
 						</font>
 						<style>wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+						<handler function="OnS_HyperLinkT_SendersPos1Click" entry="EVT_HYPERLINK" />
 					</object>
 					<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL4" variable="S_HyperLinkT_SendersPos4" member="yes">
 						<label>Steve Rogers &lt;cptamerica@army.gov&gt;</label>
 						<normal_colour>wxSYS_COLOUR_SCROLLBAR</normal_colour>
 						<hover_colour>wxSYS_COLOUR_WINDOW</hover_colour>
-						<visited_colour>wxSYS_COLOUR_WINDOW</visited_colour>
+						<visited_colour>wxSYS_COLOUR_SCROLLBAR</visited_colour>
 						<pos>40,115</pos>
 						<bg>#303030</bg>
 						<font>
@@ -1060,11 +1104,12 @@
 							<face>Ubuntu</face>
 						</font>
 						<style>wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+						<handler function="OnS_HyperLinkT_SendersPos1Click" entry="EVT_HYPERLINK" />
 					</object>
 					<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL5" variable="S_HyperLinkT_SendersPos5" member="yes">
 						<label>Clint Barton &lt;hawkeye@avengers.com&gt;</label>
 						<normal_colour>wxSYS_COLOUR_SCROLLBAR</normal_colour>
-						<hover_colour>wxSYS_COLOUR_ACTIVECAPTION</hover_colour>
+						<hover_colour>wxSYS_COLOUR_WINDOW</hover_colour>
 						<visited_colour>wxSYS_COLOUR_SCROLLBAR</visited_colour>
 						<pos>40,140</pos>
 						<bg>#303030</bg>
@@ -1076,6 +1121,92 @@
 							<face>Ubuntu</face>
 						</font>
 						<style>wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+						<handler function="OnS_HyperLinkT_SendersPos1Click" entry="EVT_HYPERLINK" />
+					</object>
+					<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL6" variable="S_HyperLinkT_ReceiverPos1" member="yes">
+						<label>Superman &lt;clarkkent@dailyplanet.com&gt;</label>
+						<normal_colour>wxSYS_COLOUR_ACTIVECAPTION</normal_colour>
+						<hover_colour>wxSYS_COLOUR_WINDOW</hover_colour>
+						<visited_colour>wxSYS_COLOUR_ACTIVECAPTION</visited_colour>
+						<pos>40,220</pos>
+						<bg>#303030</bg>
+						<font>
+							<size>12</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+						<style>wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+						<handler function="OnS_HyperLinkT_SendersPos1Click" entry="EVT_HYPERLINK" />
+					</object>
+					<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL7" variable="S_HyperLinkT_ReceiverPos2" member="yes">
+						<label>Green Lantern &lt;haljordan@willpower.com&gt;</label>
+						<normal_colour>wxSYS_COLOUR_SCROLLBAR</normal_colour>
+						<hover_colour>wxSYS_COLOUR_WINDOW</hover_colour>
+						<visited_colour>wxSYS_COLOUR_SCROLLBAR</visited_colour>
+						<pos>40,245</pos>
+						<bg>#303030</bg>
+						<font>
+							<size>12</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+						<style>wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+						<handler function="OnS_HyperLinkT_SendersPos1Click" entry="EVT_HYPERLINK" />
+					</object>
+					<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL8" variable="S_HyperLinkT_ReceiverPos3" member="yes">
+						<label>Wonder Woman &lt;diana@amazon.com&gt;</label>
+						<normal_colour>wxSYS_COLOUR_SCROLLBAR</normal_colour>
+						<hover_colour>wxSYS_COLOUR_WINDOW</hover_colour>
+						<visited_colour>wxSYS_COLOUR_SCROLLBAR</visited_colour>
+						<pos>40,270</pos>
+						<bg>#303030</bg>
+						<font>
+							<size>12</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+						<style>wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+						<handler function="OnS_HyperLinkT_SendersPos1Click" entry="EVT_HYPERLINK" />
+					</object>
+					<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL9" variable="S_HyperLinkT_ReceiverPos4" member="yes">
+						<label>Flash &lt;barryallen@paradox.com&gt;</label>
+						<normal_colour>wxSYS_COLOUR_SCROLLBAR</normal_colour>
+						<hover_colour>wxSYS_COLOUR_WINDOW</hover_colour>
+						<visited_colour>wxSYS_COLOUR_SCROLLBAR</visited_colour>
+						<pos>40,295</pos>
+						<bg>#303030</bg>
+						<font>
+							<size>12</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+						<style>wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+						<handler function="OnS_HyperLinkT_SendersPos1Click" entry="EVT_HYPERLINK" />
+					</object>
+					<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL10" variable="S_HyperLinkT_ReceiverPos5" member="yes">
+						<label>Batman &lt;brucewayne@gotham.com&gt;</label>
+						<normal_colour>wxSYS_COLOUR_SCROLLBAR</normal_colour>
+						<hover_colour>wxSYS_COLOUR_WINDOW</hover_colour>
+						<visited_colour>wxSYS_COLOUR_SCROLLBAR</visited_colour>
+						<pos>40,320</pos>
+						<bg>#303030</bg>
+						<font>
+							<size>12</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+						<style>wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+						<handler function="OnS_HyperLinkT_SendersPos1Click" entry="EVT_HYPERLINK" />
 					</object>
 				</object>
 			</object>

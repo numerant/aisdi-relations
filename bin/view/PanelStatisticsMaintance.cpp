@@ -1,4 +1,5 @@
 #include "PanelStatisticsMaintance.h"
+#include "PanelUsembersMaintance.h"
 #include <wx/dcclient.h>
 #include <iomanip>
 
@@ -174,4 +175,27 @@ void PanelStatisticsMaintance::EventPanelCountersPaint (AisdiRelationsFrame * Fr
     date= Frame->statistics->getLatest();
     sCounter = date->getFullDate();
     Frame->S_StaticTextC_Value12->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
+}
+
+void PanelStatisticsMaintance::EventHyperLinkClick(AisdiRelationsFrame * Frame, const long id)
+{
+    string usember;
+    wxString wxStr;
+    switch (id)
+    {
+        case 0: wxStr = Frame->S_HyperLinkT_SendersPos1->GetLabel(); break;
+        case 1: wxStr = Frame->S_HyperLinkT_SendersPos2->GetLabel(); break;
+        case 2: wxStr = Frame->S_HyperLinkT_SendersPos3->GetLabel(); break;
+        case 3: wxStr = Frame->S_HyperLinkT_SendersPos4->GetLabel(); break;
+        case 4: wxStr = Frame->S_HyperLinkT_SendersPos5->GetLabel(); break;
+        case 5: wxStr = Frame->S_HyperLinkT_ReceiverPos1->GetLabel(); break;
+        case 6: wxStr = Frame->S_HyperLinkT_ReceiverPos2->GetLabel(); break;
+        case 7: wxStr = Frame->S_HyperLinkT_ReceiverPos3->GetLabel(); break;
+        case 8: wxStr = Frame->S_HyperLinkT_ReceiverPos4->GetLabel(); break;
+        case 9: wxStr = Frame->S_HyperLinkT_ReceiverPos5->GetLabel(); break;
+        default: break;
+    }
+    usember = wxStr.mb_str();
+    Frame->P_Usembers->SetUsemberViewed(usember);
+    Frame->P_Usembers->ShowPanel(Frame);
 }

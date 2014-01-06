@@ -25,6 +25,7 @@ public:
     void SwitchContent(AisdiRelationsFrame * Frame);
     void SetIcons(AisdiRelationsFrame* Frame);
     void SetSearchEnabled();
+    void SetUsemberViewed(const string usember);
 
     bool GetSearchEnabled();
 
