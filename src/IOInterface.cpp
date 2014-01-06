@@ -88,25 +88,25 @@ Email* IOInterface::emlParser (string path)
         boost::regex regTo("To:\\s+(\"(.+)\")?\\s*<(.+)@(.+)>");
         boost::regex regSubject("Subject:\\s+(.*)");
         boost::regex regMID("Message-ID:\\s+<(.+)>");
-	boost::regex regIRT("In-Reply-To:\\s+<(.+)>");
+		boost::regex regIRT("In-Reply-To:\\s+<(.+)>");
         boost::regex regDate("Date:\\s+(\\u\\l{2},\\s+\\d{1,2}\\s+\\u\\l+\\s+\\d{4}\\s+\\d{2}:\\d{2}:\\d{2}\\s+\\+\\d{4})");
-	boost::smatch wynik;
+		boost::smatch wynik;
 
         // wczytanie FROM
         do
             getline(plik, wiersz);
         while (( regex_search( wiersz, wynik, regFrom) == 0 )&&( !plik.eof() ));
 
-	if ( plik.eof() )
-	{
-		throw EmlSyntaxIncorrect();
-	}
-	else
-	{
-        	fromRN = wynik[2];
-        	fromLOGIN = wynik[3];
-        	fromDOMAIN = wynik[4];
-	}
+		if ( plik.eof() )
+		{
+			throw EmlSyntaxIncorrect();
+		}
+		else
+		{
+			fromRN = wynik[2];
+			fromLOGIN = wynik[3];
+			fromDOMAIN = wynik[4];
+		}
 	
 
         // wczytanie TO
@@ -114,14 +114,14 @@ Email* IOInterface::emlParser (string path)
             getline(plik, wiersz);
         while (( regex_search( wiersz, wynik, regTo) == 0 )&&( !plik.eof() )); 
         if ( plik.eof() )
-	{
-		throw EmlSyntaxIncorrect();
-	}
-	else
+		{
+			throw EmlSyntaxIncorrect();
+		}
+		else
         {
-                toRN = wynik[2];
-                toLOGIN = wynik[3];
-                toDOMAIN = wynik[4];
+            toRN = wynik[2];
+            toLOGIN = wynik[3];
+            toDOMAIN = wynik[4];
         }
 
 
@@ -130,10 +130,10 @@ Email* IOInterface::emlParser (string path)
             getline(plik, wiersz);
         while (( regex_search( wiersz, wynik, regSubject) == 0 )&&( !plik.eof() )); 
         if ( plik.eof() )
-	{
-		throw EmlSyntaxIncorrect();
-	}
-	else
+		{
+			throw EmlSyntaxIncorrect();
+		}
+		else
         {
             subject = wynik[1];
         }
@@ -143,35 +143,35 @@ Email* IOInterface::emlParser (string path)
             getline(plik, wiersz);
         while (( regex_search( wiersz, wynik, regMID) == 0 )&&( !plik.eof() )); 
         if ( plik.eof() )
-	{
-		throw EmlSyntaxIncorrect();
-	}
-	else
+		{
+			throw EmlSyntaxIncorrect();
+		}
+		else
         {
             MID = wynik[1];
         }
 
 
-	// wczytanie InReplyTo
-	do
-            getline(plik, wiersz);
-        while ( wiersz.size() == 0 ); // pomija przypadkowe puste linie
-	if ( regex_search( wiersz, wynik, regIRT) )
+		// wczytanie InReplyTo
+		do
+				getline(plik, wiersz);
+			while ( wiersz.size() == 0 ); // pomija przypadkowe puste linie
+		if ( regex_search( wiersz, wynik, regIRT) )
         {
             IRT = wynik[1];
         }
 
         // wczytanie DATE
         while (( regex_search( wiersz, wynik, regDate) == 0 )&&( !plik.eof() ))
-	{
-		getline(plik, wiersz);
-	}
+		{
+			getline(plik, wiersz);
+		}
 
-	if ( plik.eof() )
-	{
-		throw EmlSyntaxIncorrect();
-	}
-	else
+		if ( plik.eof() )
+		{
+			throw EmlSyntaxIncorrect();
+		}
+		else
         {
             date = wynik[1];
         }
@@ -211,6 +211,7 @@ Email* IOInterface::emlParser (string path)
         mail->setContent( content );
         mail->setDate(newDate);
         mail->setID(MID);
+		mail->setInReplyTo(IRT);
 
         return mail;
     }
