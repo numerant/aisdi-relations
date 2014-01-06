@@ -28,10 +28,10 @@ void WriteLineInFile(string linijka,string nazwapliku)
 int main()
 {
 	srand((unsigned int) time( NULL ));
-	for (int i=0; i<50 ; i++) {		//Petla stanowiaca o liczbie plikow .eml
+	for (int i=0; i<100 ; i++) {		//Petla stanowiaca o liczbie plikow .eml
 	MessageID messageid;
 	messageid.SetID(messageid.strID=IDgen(20));
-	string nazwapliku="/Users/Maciek/Documents/Studia/AISDI/Projekt/CreateEMLfile/CreateEMLfile/Mails temp/IDnr" + messageid.strID + ".eml";
+	string nazwapliku="Mails temp/IDnr" + messageid.strID + ".eml";
 	From from;
 	To to;
 	Subject subject;

@@ -11,7 +11,7 @@ int x,y;
 From::From()
 	{
         vector<string> VectorFrom;
-        Input::ImportToVector("/Users/Maciek/Documents/Studia/AISDI/Projekt/CreateEMLfile/CreateEMLfile/from.txt", VectorFrom);
+        Input::ImportToVector("from.txt", VectorFrom);
         string s= numgen((int)VectorFrom.size(), 0);
         istringstream iss(s);
         iss >> x;
@@ -23,7 +23,7 @@ From::From()
 To::To()
 	{
         vector<string> VectorFrom;
-        Input::ImportToVector("/Users/Maciek/Documents/Studia/AISDI/Projekt/CreateEMLfile/CreateEMLfile/from.txt", VectorFrom);
+        Input::ImportToVector("from.txt", VectorFrom);
         do{
         string s= numgen((int)VectorFrom.size(), 0);
         istringstream iss(s);
@@ -37,7 +37,7 @@ To::To()
 Subject::Subject()
 	{
         vector<string> VectorSubject;
-        Input::ImportToVector("/Users/Maciek/Documents/Studia/AISDI/Projekt/CreateEMLfile/CreateEMLfile/subject.txt", VectorSubject);
+        Input::ImportToVector("subject.txt", VectorSubject);
         string s= numgen((int)VectorSubject.size(), 0);
         int x;
         istringstream iss(s);
