@@ -17,11 +17,11 @@ private:
     bool clickedLoad = false;
     bool clickedImport = false;
     bool clickedSettings = false;
-    const wxString imagePaths[13] =
+    const wxString imagePaths[14] =
     {
         _("Add"),  _("Import"),  _("FolderTree"),  _("Files"),  _("Folder"),  _("Bin"),
         _("Txt"),  _("Settings"),  _("Mailbox"),  _("Usember"),  _("Workgroups"),  _("Statistics"),
-        _("Tree")
+        _("Tree"), _("SwitchMenu")
     };                                  //ścieżki plików z grafikami do przycisków panelu
 
 public:
@@ -48,6 +48,7 @@ public:
     void EventButtonFolderClick (AisdiRelationsFrame* Frame);
     void EventButtonFilesClick (AisdiRelationsFrame* Frame);
     void EventButtonSettingsClick (AisdiRelationsFrame * Frame);
+    void EventButtonSwitchClick (AisdiRelationsFrame * Frame);
     void EventButtonTxtClick (void);
     void EventButtonBinClick (AisdiRelationsFrame* Frame);
 };

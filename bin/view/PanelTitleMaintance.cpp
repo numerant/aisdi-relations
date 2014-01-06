@@ -26,7 +26,6 @@ void PanelTitleMaintance::ShowPanel(AisdiRelationsFrame* Frame)
         Frame->PanelTitle->Show();
 
         Frame->PanelSettings->Hide();	//ukrycie panelu opcji wraz z obramowaniem
-        Frame->Set_BorderSettings->Hide();
 
         Frame->P_Title->SetNoData( ! (Frame->P_Title->GetNoData() ) ); //Zmień ikony, ale z zanegowaną wartością parametru
         Frame->P_Title->SwitchIcons(Frame);                            //Więc de facto tylko je wyświetl
@@ -52,6 +51,7 @@ void PanelTitleMaintance::SetIcons(AisdiRelationsFrame* Frame)
     Frame->T_ImageButtonGroups->SetBitmapLabel(pathBig+imagePaths[10]+format);
     Frame->T_ImageButtonStats->SetBitmapLabel(pathBig+imagePaths[11]+format);
     Frame->T_ImageButtonMulTree->SetBitmapLabel(pathBig+imagePaths[12]+format);
+    Frame->T_ImageButtonSwitch->SetBitmapLabel(path+imagePaths[13]+format);
 }
 
 void PanelTitleMaintance::SwitchIcons (AisdiRelationsFrame* Frame)
@@ -299,8 +299,8 @@ void PanelTitleMaintance::EventButtonFolderClick (AisdiRelationsFrame* Frame)
             Frame->P_Title->SwitchIcons(Frame);
             Frame->P_Notify->SetLabels(Frame, "Zakończono wczytywanie!", "Wczytano poprawnie:", "Niepoprawne emaile:");
             Frame->P_Notify->SetValues(Frame, stats.successCount, stats.failCount);
-            Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime()*1000);
-            Frame->statistics->update();            
+            Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
+            Frame->statistics->update();
             if (Frame->P_Stats->GetIsUpdated())
                 Frame->P_Stats->SetIsUpdated();
         }
@@ -329,8 +329,8 @@ void PanelTitleMaintance::EventButtonFilesClick (AisdiRelationsFrame* Frame)
             Frame->P_Title->SwitchIcons(Frame);
             Frame->P_Notify->SetLabels(Frame, "Zakończono wczytywanie!", "Wczytano poprawnie:", "Niepoprawne emaile:");
             Frame->P_Notify->SetValues(Frame, stats.successCount, stats.failCount);
-            Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime()*1000);
-            Frame->statistics->update();             
+            Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
+            Frame->statistics->update();
             if (Frame->P_Stats->GetIsUpdated())
                 Frame->P_Stats->SetIsUpdated();
         }
@@ -353,6 +353,11 @@ void PanelTitleMaintance::EventButtonSettingsClick (AisdiRelationsFrame * Frame)
 	SetClickedSettings();
 }
 
+void PanelTitleMaintance::EventButtonSwitchClick (AisdiRelationsFrame * Frame)
+{
+    Frame->P_Title->SwitchIcons(Frame);
+}
+
 void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
 {
     if (Frame->FileDialogDatabaseImport->ShowModal() == wxID_OK)
@@ -366,7 +371,7 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
 
         Frame->P_Inbox->SetEmails(Frame);				//załadowanie listy Emaili z bazy
         Frame->P_Title->SwitchIcons(Frame);
-        Frame->statistics->update();             
+        Frame->statistics->update();
         if (Frame->P_Stats->GetIsUpdated())
             Frame->P_Stats->SetIsUpdated();
 

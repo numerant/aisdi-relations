@@ -1,4 +1,5 @@
 #include "PanelInboxMaintance.h"
+#include "PanelNotifyMaintance.h"
 
 // TEMP - serializacja!
 #include <boost/archive/text_oarchive.hpp>
@@ -175,12 +176,30 @@ void PanelInboxMaintance::EventButtonAddClick (AisdiRelationsFrame * Frame)
 
 void PanelInboxMaintance::EventButtonSaveClick (AisdiRelationsFrame * Frame)
 {
-    std::string filename;
-    filename = "demo-out.bin";
+    if (Frame->FileDialogDatabaseExport->ShowModal() == wxID_OK)      //uruchomienie panelu wybierania folderu
+    {
+        wxString path, filename;
+        path = Frame->FileDialogDatabaseExport->GetPath();
+        filename = Frame->FileDialogDatabaseExport->GetFilename();
 
-    std::ofstream ofs(filename);
-    boost::archive::text_oarchive oa(ofs);
-    oa << Frame->database;
+        std::string strPath, strFilename;
+        strPath = path.mb_str();
+        strFilename = filename.mb_str();
+
+        if (strFilename != "")
+        {
+            if (strPath.substr(strPath.size()-4, 4) != ".bin")
+                strPath = strPath+".bin";
+
+            std::ofstream ofs(strPath);
+            boost::archive::text_oarchive oa(ofs);
+            oa << Frame->database;
+
+            Frame->P_Notify->SetLabels(Frame, "Zapisano plik bazy.", "Nazwa pliku: ");
+            Frame->P_Notify->SetValues(Frame, strFilename);
+            Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
+        }
+    }
 }
 
 void PanelInboxMaintance::EventButtonSettingsClick (AisdiRelationsFrame * Frame)

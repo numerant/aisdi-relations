@@ -40,6 +40,7 @@ void PanelStatisticsMaintance::SetIcons(AisdiRelationsFrame * Frame)
     Frame->S_ImageButtonUsembers->SetBitmapLabel(path+imagePaths[2]+format);
     Frame->S_ImageButtonGroups->SetBitmapLabel(path+imagePaths[3]+format);
     Frame->S_ImageButtonMulTree->SetBitmapLabel(path+imagePaths[4]+format);
+    Frame->S_ImageButtonRefresh->SetBitmapLabel(path+imagePaths[5]+format);
 }
 
 void PanelStatisticsMaintance::SetIsUpdated()
@@ -202,3 +203,11 @@ void PanelStatisticsMaintance::EventHyperLinkClick(AisdiRelationsFrame * Frame, 
     Frame->P_Usembers->SetUsemberViewed(usember);
     Frame->P_Usembers->ShowPanel(Frame);
 }
+
+void PanelStatisticsMaintance::EventButtonRefreshClick (AisdiRelationsFrame * Frame)
+{
+    Frame->statistics->update();
+    Frame->P_Stats->EventPanelEmailPerMonthPaint(Frame);
+    Frame->P_Stats->EventPanelCountersPaint(Frame);
+}
+

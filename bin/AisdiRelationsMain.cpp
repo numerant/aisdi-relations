@@ -76,6 +76,7 @@ const long AisdiRelationsFrame::ID_IMAGEBUTTON35 = wxNewId();
 const long AisdiRelationsFrame::ID_IMAGEBUTTON34 = wxNewId();
 const long AisdiRelationsFrame::ID_IMAGEBUTTON33 = wxNewId();
 const long AisdiRelationsFrame::ID_IMAGEBUTTON32 = wxNewId();
+const long AisdiRelationsFrame::ID_IMAGEBUTTON56 = wxNewId();
 const long AisdiRelationsFrame::ID_IMAGEBUTTON18 = wxNewId();
 const long AisdiRelationsFrame::ID_IMAGEBUTTON17 = wxNewId();
 const long AisdiRelationsFrame::ID_IMAGEBUTTON16 = wxNewId();
@@ -94,6 +95,7 @@ const long AisdiRelationsFrame::ID_STATICTEXT57 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT56 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT30 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT31 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICTEXT125 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT29 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT28 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT27 = wxNewId();
@@ -118,11 +120,13 @@ const long AisdiRelationsFrame::ID_STATICTEXT77 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT76 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT75 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT74 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICTEXT124 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT65 = wxNewId();
 const long AisdiRelationsFrame::ID_IMAGEBUTTON54 = wxNewId();
 const long AisdiRelationsFrame::ID_IMAGEBUTTON53 = wxNewId();
 const long AisdiRelationsFrame::ID_IMAGEBUTTON52 = wxNewId();
 const long AisdiRelationsFrame::ID_IMAGEBUTTON51 = wxNewId();
+const long AisdiRelationsFrame::ID_IMAGEBUTTON55 = wxNewId();
 const long AisdiRelationsFrame::ID_IMAGEBUTTON42 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICBOX9 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT84 = wxNewId();
@@ -363,6 +367,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     T_ImageButtonUsembers = new wxBitmapButton(PanelTitle, ID_IMAGEBUTTON34, wxNullBitmap, wxPoint(600,300), wxSize(112,112), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON34"));
     T_ImageButtonInbox = new wxBitmapButton(PanelTitle, ID_IMAGEBUTTON33, wxNullBitmap, wxPoint(400,300), wxSize(112,112), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON33"));
     T_ImageButtonSettings = new wxBitmapButton(PanelTitle, ID_IMAGEBUTTON32, wxNullBitmap, wxPoint(1200,15), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON32"));
+    T_ImageButtonSwitch = new wxBitmapButton(PanelTitle, ID_IMAGEBUTTON56, wxNullBitmap, wxPoint(1200,120), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON56"));
     T_ImageButtonTxt = new wxBitmapButton(PanelTitle, ID_IMAGEBUTTON18, wxNullBitmap, wxPoint(990,424), wxSize(112,112), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON18"));
     T_ImageButtonBin = new wxBitmapButton(PanelTitle, ID_IMAGEBUTTON17, wxNullBitmap, wxPoint(990,564), wxSize(112,112), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON17"));
     T_ImageButtonFolder = new wxBitmapButton(PanelTitle, ID_IMAGEBUTTON16, wxNullBitmap, wxPoint(200,564), wxSize(112,112), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON16"));
@@ -410,6 +415,10 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     T_LabelSettings->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
     wxFont T_LabelSettingsFont(11,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     T_LabelSettings->SetFont(T_LabelSettingsFont);
+    T_LabelSwitch = new wxStaticText(PanelTitle, ID_STATICTEXT125, _("Zmień menu"), wxPoint(1191,180), wxDefaultSize, wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_STATICTEXT125"));
+    T_LabelSwitch->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
+    wxFont T_LabelSwitchFont(11,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
+    T_LabelSwitch->SetFont(T_LabelSwitchFont);
     T_LabelTxt = new wxStaticText(PanelTitle, ID_STATICTEXT29, _("Importuj plik TXT"), wxPoint(1115,470), wxDefaultSize, wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_STATICTEXT29"));
     T_LabelTxt->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
     wxFont T_LabelTxtFont(14,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
@@ -461,7 +470,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     M_ImageButtonGroups = new wxBitmapButton(PanelMulTree, ID_IMAGEBUTTON44, wxNullBitmap, wxPoint(1090,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON44"));
     M_ImageButtonStats = new wxBitmapButton(PanelMulTree, ID_IMAGEBUTTON43, wxNullBitmap, wxPoint(1180,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON43"));
     M_ImageButtonTitle = new wxBitmapButton(PanelMulTree, ID_IMAGEBUTTON40, wxNullBitmap, wxPoint(10,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON40"));
-    PanelStatistics = new wxPanel(PanelMain, ID_PANEL5, wxPoint(0,0), wxSize(1366,750), wxTAB_TRAVERSAL, _T("ID_PANEL5"));
+    PanelStatistics = new wxPanel(PanelMain, ID_PANEL5, wxPoint(1366,0), wxSize(1366,750), wxTAB_TRAVERSAL, _T("ID_PANEL5"));
     BitmapBackgroundStatistics = new wxStaticBitmap(PanelStatistics, ID_STATICBITMAP4, wxBitmap(wxImage(_T("resources/background.jpg"))), wxPoint(0,0), wxDefaultSize, wxSIMPLE_BORDER, _T("ID_STATICBITMAP4"));
     S_LabelMulTree = new wxStaticText(PanelStatistics, ID_STATICTEXT77, _("Drzewo\nMulticastowe"), wxPoint(1166,70), wxDefaultSize, wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_STATICTEXT77"));
     S_LabelMulTree->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
@@ -479,6 +488,10 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     S_LabelInbox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
     wxFont S_LabelInboxFont(11,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     S_LabelInbox->SetFont(S_LabelInboxFont);
+    S_LabelRefresh = new wxStaticText(PanelStatistics, ID_STATICTEXT124, _("Odśwież"), wxPoint(102,70), wxDefaultSize, wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_STATICTEXT124"));
+    S_LabelRefresh->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
+    wxFont S_LabelRefreshFont(11,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
+    S_LabelRefresh->SetFont(S_LabelRefreshFont);
     S_LabelTitle = new wxStaticText(PanelStatistics, ID_STATICTEXT65, _("Menu"), wxPoint(22,70), wxDefaultSize, wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_STATICTEXT65"));
     S_LabelTitle->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
     wxFont S_LabelTitleFont(11,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
@@ -487,6 +500,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     S_ImageButtonGroups = new wxBitmapButton(PanelStatistics, ID_IMAGEBUTTON53, wxNullBitmap, wxPoint(1090,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON53"));
     S_ImageButtonUsembers = new wxBitmapButton(PanelStatistics, ID_IMAGEBUTTON52, wxNullBitmap, wxPoint(1000,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON52"));
     S_ImageButtonInbox = new wxBitmapButton(PanelStatistics, ID_IMAGEBUTTON51, wxNullBitmap, wxPoint(910,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON51"));
+    S_ImageButtonRefresh = new wxBitmapButton(PanelStatistics, ID_IMAGEBUTTON55, wxNullBitmap, wxPoint(100,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON55"));
     S_ImageButtonTitle = new wxBitmapButton(PanelStatistics, ID_IMAGEBUTTON42, wxNullBitmap, wxPoint(10,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON42"));
     S_PanelCounters = new wxPanel(PanelStatistics, ID_PANEL13, wxPoint(10,120), wxSize(270,600), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL, _T("ID_PANEL13"));
     S_PanelCounters->SetBackgroundColour(wxColour(48,48,48));
@@ -1074,6 +1088,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     FileDialog = new wxFileDialog(this, _("Wybierz pliki:"), _("~/"), wxEmptyString, _("*.eml"), wxFD_OPEN|wxFD_MULTIPLE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
     Timer1.SetOwner(this, ID_TIMER1);
     FileDialogDatabaseImport = new wxFileDialog(this, _("Wybierz plik:"), _("~/"), wxEmptyString, _("*.bin"), wxFD_OPEN, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
+    FileDialogDatabaseExport = new wxFileDialog(this, _("Zapisz plik:"), _("./"), wxEmptyString, _("*.bin"), wxFD_SAVE|wxFD_OVERWRITE_PROMPT, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
     Center();
 
     Connect(ID_IMAGEBUTTON37,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonMulTreeClick);
@@ -1082,6 +1097,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_IMAGEBUTTON34,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonUsembersClick);
     Connect(ID_IMAGEBUTTON33,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonInboxClick);
     Connect(ID_IMAGEBUTTON32,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonSettingsClick);
+    Connect(ID_IMAGEBUTTON56,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonSwitchClick);
     Connect(ID_IMAGEBUTTON18,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonTxtClick);
     Connect(ID_IMAGEBUTTON17,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonBinClick);
     Connect(ID_IMAGEBUTTON16,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonFolderClick);
@@ -1098,6 +1114,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_IMAGEBUTTON53,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_ImageButtonGroupsClick);
     Connect(ID_IMAGEBUTTON52,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_ImageButtonUsembersClick);
     Connect(ID_IMAGEBUTTON51,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_ImageButtonInboxClick);
+    Connect(ID_IMAGEBUTTON55,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_ImageButtonRefreshClick);
     Connect(ID_IMAGEBUTTON42,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_ImageButtonTitleClick);
     S_PanelCounters->Connect(wxEVT_PAINT,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_PanelCountersPaint,0,this);
     S_PanelEmailPerMonth->Connect(wxEVT_PAINT,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_PanelEmailPerMonthPaint,0,this);
@@ -1332,6 +1349,11 @@ void AisdiRelationsFrame::OnT_ImageButtonTxtClick(wxCommandEvent& event)
 void AisdiRelationsFrame::OnT_ImageButtonBinClick(wxCommandEvent& event)
 {
     P_Title->EventButtonBinClick(this);
+}
+
+void AisdiRelationsFrame::OnT_ImageButtonSwitchClick(wxCommandEvent& event)
+{
+    P_Title->EventButtonSwitchClick(this);
 }
 
 void AisdiRelationsFrame::OnT_CheckBoxRecursiveClick(wxCommandEvent& event)
@@ -1587,6 +1609,19 @@ void AisdiRelationsFrame::OnS_PanelCountersPaint(wxPaintEvent& event)
     P_Stats->EventPanelCountersPaint(this);
 }
 
+void AisdiRelationsFrame::OnS_HyperLinkT_SendersPos1Click(wxCommandEvent& event)
+{
+    long idCurrent = event.GetId();
+    long idMain = AisdiRelationsFrame::ID_HYPERLINKCTRL1;
+    P_Stats->EventHyperLinkClick(this, idCurrent - idMain);
+}
+
+void AisdiRelationsFrame::OnS_ImageButtonRefreshClick(wxCommandEvent& event)
+{
+    P_Stats->EventButtonRefreshClick(this);
+}
+
+
 
 /** ============= Eventy panelu MULTREE ============= */
 
@@ -1625,11 +1660,4 @@ void AisdiRelationsFrame::OnTimer1Trigger(wxTimerEvent& event)
 void AisdiRelationsFrame::OnSet_SliderNotifyTimeCmdScrollChanged(wxScrollEvent& event)
 {
     notifyTime = Set_SliderNotifyTime->GetValue();
-}
-
-void AisdiRelationsFrame::OnS_HyperLinkT_SendersPos1Click(wxCommandEvent& event)
-{
-    long idCurrent = event.GetId();
-    long idMain = AisdiRelationsFrame::ID_HYPERLINKCTRL1;
-    P_Stats->EventHyperLinkClick(this, idCurrent - idMain);
 }
