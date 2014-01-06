@@ -24,3 +24,8 @@
 
 # Bin files
 *.bin
+
+# Emails
+CreateEMLfile/Mails temp/*
+CreateEMLfile/project/CreateEMLfile.layout
+CreateEMLfile/project/bin/Debug/CreateEMLfile

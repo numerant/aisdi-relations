@@ -705,7 +705,7 @@
 					<pos>10,120</pos>
 					<size>270,600</size>
 					<bg>#303030</bg>
-					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL</style>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE</style>
 					<handler function="OnS_PanelCountersPaint" entry="EVT_PAINT" />
 					<object class="wxStaticBox" name="ID_STATICBOX9" variable="S_BorderC" member="yes">
 						<pos>0,-10</pos>
@@ -978,7 +978,7 @@
 					<pos>300,120</pos>
 					<size>500,300</size>
 					<bg>#303030</bg>
-					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL</style>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE</style>
 					<handler function="OnS_PanelEmailPerMonthPaint" entry="EVT_PAINT" />
 					<object class="wxStaticBox" name="ID_STATICBOX7" variable="S_BorderEPM" member="yes">
 						<pos>0,-10</pos>
@@ -1002,7 +1002,7 @@
 					<pos>815,120</pos>
 					<size>450,360</size>
 					<bg>#303030</bg>
-					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL</style>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE</style>
 					<object class="wxStaticLine" name="ID_STATICLINE10" variable="S_LineT_1" member="yes">
 						<pos>10,175</pos>
 						<size>430,-1</size>

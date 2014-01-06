@@ -502,7 +502,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     S_ImageButtonInbox = new wxBitmapButton(PanelStatistics, ID_IMAGEBUTTON51, wxNullBitmap, wxPoint(910,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON51"));
     S_ImageButtonRefresh = new wxBitmapButton(PanelStatistics, ID_IMAGEBUTTON55, wxNullBitmap, wxPoint(100,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON55"));
     S_ImageButtonTitle = new wxBitmapButton(PanelStatistics, ID_IMAGEBUTTON42, wxNullBitmap, wxPoint(10,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON42"));
-    S_PanelCounters = new wxPanel(PanelStatistics, ID_PANEL13, wxPoint(10,120), wxSize(270,600), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL, _T("ID_PANEL13"));
+    S_PanelCounters = new wxPanel(PanelStatistics, ID_PANEL13, wxPoint(10,120), wxSize(270,600), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE, _T("ID_PANEL13"));
     S_PanelCounters->SetBackgroundColour(wxColour(48,48,48));
     S_BorderC = new wxStaticBox(S_PanelCounters, ID_STATICBOX9, wxEmptyString, wxPoint(0,-10), wxSize(270,610), 0, _T("ID_STATICBOX9"));
     S_BorderC->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
@@ -591,7 +591,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     S_StaticTextC_Value12->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
     S_StaticTextC_Value13 = new wxStaticText(S_PanelCounters, ID_STATICTEXT109, _("-"), wxPoint(185,500), wxSize(43,-1), wxST_NO_AUTORESIZE|wxALIGN_CENTRE|wxTAB_TRAVERSAL|wxFULL_REPAINT_ON_RESIZE, _T("ID_STATICTEXT109"));
     S_StaticTextC_Value13->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
-    S_PanelEmailPerMonth = new wxPanel(PanelStatistics, ID_PANEL12, wxPoint(300,120), wxSize(500,300), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL, _T("ID_PANEL12"));
+    S_PanelEmailPerMonth = new wxPanel(PanelStatistics, ID_PANEL12, wxPoint(300,120), wxSize(500,300), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE, _T("ID_PANEL12"));
     S_PanelEmailPerMonth->SetBackgroundColour(wxColour(48,48,48));
     S_BorderEPM = new wxStaticBox(S_PanelEmailPerMonth, ID_STATICBOX7, wxEmptyString, wxPoint(0,-10), wxSize(500,310), 0, _T("ID_STATICBOX7"));
     S_BorderEPM->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
@@ -599,7 +599,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     S_StaticTextEPM_Title->SetForegroundColour(wxColour(255,255,255));
     wxFont S_StaticTextEPM_TitleFont(12,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     S_StaticTextEPM_Title->SetFont(S_StaticTextEPM_TitleFont);
-    S_PanelTops = new wxPanel(PanelStatistics, ID_PANEL14, wxPoint(815,120), wxSize(450,360), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL, _T("ID_PANEL14"));
+    S_PanelTops = new wxPanel(PanelStatistics, ID_PANEL14, wxPoint(815,120), wxSize(450,360), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE, _T("ID_PANEL14"));
     S_PanelTops->SetBackgroundColour(wxColour(48,48,48));
     S_LineT_1 = new wxStaticLine(S_PanelTops, ID_STATICLINE10, wxPoint(10,175), wxSize(430,-1), wxLI_HORIZONTAL, _T("ID_STATICLINE10"));
     S_StaticTextT_TitleReceivers = new wxStaticText(S_PanelTops, ID_STATICTEXT123, _("Top 5 odbierających"), wxPoint(150,190), wxDefaultSize, 0, _T("ID_STATICTEXT123"));

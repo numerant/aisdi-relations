@@ -36,6 +36,7 @@ void PanelTitleMaintance::SetIcons(AisdiRelationsFrame* Frame)
 {
     wxString pathBig(_("resources/iconsBig/icon"));
     wxString path(_("resources/icons/icon"));
+    wxString pathArrow(_("resources/icon"));
     wxString format (_(".png"));
 
     Frame->T_ImageButtonAdd->SetBitmapLabel(pathBig+imagePaths[0]+format);      //załadowanie grafik pod przyciski
@@ -91,7 +92,6 @@ void PanelTitleMaintance::SwitchIcons (AisdiRelationsFrame* Frame)
         {
             Frame->P_Title->SetClickedSettings();
             Frame->PanelSettings->Hide();
-            Frame->Set_BorderSettings->Hide();
         }
 
     }
@@ -314,12 +314,17 @@ void PanelTitleMaintance::EventButtonFilesClick (AisdiRelationsFrame* Frame)
         wxArrayString paths;							//tablica plików do wczytania
         Frame->FileDialog->GetPaths(paths);
         MailParameters * param = new MailParameters();
-        param->path = paths[0].mb_str();				//TODO Zmienić, bo na razie bierze tylko pierwszy z tablicy
+        IOInterface::ImportStats stats;					//statystyki importu maili
+
         param->isDirectory = false;						//Tutaj domyślne opcje na 'false' (bo wybieramy pliki, nie folder)
         param->recursiveImport = false;
 
-        IOInterface::ImportStats stats;					//statystyki importu maili
-        Frame->iointerface->importMail(param);
+        for (unsigned int i = 0; i < paths.size(); i++)       //Wczytujemy w pętli pliki
+        {
+            param->path = paths[i].mb_str();
+            Frame->iointerface->importMail(param);
+        }
+
         stats = Frame->iointerface->getImportStats();
         Frame->iointerface->clearImportStats();
 
@@ -340,15 +345,11 @@ void PanelTitleMaintance::EventButtonFilesClick (AisdiRelationsFrame* Frame)
 void PanelTitleMaintance::EventButtonSettingsClick (AisdiRelationsFrame * Frame)
 {
 	if (GetClickedSettings())
-	{
 		Frame->PanelSettings->Hide();
-		Frame->Set_BorderSettings->Hide();
-	}
 	else
 	{
 	    Frame->PanelSettings->SetPosition(wxPoint(870,20));
 		Frame->PanelSettings->Show();
-		Frame->Set_BorderSettings->Show();
 	}
 	SetClickedSettings();
 }
@@ -380,5 +381,5 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
 
 void PanelTitleMaintance::EventButtonTxtClick()
 {
-
+    //TODO Napisać przy najbliższej okazji i będzie z dyni
 }
