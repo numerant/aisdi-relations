@@ -1,0 +1,49 @@
+# depslib dependency file v1.0
+1389026068 source:/home/kuba/Programowanie/aisdi-relations/CreateEMLfile/IO.cpp
+	"IO.h"
+
+1389026068 /home/kuba/Programowanie/aisdi-relations/CreateEMLfile/IO.h
+	<iostream>
+	<fstream>
+	<vector>
+	<string>
+	<sstream>
+	"Random.h"
+
+1389026068 /home/kuba/Programowanie/aisdi-relations/CreateEMLfile/Random.h
+	<iostream>
+	<string>
+	<sstream>
+	<fstream>
+	<cstdlib>
+	<ctime>
+
+1389026819 source:/home/kuba/Programowanie/aisdi-relations/CreateEMLfile/Line.cpp
+	"Line.h"
+
+1389026068 /home/kuba/Programowanie/aisdi-relations/CreateEMLfile/Line.h
+	<iostream>
+	<string>
+	<cstdlib>
+	<sstream>
+	<fstream>
+	<cstdlib>
+	<ctime>
+	<vector>
+	"Random.h"
+	"IO.h"
+
+1389026068 source:/home/kuba/Programowanie/aisdi-relations/CreateEMLfile/main.cpp
+	<iostream>
+	<string>
+	<sstream>
+	<fstream>
+	<cstdlib>
+	<ctime>
+	"Line.h"
+	"Random.h"
+	"IO.h"
+
+1389026068 source:/home/kuba/Programowanie/aisdi-relations/CreateEMLfile/Random.cpp
+	"Random.h"
+

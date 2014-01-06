@@ -66,7 +66,7 @@ string Date::setDayofWeek()
 		if (nr=="7") DayofWeek="Sun";
 		return DayofWeek;
 	}
-	
+
 string Date::setMonth()
 	{
 		string nr=numgen(12,1);
@@ -84,7 +84,7 @@ string Date::setMonth()
 		if (nr=="12") Month="Dec";
 		return Month;
 	}
-	
+
 Date::Date()
 	{
 		linijka="Date: " + setDayofWeek() + ", " + DayofMonth + " " + setMonth() + " 2012 " + Hour + ":" + Minute + ":" + Second + " +0200";
@@ -99,7 +99,7 @@ Rest::Rest()
 Contents::Contents()
 	{
         vector<string> VectorContents;
-        Input::ImportToVector("/Users/Maciek/Documents/Studia/AISDI/Projekt/CreateEMLfile/CreateEMLfile/contents.txt", VectorContents);
+        Input::ImportToVector("contents.txt", VectorContents);
         string s= numgen((int)VectorContents.size(), 0);
         int z;
         istringstream iss(s);
