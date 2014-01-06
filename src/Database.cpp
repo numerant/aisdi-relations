@@ -99,12 +99,12 @@ vector<Email*>& Database::select(EmailQuery& emailQuery)
 
         if(emailQuery.getStringCriteriaVectorSize()>0)
            for(unsigned int j=0; i<emailQuery.getStringCriteriaVectorSize(); ++j)
-               if(matches(*emailVector[j], *emailQuery.getStringCriteria(j)))
+               if(matches(*emailVector[i], *emailQuery.getStringCriteria(j)))
                   emailSearchResultVector.push_back(emailVector[j]);
 
         if(emailQuery.getDateCriteriaVectorSize()>0)
            for(unsigned int j=0; i<emailQuery.getDateCriteriaVectorSize(); ++j)
-               if(matches(*emailVector[j], *emailQuery.getDateCriteria(j)))
+               if(matches(*emailVector[i], *emailQuery.getDateCriteria(j)))
                   emailSearchResultVector.push_back(emailVector[j]);
     }
     if(emailSearchResultVector.size()>1)
