@@ -4,7 +4,7 @@ Database::Database()
 {
 }
 
-Database::~Database()
+Database::~Database()       // wyciek pamięci!
 {
 }
 

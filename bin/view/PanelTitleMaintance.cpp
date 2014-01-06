@@ -366,9 +366,14 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
         wxArrayString paths;
         Frame->FileDialogDatabaseImport->GetPaths(paths);
 
+        delete Frame->database;     // potrzebny prompt!
+
         std::ifstream ifs(paths[0].mb_str());
         boost::archive::text_iarchive ia(ifs);
         ia >> Frame->database;
+
+        delete Frame->statistics;
+        Frame->statistics = new Statistics(Frame->database);
 
         Frame->P_Inbox->SetEmails(Frame);				//załadowanie listy Emaili z bazy
         Frame->P_Title->SwitchIcons(Frame);
