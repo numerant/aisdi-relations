@@ -411,6 +411,7 @@ private:
     wxBitmapButton        *T_ImageButtonImport;
     wxStaticText* S_StaticTextC_Value10;
     wxFileDialog* FileDialog;
+    wxFileDialog* ImportDatabaseDialog;
     wxPanel* PanelNotify;
     wxStaticText* I_LabelShowTree;
     wxStaticText* I_LabelDate;

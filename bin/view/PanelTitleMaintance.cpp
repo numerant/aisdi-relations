@@ -355,16 +355,18 @@ void PanelTitleMaintance::EventButtonSettingsClick (AisdiRelationsFrame * Frame)
 
 void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
 {
-    if (Frame->FileDialog->ShowModal() == wxID_OK)		//uruchomienie panelu wybierania folderu
-    {													//jeśli wybrano pliki:
-        wxArrayString paths;							//tablica plików do wczytania
-        Frame->FileDialog->GetPaths(paths);
+    if (Frame->ImportDatabaseDialog->ShowModal() == wxID_OK)
+    {
+        wxArrayString paths;
+        Frame->ImportDatabaseDialog->GetPaths(paths);
 
         std::ifstream ifs(paths[0].mb_str());
         boost::archive::text_iarchive ia(ifs);
         ia >> Frame->database;
 
         Frame->P_Inbox->SetEmails(Frame);				//załadowanie listy Emaili z bazy
+        Frame->P_Title->SwitchIcons(Frame);
+
     }
 }
 
