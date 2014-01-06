@@ -4,6 +4,11 @@
 
 using namespace std;
 
+/*                      ---TODO---                      *
+ *  Wyrzucic ze wszystkich plikow includy               *
+ *  EmailQuery, GroupQuery i UsemberQuery (.h i .cpp)   */
+
+
 /*  Klasa Query - czyli zapytanie wysyłane do bazy danych. Zawiera informacje na temat tego, po jakich kryteriach
     chcemy wyszukiwać elementy (emaile, grupy bądź usemberów) oraz jak (według kolejno jakich pól) mają być
     posortowane wyniki. Kryteria mogą zawierać dokładną wartość danego pola badz w przypadku intow i dat przedział, a w przypadku stringow znaki *
