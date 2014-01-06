@@ -173,12 +173,16 @@ void PanelStatisticsMaintance::EventPanelCountersPaint (AisdiRelationsFrame * Fr
 
     /** === Tekstowe === */
     date = Frame->statistics->getEarliest();
-    sCounter = date->getFullDate();
+    ss << date->getDay() << "-" << date->getMonth() << "-" << date->getYear();
+    sCounter = ss.str();
     Frame->S_StaticTextC_Value11->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
+    ss.str("");
 
     date= Frame->statistics->getLatest();
-    sCounter = date->getFullDate();
+    ss << date->getDay() << "-" << date->getMonth() << "-" << date->getYear();
+    sCounter = ss.str();
     Frame->S_StaticTextC_Value12->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
+    ss.str("");
 }
 
 void PanelStatisticsMaintance::EventHyperLinkClick(AisdiRelationsFrame * Frame, const long id)
