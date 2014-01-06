@@ -168,6 +168,8 @@ void Statistics::updateEmailStatistics()
         forwardCount=forwards;
 
         int month=1;
+        for(int i=0; i<12; ++i)
+            emailsCountInMonth[i]=0;
         for(int i=0; i<database->countEmails(); ++i)
         {
             month=database->getEmail(i)->getDate().monthToInt(database->getEmail(i)->getDate().getMonth());
