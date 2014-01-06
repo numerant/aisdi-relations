@@ -83,62 +83,98 @@ Email* IOInterface::emlParser (string path)
         Email* mail;
         Usember* usemberFrom;
         Usember* usemberTo;
-        string wiersz, fromRN, fromLOGIN, fromDOMAIN, toRN, toLOGIN, toDOMAIN, subject, MID, date, content;
+        string wiersz, fromRN, fromLOGIN, fromDOMAIN, toRN, toLOGIN, toDOMAIN, subject, MID, IRT, date, content;
         boost::regex regFrom("From:\\s+(\"(.+)\")?\\s*<(.+)@(.+)>");
         boost::regex regTo("To:\\s+(\"(.+)\")?\\s*<(.+)@(.+)>");
         boost::regex regSubject("Subject:\\s+(.*)");
         boost::regex regMID("Message-ID:\\s+<(.+)>");
+	boost::regex regIRT("In-Reply-To:\\s+<(.+)>");
         boost::regex regDate("Date:\\s+(\\u\\l{2},\\s+\\d{1,2}\\s+\\u\\l+\\s+\\d{4}\\s+\\d{2}:\\d{2}:\\d{2}\\s+\\+\\d{4})");
-
-        do
-            getline(plik, wiersz);
-        while ( (wiersz).size() == 0 ); // pomija przypadkowe puste linie na początku pliku
+	boost::smatch wynik;
 
         // wczytanie FROM
-        boost::smatch wynik;
-        if ( regex_search( wiersz, wynik, regFrom) )
-        {
+        do
+            getline(plik, wiersz);
+        while (( regex_search( wiersz, wynik, regFrom) == 0 )&&( !plik.eof() ));
 
-            fromRN = wynik[2];
-            fromLOGIN = wynik[3];
-            fromDOMAIN = wynik[4];
-        }
-        else throw EmlSyntaxIncorrect();
-
+	if ( plik.eof() )
+	{
+		throw EmlSyntaxIncorrect();
+	}
+	else
+	{
+        	fromRN = wynik[2];
+        	fromLOGIN = wynik[3];
+        	fromDOMAIN = wynik[4];
+	}
+	
 
         // wczytanie TO
-        getline(plik, wiersz);
-        if ( regex_search( wiersz, wynik, regTo) )
+        do
+            getline(plik, wiersz);
+        while (( regex_search( wiersz, wynik, regTo) == 0 )&&( !plik.eof() )); 
+        if ( plik.eof() )
+	{
+		throw EmlSyntaxIncorrect();
+	}
+	else
         {
-            toRN = wynik[2];
-            toLOGIN = wynik[3];
-            toDOMAIN = wynik[4];
+                toRN = wynik[2];
+                toLOGIN = wynik[3];
+                toDOMAIN = wynik[4];
         }
-        else throw EmlSyntaxIncorrect();
+
 
         // wczytanie SUBJECT
-        getline(plik, wiersz);
-        if ( regex_search( wiersz, wynik, regSubject) )
+        do
+            getline(plik, wiersz);
+        while (( regex_search( wiersz, wynik, regSubject) == 0 )&&( !plik.eof() )); 
+        if ( plik.eof() )
+	{
+		throw EmlSyntaxIncorrect();
+	}
+	else
         {
             subject = wynik[1];
         }
-        else throw EmlSyntaxIncorrect();
 
         // wczytanie MID
-        getline(plik, wiersz);
-        if ( regex_search( wiersz, wynik, regMID) )
+        do
+            getline(plik, wiersz);
+        while (( regex_search( wiersz, wynik, regMID) == 0 )&&( !plik.eof() )); 
+        if ( plik.eof() )
+	{
+		throw EmlSyntaxIncorrect();
+	}
+	else
         {
             MID = wynik[1];
         }
-        else throw EmlSyntaxIncorrect();
+
+
+	// wczytanie InReplyTo
+	do
+            getline(plik, wiersz);
+        while ( wiersz.size() == 0 ); // pomija przypadkowe puste linie
+	if ( regex_search( wiersz, wynik, regIRT) )
+        {
+            IRT = wynik[1];
+        }
 
         // wczytanie DATE
-        getline(plik, wiersz);
-        if ( regex_search( wiersz, wynik, regDate) )
+        while (( regex_search( wiersz, wynik, regDate) == 0 )&&( !plik.eof() ))
+	{
+		getline(plik, wiersz);
+	}
+
+	if ( plik.eof() )
+	{
+		throw EmlSyntaxIncorrect();
+	}
+	else
         {
             date = wynik[1];
         }
-        else throw EmlSyntaxIncorrect();
 
         // wczytanie treści
         // #### rozwiązanie tymczasowe - przejście 5 lini
