@@ -161,7 +161,7 @@ void PanelInboxMaintance::EventListInboxItemSelect (AisdiRelationsFrame* Frame)
     const string search = "\n";
     const string replace = "<br>";
     string subject = string (contents[4].mb_str());
-    string htmlContent = Frame->iointerface->strSequenceReplace("\n", "<br>", subject); 
+    string htmlContent = Frame->iointerface->strSequenceReplace("\n", "<br>", subject);
 
     wxString pContent (htmlContent.c_str(), wxConvUTF8 );
     Frame->I_HtmlEmailContent->SetPage(pOpen+pContent+pClose);
@@ -176,7 +176,7 @@ void PanelInboxMaintance::EventButtonAddClick (AisdiRelationsFrame * Frame)
 void PanelInboxMaintance::EventButtonSaveClick (AisdiRelationsFrame * Frame)
 {
     std::string filename;
-    filename = "/home/kuba/demo-out.eml";
+    filename = "demo-out.bin";
 
     std::ofstream ofs(filename);
     boost::archive::text_oarchive oa(ofs);
