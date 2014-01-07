@@ -6,6 +6,12 @@ Database::Database()
 
 Database::~Database()       // wyciek pamięci!
 {
+    emailVector.clear();
+    groupVector.clear();
+    usemberVector.clear();
+    emailSearchResultVector.clear();
+    groupSearchResultVector.clear();
+    usemberSearchResultVector.clear();
 }
 
 bool Database::addEmail(Email* email)
@@ -136,80 +142,50 @@ void Database::deleteQueryResults(Query* query)
 
 int Database::findEmail(string messageId)
 {
-    if(emailVector.size()==0)
-        return -1;
-    unsigned int position=emailVector.size()/2;
-    int range=emailVector.size()/2;
-    while(range>=1)
-    {
-        range/=2;
-        if(messageId.compare(emailVector[position]->getID())==0)
-            return position;
-        if(messageId.compare(emailVector[position]->getID())>0)
-            position+=range;
-        else
-            position-=range;
-    }
-    if(messageId.compare(emailVector[position]->getID())==0)
-        return position;
-    else if(position+1<emailVector.size() && messageId.compare(emailVector[position+1]->getID())==0)
-        return position+1;
-    else if(position>0 && messageId.compare(emailVector[position-1]->getID())==0)
-        return position-1;
-    else
-        return -1;
+	int low = 0, high = emailVector.size()-1, midpoint = 0;
+	while (low <= high)
+	{
+		midpoint = low + (high - low)/2;
+		if(messageId.compare(emailVector[midpoint]->getID())==0)
+            return midpoint;
+		else if (messageId.compare(emailVector[midpoint]->getID())<0)
+			high = midpoint - 1;
+		else
+			low = midpoint + 1;
+	}
+	return -1;
 }
 
 int Database::findGroup(int groupId)
 {
-    if(groupVector.size()==0)
-        return -1;
-    int position=groupVector.size()/2;
-    int range=groupVector.size()/2;
-    while(range>=1)
-    {
-        range/=2;
-        if(groupId==groupVector[position]->getID())
-            return position;
-        if(groupId>groupVector[position]->getID())
-            position+=range;
-        else
-            position-=range;
-    }
-    if(groupVector[position]->getID()==groupId)
-        return position;
-    else if(position+1<groupVector.size() && groupId==groupVector[position+1]->getID())
-        return position+1;
-    else if(position>0 && groupId==groupVector[position-1]->getID())
-        return position-1;
-    else
-        return -1;
+ 	int low = 0, high = groupVector.size()-1, midpoint = 0;
+	while (low <= high)
+	{
+		midpoint = low + (high - low)/2;
+		if(groupId==groupVector[midpoint]->getID())
+            return midpoint;
+		else if (groupId<groupVector[midpoint]->getID())
+			high = midpoint - 1;
+		else
+			low = midpoint + 1;
+	}
+	return -1;
 }
 
 int Database::findUsember(string name)
 {
-    if(usemberVector.size()==0)
-        return -1;
-    int position=usemberVector.size()/2;
-    int range=usemberVector.size()/2;
-    while(range>=1)
-    {
-        range/=2;
-        if(name.compare(usemberVector[position]->getAddress())==0)
-            return position;
-        if(name.compare(usemberVector[position]->getAddress())>0)
-            position+=range;
-        else
-            position-=range;
-    }
-    if(name.compare(usemberVector[position]->getAddress())==0)
-        return position;
-    else if(position+1<usemberVector.size() && name.compare(usemberVector[position+1]->getAddress())==0)
-        return position+1;
-    else if(position>0 && name.compare(usemberVector[position-1]->getAddress())==0)
-        return position-1;
-    else
-        return -1;
+ 	int low = 0, high = usemberVector.size()-1, midpoint = 0;
+	while (low <= high)
+	{
+		midpoint = low + (high - low)/2;
+		if(name.compare(usemberVector[midpoint]->getAddress())==0)
+            return midpoint;
+		else if (name.compare(usemberVector[midpoint]->getAddress())<0)
+			high = midpoint - 1;
+		else
+			low = midpoint + 1;
+	}
+	return -1;
 }
 
 void Database::clearEmails()
