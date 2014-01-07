@@ -179,6 +179,7 @@ void PanelInboxMaintance::EventButtonSearchClick (AisdiRelationsFrame* Frame)
     else
     {
         Frame->I_SearchCtrl->Show();
+        Frame->I_SearchCtrl->SetFocus();
         if (GetAddEnabled())
         {
             Frame->PanelAdd->Hide();   //przy pokazaniu pola wyszukiwania schowaj ewentualnie panele Add...
@@ -290,7 +291,7 @@ void PanelInboxMaintance::EventButtonSettingsClick (AisdiRelationsFrame * Frame)
         Frame->PanelSettings->Hide();
     else
     {
-        //TODO dodaj pozycjonowanie panelu Settings
+        Frame->PanelSettings->SetPosition(wxPoint(370,100));
         Frame->PanelSettings->Show();
         if (GetAddEnabled())
         {

@@ -64,7 +64,7 @@ void PanelUsembersMaintance::ShowPanel(AisdiRelationsFrame* Frame)
     }
 }
 
-void PanelUsembersMaintance:: SetLabels(AisdiRelationsFrame* Frame)
+void PanelUsembersMaintance::SetLabels(AisdiRelationsFrame* Frame)
 {
     wxListItem col;
 
@@ -113,7 +113,7 @@ void PanelUsembersMaintance::SetIcons(AisdiRelationsFrame* Frame)
 
 }
 
-void PanelUsembersMaintance:: SwitchList(AisdiRelationsFrame * Frame)
+void PanelUsembersMaintance::SwitchList(AisdiRelationsFrame * Frame)
 {
     if (usembersListEnabled)
     {
@@ -197,6 +197,7 @@ void PanelUsembersMaintance::EventButtonSearchClick (AisdiRelationsFrame* Frame)
         Frame->U_SearchCtrl->Hide();
     else
     {
+        Frame->U_SearchCtrl->SetFocus();
         Frame->U_SearchCtrl->Show();
         if (GetAddEnabled())
         {
@@ -275,7 +276,7 @@ void PanelUsembersMaintance::EventButtonSettingsClick (AisdiRelationsFrame * Fra
         Frame->PanelSettings->Hide();
     else
     {
-        //TODO dodaj pozycjonowanie panelu Settings
+        Frame->PanelSettings->SetPosition(wxPoint(370,100));
         Frame->PanelSettings->Show();
         if (GetAddEnabled())
         {
