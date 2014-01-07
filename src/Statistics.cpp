@@ -134,21 +134,42 @@ void Statistics::updateEmailStatistics()
         earliestDate=database->getEmail(0)->getDate();
         latestDate=database->getEmail(0)->getDate();
 
-        for(int i=0; i<database->countEmails(); ++i)
+        for(int i=1; i<database->countEmails(); ++i)
         {
-            if(database->getEmail(i)->getDate().compare(earliestDate)<0)
-                earliestDate=database->getEmail(i)->getDate();
-            if(database->getEmail(i)->getDate().compare(latestDate)>0)
-                latestDate=database->getEmail(i)->getDate();
+            if((database->getEmail(i)->getDate()).compare(earliestDate)<0){
+                earliestDate.setMinute(database->getEmail(i)->getDate().getMinute());
+                earliestDate.setHour(database->getEmail(i)->getDate().getHour());
+                earliestDate.setDay(database->getEmail(i)->getDate().getDay());
+                earliestDate.setWeekDay(database->getEmail(i)->getDate().getWeekDate());
+                earliestDate.setMonth(database->getEmail(i)->getDate().getMonth());
+                earliestDate.monthToInt(database->getEmail(i)->getDate().getMonth());
+                earliestDate.setYear(database->getEmail(i)->getDate().getYear());
+            }
+            if((database->getEmail(i)->getDate()).compare(latestDate)>0){
+                latestDate.setMinute(database->getEmail(i)->getDate().getMinute());
+                latestDate.setHour(database->getEmail(i)->getDate().getHour());
+                latestDate.setDay(database->getEmail(i)->getDate().getDay());
+                latestDate.setWeekDay(database->getEmail(i)->getDate().getWeekDate());
+                latestDate.setMonth(database->getEmail(i)->getDate().getMonth());
+                latestDate.monthToInt(database->getEmail(i)->getDate().getMonth());
+                latestDate.setYear(database->getEmail(i)->getDate().getYear());
+            }
         }
 
         duration=getDateDifferenceInDays(&earliestDate, &latestDate);
-        emailsPerMonth=(double)emails/(double)getDateDifferenceInMonths(&earliestDate, &latestDate);
-        emailsPerDay=(double)emails/(double)duration;
-
+        double differenceInMonths=(double)getDateDifferenceInMonths(&earliestDate, &latestDate);
+        if(differenceInMonths>0)
+            emailsPerMonth=(double)emails/differenceInMonths;
+        else
+            emailsPerMonth=0;
+        if(duration>0)
+            emailsPerDay=(double)emails/(double)duration;
+        else
+            emailsPerDay=0;
         if(usembers>0)
             emailsPerUser=(double)emails/(double)usembers;
-
+        else
+            emailsPerUser=0;
         long sum=0;
         for(int i=0; i<database->countEmails(); ++i)
         {
@@ -202,11 +223,11 @@ void Statistics::updateTopUsembers()
 
 int Statistics::getDateDifferenceInMonths(Date* date1, Date* date2)
 {
-    return (date2->getYear()-date1->getYear())*12+date2->monthToInt(date2->getMonth())-date1->monthToInt(date1->getMonth());
+    return abs((date2->getYear()-date1->getYear())*12+date2->monthToInt(date2->getMonth())-date1->monthToInt(date1->getMonth()));
 }
 int Statistics::getDateDifferenceInDays(Date* date1, Date* date2)
 {
-    return (date2->getYear()-date1->getYear())*365+(date2->monthToInt(date2->getMonth())-date1->monthToInt(date1->getMonth()))*30+date2->getDay()-date1->getDay();
+    return abs((date2->getYear()-date1->getYear())*365+(date2->monthToInt(date2->getMonth())-date1->monthToInt(date1->getMonth()))*30+date2->getDay()-date1->getDay());
 }
 
 bool Statistics::compareUsembersSentEmails(Usember* usember1, Usember* usember2)
