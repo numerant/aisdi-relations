@@ -19,8 +19,8 @@ private:
     bool clickedSettings = false;
     const wxString imagePaths[14] =
     {
-        _("Add"),  _("Import"),  _("FolderTree"),  _("Files"),  _("Folder"),  _("Bin"),
-        _("Txt"),  _("Settings"),  _("Mailbox"),  _("Usember"),  _("Workgroups"),  _("Statistics"),
+        _("Add"),  _(""),  _("FolderTree"),  _("Files"),  _("Folder"),  _("Export"),
+        _("Import"),  _("Settings"),  _("Mailbox"),  _("Usember"),  _("Workgroups"),  _("Statistics"),
         _("Tree"), _("SwitchMenu")
     };                                  //ścieżki plików z grafikami do przycisków panelu
 

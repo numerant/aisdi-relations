@@ -57,7 +57,6 @@ void PanelTitleMaintance::SetIcons(AisdiRelationsFrame* Frame)
     Frame->A_ImageButtonFiles->SetBitmapLabel(path+imagePaths[3]+format);
     Frame->A_ImageButtonFolder->SetBitmapLabel(path+imagePaths[4]+format);
     Frame->A_ImageButtonBin->SetBitmapLabel(path+imagePaths[5]+format);
-    Frame->A_ImageButtonTxt->SetBitmapLabel(path+imagePaths[6]+format);
 }
 
 void PanelTitleMaintance::SwitchIcons (AisdiRelationsFrame* Frame)

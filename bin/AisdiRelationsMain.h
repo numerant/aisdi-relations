@@ -395,11 +395,9 @@ private:
     static const long ID_IMAGEBUTTON57;
     static const long ID_IMAGEBUTTON58;
     static const long ID_IMAGEBUTTON59;
-    static const long ID_IMAGEBUTTON60;
     static const long ID_STATICTEXT126;
     static const long ID_STATICTEXT127;
     static const long ID_STATICTEXT128;
-    static const long ID_STATICTEXT129;
     static const long ID_PANEL15;
     static const long ID_PANEL1;
     static const long idMenuNew;
@@ -515,7 +513,6 @@ private:
     wxStaticBox* S_BorderEPM;
     wxStaticText* U_LabelSwitchList;
     wxStaticText* U_LabelSettings;
-    wxBitmapButton        *A_ImageButtonTxt;
     wxStaticText* S_StaticTextC_Value6;
     wxBitmapButton        *M_ImageButtonUsembers;
     wxStaticText* S_StaticTextT_TitleSenders;
@@ -628,7 +625,6 @@ private:
     wxStaticText* U_LabelDate;
     wxStaticText* S_StaticTextC_Usembers;
     wxStaticText* I_LabelTitle;
-    wxStaticText* A_LabelTxt;
     wxListCtrl* U_ListOutbox;
     wxBitmapButton        *T_ImageButtonSettings;
     wxStaticText* S_StaticTextC_EmailsPerDay;
