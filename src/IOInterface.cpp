@@ -96,9 +96,7 @@ Email* IOInterface::emlParser (string path)
         while (( regex_search( wiersz, wynik, regFrom) == 0 )&&( !plik.eof() ));
 
 		if ( plik.eof() )
-		{
 			throw EmlSyntaxIncorrect();
-		}
 		else
 		{
 			fromRN = wynik[2];
@@ -106,15 +104,12 @@ Email* IOInterface::emlParser (string path)
 			fromDOMAIN = wynik[4];
 		}
 
-
         // wczytanie TO
         do
             getline(plik, wiersz);
         while (( regex_search( wiersz, wynik, regTo) == 0 )&&( !plik.eof() ));
         if ( plik.eof() )
-		{
 			throw EmlSyntaxIncorrect();
-		}
 		else
         {
             toRN = wynik[2];
@@ -122,57 +117,39 @@ Email* IOInterface::emlParser (string path)
             toDOMAIN = wynik[4];
         }
 
-
         // wczytanie SUBJECT
         do
             getline(plik, wiersz);
         while (( regex_search( wiersz, wynik, regSubject) == 0 )&&( !plik.eof() ));
         if ( plik.eof() )
-		{
 			throw EmlSyntaxIncorrect();
-		}
 		else
-        {
             subject = wynik[1];
-        }
 
         // wczytanie MID
         do
             getline(plik, wiersz);
         while (( regex_search( wiersz, wynik, regMID) == 0 )&&( !plik.eof() ));
         if ( plik.eof() )
-		{
 			throw EmlSyntaxIncorrect();
-		}
 		else
-        {
             MID = wynik[1];
-        }
-
 
 		// wczytanie InReplyTo
 		do
-				getline(plik, wiersz);
-			while ( wiersz.size() == 0 ); // pomija przypadkowe puste linie
+            getline(plik, wiersz);
+        while ( wiersz.size() == 0 ); // pomija przypadkowe puste linie
 		if ( regex_search( wiersz, wynik, regIRT) )
-        {
             IRT = wynik[1];
-        }
 
         // wczytanie DATE
         while (( regex_search( wiersz, wynik, regDate) == 0 )&&( !plik.eof() ))
-		{
 			getline(plik, wiersz);
-		}
 
 		if ( plik.eof() )
-		{
 			throw EmlSyntaxIncorrect();
-		}
 		else
-        {
             date = wynik[1];
-        }
 
         // wczytanie treści
         // #### rozwiązanie tymczasowe - przejście 5 lini
@@ -182,7 +159,6 @@ Email* IOInterface::emlParser (string path)
         getline(plik, wiersz);
         getline(plik, wiersz);
         // #### rozwiązanie tymczasowe
-
 
         while ( !plik.eof() ) // wczytanie tego co zostało jako treść
         {
@@ -202,7 +178,7 @@ Email* IOInterface::emlParser (string path)
         database->addUsember( usemberFrom );
         database->addUsember( usemberTo );
 
-        Date* newDate = new Date(date);
+        Date* newDate = new Date(date);     //wyciek pamięci!
         mail->setFrom( usemberFrom );
         mail->setTo( usemberTo );
         mail->setSubject( subject );
