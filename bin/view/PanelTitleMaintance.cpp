@@ -39,7 +39,7 @@ void PanelTitleMaintance::SetIcons(AisdiRelationsFrame* Frame)
     wxString pathArrow(_("resources/icon"));
     wxString format (_(".png"));
 
-    Frame->T_ImageButtonAdd->SetBitmapLabel(pathBig+imagePaths[0]+format);      //załadowanie grafik pod przyciski
+    Frame->T_ImageButtonAdd->SetBitmapLabel(pathBig+imagePaths[0]+format);      //załadowanie grafik pod przyciski panelu Title
     Frame->T_ImageButtonImport->SetBitmapLabel(pathBig+imagePaths[1]+format);
     Frame->T_ImageButtonLoad->SetBitmapLabel(pathBig+imagePaths[2]+format);
     Frame->T_ImageButtonFiles->SetBitmapLabel(pathBig+imagePaths[3]+format);
@@ -53,6 +53,11 @@ void PanelTitleMaintance::SetIcons(AisdiRelationsFrame* Frame)
     Frame->T_ImageButtonStats->SetBitmapLabel(pathBig+imagePaths[11]+format);
     Frame->T_ImageButtonMulTree->SetBitmapLabel(pathBig+imagePaths[12]+format);
     Frame->T_ImageButtonSwitch->SetBitmapLabel(path+imagePaths[13]+format);
+
+    Frame->A_ImageButtonFiles->SetBitmapLabel(path+imagePaths[3]+format);
+    Frame->A_ImageButtonFolder->SetBitmapLabel(path+imagePaths[4]+format);
+    Frame->A_ImageButtonBin->SetBitmapLabel(path+imagePaths[5]+format);
+    Frame->A_ImageButtonTxt->SetBitmapLabel(path+imagePaths[6]+format);
 }
 
 void PanelTitleMaintance::SwitchIcons (AisdiRelationsFrame* Frame)
@@ -296,7 +301,8 @@ void PanelTitleMaintance::EventButtonFolderClick (AisdiRelationsFrame* Frame)
         Frame->P_Inbox->SetEmails(Frame);				//załadowanie listy maili do komponentu T_ListInbox
         if (stats.successCount > 0)
         {
-            Frame->P_Title->SwitchIcons(Frame);
+            if (GetNoData())
+                Frame->P_Title->SwitchIcons(Frame);
             Frame->P_Notify->SetLabels(Frame, "Zakończono wczytywanie!", "Wczytano poprawnie:", "Niepoprawne emaile:");
             Frame->P_Notify->SetValues(Frame, stats.successCount, stats.failCount);
             Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
@@ -331,7 +337,8 @@ void PanelTitleMaintance::EventButtonFilesClick (AisdiRelationsFrame* Frame)
         Frame->P_Inbox->SetEmails(Frame);				//załadowanie listy Emaili z bazy
         if (stats.successCount > 0)
         {
-            Frame->P_Title->SwitchIcons(Frame);
+            if (GetNoData())
+                Frame->P_Title->SwitchIcons(Frame);
             Frame->P_Notify->SetLabels(Frame, "Zakończono wczytywanie!", "Wczytano poprawnie:", "Niepoprawne emaile:");
             Frame->P_Notify->SetValues(Frame, stats.successCount, stats.failCount);
             Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
@@ -339,6 +346,8 @@ void PanelTitleMaintance::EventButtonFilesClick (AisdiRelationsFrame* Frame)
             if (Frame->P_Stats->GetIsUpdated())
                 Frame->P_Stats->SetIsUpdated();
         }
+
+        delete param;
     }
 }
 
@@ -376,7 +385,8 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
         Frame->statistics = new Statistics(Frame->database);
 
         Frame->P_Inbox->SetEmails(Frame);				//załadowanie listy Emaili z bazy
-        Frame->P_Title->SwitchIcons(Frame);
+        if (GetNoData())
+            Frame->P_Title->SwitchIcons(Frame);
         Frame->statistics->update();
         if (Frame->P_Stats->GetIsUpdated())
             Frame->P_Stats->SetIsUpdated();

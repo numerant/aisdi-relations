@@ -10,6 +10,7 @@ class PanelInboxMaintance
 private:
     bool panelEnabled = true;
     bool searchEnabled = false;
+    bool addEnabled = false;
     const wxString imagePaths[13] =
     {
         _("Add"),  _("Floppy"),  _("Search"),  _("Settings"),  _("Usember"),  _("Workgroups"),
@@ -24,8 +25,10 @@ public:
     void SetIcons(AisdiRelationsFrame* Frame);
     void SetEmails (AisdiRelationsFrame* Frame);
     void SetSearchEnabled();
+    void SetAddEnabled();
 
     bool GetSearchEnabled();
+    bool GetAddEnabled();
 
     void EventButtonSearchClick (AisdiRelationsFrame* Frame);
     void EventListInboxItemSelect (AisdiRelationsFrame* Frame);

@@ -23,6 +23,10 @@ void PanelInboxMaintance::ShowPanel(AisdiRelationsFrame* Frame)
         Frame->PanelStatistics->Hide();
         Frame->PanelMulTree->Hide();
 
+        Frame->PanelAdd->Hide();
+        if (GetAddEnabled())
+            SetAddEnabled();
+        
         Frame->PanelInbox->SetPosition(wxPoint(0,0));
         Frame->PanelInbox->Show();
     }
@@ -69,7 +73,7 @@ void PanelInboxMaintance::SetEmails (AisdiRelationsFrame* Frame)
 {
     if (Frame->database->countEmails() > 0)     //TODO Zmienić wyświetlanie za pomocą Query
     {
-        //Frame->I_ListInbox->ClearAll();
+        Frame->I_ListInbox->DeleteAllItems();
         for (int i = 0; i < Frame->database->countEmails(); i++)
         {
             Email * email = Frame->database->getEmail(i);
@@ -121,9 +125,19 @@ void PanelInboxMaintance::SetSearchEnabled()
     searchEnabled = !searchEnabled;
 }
 
+void PanelInboxMaintance::SetAddEnabled()
+{
+    addEnabled = !addEnabled;
+}
+
 bool PanelInboxMaintance::GetSearchEnabled()
 {
     return searchEnabled;
+}
+
+bool PanelInboxMaintance::GetAddEnabled()
+{
+    return addEnabled;
 }
 
 void PanelInboxMaintance::EventButtonSearchClick (AisdiRelationsFrame* Frame)
@@ -171,7 +185,11 @@ void PanelInboxMaintance::EventListInboxItemSelect (AisdiRelationsFrame* Frame)
 
 void PanelInboxMaintance::EventButtonAddClick (AisdiRelationsFrame * Frame)
 {
-
+    if (GetAddEnabled())
+        Frame->PanelAdd->Hide();
+    else
+        Frame->PanelAdd->Show();
+    SetAddEnabled();
 }
 
 void PanelInboxMaintance::EventButtonSaveClick (AisdiRelationsFrame * Frame)

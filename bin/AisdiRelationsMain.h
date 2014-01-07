@@ -391,6 +391,16 @@ private:
     static const long ID_SLIDER1;
     static const long ID_STATICTEXT110;
     static const long ID_PANEL10;
+    static const long ID_STATICBOX10;
+    static const long ID_IMAGEBUTTON57;
+    static const long ID_IMAGEBUTTON58;
+    static const long ID_IMAGEBUTTON59;
+    static const long ID_IMAGEBUTTON60;
+    static const long ID_STATICTEXT126;
+    static const long ID_STATICTEXT127;
+    static const long ID_STATICTEXT128;
+    static const long ID_STATICTEXT129;
+    static const long ID_PANEL15;
     static const long ID_PANEL1;
     static const long idMenuNew;
     static const long idMenuOpen;
@@ -456,6 +466,7 @@ private:
     wxStaticText* U_StaticTextDate;
     wxStaticText* M_LabelStats;
     wxBitmapButton        *T_ImageButtonUsembers;
+    wxStaticText* A_LabelFiles;
     wxStaticText* M_LabelUsembers;
     wxBitmapButton        *T_ImageButtonSwitch;
     wxStaticText* S_LabelTitle;
@@ -504,9 +515,11 @@ private:
     wxStaticBox* S_BorderEPM;
     wxStaticText* U_LabelSwitchList;
     wxStaticText* U_LabelSettings;
+    wxBitmapButton        *A_ImageButtonTxt;
     wxStaticText* S_StaticTextC_Value6;
     wxBitmapButton        *M_ImageButtonUsembers;
     wxStaticText* S_StaticTextT_TitleSenders;
+    wxPanel* PanelAdd;
     wxStaticText* U_LabelTitle;
     wxStaticText* S_StaticTextT_ReceiversPos5;
     wxStaticText* S_StaticTextC_Earliest;
@@ -530,13 +543,13 @@ private:
     wxFileDialog* FileDialogDatabaseExport;
     wxStaticLine* I_LineContentSeparator;
     wxMenuItem* MenuItem6;
+    wxBitmapButton        *A_ImageButtonFiles;
     wxBitmapButton        *T_ImageButtonBin;
     wxStaticText* T_LabelInbox;
     wxBitmapButton        *I_ImageButtonSearch;
     wxBitmapButton        *I_ImageButtonGroups;
     wxStaticText* I_StaticTextDate;
     wxBitmapButton        *M_ImageButtonTitle;
-    wxStaticBox* Set_BorderSettings;
     wxStaticBitmap* BitmapBackgroundTitle;
     wxStaticText* I_StaticTextSubject;
     wxStaticText* I_LabelTo;
@@ -544,12 +557,14 @@ private:
     wxMenuItem* MenuItem10;
     wxStaticText* S_StaticTextC_EmailsPerMonth;
     wxStaticText* S_StaticTextT_SendersPos4;
+    wxBitmapButton        *A_ImageButtonFolder;
     wxStaticText* N_StaticTextOption2;
     wxStaticLine* S_LineC_3;
     wxStaticText* S_StaticTextC_Value8;
     wxFileDialog* FileDialogDatabaseImport;
     wxStaticText* S_StaticTextC_Value9;
     wxHyperlinkCtrl* S_HyperLinkT_ReceiverPos4;
+    wxStaticBox* A_Border;
     wxBitmapButton        *T_ImageButtonInbox;
     wxStaticText* I_StaticTextFrom;
     wxPanel* S_PanelTops;
@@ -565,6 +580,7 @@ private:
     wxPanel* PanelInbox;
     wxStaticText* I_StaticTextTo;
     wxStaticText* M_LabelTitle;
+    wxStaticText* A_LabelBin;
     wxBitmapButton        *T_ImageButtonStats;
     wxStaticText* I_LabelDelete;
     wxBitmapButton        *M_ImageButtonStats;
@@ -591,6 +607,7 @@ private:
     wxStaticText* I_LabelReceiver;
     wxBitmapButton        *U_ImageButtonShowGroup;
     wxStaticLine* T_StaticLineOpenH;
+    wxStaticText* A_LabelFolder;
     wxStaticLine* T_StaticLineAddH;
     wxStaticText* I_LabelUsembers;
     wxStaticText* T_LabelUsembers;
@@ -611,6 +628,7 @@ private:
     wxStaticText* U_LabelDate;
     wxStaticText* S_StaticTextC_Usembers;
     wxStaticText* I_LabelTitle;
+    wxStaticText* A_LabelTxt;
     wxListCtrl* U_ListOutbox;
     wxBitmapButton        *T_ImageButtonSettings;
     wxStaticText* S_StaticTextC_EmailsPerDay;
@@ -620,6 +638,7 @@ private:
     wxStaticText* S_StaticTextT_ReceiversPos2;
     wxStaticText* T_LabelStats;
     wxSearchCtrl* U_SearchCtrl;
+    wxBitmapButton        *A_ImageButtonBin;
     wxStaticText* U_StaticTextSubject;
     wxBitmapButton        *I_ImageButtonSender;
     wxBitmapButton        *U_ImageButtonSave;
@@ -655,6 +674,7 @@ private:
     wxPanel* U_PanelEmail;
     wxBitmapButton        *I_ImageButtonTitle;
     wxPanel* PanelMain;
+    wxStaticBox* Set_Border;
     wxStaticText* U_LabelMulTree;
     wxBitmapButton        *I_ImageButtonReceiver;
     wxStaticText* I_LabelSearch;

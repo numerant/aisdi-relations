@@ -17,8 +17,9 @@ void PanelUsembersMaintance::ShowPanel(AisdiRelationsFrame* Frame)
         Frame->PanelStatistics->Hide();
         Frame->PanelMulTree->Hide();
 
-        Frame->PanelUsembers->SetPosition(wxPoint(0,0));
-        Frame->PanelUsembers->Show();
+        Frame->PanelAdd->Hide();
+        if (GetAddEnabled())
+            SetAddEnabled();
 
         if (usembersListEnabled)
         {
@@ -34,6 +35,7 @@ void PanelUsembersMaintance::ShowPanel(AisdiRelationsFrame* Frame)
             Frame->U_ListOutbox->Show();
             Frame->U_StaticBoxUsembers->SetLabel(_("  Odebrane/Wysłane Emaile  "));
         }
+        
         if (emailContentEnabled)
         {
             Frame->U_PanelEmail->Show();
@@ -44,6 +46,9 @@ void PanelUsembersMaintance::ShowPanel(AisdiRelationsFrame* Frame)
             Frame->U_PanelEmail->Hide();
             Frame->U_PanelStats->Show();
         }
+
+        Frame->PanelUsembers->SetPosition(wxPoint(0,0));
+        Frame->PanelUsembers->Show();
     }
 }
 
@@ -134,6 +139,11 @@ void PanelUsembersMaintance::SetSearchEnabled()
     searchEnabled = !searchEnabled;
 }
 
+void PanelUsembersMaintance::SetAddEnabled()
+{
+    addEnabled = !addEnabled;
+}
+
 void PanelUsembersMaintance::SetUsemberViewed(const string usember)
 {
 
@@ -142,6 +152,11 @@ void PanelUsembersMaintance::SetUsemberViewed(const string usember)
 bool PanelUsembersMaintance::GetSearchEnabled()
 {
     return searchEnabled;
+}
+
+bool PanelUsembersMaintance::GetAddEnabled()
+{
+    return addEnabled;
 }
 
 void PanelUsembersMaintance::EventButtonSearchClick (AisdiRelationsFrame* Frame)
@@ -155,7 +170,11 @@ void PanelUsembersMaintance::EventButtonSearchClick (AisdiRelationsFrame* Frame)
 
 void PanelUsembersMaintance::EventButtonAddClick (AisdiRelationsFrame* Frame)
 {
-
+    if (GetAddEnabled())
+        Frame->PanelAdd->Hide();
+    else
+        Frame->PanelAdd->Show();
+    SetAddEnabled();
 }
 
 void PanelUsembersMaintance::EventButtonSaveClick (AisdiRelationsFrame* Frame)

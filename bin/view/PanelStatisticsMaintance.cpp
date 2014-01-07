@@ -17,6 +17,7 @@ void PanelStatisticsMaintance::ShowPanel(AisdiRelationsFrame* Frame)
         Frame->PanelInbox->Hide();
         Frame->PanelTitle->Hide();
         Frame->PanelMulTree->Hide();
+        Frame->PanelAdd->Hide();
 
         Frame->PanelStatistics->SetPosition(wxPoint(0,0));
         if (!GetIsUpdated())    //jeżeli był jakiś update w międzyczasie

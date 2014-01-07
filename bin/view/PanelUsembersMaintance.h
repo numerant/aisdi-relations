@@ -8,6 +8,7 @@ class PanelUsembersMaintance
 private:
     bool panelEnabled = true;
     bool searchEnabled = false;
+    bool addEnabled = false;
     bool usembersListEnabled = true;
     bool emailContentEnabled = true;
     const wxString imagePaths[13] =
@@ -25,9 +26,11 @@ public:
     void SwitchContent(AisdiRelationsFrame * Frame);
     void SetIcons(AisdiRelationsFrame* Frame);
     void SetSearchEnabled();
+    void SetAddEnabled();
     void SetUsemberViewed(const string usember);
 
     bool GetSearchEnabled();
+    bool GetAddEnabled();
 
     void EventButtonSearchClick (AisdiRelationsFrame* Frame);
     void EventButtonAddClick (AisdiRelationsFrame* Frame);
