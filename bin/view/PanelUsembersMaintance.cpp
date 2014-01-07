@@ -21,6 +21,18 @@ void PanelUsembersMaintance::ShowPanel(AisdiRelationsFrame* Frame)
         if (GetAddEnabled())
             SetAddEnabled();
 
+        Frame->PanelSave->Hide();
+        if (GetSaveEnabled())
+            SetSaveEnabled();
+
+        Frame->PanelSettings->Hide();
+        if (GetSettingsEnabled())
+            SetSettingsEnabled();
+
+        Frame->U_SearchCtrl->Hide();
+        if (GetSearchEnabled())
+            SetSearchEnabled();
+
         if (usembersListEnabled)
         {
             Frame->U_ListUsembers->Show();
@@ -144,6 +156,16 @@ void PanelUsembersMaintance::SetAddEnabled()
     addEnabled = !addEnabled;
 }
 
+void PanelUsembersMaintance::SetSaveEnabled()
+{
+    saveEnabled = !saveEnabled;
+}
+
+void PanelUsembersMaintance::SetSettingsEnabled()
+{
+    settingsEnabled = !settingsEnabled;
+}
+
 void PanelUsembersMaintance::SetUsemberViewed(const string usember)
 {
 
@@ -159,32 +181,119 @@ bool PanelUsembersMaintance::GetAddEnabled()
     return addEnabled;
 }
 
+bool PanelUsembersMaintance::GetSaveEnabled()
+{
+    return saveEnabled;
+}
+
+bool PanelUsembersMaintance::GetSettingsEnabled()
+{
+    return settingsEnabled;
+}
+
 void PanelUsembersMaintance::EventButtonSearchClick (AisdiRelationsFrame* Frame)
 {
     if (Frame->P_Usembers->GetSearchEnabled())
         Frame->U_SearchCtrl->Hide();
     else
+    {
         Frame->U_SearchCtrl->Show();
+        if (GetAddEnabled())
+        {
+            Frame->PanelAdd->Hide();   //przy pokazaniu pola wyszukiwania schowaj ewentualnie panele Add...
+            SetAddEnabled();
+        }
+        if (GetSaveEnabled())
+        {
+            Frame->PanelSave->Hide();   //...Save...
+            SetSaveEnabled();
+        }
+        if (GetSettingsEnabled())
+        {
+            Frame->PanelSettings->Hide();   //...oraz Settings
+            SetSettingsEnabled();
+        }
+    }
     Frame->P_Usembers->SetSearchEnabled();
 }
 
-void PanelUsembersMaintance::EventButtonAddClick (AisdiRelationsFrame* Frame)
+void PanelUsembersMaintance::EventButtonAddClick (AisdiRelationsFrame * Frame)
 {
     if (GetAddEnabled())
         Frame->PanelAdd->Hide();
     else
+    {
         Frame->PanelAdd->Show();
+        if (GetSaveEnabled())
+        {
+            Frame->PanelSave->Hide();   //przy pokazaniu panelu Add schowaj ewentualnie panele Save...
+            SetSaveEnabled();
+        }
+        if (GetSettingsEnabled())
+        {
+            Frame->PanelSettings->Hide();   //...Settings...
+            SetSettingsEnabled();
+        }
+        if (GetSearchEnabled())
+        {
+            Frame->U_SearchCtrl->Hide();   //...oraz pole Search
+            SetSearchEnabled();
+        }
+    }
     SetAddEnabled();
 }
 
-void PanelUsembersMaintance::EventButtonSaveClick (AisdiRelationsFrame* Frame)
+void PanelUsembersMaintance::EventButtonSaveClick (AisdiRelationsFrame * Frame)
 {
-
+    if (GetSaveEnabled())
+        Frame->PanelSave->Hide();
+    else
+    {
+        Frame->PanelSave->Show();
+        if (GetAddEnabled())
+        {
+            Frame->PanelAdd->Hide();   //przy pokazaniu panelu Save schowaj ewentualnie panele Add...
+            SetAddEnabled();
+        }
+        if (GetSettingsEnabled())
+        {
+            Frame->PanelSettings->Hide();   //...Settings...
+            SetSettingsEnabled();
+        }
+        if (GetSearchEnabled())
+        {
+            Frame->U_SearchCtrl->Hide();   //...oraz pole Search
+            SetSearchEnabled();
+        }
+    }
+    SetSaveEnabled();
 }
 
-void PanelUsembersMaintance::EventButtonSettingsClick (AisdiRelationsFrame* Frame)
+void PanelUsembersMaintance::EventButtonSettingsClick (AisdiRelationsFrame * Frame)
 {
-
+    if (GetSettingsEnabled())
+        Frame->PanelSettings->Hide();
+    else
+    {
+        //TODO dodaj pozycjonowanie panelu Settings
+        Frame->PanelSettings->Show();
+        if (GetAddEnabled())
+        {
+            Frame->PanelAdd->Hide();   //przy pokazaniu panelu Settings schowaj ewentualnie panele Add...
+            SetAddEnabled();
+        }
+        if (GetSaveEnabled())
+        {
+            Frame->PanelSave->Hide();   //...Save
+            SetSaveEnabled();
+        }
+        if (GetSearchEnabled())
+        {
+            Frame->U_SearchCtrl->Hide();   //...oraz pole Search
+            SetSearchEnabled();
+        }
+    }
+    SetSettingsEnabled();
 }
 
 void PanelUsembersMaintance::EventButtonDeleteClick (AisdiRelationsFrame* Frame)

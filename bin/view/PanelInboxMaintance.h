@@ -11,6 +11,8 @@ private:
     bool panelEnabled = true;
     bool searchEnabled = false;
     bool addEnabled = false;
+    bool saveEnabled = false;
+    bool settingsEnabled = false;
     const wxString imagePaths[13] =
     {
         _("Add"),  _("Floppy"),  _("Search"),  _("Settings"),  _("Usember"),  _("Workgroups"),
@@ -26,9 +28,13 @@ public:
     void SetEmails (AisdiRelationsFrame* Frame);
     void SetSearchEnabled();
     void SetAddEnabled();
+    void SetSaveEnabled();
+    void SetSettingsEnabled();
 
     bool GetSearchEnabled();
     bool GetAddEnabled();
+    bool GetSaveEnabled();
+    bool GetSettingsEnabled();
 
     void EventButtonSearchClick (AisdiRelationsFrame* Frame);
     void EventListInboxItemSelect (AisdiRelationsFrame* Frame);

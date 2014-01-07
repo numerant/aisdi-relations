@@ -26,7 +26,19 @@ void PanelInboxMaintance::ShowPanel(AisdiRelationsFrame* Frame)
         Frame->PanelAdd->Hide();
         if (GetAddEnabled())
             SetAddEnabled();
-        
+
+        Frame->PanelSave->Hide();
+        if (GetSaveEnabled())
+            SetSaveEnabled();
+
+        Frame->PanelSettings->Hide();
+        if (GetSettingsEnabled())
+            SetSettingsEnabled();
+
+        Frame->I_SearchCtrl->Hide();
+        if (GetSearchEnabled())
+            SetSearchEnabled();
+
         Frame->PanelInbox->SetPosition(wxPoint(0,0));
         Frame->PanelInbox->Show();
     }
@@ -130,6 +142,16 @@ void PanelInboxMaintance::SetAddEnabled()
     addEnabled = !addEnabled;
 }
 
+void PanelInboxMaintance::SetSaveEnabled()
+{
+    saveEnabled = !saveEnabled;
+}
+
+void PanelInboxMaintance::SetSettingsEnabled()
+{
+    settingsEnabled = !settingsEnabled;
+}
+
 bool PanelInboxMaintance::GetSearchEnabled()
 {
     return searchEnabled;
@@ -140,12 +162,39 @@ bool PanelInboxMaintance::GetAddEnabled()
     return addEnabled;
 }
 
+bool PanelInboxMaintance::GetSaveEnabled()
+{
+    return saveEnabled;
+}
+
+bool PanelInboxMaintance::GetSettingsEnabled()
+{
+    return settingsEnabled;
+}
+
 void PanelInboxMaintance::EventButtonSearchClick (AisdiRelationsFrame* Frame)
 {
     if (Frame->P_Inbox->GetSearchEnabled())
         Frame->I_SearchCtrl->Hide();
     else
+    {
         Frame->I_SearchCtrl->Show();
+        if (GetAddEnabled())
+        {
+            Frame->PanelAdd->Hide();   //przy pokazaniu pola wyszukiwania schowaj ewentualnie panele Add...
+            SetAddEnabled();
+        }
+        if (GetSaveEnabled())
+        {
+            Frame->PanelSave->Hide();   //...Save...
+            SetSaveEnabled();
+        }
+        if (GetSettingsEnabled())
+        {
+            Frame->PanelSettings->Hide();   //...oraz Settings
+            SetSettingsEnabled();
+        }
+    }
     Frame->P_Inbox->SetSearchEnabled();
 }
 
@@ -188,41 +237,78 @@ void PanelInboxMaintance::EventButtonAddClick (AisdiRelationsFrame * Frame)
     if (GetAddEnabled())
         Frame->PanelAdd->Hide();
     else
+    {
         Frame->PanelAdd->Show();
+        if (GetSaveEnabled())
+        {
+            Frame->PanelSave->Hide();   //przy pokazaniu panelu Add schowaj ewentualnie panele Save...
+            SetSaveEnabled();
+        }
+        if (GetSettingsEnabled())
+        {
+            Frame->PanelSettings->Hide();   //...Settings...
+            SetSettingsEnabled();
+        }
+        if (GetSearchEnabled())
+        {
+            Frame->I_SearchCtrl->Hide();     //...oraz pole Search
+            SetSearchEnabled();
+        }
+    }
     SetAddEnabled();
 }
 
 void PanelInboxMaintance::EventButtonSaveClick (AisdiRelationsFrame * Frame)
 {
-    if (Frame->FileDialogDatabaseExport->ShowModal() == wxID_OK)      //uruchomienie panelu wybierania folderu
+    if (GetSaveEnabled())
+        Frame->PanelSave->Hide();
+    else
     {
-        wxString path, filename;
-        path = Frame->FileDialogDatabaseExport->GetPath();
-        filename = Frame->FileDialogDatabaseExport->GetFilename();
-
-        std::string strPath, strFilename;
-        strPath = path.mb_str();
-        strFilename = filename.mb_str();
-
-        if (strFilename != "")
+        Frame->PanelSave->Show();
+        if (GetAddEnabled())
         {
-            if (strPath.substr(strPath.size()-4, 4) != ".bin")
-                strPath = strPath+".bin";
-
-            std::ofstream ofs(strPath);
-            boost::archive::text_oarchive oa(ofs);
-            oa << Frame->database;
-
-            Frame->P_Notify->SetLabels(Frame, "Zapisano plik bazy.", "Nazwa pliku: ");
-            Frame->P_Notify->SetValues(Frame, strFilename);
-            Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
+            Frame->PanelAdd->Hide();   //przy pokazaniu panelu Save schowaj ewentualnie panele Add...
+            SetAddEnabled();
+        }
+        if (GetSettingsEnabled())
+        {
+            Frame->PanelSettings->Hide();   //...Settings...
+            SetSettingsEnabled();
+        }
+        if (GetSearchEnabled())
+        {
+            Frame->I_SearchCtrl->Hide();     //...oraz pole Search
+            SetSearchEnabled();
         }
     }
+    SetSaveEnabled();
 }
 
 void PanelInboxMaintance::EventButtonSettingsClick (AisdiRelationsFrame * Frame)
 {
-
+    if (GetSettingsEnabled())
+        Frame->PanelSettings->Hide();
+    else
+    {
+        //TODO dodaj pozycjonowanie panelu Settings
+        Frame->PanelSettings->Show();
+        if (GetAddEnabled())
+        {
+            Frame->PanelAdd->Hide();   //przy pokazaniu panelu Settings schowaj ewentualnie panele Add...
+            SetAddEnabled();
+        }
+        if (GetSaveEnabled())
+        {
+            Frame->PanelSave->Hide();   //...Save...
+            SetSaveEnabled();
+        }
+        if (GetSearchEnabled())
+        {
+            Frame->I_SearchCtrl->Hide();     //...oraz pole Search
+            SetSearchEnabled();
+        }
+    }
+    SetSettingsEnabled();
 }
 
 void PanelInboxMaintance::EventButtonDeleteClick (AisdiRelationsFrame * Frame)

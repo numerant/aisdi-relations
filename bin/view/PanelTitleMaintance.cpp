@@ -56,7 +56,10 @@ void PanelTitleMaintance::SetIcons(AisdiRelationsFrame* Frame)
 
     Frame->A_ImageButtonFiles->SetBitmapLabel(path+imagePaths[3]+format);
     Frame->A_ImageButtonFolder->SetBitmapLabel(path+imagePaths[4]+format);
-    Frame->A_ImageButtonBin->SetBitmapLabel(path+imagePaths[5]+format);
+    Frame->A_ImageButtonBin->SetBitmapLabel(path+imagePaths[14]+format);
+
+    Frame->Sav_ImageButtonBin->SetBitmapLabel(path+imagePaths[14]+format);
+    Frame->Sav_ImageButtonTxt->SetBitmapLabel(path+imagePaths[15]+format);
 }
 
 void PanelTitleMaintance::SwitchIcons (AisdiRelationsFrame* Frame)
@@ -302,8 +305,8 @@ void PanelTitleMaintance::EventButtonFolderClick (AisdiRelationsFrame* Frame)
         {
             if (GetNoData())
                 Frame->P_Title->SwitchIcons(Frame);
-            Frame->P_Notify->SetLabels(Frame, "Zakończono wczytywanie!", "Wczytano poprawnie:", "Niepoprawne emaile:");
-            Frame->P_Notify->SetValues(Frame, stats.successCount, stats.failCount);
+            Frame->P_Notify->SetLabels(Frame, "Zakończono wczytywanie!", "Wczytano poprawnie:", "Niepoprawne emaile:", "Powtórzone rekordy:");
+            Frame->P_Notify->SetValues(Frame, stats.successCount, stats.failCount, stats.existingCount);
             Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
             Frame->statistics->update();
             if (Frame->P_Stats->GetIsUpdated())
@@ -338,8 +341,8 @@ void PanelTitleMaintance::EventButtonFilesClick (AisdiRelationsFrame* Frame)
         {
             if (GetNoData())
                 Frame->P_Title->SwitchIcons(Frame);
-            Frame->P_Notify->SetLabels(Frame, "Zakończono wczytywanie!", "Wczytano poprawnie:", "Niepoprawne emaile:");
-            Frame->P_Notify->SetValues(Frame, stats.successCount, stats.failCount);
+            Frame->P_Notify->SetLabels(Frame, "Zakończono wczytywanie!", "Wczytano poprawnie:", "Niepoprawne emaile:", "Powtórzone rekordy:");
+            Frame->P_Notify->SetValues(Frame, stats.successCount, stats.failCount, stats.existingCount);
             Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
             Frame->statistics->update();
             if (Frame->P_Stats->GetIsUpdated())
@@ -390,10 +393,42 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
         if (Frame->P_Stats->GetIsUpdated())
             Frame->P_Stats->SetIsUpdated();
 
+        Frame->P_Notify->SetLabels(Frame, "Wczytywanie pliku bazy danych", "Status");
+        Frame->P_Notify->SetValues(Frame, "OK");
+        Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
     }
 }
 
-void PanelTitleMaintance::EventButtonTxtClick()
+void PanelTitleMaintance::EventButtonTxtClick(AisdiRelationsFrame * Frame)
 {
-    //TODO Napisać przy najbliższej okazji i będzie z dyni
+    //Tak naprawdę jest to zapis pliku binarnego bazy
+    if (Frame->FileDialogDatabaseExport->ShowModal() == wxID_OK)      //uruchomienie panelu wybierania folderu
+    {
+        wxString path, filename;
+        path = Frame->FileDialogDatabaseExport->GetPath();
+        filename = Frame->FileDialogDatabaseExport->GetFilename();
+
+        std::string strPath, strFilename;
+        strPath = path.mb_str();
+        strFilename = filename.mb_str();
+
+        if (strFilename != "")
+        {
+            if (strPath.substr(strPath.size()-4, 4) != ".bin")
+                strPath = strPath+".bin";
+
+            std::ofstream ofs(strPath);
+            boost::archive::text_oarchive oa(ofs);
+            oa << Frame->database;
+
+            Frame->P_Notify->SetLabels(Frame, "Zapisano plik bazy.", "Nazwa pliku: ");
+            Frame->P_Notify->SetValues(Frame, strFilename);
+            Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
+        }
+    }
+}
+
+void PanelTitleMaintance::EventButtonSavTxtClick(AisdiRelationsFrame * Frame)
+{
+    //Zapisywanie bazy do pliku tekstowego
 }

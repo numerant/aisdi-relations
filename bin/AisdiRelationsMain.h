@@ -148,6 +148,7 @@ private:
     void OnS_HyperLinkT_SendersPos1Click(wxCommandEvent& event);
     void OnS_ImageButtonRefreshClick(wxCommandEvent& event);
     void OnT_ImageButtonSwitchClick(wxCommandEvent& event);
+    void OnSav_ImageButtonTxtClick(wxCommandEvent& event);
     //*)
 
     //(*Identifiers(AisdiRelationsFrame)
@@ -383,8 +384,10 @@ private:
     static const long ID_STATICTEXT78;
     static const long ID_STATICTEXT79;
     static const long ID_STATICTEXT80;
+    static const long ID_STATICTEXT129;
     static const long ID_STATICTEXT83;
     static const long ID_STATICTEXT82;
+    static const long ID_STATICTEXT130;
     static const long ID_PANEL11;
     static const long ID_STATICBOX5;
     static const long ID_CHECKBOX1;
@@ -399,6 +402,12 @@ private:
     static const long ID_STATICTEXT127;
     static const long ID_STATICTEXT128;
     static const long ID_PANEL15;
+    static const long ID_STATICBOX11;
+    static const long ID_IMAGEBUTTON60;
+    static const long ID_IMAGEBUTTON61;
+    static const long ID_STATICTEXT131;
+    static const long ID_STATICTEXT132;
+    static const long ID_PANEL17;
     static const long ID_PANEL1;
     static const long idMenuNew;
     static const long idMenuOpen;
@@ -547,9 +556,11 @@ private:
     wxBitmapButton        *I_ImageButtonGroups;
     wxStaticText* I_StaticTextDate;
     wxBitmapButton        *M_ImageButtonTitle;
+    wxStaticText* N_StaticTextValue3;
     wxStaticBitmap* BitmapBackgroundTitle;
     wxStaticText* I_StaticTextSubject;
     wxStaticText* I_LabelTo;
+    wxBitmapButton        *Sav_ImageButtonTxt;
     wxStaticText* T_LabelAdd;
     wxMenuItem* MenuItem10;
     wxStaticText* S_StaticTextC_EmailsPerMonth;
@@ -572,11 +583,15 @@ private:
     wxStaticText* S_StaticTextC_Value13;
     wxMenu* Menu3;
     wxStaticText* I_LabelSettings;
+    wxPanel* PanelSave;
     wxHyperlinkCtrl* S_HyperLinkT_ReceiverPos5;
+    wxStaticText* Sav_StaticTextBin;
     wxStaticText* S_StaticTextT_SendersPos2;
     wxPanel* PanelInbox;
     wxStaticText* I_StaticTextTo;
     wxStaticText* M_LabelTitle;
+    wxStaticText* N_StaticTextOption3;
+    wxStaticText* Sav_StaticTextTxt;
     wxStaticText* A_LabelBin;
     wxBitmapButton        *T_ImageButtonStats;
     wxStaticText* I_LabelDelete;
@@ -659,6 +674,8 @@ private:
     wxListCtrl* I_ListInbox;
     wxStaticText* M_LabelInbox;
     wxMenuItem* MenuItem4;
+    wxStaticBox* Sav_Border;
+    wxBitmapButton        *Sav_ImageButtonBin;
     wxStaticText* S_StaticTextC_EmailsPerUsember;
     wxBitmapButton        *U_ImageButtonGroups;
     wxStaticText* S_StaticTextC_Latest;

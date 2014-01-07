@@ -298,8 +298,10 @@ const long AisdiRelationsFrame::ID_STATICBOX6 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT78 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT79 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT80 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICTEXT129 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT83 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT82 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICTEXT130 = wxNewId();
 const long AisdiRelationsFrame::ID_PANEL11 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICBOX5 = wxNewId();
 const long AisdiRelationsFrame::ID_CHECKBOX1 = wxNewId();
@@ -314,6 +316,12 @@ const long AisdiRelationsFrame::ID_STATICTEXT126 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT127 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT128 = wxNewId();
 const long AisdiRelationsFrame::ID_PANEL15 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICBOX11 = wxNewId();
+const long AisdiRelationsFrame::ID_IMAGEBUTTON60 = wxNewId();
+const long AisdiRelationsFrame::ID_IMAGEBUTTON61 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICTEXT131 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICTEXT132 = wxNewId();
+const long AisdiRelationsFrame::ID_PANEL17 = wxNewId();
 const long AisdiRelationsFrame::ID_PANEL1 = wxNewId();
 const long AisdiRelationsFrame::idMenuNew = wxNewId();
 const long AisdiRelationsFrame::idMenuOpen = wxNewId();
@@ -1014,10 +1022,10 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     I_SearchCtrl = new wxSearchCtrl(PanelInbox, ID_SEARCHCTRL1, wxEmptyString, wxPoint(25,130), wxSize(630,25), wxTE_PROCESS_ENTER, wxDefaultValidator, _T("ID_SEARCHCTRL1"));
     I_SearchCtrl->Hide();
     I_SearchCtrl->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_HIGHLIGHT));
-    PanelNotify = new wxPanel(PanelMain, ID_PANEL11, wxPoint(10,10), wxSize(250,100), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL, _T("ID_PANEL11"));
+    PanelNotify = new wxPanel(PanelMain, ID_PANEL11, wxPoint(10,10), wxSize(250,120), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL, _T("ID_PANEL11"));
     PanelNotify->Hide();
     PanelNotify->SetBackgroundColour(wxColour(48,48,48));
-    N_Border = new wxStaticBox(PanelNotify, ID_STATICBOX6, wxEmptyString, wxPoint(0,-10), wxSize(250,110), 0, _T("ID_STATICBOX6"));
+    N_Border = new wxStaticBox(PanelNotify, ID_STATICBOX6, wxEmptyString, wxPoint(0,-10), wxSize(250,130), 0, _T("ID_STATICBOX6"));
     N_Border->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
     N_StaticTextTitle = new wxStaticText(PanelNotify, ID_STATICTEXT78, _("Zakończono wczytywanie"), wxPoint(10,10), wxDefaultSize, 0, _T("ID_STATICTEXT78"));
     N_StaticTextTitle->SetForegroundColour(wxColour(255,255,255));
@@ -1031,10 +1039,16 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     N_StaticTextOption2->SetForegroundColour(wxColour(192,192,192));
     wxFont N_StaticTextOption2Font(12,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     N_StaticTextOption2->SetFont(N_StaticTextOption2Font);
+    N_StaticTextOption3 = new wxStaticText(PanelNotify, ID_STATICTEXT129, _("Emaile powtórzone:"), wxPoint(10,85), wxDefaultSize, 0, _T("ID_STATICTEXT129"));
+    N_StaticTextOption3->SetForegroundColour(wxColour(192,192,192));
+    wxFont N_StaticTextOption3Font(12,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
+    N_StaticTextOption3->SetFont(N_StaticTextOption3Font);
     N_StaticTextValue1 = new wxStaticText(PanelNotify, ID_STATICTEXT83, _("0"), wxPoint(170,35), wxDefaultSize, wxALIGN_LEFT, _T("ID_STATICTEXT83"));
     N_StaticTextValue1->SetForegroundColour(wxColour(16,178,31));
     N_StaticTextValue2 = new wxStaticText(PanelNotify, ID_STATICTEXT82, _("0"), wxPoint(170,60), wxDefaultSize, wxALIGN_LEFT, _T("ID_STATICTEXT82"));
     N_StaticTextValue2->SetForegroundColour(wxColour(178,28,16));
+    N_StaticTextValue3 = new wxStaticText(PanelNotify, ID_STATICTEXT130, _("0"), wxPoint(170,85), wxDefaultSize, wxALIGN_LEFT, _T("ID_STATICTEXT130"));
+    N_StaticTextValue3->SetForegroundColour(wxColour(88,43,211));
     PanelSettings = new wxPanel(PanelMain, ID_PANEL10, wxPoint(860,20), wxSize(300,140), wxTAB_TRAVERSAL, _T("ID_PANEL10"));
     PanelSettings->Hide();
     PanelSettings->SetBackgroundColour(wxColour(50,50,50));
@@ -1055,9 +1069,9 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Set_LabelNotify->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
     wxFont Set_LabelNotifyFont(11,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     Set_LabelNotify->SetFont(Set_LabelNotifyFont);
-    PanelAdd = new wxPanel(PanelMain, ID_PANEL15, wxPoint(515,300), wxSize(270,110), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL, _T("ID_PANEL15"));
+    PanelAdd = new wxPanel(PanelMain, ID_PANEL15, wxPoint(520,300), wxSize(260,110), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL, _T("ID_PANEL15"));
     PanelAdd->SetBackgroundColour(wxColour(48,48,48));
-    A_Border = new wxStaticBox(PanelAdd, ID_STATICBOX10, wxEmptyString, wxPoint(0,-10), wxSize(270,120), 0, _T("ID_STATICBOX10"));
+    A_Border = new wxStaticBox(PanelAdd, ID_STATICBOX10, wxEmptyString, wxPoint(0,-10), wxSize(260,120), 0, _T("ID_STATICBOX10"));
     A_Border->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
     A_ImageButtonFiles = new wxBitmapButton(PanelAdd, ID_IMAGEBUTTON57, wxNullBitmap, wxPoint(10,10), wxSize(60,60), wxBU_AUTODRAW|wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL, wxDefaultValidator, _T("ID_IMAGEBUTTON57"));
     A_ImageButtonFolder = new wxBitmapButton(PanelAdd, ID_IMAGEBUTTON58, wxNullBitmap, wxPoint(100,10), wxSize(60,60), wxBU_AUTODRAW|wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL, wxDefaultValidator, _T("ID_IMAGEBUTTON58"));
@@ -1074,6 +1088,20 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     A_LabelBin->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
     wxFont A_LabelBinFont(11,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     A_LabelBin->SetFont(A_LabelBinFont);
+    PanelSave = new wxPanel(PanelMain, ID_PANEL17, wxPoint(565,300), wxSize(170,110), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL, _T("ID_PANEL17"));
+    PanelSave->SetBackgroundColour(wxColour(48,48,48));
+    Sav_Border = new wxStaticBox(PanelSave, ID_STATICBOX11, wxEmptyString, wxPoint(0,-10), wxSize(170,120), 0, _T("ID_STATICBOX11"));
+    Sav_Border->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
+    Sav_ImageButtonBin = new wxBitmapButton(PanelSave, ID_IMAGEBUTTON60, wxNullBitmap, wxPoint(10,10), wxSize(60,60), wxBU_AUTODRAW|wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL, wxDefaultValidator, _T("ID_IMAGEBUTTON60"));
+    Sav_ImageButtonTxt = new wxBitmapButton(PanelSave, ID_IMAGEBUTTON61, wxNullBitmap, wxPoint(100,10), wxSize(60,60), wxBU_AUTODRAW|wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL, wxDefaultValidator, _T("ID_IMAGEBUTTON61"));
+    Sav_StaticTextBin = new wxStaticText(PanelSave, ID_STATICTEXT131, _("Plik .bin"), wxPoint(14,75), wxDefaultSize, wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_STATICTEXT131"));
+    Sav_StaticTextBin->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
+    wxFont Sav_StaticTextBinFont(11,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
+    Sav_StaticTextBin->SetFont(Sav_StaticTextBinFont);
+    Sav_StaticTextTxt = new wxStaticText(PanelSave, ID_STATICTEXT132, _("Plik .txt"), wxPoint(104,75), wxDefaultSize, wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_STATICTEXT132"));
+    Sav_StaticTextTxt->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
+    wxFont Sav_StaticTextTxtFont(11,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
+    Sav_StaticTextTxt->SetFont(Sav_StaticTextTxtFont);
     MenuBar1 = new wxMenuBar();
     Menu1 = new wxMenu();
     MenuItem8 = new wxMenuItem(Menu1, idMenuNew, _("New\tCTRL+N"), _("Creates an empty database"), wxITEM_NORMAL);
@@ -1126,7 +1154,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_IMAGEBUTTON32,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonSettingsClick);
     Connect(ID_IMAGEBUTTON56,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonSwitchClick);
     Connect(ID_IMAGEBUTTON18,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonBinClick);
-    Connect(ID_IMAGEBUTTON17,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonBinClick);
+    Connect(ID_IMAGEBUTTON17,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonTxtClick);
     Connect(ID_IMAGEBUTTON16,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonFolderClick);
     Connect(ID_IMAGEBUTTON15,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonFilesClick);
     Connect(ID_IMAGEBUTTON14,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonLoadClick);
@@ -1200,6 +1228,8 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_IMAGEBUTTON57,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonFilesClick);
     Connect(ID_IMAGEBUTTON58,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonFolderClick);
     Connect(ID_IMAGEBUTTON59,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonBinClick);
+    Connect(ID_IMAGEBUTTON60,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonTxtClick);
+    Connect(ID_IMAGEBUTTON61,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnSav_ImageButtonTxtClick);
     Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnQuit);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnAbout);
     Connect(ID_TIMER1,wxEVT_TIMER,(wxObjectEventFunction)&AisdiRelationsFrame::OnTimer1Trigger);
@@ -1236,6 +1266,7 @@ void AisdiRelationsFrame::ShowTitle (void )
     P_MulTree->SetIcons(this);
     PanelNotify->Hide();
     PanelAdd->Hide();
+    PanelSave->Hide();
     PanelSettings->Hide();
 
     if (! P_MulTree->GetPanelEnabled())     //wyłączenie funkcjonowania panelu Multicast Tree
@@ -1374,7 +1405,7 @@ void AisdiRelationsFrame::OnT_ImageButtonSettingsClick(wxCommandEvent& event)
 
 void AisdiRelationsFrame::OnT_ImageButtonTxtClick(wxCommandEvent& event)
 {
-    P_Title->EventButtonTxtClick();
+    P_Title->EventButtonTxtClick(this);         //Tak naprawdę to jest zapis bazy do pliku bin, ale za dużo zamieszania z zamianą
 }
 
 void AisdiRelationsFrame::OnT_ImageButtonBinClick(wxCommandEvent& event)
@@ -1686,4 +1717,10 @@ void AisdiRelationsFrame::OnTimer1Trigger(wxTimerEvent& event)
 void AisdiRelationsFrame::OnSet_SliderNotifyTimeCmdScrollChanged(wxScrollEvent& event)
 {
     notifyTime = Set_SliderNotifyTime->GetValue();
+}
+
+void AisdiRelationsFrame::OnSav_ImageButtonTxtClick(wxCommandEvent& event)
+{
+    //Zapisywanie pliku tekstowego zaimplementowana (bo najszybciej) w panelu Title (jak pozostałe fukncje import/export)
+    P_Title->EventButtonSavTxtClick(this);
 }
