@@ -1,5 +1,6 @@
 #include "PanelInboxMaintance.h"
 #include "PanelNotifyMaintance.h"
+#include "PanelStatisticsMaintance.h"
 
 // TEMP - serializacja!
 #include <boost/archive/text_oarchive.hpp>
@@ -39,6 +40,11 @@ void PanelInboxMaintance::ShowPanel(AisdiRelationsFrame* Frame)
         if (GetSearchEnabled())
             SetSearchEnabled();
 
+        Frame->I_ImageButtonAdd->SetBitmapLabel(path+imagePaths[0]+format);
+        Frame->I_ImageButtonSave->SetBitmapLabel(path+imagePaths[1]+format);
+        Frame->I_ImageButtonSearch->SetBitmapLabel(path+imagePaths[2]+format);
+        Frame->I_ImageButtonSettings->SetBitmapLabel(path+imagePaths[3]+format);
+
         Frame->PanelInbox->SetPosition(wxPoint(0,0));
         Frame->PanelInbox->Show();
     }
@@ -47,12 +53,11 @@ void PanelInboxMaintance::ShowPanel(AisdiRelationsFrame* Frame)
 void PanelInboxMaintance::SetLabels(AisdiRelationsFrame* Frame)
 {
     wxListItem col;     //obiekt reprezentujący etykietę
-    const int COLUMN_COUNT = 5;   //liczba kolumns
 
-    wxString labels[COLUMN_COUNT] = {_("Data:"), _("Temat:"), _("Od:"), _("Do:"), _("Treść")};      //etykiety
-    int width[COLUMN_COUNT] = {90, 220, 160, 160, 1};      //szerokości kolumn, sumuje się do 630px
+    wxString labels[COL_COUNT] = {_("Data:"), _("Temat:"), _("Od:"), _("Do:"), _("Treść"), _("ID")};      //etykiety
+    int width[COL_COUNT] = {90, 220, 160, 160, 1, 1};      //szerokości kolumn, sumuje się do 630px
 
-    for (int i = 0; i < COLUMN_COUNT; i++)         //przypisujemy w pętli etykiety do kolumn listy
+    for (int i = 0; i < COL_COUNT; i++)         //przypisujemy w pętli etykiety do kolumn listy
     {
         col.SetId(i);
         col.SetText(labels[i]);
@@ -63,9 +68,6 @@ void PanelInboxMaintance::SetLabels(AisdiRelationsFrame* Frame)
 
 void PanelInboxMaintance::SetIcons(AisdiRelationsFrame* Frame)
 {
-    wxString path(_("resources/icons/icon"));
-    wxString format (_(".png"));
-
     Frame->I_ImageButtonAdd->SetBitmapLabel(path+imagePaths[0]+format);
     Frame->I_ImageButtonSave->SetBitmapLabel(path+imagePaths[1]+format);
     Frame->I_ImageButtonSearch->SetBitmapLabel(path+imagePaths[2]+format);
@@ -98,6 +100,10 @@ void PanelInboxMaintance::SetEmails (AisdiRelationsFrame* Frame)
             string sourceString = email->getContent();
             wxString content(sourceString.c_str(), wxConvUTF8);
             Frame->I_ListInbox->SetItem(i,4, content);
+
+            sourceString = email->getID();
+            wxString wxId(sourceString.c_str(), wxConvUTF8);
+            Frame->I_ListInbox->SetItem(i,5, wxId);
 
             sourceString = email->getSubject();
             wxString subject(sourceString.c_str(), wxConvUTF8);
@@ -175,23 +181,30 @@ bool PanelInboxMaintance::GetSettingsEnabled()
 void PanelInboxMaintance::EventButtonSearchClick (AisdiRelationsFrame* Frame)
 {
     if (Frame->P_Inbox->GetSearchEnabled())
+    {
         Frame->I_SearchCtrl->Hide();
+        Frame->I_ImageButtonSearch->SetBitmapLabel(path+imagePaths[2]+format);
+    }
     else
     {
+        Frame->I_ImageButtonSearch->SetBitmapLabel(path+imagePaths[2]+formatNeg);
         Frame->I_SearchCtrl->Show();
         Frame->I_SearchCtrl->SetFocus();
         if (GetAddEnabled())
         {
+            Frame->I_ImageButtonAdd->SetBitmapLabel(path+imagePaths[0]+format);
             Frame->PanelAdd->Hide();   //przy pokazaniu pola wyszukiwania schowaj ewentualnie panele Add...
             SetAddEnabled();
         }
         if (GetSaveEnabled())
         {
+            Frame->I_ImageButtonSave->SetBitmapLabel(path+imagePaths[1]+format);
             Frame->PanelSave->Hide();   //...Save...
             SetSaveEnabled();
         }
         if (GetSettingsEnabled())
         {
+            Frame->I_ImageButtonSettings->SetBitmapLabel(path+imagePaths[3]+format);
             Frame->PanelSettings->Hide();   //...oraz Settings
             SetSettingsEnabled();
         }
@@ -201,7 +214,6 @@ void PanelInboxMaintance::EventButtonSearchClick (AisdiRelationsFrame* Frame)
 
 void PanelInboxMaintance::EventListInboxItemSelect (AisdiRelationsFrame* Frame)
 {
-    const int COL_COUNT = 5;	//TODO wrzucić to do private
     long itemIndex = -1;
     itemIndex = Frame->I_ListInbox->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
 
@@ -223,6 +235,8 @@ void PanelInboxMaintance::EventListInboxItemSelect (AisdiRelationsFrame* Frame)
     Frame->I_StaticTextFrom->SetLabel(contents[2]);
     Frame->I_StaticTextTo->SetLabel(contents[3]);
 
+    emailIdSelected = contents[5].mb_str();
+
     const string search = "\n";
     const string replace = "<br>";
     string subject = string (contents[4].mb_str());
@@ -236,22 +250,29 @@ void PanelInboxMaintance::EventListInboxItemSelect (AisdiRelationsFrame* Frame)
 void PanelInboxMaintance::EventButtonAddClick (AisdiRelationsFrame * Frame)
 {
     if (GetAddEnabled())
+    {
         Frame->PanelAdd->Hide();
+        Frame->I_ImageButtonAdd->SetBitmapLabel(path+imagePaths[0]+format);
+    }
     else
     {
+        Frame->I_ImageButtonAdd->SetBitmapLabel(path+imagePaths[0]+formatNeg);
         Frame->PanelAdd->Show();
         if (GetSaveEnabled())
         {
+            Frame->I_ImageButtonSave->SetBitmapLabel(path+imagePaths[1]+format);
             Frame->PanelSave->Hide();   //przy pokazaniu panelu Add schowaj ewentualnie panele Save...
             SetSaveEnabled();
         }
         if (GetSettingsEnabled())
         {
+            Frame->I_ImageButtonSettings->SetBitmapLabel(path+imagePaths[3]+format);
             Frame->PanelSettings->Hide();   //...Settings...
             SetSettingsEnabled();
         }
         if (GetSearchEnabled())
         {
+            Frame->I_ImageButtonSearch->SetBitmapLabel(path+imagePaths[2]+format);
             Frame->I_SearchCtrl->Hide();     //...oraz pole Search
             SetSearchEnabled();
         }
@@ -262,22 +283,29 @@ void PanelInboxMaintance::EventButtonAddClick (AisdiRelationsFrame * Frame)
 void PanelInboxMaintance::EventButtonSaveClick (AisdiRelationsFrame * Frame)
 {
     if (GetSaveEnabled())
+    {
         Frame->PanelSave->Hide();
+        Frame->I_ImageButtonSave->SetBitmapLabel(path+imagePaths[1]+format);
+    }
     else
     {
+        Frame->I_ImageButtonSave->SetBitmapLabel(path+imagePaths[1]+formatNeg);
         Frame->PanelSave->Show();
         if (GetAddEnabled())
         {
+            Frame->I_ImageButtonAdd->SetBitmapLabel(path+imagePaths[0]+format);
             Frame->PanelAdd->Hide();   //przy pokazaniu panelu Save schowaj ewentualnie panele Add...
             SetAddEnabled();
         }
         if (GetSettingsEnabled())
         {
+            Frame->I_ImageButtonSettings->SetBitmapLabel(path+imagePaths[3]+format);
             Frame->PanelSettings->Hide();   //...Settings...
             SetSettingsEnabled();
         }
         if (GetSearchEnabled())
         {
+            Frame->I_ImageButtonSearch->SetBitmapLabel(path+imagePaths[2]+format);
             Frame->I_SearchCtrl->Hide();     //...oraz pole Search
             SetSearchEnabled();
         }
@@ -288,23 +316,30 @@ void PanelInboxMaintance::EventButtonSaveClick (AisdiRelationsFrame * Frame)
 void PanelInboxMaintance::EventButtonSettingsClick (AisdiRelationsFrame * Frame)
 {
     if (GetSettingsEnabled())
+    {
         Frame->PanelSettings->Hide();
+        Frame->I_ImageButtonSettings->SetBitmapLabel(path+imagePaths[3]+format);
+    }
     else
     {
+        Frame->I_ImageButtonSettings->SetBitmapLabel(path+imagePaths[3]+formatNeg);
         Frame->PanelSettings->SetPosition(wxPoint(370,100));
         Frame->PanelSettings->Show();
         if (GetAddEnabled())
         {
+            Frame->I_ImageButtonAdd->SetBitmapLabel(path+imagePaths[0]+format);
             Frame->PanelAdd->Hide();   //przy pokazaniu panelu Settings schowaj ewentualnie panele Add...
             SetAddEnabled();
         }
         if (GetSaveEnabled())
         {
+            Frame->I_ImageButtonSave->SetBitmapLabel(path+imagePaths[1]+format);
             Frame->PanelSave->Hide();   //...Save...
             SetSaveEnabled();
         }
         if (GetSearchEnabled())
         {
+            Frame->I_ImageButtonSearch->SetBitmapLabel(path+imagePaths[2]+format);
             Frame->I_SearchCtrl->Hide();     //...oraz pole Search
             SetSearchEnabled();
         }
@@ -314,7 +349,12 @@ void PanelInboxMaintance::EventButtonSettingsClick (AisdiRelationsFrame * Frame)
 
 void PanelInboxMaintance::EventButtonDeleteClick (AisdiRelationsFrame * Frame)
 {
-
+    //TODO dodać prompta o potwierdzenie
+    Frame->database->deleteEmail(Frame->database->getEmail(Frame->database->findEmail(emailIdSelected)));
+    Frame->P_Inbox->SetEmails(Frame);
+    Frame->statistics->update();
+    if (Frame->P_Stats->GetIsUpdated())
+        Frame->P_Stats->SetIsUpdated();
 }
 
 void PanelInboxMaintance::EventButtonSenderClick (AisdiRelationsFrame * Frame)

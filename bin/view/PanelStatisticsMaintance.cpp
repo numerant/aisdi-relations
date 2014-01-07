@@ -65,8 +65,12 @@ void PanelStatisticsMaintance::EventPanelEmailPerMonthPaint (AisdiRelationsFrame
     const int green = 70;
     const int blue = 30;
     wxPaintDC dc(Frame->S_PanelEmailPerMonth);
-    dc.SetPen(wxPen(wxColour(230,230,230)));
 
+    dc.SetBrush(wxBrush(wxColour(48,48,48)));
+    dc.SetPen(wxPen(wxColour(48,48,48)));
+    dc.DrawRectangle(wxPoint(5,28),wxSize(490,260));       //wyczyszczenie canvasu
+
+    dc.SetPen(wxPen(wxColour(230,230,230)));
     dc.SetTextForeground(wxColour(230,230,230));
     dc.SetFont(wxFont(11, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, _("Ubuntu")));
 

@@ -13,13 +13,19 @@ private:
     bool panelEnabled = true;       //dostępność panelu
     bool noData = true;             //czy dane zostały już zaimportowane (wtedy nie pokazuje ikonek dodawania)
     bool recursiveLoad = false;		//wczytywanie rekursywne maili z podanego folderu
+    bool deleteConfirm = true;      //prośba o potwierdzenie przy usuwaniu
     bool clickedAdd = false;            //dostępność poszczególnych przycisków dodawania danych;
     bool clickedLoad = false;
     bool clickedImport = false;
     bool clickedSettings = false;
+
+    wxString pathBig = (_("resources/iconsBig/icon"));
+    wxString path = (_("resources/icons/icon"));
+    wxString format =  (_(".png"));
+    wxString formatNeg = (_("Negative.png"));
     const wxString imagePaths[16] =
     {
-        _("Add"),  _("Database"),  _("FolderTree"),  _("Files"),  _("Folder"),  _("Export"),
+        _("DatabaseIO"),  _("Database"),  _("FolderTree"),  _("Files"),  _("Folder"),  _("Export"),
         _("Import"),  _("Settings"),  _("Mailbox"),  _("Usember"),  _("Workgroups"),  _("Statistics"),
         _("Tree"), _("SwitchMenu"), _("Bin"), _("Txt")
     };                                  //ścieżki plików z grafikami do przycisków panelu
@@ -32,6 +38,7 @@ public:
     void UpdateLoadingIcons (AisdiRelationsFrame* Frame);
     void SetNoData (bool value);
     void SetRecursiveLoad (bool value);
+    void SetDeleteConfirm (bool value);
     void SetClickedAdd (void);
     void SetClickedLoad (void);
     void SetClickedImport (void);
@@ -39,6 +46,7 @@ public:
 
     bool GetNoData (void);
     bool GetRecursiveLoad (void);
+    bool GetDeleteConfirm (void);
     bool GetClickedAdd (void);
     bool GetClickedLoad (void);
     bool GetClickedImport (void);

@@ -24,15 +24,15 @@ private:
     //przechowujące adres e-mail, na który ma zostać wysłana odpowiedź do danego maila
     Usember *replyTo;
     //przechowujące ID wiadomości, na którą dana wiadomość jest odpowiedzią
-    string inReplyTo;
+    string inReplyTo = "";
     //przechowujące ID wiadomości nadane przez bazę danych
-    string messageID;
+    string messageID = "";
     //przechowujące adres e-mail odbiorcy
     Usember *to;
     //przechowujące temat wiadomości
-    string subject;
+    string subject = "";
     //przechowujące treść wiadomości
-    string content;
+    string content ="";
     //przechowujace ID forwardow tej wiadomosci
     vector<string> forwards;
     //opcjonalne pole przechowujące ID wiadomości, na którą dana wiadomość jest odpowiedzią oraz

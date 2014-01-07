@@ -13,6 +13,10 @@ private:
     bool settingsEnabled = false;
     bool usembersListEnabled = true;
     bool emailContentEnabled = true;
+
+    wxString path = (_("resources/icons/icon"));
+    wxString format =  (_(".png"));
+    wxString formatNeg = (_("Negative.png"));
     const wxString imagePaths[13] =
     {
         _("Add"),  _("Floppy"),  _("Search"),  _("Settings"),  _("Mailbox"),  _("Workgroups"),

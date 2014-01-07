@@ -305,6 +305,7 @@ const long AisdiRelationsFrame::ID_STATICTEXT130 = wxNewId();
 const long AisdiRelationsFrame::ID_PANEL11 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICBOX5 = wxNewId();
 const long AisdiRelationsFrame::ID_CHECKBOX1 = wxNewId();
+const long AisdiRelationsFrame::ID_CHECKBOX2 = wxNewId();
 const long AisdiRelationsFrame::ID_SLIDER1 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT110 = wxNewId();
 const long AisdiRelationsFrame::ID_PANEL10 = wxNewId();
@@ -900,7 +901,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     U_SearchCtrl = new wxSearchCtrl(PanelUsembers, ID_SEARCHCTRL2, wxEmptyString, wxPoint(25,130), wxSize(630,25), wxTE_PROCESS_ENTER, wxDefaultValidator, _T("ID_SEARCHCTRL2"));
     U_SearchCtrl->Hide();
     U_SearchCtrl->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_HIGHLIGHT));
-    PanelInbox = new wxPanel(PanelMain, ID_PANEL2, wxPoint(0,0), wxSize(1366,750), wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxVSCROLL|wxHSCROLL, _T("ID_PANEL2"));
+    PanelInbox = new wxPanel(PanelMain, ID_PANEL2, wxPoint(1366,0), wxSize(1366,750), wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxVSCROLL|wxHSCROLL, _T("ID_PANEL2"));
     I_BitmapBackground = new wxStaticBitmap(PanelInbox, ID_STATICBITMAP1, wxBitmap(wxImage(_T("resources/background.jpg")).Rescale(wxSize(1366,768).GetWidth(),wxSize(1366,768).GetHeight())), wxPoint(0,0), wxSize(1366,768), wxSIMPLE_BORDER, _T("ID_STATICBITMAP1"));
     I_LabelTitle = new wxStaticText(PanelInbox, ID_STATICTEXT61, _("Menu"), wxPoint(22,70), wxDefaultSize, wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_STATICTEXT61"));
     I_LabelTitle->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
@@ -1049,10 +1050,10 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     N_StaticTextValue2->SetForegroundColour(wxColour(178,28,16));
     N_StaticTextValue3 = new wxStaticText(PanelNotify, ID_STATICTEXT130, _("0"), wxPoint(170,85), wxDefaultSize, wxALIGN_LEFT, _T("ID_STATICTEXT130"));
     N_StaticTextValue3->SetForegroundColour(wxColour(88,43,211));
-    PanelSettings = new wxPanel(PanelMain, ID_PANEL10, wxPoint(860,20), wxSize(300,140), wxTAB_TRAVERSAL, _T("ID_PANEL10"));
+    PanelSettings = new wxPanel(PanelMain, ID_PANEL10, wxPoint(860,20), wxSize(300,160), wxTAB_TRAVERSAL, _T("ID_PANEL10"));
     PanelSettings->Hide();
     PanelSettings->SetBackgroundColour(wxColour(50,50,50));
-    Set_Border = new wxStaticBox(PanelSettings, ID_STATICBOX5, wxEmptyString, wxPoint(0,-10), wxSize(300,150), 0, _T("ID_STATICBOX5"));
+    Set_Border = new wxStaticBox(PanelSettings, ID_STATICBOX5, wxEmptyString, wxPoint(0,-10), wxSize(300,170), 0, _T("ID_STATICBOX5"));
     Set_Border->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
     Set_CheckBoxRecursive = new wxCheckBox(PanelSettings, ID_CHECKBOX1, _("Wczytywanie rekursywne folderów"), wxPoint(10,8), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX1"));
     Set_CheckBoxRecursive->SetValue(false);
@@ -1060,12 +1061,18 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Set_CheckBoxRecursive->SetBackgroundColour(wxColour(160,160,160));
     wxFont Set_CheckBoxRecursiveFont(11,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     Set_CheckBoxRecursive->SetFont(Set_CheckBoxRecursiveFont);
-    Set_SliderNotifyTime = new wxSlider(PanelSettings, ID_SLIDER1, 3, 1, 10, wxPoint(20,65), wxSize(260,50), wxSL_HORIZONTAL|wxSL_AUTOTICKS|wxSL_LABELS, wxDefaultValidator, _T("ID_SLIDER1"));
+    Set_CheckBoxDeleteConfirm = new wxCheckBox(PanelSettings, ID_CHECKBOX2, _("Potwierdzenie usuwania"), wxPoint(10,35), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX2"));
+    Set_CheckBoxDeleteConfirm->SetValue(true);
+    Set_CheckBoxDeleteConfirm->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
+    Set_CheckBoxDeleteConfirm->SetBackgroundColour(wxColour(160,160,160));
+    wxFont Set_CheckBoxDeleteConfirmFont(11,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
+    Set_CheckBoxDeleteConfirm->SetFont(Set_CheckBoxDeleteConfirmFont);
+    Set_SliderNotifyTime = new wxSlider(PanelSettings, ID_SLIDER1, 3, 1, 10, wxPoint(20,85), wxSize(260,50), wxSL_HORIZONTAL|wxSL_AUTOTICKS|wxSL_LABELS, wxDefaultValidator, _T("ID_SLIDER1"));
     Set_SliderNotifyTime->SetLineSize(10);
     Set_SliderNotifyTime->SetThumbLength(10);
     Set_SliderNotifyTime->SetTick(1);
     Set_SliderNotifyTime->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
-    Set_LabelNotify = new wxStaticText(PanelSettings, ID_STATICTEXT110, _("Czas wyświetlania powiadomień [s]"), wxPoint(30,45), wxDefaultSize, 0, _T("ID_STATICTEXT110"));
+    Set_LabelNotify = new wxStaticText(PanelSettings, ID_STATICTEXT110, _("Czas wyświetlania powiadomień [s]"), wxPoint(30,65), wxDefaultSize, 0, _T("ID_STATICTEXT110"));
     Set_LabelNotify->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
     wxFont Set_LabelNotifyFont(11,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     Set_LabelNotify->SetFont(Set_LabelNotifyFont);
@@ -1224,6 +1231,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_IMAGEBUTTON19,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnI_ImageButtonAddClick);
     Connect(ID_SEARCHCTRL1,wxEVT_COMMAND_TEXT_ENTER,(wxObjectEventFunction)&AisdiRelationsFrame::OnI_SearchCtrlTextEnter);
     Connect(ID_CHECKBOX1,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_CheckBoxRecursiveClick);
+    Connect(ID_CHECKBOX2,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnSet_CheckBoxDeleteConfirmClick);
     Connect(ID_SLIDER1,wxEVT_SCROLL_CHANGED,(wxObjectEventFunction)&AisdiRelationsFrame::OnSet_SliderNotifyTimeCmdScrollChanged);
     Connect(ID_IMAGEBUTTON57,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonFilesClick);
     Connect(ID_IMAGEBUTTON58,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonFolderClick);
@@ -1723,4 +1731,9 @@ void AisdiRelationsFrame::OnSav_ImageButtonTxtClick(wxCommandEvent& event)
 {
     //Zapisywanie pliku tekstowego zaimplementowana (bo najszybciej) w panelu Title (jak pozostałe fukncje import/export)
     P_Title->EventButtonSavTxtClick(this);
+}
+
+void AisdiRelationsFrame::OnSet_CheckBoxDeleteConfirmClick(wxCommandEvent& event)
+{
+    P_Title->SetDeleteConfirm(Set_CheckBoxDeleteConfirm->GetValue());
 }

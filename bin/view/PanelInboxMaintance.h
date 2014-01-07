@@ -8,11 +8,17 @@ class PanelInboxMaintance
     friend class AisdiRelationsFrame;
 
 private:
+    const static int COL_COUNT = 6;
     bool panelEnabled = true;
     bool searchEnabled = false;
     bool addEnabled = false;
     bool saveEnabled = false;
     bool settingsEnabled = false;
+    string emailIdSelected = "";
+
+    wxString path = (_("resources/icons/icon"));
+    wxString format =  (_(".png"));
+    wxString formatNeg = (_("Negative.png"));
     const wxString imagePaths[13] =
     {
         _("Add"),  _("Floppy"),  _("Search"),  _("Settings"),  _("Usember"),  _("Workgroups"),

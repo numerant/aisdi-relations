@@ -33,6 +33,11 @@ void PanelUsembersMaintance::ShowPanel(AisdiRelationsFrame* Frame)
         if (GetSearchEnabled())
             SetSearchEnabled();
 
+        Frame->U_ImageButtonAdd->SetBitmapLabel(path+imagePaths[0]+format);
+        Frame->U_ImageButtonSave->SetBitmapLabel(path+imagePaths[1]+format);
+        Frame->U_ImageButtonSearch->SetBitmapLabel(path+imagePaths[2]+format);
+        Frame->U_ImageButtonSettings->SetBitmapLabel(path+imagePaths[3]+format);
+
         if (usembersListEnabled)
         {
             Frame->U_ListUsembers->Show();
@@ -94,9 +99,6 @@ void PanelUsembersMaintance::SetLabels(AisdiRelationsFrame* Frame)
 
 void PanelUsembersMaintance::SetIcons(AisdiRelationsFrame* Frame)
 {
-    wxString path(_("resources/icons/icon"));
-    wxString format (_(".png"));
-
     Frame->U_ImageButtonAdd->SetBitmapLabel(path+imagePaths[0]+format);
     Frame->U_ImageButtonSave->SetBitmapLabel(path+imagePaths[1]+format);
     Frame->U_ImageButtonSearch->SetBitmapLabel(path+imagePaths[2]+format);
@@ -194,23 +196,30 @@ bool PanelUsembersMaintance::GetSettingsEnabled()
 void PanelUsembersMaintance::EventButtonSearchClick (AisdiRelationsFrame* Frame)
 {
     if (Frame->P_Usembers->GetSearchEnabled())
+    {
         Frame->U_SearchCtrl->Hide();
+        Frame->U_ImageButtonSearch->SetBitmapLabel(path+imagePaths[2]+format);
+    }
     else
     {
+        Frame->U_ImageButtonSearch->SetBitmapLabel(path+imagePaths[2]+formatNeg);
         Frame->U_SearchCtrl->SetFocus();
         Frame->U_SearchCtrl->Show();
         if (GetAddEnabled())
         {
+            Frame->U_ImageButtonAdd->SetBitmapLabel(path+imagePaths[0]+format);
             Frame->PanelAdd->Hide();   //przy pokazaniu pola wyszukiwania schowaj ewentualnie panele Add...
             SetAddEnabled();
         }
         if (GetSaveEnabled())
         {
+            Frame->U_ImageButtonSave->SetBitmapLabel(path+imagePaths[1]+format);
             Frame->PanelSave->Hide();   //...Save...
             SetSaveEnabled();
         }
         if (GetSettingsEnabled())
         {
+            Frame->U_ImageButtonSettings->SetBitmapLabel(path+imagePaths[3]+format);
             Frame->PanelSettings->Hide();   //...oraz Settings
             SetSettingsEnabled();
         }
@@ -221,22 +230,29 @@ void PanelUsembersMaintance::EventButtonSearchClick (AisdiRelationsFrame* Frame)
 void PanelUsembersMaintance::EventButtonAddClick (AisdiRelationsFrame * Frame)
 {
     if (GetAddEnabled())
+    {
         Frame->PanelAdd->Hide();
+        Frame->U_ImageButtonAdd->SetBitmapLabel(path+imagePaths[0]+format);
+    }
     else
     {
+        Frame->U_ImageButtonAdd->SetBitmapLabel(path+imagePaths[0]+formatNeg);
         Frame->PanelAdd->Show();
         if (GetSaveEnabled())
         {
+            Frame->U_ImageButtonSave->SetBitmapLabel(path+imagePaths[1]+format);
             Frame->PanelSave->Hide();   //przy pokazaniu panelu Add schowaj ewentualnie panele Save...
             SetSaveEnabled();
         }
         if (GetSettingsEnabled())
         {
+            Frame->U_ImageButtonSettings->SetBitmapLabel(path+imagePaths[3]+format);
             Frame->PanelSettings->Hide();   //...Settings...
             SetSettingsEnabled();
         }
         if (GetSearchEnabled())
         {
+            Frame->U_ImageButtonSearch->SetBitmapLabel(path+imagePaths[2]+format);
             Frame->U_SearchCtrl->Hide();   //...oraz pole Search
             SetSearchEnabled();
         }
@@ -247,22 +263,29 @@ void PanelUsembersMaintance::EventButtonAddClick (AisdiRelationsFrame * Frame)
 void PanelUsembersMaintance::EventButtonSaveClick (AisdiRelationsFrame * Frame)
 {
     if (GetSaveEnabled())
+    {
         Frame->PanelSave->Hide();
+        Frame->U_ImageButtonSave->SetBitmapLabel(path+imagePaths[1]+format);
+    }
     else
     {
+        Frame->U_ImageButtonSave->SetBitmapLabel(path+imagePaths[1]+formatNeg);
         Frame->PanelSave->Show();
         if (GetAddEnabled())
         {
+            Frame->U_ImageButtonAdd->SetBitmapLabel(path+imagePaths[0]+format);
             Frame->PanelAdd->Hide();   //przy pokazaniu panelu Save schowaj ewentualnie panele Add...
             SetAddEnabled();
         }
         if (GetSettingsEnabled())
         {
+            Frame->U_ImageButtonSettings->SetBitmapLabel(path+imagePaths[3]+format);
             Frame->PanelSettings->Hide();   //...Settings...
             SetSettingsEnabled();
         }
         if (GetSearchEnabled())
         {
+            Frame->U_ImageButtonSearch->SetBitmapLabel(path+imagePaths[2]+format);
             Frame->U_SearchCtrl->Hide();   //...oraz pole Search
             SetSearchEnabled();
         }
@@ -273,23 +296,30 @@ void PanelUsembersMaintance::EventButtonSaveClick (AisdiRelationsFrame * Frame)
 void PanelUsembersMaintance::EventButtonSettingsClick (AisdiRelationsFrame * Frame)
 {
     if (GetSettingsEnabled())
+    {
         Frame->PanelSettings->Hide();
+        Frame->U_ImageButtonSettings->SetBitmapLabel(path+imagePaths[3]+format);
+    }
     else
     {
+        Frame->U_ImageButtonSettings->SetBitmapLabel(path+imagePaths[3]+formatNeg);
         Frame->PanelSettings->SetPosition(wxPoint(370,100));
         Frame->PanelSettings->Show();
         if (GetAddEnabled())
         {
+            Frame->U_ImageButtonAdd->SetBitmapLabel(path+imagePaths[2]+format);
             Frame->PanelAdd->Hide();   //przy pokazaniu panelu Settings schowaj ewentualnie panele Add...
             SetAddEnabled();
         }
         if (GetSaveEnabled())
         {
+            Frame->U_ImageButtonSave->SetBitmapLabel(path+imagePaths[1]+format);
             Frame->PanelSave->Hide();   //...Save
             SetSaveEnabled();
         }
         if (GetSearchEnabled())
         {
+            Frame->U_ImageButtonSearch->SetBitmapLabel(path+imagePaths[2]+format);
             Frame->U_SearchCtrl->Hide();   //...oraz pole Search
             SetSearchEnabled();
         }

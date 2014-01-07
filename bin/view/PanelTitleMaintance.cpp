@@ -27,6 +27,8 @@ void PanelTitleMaintance::ShowPanel(AisdiRelationsFrame* Frame)
 
         Frame->PanelSettings->Hide();	//ukrycie panelu opcji wraz z obramowaniem
 
+        Frame->T_ImageButtonSettings->SetBitmapLabel(path+imagePaths[7]+format);  //przywrócenie prawidłowej grafiki przyciskowi settings
+
         Frame->P_Title->SetNoData( ! (Frame->P_Title->GetNoData() ) ); //Zmień ikony, ale z zanegowaną wartością parametru
         Frame->P_Title->SwitchIcons(Frame);                            //Więc de facto tylko je wyświetl
     }
@@ -34,11 +36,6 @@ void PanelTitleMaintance::ShowPanel(AisdiRelationsFrame* Frame)
 
 void PanelTitleMaintance::SetIcons(AisdiRelationsFrame* Frame)
 {
-    wxString pathBig(_("resources/iconsBig/icon"));
-    wxString path(_("resources/icons/icon"));
-    wxString pathArrow(_("resources/icon"));
-    wxString format (_(".png"));
-
     Frame->T_ImageButtonAdd->SetBitmapLabel(pathBig+imagePaths[0]+format);      //załadowanie grafik pod przyciski panelu Title
     Frame->T_ImageButtonImport->SetBitmapLabel(pathBig+imagePaths[1]+format);
     Frame->T_ImageButtonLoad->SetBitmapLabel(pathBig+imagePaths[2]+format);
@@ -128,6 +125,10 @@ void PanelTitleMaintance::UpdateLoadingIcons (AisdiRelationsFrame* Frame)
 
     if ( !clickedAdd )
     {
+        Frame->T_ImageButtonAdd->SetBitmapLabel(pathBig+imagePaths[0]+format); 
+        Frame->T_ImageButtonImport->SetBitmapLabel(pathBig+imagePaths[1]+format);
+        Frame->T_ImageButtonLoad->SetBitmapLabel(pathBig+imagePaths[2]+format);
+
         //ukryj przyciski dodawania maili
         Frame->T_ImageButtonImport->Hide();
         Frame->T_ImageButtonTxt->Hide();
@@ -148,6 +149,10 @@ void PanelTitleMaintance::UpdateLoadingIcons (AisdiRelationsFrame* Frame)
     }
     else if ( (clickedAdd) && ( !clickedImport) && ( !clickedLoad) )
     {
+        Frame->T_ImageButtonAdd->SetBitmapLabel(pathBig+imagePaths[0]+formatNeg); 
+        Frame->T_ImageButtonImport->SetBitmapLabel(pathBig+imagePaths[1]+format);
+        Frame->T_ImageButtonLoad->SetBitmapLabel(pathBig+imagePaths[2]+format);
+
         Frame->T_ImageButtonImport->Show();
         Frame->T_ImageButtonLoad->Show();
         Frame->T_LabelImport->Show();
@@ -168,6 +173,9 @@ void PanelTitleMaintance::UpdateLoadingIcons (AisdiRelationsFrame* Frame)
     }
     else if ( (clickedAdd) && (!clickedImport) && ( clickedLoad) )
     {
+        Frame->T_ImageButtonLoad->SetBitmapLabel(pathBig+imagePaths[2]+formatNeg);
+        Frame->T_ImageButtonImport->SetBitmapLabel(pathBig+imagePaths[1]+format);
+        
         Frame->T_ImageButtonImport->Show();
         Frame->T_ImageButtonLoad->Show();
         Frame->T_ImageButtonFolder->Show();
@@ -188,6 +196,9 @@ void PanelTitleMaintance::UpdateLoadingIcons (AisdiRelationsFrame* Frame)
     }
     else if ( (clickedAdd) && ( clickedImport) && ( !clickedLoad) )
     {
+        Frame->T_ImageButtonImport->SetBitmapLabel(pathBig+imagePaths[1]+formatNeg);
+        Frame->T_ImageButtonLoad->SetBitmapLabel(pathBig+imagePaths[2]+format);
+
         Frame->T_ImageButtonImport->Show();
         Frame->T_ImageButtonLoad->Show();
         Frame->T_ImageButtonTxt->Show();
@@ -216,6 +227,11 @@ void PanelTitleMaintance::SetNoData (bool value)
 void PanelTitleMaintance::SetRecursiveLoad (bool value)
 {
     recursiveLoad = value;
+}
+
+void PanelTitleMaintance::SetDeleteConfirm (bool value)
+{
+    deleteConfirm = value;
 }
 
 void PanelTitleMaintance::SetClickedAdd (void)
@@ -250,6 +266,11 @@ bool PanelTitleMaintance::GetNoData (void)
 bool PanelTitleMaintance::GetRecursiveLoad (void)
 {
     return recursiveLoad;
+}
+
+bool PanelTitleMaintance::GetDeleteConfirm (void)
+{
+    return deleteConfirm;
 }
 
 bool PanelTitleMaintance::GetClickedAdd (void)
@@ -356,9 +377,13 @@ void PanelTitleMaintance::EventButtonFilesClick (AisdiRelationsFrame* Frame)
 void PanelTitleMaintance::EventButtonSettingsClick (AisdiRelationsFrame * Frame)
 {
 	if (GetClickedSettings())
+    {
 		Frame->PanelSettings->Hide();
+        Frame->T_ImageButtonSettings->SetBitmapLabel(path+imagePaths[7]+format);
+    }
 	else
 	{
+        Frame->T_ImageButtonSettings->SetBitmapLabel(path+imagePaths[7]+formatNeg);
 	    Frame->PanelSettings->SetPosition(wxPoint(870,20));
 		Frame->PanelSettings->Show();
 	}
@@ -367,6 +392,15 @@ void PanelTitleMaintance::EventButtonSettingsClick (AisdiRelationsFrame * Frame)
 
 void PanelTitleMaintance::EventButtonSwitchClick (AisdiRelationsFrame * Frame)
 {
+    if (!GetNoData())
+    {
+        if (GetClickedAdd())
+            SetClickedAdd();
+        if (GetClickedImport())
+            SetClickedImport();
+        if (GetClickedLoad())
+            SetClickedLoad();
+    }
     Frame->P_Title->SwitchIcons(Frame);
 }
 

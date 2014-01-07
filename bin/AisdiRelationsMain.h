@@ -149,6 +149,7 @@ private:
     void OnS_ImageButtonRefreshClick(wxCommandEvent& event);
     void OnT_ImageButtonSwitchClick(wxCommandEvent& event);
     void OnSav_ImageButtonTxtClick(wxCommandEvent& event);
+    void OnSet_CheckBoxDeleteConfirmClick(wxCommandEvent& event);
     //*)
 
     //(*Identifiers(AisdiRelationsFrame)
@@ -391,6 +392,7 @@ private:
     static const long ID_PANEL11;
     static const long ID_STATICBOX5;
     static const long ID_CHECKBOX1;
+    static const long ID_CHECKBOX2;
     static const long ID_SLIDER1;
     static const long ID_STATICTEXT110;
     static const long ID_PANEL10;
@@ -675,6 +677,7 @@ private:
     wxStaticText* M_LabelInbox;
     wxMenuItem* MenuItem4;
     wxStaticBox* Sav_Border;
+    wxCheckBox* Set_CheckBoxDeleteConfirm;
     wxBitmapButton        *Sav_ImageButtonBin;
     wxStaticText* S_StaticTextC_EmailsPerUsember;
     wxBitmapButton        *U_ImageButtonGroups;
