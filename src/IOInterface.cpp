@@ -49,16 +49,14 @@ void IOInterface::importSingleMail(boost::filesystem::path path, ImportStats &st
         try
         {
             tempEmail = emlParser( path.c_str() );
-            database->addEmail(tempEmail);
-            stats.successCount++;
+            if(database->addEmail(tempEmail))
+                stats.successCount++;
+            else
+                stats.existingCount++;
         }
         catch ( IOException error )                                             // mail nie jest poprawny składniowo
         {
             stats.failCount++;
-        }
-        catch ( ... /* tu ma być błąd bazy danych! */ )
-        {
-            stats.existingCount++;
         }
     }
     //delete tempEmail;
@@ -107,12 +105,12 @@ Email* IOInterface::emlParser (string path)
 			fromLOGIN = wynik[3];
 			fromDOMAIN = wynik[4];
 		}
-	
+
 
         // wczytanie TO
         do
             getline(plik, wiersz);
-        while (( regex_search( wiersz, wynik, regTo) == 0 )&&( !plik.eof() )); 
+        while (( regex_search( wiersz, wynik, regTo) == 0 )&&( !plik.eof() ));
         if ( plik.eof() )
 		{
 			throw EmlSyntaxIncorrect();
@@ -128,7 +126,7 @@ Email* IOInterface::emlParser (string path)
         // wczytanie SUBJECT
         do
             getline(plik, wiersz);
-        while (( regex_search( wiersz, wynik, regSubject) == 0 )&&( !plik.eof() )); 
+        while (( regex_search( wiersz, wynik, regSubject) == 0 )&&( !plik.eof() ));
         if ( plik.eof() )
 		{
 			throw EmlSyntaxIncorrect();
@@ -141,7 +139,7 @@ Email* IOInterface::emlParser (string path)
         // wczytanie MID
         do
             getline(plik, wiersz);
-        while (( regex_search( wiersz, wynik, regMID) == 0 )&&( !plik.eof() )); 
+        while (( regex_search( wiersz, wynik, regMID) == 0 )&&( !plik.eof() ));
         if ( plik.eof() )
 		{
 			throw EmlSyntaxIncorrect();
