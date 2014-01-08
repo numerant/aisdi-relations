@@ -167,6 +167,10 @@ int Date::compare(Date &date2)
         return -1;
     if(hour > date2.hour)
         return 1;
+    if(hour < date2.hour)
+        return -1;    
+    if(minute > date2.minute)
+        return 1;    
     if(minute < date2.minute)
         return -1;
     return 0;
