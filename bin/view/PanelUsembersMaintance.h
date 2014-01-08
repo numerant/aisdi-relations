@@ -6,6 +6,8 @@ class PanelUsembersMaintance
     friend class AisdiRelationsFrame;
 
 private:
+    const static int COL_USEMBERS_COUNT = 3;
+    const static int COL_EMAILS_COUNT = 6;
     bool panelEnabled = true;
     bool searchEnabled = false;
     bool addEnabled = false;
@@ -13,6 +15,8 @@ private:
     bool settingsEnabled = false;
     bool usembersListEnabled = true;
     bool emailContentEnabled = true;
+    string emailIdSelected = "";
+    string adressUsemberSelected = "";
 
     wxString path = (_("resources/icons/icon"));
     wxString format =  (_(".png"));
@@ -29,6 +33,7 @@ public:
     void ShowPanel(AisdiRelationsFrame* Frame);
     void SetLabels(AisdiRelationsFrame* Frame);
     void SetUsembers (AisdiRelationsFrame * Frame);
+    void SetEmails (AisdiRelationsFrame * Frame, int pos);
     void SwitchList(AisdiRelationsFrame * Frame);
     void SwitchContent(AisdiRelationsFrame * Frame);
     void SetIcons(AisdiRelationsFrame* Frame);

@@ -64,6 +64,7 @@ void PanelUsembersMaintance::ShowPanel(AisdiRelationsFrame* Frame)
             Frame->U_PanelStats->Show();
         }
 
+        SetUsembers(Frame);         //TODO przenieść to do PaneluTitle przy wczytywaniu plików
         Frame->PanelUsembers->SetPosition(wxPoint(0,0));
         Frame->PanelUsembers->Show();
     }
@@ -73,11 +74,11 @@ void PanelUsembersMaintance::SetLabels(AisdiRelationsFrame* Frame)
 {
     wxListItem col;
 
-    wxString labels1[3] = {_("Nazwa:"), _("Email:"), _("Grupa:")};    //etykiety do przypasowania liście usemberów
-    wxString labels2[5] = {_("Data:"), _("Temat:"), _("Od:"), _("Do:"), _("Treść")};    //oraz skrzynkom emailowym
-    int width[4] = {90, 290, 250, 1};
+    wxString labels1[COL_USEMBERS_COUNT] = {_("Nazwa:"), _("Email:"), _("Grupa:")};    //etykiety do przypasowania liście usemberów
+    wxString labels2[COL_EMAILS_COUNT] = {_("Data:"), _("Temat:"), _("Od:"), _("Do:"), _("Treść"), _("ID")};    //oraz skrzynkom emailowym
+    int width[COL_EMAILS_COUNT] = {90, 290, 250, 1, 1, 1};
 
-    for (int i = 0; i < 3; i++)         //przypisujemy etykiety dla Usemberów do kolumn w pętli
+    for (int i = 0; i < COL_USEMBERS_COUNT; i++)         //przypisujemy etykiety dla Usemberów do kolumn w pętli
     {
         col.SetId(i);
         col.SetText(labels1[i]);
@@ -85,8 +86,9 @@ void PanelUsembersMaintance::SetLabels(AisdiRelationsFrame* Frame)
         Frame->U_ListUsembers->InsertColumn(i, col);
     }
 
-    for (int i = 0; i < 3; i++)         //tak samo dla skrzynek
+    for (int i = 0; i < COL_EMAILS_COUNT; i++)         //tak samo dla skrzynek
     {
+        if (i == 3) continue;
         col.SetId(i);
         col.SetText(labels2[i]);
         col.SetWidth(width[i]);
@@ -119,36 +121,114 @@ void PanelUsembersMaintance::SetUsembers(AisdiRelationsFrame * Frame)
             wxString wxAdress (sourceString.c_str(), wxConvUTF8);
             Frame->U_ListUsembers->SetItem(i,1, wxAdress );
 
-            /*sourceString = email->getSubject();
-            wxString subject(sourceString.c_str(), wxConvUTF8);
-            Frame->U_ListUsembers->SetItem(i,1,subject);
-
-            Date date = email->getDate();
-            int day =date.getDay();
-            string month = date.getMonth();
-            int year = date.getYear();
-            ostringstream ssday;
-            ssday << day;
-            string strdate = ssday.str();
-            strdate+= " "+month+" ";
-            ostringstream ssyear;
-            ssyear << year;
-            strdate += ssyear.str();
-
-            sourceString = strdate;
-            wxString wxdate(sourceString.c_str(), wxConvUTF8);
-            Frame->U_ListUsembers->SetItem(i,0,wxdate);
-
-            Usember* from = email->getFrom();
-            sourceString = from->getAddress();
-            wxString wxfrom(sourceString.c_str(), wxConvUTF8);
-            Frame->U_ListUsembers->SetItem(i,2,wxfrom);
-
-            Usember* to = email->getTo();
-            sourceString = to->getAddress();
-            wxString wxto(sourceString.c_str(), wxConvUTF8);
-            Frame->U_ListUsembers->SetItem(i,3,wxto);*/
+            Group * group = usember->getGroup();
+            int iGroup = group->getID();
+            ostringstream ssGroup;
+            ssGroup << iGroup;
+            sourceString = ssGroup.str();
+            wxString wxGroup (sourceString.c_str(), wxConvUTF8);
+            Frame->U_ListUsembers->SetItem(i,2,wxGroup);
         }
+    }
+}
+
+void PanelUsembersMaintance::SetEmails (AisdiRelationsFrame * Frame, int pos)
+{
+    if (int counterU = Frame->database->countUsembers() > 0)     //TODO Zmienić wyświetlanie za pomocą Query
+    {
+        Frame->U_ListInbox->DeleteAllItems();
+        Frame->U_ListOutbox->DeleteAllItems();
+        Usember * usember = Frame->database->getUsember(pos);
+
+        if (int counterIn = usember->receiveMailCount() > 0)
+            for (int i = 0; i < counterIn; i++)
+            {
+                Email * email = usember->getEmailReceived(i);
+
+                wxListItem item;
+                item.SetId(i);
+                if (i % 2 == 0)
+                    item.SetTextColour(wxColor(200,200,200));
+                Frame->U_ListInbox->InsertItem( item );
+
+                string sourceString = email->getContent();
+                wxString content(sourceString.c_str(), wxConvUTF8);
+                Frame->U_ListInbox->SetItem(i,3, content);
+
+                sourceString = email->getID();
+                wxString wxId(sourceString.c_str(), wxConvUTF8);
+                Frame->U_ListInbox->SetItem(i,4, wxId);
+
+                sourceString = email->getSubject();
+                wxString subject(sourceString.c_str(), wxConvUTF8);
+                Frame->U_ListInbox->SetItem(i,1,subject);
+
+                Date date = email->getDate();
+                int day =date.getDay();
+                string month = date.getMonth();
+                int year = date.getYear();
+                ostringstream ssday;
+                ssday << day;
+                string strdate = ssday.str();
+                strdate+= " "+month+" ";
+                ostringstream ssyear;
+                ssyear << year;
+                strdate += ssyear.str();
+
+                sourceString = strdate;
+                wxString wxdate(sourceString.c_str(), wxConvUTF8);
+                Frame->U_ListInbox->SetItem(i,0,wxdate);
+
+                Usember* from = email->getFrom();
+                sourceString = from->getAddress();
+                wxString wxfrom(sourceString.c_str(), wxConvUTF8);
+                Frame->U_ListInbox->SetItem(i,2,wxfrom);
+            }
+
+         if (int counterOut = usember->sendMailCount() > 0)
+            for (int i = 0; i < counterOut; i++)
+            {
+                Email * email = usember->getEmailSent(i);
+
+                wxListItem item;
+                item.SetId(i);
+                if (i % 2 == 0)
+                    item.SetTextColour(wxColor(200,200,200));
+                Frame->U_ListOutbox->InsertItem( item );
+
+                string sourceString = email->getContent();
+                wxString content(sourceString.c_str(), wxConvUTF8);
+                Frame->U_ListOutbox->SetItem(i,3, content);
+
+                sourceString = email->getID();
+                wxString wxId(sourceString.c_str(), wxConvUTF8);
+                Frame->U_ListOutbox->SetItem(i,4, wxId);
+
+                sourceString = email->getSubject();
+                wxString subject(sourceString.c_str(), wxConvUTF8);
+                Frame->U_ListOutbox->SetItem(i,1,subject);
+
+                Date date = email->getDate();
+                int day =date.getDay();
+                string month = date.getMonth();
+                int year = date.getYear();
+                ostringstream ssday;
+                ssday << day;
+                string strdate = ssday.str();
+                strdate+= " "+month+" ";
+                ostringstream ssyear;
+                ssyear << year;
+                strdate += ssyear.str();
+
+                sourceString = strdate;
+                wxString wxdate(sourceString.c_str(), wxConvUTF8);
+                Frame->U_ListOutbox->SetItem(i,0,wxdate);
+
+                Usember* to = email->getTo();
+                sourceString = to->getAddress();
+                wxString wxto (sourceString.c_str(), wxConvUTF8);
+                Frame->U_ListOutbox->SetItem(i,2,wxto);
+            }
     }
 }
 
@@ -404,7 +484,28 @@ void PanelUsembersMaintance::EventSearchCtrlTextEnter (AisdiRelationsFrame* Fram
 
 void PanelUsembersMaintance::EventListUsembersItemSelect (AisdiRelationsFrame* Frame)
 {
+    long itemIndex = -1;
+    itemIndex = Frame->U_ListUsembers->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
 
+    wxListItem item;
+    wxString contents[COL_USEMBERS_COUNT];
+    wxString pOpen = _("<p align=\"justify\"><font color=\"lightgray\">");
+    wxString pClose = _("</font></p>");
+    item.m_itemId = itemIndex;
+    item.m_mask = wxLIST_MASK_TEXT;
+
+    for (int i = 0; i < COL_USEMBERS_COUNT; i++)
+    {
+        item.m_col = i;
+        Frame->U_ListUsembers->GetItem( item );
+        contents[i] = item.m_text;
+    }
+    Frame->U_LabelName->SetLabel(contents[0]);
+    Frame->U_LabelEmail->SetLabel(contents[1]);
+    Frame->U_LabelGroup->SetLabel(contents[2]);
+
+   adressUsemberSelected = contents[1].mb_str();
+    SetEmails(Frame, Frame->database->findUsember(adressUsemberSelected));
 }
 
 void PanelUsembersMaintance::EventListUsembersColumnClick (AisdiRelationsFrame* Frame)

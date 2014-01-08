@@ -5,7 +5,7 @@ class Group
 {
     friend class boost::serialization::access;  //potrzebne do serializacji
 private:
-    unsigned int id;
+    unsigned int id = 0;
 
 public:
     int getID();
