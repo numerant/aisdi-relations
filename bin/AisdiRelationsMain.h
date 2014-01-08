@@ -150,6 +150,7 @@ private:
     void OnT_ImageButtonSwitchClick(wxCommandEvent& event);
     void OnSav_ImageButtonTxtClick(wxCommandEvent& event);
     void OnSet_CheckBoxDeleteConfirmClick(wxCommandEvent& event);
+    void OnTimer2Trigger(wxTimerEvent& event);
     //*)
 
     //(*Identifiers(AisdiRelationsFrame)

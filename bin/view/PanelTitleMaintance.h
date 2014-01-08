@@ -36,6 +36,7 @@ public:
     void SetIcons(AisdiRelationsFrame* Frame);
     void SwitchIcons (AisdiRelationsFrame* Frame);
     void UpdateLoadingIcons (AisdiRelationsFrame* Frame);
+
     void SetNoData (bool value);
     void SetRecursiveLoad (bool value);
     void SetDeleteConfirm (bool value);
@@ -43,6 +44,7 @@ public:
     void SetClickedLoad (void);
     void SetClickedImport (void);
     void SetClickedSettings (void);
+    void SetLoadingGaugeValues (int value);
 
     bool GetNoData (void);
     bool GetRecursiveLoad (void);

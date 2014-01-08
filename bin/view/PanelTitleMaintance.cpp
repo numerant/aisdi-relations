@@ -125,7 +125,7 @@ void PanelTitleMaintance::UpdateLoadingIcons (AisdiRelationsFrame* Frame)
 
     if ( !clickedAdd )
     {
-        Frame->T_ImageButtonAdd->SetBitmapLabel(pathBig+imagePaths[0]+format); 
+        Frame->T_ImageButtonAdd->SetBitmapLabel(pathBig+imagePaths[0]+format);
         Frame->T_ImageButtonImport->SetBitmapLabel(pathBig+imagePaths[1]+format);
         Frame->T_ImageButtonLoad->SetBitmapLabel(pathBig+imagePaths[2]+format);
 
@@ -149,7 +149,7 @@ void PanelTitleMaintance::UpdateLoadingIcons (AisdiRelationsFrame* Frame)
     }
     else if ( (clickedAdd) && ( !clickedImport) && ( !clickedLoad) )
     {
-        Frame->T_ImageButtonAdd->SetBitmapLabel(pathBig+imagePaths[0]+formatNeg); 
+        Frame->T_ImageButtonAdd->SetBitmapLabel(pathBig+imagePaths[0]+formatNeg);
         Frame->T_ImageButtonImport->SetBitmapLabel(pathBig+imagePaths[1]+format);
         Frame->T_ImageButtonLoad->SetBitmapLabel(pathBig+imagePaths[2]+format);
 
@@ -175,7 +175,7 @@ void PanelTitleMaintance::UpdateLoadingIcons (AisdiRelationsFrame* Frame)
     {
         Frame->T_ImageButtonLoad->SetBitmapLabel(pathBig+imagePaths[2]+formatNeg);
         Frame->T_ImageButtonImport->SetBitmapLabel(pathBig+imagePaths[1]+format);
-        
+
         Frame->T_ImageButtonImport->Show();
         Frame->T_ImageButtonLoad->Show();
         Frame->T_ImageButtonFolder->Show();
@@ -333,6 +333,7 @@ void PanelTitleMaintance::EventButtonFolderClick (AisdiRelationsFrame* Frame)
             if (Frame->P_Stats->GetIsUpdated())
                 Frame->P_Stats->SetIsUpdated();
         }
+        delete param;
     }
 }
 
@@ -348,10 +349,13 @@ void PanelTitleMaintance::EventButtonFilesClick (AisdiRelationsFrame* Frame)
         param->isDirectory = false;						//Tutaj domyślne opcje na 'false' (bo wybieramy pliki, nie folder)
         param->recursiveImport = false;
 
-        for (unsigned int i = 0; i < paths.size(); i++)       //Wczytujemy w pętli pliki
+        if (paths.size() > 0)
         {
-            param->path = paths[i].mb_str();
-            Frame->iointerface->importMail(param);
+            for (unsigned int i = 0; i < paths.size(); i++)       //Wczytujemy w pętli pliki
+            {
+                param->path = paths[i].mb_str();
+                Frame->iointerface->importMail(param);
+            }
         }
 
         stats = Frame->iointerface->getImportStats();
@@ -436,7 +440,9 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
 void PanelTitleMaintance::EventButtonTxtClick(AisdiRelationsFrame * Frame)
 {
     //Tak naprawdę jest to zapis pliku binarnego bazy
-    if (Frame->FileDialogDatabaseExport->ShowModal() == wxID_OK)      //uruchomienie panelu wybierania folderu
+    if (Frame->database->countEmails() == 0)
+        wxMessageBox(_("Baza danych jest pusta."));
+    else if (Frame->FileDialogDatabaseExport->ShowModal() == wxID_OK)      //uruchomienie panelu wybierania folderu
     {
         wxString path, filename;
         path = Frame->FileDialogDatabaseExport->GetPath();
