@@ -4,8 +4,14 @@ Database::Database()
 {
 }
 
-Database::~Database()       // wyciek pamięci!
+Database::~Database()
 {
+    for(int i=0; i<(int)emailVector.size(); ++i)
+        delete emailVector[i];
+    for(int i=0; i<(int)groupVector.size(); ++i)
+        delete groupVector[i];
+    for(int i=0; i<(int)usemberVector.size(); ++i)
+        delete usemberVector[i];
     emailVector.clear();
     groupVector.clear();
     usemberVector.clear();
@@ -68,6 +74,7 @@ bool Database::addUsember(Usember* usember)
 void Database::deleteEmail(Email* email)
 {
     int position=findEmail(email->getID());
+    delete emailVector[position];
     if(position!=-1)
         swapEmails(position, emailVector.size()-1);
     emailVector.pop_back();
@@ -77,6 +84,7 @@ void Database::deleteEmail(Email* email)
 void Database::deleteGroup(Group* group)
 {
     int position=findGroup(group->getID());
+    delete groupVector[position];
     if(position!=-1)
         swapGroups(position, groupVector.size()-1);
     groupVector.pop_back();
@@ -86,6 +94,7 @@ void Database::deleteGroup(Group* group)
 void Database::deleteUsember(Usember* usember)
 {
     int position=findUsember(usember->getAddress());
+    delete usemberVector[position];
     if(position!=-1)
         swapUsembers(position, usemberVector.size()-1);
     usemberVector.pop_back();
