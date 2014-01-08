@@ -52,7 +52,7 @@ void PanelUsembersMaintance::ShowPanel(AisdiRelationsFrame* Frame)
             Frame->U_ListOutbox->Show();
             Frame->U_StaticBoxUsembers->SetLabel(_("  Odebrane/Wysłane Emaile  "));
         }
-        
+
         if (emailContentEnabled)
         {
             Frame->U_PanelEmail->Show();
@@ -94,6 +94,61 @@ void PanelUsembersMaintance::SetLabels(AisdiRelationsFrame* Frame)
         if (i == 2)
             col.SetText(labels2[i+1]);
         Frame->U_ListOutbox->InsertColumn(i, col);
+    }
+}
+
+void PanelUsembersMaintance::SetUsembers(AisdiRelationsFrame * Frame)
+{
+    if (int counterU = Frame->database->countUsembers() > 0)     //TODO Zmienić wyświetlanie za pomocą Query
+    {
+        Frame->U_ListUsembers->DeleteAllItems();
+        for (int i = 0; i < counterU; i++)
+        {
+            Usember * usember = Frame->database->getUsember(i);
+            wxListItem item;
+            item.SetId(i);
+            if (i % 2 == 0)
+                item.SetTextColour(wxColor(200,200,200));
+            Frame->U_ListUsembers->InsertItem( item );
+
+            /*string sourceString = email->getContent();
+            wxString content(sourceString.c_str(), wxConvUTF8);
+            Frame->U_ListUsembers->SetItem(i,4, content);
+
+            sourceString = email->getID();
+            wxString wxId(sourceString.c_str(), wxConvUTF8);
+            Frame->U_ListUsembers->SetItem(i,5, wxId);
+
+            sourceString = email->getSubject();
+            wxString subject(sourceString.c_str(), wxConvUTF8);
+            Frame->U_ListUsembers->SetItem(i,1,subject);
+
+            Date date = email->getDate();
+            int day =date.getDay();
+            string month = date.getMonth();
+            int year = date.getYear();
+            ostringstream ssday;
+            ssday << day;
+            string strdate = ssday.str();
+            strdate+= " "+month+" ";
+            ostringstream ssyear;
+            ssyear << year;
+            strdate += ssyear.str();
+
+            sourceString = strdate;
+            wxString wxdate(sourceString.c_str(), wxConvUTF8);
+            Frame->U_ListUsembers->SetItem(i,0,wxdate);
+
+            Usember* from = email->getFrom();
+            sourceString = from->getAddress();
+            wxString wxfrom(sourceString.c_str(), wxConvUTF8);
+            Frame->U_ListUsembers->SetItem(i,2,wxfrom);
+
+            Usember* to = email->getTo();
+            sourceString = to->getAddress();
+            wxString wxto(sourceString.c_str(), wxConvUTF8);
+            Frame->U_ListUsembers->SetItem(i,3,wxto);*/
+        }
     }
 }
 

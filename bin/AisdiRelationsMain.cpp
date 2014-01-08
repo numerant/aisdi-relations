@@ -328,12 +328,16 @@ const long AisdiRelationsFrame::idMenuNew = wxNewId();
 const long AisdiRelationsFrame::idMenuOpen = wxNewId();
 const long AisdiRelationsFrame::idMenuOpenFolder = wxNewId();
 const long AisdiRelationsFrame::idMenuSave = wxNewId();
-const long AisdiRelationsFrame::idMenuProperties = wxNewId();
 const long AisdiRelationsFrame::idMenuQuit = wxNewId();
-const long AisdiRelationsFrame::idMenuImportText = wxNewId();
 const long AisdiRelationsFrame::idMenuImportBin = wxNewId();
-const long AisdiRelationsFrame::idMenuExportText = wxNewId();
 const long AisdiRelationsFrame::idMenuExportBin = wxNewId();
+const long AisdiRelationsFrame::idMenuExportText = wxNewId();
+const long AisdiRelationsFrame::idMenuRecursive = wxNewId();
+const long AisdiRelationsFrame::idMenuDelConfirm = wxNewId();
+const long AisdiRelationsFrame::isMenuNTimeShort = wxNewId();
+const long AisdiRelationsFrame::isMenuNTimeNormal = wxNewId();
+const long AisdiRelationsFrame::isMenuNTimeLong = wxNewId();
+const long AisdiRelationsFrame::ID_MENUITEM1 = wxNewId();
 const long AisdiRelationsFrame::idMenuAbout = wxNewId();
 const long AisdiRelationsFrame::idMenuHelp = wxNewId();
 const long AisdiRelationsFrame::ID_TIMER1 = wxNewId();
@@ -347,10 +351,10 @@ END_EVENT_TABLE()
 AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
 {
     //(*Initialize(AisdiRelationsFrame)
-    wxMenuItem* MenuItem2;
-    wxMenuItem* MenuItem1;
     wxMenu* Menu1;
+    wxMenuItem* MenuItemQuit;
     wxMenuBar* MenuBar1;
+    wxMenuItem* MenuItemAbout;
     wxMenu* Menu2;
 
     Create(parent, wxID_ANY, _("Analiza Relacji Biznesowych"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE|wxVSCROLL|wxHSCROLL, _T("wxID_ANY"));
@@ -746,7 +750,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     G_ImageButtonUsembers = new wxBitmapButton(PanelGroups, ID_IMAGEBUTTON48, wxNullBitmap, wxPoint(1000,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON48"));
     G_ImageButtonInbox = new wxBitmapButton(PanelGroups, ID_IMAGEBUTTON47, wxNullBitmap, wxPoint(910,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON47"));
     G_ImageButtonTitle = new wxBitmapButton(PanelGroups, ID_IMAGEBUTTON41, wxNullBitmap, wxPoint(10,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON41"));
-    PanelUsembers = new wxPanel(PanelMain, ID_PANEL4, wxPoint(1366,0), wxSize(1366,750), wxTAB_TRAVERSAL, _T("ID_PANEL4"));
+    PanelUsembers = new wxPanel(PanelMain, ID_PANEL4, wxPoint(0,0), wxSize(1366,750), wxTAB_TRAVERSAL, _T("ID_PANEL4"));
     BitmapBackgroundUsembers = new wxStaticBitmap(PanelUsembers, ID_STATICBITMAP3, wxBitmap(wxImage(_T("resources/background.jpg"))), wxPoint(0,0), wxDefaultSize, wxSIMPLE_BORDER, _T("ID_STATICBITMAP3"));
     U_LabelSwitchContent = new wxStaticText(PanelUsembers, ID_STATICTEXT54, _("Przełącz\nzawartość"), wxPoint(1188,685), wxDefaultSize, wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_STATICTEXT54"));
     U_LabelSwitchContent->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
@@ -1111,39 +1115,48 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Sav_StaticTextTxt->SetFont(Sav_StaticTextTxtFont);
     MenuBar1 = new wxMenuBar();
     Menu1 = new wxMenu();
-    MenuItem8 = new wxMenuItem(Menu1, idMenuNew, _("New\tCTRL+N"), _("Creates an empty database"), wxITEM_NORMAL);
-    Menu1->Append(MenuItem8);
+    MenuItemNew = new wxMenuItem(Menu1, idMenuNew, _("New\tCTRL+N"), _("Creates an empty database"), wxITEM_NORMAL);
+    Menu1->Append(MenuItemNew);
     Menu1->AppendSeparator();
-    MenuItem3 = new wxMenuItem(Menu1, idMenuOpen, _("Open\tCTRL+O"), _("Open file/s"), wxITEM_NORMAL);
-    Menu1->Append(MenuItem3);
-    MenuItem4 = new wxMenuItem(Menu1, idMenuOpenFolder, _("Open folder\tCTRL+SHIFT+O"), _("Open all files in a folder"), wxITEM_NORMAL);
-    Menu1->Append(MenuItem4);
+    MenuItemOpen = new wxMenuItem(Menu1, idMenuOpen, _("Open files\tCTRL+O"), _("Open file/s"), wxITEM_NORMAL);
+    Menu1->Append(MenuItemOpen);
+    MenuItemOpenFolder = new wxMenuItem(Menu1, idMenuOpenFolder, _("Open folder\tCTRL+SHIFT+O"), _("Open all files in a folder"), wxITEM_NORMAL);
+    Menu1->Append(MenuItemOpenFolder);
     Menu1->AppendSeparator();
-    MenuItem5 = new wxMenuItem(Menu1, idMenuSave, _("Save\tCTRL+S"), _("Save your work"), wxITEM_NORMAL);
-    Menu1->Append(MenuItem5);
+    MenuItemSave = new wxMenuItem(Menu1, idMenuSave, _("Save\tCTRL+S"), _("Save your work"), wxITEM_NORMAL);
+    Menu1->Append(MenuItemSave);
     Menu1->AppendSeparator();
-    MenuItem9 = new wxMenuItem(Menu1, idMenuProperties, _("Properties\tCTRL+P"), _("Program settings"), wxITEM_NORMAL);
-    Menu1->Append(MenuItem9);
-    Menu1->AppendSeparator();
-    MenuItem1 = new wxMenuItem(Menu1, idMenuQuit, _("Quit\tAlt-F4"), _("Quit the application"), wxITEM_NORMAL);
-    Menu1->Append(MenuItem1);
+    MenuItemQuit = new wxMenuItem(Menu1, idMenuQuit, _("Quit\tAlt-F4"), _("Quit the application"), wxITEM_NORMAL);
+    Menu1->Append(MenuItemQuit);
     MenuBar1->Append(Menu1, _("&File"));
     Menu3 = new wxMenu();
-    MenuItem7 = new wxMenuItem(Menu3, idMenuImportText, _("Import from text"), _("Load a database from a text file"), wxITEM_NORMAL);
-    Menu3->Append(MenuItem7);
-    MenuItem10 = new wxMenuItem(Menu3, idMenuImportBin, _("Import from binary"), _("Load database from a binary file"), wxITEM_NORMAL);
-    Menu3->Append(MenuItem10);
+    MenuItemImportBin = new wxMenuItem(Menu3, idMenuImportBin, _("Import from binary"), _("Load database from a binary file"), wxITEM_NORMAL);
+    Menu3->Append(MenuItemImportBin);
     Menu3->AppendSeparator();
-    MenuItem6 = new wxMenuItem(Menu3, idMenuExportText, _("Export to text"), _("Copy database to a text file"), wxITEM_NORMAL);
-    Menu3->Append(MenuItem6);
-    MenuItem11 = new wxMenuItem(Menu3, idMenuExportBin, _("Export to bin"), _("Stores databse in a binary file"), wxITEM_NORMAL);
-    Menu3->Append(MenuItem11);
+    MenuItemExportBin = new wxMenuItem(Menu3, idMenuExportBin, _("Export to bin"), _("Stores databse in a binary file"), wxITEM_NORMAL);
+    Menu3->Append(MenuItemExportBin);
+    MenuItemExportTxt = new wxMenuItem(Menu3, idMenuExportText, _("Export to text"), _("Copy database to a text file"), wxITEM_NORMAL);
+    Menu3->Append(MenuItemExportTxt);
     MenuBar1->Append(Menu3, _("&Import/Export"));
+    Menu4 = new wxMenu();
+    MenuItemRecursive = new wxMenuItem(Menu4, idMenuRecursive, _("Recursive loading\tCTRL+SHIFT+R"), _("On/off recursive folder loading"), wxITEM_CHECK);
+    Menu4->Append(MenuItemRecursive);
+    MenuItemConfirm = new wxMenuItem(Menu4, idMenuDelConfirm, _("Delete confirmation\tCTRL+SHIFT+C"), _("On/off confirmation prompt when trying to delete a record"), wxITEM_CHECK);
+    Menu4->Append(MenuItemConfirm);
+    MenuItem4 = new wxMenu();
+    MenuItemNTimeShort = new wxMenuItem(MenuItem4, isMenuNTimeShort, _("Krótki (2s)"), wxEmptyString, wxITEM_RADIO);
+    MenuItem4->Append(MenuItemNTimeShort);
+    MenuItemNTimeNormal = new wxMenuItem(MenuItem4, isMenuNTimeNormal, _("Normalny (5s)"), wxEmptyString, wxITEM_RADIO);
+    MenuItem4->Append(MenuItemNTimeNormal);
+    MenuItemNTimeLong = new wxMenuItem(MenuItem4, isMenuNTimeLong, _("Długi (8s)"), wxEmptyString, wxITEM_RADIO);
+    MenuItem4->Append(MenuItemNTimeLong);
+    Menu4->Append(ID_MENUITEM1, _("Czas trwania powiadomień"), MenuItem4, wxEmptyString);
+    MenuBar1->Append(Menu4, _("Properties"));
     Menu2 = new wxMenu();
-    MenuItem2 = new wxMenuItem(Menu2, idMenuAbout, _("About\tF1"), _("Show info about this application"), wxITEM_NORMAL);
-    Menu2->Append(MenuItem2);
-    MenuItem12 = new wxMenuItem(Menu2, idMenuHelp, _("Help\tF2"), _("General application manual"), wxITEM_NORMAL);
-    Menu2->Append(MenuItem12);
+    MenuItemAbout = new wxMenuItem(Menu2, idMenuAbout, _("About\tF1"), _("Show info about this application"), wxITEM_NORMAL);
+    Menu2->Append(MenuItemAbout);
+    MenuItemHelp = new wxMenuItem(Menu2, idMenuHelp, _("Help\tF2"), _("General application manual"), wxITEM_NORMAL);
+    Menu2->Append(MenuItemHelp);
     MenuBar1->Append(Menu2, _("Help"));
     SetMenuBar(MenuBar1);
     DirDialog = new wxDirDialog(this, _("Wybierz folder"), _("~/"), wxDD_CHANGE_DIR, wxDefaultPosition, wxDefaultSize, _T("wxDirDialog"));
@@ -1341,7 +1354,7 @@ AisdiRelationsFrame::~AisdiRelationsFrame()
     delete P_Notify;
 
     /** Zwolnienie obiektów klas projektu */
-    delete iointerface;
+    //delete iointerface;       //TODO odkomentować
     delete statistics;
     delete database;
 }

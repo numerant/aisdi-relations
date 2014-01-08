@@ -61,7 +61,6 @@ bool PanelStatisticsMaintance::GetIsUpdated ()
 
 void PanelStatisticsMaintance::EventPanelEmailPerMonthPaint (AisdiRelationsFrame * Frame)
 {
-    //TODO      NAPRAWIĆ WYŚWIETLANIE WYKRESU DLA DUŻYCH WARTOŚCI!!!! Przeskalować w górę x10, obliczyć i podzielić przez 10
     const int red = 240;
     const int green = 70;
     const int blue = 30;

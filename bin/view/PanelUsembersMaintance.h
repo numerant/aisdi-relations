@@ -28,9 +28,11 @@ public:
     PanelUsembersMaintance();
     void ShowPanel(AisdiRelationsFrame* Frame);
     void SetLabels(AisdiRelationsFrame* Frame);
+    void SetUsembers (AisdiRelationsFrame * Frame);
     void SwitchList(AisdiRelationsFrame * Frame);
     void SwitchContent(AisdiRelationsFrame * Frame);
     void SetIcons(AisdiRelationsFrame* Frame);
+
     void SetSearchEnabled();
     void SetAddEnabled();
     void SetSaveEnabled();
