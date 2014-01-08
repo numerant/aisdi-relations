@@ -1,0 +1,47 @@
+======================================================================================================================================
+*** SPRINT 2 ***
+Zapisywanie - Statystyki - Analiza - Sortowanie - Wyszukiwanie
+--------------------------------------------------------------------------------------------------------------------------------------
+*** planowane ***
+1) Chcę, by bazę danych można było wyeksportować do pliku.
+>> Jakub Maleszewski:			Metody odpowiedzialna za zapis/odczyt bazy maili.
+
+2) Chciałbym, aby wygenerowany plik ważył możliwie mało.
+>> Jakub Maleszewski:			Odpowiednia implementacja wyżej wymienionej metody zapewnia optymalny rozmiar pliku.
+
+3) Chciałbym, aby wyszukane rekordy były ułożone w logicznym porządku wg zadanego klucza.
+>> Maciej Gańko:			Sortowanie maili, wykorzystywne od porządkowania maili w bazie danych.
+
+4) Jako członek grupy roboczej potrzebuję możliwości tworzenia raportu ze statystykami (mile widziana również treść) korespondencji, która krąży po grupie.
+>> Maciej Gańko, Paweł Kaczyński	Panel statystyk oraz metody umożliwiające analizę zbioru maili i generowanie statystyk.
+
+5) Jako administrator bazy chcę mieć dostęp do szczegółowych statystyk i informacji na jej temat, jak np. liczba maili (w tym unikatowych), ilość unikalnych adresów e-mail itp.
+>> Maciej Gańko, Paweł Kaczyński	Panel statystyk oraz metody umożliwiające analizę zbioru maili i generowanie statystyk.
+
+6) Jako administrator bazy chcę mieć możliwość eksportu uzyskanych statystyk wraz z datą ich utworzenia do pliku.
+>> Jakub Maleszewski			Metoda pozwalazjąca na eksport statystyk do pliku.
+
+7) Jako użytkownik chcę mieć mozliwość autolustracji (statystyki na temat swoich odebranych/wysłanych listów).
+>> Maciej Gańko, Paweł Kaczyński	Panel statystyk oraz metody umożliwiające analizę zbioru maili i generowanie statystyk.
+
+8) [ -> 3. sprint ] Jako szef firmy chcę mieć możliwość otrzymania listy grup roboczych i ich członków oraz zależności między grupami (np. wyświetlenie grup komunikujących się z podaną).
+>> Patryk Łucka				Algorytm analizujący zależności między usemberami, który dokonuje podziału na grupy robocze
+>> 					Aby być pewnym poprawności działania algorytmu, dołączenie tej funkcjonalności do projektu zostało przesunięte.
+--------------------------------------------------------------------------------------------------------------------------------------
+*** dodatkowo ***
+1) 
+>> Maciej Safarzyński			Program tworzący pliki eml ("zwykłe", RE:, FWD:), generowane zbiory pozwalają testować różne aspekty działania programu.
+
+2)
+>> Michał Żołyniak			Nowe grafiki, implementacja metod odpowiedzialnych za obsługę eventów interfejsu.
+
+3)
+>> Paweł Kaczyński			Dopracowanie panelu tytułowego, skrzynki odbiorczej, usemberów, statystyk, ustawień.
+>> 					[ -> 3. sprint ] panel grup, drzewa.
+
+4)
+>> Maciej Gańko				Zapytania - wykorzystywane przez inne metody
+
+5)
+>> Krzysztof Lisocki			Dopracowanie parsera oraz klasy Usember
+======================================================================================================================================
