@@ -33,8 +33,12 @@ public:
     void removeMail(Email *email);					// usuwa list z wektora
     void setGroup(Group	*group);						// przydziela grupę usemberowi / używać także jako akutalizacji
     void setRealName(string rn);						// ustawia pole realName - działanie jak wyżej
-
+	
+	string getRealName();								// zwraca string z realName
     string getAddress();					// zwraca ciąg pełnego maila [usemberName]@[domain]
+	Group* getGroup();						// zwraca wskazanie na grupę
+	Email* getEmailReceived(int position);	// zwraca wskazanie na danego maila (z otrzymanych)
+	Email* getEmailSent(int position);		// zwraca wskazanie na danego maila (z wysłanych)
     unsigned int sendMailCount();				// zwraca liczbę maili wysłanych przez tego usembera
     unsigned int receiveMailCount();				// zwraca liczbę maili odebranych przez tego usembera
 

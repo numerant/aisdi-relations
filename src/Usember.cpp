@@ -45,6 +45,32 @@ string Usember::getAddress()				// zwraca ciąg pełnego maila [usemberName]@[do
     return usemberName + "@" + domain;
 }
 
+string Usember::getRealName()				// zwraca string z realName
+{
+    return this->realName;
+}
+
+Group* Usember::getGroup()				// zwraca wskazanie na grupę
+{
+    return this->group;
+}
+
+Email* Usember::getEmailReceived(int position)
+{
+	if ( (position < 0) || (position >= (int)receivedMails.size()) )
+        return nullptr;
+    else
+        return receivedMails[position];
+}
+
+Email* Usember::getEmailSent(int position)
+{
+	if ( (position < 0) || (position >= (int)sentMails.size()) )
+        return nullptr;
+    else
+        return sentMails[position];
+}
+
 unsigned int Usember::sendMailCount()			// zwraca liczbę maili wysłanych przez tego usembera
 {
     return sentMails.size();
