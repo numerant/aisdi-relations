@@ -111,15 +111,15 @@ void PanelUsembersMaintance::SetUsembers(AisdiRelationsFrame * Frame)
                 item.SetTextColour(wxColor(200,200,200));
             Frame->U_ListUsembers->InsertItem( item );
 
-            /*string sourceString = email->getContent();
-            wxString content(sourceString.c_str(), wxConvUTF8);
-            Frame->U_ListUsembers->SetItem(i,4, content);
+            string sourceString = usember->getRealName();
+            wxString wxName (sourceString.c_str(), wxConvUTF8);
+            Frame->U_ListUsembers->SetItem(i,0, wxName);
 
-            sourceString = email->getID();
-            wxString wxId(sourceString.c_str(), wxConvUTF8);
-            Frame->U_ListUsembers->SetItem(i,5, wxId);
+            sourceString = usember->getAddress();
+            wxString wxAdress (sourceString.c_str(), wxConvUTF8);
+            Frame->U_ListUsembers->SetItem(i,1, wxAdress );
 
-            sourceString = email->getSubject();
+            /*sourceString = email->getSubject();
             wxString subject(sourceString.c_str(), wxConvUTF8);
             Frame->U_ListUsembers->SetItem(i,1,subject);
 

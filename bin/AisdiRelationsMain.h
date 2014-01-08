@@ -151,6 +151,14 @@ private:
     void OnSav_ImageButtonTxtClick(wxCommandEvent& event);
     void OnSet_CheckBoxDeleteConfirmClick(wxCommandEvent& event);
     void OnTimer2Trigger(wxTimerEvent& event);
+    void OnMenuItemNewSelected(wxCommandEvent& event);
+    void OnMenuItemSaveSelected(wxCommandEvent& event);
+    void OnMenuItemRecursiveSelected(wxCommandEvent& event);
+    void OnMenuItemConfirmSelected(wxCommandEvent& event);
+    void OnMenuItemNTimeShortSelected(wxCommandEvent& event);
+    void OnMenuItemNTimeNormalSelected(wxCommandEvent& event);
+    void OnMenuItemNTimeLongSelected(wxCommandEvent& event);
+    void OnMenuItemHelpSelected(wxCommandEvent& event);
     //*)
 
     //(*Identifiers(AisdiRelationsFrame)

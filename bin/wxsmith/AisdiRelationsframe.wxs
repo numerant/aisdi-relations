@@ -2739,23 +2739,27 @@
 					<label>New</label>
 					<accel>CTRL+N</accel>
 					<help>Creates an empty database</help>
+					<handler function="OnMenuItemNewSelected" entry="EVT_MENU" />
 				</object>
 				<object class="separator" />
 				<object class="wxMenuItem" name="idMenuOpen" variable="MenuItemOpen" member="yes">
 					<label>Open files</label>
 					<accel>CTRL+O</accel>
 					<help>Open file/s</help>
+					<handler function="OnT_ImageButtonFilesClick" entry="EVT_MENU" />
 				</object>
 				<object class="wxMenuItem" name="idMenuOpenFolder" variable="MenuItemOpenFolder" member="yes">
 					<label>Open folder</label>
 					<accel>CTRL+SHIFT+O</accel>
 					<help>Open all files in a folder</help>
+					<handler function="OnT_ImageButtonFolderClick" entry="EVT_MENU" />
 				</object>
 				<object class="separator" />
 				<object class="wxMenuItem" name="idMenuSave" variable="MenuItemSave" member="yes">
 					<label>Save</label>
 					<accel>CTRL+S</accel>
 					<help>Save your work</help>
+					<handler function="OnMenuItemSaveSelected" entry="EVT_MENU" />
 				</object>
 				<object class="separator" />
 				<object class="wxMenuItem" name="idMenuQuit" variable="MenuItemQuit" member="no">
@@ -2770,15 +2774,18 @@
 				<object class="wxMenuItem" name="idMenuImportBin" variable="MenuItemImportBin" member="yes">
 					<label>Import from binary</label>
 					<help>Load database from a binary file</help>
+					<handler function="OnT_ImageButtonBinClick" entry="EVT_MENU" />
 				</object>
 				<object class="separator" />
 				<object class="wxMenuItem" name="idMenuExportBin" variable="MenuItemExportBin" member="yes">
 					<label>Export to bin</label>
 					<help>Stores databse in a binary file</help>
+					<handler function="OnT_ImageButtonTxtClick" entry="EVT_MENU" />
 				</object>
 				<object class="wxMenuItem" name="idMenuExportText" variable="MenuItemExportTxt" member="yes">
 					<label>Export to text</label>
 					<help>Copy database to a text file</help>
+					<handler function="OnSav_ImageButtonTxtClick" entry="EVT_MENU" />
 				</object>
 			</object>
 			<object class="wxMenu" variable="Menu4" member="yes">
@@ -2787,26 +2794,31 @@
 					<label>Recursive loading</label>
 					<accel>CTRL+SHIFT+R</accel>
 					<help>On/off recursive folder loading</help>
+					<handler function="OnMenuItemRecursiveSelected" entry="EVT_MENU" />
 					<checkable>1</checkable>
 				</object>
 				<object class="wxMenuItem" name="idMenuDelConfirm" variable="MenuItemConfirm" member="yes">
 					<label>Delete confirmation</label>
 					<accel>CTRL+SHIFT+C</accel>
 					<help>On/off confirmation prompt when trying to delete a record</help>
+					<handler function="OnMenuItemConfirmSelected" entry="EVT_MENU" />
 					<checkable>1</checkable>
 				</object>
 				<object class="wxMenu" name="ID_MENUITEM1" variable="MenuItem4" member="yes">
 					<label>Czas trwania powiadomień</label>
 					<object class="wxMenuItem" name="isMenuNTimeShort" variable="MenuItemNTimeShort" member="yes">
 						<label>Krótki (2s)</label>
+						<handler function="OnMenuItemNTimeShortSelected" entry="EVT_MENU" />
 						<radio>1</radio>
 					</object>
 					<object class="wxMenuItem" name="isMenuNTimeNormal" variable="MenuItemNTimeNormal" member="yes">
 						<label>Normalny (5s)</label>
+						<handler function="OnMenuItemNTimeNormalSelected" entry="EVT_MENU" />
 						<radio>1</radio>
 					</object>
 					<object class="wxMenuItem" name="isMenuNTimeLong" variable="MenuItemNTimeLong" member="yes">
 						<label>Długi (8s)</label>
+						<handler function="OnMenuItemNTimeLongSelected" entry="EVT_MENU" />
 						<radio>1</radio>
 					</object>
 				</object>
@@ -2823,6 +2835,7 @@
 					<label>Help</label>
 					<accel>F2</accel>
 					<help>General application manual</help>
+					<handler function="OnMenuItemHelpSelected" entry="EVT_MENU" />
 				</object>
 			</object>
 		</object>

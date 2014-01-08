@@ -1251,8 +1251,21 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_IMAGEBUTTON59,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonBinClick);
     Connect(ID_IMAGEBUTTON60,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonTxtClick);
     Connect(ID_IMAGEBUTTON61,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnSav_ImageButtonTxtClick);
+    Connect(idMenuNew,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnMenuItemNewSelected);
+    Connect(idMenuOpen,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonFilesClick);
+    Connect(idMenuOpenFolder,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonFolderClick);
+    Connect(idMenuSave,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnMenuItemSaveSelected);
     Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnQuit);
+    Connect(idMenuImportBin,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonBinClick);
+    Connect(idMenuExportBin,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonTxtClick);
+    Connect(idMenuExportText,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnSav_ImageButtonTxtClick);
+    Connect(idMenuRecursive,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnMenuItemRecursiveSelected);
+    Connect(idMenuDelConfirm,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnMenuItemConfirmSelected);
+    Connect(isMenuNTimeShort,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnMenuItemNTimeShortSelected);
+    Connect(isMenuNTimeNormal,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnMenuItemNTimeNormalSelected);
+    Connect(isMenuNTimeLong,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnMenuItemNTimeLongSelected);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnAbout);
+    Connect(idMenuHelp,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnMenuItemHelpSelected);
     Connect(ID_TIMER1,wxEVT_TIMER,(wxObjectEventFunction)&AisdiRelationsFrame::OnTimer1Trigger);
     //*)
 
@@ -1343,7 +1356,10 @@ AisdiRelationsFrame::~AisdiRelationsFrame()
 {
     //(*Destroy(AisdiRelationsFrame)
     //*)
+}
 
+void AisdiRelationsFrame::OnQuit(wxCommandEvent& event)
+{
     /** Zwolnienie pamięci obiektów obsługujących panele */
     delete (P_Groups);
     delete (P_Inbox);
@@ -1357,10 +1373,7 @@ AisdiRelationsFrame::~AisdiRelationsFrame()
     //delete iointerface;       //TODO odkomentować
     delete statistics;
     delete database;
-}
 
-void AisdiRelationsFrame::OnQuit(wxCommandEvent& event)
-{
     Close();
 }
 
@@ -1735,25 +1748,61 @@ void AisdiRelationsFrame::OnM_ImageButtonInboxClick(wxCommandEvent& event)
     P_Inbox->ShowPanel(this);
 }
 
-/** ============= Eventy Timera ============= */
+/** ============= Event TIMERA ============= */
 
 void AisdiRelationsFrame::OnTimer1Trigger(wxTimerEvent& event)
 {
     PanelNotify->Hide();
 }
 
+
+/** ============= Eventy SETTINGS ============= */
 void AisdiRelationsFrame::OnSet_SliderNotifyTimeCmdScrollChanged(wxScrollEvent& event)
 {
     notifyTime = Set_SliderNotifyTime->GetValue();
 }
 
+void AisdiRelationsFrame::OnSet_CheckBoxDeleteConfirmClick(wxCommandEvent& event)
+{
+    P_Title->SetDeleteConfirm(Set_CheckBoxDeleteConfirm->GetValue());
+}
+
+/** ============= Event TXT ============= */
 void AisdiRelationsFrame::OnSav_ImageButtonTxtClick(wxCommandEvent& event)
 {
     //Zapisywanie pliku tekstowego zaimplementowana (bo najszybciej) w panelu Title (jak pozostałe fukncje import/export)
     P_Title->EventButtonSavTxtClick(this);
 }
 
-void AisdiRelationsFrame::OnSet_CheckBoxDeleteConfirmClick(wxCommandEvent& event)
+/** ============= Eventy MENU ============= */
+void AisdiRelationsFrame::OnMenuItemNewSelected(wxCommandEvent& event)
 {
-    P_Title->SetDeleteConfirm(Set_CheckBoxDeleteConfirm->GetValue());
+}
+
+void AisdiRelationsFrame::OnMenuItemSaveSelected(wxCommandEvent& event)
+{
+}
+
+void AisdiRelationsFrame::OnMenuItemRecursiveSelected(wxCommandEvent& event)
+{
+}
+
+void AisdiRelationsFrame::OnMenuItemConfirmSelected(wxCommandEvent& event)
+{
+}
+
+void AisdiRelationsFrame::OnMenuItemNTimeShortSelected(wxCommandEvent& event)
+{
+}
+
+void AisdiRelationsFrame::OnMenuItemNTimeNormalSelected(wxCommandEvent& event)
+{
+}
+
+void AisdiRelationsFrame::OnMenuItemNTimeLongSelected(wxCommandEvent& event)
+{
+}
+
+void AisdiRelationsFrame::OnMenuItemHelpSelected(wxCommandEvent& event)
+{
 }

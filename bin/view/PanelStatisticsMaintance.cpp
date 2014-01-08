@@ -68,7 +68,8 @@ void PanelStatisticsMaintance::EventPanelEmailPerMonthPaint (AisdiRelationsFrame
     Frame->S_PanelEmailPerMonth->GetSize(&width, & height);
     double barSpace = 20;
     double barWidth = (width-20-11*barSpace)/12;
-    int barHeight = (height - 70);
+    int barHeight = (height - 90);
+    int valueLabelCorrection = height-barHeight-55;
 
     wxPaintDC dc(Frame->S_PanelEmailPerMonth);
 
@@ -76,7 +77,7 @@ void PanelStatisticsMaintance::EventPanelEmailPerMonthPaint (AisdiRelationsFrame
     dc.SetPen(wxPen(wxColour(48,48,48)));
     dc.DrawRectangle(wxPoint(5,28),wxSize(490,260));       //wyczyszczenie canvasu
 
-    dc.SetPen(wxPen(wxColour(230,230,230)));
+    dc.SetPen(wxPen(wxColour(150,150,150)));
     dc.SetTextForeground(wxColour(230,230,230));
     dc.SetFont(wxFont(11, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, _("Ubuntu")));
 
@@ -91,7 +92,8 @@ void PanelStatisticsMaintance::EventPanelEmailPerMonthPaint (AisdiRelationsFrame
                     posCorrection = 2;
             dc.DrawText(months[i], wxPoint(10+barWidth/2-12+i*(barWidth+barSpace)+posCorrection, height-25));      //wypisz nazwę miesiąca
 
-            int month = Frame->statistics->getEmailsCountInMonth(i+1);  //pobranie wartości z danego miesiąca
+            int month = 0;
+            month = Frame->statistics->getEmailsCountInMonth(i+1);  //pobranie wartości z danego miesiąca
             if (month >= 100)
                 labelCorrection = -8;
             else if (month >= 10)
@@ -101,7 +103,7 @@ void PanelStatisticsMaintance::EventPanelEmailPerMonthPaint (AisdiRelationsFrame
             ss << month;
             string strMonth = ss.str();
 
-            int currentBarHeight;
+            int currentBarHeight = 0;
             if (month)  //jeżeli jest co rysować, to rysuj prostokąt o zmiennym wypełnieniu
             {
                 double step = 10*barHeight/maxMonth;
@@ -111,7 +113,7 @@ void PanelStatisticsMaintance::EventPanelEmailPerMonthPaint (AisdiRelationsFrame
                 dc.DrawRectangle(wxPoint(10+(int)(i*(barWidth+barSpace)),height-35),wxSize(barWidth, -currentBarHeight));
             }
             //a potem wypisz tekst, nawet dla zera
-            dc.DrawText(wxString(strMonth.c_str(), wxConvUTF8), wxPoint(10+barWidth/2-5+(int)(i*(barWidth+barSpace))+labelCorrection, (int)(30+barHeight-currentBarHeight-15)));
+            dc.DrawText(wxString(strMonth.c_str(), wxConvUTF8), wxPoint(10+barWidth/2-5+(int)(i*(barWidth+barSpace))+labelCorrection, (int)(valueLabelCorrection+barHeight-currentBarHeight)));
         }
     }
     dc.DrawLine(wxPoint(10,height-30), wxPoint(width-10,height-30));
@@ -119,92 +121,95 @@ void PanelStatisticsMaintance::EventPanelEmailPerMonthPaint (AisdiRelationsFrame
 
 void PanelStatisticsMaintance::EventPanelCountersPaint (AisdiRelationsFrame * Frame)
 {
-    int iCounter;
-    double dCounter;
-    string sCounter;
-    Date * date;
-    ostringstream ss;
+    if (Frame->database->countEmails() > 0)
+    {
+        int iCounter;
+        double dCounter;
+        string sCounter;
+        Date * date;
+        ostringstream ss;
 
-    /** === Całkowite === */
-    iCounter = Frame->statistics->getEmails();      //liczba wszystkich maili
-    ss << iCounter;
-    sCounter = ss.str();
-    Frame->S_StaticTextC_Value1->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
-    ss.str("");
+        /** === Całkowite === */
+        iCounter = Frame->statistics->getEmails();      //liczba wszystkich maili
+        ss << iCounter;
+        sCounter = ss.str();
+        Frame->S_StaticTextC_Value1->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
+        ss.str("");
 
-    iCounter = Frame->statistics->getUsembers();    //liczba wszystkich Usemberów
-    ss << iCounter;
-    sCounter = ss.str();
-    Frame->S_StaticTextC_Value2->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
-    ss.str("");
+        iCounter = Frame->statistics->getUsembers();    //liczba wszystkich Usemberów
+        ss << iCounter;
+        sCounter = ss.str();
+        Frame->S_StaticTextC_Value2->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
+        ss.str("");
 
-    iCounter = Frame->statistics->getGroups();      //liczba wszystkich Grup
-    ss << iCounter;
-    sCounter = ss.str();
-    Frame->S_StaticTextC_Value3->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
-    ss.str("");
+        iCounter = Frame->statistics->getGroups();      //liczba wszystkich Grup
+        ss << iCounter;
+        sCounter = ss.str();
+        Frame->S_StaticTextC_Value3->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
+        ss.str("");
 
-    iCounter = Frame->statistics->getMaxEmailsInMonth();      //maksymalna liczba emaili w miesiącu
-    ss << iCounter;
-    sCounter = ss.str();
-    Frame->S_StaticTextC_Value8->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
-    ss.str("");
+        iCounter = Frame->statistics->getMaxEmailsInMonth();      //maksymalna liczba emaili w miesiącu
+        ss << iCounter;
+        sCounter = ss.str();
+        Frame->S_StaticTextC_Value8->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
+        ss.str("");
 
-    iCounter = Frame->statistics->getForwards();
-    ss << iCounter;
-    sCounter = ss.str();
-    Frame->S_StaticTextC_Value9->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
-    ss.str("");
+        iCounter = Frame->statistics->getForwards();
+        ss << iCounter;
+        sCounter = ss.str();
+        Frame->S_StaticTextC_Value9->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
+        ss.str("");
 
-    iCounter = Frame->statistics->getReplies();
-    ss << iCounter;
-    sCounter = ss.str();
-    Frame->S_StaticTextC_Value10->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
-    ss.str("");
+        iCounter = Frame->statistics->getReplies();
+        ss << iCounter;
+        sCounter = ss.str();
+        Frame->S_StaticTextC_Value10->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
+        ss.str("");
 
-    iCounter = Frame->statistics->getDuration();        //okres wysyłania maili (w dniach)
-    ss << iCounter;
-    sCounter = ss.str();
-    Frame->S_StaticTextC_Value13->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
-    ss.str("");
+        iCounter = Frame->statistics->getDuration();        //okres wysyłania maili (w dniach)
+        ss << iCounter;
+        sCounter = ss.str();
+        Frame->S_StaticTextC_Value13->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
+        ss.str("");
 
-    /** === Rzeczywiste === */
-    dCounter = Frame->statistics->getEmailsPerMonth();
-    ss << std::fixed << std::setprecision(1) << dCounter;
-    sCounter = ss.str();
-    Frame->S_StaticTextC_Value4->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
-    ss.str("");
+        /** === Rzeczywiste === */
+        dCounter = Frame->statistics->getEmailsPerMonth();
+        ss << std::fixed << std::setprecision(1) << dCounter;
+        sCounter = ss.str();
+        Frame->S_StaticTextC_Value4->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
+        ss.str("");
 
-    dCounter = Frame->statistics->getEmailsPerDay();
-    ss << std::fixed << std::setprecision(1) << dCounter;
-    sCounter = ss.str();
-    Frame->S_StaticTextC_Value5->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
-    ss.str("");
+        dCounter = Frame->statistics->getEmailsPerDay();
+        ss << std::fixed << std::setprecision(1) << dCounter;
+        sCounter = ss.str();
+        Frame->S_StaticTextC_Value5->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
+        ss.str("");
 
-    dCounter = Frame->statistics->getEmailsPerUser();
-    ss << std::fixed << std::setprecision(1) << dCounter;
-    sCounter = ss.str();
-    Frame->S_StaticTextC_Value6->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
-    ss.str("");
+        dCounter = Frame->statistics->getEmailsPerUser();
+        ss << std::fixed << std::setprecision(1) << dCounter;
+        sCounter = ss.str();
+        Frame->S_StaticTextC_Value6->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
+        ss.str("");
 
-    dCounter = Frame->statistics->getAverageEmailLength();
-    ss << std::fixed << std::setprecision(1) << dCounter;
-    sCounter = ss.str();
-    Frame->S_StaticTextC_Value7->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
-    ss.str("");
+        dCounter = Frame->statistics->getAverageEmailLength();
+        ss << std::fixed << std::setprecision(1) << dCounter;
+        sCounter = ss.str();
+        Frame->S_StaticTextC_Value7->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
+        ss.str("");
 
-    /** === Tekstowe === */
-    date = Frame->statistics->getEarliest();
-    ss << date->getDay() << "-" << date->getMonth() << "-" << date->getYear();
-    sCounter = ss.str();
-    Frame->S_StaticTextC_Value11->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
-    ss.str("");
+        /** === Tekstowe === */
+        date = Frame->statistics->getEarliest();
+        ss << date->getDay() << "-" << date->getMonth() << "-" << date->getYear();
+        sCounter = ss.str();
+        Frame->S_StaticTextC_Value11->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
+        ss.str("");
 
-    date= Frame->statistics->getLatest();
-    ss << date->getDay() << "-" << date->getMonth() << "-" << date->getYear();
-    sCounter = ss.str();
-    Frame->S_StaticTextC_Value12->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
-    ss.str("");
+        date= Frame->statistics->getLatest();
+        ss << date->getDay() << "-" << date->getMonth() << "-" << date->getYear();
+        sCounter = ss.str();
+        Frame->S_StaticTextC_Value12->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
+        ss.str("");
+    }
 }
 
 void PanelStatisticsMaintance::EventHyperLinkClick(AisdiRelationsFrame * Frame, const long id)
