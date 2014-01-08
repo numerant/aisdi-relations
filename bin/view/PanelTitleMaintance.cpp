@@ -415,11 +415,9 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
         wxArrayString paths;
         Frame->FileDialogDatabaseImport->GetPaths(paths);
 
-        delete Frame->database;     // potrzebny prompt!
-
-        std::ifstream ifs(paths[0].mb_str());
-        boost::archive::text_iarchive ia(ifs);
-        ia >> Frame->database;
+        DbParameters importParameters;
+            //PK, dodaj prompt przed wczytaniem (usuwa obecną zawartość bazy)
+        Frame->database = Frame->iointerface->importDatabase((string)paths[0].mb_str(), &importParameters);     // po wczytaniu zmienia się wartość wskaźnika na bazę danych!
 
         delete Frame->statistics;
         Frame->statistics = new Statistics(Frame->database);
@@ -455,11 +453,13 @@ void PanelTitleMaintance::EventButtonTxtClick(AisdiRelationsFrame * Frame)
         if (strFilename != "")
         {
             if (strPath.substr(strPath.size()-4, 4) != ".bin")
+            {
                 strPath = strPath+".bin";
+                strFilename = strFilename+".bin";
+            }
 
-            std::ofstream ofs(strPath);
-            boost::archive::text_oarchive oa(ofs);
-            oa << Frame->database;
+            DbParameters exportParameters;
+            Frame->iointerface->exportDatabase(strPath, &exportParameters);
 
             Frame->P_Notify->SetLabels(Frame, "Zapisano plik bazy.", "Nazwa pliku: ");
             Frame->P_Notify->SetValues(Frame, strFilename);

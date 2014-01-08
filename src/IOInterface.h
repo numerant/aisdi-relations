@@ -6,7 +6,10 @@
 #include <boost/regex.hpp>
 #include "boost/filesystem.hpp"         // do wczytywania plików z katalogu - także rekursywnie
 #include "boost/algorithm/string.hpp"   // do zaawansowanych operacji na stringach
+#include "boost/archive/text_iarchive.hpp"
+#include "boost/archive/text_oarchive.hpp"
 #include "Database.h"
+#include "Serialization.h"
 #include "Email.h"
 #include "Parameters.h"
 #include "Report.h"
@@ -43,7 +46,7 @@ public:
     void clearImportStats();
 
     void exportDatabase (string filePath, DbParameters *parameters);            // opis klas MailParameters i DbParameters jest w Param.h
-    void importDatabase (string filePath, DbParameters *parameters);
+    Database* importDatabase (string filePath, DbParameters *parameters);
     void exportReport (string path, Report report);
 
     void setDatabasePointer (Database * db);

@@ -202,6 +202,23 @@ void IOInterface::setDatabasePointer (Database * db)
     this->database = db;
 }
 
+Database* IOInterface::importDatabase(string filePath, DbParameters *parameters)
+{
+    delete database;            // potrzebny prompt!
+    ifstream ifs(filePath);     // dodać exception
+    boost::archive::text_iarchive ia(ifs);
+    ia >> database;
+
+    return database;
+}
+
+void IOInterface::exportDatabase(string filePath, DbParameters *parameters)
+{
+    ofstream ofs(filePath);
+    boost::archive::text_oarchive oa(ofs);
+    oa << database;
+}
+
 string IOInterface::strSequenceReplace(const string& searched, const string& replaced, string subject)
 {
     string buffer;
