@@ -14,6 +14,11 @@ IOInterface::IOInterface()
 
 }
 
+IOInterface::~IOInterface()
+{
+
+}
+
 IOInterface::ImportStats::ImportStats()
 {
     clearStats();
