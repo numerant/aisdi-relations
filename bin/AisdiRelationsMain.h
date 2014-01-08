@@ -250,10 +250,10 @@ private:
     static const long ID_STATICBOX7;
     static const long ID_STATICTEXT111;
     static const long ID_PANEL12;
+    static const long ID_STATICBOX8;
     static const long ID_STATICLINE10;
     static const long ID_STATICTEXT123;
     static const long ID_STATICTEXT112;
-    static const long ID_STATICBOX8;
     static const long ID_STATICTEXT113;
     static const long ID_STATICTEXT114;
     static const long ID_STATICTEXT115;

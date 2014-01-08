@@ -61,9 +61,16 @@ bool PanelStatisticsMaintance::GetIsUpdated ()
 
 void PanelStatisticsMaintance::EventPanelEmailPerMonthPaint (AisdiRelationsFrame * Frame)
 {
+    //TODO      NAPRAWIĆ WYŚWIETLANIE WYKRESU DLA DUŻYCH WARTOŚCI!!!! Przeskalować w górę x10, obliczyć i podzielić przez 10
     const int red = 240;
     const int green = 70;
     const int blue = 30;
+    int height, width;
+    Frame->S_PanelEmailPerMonth->GetSize(&width, & height);
+    double barSpace = 20;
+    double barWidth = (width-20-11*barSpace)/12;
+    int barHeight = (height - 70);
+
     wxPaintDC dc(Frame->S_PanelEmailPerMonth);
 
     dc.SetBrush(wxBrush(wxColour(48,48,48)));
@@ -74,8 +81,8 @@ void PanelStatisticsMaintance::EventPanelEmailPerMonthPaint (AisdiRelationsFrame
     dc.SetTextForeground(wxColour(230,230,230));
     dc.SetFont(wxFont(11, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, _("Ubuntu")));
 
-    int maxHeight = Frame->statistics->getMaxEmailsInMonth();
-    if (maxHeight)  //jeżeli jakikolwiek mail wczytany
+    int maxMonth = Frame->statistics->getMaxEmailsInMonth();
+    if (maxMonth)  //jeżeli jakikolwiek mail wczytany
     {
          for (int i = 0; i < 12; i++)    //Wypisanie nazw miesięcy u dołu
         {
@@ -83,7 +90,7 @@ void PanelStatisticsMaintance::EventPanelEmailPerMonthPaint (AisdiRelationsFrame
             int labelCorrection = 0;
             if (i == 6)
                     posCorrection = 2;
-            dc.DrawText(months[i], wxPoint(i*40+20+posCorrection, 270));      //wypisz nazwę miesiąca
+            dc.DrawText(months[i], wxPoint(10+barWidth/2-12+i*(barWidth+barSpace)+posCorrection, height-25));      //wypisz nazwę miesiąca
 
             int month = Frame->statistics->getEmailsCountInMonth(i+1);  //pobranie wartości z danego miesiąca
             if (month >= 100)
@@ -95,16 +102,20 @@ void PanelStatisticsMaintance::EventPanelEmailPerMonthPaint (AisdiRelationsFrame
             ss << month;
             string strMonth = ss.str();
 
+            int currentBarHeight;
             if (month)  //jeżeli jest co rysować, to rysuj prostokąt o zmiennym wypełnieniu
             {
-                dc.SetBrush(wxBrush(wxColour(red+(int)(255-red-month*(255-red)/maxHeight),green+(int)(255-green-month*(255-green)/maxHeight),blue+(int)(255-blue-month*(255-blue)/maxHeight))));      //ustal kolor słupka
-                dc.DrawRectangle(wxPoint(17+i*40,250),wxSize(32, (int)-month*(200/maxHeight)));
+                double step = 10*barHeight/maxMonth;
+                double d_barHeight = step * month;
+                currentBarHeight = (int)(d_barHeight/10);
+                dc.SetBrush(wxBrush(wxColour(red+(int)(255-red-(255-red)*currentBarHeight/barHeight),green+(int)(255-green-(255-green)*currentBarHeight/barHeight),blue+(int)(255-blue-(255-blue)*currentBarHeight/barHeight))));      //ustal kolor słupka
+                dc.DrawRectangle(wxPoint(10+(int)(i*(barWidth+barSpace)),height-35),wxSize(barWidth, -currentBarHeight));
             }
             //a potem wypisz tekst, nawet dla zera
-            dc.DrawText(wxString(strMonth.c_str(), wxConvUTF8), wxPoint(i*40+28+labelCorrection, (int)250-month*(200/maxHeight)-20));
+            dc.DrawText(wxString(strMonth.c_str(), wxConvUTF8), wxPoint(10+barWidth/2-5+(int)(i*(barWidth+barSpace))+labelCorrection, (int)(30+barHeight-currentBarHeight-15)));
         }
     }
-    dc.DrawLine(wxPoint(10,260), wxPoint(490,260));
+    dc.DrawLine(wxPoint(10,height-30), wxPoint(width-10,height-30));
 }
 
 void PanelStatisticsMaintance::EventPanelCountersPaint (AisdiRelationsFrame * Frame)
