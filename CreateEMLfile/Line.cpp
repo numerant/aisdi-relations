@@ -18,6 +18,11 @@ From::From()
         text=VectorFrom[x];
 		linijka="From: \"" + text + "\" <" + text + domena + ">";
 	}
+From::From(string old)
+{
+    text=old;
+    linijka="From: \"" + text + "\" <" + text + domena + ">";
+}
 
 
 To::To()
@@ -32,19 +37,29 @@ To::To()
         }while (x==y);
 		linijka="To: \"" + text + "\" <" + text + domena + ">";
 	}
+To::To(string old)
+{
+    text=old;
+    linijka="To: \"" + text + "\" <" + text + domena + ">";
+}
 
 
 Subject::Subject()
-	{
-        vector<string> VectorSubject;
-        Input::ImportToVector("subject.txt", VectorSubject);
-        string s= numgen((int)VectorSubject.size(), 0);
-        int x;
-        istringstream iss(s);
-        iss >> x;
-        text=VectorSubject[x];
-		linijka="Subject: " + text;
-	}
+{
+    vector<string> VectorSubject;
+    Input::ImportToVector("subject.txt", VectorSubject);
+    string s= numgen((int)VectorSubject.size(), 0);
+    int x;
+    istringstream iss(s);
+    iss >> x;
+    text=VectorSubject[x];
+    linijka="Subject: " + text;
+}
+Subject::Subject(string przedrostek, string old)
+{
+    text=przedrostek + old;
+    linijka="Subject: " + text;
+}
 
 
 MessageID::MessageID()
@@ -66,7 +81,7 @@ string Date::setDayofWeek()
 		if (nr=="7") DayofWeek="Sun";
 		return DayofWeek;
 	}
-
+	
 string Date::setMonth()
 	{
 		string nr=numgen(12,1);
@@ -84,7 +99,7 @@ string Date::setMonth()
 		if (nr=="12") Month="Dec";
 		return Month;
 	}
-
+	
 Date::Date()
 	{
 		linijka="Date: " + setDayofWeek() + ", " + DayofMonth + " " + setMonth() + " 2012 " + Hour + ":" + Minute + ":" + Second + " +0200";
@@ -109,6 +124,21 @@ Contents::Contents()
         }
 		linijka="\n" + text;
 	}
+Contents::Contents(string old)
+{
+    ReplaceString(old, "\n", "\n>");
+    vector<string> VectorContents;
+    Input::ImportToVector("contents.txt", VectorContents);
+    string s= numgen((int)VectorContents.size(), 0);
+    int z;
+    istringstream iss(s);
+    iss >> z;
+    for (int i=z; i<VectorContents.size() && i-z<50; i++) {
+        text=text + "\n" + VectorContents[i];
+    }
+    text=text + "\n" + old;
+    linijka="\n" + text;
+}
 
 
 
