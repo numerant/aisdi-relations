@@ -899,11 +899,11 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     U_LineContentSeparator->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
     U_PanelStats = new wxPanel(PanelUsembers, ID_PANEL9, wxPoint(720,245), wxSize(510,345), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL, _T("ID_PANEL9"));
     U_PanelStats->SetBackgroundColour(wxColour(48,48,48));
-    U_LabelSent = new wxStaticText(U_PanelStats, ID_STATICTEXT134, _("Maile wysłane: "), wxPoint(250,10), wxDefaultSize, 0, _T("ID_STATICTEXT134"));
+    U_LabelSent = new wxStaticText(U_PanelStats, ID_STATICTEXT134, _("Emaile wysłane: "), wxPoint(250,10), wxDefaultSize, 0, _T("ID_STATICTEXT134"));
     U_LabelSent->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
     wxFont U_LabelSentFont(13,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     U_LabelSent->SetFont(U_LabelSentFont);
-    U_LabelReceived = new wxStaticText(U_PanelStats, ID_STATICTEXT135, _("Maile odebrane: "), wxPoint(10,10), wxDefaultSize, 0, _T("ID_STATICTEXT135"));
+    U_LabelReceived = new wxStaticText(U_PanelStats, ID_STATICTEXT135, _("Emaile odebrane: "), wxPoint(10,10), wxDefaultSize, 0, _T("ID_STATICTEXT135"));
     U_LabelReceived->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
     wxFont U_LabelReceivedFont(13,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     U_LabelReceived->SetFont(U_LabelReceivedFont);

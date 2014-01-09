@@ -1846,7 +1846,7 @@
 					<bg>#303030</bg>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL</style>
 					<object class="wxStaticText" name="ID_STATICTEXT134" variable="U_LabelSent" member="yes">
-						<label>Maile wysłane: </label>
+						<label>Emaile wysłane: </label>
 						<pos>250,10</pos>
 						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 						<font>
@@ -1858,7 +1858,7 @@
 						</font>
 					</object>
 					<object class="wxStaticText" name="ID_STATICTEXT135" variable="U_LabelReceived" member="yes">
-						<label>Maile odebrane: </label>
+						<label>Emaile odebrane: </label>
 						<pos>10,10</pos>
 						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 						<font>

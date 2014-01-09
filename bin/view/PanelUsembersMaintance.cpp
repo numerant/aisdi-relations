@@ -683,9 +683,9 @@ void PanelUsembersMaintance::EventListInboxColumnClick (AisdiRelationsFrame* Fra
 void PanelUsembersMaintance::EventPanelStatsPaint (AisdiRelationsFrame * Frame)
 {
     wxColor colorBlue = wxColor(17,68,255);
-    wxColor colorBlueL = wxColor(50,100,255);
+    wxColor colorBlueL = wxColor(100,177,200);
     wxColor colorGreen = wxColor(36,201,15);
-    wxColor colorGreenL = wxColor(50,255,30);
+    wxColor colorGreenL = wxColor(113,232,104);
     wxColor colorBackground = wxColor(48,48,48);
     wxColor colorText = wxColor (230,230,230);
 
@@ -705,7 +705,7 @@ void PanelUsembersMaintance::EventPanelStatsPaint (AisdiRelationsFrame * Frame)
     dc.DrawRectangle(wxPoint(5,32),wxSize(width-10,height-28-5));       //wyczyszczenie canvasu
 
     dc.SetTextForeground(colorText);
-    dc.SetFont(wxFont(11, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, _("Ubuntu")));
+    dc.SetFont(wxFont(11, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, _("Ubuntu")));
 
     int maxEmails = 0, prevX = 32, prevYS = height+deltaY, prevYR = height+deltaY;
     Usember * usember = Frame->database->getUsember(Frame->database->findUsember(adressUsemberSelected));
@@ -720,8 +720,10 @@ void PanelUsembersMaintance::EventPanelStatsPaint (AisdiRelationsFrame * Frame)
             if (i == 6)
                     posCorrection = 2;
             dc.SetTextForeground(colorText);
+            dc.SetFont(wxFont(11, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, _("Ubuntu")));
             dc.DrawText(months[i], wxPoint(20+i*pointSpace+posCorrection, height-25));      //wypisz nazwę miesiąca
 
+            dc.SetFont(wxFont(11, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, _("Ubuntu")));
             int monthSent = 0, monthReceived = 0;
             monthSent =  usember->getEmailsSentInMonth(i);  //pobranie wartości z danego miesiąca
             monthReceived = usember->getEmailsReceivedInMonth(i);
