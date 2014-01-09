@@ -1752,7 +1752,7 @@
 					</object>
 					<object class="wxStaticText" name="ID_STATICTEXT21" variable="U_StaticTextDate" member="yes">
 						<label></label>
-						<pos>445,20</pos>
+						<pos>400,20</pos>
 						<fg>wxSYS_COLOUR_ACTIVEBORDER</fg>
 						<font>
 							<size>13</size>
@@ -1787,7 +1787,6 @@
 						</font>
 					</object>
 					<object class="wxHtmlWindow" name="ID_HTMLWINDOW2" variable="U_HtmlContent" member="yes">
-						<htmlcode>&lt;p align=&quot;justify&quot;&gt;&lt;font color=&quot;lightgray&quot;&gt;Donec pretium velit nisi, id euismod libero mattis sit amet. Quisque eu volutpat lectus. Nam lacus urna, tincidunt vitae convallis ut, commodo eget augue. Phasellus ornare lacus sapien, sit amet hendrerit neque scelerisque a. Praesent dapibus massa magna, vitae rhoncus turpis malesuada et. Nulla vel suscipit nunc. Integer metus turpis, consectetur non lacinia et, molestie sit amet velit.Donec pretium velit nisi, id euismod libero mattis sit amet. Quisque eu volutpat lectus. Nam lacus urna, tincidunt vitae convallis ut, commodo eget augue. Phasellus ornare lacus sapien, sit amet hendrerit neque scelerisque a. Praesent dapibus massa magna, vitae rhoncus turpis malesuada et. Nulla vel suscipit nunc. Integer metus turpis, consectetur non lacinia et, molestie sit amet velit.Donec pretium velit nisi, id euismod libero mattis sit amet. Quisque eu volutpat lectus. Nam lacus urna, tincidunt vitae convallis ut, commodo eget augue. Phasellus ornare lacus sapien, sit amet hendrerit neque scelerisque a. Praesent dapibus massa magna, vitae rhoncus turpis malesuada et. Nulla vel suscipit nunc. Integer metus turpis, consectetur non lacinia et, molestie sit amet velit.&lt;/font&gt;&lt;/p&gt;</htmlcode>
 						<pos>15,80</pos>
 						<size>480,255</size>
 						<fg>wxSYS_COLOUR_WINDOW</fg>

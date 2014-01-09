@@ -61,7 +61,7 @@ bool Database::addUsember(Usember* usember)
         usemberVector.push_back(usember);
         return true;
     }
-    if(findUsember(usember->getAddress())==-1 && usemberVector.size()<16)
+    if(findUsember(usember->getAddress())==-1)
     {
         usemberVector.push_back(usember);
         sort (usemberVector.begin(), usemberVector.end(), Database::compareUsembers);

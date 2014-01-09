@@ -1,4 +1,5 @@
 #include "PanelTitleMaintance.h"
+#include "PanelUsembersMaintance.h"
 
 // TEMP - serializacja!
 #include <boost/archive/text_oarchive.hpp>
@@ -321,9 +322,11 @@ void PanelTitleMaintance::EventButtonFolderClick (AisdiRelationsFrame* Frame)
         stats = Frame->iointerface->getImportStats();
         Frame->iointerface->clearImportStats();
 
-        Frame->P_Inbox->SetEmails(Frame);				//załadowanie listy maili do komponentu T_ListInbox
         if (stats.successCount > 0)
         {
+            Frame->P_Inbox->SetEmails(Frame);               //załadowanie listy maili i usemberów z bazy
+            Frame->P_Usembers->SetUsembers(Frame);
+
             if (GetNoData())
                 Frame->P_Title->SwitchIcons(Frame);
             Frame->P_Notify->SetLabels(Frame, "Zakończono wczytywanie!", "Wczytano poprawnie:", "Niepoprawne emaile:", "Powtórzone rekordy:");
@@ -361,9 +364,11 @@ void PanelTitleMaintance::EventButtonFilesClick (AisdiRelationsFrame* Frame)
         stats = Frame->iointerface->getImportStats();
         Frame->iointerface->clearImportStats();
 
-        Frame->P_Inbox->SetEmails(Frame);				//załadowanie listy Emaili z bazy
         if (stats.successCount > 0)
         {
+            Frame->P_Inbox->SetEmails(Frame);               //załadowanie listy maili i usemberów z bazy
+            Frame->P_Usembers->SetUsembers(Frame);
+
             if (GetNoData())
                 Frame->P_Title->SwitchIcons(Frame);
             Frame->P_Notify->SetLabels(Frame, "Zakończono wczytywanie!", "Wczytano poprawnie:", "Niepoprawne emaile:", "Powtórzone rekordy:");
@@ -422,7 +427,9 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
         delete Frame->statistics;
         Frame->statistics = new Statistics(Frame->database);
 
-        Frame->P_Inbox->SetEmails(Frame);				//załadowanie listy Emaili z bazy
+        Frame->P_Inbox->SetEmails(Frame);               //załadowanie listy maili i usemberów z bazy
+        Frame->P_Usembers->SetUsembers(Frame);
+
         if (GetNoData())
             Frame->P_Title->SwitchIcons(Frame);
         Frame->statistics->update();

@@ -81,12 +81,12 @@ Email* Usember::getEmailSent(int position)
         return sentMails[position];
 }
 
-unsigned int Usember::sendMailCount()			// zwraca liczbę maili wysłanych przez tego usembera
+int Usember::sendMailCount()			// zwraca liczbę maili wysłanych przez tego usembera
 {
     return sentMails.size();
 }
 
-unsigned int Usember::receiveMailCount()
+int Usember::receiveMailCount()
 {
     return receivedMails.size();
 }

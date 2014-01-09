@@ -42,12 +42,16 @@ public:
     void SetAddEnabled();
     void SetSaveEnabled();
     void SetSettingsEnabled();
+    void SetUsembersListEnabled();
+    void SetEmailContentEnabled();
     void SetUsemberViewed(const string usember);
 
     bool GetSearchEnabled();
     bool GetAddEnabled();
     bool GetSaveEnabled();
     bool GetSettingsEnabled();
+    bool GetUsembersListEnabled();
+    bool GetEmailContentEnabled();
 
     void EventButtonSearchClick (AisdiRelationsFrame* Frame);
     void EventButtonAddClick (AisdiRelationsFrame* Frame);

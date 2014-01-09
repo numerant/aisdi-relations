@@ -214,10 +214,6 @@ void Statistics::updateTopUsembers()
         }
         sort(topSenders.begin(), topSenders.end(), Statistics::compareUsembersSentEmails);
         sort(topReceivers.begin(), topReceivers.end(), Statistics::compareUsembersReceivedEmails);
-        while(topSenders.size()>TOP_USEMBERS_COUNT){
-            topSenders.pop_back();
-            topReceivers.pop_back();
-        }
     }
 }
 
@@ -232,7 +228,7 @@ int Statistics::getDateDifferenceInDays(Date* date1, Date* date2)
 
 bool Statistics::compareUsembersSentEmails(Usember* usember1, Usember* usember2)
 {
-    if(usember1->sendMailCount()>=usember2->sendMailCount())
+    if(usember1->sendMailCount() > usember2->sendMailCount())
         return true;
     else
         return false;
@@ -240,7 +236,7 @@ bool Statistics::compareUsembersSentEmails(Usember* usember1, Usember* usember2)
 
 bool Statistics::compareUsembersReceivedEmails(Usember* usember1, Usember* usember2)
 {
-    if(usember1->receiveMailCount()>=usember2->receiveMailCount())
+    if(usember1->receiveMailCount() > usember2->receiveMailCount())
         return true;
     else
         return false;

@@ -43,8 +43,8 @@ public:
 	Group* getGroup();						// zwraca wskazanie na grupę
 	Email* getEmailReceived(int position);	// zwraca wskazanie na danego maila (z otrzymanych)
 	Email* getEmailSent(int position);		// zwraca wskazanie na danego maila (z wysłanych)
-    unsigned int sendMailCount();				// zwraca liczbę maili wysłanych przez tego usembera
-    unsigned int receiveMailCount();				// zwraca liczbę maili odebranych przez tego usembera
+    int sendMailCount();				// zwraca liczbę maili wysłanych przez tego usembera
+    int receiveMailCount();				// zwraca liczbę maili odebranych przez tego usembera
 
 private:
     // adres - email:

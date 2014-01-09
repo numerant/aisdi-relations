@@ -63,7 +63,6 @@ void PanelUsembersMaintance::ShowPanel(AisdiRelationsFrame* Frame)
             Frame->U_PanelStats->Show();
         }
 
-        SetUsembers(Frame);         //TODO przenieść to do PaneluTitle przy wczytywaniu plików
         Frame->PanelUsembers->SetPosition(wxPoint(0,0));
         Frame->PanelUsembers->Show();
     }
@@ -87,7 +86,6 @@ void PanelUsembersMaintance::SetLabels(AisdiRelationsFrame* Frame)
 
     for (int i = 0; i < COL_EMAILS_COUNT; i++)         //tak samo dla skrzynek
     {
-        if (i == 3) continue;
         col.SetId(i);
         col.SetText(labels2[i]);
         col.SetWidth(width[i]);
@@ -154,11 +152,11 @@ void PanelUsembersMaintance::SetEmails (AisdiRelationsFrame * Frame, int pos)
 
                 string sourceString = email->getContent();
                 wxString content(sourceString.c_str(), wxConvUTF8);
-                Frame->U_ListInbox->SetItem(i,3, content);
+                Frame->U_ListInbox->SetItem(i,4, content);
 
                 sourceString = email->getID();
                 wxString wxId(sourceString.c_str(), wxConvUTF8);
-                Frame->U_ListInbox->SetItem(i,4, wxId);
+                Frame->U_ListInbox->SetItem(i,5, wxId);
 
                 sourceString = email->getSubject();
                 wxString subject(sourceString.c_str(), wxConvUTF8);
@@ -199,11 +197,11 @@ void PanelUsembersMaintance::SetEmails (AisdiRelationsFrame * Frame, int pos)
 
                 string sourceString = email->getContent();
                 wxString content(sourceString.c_str(), wxConvUTF8);
-                Frame->U_ListOutbox->SetItem(i,3, content);
+                Frame->U_ListOutbox->SetItem(i,4, content);
 
                 sourceString = email->getID();
                 wxString wxId(sourceString.c_str(), wxConvUTF8);
-                Frame->U_ListOutbox->SetItem(i,4, wxId);
+                Frame->U_ListOutbox->SetItem(i,5, wxId);
 
                 sourceString = email->getSubject();
                 wxString subject(sourceString.c_str(), wxConvUTF8);
@@ -282,6 +280,7 @@ void PanelUsembersMaintance::SwitchContent(AisdiRelationsFrame* Frame)
         Frame->U_PanelEmail->Show();
         Frame->U_PanelStats->Hide();
     }
+    emailContentEnabled = !emailContentEnabled;
 }
 
 void PanelUsembersMaintance::SetSearchEnabled()
@@ -302,6 +301,16 @@ void PanelUsembersMaintance::SetSaveEnabled()
 void PanelUsembersMaintance::SetSettingsEnabled()
 {
     settingsEnabled = !settingsEnabled;
+}
+
+void PanelUsembersMaintance::SetUsembersListEnabled()
+{
+    usembersListEnabled = !usembersListEnabled;
+}
+
+void PanelUsembersMaintance::SetEmailContentEnabled()
+{
+    emailContentEnabled = !emailContentEnabled;
 }
 
 void PanelUsembersMaintance::SetUsemberViewed(const string usember)
@@ -327,6 +336,16 @@ bool PanelUsembersMaintance::GetSaveEnabled()
 bool PanelUsembersMaintance::GetSettingsEnabled()
 {
     return settingsEnabled;
+}
+
+bool PanelUsembersMaintance::GetUsembersListEnabled()
+{
+    return usembersListEnabled;
+}
+
+bool PanelUsembersMaintance::GetEmailContentEnabled()
+{
+    return emailContentEnabled;
 }
 
 void PanelUsembersMaintance::EventButtonSearchClick (AisdiRelationsFrame* Frame)
@@ -501,13 +520,14 @@ void PanelUsembersMaintance::EventListUsembersItemSelect (AisdiRelationsFrame* F
         Frame->U_ListUsembers->GetItem( item );
         contents[i] = item.m_text;
     }
-    Frame->U_LabelName->SetLabel(contents[0]);
-    Frame->U_LabelEmail->SetLabel(contents[1]);
-    Frame->U_LabelGroup->SetLabel(contents[2]);
+    Frame->U_StaticTextName->SetLabel(contents[0]);
+    Frame->U_StaticTextEmail->SetLabel(contents[1]);
+    Frame->U_StaticTextGroup->SetLabel(contents[2]);
 
    adressUsemberSelected = contents[1].mb_str();
    SetEmails(Frame, Frame->database->findUsember(adressUsemberSelected));
-   SwitchList(Frame);
+   if (GetUsembersListEnabled())
+        SwitchList(Frame);
 }
 
 void PanelUsembersMaintance::EventListUsembersColumnClick (AisdiRelationsFrame* Frame)
@@ -532,7 +552,7 @@ void PanelUsembersMaintance::EventListOutboxItemSelect (AisdiRelationsFrame* Fra
     item.m_itemId = itemIndex;
     item.m_mask = wxLIST_MASK_TEXT;
 
-    for (int i = 0; i < COL_USEMBERS_COUNT; i++)
+    for (int i = 0; i < COL_EMAILS_COUNT; i++)
     {
         item.m_col = i;
         Frame->U_ListOutbox->GetItem( item );
@@ -540,18 +560,21 @@ void PanelUsembersMaintance::EventListOutboxItemSelect (AisdiRelationsFrame* Fra
     }
     Frame->U_StaticTextDate->SetLabel(contents[0]);
     Frame->U_StaticTextSubject->SetLabel(contents[1]);
-    Frame->U_StaticTextFromTo->SetLabel(contents[3]);
+    Frame->U_StaticTextFromTo->SetLabel(contents[2]);
 
     emailIdSelected = contents[5].mb_str();
 
     const string search = "\n";
     const string replace = "<br>";
-    string subject = string (contents[4].mb_str());
-    string htmlContent = Frame->iointerface->strSequenceReplace("\n", "<br>", subject);
+    string content = string (contents[4].mb_str());
+    string htmlContent = Frame->iointerface->strSequenceReplace("\n", "<br>", content);
 
     wxString pContent (htmlContent.c_str(), wxConvUTF8 );
     Frame->U_HtmlContent->SetPage(pOpen+pContent+pClose);
     Frame->U_HtmlContent->SetBackgroundColour(wxColor(20,20,20));
+    Frame->U_LabelFromTo->SetLabel(_("Do:"));
+    if (!GetEmailContentEnabled())
+        SwitchContent(Frame);
 }
 
 void PanelUsembersMaintance::EventListInboxItemSelect (AisdiRelationsFrame* Frame)
@@ -566,7 +589,7 @@ void PanelUsembersMaintance::EventListInboxItemSelect (AisdiRelationsFrame* Fram
     item.m_itemId = itemIndex;
     item.m_mask = wxLIST_MASK_TEXT;
 
-    for (int i = 0; i < COL_USEMBERS_COUNT; i++)
+    for (int i = 0; i < COL_EMAILS_COUNT; i++)
     {
         item.m_col = i;
         Frame->U_ListInbox->GetItem( item );
@@ -580,12 +603,15 @@ void PanelUsembersMaintance::EventListInboxItemSelect (AisdiRelationsFrame* Fram
 
     const string search = "\n";
     const string replace = "<br>";
-    string subject = string (contents[4].mb_str());
-    string htmlContent = Frame->iointerface->strSequenceReplace("\n", "<br>", subject);
+    string content = string (contents[4].mb_str());
+    string htmlContent = Frame->iointerface->strSequenceReplace("\n", "<br>", content);
 
     wxString pContent (htmlContent.c_str(), wxConvUTF8 );
     Frame->U_HtmlContent->SetPage(pOpen+pContent+pClose);
     Frame->U_HtmlContent->SetBackgroundColour(wxColor(20,20,20));
+    Frame->U_LabelFromTo->SetLabel(_("Od:"));
+     if (!GetEmailContentEnabled())
+        SwitchContent(Frame);
 }
 
 void PanelUsembersMaintance::EventListInboxColumnClick (AisdiRelationsFrame* Frame)
