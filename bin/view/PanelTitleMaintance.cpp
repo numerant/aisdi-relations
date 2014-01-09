@@ -471,4 +471,6 @@ void PanelTitleMaintance::EventButtonTxtClick(AisdiRelationsFrame * Frame)
 void PanelTitleMaintance::EventButtonSavTxtClick(AisdiRelationsFrame * Frame)
 {
     //Zapisywanie bazy do pliku tekstowego
+    string directoryPath;
+    Frame->iointerface->exportDatabaseToTxt (directoryPath);
 }

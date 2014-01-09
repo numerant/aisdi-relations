@@ -223,9 +223,15 @@ void IOInterface::exportDatabaseToTxt (string directoryPath)
 {
     string filePath;
     stringstream record;              // linia zawierająca pola pojedynczego rekordu bazy, oddzielone tabulatorami
+    ofstream file;
+
+        //temp
+    directoryPath = "/home/kuba";
 
         //wektor maili
     filePath = directoryPath + "/emails.txt";             // sprawdzić, czy / jest potrzebne
+    file.open(filePath);
+
     Email* tempEmail;
     for(int i=0; ; i++)
     {
@@ -236,8 +242,8 @@ void IOInterface::exportDatabaseToTxt (string directoryPath)
         record << tempEmail->getID() << "\t";
         record << tempEmail->getFrom()->getAddress() << "\t";
         record << tempEmail->getTo()->getAddress() << "\t";
-        record << tempEmail->getReplyTo()->getAddress() << "\t";
-        record << tempEmail->getInReplyTo() << "\t";
+        //record << tempEmail->getReplyTo()->getAddress() << "\t";  //replyTo chyba nie działa (?)
+        //record << tempEmail->getInReplyTo() << "\t";              //na razie puste
             // dopisać forwards
         record << tempEmail->getDate().getFullDate() << "\t";       // getDate nie zwraca wskażnika (?)
         record << tempEmail->getSubject() << "\t";
@@ -245,8 +251,48 @@ void IOInterface::exportDatabaseToTxt (string directoryPath)
         string emailContent(tempEmail->getContent() );
         replace(emailContent.begin(), emailContent.end(), '\n', '~');
         record << emailContent << "\n";
-    }
 
+        file << record.rdbuf();
+    }
+    file.close();
+
+        //wektor usemberów
+    filePath = directoryPath + "/usembers.txt";             // sprawdzić, czy / jest potrzebne
+    file.open(filePath);
+
+    Usember* tempUsember;
+    for(int i=0; ; i++)
+    {
+        tempUsember = database->getUsember(i);
+        if (tempUsember == nullptr) break;
+
+        record.clear();
+        record << tempUsember->getAddress() << "\t";
+        record << tempUsember->getRealName() << "\t";
+        //record << tempUsember->getGroup()->getID();   // grupy nie działają
+        record << "\n";
+        file << record.rdbuf();
+    }
+    file.close();
+
+            //wektor grup
+    filePath = directoryPath + "/groups.txt";             // sprawdzić, czy / jest potrzebne
+    file.open(filePath);
+
+    Group* tempGroup;
+    for(int i=0; ; i++)
+    {
+        tempGroup = database->getGroup(i);
+        if (tempGroup == nullptr) break;
+
+        record.clear();
+
+        // grupy nie działają, nie ma nic
+
+        record << "\n";
+        file << record.rdbuf();
+    }
+    file.close();
 }
 
 string IOInterface::strSequenceReplace(const string& searched, const string& replaced, string subject)
