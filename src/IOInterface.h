@@ -1,11 +1,13 @@
 #pragma once
 #include <vector>
 #include <fstream>
+#include <sstream>
 #include <string>
 #include <regex>
+#include <algorithm>                            // do zamiany znaków nowej linii w treści maila
 #include <boost/regex.hpp>
-#include "boost/filesystem.hpp"         // do wczytywania plików z katalogu - także rekursywnie
-#include "boost/algorithm/string.hpp"   // do zaawansowanych operacji na stringach
+#include "boost/filesystem.hpp"                 // do wczytywania plików z katalogu - także rekursywnie
+#include "boost/algorithm/string.hpp"           // do zaawansowanych operacji na stringach
 #include "boost/archive/text_iarchive.hpp"
 #include "boost/archive/text_oarchive.hpp"
 #include "Database.h"
@@ -48,6 +50,7 @@ public:
     void exportDatabase (string filePath, DbParameters *parameters);            // opis klas MailParameters i DbParameters jest w Param.h
     Database* importDatabase (string filePath, DbParameters *parameters);
     void exportReport (string path, Report report);
+    void exportDatabaseToTxt (string directoryPath);                            // w podanym katalogu tworzy pliki tekstowe z rekordami bazy danych, przystosowane do importu do np. Accessa
 
     void setDatabasePointer (Database * db);
     string strSequenceReplace(const string& searched, const string& replaced, string subject);
