@@ -1,7 +1,4 @@
 #include "PanelStatisticsMaintance.h"
-#include "PanelUsembersMaintance.h"
-#include <wx/dcclient.h>
-#include <iomanip>
 
 PanelStatisticsMaintance::PanelStatisticsMaintance ()
 {
@@ -297,5 +294,35 @@ void PanelStatisticsMaintance::EventButtonRefreshClick (AisdiRelationsFrame * Fr
     Frame->P_Stats->EventPanelEmailPerMonthPaint(Frame);
     Frame->P_Stats->EventPanelCountersPaint(Frame);
     Frame->P_Stats->EventPanelTopsPaint(Frame);
+}
+
+void PanelStatisticsMaintance::EventButtonSaveStatsClick (AisdiRelationsFrame * Frame)
+{
+    if (Frame->statistics->getEmails() == 0)
+        wxMessageBox(_("Statystyki są puste."));
+    else if (Frame->FileDialogStatisticsExport->ShowModal() == wxID_OK)      //uruchomienie panelu wybierania folderu
+    {
+        wxString path, filename;
+        path = Frame->FileDialogStatisticsExport->GetPath();
+        filename = Frame->FileDialogStatisticsExport->GetFilename();
+
+        std::string strPath, strFilename;
+        strPath = path.mb_str();
+        strFilename = filename.mb_str();
+
+        if (strFilename != "")
+        {
+            if (strPath.substr(strPath.size()-4, 4) != ".txt")
+            {
+                strPath = strPath+".txt";
+                strFilename = strFilename+".txt";
+            }
+
+            Frame->iointerface->exportDatabaseReport(strPath, Frame->statistics);
+            Frame->P_Notify->SetLabels(Frame, "Zapisano statystyki.", "Nazwa pliku: ");
+            Frame->P_Notify->SetValues(Frame, strFilename);
+            Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
+        }
+    }
 }
 

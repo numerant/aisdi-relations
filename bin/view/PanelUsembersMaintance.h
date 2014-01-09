@@ -28,6 +28,11 @@ private:
         _("Title")
     };                               //ścieżki plików z grafikami do przycisków panelu
 
+    const wxString months[12] =
+    {
+    _("Jan"), _("Feb"), _("Mar"), _("Apr"), _("May"), _("Jun"), _("Jul"), _("Aug"), _("Sep"), _("Oct"), _("Nov"), _("Dec")
+    };
+
 public:
     PanelUsembersMaintance();
     void ShowPanel(AisdiRelationsFrame* Frame);
@@ -67,4 +72,5 @@ public:
     void EventListOutboxColumnClick (AisdiRelationsFrame* Frame);
     void EventListInboxItemSelect (AisdiRelationsFrame* Frame);
     void EventListInboxColumnClick (AisdiRelationsFrame* Frame);
+    void EventPanelStatsPaint (AisdiRelationsFrame * Frame);
 };

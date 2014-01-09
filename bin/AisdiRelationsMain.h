@@ -335,6 +335,10 @@ private:
     static const long ID_HTMLWINDOW2;
     static const long ID_STATICLINE8;
     static const long ID_PANEL8;
+    static const long ID_STATICTEXT134;
+    static const long ID_STATICTEXT135;
+    static const long ID_STATICTEXT136;
+    static const long ID_STATICTEXT137;
     static const long ID_PANEL9;
     static const long ID_IMAGEBUTTON10;
     static const long ID_IMAGEBUTTON11;
@@ -454,11 +458,14 @@ private:
     wxStaticText* M_LabelGroups;
     wxStaticLine* T_StaticLineImportH;
     wxStaticText* S_StaticTextT_SendersPos5;
+    wxStaticText* U_StaticTextReceived;
     wxStaticText* S_LabelUsembers;
+    wxStaticText* U_LabelReceived;
     wxBitmapButton        *S_ImageButtonGroups;
     wxBitmapButton        *S_ImageButtonTitle;
     wxTimer Timer1;
     wxBitmapButton        *S_ImageButtonMulTree;
+    wxStaticText* U_StaticTextSent;
     wxHyperlinkCtrl* S_HyperLinkT_SendersPos2;
     wxStaticText* S_LabelGroups;
     wxBitmapButton        *T_ImageButtonImport;
@@ -536,6 +543,7 @@ private:
     wxBitmapButton        *S_ImageButtonInbox;
     wxStaticText* N_StaticTextOption1;
     wxStaticText* S_StaticTextT_ReceiversPos4;
+    wxStaticText* U_LabelSent;
     wxStaticText* S_LabelMulTree;
     wxStaticText* U_LabelSearch;
     wxStaticText* S_StaticTextC_Emails;
@@ -658,6 +666,7 @@ private:
     wxStaticText* T_LabelFolder;
     wxBitmapButton        *T_ImageButtonFiles;
     wxBitmapButton        *I_ImageButtonDelete;
+    wxFileDialog* FileDialogStatisticsExport;
     wxStaticText* T_LabelMulTree;
     wxMenuItem* MenuItemSave;
     wxStaticText* S_LabelSaveStats;

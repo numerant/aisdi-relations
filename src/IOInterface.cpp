@@ -63,7 +63,10 @@ void IOInterface::importSingleMail(boost::filesystem::path path, ImportStats &st
                 usemberTo->addEmailReceived(tempEmail);
             }
             else
+            {
                 stats.existingCount++;
+                delete tempEmail;
+            }
         }
         catch ( IOException error )                                             // mail nie jest poprawny składniowo
         {
