@@ -120,12 +120,14 @@ const long AisdiRelationsFrame::ID_STATICTEXT77 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT76 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT75 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT74 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICTEXT133 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT124 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT65 = wxNewId();
 const long AisdiRelationsFrame::ID_IMAGEBUTTON54 = wxNewId();
 const long AisdiRelationsFrame::ID_IMAGEBUTTON53 = wxNewId();
 const long AisdiRelationsFrame::ID_IMAGEBUTTON52 = wxNewId();
 const long AisdiRelationsFrame::ID_IMAGEBUTTON51 = wxNewId();
+const long AisdiRelationsFrame::ID_IMAGEBUTTON62 = wxNewId();
 const long AisdiRelationsFrame::ID_IMAGEBUTTON55 = wxNewId();
 const long AisdiRelationsFrame::ID_IMAGEBUTTON42 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICBOX9 = wxNewId();
@@ -491,7 +493,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     M_ImageButtonGroups = new wxBitmapButton(PanelMulTree, ID_IMAGEBUTTON44, wxNullBitmap, wxPoint(1090,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON44"));
     M_ImageButtonStats = new wxBitmapButton(PanelMulTree, ID_IMAGEBUTTON43, wxNullBitmap, wxPoint(1180,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON43"));
     M_ImageButtonTitle = new wxBitmapButton(PanelMulTree, ID_IMAGEBUTTON40, wxNullBitmap, wxPoint(10,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON40"));
-    PanelStatistics = new wxPanel(PanelMain, ID_PANEL5, wxPoint(1366,0), wxSize(1366,750), wxTAB_TRAVERSAL, _T("ID_PANEL5"));
+    PanelStatistics = new wxPanel(PanelMain, ID_PANEL5, wxPoint(0,0), wxSize(1366,750), wxTAB_TRAVERSAL, _T("ID_PANEL5"));
     BitmapBackgroundStatistics = new wxStaticBitmap(PanelStatistics, ID_STATICBITMAP4, wxBitmap(wxImage(_T("resources/background.jpg"))), wxPoint(0,0), wxDefaultSize, wxSIMPLE_BORDER, _T("ID_STATICBITMAP4"));
     S_LabelMulTree = new wxStaticText(PanelStatistics, ID_STATICTEXT77, _("Drzewo\nMulticastowe"), wxPoint(1166,70), wxDefaultSize, wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_STATICTEXT77"));
     S_LabelMulTree->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
@@ -509,7 +511,11 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     S_LabelInbox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
     wxFont S_LabelInboxFont(11,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     S_LabelInbox->SetFont(S_LabelInboxFont);
-    S_LabelRefresh = new wxStaticText(PanelStatistics, ID_STATICTEXT124, _("Odśwież"), wxPoint(102,70), wxDefaultSize, wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_STATICTEXT124"));
+    S_LabelSaveStats = new wxStaticText(PanelStatistics, ID_STATICTEXT133, _("Zapisz"), wxPoint(198,70), wxDefaultSize, wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_STATICTEXT133"));
+    S_LabelSaveStats->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
+    wxFont S_LabelSaveStatsFont(11,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
+    S_LabelSaveStats->SetFont(S_LabelSaveStatsFont);
+    S_LabelRefresh = new wxStaticText(PanelStatistics, ID_STATICTEXT124, _("Odśwież"), wxPoint(101,70), wxDefaultSize, wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_STATICTEXT124"));
     S_LabelRefresh->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
     wxFont S_LabelRefreshFont(11,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     S_LabelRefresh->SetFont(S_LabelRefreshFont);
@@ -521,6 +527,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     S_ImageButtonGroups = new wxBitmapButton(PanelStatistics, ID_IMAGEBUTTON53, wxNullBitmap, wxPoint(1090,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON53"));
     S_ImageButtonUsembers = new wxBitmapButton(PanelStatistics, ID_IMAGEBUTTON52, wxNullBitmap, wxPoint(1000,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON52"));
     S_ImageButtonInbox = new wxBitmapButton(PanelStatistics, ID_IMAGEBUTTON51, wxNullBitmap, wxPoint(910,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON51"));
+    S_ImageButtonSaveStats = new wxBitmapButton(PanelStatistics, ID_IMAGEBUTTON62, wxNullBitmap, wxPoint(190,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON62"));
     S_ImageButtonRefresh = new wxBitmapButton(PanelStatistics, ID_IMAGEBUTTON55, wxNullBitmap, wxPoint(100,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON55"));
     S_ImageButtonTitle = new wxBitmapButton(PanelStatistics, ID_IMAGEBUTTON42, wxNullBitmap, wxPoint(10,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON42"));
     S_PanelCounters = new wxPanel(PanelStatistics, ID_PANEL13, wxPoint(10,120), wxSize(320,600), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE, _T("ID_PANEL13"));
@@ -653,70 +660,70 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     S_StaticTextT_ReceiversPos4->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
     S_StaticTextT_ReceiversPos5 = new wxStaticText(S_PanelTops, ID_STATICTEXT122, _("5."), wxPoint(460,140), wxDefaultSize, 0, _T("ID_STATICTEXT122"));
     S_StaticTextT_ReceiversPos5->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
-    S_HyperLinkT_SendersPos1 = new wxHyperlinkCtrl(S_PanelTops, ID_HYPERLINKCTRL1, _("Nick Fury <nfury@shield.gov>"), wxEmptyString, wxPoint(40,40), wxDefaultSize, wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_HYPERLINKCTRL1"));
+    S_HyperLinkT_SendersPos1 = new wxHyperlinkCtrl(S_PanelTops, ID_HYPERLINKCTRL1, _("25 - Nick Fury <nfury@shield.gov>"), wxEmptyString, wxPoint(40,40), wxSize(400,-1), wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_HYPERLINKCTRL1"));
     S_HyperLinkT_SendersPos1->SetNormalColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
     S_HyperLinkT_SendersPos1->SetHoverColour(wxColour(255,255,255));
     S_HyperLinkT_SendersPos1->SetVisitedColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
     S_HyperLinkT_SendersPos1->SetBackgroundColour(wxColour(48,48,48));
     wxFont S_HyperLinkT_SendersPos1Font(12,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     S_HyperLinkT_SendersPos1->SetFont(S_HyperLinkT_SendersPos1Font);
-    S_HyperLinkT_SendersPos2 = new wxHyperlinkCtrl(S_PanelTops, ID_HYPERLINKCTRL2, _("Natasha Romanov <nromanov@russia.ru>"), wxEmptyString, wxPoint(40,65), wxDefaultSize, wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_HYPERLINKCTRL2"));
+    S_HyperLinkT_SendersPos2 = new wxHyperlinkCtrl(S_PanelTops, ID_HYPERLINKCTRL2, _("(17) Natasha Romanov <nromanov@russia.ru>"), wxEmptyString, wxPoint(40,65), wxSize(400,-1), wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_HYPERLINKCTRL2"));
     S_HyperLinkT_SendersPos2->SetNormalColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
     S_HyperLinkT_SendersPos2->SetHoverColour(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW));
     S_HyperLinkT_SendersPos2->SetVisitedColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
     S_HyperLinkT_SendersPos2->SetBackgroundColour(wxColour(48,48,48));
     wxFont S_HyperLinkT_SendersPos2Font(12,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     S_HyperLinkT_SendersPos2->SetFont(S_HyperLinkT_SendersPos2Font);
-    S_HyperLinkT_SendersPos3 = new wxHyperlinkCtrl(S_PanelTops, ID_HYPERLINKCTRL3, _("Tony Stark <ironman@starkindustries.com>"), wxEmptyString, wxPoint(40,90), wxDefaultSize, wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_HYPERLINKCTRL3"));
+    S_HyperLinkT_SendersPos3 = new wxHyperlinkCtrl(S_PanelTops, ID_HYPERLINKCTRL3, _("[11] - Tony Stark <ironman@starkindustries.com>"), wxEmptyString, wxPoint(40,90), wxSize(400,-1), wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_HYPERLINKCTRL3"));
     S_HyperLinkT_SendersPos3->SetNormalColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
     S_HyperLinkT_SendersPos3->SetHoverColour(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW));
     S_HyperLinkT_SendersPos3->SetVisitedColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
     S_HyperLinkT_SendersPos3->SetBackgroundColour(wxColour(48,48,48));
     wxFont S_HyperLinkT_SendersPos3Font(12,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     S_HyperLinkT_SendersPos3->SetFont(S_HyperLinkT_SendersPos3Font);
-    S_HyperLinkT_SendersPos4 = new wxHyperlinkCtrl(S_PanelTops, ID_HYPERLINKCTRL4, _("Steve Rogers <cptamerica@army.gov>"), wxEmptyString, wxPoint(40,115), wxDefaultSize, wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_HYPERLINKCTRL4"));
+    S_HyperLinkT_SendersPos4 = new wxHyperlinkCtrl(S_PanelTops, ID_HYPERLINKCTRL4, _("Steve Rogers <cptamerica@army.gov>"), wxEmptyString, wxPoint(40,115), wxSize(400,-1), wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_HYPERLINKCTRL4"));
     S_HyperLinkT_SendersPos4->SetNormalColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
     S_HyperLinkT_SendersPos4->SetHoverColour(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW));
     S_HyperLinkT_SendersPos4->SetVisitedColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
     S_HyperLinkT_SendersPos4->SetBackgroundColour(wxColour(48,48,48));
     wxFont S_HyperLinkT_SendersPos4Font(12,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     S_HyperLinkT_SendersPos4->SetFont(S_HyperLinkT_SendersPos4Font);
-    S_HyperLinkT_SendersPos5 = new wxHyperlinkCtrl(S_PanelTops, ID_HYPERLINKCTRL5, _("Clint Barton <hawkeye@avengers.com>"), wxEmptyString, wxPoint(40,140), wxDefaultSize, wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_HYPERLINKCTRL5"));
+    S_HyperLinkT_SendersPos5 = new wxHyperlinkCtrl(S_PanelTops, ID_HYPERLINKCTRL5, _("Clint Barton <hawkeye@avengers.com>"), wxEmptyString, wxPoint(40,140), wxSize(400,-1), wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_HYPERLINKCTRL5"));
     S_HyperLinkT_SendersPos5->SetNormalColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
     S_HyperLinkT_SendersPos5->SetHoverColour(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW));
     S_HyperLinkT_SendersPos5->SetVisitedColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
     S_HyperLinkT_SendersPos5->SetBackgroundColour(wxColour(48,48,48));
     wxFont S_HyperLinkT_SendersPos5Font(12,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     S_HyperLinkT_SendersPos5->SetFont(S_HyperLinkT_SendersPos5Font);
-    S_HyperLinkT_ReceiverPos1 = new wxHyperlinkCtrl(S_PanelTops, ID_HYPERLINKCTRL6, _("Superman <clarkkent@dailyplanet.com>"), wxEmptyString, wxPoint(485,40), wxDefaultSize, wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_HYPERLINKCTRL6"));
+    S_HyperLinkT_ReceiverPos1 = new wxHyperlinkCtrl(S_PanelTops, ID_HYPERLINKCTRL6, _("Superman <clarkkent@dailyplanet.com>"), wxEmptyString, wxPoint(485,40), wxSize(400,-1), wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_HYPERLINKCTRL6"));
     S_HyperLinkT_ReceiverPos1->SetNormalColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
     S_HyperLinkT_ReceiverPos1->SetHoverColour(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW));
     S_HyperLinkT_ReceiverPos1->SetVisitedColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
     S_HyperLinkT_ReceiverPos1->SetBackgroundColour(wxColour(48,48,48));
     wxFont S_HyperLinkT_ReceiverPos1Font(12,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     S_HyperLinkT_ReceiverPos1->SetFont(S_HyperLinkT_ReceiverPos1Font);
-    S_HyperLinkT_ReceiverPos2 = new wxHyperlinkCtrl(S_PanelTops, ID_HYPERLINKCTRL7, _("Green Lantern <haljordan@willpower.com>"), wxEmptyString, wxPoint(485,65), wxDefaultSize, wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_HYPERLINKCTRL7"));
+    S_HyperLinkT_ReceiverPos2 = new wxHyperlinkCtrl(S_PanelTops, ID_HYPERLINKCTRL7, _("Green Lantern <haljordan@willpower.com>"), wxEmptyString, wxPoint(485,65), wxSize(400,-1), wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_HYPERLINKCTRL7"));
     S_HyperLinkT_ReceiverPos2->SetNormalColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
     S_HyperLinkT_ReceiverPos2->SetHoverColour(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW));
     S_HyperLinkT_ReceiverPos2->SetVisitedColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
     S_HyperLinkT_ReceiverPos2->SetBackgroundColour(wxColour(48,48,48));
     wxFont S_HyperLinkT_ReceiverPos2Font(12,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     S_HyperLinkT_ReceiverPos2->SetFont(S_HyperLinkT_ReceiverPos2Font);
-    S_HyperLinkT_ReceiverPos3 = new wxHyperlinkCtrl(S_PanelTops, ID_HYPERLINKCTRL8, _("Wonder Woman <diana@amazon.com>"), wxEmptyString, wxPoint(485,90), wxDefaultSize, wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_HYPERLINKCTRL8"));
+    S_HyperLinkT_ReceiverPos3 = new wxHyperlinkCtrl(S_PanelTops, ID_HYPERLINKCTRL8, _("Wonder Woman <diana@amazon.com>"), wxEmptyString, wxPoint(485,90), wxSize(400,-1), wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_HYPERLINKCTRL8"));
     S_HyperLinkT_ReceiverPos3->SetNormalColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
     S_HyperLinkT_ReceiverPos3->SetHoverColour(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW));
     S_HyperLinkT_ReceiverPos3->SetVisitedColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
     S_HyperLinkT_ReceiverPos3->SetBackgroundColour(wxColour(48,48,48));
     wxFont S_HyperLinkT_ReceiverPos3Font(12,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     S_HyperLinkT_ReceiverPos3->SetFont(S_HyperLinkT_ReceiverPos3Font);
-    S_HyperLinkT_ReceiverPos4 = new wxHyperlinkCtrl(S_PanelTops, ID_HYPERLINKCTRL9, _("Flash <barryallen@paradox.com>"), wxEmptyString, wxPoint(485,115), wxDefaultSize, wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_HYPERLINKCTRL9"));
+    S_HyperLinkT_ReceiverPos4 = new wxHyperlinkCtrl(S_PanelTops, ID_HYPERLINKCTRL9, _("Flash <barryallen@paradox.com>"), wxEmptyString, wxPoint(485,115), wxSize(400,-1), wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_HYPERLINKCTRL9"));
     S_HyperLinkT_ReceiverPos4->SetNormalColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
     S_HyperLinkT_ReceiverPos4->SetHoverColour(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW));
     S_HyperLinkT_ReceiverPos4->SetVisitedColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
     S_HyperLinkT_ReceiverPos4->SetBackgroundColour(wxColour(48,48,48));
     wxFont S_HyperLinkT_ReceiverPos4Font(12,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     S_HyperLinkT_ReceiverPos4->SetFont(S_HyperLinkT_ReceiverPos4Font);
-    S_HyperLinkT_ReceiverPos5 = new wxHyperlinkCtrl(S_PanelTops, ID_HYPERLINKCTRL10, _("Batman <brucewayne@gotham.com>"), wxEmptyString, wxPoint(485,140), wxDefaultSize, wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_HYPERLINKCTRL10"));
+    S_HyperLinkT_ReceiverPos5 = new wxHyperlinkCtrl(S_PanelTops, ID_HYPERLINKCTRL10, _("Batman <brucewayne@gotham.com>"), wxEmptyString, wxPoint(485,140), wxSize(400,-1), wxHL_ALIGN_LEFT|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_HYPERLINKCTRL10"));
     S_HyperLinkT_ReceiverPos5->SetNormalColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
     S_HyperLinkT_ReceiverPos5->SetHoverColour(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW));
     S_HyperLinkT_ReceiverPos5->SetVisitedColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
@@ -750,7 +757,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     G_ImageButtonUsembers = new wxBitmapButton(PanelGroups, ID_IMAGEBUTTON48, wxNullBitmap, wxPoint(1000,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON48"));
     G_ImageButtonInbox = new wxBitmapButton(PanelGroups, ID_IMAGEBUTTON47, wxNullBitmap, wxPoint(910,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON47"));
     G_ImageButtonTitle = new wxBitmapButton(PanelGroups, ID_IMAGEBUTTON41, wxNullBitmap, wxPoint(10,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON41"));
-    PanelUsembers = new wxPanel(PanelMain, ID_PANEL4, wxPoint(0,0), wxSize(1366,750), wxTAB_TRAVERSAL, _T("ID_PANEL4"));
+    PanelUsembers = new wxPanel(PanelMain, ID_PANEL4, wxPoint(1366,0), wxSize(1366,750), wxTAB_TRAVERSAL, _T("ID_PANEL4"));
     BitmapBackgroundUsembers = new wxStaticBitmap(PanelUsembers, ID_STATICBITMAP3, wxBitmap(wxImage(_T("resources/background.jpg"))), wxPoint(0,0), wxDefaultSize, wxSIMPLE_BORDER, _T("ID_STATICBITMAP3"));
     U_LabelSwitchContent = new wxStaticText(PanelUsembers, ID_STATICTEXT54, _("Przełącz\nzawartość"), wxPoint(1188,685), wxDefaultSize, wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_STATICTEXT54"));
     U_LabelSwitchContent->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
@@ -867,11 +874,11 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     U_StaticTextFromTo->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVEBORDER));
     wxFont U_StaticTextFromToFont(13,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     U_StaticTextFromTo->SetFont(U_StaticTextFromToFont);
-    U_StaticTextDate = new wxStaticText(U_PanelEmail, ID_STATICTEXT21, wxEmptyString, wxPoint(400,20), wxDefaultSize, 0, _T("ID_STATICTEXT21"));
+    U_StaticTextDate = new wxStaticText(U_PanelEmail, ID_STATICTEXT21, wxEmptyString, wxPoint(400,15), wxDefaultSize, 0, _T("ID_STATICTEXT21"));
     U_StaticTextDate->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVEBORDER));
     wxFont U_StaticTextDateFont(13,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     U_StaticTextDate->SetFont(U_StaticTextDateFont);
-    U_LabelDate = new wxStaticText(U_PanelEmail, ID_STATICTEXT20, _("Data:"), wxPoint(345,20), wxDefaultSize, 0, _T("ID_STATICTEXT20"));
+    U_LabelDate = new wxStaticText(U_PanelEmail, ID_STATICTEXT20, _("Data:"), wxPoint(345,15), wxDefaultSize, 0, _T("ID_STATICTEXT20"));
     U_LabelDate->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
     wxFont U_LabelDateFont(13,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     U_LabelDate->SetFont(U_LabelDateFont);
@@ -1188,6 +1195,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_IMAGEBUTTON53,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_ImageButtonGroupsClick);
     Connect(ID_IMAGEBUTTON52,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_ImageButtonUsembersClick);
     Connect(ID_IMAGEBUTTON51,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_ImageButtonInboxClick);
+    Connect(ID_IMAGEBUTTON62,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_ImageButtonSaveStatsClick);
     Connect(ID_IMAGEBUTTON55,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_ImageButtonRefreshClick);
     Connect(ID_IMAGEBUTTON42,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_ImageButtonTitleClick);
     S_PanelEmailPerMonth->Connect(wxEVT_PAINT,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_PanelEmailPerMonthPaint,0,this);
@@ -1369,7 +1377,7 @@ void AisdiRelationsFrame::OnQuit(wxCommandEvent& event)
     delete P_Notify;
 
     /** Zwolnienie obiektów klas projektu */
-    //delete iointerface;       //TODO odkomentować
+    delete iointerface;       //TODO odkomentować
     delete statistics;
     delete database;
 
@@ -1380,7 +1388,7 @@ void AisdiRelationsFrame::OnQuit(wxCommandEvent& event)
 void AisdiRelationsFrame::OnAbout(wxCommandEvent& event)
 {
     wxString msg = _("Autorzy:\n  Maciej Gańko\n  Paweł Kaczyński\n  Krzysztof Lisocki\n  Patryk Łucka\n  Jakub Maleszewski\n  Maciej Safarzyński\n  Michał Żołyniak\n\n");
-    msg += _("---------------------------------------------------\nVersion:  1.3.7");
+    msg += _("---------------------------------------------------\nVersion:  1.8.3");
     wxMessageBox(msg, _("About"));
 }
 
@@ -1718,6 +1726,10 @@ void AisdiRelationsFrame::OnS_ImageButtonRefreshClick(wxCommandEvent& event)
     P_Stats->EventButtonRefreshClick(this);
 }
 
+void AisdiRelationsFrame::OnS_ImageButtonSaveStatsClick(wxCommandEvent& event)
+{
+    //TODO podepnij event do eksportu statystyk
+}
 
 
 /** ============= Eventy panelu MULTREE ============= */

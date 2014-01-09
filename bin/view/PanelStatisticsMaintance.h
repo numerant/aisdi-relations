@@ -9,9 +9,10 @@ class PanelStatisticsMaintance
 private:
     bool panelEnabled = true;
     bool isUpdated = false;
-    const wxString imagePaths[6] =
+    const wxString imagePaths[7] =
     {
-        _("Title"),  _("Mailbox"),  _("Usember"),  _("Workgroups"),  _("Tree"), _("Refresh")
+        _("Title"),  _("Mailbox"),  _("Usember"),  _("Workgroups"),  _("Tree"), _("Refresh"),
+        _("StatisticsSave")
     };              //ścieżki plików z grafikami do przycisków panelu
 
      const wxString months[12] =
@@ -30,6 +31,7 @@ public:
 
     void EventPanelEmailPerMonthPaint (AisdiRelationsFrame * Frame);
     void EventPanelCountersPaint (AisdiRelationsFrame * Frame);
+    void EventPanelTopsPaint (AisdiRelationsFrame * Frame);
     void EventHyperLinkClick(AisdiRelationsFrame * Frame, const long id);
     void EventButtonRefreshClick (AisdiRelationsFrame * Frame);
 };

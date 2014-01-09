@@ -551,7 +551,7 @@
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL5" variable="PanelStatistics" member="yes">
-				<pos>1366,0</pos>
+				<pos>0,0</pos>
 				<size>1366,750</size>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP4" variable="BitmapBackgroundStatistics" member="yes">
 					<bitmap>resources/background.jpg</bitmap>
@@ -609,9 +609,22 @@
 					</font>
 					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
 				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT133" variable="S_LabelSaveStats" member="yes">
+					<label>Zapisz</label>
+					<pos>198,70</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT124" variable="S_LabelRefresh" member="yes">
 					<label>Odśwież</label>
-					<pos>102,70</pos>
+					<pos>101,70</pos>
 					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
 					<font>
 						<size>11</size>
@@ -678,6 +691,17 @@
 					<size>60,60</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
 					<handler function="OnS_ImageButtonInboxClick" entry="EVT_BUTTON" />
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON62" variable="S_ImageButtonSaveStats" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>190,10</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnS_ImageButtonSaveStatsClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON55" variable="S_ImageButtonRefresh" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -1087,11 +1111,12 @@
 						<fg>wxSYS_COLOUR_SCROLLBAR</fg>
 					</object>
 					<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL1" variable="S_HyperLinkT_SendersPos1" member="yes">
-						<label>Nick Fury &lt;nfury@shield.gov&gt;</label>
+						<label>25 - Nick Fury &lt;nfury@shield.gov&gt;</label>
 						<normal_colour>wxSYS_COLOUR_ACTIVECAPTION</normal_colour>
 						<hover_colour>#FFFFFF</hover_colour>
 						<visited_colour>wxSYS_COLOUR_ACTIVECAPTION</visited_colour>
 						<pos>40,40</pos>
+						<size>400,-1</size>
 						<bg>#303030</bg>
 						<font>
 							<size>12</size>
@@ -1104,11 +1129,12 @@
 						<handler function="OnS_HyperLinkT_SendersPos1Click" entry="EVT_HYPERLINK" />
 					</object>
 					<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL2" variable="S_HyperLinkT_SendersPos2" member="yes">
-						<label>Natasha Romanov &lt;nromanov@russia.ru&gt;</label>
+						<label>(17) Natasha Romanov &lt;nromanov@russia.ru&gt;</label>
 						<normal_colour>wxSYS_COLOUR_SCROLLBAR</normal_colour>
 						<hover_colour>wxSYS_COLOUR_WINDOW</hover_colour>
 						<visited_colour>wxSYS_COLOUR_SCROLLBAR</visited_colour>
 						<pos>40,65</pos>
+						<size>400,-1</size>
 						<bg>#303030</bg>
 						<font>
 							<size>12</size>
@@ -1121,11 +1147,12 @@
 						<handler function="OnS_HyperLinkT_SendersPos1Click" entry="EVT_HYPERLINK" />
 					</object>
 					<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL3" variable="S_HyperLinkT_SendersPos3" member="yes">
-						<label>Tony Stark &lt;ironman@starkindustries.com&gt;</label>
+						<label>[11] - Tony Stark &lt;ironman@starkindustries.com&gt;</label>
 						<normal_colour>wxSYS_COLOUR_SCROLLBAR</normal_colour>
 						<hover_colour>wxSYS_COLOUR_WINDOW</hover_colour>
 						<visited_colour>wxSYS_COLOUR_SCROLLBAR</visited_colour>
 						<pos>40,90</pos>
+						<size>400,-1</size>
 						<bg>#303030</bg>
 						<font>
 							<size>12</size>
@@ -1143,6 +1170,7 @@
 						<hover_colour>wxSYS_COLOUR_WINDOW</hover_colour>
 						<visited_colour>wxSYS_COLOUR_SCROLLBAR</visited_colour>
 						<pos>40,115</pos>
+						<size>400,-1</size>
 						<bg>#303030</bg>
 						<font>
 							<size>12</size>
@@ -1160,6 +1188,7 @@
 						<hover_colour>wxSYS_COLOUR_WINDOW</hover_colour>
 						<visited_colour>wxSYS_COLOUR_SCROLLBAR</visited_colour>
 						<pos>40,140</pos>
+						<size>400,-1</size>
 						<bg>#303030</bg>
 						<font>
 							<size>12</size>
@@ -1177,6 +1206,7 @@
 						<hover_colour>wxSYS_COLOUR_WINDOW</hover_colour>
 						<visited_colour>wxSYS_COLOUR_ACTIVECAPTION</visited_colour>
 						<pos>485,40</pos>
+						<size>400,-1</size>
 						<bg>#303030</bg>
 						<font>
 							<size>12</size>
@@ -1194,6 +1224,7 @@
 						<hover_colour>wxSYS_COLOUR_WINDOW</hover_colour>
 						<visited_colour>wxSYS_COLOUR_SCROLLBAR</visited_colour>
 						<pos>485,65</pos>
+						<size>400,-1</size>
 						<bg>#303030</bg>
 						<font>
 							<size>12</size>
@@ -1211,6 +1242,7 @@
 						<hover_colour>wxSYS_COLOUR_WINDOW</hover_colour>
 						<visited_colour>wxSYS_COLOUR_SCROLLBAR</visited_colour>
 						<pos>485,90</pos>
+						<size>400,-1</size>
 						<bg>#303030</bg>
 						<font>
 							<size>12</size>
@@ -1228,6 +1260,7 @@
 						<hover_colour>wxSYS_COLOUR_WINDOW</hover_colour>
 						<visited_colour>wxSYS_COLOUR_SCROLLBAR</visited_colour>
 						<pos>485,115</pos>
+						<size>400,-1</size>
 						<bg>#303030</bg>
 						<font>
 							<size>12</size>
@@ -1245,6 +1278,7 @@
 						<hover_colour>wxSYS_COLOUR_WINDOW</hover_colour>
 						<visited_colour>wxSYS_COLOUR_SCROLLBAR</visited_colour>
 						<pos>485,140</pos>
+						<size>400,-1</size>
 						<bg>#303030</bg>
 						<font>
 							<size>12</size>
@@ -1388,7 +1422,7 @@
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL4" variable="PanelUsembers" member="yes">
-				<pos>0,0</pos>
+				<pos>1366,0</pos>
 				<size>1366,750</size>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP3" variable="BitmapBackgroundUsembers" member="yes">
 					<bitmap>resources/background.jpg</bitmap>
@@ -1752,7 +1786,7 @@
 					</object>
 					<object class="wxStaticText" name="ID_STATICTEXT21" variable="U_StaticTextDate" member="yes">
 						<label></label>
-						<pos>400,20</pos>
+						<pos>400,15</pos>
 						<fg>wxSYS_COLOUR_ACTIVEBORDER</fg>
 						<font>
 							<size>13</size>
@@ -1764,7 +1798,7 @@
 					</object>
 					<object class="wxStaticText" name="ID_STATICTEXT20" variable="U_LabelDate" member="yes">
 						<label>Data:</label>
-						<pos>345,20</pos>
+						<pos>345,15</pos>
 						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 						<font>
 							<size>13</size>
