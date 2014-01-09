@@ -14,7 +14,7 @@
 #include "Serialization.h"
 #include "Email.h"
 #include "Parameters.h"
-#include "Report.h"
+#include "Statistics.h"
 #include "Exception/IOException.h"
 
 using namespace std;
@@ -49,7 +49,7 @@ public:
 
     void exportDatabase (string filePath, DbParameters *parameters);            // opis klas MailParameters i DbParameters jest w Param.h
     Database* importDatabase (string filePath, DbParameters *parameters);
-    void exportReport (string path, Report report);
+    void exportDatabaseReport (string path, Statistics* dbStatistics);
     void exportDatabaseToTxt (string directoryPath);                            // w podanym katalogu tworzy pliki tekstowe z rekordami bazy danych, przystosowane do importu do np. Accessa
 
     void setDatabasePointer (Database * db);

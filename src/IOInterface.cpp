@@ -309,6 +309,32 @@ void IOInterface::exportDatabaseToTxt (string directoryPath)
     file.close();
 }
 
+void IOInterface::exportDatabaseReport (string path, Statistics* dbStatistics)
+{
+    ofstream outputFile(path);
+    string months[12] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+
+    outputFile << "\t\tStatystyki bazy danych:\n\n";
+    outputFile << "Liczba e-maili:\t" << dbStatistics->getEmails() << "\n";
+    outputFile << "Liczba usemberów:\t" << dbStatistics->getUsembers() << "\n";
+    outputFile << "Liczba grup:\t" << dbStatistics->getGroups() << "\n\n";
+    outputFile << "Średnio e-maili na miesiąc:\t" << dbStatistics->getEmailsPerMonth() << "\n";
+    outputFile << "Średnio e-maili na dzień:\t" << dbStatistics->getEmailsPerDay() << "\n";
+    outputFile << "Średnio e-maili na usembera:\t" << dbStatistics->getEmailsPerUser() << "\n\n";
+    outputFile << "Średnia długość maila:\t" << dbStatistics->getAverageEmailLength() << "\n";
+    outputFile << "Najwięcej maili w miesiącu:\t" << dbStatistics->getMaxEmailsInMonth() << "\n";
+    outputFile << "Liczba forwardów:\t" << dbStatistics->getForwards() << "\n";
+    outputFile << "Liczba odpowiedzi:\t" << dbStatistics->getReplies() << "\n\n";
+    outputFile << "Najwcześniejszy mail:\t" << dbStatistics->getEarliest()->getFullDate() << "\n";        // tu i w następnym przydałaby się funkcja wypisująca datę w uproszczonej formie
+    outputFile << "Najpóźniejszy mail:\t" << dbStatistics->getLatest()->getFullDate() << "\n";
+    outputFile << "Okres trwania korespondencji:\t" << dbStatistics->getDuration() << "\n\n";
+
+    outputFile << "Liczba maili na każdy miesiąc:\n";
+
+
+    outputFile.close();
+}
+
 string IOInterface::strSequenceReplace(const string& searched, const string& replaced, string subject)
 {
     string buffer;
