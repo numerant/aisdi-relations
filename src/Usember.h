@@ -29,22 +29,24 @@ public:
     Usember(string usemberName, string domain, string realName);
     ~Usember();
 
-    void addMail(Email *email, DataType type);		// dodaje list do odpowiedniego wektora
-
-    void addEmailSent (Email * email);              //TODO Usuń funkcję addMail albo zrób po swojemu. Nie wiem w sumie po co DataType.
-    void addEmailReceived (Email * email);          //Pozdro, Panda.
+    void addEmailSent (Email * email);             // dodaje list do odpowiedniego wektora
+    void addEmailReceived (Email * email);
 
     void removeMail(Email *email);					// usuwa list z wektora
     void setGroup(Group	*group);						// przydziela grupę usemberowi / używać także jako akutalizacji
     void setRealName(string rn);						// ustawia pole realName - działanie jak wyżej
-	
+
 	string getRealName();								// zwraca string z realName
     string getAddress();					// zwraca ciąg pełnego maila [usemberName]@[domain]
 	Group* getGroup();						// zwraca wskazanie na grupę
 	Email* getEmailReceived(int position);	// zwraca wskazanie na danego maila (z otrzymanych)
 	Email* getEmailSent(int position);		// zwraca wskazanie na danego maila (z wysłanych)
-    int sendMailCount();				// zwraca liczbę maili wysłanych przez tego usembera
-    int receiveMailCount();				// zwraca liczbę maili odebranych przez tego usembera
+
+    unsigned int sendMailCount();				// zwraca liczbę maili wysłanych przez tego usembera
+    unsigned int receiveMailCount();				// zwraca liczbę maili odebranych przez tego usembera
+    unsigned int getEmailsReceivedInMonth (int month); // zwraca liczbę maili odebranych w danym miesiącu
+    unsigned int getEmailsSentIntMonth (int month);    // zwraca liczbę maili wysłanych w danym miesiącu
+    unsigned int getMaxEmailsInMonth ();               // zwraca największą liczbę maili napisanych w ciągu danego miesiąca
 
 private:
     // adres - email:

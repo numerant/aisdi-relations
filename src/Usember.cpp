@@ -20,11 +20,6 @@ Usember::~Usember()
     receivedMails.clear();
 }
 
-void Usember::addMail(Email *email, DataType type)	// dodaje list do odpowiedniego wektora
-{
-
-}
-
 void Usember::addEmailSent (Email * email)
 {
     sentMails.push_back(email);
@@ -81,12 +76,54 @@ Email* Usember::getEmailSent(int position)
         return sentMails[position];
 }
 
-int Usember::sendMailCount()			// zwraca liczbę maili wysłanych przez tego usembera
+unsigned int Usember::sendMailCount()			// zwraca liczbę maili wysłanych przez tego usembera
 {
     return sentMails.size();
 }
 
-int Usember::receiveMailCount()
+unsigned int Usember::receiveMailCount()
 {
     return receivedMails.size();
 }
+
+unsigned int Usember::getEmailsReceivedInMonth (int month)
+{
+    unsigned int counter = 0;
+
+    for(int i = 0; i < receivedMails.size(); i++ )
+    {
+        if (receivedMails[i]->getDate().monthToInt(receivedMails[i]->getDate().getMonth()) == month)
+            counter++;
+    }
+
+    return counter;
+}
+
+unsigned int Usember::getEmailsSentIntMonth (int month)
+{
+    unsigned int counter = 0;
+
+    for(int i = 0; i < sentMails.size(); i++ )
+    {
+        if (sentMails[i]->getDate().monthToInt(sentMails[i]->getDate().getMonth()) == month)
+            counter++;
+    }
+
+    return counter;
+}
+
+unsigned int Usember::getMaxEmailsInMonth ()
+{
+    unsigned int maxSum = 0, temp;
+
+    for (int i = 0; i < 12; i++)
+    {
+        temp = getEmailsReceivedInMonth(i)+ getEmailsSentIntMonth(i);
+        if (temp > maxSum)
+            maxSum = temp;
+
+    }
+    return maxSum;
+}
+
+
