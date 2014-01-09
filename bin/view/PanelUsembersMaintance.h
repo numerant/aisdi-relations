@@ -14,7 +14,7 @@ private:
     bool saveEnabled = false;
     bool settingsEnabled = false;
     bool usembersListEnabled = true;
-    bool emailContentEnabled = true;
+    bool emailContentEnabled = false;
     string emailIdSelected = "";
     string adressUsemberSelected = "";
 

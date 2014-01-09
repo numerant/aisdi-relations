@@ -1709,12 +1709,6 @@
 						<face>Ubuntu</face>
 					</font>
 				</object>
-				<object class="wxPanel" name="ID_PANEL9" variable="U_PanelStats" member="yes">
-					<pos>720,245</pos>
-					<size>510,345</size>
-					<bg>#202020</bg>
-					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL</style>
-				</object>
 				<object class="wxPanel" name="ID_PANEL8" variable="U_PanelEmail" member="yes">
 					<pos>720,245</pos>
 					<size>510,345</size>
@@ -1812,6 +1806,12 @@
 						<size>470,15</size>
 						<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
 					</object>
+				</object>
+				<object class="wxPanel" name="ID_PANEL9" variable="U_PanelStats" member="yes">
+					<pos>720,245</pos>
+					<size>510,345</size>
+					<bg>#202020</bg>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL</style>
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON10" variable="U_ImageButtonSwitchList" member="yes">
 					<image_list>&lt;none&gt;</image_list>

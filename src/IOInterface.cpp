@@ -55,7 +55,13 @@ void IOInterface::importSingleMail(boost::filesystem::path path, ImportStats &st
         {
             tempEmail = emlParser( path.c_str() );
             if(database->addEmail(tempEmail))
+            {
                 stats.successCount++;
+                Usember * usemberFrom = tempEmail->getFrom();
+                Usember * usemberTo = tempEmail->getTo();
+                usemberFrom->addEmailSent(tempEmail);
+                usemberTo->addEmailReceived(tempEmail);
+            }
             else
                 stats.existingCount++;
         }
@@ -172,16 +178,24 @@ Email* IOInterface::emlParser (string path)
             content+= "\n";
         }
 
-        plik.close();
+       plik.close();
 
         // ustawienie atrybutów maila
         mail = new Email();
 
-        usemberFrom = new Usember(fromLOGIN, fromDOMAIN, fromRN);
-        usemberTo = new Usember(toLOGIN, toDOMAIN, toRN);
+        usemberFrom = new Usember(fromLOGIN, fromDOMAIN, fromRN);   //Jeżeli baza nie przyjęłą, to trzeba zwolnić pamięć
+        if (! database->addUsember( usemberFrom ))
+        {
+            delete usemberFrom;
+            usemberFrom = database->getUsember(database->findUsember(fromLOGIN+"@"+fromDOMAIN));
+        }
 
-        database->addUsember( usemberFrom );
-        database->addUsember( usemberTo );
+        usemberTo = new Usember(toLOGIN, toDOMAIN, toRN);
+        if (! database->addUsember( usemberTo ))
+        {
+            delete usemberTo;
+            usemberTo = database->getUsember(database->findUsember(toLOGIN+"@"+toDOMAIN));
+        }
 
         Date* newDate = new Date(date);     //wyciek pamięci!
         mail->setFrom( usemberFrom );
@@ -190,7 +204,7 @@ Email* IOInterface::emlParser (string path)
         mail->setContent( content );
         mail->setDate(newDate);
         mail->setID(MID);
-		mail->setInReplyTo(IRT);
+        mail->setInReplyTo(IRT);
 
         return mail;
     }
