@@ -12,6 +12,7 @@ Date::Date()
 Date::Date(const Date &date)
 {
     weekDay = date.weekDay;
+    fullDate = date.fullDate;
     day = date.day;
     month = date.month;
     year = date.year;
@@ -168,9 +169,9 @@ int Date::compare(Date &date2)
     if(hour > date2.hour)
         return 1;
     if(hour < date2.hour)
-        return -1;    
+        return -1;
     if(minute > date2.minute)
-        return 1;    
+        return 1;
     if(minute < date2.minute)
         return -1;
     return 0;
