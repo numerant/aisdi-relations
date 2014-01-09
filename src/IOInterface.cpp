@@ -218,19 +218,40 @@ void IOInterface::setDatabasePointer (Database * db)
 
 Database* IOInterface::importDatabase(string filePath, DbParameters *parameters)
 {
-    delete database;            // potrzebny prompt!
-    ifstream ifs(filePath);     // dodać exception
-    boost::archive::text_iarchive ia(ifs);
-    ia >> database;
+    using namespace boost::iostreams;
+    delete database;                    // potrzebny prompt!
+
+    stringstream decompressedData;
+    ifstream inputFile(filePath, ios_base::binary);       // dodać exception
+
+    filtering_streambuf<input> decompressedStream;
+    decompressedStream.push(zlib_decompressor());
+    decompressedStream.push(inputFile);
+
+    copy(decompressedStream, decompressedData);
+
+    boost::archive::text_iarchive inputArchive(decompressedData);
+    inputArchive >> database;
 
     return database;
 }
 
 void IOInterface::exportDatabase(string filePath, DbParameters *parameters)
 {
-    ofstream ofs(filePath);
-    boost::archive::text_oarchive oa(ofs);
-    oa << database;
+    using namespace boost::iostreams;
+
+    stringstream dataToCompress;
+    ofstream outputFile(filePath);
+
+    boost::archive::text_oarchive outputArchive(dataToCompress);
+    outputArchive << database;
+
+    filtering_streambuf<input> compressedStream;
+    compressedStream.push(zlib_compressor(zlib::best_compression));
+    compressedStream.push(dataToCompress);
+
+    copy(compressedStream, outputFile);
+
 }
 
 void IOInterface::exportDatabaseToTxt (string directoryPath)

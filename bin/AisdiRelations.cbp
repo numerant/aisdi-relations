@@ -41,6 +41,8 @@
 			<Add option="-lboost_system" />
 			<Add option="-lboost_regex" />
 			<Add option="-lboost_serialization" />
+			<Add option="-lboost_iostreams" />
+			<Add option="-lz" />
 		</Linker>
 		<Unit filename="../src/Criteria.cpp" />
 		<Unit filename="../src/Criteria.h" />

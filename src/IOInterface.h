@@ -10,6 +10,9 @@
 #include "boost/algorithm/string.hpp"           // do zaawansowanych operacji na stringach
 #include "boost/archive/text_iarchive.hpp"
 #include "boost/archive/text_oarchive.hpp"
+#include "boost/iostreams/filtering_streambuf.hpp"
+#include "boost/iostreams/copy.hpp"
+#include "boost/iostreams/filter/zlib.hpp"
 #include "Database.h"
 #include "Serialization.h"
 #include "Email.h"
