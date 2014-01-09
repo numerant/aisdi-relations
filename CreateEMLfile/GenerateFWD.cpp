@@ -16,7 +16,7 @@ void GenerateFWD(From from, To to, Subject subject, Date date, Rest rest, Conten
         MessageID remessageid;
         Subject resubject("Fwd:", subject.text);
         From refrom(to.text);
-        To reto;
+        To reto(from.text);
         Contents recontents(contents.text);
         remessageid.SetID(remessageid.strID=IDgen(20));
         string nazwapliku="Mails temp/IDnr" + remessageid.strID + ".eml";
