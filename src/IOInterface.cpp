@@ -314,7 +314,7 @@ void IOInterface::exportDatabaseReport (string path, Statistics* dbStatistics)
     ofstream outputFile(path);
     string months[12] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
 
-    outputFile << "\t\tStatystyki bazy danych:\n\n";
+    outputFile << "\tStatystyki bazy danych:\n\n";
     outputFile << "Liczba e-maili:\t" << dbStatistics->getEmails() << "\n";
     outputFile << "Liczba usemberów:\t" << dbStatistics->getUsembers() << "\n";
     outputFile << "Liczba grup:\t" << dbStatistics->getGroups() << "\n\n";
@@ -331,6 +331,8 @@ void IOInterface::exportDatabaseReport (string path, Statistics* dbStatistics)
 
     outputFile << "Liczba maili na każdy miesiąc:\n";
 
+    for (int i=0; i<12; i++)
+        outputFile << months[i] << ":\t" << dbStatistics->getEmailsCountInMonth(i+1) << "\n";
 
     outputFile.close();
 }
