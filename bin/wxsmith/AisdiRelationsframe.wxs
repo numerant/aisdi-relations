@@ -1422,7 +1422,7 @@
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL4" variable="PanelUsembers" member="yes">
-				<pos>1366,0</pos>
+				<pos>0,0</pos>
 				<size>1366,750</size>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP3" variable="BitmapBackgroundUsembers" member="yes">
 					<bitmap>resources/background.jpg</bitmap>
@@ -1843,8 +1843,56 @@
 				<object class="wxPanel" name="ID_PANEL9" variable="U_PanelStats" member="yes">
 					<pos>720,245</pos>
 					<size>510,345</size>
-					<bg>#202020</bg>
+					<bg>#303030</bg>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL</style>
+					<object class="wxStaticText" name="ID_STATICTEXT134" variable="U_LabelSent" member="yes">
+						<label>Maile wysłane: </label>
+						<pos>250,10</pos>
+						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+						<font>
+							<size>13</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT135" variable="U_LabelReceived" member="yes">
+						<label>Maile odebrane: </label>
+						<pos>10,10</pos>
+						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+						<font>
+							<size>13</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT136" variable="U_StaticTextSent" member="yes">
+						<label>-</label>
+						<pos>390,10</pos>
+						<fg>#24C90F</fg>
+						<font>
+							<size>13</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT137" variable="U_StaticTextReceived" member="yes">
+						<label>-</label>
+						<pos>160,10</pos>
+						<fg>#1144FF</fg>
+						<font>
+							<size>13</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+					</object>
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON10" variable="U_ImageButtonSwitchList" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -2897,6 +2945,12 @@
 			<message>Zapisz plik:</message>
 			<default_dir>./</default_dir>
 			<wildcard>*.bin</wildcard>
+			<style>wxFD_SAVE|wxFD_OVERWRITE_PROMPT</style>
+		</object>
+		<object class="wxFileDialog" variable="FileDialogStatisticsExport" member="yes">
+			<message>Zapisz plik:</message>
+			<default_dir>./</default_dir>
+			<wildcard>*.txt</wildcard>
 			<style>wxFD_SAVE|wxFD_OVERWRITE_PROMPT</style>
 		</object>
 	</object>

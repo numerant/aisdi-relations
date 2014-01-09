@@ -238,6 +238,10 @@ const long AisdiRelationsFrame::ID_STATICTEXT18 = wxNewId();
 const long AisdiRelationsFrame::ID_HTMLWINDOW2 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICLINE8 = wxNewId();
 const long AisdiRelationsFrame::ID_PANEL8 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICTEXT134 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICTEXT135 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICTEXT136 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICTEXT137 = wxNewId();
 const long AisdiRelationsFrame::ID_PANEL9 = wxNewId();
 const long AisdiRelationsFrame::ID_IMAGEBUTTON10 = wxNewId();
 const long AisdiRelationsFrame::ID_IMAGEBUTTON11 = wxNewId();
@@ -757,7 +761,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     G_ImageButtonUsembers = new wxBitmapButton(PanelGroups, ID_IMAGEBUTTON48, wxNullBitmap, wxPoint(1000,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON48"));
     G_ImageButtonInbox = new wxBitmapButton(PanelGroups, ID_IMAGEBUTTON47, wxNullBitmap, wxPoint(910,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON47"));
     G_ImageButtonTitle = new wxBitmapButton(PanelGroups, ID_IMAGEBUTTON41, wxNullBitmap, wxPoint(10,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON41"));
-    PanelUsembers = new wxPanel(PanelMain, ID_PANEL4, wxPoint(1366,0), wxSize(1366,750), wxTAB_TRAVERSAL, _T("ID_PANEL4"));
+    PanelUsembers = new wxPanel(PanelMain, ID_PANEL4, wxPoint(0,0), wxSize(1366,750), wxTAB_TRAVERSAL, _T("ID_PANEL4"));
     BitmapBackgroundUsembers = new wxStaticBitmap(PanelUsembers, ID_STATICBITMAP3, wxBitmap(wxImage(_T("resources/background.jpg"))), wxPoint(0,0), wxDefaultSize, wxSIMPLE_BORDER, _T("ID_STATICBITMAP3"));
     U_LabelSwitchContent = new wxStaticText(PanelUsembers, ID_STATICTEXT54, _("Przełącz\nzawartość"), wxPoint(1188,685), wxDefaultSize, wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_STATICTEXT54"));
     U_LabelSwitchContent->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
@@ -894,7 +898,23 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     U_LineContentSeparator = new wxStaticLine(U_PanelEmail, ID_STATICLINE8, wxPoint(20,60), wxSize(470,15), wxLI_HORIZONTAL, _T("ID_STATICLINE8"));
     U_LineContentSeparator->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
     U_PanelStats = new wxPanel(PanelUsembers, ID_PANEL9, wxPoint(720,245), wxSize(510,345), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL, _T("ID_PANEL9"));
-    U_PanelStats->SetBackgroundColour(wxColour(32,32,32));
+    U_PanelStats->SetBackgroundColour(wxColour(48,48,48));
+    U_LabelSent = new wxStaticText(U_PanelStats, ID_STATICTEXT134, _("Maile wysłane: "), wxPoint(250,10), wxDefaultSize, 0, _T("ID_STATICTEXT134"));
+    U_LabelSent->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
+    wxFont U_LabelSentFont(13,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
+    U_LabelSent->SetFont(U_LabelSentFont);
+    U_LabelReceived = new wxStaticText(U_PanelStats, ID_STATICTEXT135, _("Maile odebrane: "), wxPoint(10,10), wxDefaultSize, 0, _T("ID_STATICTEXT135"));
+    U_LabelReceived->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
+    wxFont U_LabelReceivedFont(13,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
+    U_LabelReceived->SetFont(U_LabelReceivedFont);
+    U_StaticTextSent = new wxStaticText(U_PanelStats, ID_STATICTEXT136, _("-"), wxPoint(390,10), wxDefaultSize, 0, _T("ID_STATICTEXT136"));
+    U_StaticTextSent->SetForegroundColour(wxColour(36,201,15));
+    wxFont U_StaticTextSentFont(13,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
+    U_StaticTextSent->SetFont(U_StaticTextSentFont);
+    U_StaticTextReceived = new wxStaticText(U_PanelStats, ID_STATICTEXT137, _("-"), wxPoint(160,10), wxDefaultSize, 0, _T("ID_STATICTEXT137"));
+    U_StaticTextReceived->SetForegroundColour(wxColour(17,68,255));
+    wxFont U_StaticTextReceivedFont(13,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
+    U_StaticTextReceived->SetFont(U_StaticTextReceivedFont);
     U_ImageButtonSwitchList = new wxBitmapButton(PanelUsembers, ID_IMAGEBUTTON10, wxNullBitmap, wxPoint(600,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON10"));
     U_ImageButtonSwitchContent = new wxBitmapButton(PanelUsembers, ID_IMAGEBUTTON11, wxNullBitmap, wxPoint(1190,620), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON11"));
     U_ImageButtonShowGroup = new wxBitmapButton(PanelUsembers, ID_IMAGEBUTTON9, wxNullBitmap, wxPoint(790,620), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON9"));
@@ -1170,6 +1190,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Timer1.SetOwner(this, ID_TIMER1);
     FileDialogDatabaseImport = new wxFileDialog(this, _("Wybierz plik:"), _("~/"), wxEmptyString, _("*.bin"), wxFD_OPEN, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
     FileDialogDatabaseExport = new wxFileDialog(this, _("Zapisz plik:"), _("./"), wxEmptyString, _("*.bin"), wxFD_SAVE|wxFD_OVERWRITE_PROMPT, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
+    FileDialogStatisticsExport = new wxFileDialog(this, _("Zapisz plik:"), _("./"), wxEmptyString, _("*.txt"), wxFD_SAVE|wxFD_OVERWRITE_PROMPT, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
     Center();
 
     Connect(ID_IMAGEBUTTON37,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonMulTreeClick);
@@ -1728,7 +1749,7 @@ void AisdiRelationsFrame::OnS_ImageButtonRefreshClick(wxCommandEvent& event)
 
 void AisdiRelationsFrame::OnS_ImageButtonSaveStatsClick(wxCommandEvent& event)
 {
-    //TODO podepnij event do eksportu statystyk
+    P_Stats->EventButtonSaveStatsClick(this);
 }
 
 
