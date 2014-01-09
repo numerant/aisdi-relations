@@ -219,6 +219,36 @@ void IOInterface::exportDatabase(string filePath, DbParameters *parameters)
     oa << database;
 }
 
+void IOInterface::exportDatabaseToTxt (string directoryPath)
+{
+    string filePath;
+    stringstream record;              // linia zawierająca pola pojedynczego rekordu bazy, oddzielone tabulatorami
+
+        //wektor maili
+    filePath = directoryPath + "/emails.txt";             // sprawdzić, czy / jest potrzebne
+    Email* tempEmail;
+    for(int i=0; ; i++)
+    {
+        tempEmail = database->getEmail(i);
+        if (tempEmail == nullptr) break;                // null oznacza, że maile w wektorze się skończyły
+
+        record.clear();
+        record << tempEmail->getID() << "\t";
+        record << tempEmail->getFrom()->getAddress() << "\t";
+        record << tempEmail->getTo()->getAddress() << "\t";
+        record << tempEmail->getReplyTo()->getAddress() << "\t";
+        record << tempEmail->getInReplyTo() << "\t";
+            // dopisać forwards
+        record << tempEmail->getDate().getFullDate() << "\t";       // getDate nie zwraca wskażnika (?)
+        record << tempEmail->getSubject() << "\t";
+
+        string emailContent(tempEmail->getContent() );
+        replace(emailContent.begin(), emailContent.end(), '\n', '~');
+        record << emailContent << "\n";
+    }
+
+}
+
 string IOInterface::strSequenceReplace(const string& searched, const string& replaced, string subject)
 {
     string buffer;
