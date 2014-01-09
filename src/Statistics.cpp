@@ -228,16 +228,16 @@ int Statistics::getDateDifferenceInDays(Date* date1, Date* date2)
 
 bool Statistics::compareUsembersSentEmails(Usember* usember1, Usember* usember2)
 {
-    if(usember1->sendMailCount() > usember2->sendMailCount())
-        return true;
-    else
+    if(usember1->sendMailCount() <= usember2->sendMailCount())
         return false;
+    else
+        return true;
 }
 
 bool Statistics::compareUsembersReceivedEmails(Usember* usember1, Usember* usember2)
 {
-    if(usember1->receiveMailCount() > usember2->receiveMailCount())
-        return true;
-    else
+    if(usember1->receiveMailCount() <= usember2->receiveMailCount())
         return false;
+    else
+        return true;
 }

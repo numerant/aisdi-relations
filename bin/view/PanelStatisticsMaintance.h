@@ -30,6 +30,7 @@ public:
 
     void EventPanelEmailPerMonthPaint (AisdiRelationsFrame * Frame);
     void EventPanelCountersPaint (AisdiRelationsFrame * Frame);
+    void EventPanelTopsPaint (AisdiRelationsFrame * Frame);
     void EventHyperLinkClick(AisdiRelationsFrame * Frame, const long id);
     void EventButtonRefreshClick (AisdiRelationsFrame * Frame);
 };

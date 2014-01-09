@@ -24,6 +24,7 @@ void PanelStatisticsMaintance::ShowPanel(AisdiRelationsFrame* Frame)
         {
             Frame->S_PanelEmailPerMonth->Refresh();     //uaktualnij statystyki
             Frame->P_Stats->EventPanelCountersPaint(Frame);
+            Frame->P_Stats->EventPanelTopsPaint(Frame);
             Frame->P_Stats->SetIsUpdated();
         }
 
@@ -212,6 +213,61 @@ void PanelStatisticsMaintance::EventPanelCountersPaint (AisdiRelationsFrame * Fr
     }
 }
 
+void PanelStatisticsMaintance::EventPanelTopsPaint (AisdiRelationsFrame * Frame)
+{
+        string names[10] = "", adresses[10] = "", strValues[10] = "";
+        int values[10] = {0};
+        ostringstream ss;
+        for (int i = 0; i < 5; i++)
+        {
+            if (Frame->statistics->getTopReceiver(i) != nullptr)
+            {
+                 values[i] = Frame->statistics->getTopReceiver(i)->receiveMailCount();
+                 if (values[i] == 0)
+                        continue;
+            }
+            else
+                continue;
+
+            names[i] = Frame->statistics->getTopReceiver(i)->getRealName();
+            adresses[i] = Frame->statistics->getTopReceiver(i)->getAddress();
+            adresses[i] = " <"+adresses[i]+">";
+            ss << values [i];
+            strValues[i] = ss.str();
+            ss.str("");
+        }
+
+        for(int i = 0; i < 5; i++)
+        {
+            if (Frame->statistics->getTopSender(i) != nullptr)
+            {
+                    values[i+5] = Frame->statistics->getTopSender(i)->sendMailCount();
+                    if (values[i+5] == 0)
+                        continue;
+            }
+            else
+                continue;
+
+            names[i+5] = Frame->statistics->getTopSender(i)->getRealName();
+            adresses[i+5] = Frame->statistics->getTopSender(i)->getAddress();
+            adresses[i+5] = " <"+adresses[i+5]+">";
+            ss << values[i+5];
+            strValues[i+5] = ss.str();
+            ss.str("");
+        }
+        string open = "", close = " - ";
+        Frame->S_HyperLinkT_ReceiverPos1->SetLabel(wxString((open+strValues[0]+close+names[0]+adresses[0]).c_str(),wxConvUTF8));
+        Frame->S_HyperLinkT_ReceiverPos2->SetLabel(wxString((open+strValues[1]+close+names[1]+adresses[1]).c_str(),wxConvUTF8));
+        Frame->S_HyperLinkT_ReceiverPos3->SetLabel(wxString((open+strValues[2]+close+names[2]+adresses[2]).c_str(),wxConvUTF8));
+        Frame->S_HyperLinkT_ReceiverPos4->SetLabel(wxString((open+strValues[3]+close+names[3]+adresses[3]).c_str(),wxConvUTF8));
+        Frame->S_HyperLinkT_ReceiverPos5->SetLabel(wxString((open+strValues[4]+close+names[4]+adresses[4]).c_str(),wxConvUTF8));
+        Frame->S_HyperLinkT_SendersPos1->SetLabel(wxString((open+strValues[5]+close+names[5]+adresses[5]).c_str(),wxConvUTF8));
+        Frame->S_HyperLinkT_SendersPos2->SetLabel(wxString((open+strValues[6]+close+names[6]+adresses[6]).c_str(),wxConvUTF8));
+        Frame->S_HyperLinkT_SendersPos3->SetLabel(wxString((open+strValues[7]+close+names[7]+adresses[7]).c_str(),wxConvUTF8));
+        Frame->S_HyperLinkT_SendersPos4->SetLabel(wxString((open+strValues[8]+close+names[8]+adresses[8]).c_str(),wxConvUTF8));
+        Frame->S_HyperLinkT_SendersPos5->SetLabel(wxString((open+strValues[9]+close+names[9]+adresses[9]).c_str(),wxConvUTF8));
+}
+
 void PanelStatisticsMaintance::EventHyperLinkClick(AisdiRelationsFrame * Frame, const long id)
 {
     string usember;
@@ -231,8 +287,7 @@ void PanelStatisticsMaintance::EventHyperLinkClick(AisdiRelationsFrame * Frame, 
         default: break;
     }
     usember = wxStr.mb_str();
-    Frame->P_Usembers->SetUsemberViewed(usember);
-    Frame->P_Usembers->ShowPanel(Frame);
+    Frame->P_Usembers->SetUsemberViewed(Frame, usember);
 }
 
 void PanelStatisticsMaintance::EventButtonRefreshClick (AisdiRelationsFrame * Frame)
@@ -240,5 +295,6 @@ void PanelStatisticsMaintance::EventButtonRefreshClick (AisdiRelationsFrame * Fr
     Frame->statistics->update();
     Frame->P_Stats->EventPanelEmailPerMonthPaint(Frame);
     Frame->P_Stats->EventPanelCountersPaint(Frame);
+    Frame->P_Stats->EventPanelTopsPaint(Frame);
 }
 

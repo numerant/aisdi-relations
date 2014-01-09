@@ -44,7 +44,7 @@ public:
     void SetSettingsEnabled();
     void SetUsembersListEnabled();
     void SetEmailContentEnabled();
-    void SetUsemberViewed(const string usember);
+    void SetUsemberViewed(AisdiRelationsFrame * Frame, const string usember);
 
     bool GetSearchEnabled();
     bool GetAddEnabled();

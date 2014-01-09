@@ -184,7 +184,8 @@ void PanelUsembersMaintance::SetEmails (AisdiRelationsFrame * Frame, int pos)
                 Frame->U_ListInbox->SetItem(i,2,wxfrom);
             }
 
-         if (int counterOut = usember->sendMailCount() > 0)
+         int counterOut = usember->sendMailCount();
+         if (counterOut  > 0)
             for (int i = 0; i < counterOut; i++)
             {
                 Email * email = usember->getEmailSent(i);
@@ -313,9 +314,23 @@ void PanelUsembersMaintance::SetEmailContentEnabled()
     emailContentEnabled = !emailContentEnabled;
 }
 
-void PanelUsembersMaintance::SetUsemberViewed(const string usember)
+void PanelUsembersMaintance::SetUsemberViewed(AisdiRelationsFrame * Frame, const string usember)
 {
+    usembersListEnabled = false;
+    emailContentEnabled = false;
+    string adress = "";
+    int pos = usember.find("<",0)+1;
+    adress = usember.substr(pos,usember.size()-pos-1);
+    adressUsemberSelected = adress;
 
+    string name = Frame->database->getUsember(Frame->database->findUsember(adressUsemberSelected))->getRealName();
+    Frame->U_StaticTextName->SetLabel(wxString(name.c_str(),wxConvUTF8));
+    Frame->U_StaticTextEmail->SetLabel(wxString(adressUsemberSelected.c_str(), wxConvUTF8));
+    Frame->U_StaticTextGroup->SetLabel(_("temporary unavailable"));     //TODO dodać wyswietlanie grupy
+
+   SetEmails(Frame, Frame->database->findUsember(adressUsemberSelected));
+
+   ShowPanel(Frame);
 }
 
 bool PanelUsembersMaintance::GetSearchEnabled()
