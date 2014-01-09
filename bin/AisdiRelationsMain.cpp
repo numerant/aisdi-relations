@@ -120,12 +120,14 @@ const long AisdiRelationsFrame::ID_STATICTEXT77 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT76 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT75 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT74 = wxNewId();
+const long AisdiRelationsFrame::ID_STATICTEXT133 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT124 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT65 = wxNewId();
 const long AisdiRelationsFrame::ID_IMAGEBUTTON54 = wxNewId();
 const long AisdiRelationsFrame::ID_IMAGEBUTTON53 = wxNewId();
 const long AisdiRelationsFrame::ID_IMAGEBUTTON52 = wxNewId();
 const long AisdiRelationsFrame::ID_IMAGEBUTTON51 = wxNewId();
+const long AisdiRelationsFrame::ID_IMAGEBUTTON62 = wxNewId();
 const long AisdiRelationsFrame::ID_IMAGEBUTTON55 = wxNewId();
 const long AisdiRelationsFrame::ID_IMAGEBUTTON42 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICBOX9 = wxNewId();
@@ -509,7 +511,11 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     S_LabelInbox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
     wxFont S_LabelInboxFont(11,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     S_LabelInbox->SetFont(S_LabelInboxFont);
-    S_LabelRefresh = new wxStaticText(PanelStatistics, ID_STATICTEXT124, _("Odśwież"), wxPoint(102,70), wxDefaultSize, wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_STATICTEXT124"));
+    S_LabelSaveStats = new wxStaticText(PanelStatistics, ID_STATICTEXT133, _("Zapisz"), wxPoint(198,70), wxDefaultSize, wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_STATICTEXT133"));
+    S_LabelSaveStats->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
+    wxFont S_LabelSaveStatsFont(11,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
+    S_LabelSaveStats->SetFont(S_LabelSaveStatsFont);
+    S_LabelRefresh = new wxStaticText(PanelStatistics, ID_STATICTEXT124, _("Odśwież"), wxPoint(101,70), wxDefaultSize, wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_STATICTEXT124"));
     S_LabelRefresh->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
     wxFont S_LabelRefreshFont(11,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     S_LabelRefresh->SetFont(S_LabelRefreshFont);
@@ -521,6 +527,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     S_ImageButtonGroups = new wxBitmapButton(PanelStatistics, ID_IMAGEBUTTON53, wxNullBitmap, wxPoint(1090,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON53"));
     S_ImageButtonUsembers = new wxBitmapButton(PanelStatistics, ID_IMAGEBUTTON52, wxNullBitmap, wxPoint(1000,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON52"));
     S_ImageButtonInbox = new wxBitmapButton(PanelStatistics, ID_IMAGEBUTTON51, wxNullBitmap, wxPoint(910,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON51"));
+    S_ImageButtonSaveStats = new wxBitmapButton(PanelStatistics, ID_IMAGEBUTTON62, wxNullBitmap, wxPoint(190,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON62"));
     S_ImageButtonRefresh = new wxBitmapButton(PanelStatistics, ID_IMAGEBUTTON55, wxNullBitmap, wxPoint(100,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON55"));
     S_ImageButtonTitle = new wxBitmapButton(PanelStatistics, ID_IMAGEBUTTON42, wxNullBitmap, wxPoint(10,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON42"));
     S_PanelCounters = new wxPanel(PanelStatistics, ID_PANEL13, wxPoint(10,120), wxSize(320,600), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE, _T("ID_PANEL13"));
@@ -1188,6 +1195,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_IMAGEBUTTON53,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_ImageButtonGroupsClick);
     Connect(ID_IMAGEBUTTON52,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_ImageButtonUsembersClick);
     Connect(ID_IMAGEBUTTON51,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_ImageButtonInboxClick);
+    Connect(ID_IMAGEBUTTON62,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_ImageButtonSaveStatsClick);
     Connect(ID_IMAGEBUTTON55,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_ImageButtonRefreshClick);
     Connect(ID_IMAGEBUTTON42,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_ImageButtonTitleClick);
     S_PanelEmailPerMonth->Connect(wxEVT_PAINT,(wxObjectEventFunction)&AisdiRelationsFrame::OnS_PanelEmailPerMonthPaint,0,this);
@@ -1369,7 +1377,7 @@ void AisdiRelationsFrame::OnQuit(wxCommandEvent& event)
     delete P_Notify;
 
     /** Zwolnienie obiektów klas projektu */
-    //delete iointerface;       //TODO odkomentować
+    delete iointerface;       //TODO odkomentować
     delete statistics;
     delete database;
 
@@ -1380,7 +1388,7 @@ void AisdiRelationsFrame::OnQuit(wxCommandEvent& event)
 void AisdiRelationsFrame::OnAbout(wxCommandEvent& event)
 {
     wxString msg = _("Autorzy:\n  Maciej Gańko\n  Paweł Kaczyński\n  Krzysztof Lisocki\n  Patryk Łucka\n  Jakub Maleszewski\n  Maciej Safarzyński\n  Michał Żołyniak\n\n");
-    msg += _("---------------------------------------------------\nVersion:  1.3.7");
+    msg += _("---------------------------------------------------\nVersion:  1.8.3");
     wxMessageBox(msg, _("About"));
 }
 
@@ -1718,6 +1726,10 @@ void AisdiRelationsFrame::OnS_ImageButtonRefreshClick(wxCommandEvent& event)
     P_Stats->EventButtonRefreshClick(this);
 }
 
+void AisdiRelationsFrame::OnS_ImageButtonSaveStatsClick(wxCommandEvent& event)
+{
+    //TODO podepnij event do eksportu statystyk
+}
 
 
 /** ============= Eventy panelu MULTREE ============= */

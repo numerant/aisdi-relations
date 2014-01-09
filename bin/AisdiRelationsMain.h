@@ -159,6 +159,7 @@ private:
     void OnMenuItemNTimeNormalSelected(wxCommandEvent& event);
     void OnMenuItemNTimeLongSelected(wxCommandEvent& event);
     void OnMenuItemHelpSelected(wxCommandEvent& event);
+    void OnS_ImageButtonSaveStatsClick(wxCommandEvent& event);
     //*)
 
     //(*Identifiers(AisdiRelationsFrame)
@@ -216,12 +217,14 @@ private:
     static const long ID_STATICTEXT76;
     static const long ID_STATICTEXT75;
     static const long ID_STATICTEXT74;
+    static const long ID_STATICTEXT133;
     static const long ID_STATICTEXT124;
     static const long ID_STATICTEXT65;
     static const long ID_IMAGEBUTTON54;
     static const long ID_IMAGEBUTTON53;
     static const long ID_IMAGEBUTTON52;
     static const long ID_IMAGEBUTTON51;
+    static const long ID_IMAGEBUTTON62;
     static const long ID_IMAGEBUTTON55;
     static const long ID_IMAGEBUTTON42;
     static const long ID_STATICBOX9;
@@ -492,6 +495,7 @@ private:
     wxStaticText* M_LabelUsembers;
     wxMenuItem* MenuItemOpenFolder;
     wxBitmapButton        *T_ImageButtonSwitch;
+    wxBitmapButton        *S_ImageButtonSaveStats;
     wxStaticText* S_LabelTitle;
     wxSlider* Set_SliderNotifyTime;
     wxBitmapButton        *I_ImageButtonMulTree;
@@ -656,6 +660,7 @@ private:
     wxBitmapButton        *I_ImageButtonDelete;
     wxStaticText* T_LabelMulTree;
     wxMenuItem* MenuItemSave;
+    wxStaticText* S_LabelSaveStats;
     wxMenuItem* MenuItemConfirm;
     wxStaticText* U_LabelDate;
     wxStaticText* S_StaticTextC_Usembers;
@@ -717,8 +722,8 @@ private:
     wxStaticText* S_StaticTextC_Value1;
     wxBitmapButton        *G_ImageButtonStats;
     wxBitmapButton        *U_ImageButtonAdd;
-    wxStaticBox* U_StaticBoxInfo;
     wxStaticText* U_StaticTextFromTo;
+    wxStaticBox* U_StaticBoxInfo;
     //*)
 
 

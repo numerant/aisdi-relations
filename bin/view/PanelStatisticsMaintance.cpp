@@ -43,6 +43,7 @@ void PanelStatisticsMaintance::SetIcons(AisdiRelationsFrame * Frame)
     Frame->S_ImageButtonGroups->SetBitmapLabel(path+imagePaths[3]+format);
     Frame->S_ImageButtonMulTree->SetBitmapLabel(path+imagePaths[4]+format);
     Frame->S_ImageButtonRefresh->SetBitmapLabel(path+imagePaths[5]+format);
+    Frame->S_ImageButtonSaveStats->SetBitmapLabel(path+imagePaths[6]+format);
 }
 
 void PanelStatisticsMaintance::SetIsUpdated()
@@ -76,7 +77,7 @@ void PanelStatisticsMaintance::EventPanelEmailPerMonthPaint (AisdiRelationsFrame
 
     dc.SetBrush(wxBrush(wxColour(48,48,48)));
     dc.SetPen(wxPen(wxColour(48,48,48)));
-    dc.DrawRectangle(wxPoint(5,28),wxSize(490,260));       //wyczyszczenie canvasu
+    dc.DrawRectangle(wxPoint(5,28),wxSize(width-10,height-28-5));       //wyczyszczenie canvasu
 
     dc.SetPen(wxPen(wxColour(150,150,150)));
     dc.SetTextForeground(wxColour(230,230,230));
