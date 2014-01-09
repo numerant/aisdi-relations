@@ -61,6 +61,7 @@ void PanelUsembersMaintance::ShowPanel(AisdiRelationsFrame* Frame)
         else
         {
             Frame->U_PanelEmail->Hide();
+            EventPanelStatsPaint(Frame);
             Frame->U_PanelStats->Show();
         }
 
@@ -231,6 +232,7 @@ void PanelUsembersMaintance::SetEmails (AisdiRelationsFrame * Frame, int pos)
                 Frame->U_ListOutbox->SetItem(i,2,wxto);
             }
     }
+    EventPanelStatsPaint(Frame);
 }
 
 void PanelUsembersMaintance::SetIcons(AisdiRelationsFrame* Frame)
@@ -317,8 +319,6 @@ void PanelUsembersMaintance::SetEmailContentEnabled()
 
 void PanelUsembersMaintance::SetUsemberViewed(AisdiRelationsFrame * Frame, const string usember)
 {
-    usembersListEnabled = false;
-    emailContentEnabled = false;
     string adress = "";
     int pos = usember.find("<",0)+1;
     adress = usember.substr(pos,usember.size()-pos-1);
@@ -348,8 +348,13 @@ void PanelUsembersMaintance::SetUsemberViewed(AisdiRelationsFrame * Frame, const
     Frame->U_StaticTextGroup->SetLabel(_("temporary unavailable"));     //TODO dodać wyswietlanie grupy
 
     SetEmails(Frame, Frame->database->findUsember(adressUsemberSelected));
-    EventPanelStatsPaint(Frame);
+    if (GetUsembersListEnabled())
+        SwitchList(Frame);
+    if (GetEmailContentEnabled())
+        SwitchContent(Frame);
     ShowPanel(Frame);
+
+    EventPanelStatsPaint(Frame);
 }
 
 bool PanelUsembersMaintance::GetSearchEnabled()
@@ -578,7 +583,7 @@ void PanelUsembersMaintance::EventListUsembersItemSelect (AisdiRelationsFrame* F
     Frame->U_StaticTextReceived->SetLabel(wxString(strReceived.c_str(),wxConvUTF8));
     Frame->U_StaticTextSent->SetLabel(wxString(strSent.c_str(),wxConvUTF8));
 
-    EventPanelStatsPaint(Frame);
+   EventPanelStatsPaint(Frame);
    SetEmails(Frame, Frame->database->findUsember(adressUsemberSelected));
    if (GetUsembersListEnabled())
         SwitchList(Frame);
@@ -678,17 +683,20 @@ void PanelUsembersMaintance::EventListInboxColumnClick (AisdiRelationsFrame* Fra
 void PanelUsembersMaintance::EventPanelStatsPaint (AisdiRelationsFrame * Frame)
 {
     wxColor colorBlue = wxColor(17,68,255);
+    wxColor colorBlueL = wxColor(50,100,255);
     wxColor colorGreen = wxColor(36,201,15);
+    wxColor colorGreenL = wxColor(50,255,30);
     wxColor colorBackground = wxColor(48,48,48);
     wxColor colorText = wxColor (230,230,230);
 
     int height, width;
     Frame->U_PanelStats->GetSize(&width, & height);
     double pointSpace = (width-20)/12;
-    double pointHeight = height-90;
-    const int radiusGreen = 8;      //średnica punktu wykresu - raczej nie zmieniać
-    const int radiusBlue = 5;
-    int valueLabelCorrection = height-pointHeight-45;
+    double pointHeight = height-100;
+    const int radiusGreen = 5;      //średnica punktu wykresu - raczej nie zmieniać
+    const int radiusBlue = 3;
+    int deltaY = -45;
+    int valueLabelCorrection = height-pointHeight+deltaY-10;
 
     wxPaintDC dc(Frame->U_PanelStats);
 
@@ -699,10 +707,10 @@ void PanelUsembersMaintance::EventPanelStatsPaint (AisdiRelationsFrame * Frame)
     dc.SetTextForeground(colorText);
     dc.SetFont(wxFont(11, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, _("Ubuntu")));
 
-    int maxEmails = 0, prevX = 32, prevYS = height-35, prevYR = height-35;
+    int maxEmails = 0, prevX = 32, prevYS = height+deltaY, prevYR = height+deltaY;
     Usember * usember = Frame->database->getUsember(Frame->database->findUsember(adressUsemberSelected));
     if (usember != nullptr)
-        maxEmails =  12;   //usember->getMaxEmailsInMonth();
+        maxEmails =  usember->getMaxEmailsInMonth();
 
     if (maxEmails)  //jeżeli jakikolwiek mail wczytany
     {
@@ -715,8 +723,8 @@ void PanelUsembersMaintance::EventPanelStatsPaint (AisdiRelationsFrame * Frame)
             dc.DrawText(months[i], wxPoint(20+i*pointSpace+posCorrection, height-25));      //wypisz nazwę miesiąca
 
             int monthSent = 0, monthReceived = 0;
-            monthSent =  i%7 ;   //usember->getEmailsSentInMonth(i);  //pobranie wartości z danego miesiąca
-            monthReceived = (i * 5)%13;     //usember->getEmailsReceivedInMonth(i);
+            monthSent =  usember->getEmailsSentInMonth(i);  //pobranie wartości z danego miesiąca
+            monthReceived = usember->getEmailsReceivedInMonth(i);
 
             if (monthSent >= 100)           //zabawa mailami wysłanymi
             {
@@ -741,12 +749,12 @@ void PanelUsembersMaintance::EventPanelStatsPaint (AisdiRelationsFrame * Frame)
                 double step = 10*pointHeight/maxEmails;
                 double d_pointHeight = step * monthSent;
                 currentPointHeight = (int)(d_pointHeight/10);
-                dc.DrawEllipse(wxPoint(32+i*pointSpace-radiusGreen-radiusCorrection,height-35-currentPointHeight-radiusGreen-radiusCorrection),wxSize(2*radiusGreen+2*radiusCorrection, 2*radiusGreen+2*radiusCorrection));
             }
-            dc.DrawLine(wxPoint(prevX,prevYS),wxPoint(32+i*pointSpace,height-35-currentPointHeight));
-            prevYS = height-35-currentPointHeight;
-            dc.SetTextForeground(colorGreen);
-            dc.DrawText(wxString(strMonthSent.c_str(), wxConvUTF8), wxPoint(35+i*pointSpace+labelCorrection+radiusGreen+radiusCorrection, (int)(valueLabelCorrection+pointHeight-currentPointHeight+radiusGreen+radiusCorrection)));
+            dc.DrawEllipse(wxPoint(32+i*pointSpace-radiusGreen-radiusCorrection,height+deltaY-currentPointHeight-radiusGreen-radiusCorrection),wxSize(2*radiusGreen+2*radiusCorrection, 2*radiusGreen+2*radiusCorrection));
+            dc.DrawLine(wxPoint(prevX,prevYS),wxPoint(32+i*pointSpace,height+deltaY-currentPointHeight));
+            prevYS = height+deltaY-currentPointHeight;
+            dc.SetTextForeground(colorGreenL);
+            dc.DrawText(wxString(strMonthSent.c_str(), wxConvUTF8), wxPoint(34+i*pointSpace+radiusGreen+radiusCorrection, (int)(valueLabelCorrection+pointHeight-currentPointHeight-radiusGreen-radiusCorrection)));
 
              if (monthReceived >= 100)           //zabawa mailami wysłanymi
             {
@@ -772,13 +780,13 @@ void PanelUsembersMaintance::EventPanelStatsPaint (AisdiRelationsFrame * Frame)
                 double step = 10*pointHeight/maxEmails;
                 double d_pointHeight = step * monthReceived;
                 currentPointHeight = (int)(d_pointHeight/10);
-                dc.DrawEllipse(wxPoint(32+i*pointSpace-radiusBlue-radiusCorrection,height-35-currentPointHeight-radiusBlue-radiusCorrection),wxSize(2*radiusBlue+2*radiusCorrection, 2*radiusBlue+2*radiusCorrection));
             }
-            dc.DrawLine(wxPoint(prevX,prevYR),wxPoint(32+i*pointSpace,height-35-currentPointHeight));
-            prevYR = height-35-currentPointHeight;
+            dc.DrawEllipse(wxPoint(32+i*pointSpace-radiusBlue-radiusCorrection,height+deltaY-currentPointHeight-radiusBlue-radiusCorrection),wxSize(2*radiusBlue+2*radiusCorrection, 2*radiusBlue+2*radiusCorrection));
+            dc.DrawLine(wxPoint(prevX,prevYR),wxPoint(32+i*pointSpace,height+deltaY-currentPointHeight));
+            prevYR = height+deltaY-currentPointHeight;
             prevX = 32+i*pointSpace;
-            dc.SetTextForeground(colorBlue);
-            dc.DrawText(wxString(strMonthReceived.c_str(), wxConvUTF8), wxPoint(25+i*pointSpace+labelCorrection-radiusBlue-radiusCorrection, (int)(valueLabelCorrection+pointHeight-currentPointHeight-radiusBlue-radiusCorrection)));
+            dc.SetTextForeground(colorBlueL);
+            dc.DrawText(wxString(strMonthReceived.c_str(), wxConvUTF8), wxPoint(21+i*pointSpace+labelCorrection-radiusBlue-radiusCorrection, (int)(valueLabelCorrection+pointHeight-currentPointHeight-radiusGreen-radiusCorrection)));
         }
     }
     dc.SetPen(wxPen(colorText));

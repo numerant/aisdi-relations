@@ -1838,3 +1838,8 @@ void AisdiRelationsFrame::OnMenuItemNTimeLongSelected(wxCommandEvent& event)
 void AisdiRelationsFrame::OnMenuItemHelpSelected(wxCommandEvent& event)
 {
 }
+
+void AisdiRelationsFrame::OnU_PanelStatsSetFocus(wxFocusEvent& event)
+{
+    P_Usembers->EventPanelStatsPaint(this);
+}

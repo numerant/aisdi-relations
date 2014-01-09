@@ -160,6 +160,7 @@ private:
     void OnMenuItemNTimeLongSelected(wxCommandEvent& event);
     void OnMenuItemHelpSelected(wxCommandEvent& event);
     void OnS_ImageButtonSaveStatsClick(wxCommandEvent& event);
+    void OnU_PanelStatsSetFocus(wxFocusEvent& event);
     //*)
 
     //(*Identifiers(AisdiRelationsFrame)

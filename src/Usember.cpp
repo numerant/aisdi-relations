@@ -99,7 +99,7 @@ unsigned int Usember::getEmailsReceivedInMonth (int month)
     return counter;
 }
 
-unsigned int Usember::getEmailsSentIntMonth (int month)
+unsigned int Usember::getEmailsSentInMonth (int month)
 {
     unsigned int counter = 0;
 
@@ -118,7 +118,7 @@ unsigned int Usember::getMaxEmailsInMonth ()
 
     for (int i = 0; i < 12; i++)
     {
-        temp = getEmailsReceivedInMonth(i)+ getEmailsSentIntMonth(i);
+        temp = getEmailsReceivedInMonth(i)+ getEmailsSentInMonth(i);
         if (temp > maxSum)
             maxSum = temp;
 

@@ -45,7 +45,7 @@ public:
     unsigned int sendMailCount();				// zwraca liczbę maili wysłanych przez tego usembera
     unsigned int receiveMailCount();				// zwraca liczbę maili odebranych przez tego usembera
     unsigned int getEmailsReceivedInMonth (int month); // zwraca liczbę maili odebranych w danym miesiącu
-    unsigned int getEmailsSentIntMonth (int month);    // zwraca liczbę maili wysłanych w danym miesiącu
+    unsigned int getEmailsSentInMonth (int month);    // zwraca liczbę maili wysłanych w danym miesiącu
     unsigned int getMaxEmailsInMonth ();               // zwraca największą liczbę maili napisanych w ciągu danego miesiąca
 
 private:
