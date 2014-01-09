@@ -25,6 +25,16 @@ void Usember::addMail(Email *email, DataType type)	// dodaje list do odpowiednie
 
 }
 
+void Usember::addEmailSent (Email * email)
+{
+    sentMails.push_back(email);
+}
+
+void Usember::addEmailReceived (Email * email)
+{
+    receivedMails.push_back(email);
+}
+
 void Usember::removeMail(Email *email)				// usuwa list z wektora
 {
 

@@ -30,6 +30,10 @@ public:
     ~Usember();
 
     void addMail(Email *email, DataType type);		// dodaje list do odpowiedniego wektora
+
+    void addEmailSent (Email * email);              //TODO Usuń funkcję addMail albo zrób po swojemu. Nie wiem w sumie po co DataType.
+    void addEmailReceived (Email * email);          //Pozdro, Panda.
+
     void removeMail(Email *email);					// usuwa list z wektora
     void setGroup(Group	*group);						// przydziela grupę usemberowi / używać także jako akutalizacji
     void setRealName(string rn);						// ustawia pole realName - działanie jak wyżej

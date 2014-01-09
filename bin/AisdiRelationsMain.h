@@ -323,7 +323,6 @@ private:
     static const long ID_STATICTEXT13;
     static const long ID_STATICTEXT14;
     static const long ID_STATICTEXT12;
-    static const long ID_PANEL9;
     static const long ID_STATICTEXT19;
     static const long ID_STATICTEXT23;
     static const long ID_STATICTEXT22;
@@ -333,6 +332,7 @@ private:
     static const long ID_HTMLWINDOW2;
     static const long ID_STATICLINE8;
     static const long ID_PANEL8;
+    static const long ID_PANEL9;
     static const long ID_IMAGEBUTTON10;
     static const long ID_IMAGEBUTTON11;
     static const long ID_IMAGEBUTTON9;

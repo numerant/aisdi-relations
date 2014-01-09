@@ -3,8 +3,7 @@
 
 PanelUsembersMaintance::PanelUsembersMaintance()
 {
-    usembersListEnabled = true;
-    emailContentEnabled = true;
+
 }
 
 void PanelUsembersMaintance::ShowPanel(AisdiRelationsFrame* Frame)
@@ -101,7 +100,8 @@ void PanelUsembersMaintance::SetLabels(AisdiRelationsFrame* Frame)
 
 void PanelUsembersMaintance::SetUsembers(AisdiRelationsFrame * Frame)
 {
-    if (int counterU = Frame->database->countUsembers() > 0)     //TODO Zmienić wyświetlanie za pomocą Query
+    int counterU = Frame->database->countUsembers();
+    if (counterU > 0)     //TODO Zmienić wyświetlanie za pomocą Query
     {
         Frame->U_ListUsembers->DeleteAllItems();
         for (int i = 0; i < counterU; i++)
@@ -121,8 +121,8 @@ void PanelUsembersMaintance::SetUsembers(AisdiRelationsFrame * Frame)
             wxString wxAdress (sourceString.c_str(), wxConvUTF8);
             Frame->U_ListUsembers->SetItem(i,1, wxAdress );
 
-            Group * group = usember->getGroup();
-            int iGroup = group->getID();
+            //Group * group = usember->getGroup();      //TODO odkomentować po zrobieniu grup
+            int iGroup = i;                        //group->getID();
             ostringstream ssGroup;
             ssGroup << iGroup;
             sourceString = ssGroup.str();
@@ -134,13 +134,14 @@ void PanelUsembersMaintance::SetUsembers(AisdiRelationsFrame * Frame)
 
 void PanelUsembersMaintance::SetEmails (AisdiRelationsFrame * Frame, int pos)
 {
-    if (int counterU = Frame->database->countUsembers() > 0)     //TODO Zmienić wyświetlanie za pomocą Query
+    int counterU = Frame->database->countUsembers();
+    if (counterU > 0)     //TODO Zmienić wyświetlanie za pomocą Query
     {
         Frame->U_ListInbox->DeleteAllItems();
         Frame->U_ListOutbox->DeleteAllItems();
         Usember * usember = Frame->database->getUsember(pos);
-
-        if (int counterIn = usember->receiveMailCount() > 0)
+        int counterIn =  usember->receiveMailCount();
+        if (counterIn > 0)
             for (int i = 0; i < counterIn; i++)
             {
                 Email * email = usember->getEmailReceived(i);
@@ -474,7 +475,7 @@ void PanelUsembersMaintance::EventButtonShowGroupClick (AisdiRelationsFrame* Fra
 
 void PanelUsembersMaintance::EventButtonSwitchContentClick (AisdiRelationsFrame* Frame)
 {
-
+    SwitchContent(Frame);
 }
 
 void PanelUsembersMaintance::EventSearchCtrlTextEnter (AisdiRelationsFrame* Frame)
@@ -505,7 +506,8 @@ void PanelUsembersMaintance::EventListUsembersItemSelect (AisdiRelationsFrame* F
     Frame->U_LabelGroup->SetLabel(contents[2]);
 
    adressUsemberSelected = contents[1].mb_str();
-    SetEmails(Frame, Frame->database->findUsember(adressUsemberSelected));
+   SetEmails(Frame, Frame->database->findUsember(adressUsemberSelected));
+   SwitchList(Frame);
 }
 
 void PanelUsembersMaintance::EventListUsembersColumnClick (AisdiRelationsFrame* Frame)
@@ -520,12 +522,70 @@ void PanelUsembersMaintance::EventListOutboxColumnClick (AisdiRelationsFrame* Fr
 
 void PanelUsembersMaintance::EventListOutboxItemSelect (AisdiRelationsFrame* Frame)
 {
+    long itemIndex = -1;
+    itemIndex = Frame->U_ListOutbox->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
 
+    wxListItem item;
+    wxString contents[COL_EMAILS_COUNT];
+    wxString pOpen = _("<p align=\"justify\"><font color=\"lightgray\">");
+    wxString pClose = _("</font></p>");
+    item.m_itemId = itemIndex;
+    item.m_mask = wxLIST_MASK_TEXT;
+
+    for (int i = 0; i < COL_USEMBERS_COUNT; i++)
+    {
+        item.m_col = i;
+        Frame->U_ListOutbox->GetItem( item );
+        contents[i] = item.m_text;
+    }
+    Frame->U_StaticTextDate->SetLabel(contents[0]);
+    Frame->U_StaticTextSubject->SetLabel(contents[1]);
+    Frame->U_StaticTextFromTo->SetLabel(contents[3]);
+
+    emailIdSelected = contents[5].mb_str();
+
+    const string search = "\n";
+    const string replace = "<br>";
+    string subject = string (contents[4].mb_str());
+    string htmlContent = Frame->iointerface->strSequenceReplace("\n", "<br>", subject);
+
+    wxString pContent (htmlContent.c_str(), wxConvUTF8 );
+    Frame->U_HtmlContent->SetPage(pOpen+pContent+pClose);
+    Frame->U_HtmlContent->SetBackgroundColour(wxColor(20,20,20));
 }
 
 void PanelUsembersMaintance::EventListInboxItemSelect (AisdiRelationsFrame* Frame)
 {
+    long itemIndex = -1;
+    itemIndex = Frame->U_ListInbox->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
 
+    wxListItem item;
+    wxString contents[COL_EMAILS_COUNT];
+    wxString pOpen = _("<p align=\"justify\"><font color=\"lightgray\">");
+    wxString pClose = _("</font></p>");
+    item.m_itemId = itemIndex;
+    item.m_mask = wxLIST_MASK_TEXT;
+
+    for (int i = 0; i < COL_USEMBERS_COUNT; i++)
+    {
+        item.m_col = i;
+        Frame->U_ListInbox->GetItem( item );
+        contents[i] = item.m_text;
+    }
+    Frame->U_StaticTextDate->SetLabel(contents[0]);
+    Frame->U_StaticTextSubject->SetLabel(contents[1]);
+    Frame->U_StaticTextFromTo->SetLabel(contents[2]);
+
+    emailIdSelected = contents[5].mb_str();
+
+    const string search = "\n";
+    const string replace = "<br>";
+    string subject = string (contents[4].mb_str());
+    string htmlContent = Frame->iointerface->strSequenceReplace("\n", "<br>", subject);
+
+    wxString pContent (htmlContent.c_str(), wxConvUTF8 );
+    Frame->U_HtmlContent->SetPage(pOpen+pContent+pClose);
+    Frame->U_HtmlContent->SetBackgroundColour(wxColor(20,20,20));
 }
 
 void PanelUsembersMaintance::EventListInboxColumnClick (AisdiRelationsFrame* Frame)
