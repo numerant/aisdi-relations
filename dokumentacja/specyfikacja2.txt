@@ -8,7 +8,7 @@ Zapisywanie - Statystyki - Analiza - Sortowanie - Wyszukiwanie
 >> 					Eksport bazy do pliku tekstowego
 
 2) Chciałbym, aby wygenerowany plik ważył możliwie mało.
->> Jakub Maleszewski:			Odpowiednia implementacja wyżej wymienionej metody zapewnia optymalny rozmiar pliku.
+>> Jakub Maleszewski:			Odpowiednia implementacja wyżej wymienionej metody zapewnia optymalny rozmiar pliku. Dodatkowo zastosowano kompresję zlib.
 
 3) [ -> 3. Sprint] Chciałbym, aby wyszukane rekordy były ułożone w logicznym porządku wg zadanego klucza.
 >> Maciej Gańko:			Sortowanie maili, wykorzystywne od porządkowania maili w bazie danych. Implementacja została przesunięta na następny etap
