@@ -897,22 +897,22 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     U_HtmlContent->SetFont(U_HtmlContentFont);
     U_LineContentSeparator = new wxStaticLine(U_PanelEmail, ID_STATICLINE8, wxPoint(20,60), wxSize(470,15), wxLI_HORIZONTAL, _T("ID_STATICLINE8"));
     U_LineContentSeparator->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
-    U_PanelStats = new wxPanel(PanelUsembers, ID_PANEL9, wxPoint(720,245), wxSize(510,345), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL, _T("ID_PANEL9"));
+    U_PanelStats = new wxPanel(PanelUsembers, ID_PANEL9, wxPoint(720,245), wxSize(510,345), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE, _T("ID_PANEL9"));
     U_PanelStats->SetBackgroundColour(wxColour(48,48,48));
     U_LabelSent = new wxStaticText(U_PanelStats, ID_STATICTEXT134, _("Emaile wysłane: "), wxPoint(250,10), wxDefaultSize, 0, _T("ID_STATICTEXT134"));
-    U_LabelSent->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
+    U_LabelSent->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
     wxFont U_LabelSentFont(13,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     U_LabelSent->SetFont(U_LabelSentFont);
     U_LabelReceived = new wxStaticText(U_PanelStats, ID_STATICTEXT135, _("Emaile odebrane: "), wxPoint(10,10), wxDefaultSize, 0, _T("ID_STATICTEXT135"));
-    U_LabelReceived->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
+    U_LabelReceived->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
     wxFont U_LabelReceivedFont(13,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     U_LabelReceived->SetFont(U_LabelReceivedFont);
-    U_StaticTextSent = new wxStaticText(U_PanelStats, ID_STATICTEXT136, _("-"), wxPoint(390,10), wxDefaultSize, 0, _T("ID_STATICTEXT136"));
-    U_StaticTextSent->SetForegroundColour(wxColour(36,201,15));
+    U_StaticTextSent = new wxStaticText(U_PanelStats, ID_STATICTEXT136, _("123"), wxPoint(390,10), wxDefaultSize, 0, _T("ID_STATICTEXT136"));
+    U_StaticTextSent->SetForegroundColour(wxColour(255,187,117));
     wxFont U_StaticTextSentFont(13,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     U_StaticTextSent->SetFont(U_StaticTextSentFont);
-    U_StaticTextReceived = new wxStaticText(U_PanelStats, ID_STATICTEXT137, _("-"), wxPoint(160,10), wxDefaultSize, 0, _T("ID_STATICTEXT137"));
-    U_StaticTextReceived->SetForegroundColour(wxColour(17,68,255));
+    U_StaticTextReceived = new wxStaticText(U_PanelStats, ID_STATICTEXT137, _("123"), wxPoint(160,10), wxDefaultSize, 0, _T("ID_STATICTEXT137"));
+    U_StaticTextReceived->SetForegroundColour(wxColour(252,69,33));
     wxFont U_StaticTextReceivedFont(13,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     U_StaticTextReceived->SetFont(U_StaticTextReceivedFont);
     U_ImageButtonSwitchList = new wxBitmapButton(PanelUsembers, ID_IMAGEBUTTON10, wxNullBitmap, wxPoint(600,10), wxSize(60,60), wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE, wxDefaultValidator, _T("ID_IMAGEBUTTON10"));
@@ -1809,37 +1809,40 @@ void AisdiRelationsFrame::OnSav_ImageButtonTxtClick(wxCommandEvent& event)
 /** ============= Eventy MENU ============= */
 void AisdiRelationsFrame::OnMenuItemNewSelected(wxCommandEvent& event)
 {
+    //TODO dodać wyzerowanie programu
 }
 
 void AisdiRelationsFrame::OnMenuItemSaveSelected(wxCommandEvent& event)
 {
+    //TODO dodać zapis (i autozapis) tymczasowy bazy
 }
 
 void AisdiRelationsFrame::OnMenuItemRecursiveSelected(wxCommandEvent& event)
 {
+    P_Title->SetRecursiveLoad(MenuItemRecursive->IsChecked());  //TODO dodać warunek isCheckable
 }
 
 void AisdiRelationsFrame::OnMenuItemConfirmSelected(wxCommandEvent& event)
 {
+    P_Title->SetDeleteConfirm(MenuItemConfirm->IsChecked());    //TODO dodać warunek isCheckable
 }
 
 void AisdiRelationsFrame::OnMenuItemNTimeShortSelected(wxCommandEvent& event)
 {
+    this->notifyTime = 2;
 }
 
 void AisdiRelationsFrame::OnMenuItemNTimeNormalSelected(wxCommandEvent& event)
 {
+    this->notifyTime = 5;
 }
 
 void AisdiRelationsFrame::OnMenuItemNTimeLongSelected(wxCommandEvent& event)
 {
+    this->notifyTime = 8;
 }
 
 void AisdiRelationsFrame::OnMenuItemHelpSelected(wxCommandEvent& event)
 {
-}
-
-void AisdiRelationsFrame::OnU_PanelStatsSetFocus(wxFocusEvent& event)
-{
-    P_Usembers->EventPanelStatsPaint(this);
+    //TODO dodać wyświetlanie HELP'a
 }

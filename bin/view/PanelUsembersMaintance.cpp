@@ -61,8 +61,8 @@ void PanelUsembersMaintance::ShowPanel(AisdiRelationsFrame* Frame)
         else
         {
             Frame->U_PanelEmail->Hide();
-            EventPanelStatsPaint(Frame);
             Frame->U_PanelStats->Show();
+            EventPanelStatsPaint(Frame);
         }
 
         Frame->PanelUsembers->SetPosition(wxPoint(0,0));
@@ -278,6 +278,7 @@ void PanelUsembersMaintance::SwitchContent(AisdiRelationsFrame* Frame)
     {
         Frame->U_PanelEmail->Hide();
         Frame->U_PanelStats->Show();
+        EventPanelStatsPaint(Frame);
     }
     else
     {
@@ -353,8 +354,8 @@ void PanelUsembersMaintance::SetUsemberViewed(AisdiRelationsFrame * Frame, const
     if (GetEmailContentEnabled())
         SwitchContent(Frame);
     ShowPanel(Frame);
-
     EventPanelStatsPaint(Frame);
+
 }
 
 bool PanelUsembersMaintance::GetSearchEnabled()
@@ -682,10 +683,10 @@ void PanelUsembersMaintance::EventListInboxColumnClick (AisdiRelationsFrame* Fra
 
 void PanelUsembersMaintance::EventPanelStatsPaint (AisdiRelationsFrame * Frame)
 {
-    wxColor colorBlue = wxColor(17,68,255);
-    wxColor colorBlueL = wxColor(100,177,200);
-    wxColor colorGreen = wxColor(36,201,15);
-    wxColor colorGreenL = wxColor(113,232,104);
+    wxColor ColorReceived = wxColor(252,69,33);
+    wxColor ColorReceivedL = wxColor(255,100,70);
+    wxColor ColorSent = wxColor(255,187,117);
+    wxColor ColorSentL = wxColor(255,200,140);
     wxColor colorBackground = wxColor(48,48,48);
     wxColor colorText = wxColor (230,230,230);
 
@@ -743,8 +744,8 @@ void PanelUsembersMaintance::EventPanelStatsPaint (AisdiRelationsFrame * Frame)
             ss << monthSent;
             string strMonthSent = ss.str();
 
-            dc.SetPen(wxPen(colorGreen));
-            dc.SetBrush(wxBrush(colorGreen));
+            dc.SetPen(wxPen(ColorSent));
+            dc.SetBrush(wxBrush(ColorSent));
             int currentPointHeight = 0;
             if (monthSent)  //jeżeli jest co rysować, to rysuj punkt i linię do poprzedniego
             {
@@ -755,7 +756,7 @@ void PanelUsembersMaintance::EventPanelStatsPaint (AisdiRelationsFrame * Frame)
             dc.DrawEllipse(wxPoint(32+i*pointSpace-radiusGreen-radiusCorrection,height+deltaY-currentPointHeight-radiusGreen-radiusCorrection),wxSize(2*radiusGreen+2*radiusCorrection, 2*radiusGreen+2*radiusCorrection));
             dc.DrawLine(wxPoint(prevX,prevYS),wxPoint(32+i*pointSpace,height+deltaY-currentPointHeight));
             prevYS = height+deltaY-currentPointHeight;
-            dc.SetTextForeground(colorGreenL);
+            dc.SetTextForeground(ColorSentL);
             dc.DrawText(wxString(strMonthSent.c_str(), wxConvUTF8), wxPoint(34+i*pointSpace+radiusGreen+radiusCorrection, (int)(valueLabelCorrection+pointHeight-currentPointHeight-radiusGreen-radiusCorrection)));
 
              if (monthReceived >= 100)           //zabawa mailami wysłanymi
@@ -774,8 +775,8 @@ void PanelUsembersMaintance::EventPanelStatsPaint (AisdiRelationsFrame * Frame)
             ss << monthReceived;
             string strMonthReceived= ss.str();
 
-            dc.SetPen(wxPen(colorBlue));
-            dc.SetBrush(wxBrush(colorBlue));
+            dc.SetPen(wxPen(ColorReceived));
+            dc.SetBrush(wxBrush(ColorReceived));
             currentPointHeight = 0;
             if (monthReceived)  //jeżeli jest co rysować, to rysuj punkt i linię do poprzedniego
             {
@@ -787,7 +788,7 @@ void PanelUsembersMaintance::EventPanelStatsPaint (AisdiRelationsFrame * Frame)
             dc.DrawLine(wxPoint(prevX,prevYR),wxPoint(32+i*pointSpace,height+deltaY-currentPointHeight));
             prevYR = height+deltaY-currentPointHeight;
             prevX = 32+i*pointSpace;
-            dc.SetTextForeground(colorBlueL);
+            dc.SetTextForeground(ColorReceivedL);
             dc.DrawText(wxString(strMonthReceived.c_str(), wxConvUTF8), wxPoint(21+i*pointSpace+labelCorrection-radiusBlue-radiusCorrection, (int)(valueLabelCorrection+pointHeight-currentPointHeight-radiusGreen-radiusCorrection)));
         }
     }

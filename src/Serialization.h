@@ -56,8 +56,8 @@ namespace boost
             archive & usember.domain;
             archive & usember.realName;         //czy to czasem nie jest puste?
             //archive & usember.group;			// grupy nie działają - koment
-            //archive & usember.sentMails;
-            //archive & usember.receivedMails;
+            archive & usember.sentMails;
+            archive & usember.receivedMails;
         }
 
             //Date

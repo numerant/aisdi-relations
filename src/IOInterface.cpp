@@ -263,9 +263,6 @@ void IOInterface::exportDatabaseToTxt (string directoryPath)
     stringstream record;              // linia zawierająca pola pojedynczego rekordu bazy, oddzielone tabulatorami
     ofstream file;
 
-        //temp
-    directoryPath = "/home/kuba";
-
         //wektor maili
     filePath = directoryPath + "/emails.txt";             // sprawdzić, czy / jest potrzebne
     file.open(filePath);

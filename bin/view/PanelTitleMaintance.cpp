@@ -478,6 +478,19 @@ void PanelTitleMaintance::EventButtonTxtClick(AisdiRelationsFrame * Frame)
 void PanelTitleMaintance::EventButtonSavTxtClick(AisdiRelationsFrame * Frame)
 {
     //Zapisywanie bazy do pliku tekstowego
-    string directoryPath;
-    Frame->iointerface->exportDatabaseToTxt (directoryPath);
+     if (Frame->database->countEmails() == 0)
+        wxMessageBox(_("Baza danych jest pusta."));
+     else if (Frame->DirDialog->ShowModal() == wxID_OK)		//uruchomienie panelu wybierania folderu
+    {													//jeśli wybrano folder:
+        wxString path;
+        path = Frame->DirDialog->GetPath();
+
+        string strPath;
+        strPath = path.mb_str();
+
+        Frame->iointerface->exportDatabaseToTxt(strPath);
+        Frame->P_Notify->SetLabels(Frame, "Zapisano bazę danych.", "Lokalizacja:", strPath);
+        Frame->P_Notify->SetValues(Frame, "");
+        Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
+    }
 }

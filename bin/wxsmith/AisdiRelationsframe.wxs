@@ -1844,11 +1844,11 @@
 					<pos>720,245</pos>
 					<size>510,345</size>
 					<bg>#303030</bg>
-					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL</style>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE</style>
 					<object class="wxStaticText" name="ID_STATICTEXT134" variable="U_LabelSent" member="yes">
 						<label>Emaile wysłane: </label>
 						<pos>250,10</pos>
-						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+						<fg>wxSYS_COLOUR_SCROLLBAR</fg>
 						<font>
 							<size>13</size>
 							<style>normal</style>
@@ -1860,7 +1860,7 @@
 					<object class="wxStaticText" name="ID_STATICTEXT135" variable="U_LabelReceived" member="yes">
 						<label>Emaile odebrane: </label>
 						<pos>10,10</pos>
-						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+						<fg>wxSYS_COLOUR_SCROLLBAR</fg>
 						<font>
 							<size>13</size>
 							<style>normal</style>
@@ -1870,9 +1870,9 @@
 						</font>
 					</object>
 					<object class="wxStaticText" name="ID_STATICTEXT136" variable="U_StaticTextSent" member="yes">
-						<label>-</label>
+						<label>123</label>
 						<pos>390,10</pos>
-						<fg>#24C90F</fg>
+						<fg>#FFBB75</fg>
 						<font>
 							<size>13</size>
 							<style>normal</style>
@@ -1882,9 +1882,9 @@
 						</font>
 					</object>
 					<object class="wxStaticText" name="ID_STATICTEXT137" variable="U_StaticTextReceived" member="yes">
-						<label>-</label>
+						<label>123</label>
 						<pos>160,10</pos>
-						<fg>#1144FF</fg>
+						<fg>#FC4521</fg>
 						<font>
 							<size>13</size>
 							<style>normal</style>
