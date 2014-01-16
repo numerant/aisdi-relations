@@ -1398,7 +1398,7 @@ void AisdiRelationsFrame::OnQuit(wxCommandEvent& event)
     delete P_Notify;
 
     /** Zwolnienie obiektów klas projektu */
-    delete iointerface;       //TODO odkomentować
+    delete iointerface;
     delete statistics;
     delete database;
 
@@ -1819,12 +1819,14 @@ void AisdiRelationsFrame::OnMenuItemSaveSelected(wxCommandEvent& event)
 
 void AisdiRelationsFrame::OnMenuItemRecursiveSelected(wxCommandEvent& event)
 {
-    P_Title->SetRecursiveLoad(MenuItemRecursive->IsChecked());  //TODO dodać warunek isCheckable
+    if (MenuItemRecursive->IsCheckable())
+        P_Title->SetRecursiveLoad(MenuItemRecursive->IsChecked());
 }
 
 void AisdiRelationsFrame::OnMenuItemConfirmSelected(wxCommandEvent& event)
 {
-    P_Title->SetDeleteConfirm(MenuItemConfirm->IsChecked());    //TODO dodać warunek isCheckable
+    if (MenuItemConfirm->IsCheckable())
+        P_Title->SetDeleteConfirm(MenuItemConfirm->IsChecked());
 }
 
 void AisdiRelationsFrame::OnMenuItemNTimeShortSelected(wxCommandEvent& event)

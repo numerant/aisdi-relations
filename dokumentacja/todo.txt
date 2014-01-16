@@ -5,6 +5,24 @@
 Code::Blocks to fajnie wyłapuje w jednym miejscu i nie trzeba szukać (jeśli ktoś używa, a zachęcam. Jak nie to i tak mu nie zaszkodzi). Proponuję kolejne punkty pisać nad poprzednimi, żeby nie przewijać całego pliku na sam dół, dziekuję, miłego czytania.	*/
 
 ---------------------------------------------------------------------------------
+
+16.01.2014
+>>> Date - compare i return
+	- Program wywala się na porównywaniu i zwracaniu daty. Proponuję napisanie własnego 'komparatora', a przy zwracaniu daty zawsze sprawdzać wartość zwróconą przed jej dalszym opierdoleniem.
+
+>>> Boost:Archive
+	- Powoduje wycieki pamięci, ale nie wiem czy da radę coś z tym zrobić. Kuba zdajemy się na Ciebie.
+
+>>> Grupy
+	- Konieczny algorytm pozycjonujący grupy na canvasie. Dwie funkcje:
+		- Jedna zwraca pozycję (x, y) grupy/członka od numerze podanym w parametrze (wygenerowane przez inną funkcję i zapisane w jakimś vectorze pozycji)
+		- Druga zwraca wskaźnik na vector grup/członków, z którym dana/y grupa/członek korespondował/a (numer grupy/członka w parametrze).
+	Najlepiej, żeby funkcje przyjmowały dodatkowo parametr stopnia zagnieżdżenia w grupach tzn. dla 0/false będzie grupa szefów, dla 1/true będą widoczni członkowie grup szefów itd. (jeżeli stopni jest więcej).
+
+>>> Inbox/Usembers/Grupy
+	- Fajnie by było, gdyby nawet całe wektory danych trzymane były w wektorze odpowiedzialnym ze zwracanie wyników query w przypadku, gdy query nie ma. W ten sposób zawsze komponenty pobierałyby dane z jednego miejsca. Nie wiem, czy nie będzie to nadmiar użycia pamięci, ale we'll see.
+
+-------------------------------ARCHIVE-------------------------------------------
 15.12.2013
 >>> Parser - obsługa dziwacznych maili
 	- Zła kolejność pól: Temu można zaradzić wczytując całego stringa (maila), szukać jakiegoś regex'a, jeśli jest to zapisywać go i wywalać go z maila, szukać kolejnego itd. Na końcu zostaną same śmieci, które olewamy. Pytanie tylko jak odróżnić content od śmieci?
@@ -22,7 +40,6 @@ Code::Blocks to fajnie wyłapuje w jednym miejscu i nie trzeba szukać (jeśli k
 
 >>> Zrobienie i wysłanie specyfikacji z uaktualnionym podziałem zadań odnośnie sprintu II
 
--------------------------------ARCHIVE------------------------------------------
 09.12.2013
 >>> Exceptions
 	- Proponuję zachować konwencję JM: 

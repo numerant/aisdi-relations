@@ -1,0 +1,17 @@
+#!/bin/sh
+
+mkdir -p project
+mkdir -p project/resources
+mkdir -p project/resources/icons
+mkdir -p project/resources/iconsBig
+mkdir -p project/logs
+
+cp bin/bin/Debug/AisdiRelations project/AisdiRelations
+cp bin/resources/background.jpg project/resources/background.jpg
+cp bin/resources/iconProgram.png project/resources/iconProgram.png
+cp bin/resources/icons/* project/resources/icons/
+cp bin/resources/iconsBig/* project/resources/iconsBig/
+
+touch project/valgrindTest
+echo '#!/bin/sh\nvalgrind ./AisdiRelations --tool=mem-check --leak-check=full --track-origins=yes 2> logs/valgrind_out' > project/valgrindTest
+chmod 755 project/valgrindTest
