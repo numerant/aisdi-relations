@@ -62,7 +62,7 @@ void PanelUsembersMaintance::ShowPanel(AisdiRelationsFrame* Frame)
         {
             Frame->U_PanelEmail->Hide();
             Frame->U_PanelStats->Show();
-            EventPanelStatsPaint(Frame);
+            //EventPanelStatsPaint(Frame);
         }
 
         Frame->PanelUsembers->SetPosition(wxPoint(0,0));

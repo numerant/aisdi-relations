@@ -2882,6 +2882,7 @@
 					<label>Delete confirmation</label>
 					<accel>CTRL+SHIFT+C</accel>
 					<help>On/off confirmation prompt when trying to delete a record</help>
+					<checked>1</checked>
 					<handler function="OnMenuItemConfirmSelected" entry="EVT_MENU" />
 					<checkable>1</checkable>
 				</object>
@@ -2922,14 +2923,14 @@
 		</object>
 		<object class="wxDirDialog" variable="DirDialog" member="yes">
 			<message>Wybierz folder</message>
-			<default_path>~/</default_path>
-			<style>wxDD_CHANGE_DIR</style>
+			<default_path>./</default_path>
+			<style>wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE</style>
 		</object>
 		<object class="wxFileDialog" variable="FileDialog" member="yes">
 			<message>Wybierz pliki:</message>
 			<default_dir>~/</default_dir>
 			<wildcard>*.eml</wildcard>
-			<style>wxFD_OPEN|wxFD_MULTIPLE</style>
+			<style>wxFD_OPEN|wxFD_MULTIPLE|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE</style>
 		</object>
 		<object class="wxTimer" name="ID_TIMER1" variable="Timer1" member="yes">
 			<oneshot>1</oneshot>
@@ -2939,19 +2940,19 @@
 			<message>Wybierz plik:</message>
 			<default_dir>~/</default_dir>
 			<wildcard>*.bin</wildcard>
-			<style>wxFD_OPEN</style>
+			<style>wxFD_OPEN|wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE</style>
 		</object>
 		<object class="wxFileDialog" variable="FileDialogDatabaseExport" member="yes">
 			<message>Zapisz plik:</message>
 			<default_dir>./</default_dir>
 			<wildcard>*.bin</wildcard>
-			<style>wxFD_SAVE|wxFD_OVERWRITE_PROMPT</style>
+			<style>wxFD_SAVE|wxFD_OVERWRITE_PROMPT|wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE</style>
 		</object>
 		<object class="wxFileDialog" variable="FileDialogStatisticsExport" member="yes">
 			<message>Zapisz plik:</message>
 			<default_dir>./</default_dir>
 			<wildcard>*.txt</wildcard>
-			<style>wxFD_SAVE|wxFD_OVERWRITE_PROMPT</style>
+			<style>wxFD_SAVE|wxFD_OVERWRITE_PROMPT|wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE</style>
 		</object>
 	</object>
 </wxsmith>

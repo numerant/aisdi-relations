@@ -23,15 +23,26 @@ void PanelTitleMaintance::ShowPanel(AisdiRelationsFrame* Frame)
         Frame->PanelStatistics->Hide();
         Frame->PanelMulTree->Hide();
 
-        Frame->PanelTitle->SetPosition(wxPoint(0,0));
-        Frame->PanelTitle->Show();
-
-        Frame->PanelSettings->Hide();	//ukrycie panelu opcji wraz z obramowaniem
-
+        if (GetClickedSettings())
+            SetClickedSettings();
+        Frame->PanelSettings->Hide();	//ukrycie panelu opcji
         Frame->T_ImageButtonSettings->SetBitmapLabel(path+imagePaths[7]+format);  //przywrócenie prawidłowej grafiki przyciskowi settings
 
-        Frame->P_Title->SetNoData( ! (Frame->P_Title->GetNoData() ) ); //Zmień ikony, ale z zanegowaną wartością parametru
-        Frame->P_Title->SwitchIcons(Frame);                            //Więc de facto tylko je wyświetl
+        if (!GetNoData())
+        {
+            if (GetClickedAdd())
+                SetClickedAdd();
+            if (GetClickedImport())
+                SetClickedImport();
+            if (GetClickedLoad())
+                SetClickedLoad();
+            SetNoData(true);
+        }
+
+        Frame->P_Title->SwitchIcons(Frame);
+
+        Frame->PanelTitle->SetPosition(wxPoint(0,0));
+        Frame->PanelTitle->Show();
     }
 }
 
@@ -123,6 +134,11 @@ void PanelTitleMaintance::UpdateLoadingIcons (AisdiRelationsFrame* Frame)
 {
     Frame->T_ImageButtonAdd->Show();  //ten przycisk jest zawsze dla  noData == true
     Frame->T_LabelAdd->Show();
+
+    if (GetClickedSettings())
+        SetClickedSettings();
+    Frame->PanelSettings->Hide();
+    Frame->T_ImageButtonSettings->SetBitmapLabel(path+imagePaths[7]+format);
 
     if ( !clickedAdd )
     {
@@ -311,6 +327,16 @@ void PanelTitleMaintance::EventButtonFolderClick (AisdiRelationsFrame* Frame)
 {
     if (Frame->DirDialog->ShowModal() == wxID_OK)		//uruchomienie panelu wybierania folderu
     {													//jeśli wybrano folder:
+
+        /* Schowanie PanelAdd i zmiana grafik przycisków dodawania na domyślne */
+        if (Frame->P_Inbox->GetAddEnabled())
+            Frame->P_Inbox->SetAddEnabled();
+        if (Frame->P_Usembers->GetAddEnabled())
+            Frame->P_Usembers->SetAddEnabled();
+        Frame->PanelAdd->Hide();
+        Frame->I_ImageButtonAdd->SetBitmapLabel(path+imagePaths[16]+format);
+        Frame->U_ImageButtonAdd->SetBitmapLabel(path+imagePaths[16]+format);
+
         MailParameters * param = new MailParameters();	//nowe parametry wczytywania maili
         wxString str = Frame->DirDialog->GetPath();		//weź ścieżkę do folderu z Directory Dialog
         param->path = str.mb_str();
@@ -321,6 +347,7 @@ void PanelTitleMaintance::EventButtonFolderClick (AisdiRelationsFrame* Frame)
         Frame->iointerface->importMail(param);
         stats = Frame->iointerface->getImportStats();
         Frame->iointerface->clearImportStats();
+        delete param;
 
         if (stats.successCount > 0)
         {
@@ -336,7 +363,6 @@ void PanelTitleMaintance::EventButtonFolderClick (AisdiRelationsFrame* Frame)
             if (Frame->P_Stats->GetIsUpdated())
                 Frame->P_Stats->SetIsUpdated();
         }
-        delete param;
     }
 }
 
@@ -344,6 +370,16 @@ void PanelTitleMaintance::EventButtonFilesClick (AisdiRelationsFrame* Frame)
 {
     if (Frame->FileDialog->ShowModal() == wxID_OK)		//uruchomienie panelu wybierania folderu
     {													//jeśli wybrano pliki:
+
+        /* Schowanie PanelAdd i zmiana grafik przycisków dodawania na domyślne */
+        if (Frame->P_Inbox->GetAddEnabled())
+            Frame->P_Inbox->SetAddEnabled();
+        if (Frame->P_Usembers->GetAddEnabled())
+            Frame->P_Usembers->SetAddEnabled();
+        Frame->PanelAdd->Hide();
+        Frame->I_ImageButtonAdd->SetBitmapLabel(path+imagePaths[16]+format);
+        Frame->U_ImageButtonAdd->SetBitmapLabel(path+imagePaths[16]+format);
+
         wxArrayString paths;							//tablica plików do wczytania
         Frame->FileDialog->GetPaths(paths);
         MailParameters * param = new MailParameters();
@@ -360,7 +396,7 @@ void PanelTitleMaintance::EventButtonFilesClick (AisdiRelationsFrame* Frame)
                 Frame->iointerface->importMail(param);
             }
         }
-
+        delete param;
         stats = Frame->iointerface->getImportStats();
         Frame->iointerface->clearImportStats();
 
@@ -378,8 +414,44 @@ void PanelTitleMaintance::EventButtonFilesClick (AisdiRelationsFrame* Frame)
             if (Frame->P_Stats->GetIsUpdated())
                 Frame->P_Stats->SetIsUpdated();
         }
+    }
+}
 
-        delete param;
+void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
+{
+    if (Frame->FileDialogDatabaseImport->ShowModal() == wxID_OK)
+    {
+         /* Schowanie PanelAdd i zmiana grafik przycisków dodawania na domyślne */
+        if (Frame->P_Inbox->GetAddEnabled())
+            Frame->P_Inbox->SetAddEnabled();
+        if (Frame->P_Usembers->GetAddEnabled())
+            Frame->P_Usembers->SetAddEnabled();
+        Frame->PanelAdd->Hide();
+        Frame->I_ImageButtonAdd->SetBitmapLabel(path+imagePaths[16]+format);
+        Frame->U_ImageButtonAdd->SetBitmapLabel(path+imagePaths[16]+format);
+
+        wxArrayString paths;
+        Frame->FileDialogDatabaseImport->GetPaths(paths);
+
+        DbParameters importParameters;
+            //PK, dodaj prompt przed wczytaniem (usuwa obecną zawartość bazy)
+        Frame->database = Frame->iointerface->importDatabase((string)paths[0].mb_str(), &importParameters);     // po wczytaniu zmienia się wartość wskaźnika na bazę danych!
+
+        delete Frame->statistics;
+        Frame->statistics = new Statistics(Frame->database);
+
+        Frame->P_Inbox->SetEmails(Frame);               //załadowanie listy maili i usemberów z bazy
+        Frame->P_Usembers->SetUsembers(Frame);
+
+        if (GetNoData())
+            Frame->P_Title->SwitchIcons(Frame);
+        Frame->statistics->update();
+        if (Frame->P_Stats->GetIsUpdated())
+            Frame->P_Stats->SetIsUpdated();
+
+        Frame->P_Notify->SetLabels(Frame, "Wczytywanie pliku bazy danych", "Status");
+        Frame->P_Notify->SetValues(Frame, "OK");
+        Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
     }
 }
 
@@ -411,35 +483,11 @@ void PanelTitleMaintance::EventButtonSwitchClick (AisdiRelationsFrame * Frame)
             SetClickedLoad();
     }
     Frame->P_Title->SwitchIcons(Frame);
-}
 
-void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
-{
-    if (Frame->FileDialogDatabaseImport->ShowModal() == wxID_OK)
-    {
-        wxArrayString paths;
-        Frame->FileDialogDatabaseImport->GetPaths(paths);
-
-        DbParameters importParameters;
-            //PK, dodaj prompt przed wczytaniem (usuwa obecną zawartość bazy)
-        Frame->database = Frame->iointerface->importDatabase((string)paths[0].mb_str(), &importParameters);     // po wczytaniu zmienia się wartość wskaźnika na bazę danych!
-
-        delete Frame->statistics;
-        Frame->statistics = new Statistics(Frame->database);
-
-        Frame->P_Inbox->SetEmails(Frame);               //załadowanie listy maili i usemberów z bazy
-        Frame->P_Usembers->SetUsembers(Frame);
-
-        if (GetNoData())
-            Frame->P_Title->SwitchIcons(Frame);
-        Frame->statistics->update();
-        if (Frame->P_Stats->GetIsUpdated())
-            Frame->P_Stats->SetIsUpdated();
-
-        Frame->P_Notify->SetLabels(Frame, "Wczytywanie pliku bazy danych", "Status");
-        Frame->P_Notify->SetValues(Frame, "OK");
-        Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
-    }
+    if (GetClickedSettings())
+        SetClickedSettings();
+    Frame->PanelSettings->Hide();
+    Frame->T_ImageButtonSettings->SetBitmapLabel(path+imagePaths[7]+format);
 }
 
 void PanelTitleMaintance::EventButtonTxtClick(AisdiRelationsFrame * Frame)

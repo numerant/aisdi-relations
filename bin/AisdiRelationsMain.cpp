@@ -1169,6 +1169,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Menu4->Append(MenuItemRecursive);
     MenuItemConfirm = new wxMenuItem(Menu4, idMenuDelConfirm, _("Delete confirmation\tCTRL+SHIFT+C"), _("On/off confirmation prompt when trying to delete a record"), wxITEM_CHECK);
     Menu4->Append(MenuItemConfirm);
+    MenuItemConfirm->Check(true);
     MenuItem4 = new wxMenu();
     MenuItemNTimeShort = new wxMenuItem(MenuItem4, isMenuNTimeShort, _("Krótki (2s)"), wxEmptyString, wxITEM_RADIO);
     MenuItem4->Append(MenuItemNTimeShort);
@@ -1185,12 +1186,12 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Menu2->Append(MenuItemHelp);
     MenuBar1->Append(Menu2, _("Help"));
     SetMenuBar(MenuBar1);
-    DirDialog = new wxDirDialog(this, _("Wybierz folder"), _("~/"), wxDD_CHANGE_DIR, wxDefaultPosition, wxDefaultSize, _T("wxDirDialog"));
-    FileDialog = new wxFileDialog(this, _("Wybierz pliki:"), _("~/"), wxEmptyString, _("*.eml"), wxFD_OPEN|wxFD_MULTIPLE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
+    DirDialog = new wxDirDialog(this, _("Wybierz folder"), _("./"), wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE, wxDefaultPosition, wxDefaultSize, _T("wxDirDialog"));
+    FileDialog = new wxFileDialog(this, _("Wybierz pliki:"), _("~/"), wxEmptyString, _("*.eml"), wxFD_OPEN|wxFD_MULTIPLE|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
     Timer1.SetOwner(this, ID_TIMER1);
-    FileDialogDatabaseImport = new wxFileDialog(this, _("Wybierz plik:"), _("~/"), wxEmptyString, _("*.bin"), wxFD_OPEN, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
-    FileDialogDatabaseExport = new wxFileDialog(this, _("Zapisz plik:"), _("./"), wxEmptyString, _("*.bin"), wxFD_SAVE|wxFD_OVERWRITE_PROMPT, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
-    FileDialogStatisticsExport = new wxFileDialog(this, _("Zapisz plik:"), _("./"), wxEmptyString, _("*.txt"), wxFD_SAVE|wxFD_OVERWRITE_PROMPT, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
+    FileDialogDatabaseImport = new wxFileDialog(this, _("Wybierz plik:"), _("~/"), wxEmptyString, _("*.bin"), wxFD_OPEN|wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
+    FileDialogDatabaseExport = new wxFileDialog(this, _("Zapisz plik:"), _("./"), wxEmptyString, _("*.bin"), wxFD_SAVE|wxFD_OVERWRITE_PROMPT|wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
+    FileDialogStatisticsExport = new wxFileDialog(this, _("Zapisz plik:"), _("./"), wxEmptyString, _("*.txt"), wxFD_SAVE|wxFD_OVERWRITE_PROMPT|wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
     Center();
 
     Connect(ID_IMAGEBUTTON37,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonMulTreeClick);
@@ -1373,6 +1374,7 @@ void AisdiRelationsFrame::ShowTitle (void )
     }
 
     P_Title->ShowPanel(this);
+    P_Title->SwitchIcons(this);
 }
 
 int AisdiRelationsFrame::GetNotifyTime(void)
@@ -1490,6 +1492,8 @@ void AisdiRelationsFrame::OnT_ImageButtonSwitchClick(wxCommandEvent& event)
 void AisdiRelationsFrame::OnT_CheckBoxRecursiveClick(wxCommandEvent& event)
 {
     P_Title->SetRecursiveLoad(Set_CheckBoxRecursive->GetValue());
+    if (MenuItemRecursive->IsCheckable())
+        MenuItemRecursive->Check(Set_CheckBoxRecursive->GetValue());
 }
 
 /** ============= Eventy panelu INBOX ============= */
@@ -1797,6 +1801,8 @@ void AisdiRelationsFrame::OnSet_SliderNotifyTimeCmdScrollChanged(wxScrollEvent& 
 void AisdiRelationsFrame::OnSet_CheckBoxDeleteConfirmClick(wxCommandEvent& event)
 {
     P_Title->SetDeleteConfirm(Set_CheckBoxDeleteConfirm->GetValue());
+    if (MenuItemConfirm->IsCheckable())
+        MenuItemConfirm->Check(Set_CheckBoxDeleteConfirm->GetValue());
 }
 
 /** ============= Event TXT ============= */
@@ -1821,12 +1827,14 @@ void AisdiRelationsFrame::OnMenuItemRecursiveSelected(wxCommandEvent& event)
 {
     if (MenuItemRecursive->IsCheckable())
         P_Title->SetRecursiveLoad(MenuItemRecursive->IsChecked());
+    Set_CheckBoxRecursive->SetValue(MenuItemRecursive->IsChecked());
 }
 
 void AisdiRelationsFrame::OnMenuItemConfirmSelected(wxCommandEvent& event)
 {
     if (MenuItemConfirm->IsCheckable())
         P_Title->SetDeleteConfirm(MenuItemConfirm->IsChecked());
+    Set_CheckBoxDeleteConfirm->SetValue(MenuItemConfirm->IsChecked());
 }
 
 void AisdiRelationsFrame::OnMenuItemNTimeShortSelected(wxCommandEvent& event)

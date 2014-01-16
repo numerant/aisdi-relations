@@ -23,11 +23,11 @@ private:
     wxString path = (_("resources/icons/icon"));
     wxString format =  (_(".png"));
     wxString formatNeg = (_("Negative.png"));
-    const wxString imagePaths[16] =
+    const wxString imagePaths[17] =
     {
         _("DatabaseIO"),  _("Database"),  _("FolderTree"),  _("Files"),  _("Folder"),  _("Export"),
         _("Import"),  _("Settings"),  _("Mailbox"),  _("Usember"),  _("Workgroups"),  _("Statistics"),
-        _("Tree"), _("SwitchMenu"), _("Bin"), _("Txt")
+        _("Tree"), _("SwitchMenu"), _("Bin"), _("Txt"), _("Add")
     };                                  //ścieżki plików z grafikami do przycisków panelu
 
 public:
