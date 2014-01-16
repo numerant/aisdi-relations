@@ -241,8 +241,8 @@ Database* IOInterface::importDatabase(string filePath, DbParameters *parameters)
     delete database;                                        // potrzebny prompt!
 
     //temporary
-    parameters->isPasswordProtected = true;
-    parameters->password = "qwertyuiop";
+    //parameters->isPasswordProtected = true;
+    //parameters->password = "qwertyuiop";
 
     stringstream decompressedData;
     ifstream inputFile(filePath, ios_base::binary);         // dodać exception
@@ -277,8 +277,8 @@ void IOInterface::exportDatabase(string filePath, DbParameters *parameters)
     using namespace boost::iostreams;
 
     //temporary
-    parameters->isPasswordProtected = true;
-    parameters->password = "qwertyuiop";
+    //parameters->isPasswordProtected = true;
+    //parameters->password = "qwertyuiop";
 
     stringstream dataToCompress;
     ofstream outputFile(filePath);
