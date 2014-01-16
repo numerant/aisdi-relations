@@ -2607,17 +2607,17 @@
 			</object>
 			<object class="wxPanel" name="ID_PANEL10" variable="PanelSettings" member="yes">
 				<pos>860,20</pos>
-				<size>300,160</size>
+				<size>300,185</size>
 				<hidden>1</hidden>
 				<bg>#323232</bg>
 				<object class="wxStaticBox" name="ID_STATICBOX5" variable="Set_Border" member="yes">
 					<pos>0,-10</pos>
-					<size>300,170</size>
+					<size>300,195</size>
 					<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
 				</object>
 				<object class="wxCheckBox" name="ID_CHECKBOX1" variable="Set_CheckBoxRecursive" member="yes">
 					<label>Wczytywanie rekursywne folderów</label>
-					<pos>10,8</pos>
+					<pos>10,10</pos>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<bg>#A0A0A0</bg>
 					<font>
@@ -2644,6 +2644,20 @@
 					</font>
 					<handler function="OnSet_CheckBoxDeleteConfirmClick" entry="EVT_CHECKBOX" />
 				</object>
+				<object class="wxCheckBox" name="ID_CHECKBOX3" variable="Set_CheckBoxDatabaseEncryption" member="yes">
+					<label>Szyfrowanie bazy danych</label>
+					<pos>10,60</pos>
+					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+					<bg>#A0A0A0</bg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<handler function="OnSet_CheckBoxDatabaseEncryptionClick" entry="EVT_CHECKBOX" />
+				</object>
 				<object class="wxSlider" name="ID_SLIDER1" variable="Set_SliderNotifyTime" member="yes">
 					<value>3</value>
 					<min>1</min>
@@ -2651,7 +2665,7 @@
 					<linesize>10</linesize>
 					<thumb>10</thumb>
 					<tick>1</tick>
-					<pos>20,85</pos>
+					<pos>20,110</pos>
 					<size>260,50</size>
 					<fg>wxSYS_COLOUR_SCROLLBAR</fg>
 					<style>wxSL_HORIZONTAL|wxSL_AUTOTICKS|wxSL_LABELS</style>
@@ -2659,7 +2673,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT110" variable="Set_LabelNotify" member="yes">
 					<label>Czas wyświetlania powiadomień [s]</label>
-					<pos>30,65</pos>
+					<pos>30,90</pos>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<font>
 						<size>11</size>
@@ -2850,7 +2864,7 @@
 					<handler function="OnQuit" entry="EVT_MENU" />
 				</object>
 			</object>
-			<object class="wxMenu" variable="Menu3" member="yes">
+			<object class="wxMenu" variable="Menu2" member="yes">
 				<label>&amp;Import/Export</label>
 				<object class="wxMenuItem" name="idMenuImportBin" variable="MenuItemImportBin" member="yes">
 					<label>Import from binary</label>
@@ -2869,7 +2883,7 @@
 					<handler function="OnSav_ImageButtonTxtClick" entry="EVT_MENU" />
 				</object>
 			</object>
-			<object class="wxMenu" variable="Menu4" member="yes">
+			<object class="wxMenu" variable="Menu3" member="yes">
 				<label>Properties</label>
 				<object class="wxMenuItem" name="idMenuRecursive" variable="MenuItemRecursive" member="yes">
 					<label>Recursive loading</label>
@@ -2884,6 +2898,13 @@
 					<help>On/off confirmation prompt when trying to delete a record</help>
 					<checked>1</checked>
 					<handler function="OnMenuItemConfirmSelected" entry="EVT_MENU" />
+					<checkable>1</checkable>
+				</object>
+				<object class="wxMenuItem" name="idMenuDatabaseEncryption" variable="MenuItemEncryption" member="yes">
+					<label>Database encryption</label>
+					<accel>CTRL+SHIFT+E</accel>
+					<help>On/off database encyption</help>
+					<handler function="OnMenuItemEncryptionSelected" entry="EVT_MENU" />
 					<checkable>1</checkable>
 				</object>
 				<object class="wxMenu" name="ID_MENUITEM1" variable="MenuItem4" member="yes">
@@ -2905,7 +2926,7 @@
 					</object>
 				</object>
 			</object>
-			<object class="wxMenu" variable="Menu2" member="no">
+			<object class="wxMenu" variable="Menu4" member="no">
 				<label>Help</label>
 				<object class="wxMenuItem" name="idMenuAbout" variable="MenuItemAbout" member="no">
 					<label>About</label>
@@ -2953,6 +2974,15 @@
 			<default_dir>./</default_dir>
 			<wildcard>*.txt</wildcard>
 			<style>wxFD_SAVE|wxFD_OVERWRITE_PROMPT|wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE</style>
+		</object>
+		<object class="wxPasswordEntryDialog" name="ID_PASSWORDENTRYDIALOG1" variable="PasswordEntryDialog" member="yes">
+			<caption>Hasło do szyfracji bazy danych</caption>
+			<message>Wpisz hasło [x-y znaków, a-z, A-Z, 0-9]</message>
+		</object>
+		<object class="wxMessageDialog" name="ID_MESSAGEDIALOG1" variable="MessageDialogConfirmation" member="yes">
+			<caption>Potwierdzenie nadpisania bazy</caption>
+			<message>Dotychczasowe dane zostaną utracone. Czy chcesz kontynuować?</message>
+			<style>wxCANCEL|wxYES_NO|wxNO_DEFAULT|wxICON_EXCLAMATION</style>
 		</object>
 	</object>
 </wxsmith>

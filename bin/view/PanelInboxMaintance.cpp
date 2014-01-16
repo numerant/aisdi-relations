@@ -54,8 +54,8 @@ void PanelInboxMaintance::SetLabels(AisdiRelationsFrame* Frame)
 {
     wxListItem col;     //obiekt reprezentujący etykietę
 
-    wxString labels[COL_COUNT] = {_("Data:"), _("Temat:"), _("Od:"), _("Do:"), _("Treść"), _("ID")};      //etykiety
-    int width[COL_COUNT] = {90, 220, 160, 160, 1, 1};      //szerokości kolumn, sumuje się do 630px
+    wxString labels[COL_COUNT] = {_("Data:"), _("Temat:"), _("Od:"), _("Do:"), _("ID")};      //etykiety
+    int width[COL_COUNT] = {90, 220, 160, 160, 1};      //szerokości kolumn, sumuje się do 630px
 
     for (int i = 0; i < COL_COUNT; i++)         //przypisujemy w pętli etykiety do kolumn listy
     {
@@ -97,13 +97,9 @@ void PanelInboxMaintance::SetEmails (AisdiRelationsFrame* Frame)
                 item.SetTextColour(wxColor(200,200,200));
             Frame->I_ListInbox->InsertItem( item );
 
-            string sourceString = email->getContent();
-            wxString content(sourceString.c_str(), wxConvUTF8);
-            Frame->I_ListInbox->SetItem(i,4, content);
-
-            sourceString = email->getID();
+            string sourceString = email->getID();
             wxString wxId(sourceString.c_str(), wxConvUTF8);
-            Frame->I_ListInbox->SetItem(i,5, wxId);
+            Frame->I_ListInbox->SetItem(i,4, wxId);
 
             sourceString = email->getSubject();
             wxString subject(sourceString.c_str(), wxConvUTF8);
@@ -235,12 +231,14 @@ void PanelInboxMaintance::EventListInboxItemSelect (AisdiRelationsFrame* Frame)
     Frame->I_StaticTextFrom->SetLabel(contents[2]);
     Frame->I_StaticTextTo->SetLabel(contents[3]);
 
-    emailIdSelected = contents[5].mb_str();
+    emailIdSelected = contents[4].mb_str();
+    Email * email = Frame->database->getEmail(Frame->database->findEmail(emailIdSelected));
+
 
     const string search = "\n";
     const string replace = "<br>";
-    string subject = string (contents[4].mb_str());
-    string htmlContent = Frame->iointerface->strSequenceReplace("\n", "<br>", subject);
+    string strContent = email->getContent();
+    string htmlContent = Frame->iointerface->strSequenceReplace("\n", "<br>", strContent);
 
     wxString pContent (htmlContent.c_str(), wxConvUTF8 );
     Frame->I_HtmlEmailContent->SetPage(pOpen+pContent+pClose);

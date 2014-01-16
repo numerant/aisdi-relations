@@ -26,7 +26,9 @@ class PanelNotifyMaintance;
 #include "../src/Statistics.h"
 
 //(*Headers(AisdiRelationsFrame)
+#include <wx/textdlg.h>
 #include <wx/bmpbuttn.h>
+#include <wx/msgdlg.h>
 #include <wx/checkbox.h>
 #include <wx/listctrl.h>
 #include <wx/menu.h>
@@ -161,6 +163,8 @@ private:
     void OnMenuItemHelpSelected(wxCommandEvent& event);
     void OnS_ImageButtonSaveStatsClick(wxCommandEvent& event);
     void OnU_PanelStatsSetFocus(wxFocusEvent& event);
+    void OnMenuItemEncryptionSelected(wxCommandEvent& event);
+    void OnSet_CheckBoxDatabaseEncryptionClick(wxCommandEvent& event);
     //*)
 
     //(*Identifiers(AisdiRelationsFrame)
@@ -410,6 +414,7 @@ private:
     static const long ID_STATICBOX5;
     static const long ID_CHECKBOX1;
     static const long ID_CHECKBOX2;
+    static const long ID_CHECKBOX3;
     static const long ID_SLIDER1;
     static const long ID_STATICTEXT110;
     static const long ID_PANEL10;
@@ -438,6 +443,7 @@ private:
     static const long idMenuExportText;
     static const long idMenuRecursive;
     static const long idMenuDelConfirm;
+    static const long idMenuDatabaseEncryption;
     static const long isMenuNTimeShort;
     static const long isMenuNTimeNormal;
     static const long isMenuNTimeLong;
@@ -445,6 +451,8 @@ private:
     static const long idMenuAbout;
     static const long idMenuHelp;
     static const long ID_TIMER1;
+    static const long ID_PASSWORDENTRYDIALOG1;
+    static const long ID_MESSAGEDIALOG1;
     //*)
 
     //(*Declarations(AisdiRelationsFrame)
@@ -572,7 +580,6 @@ private:
     wxStaticText* G_LabelTitle;
     wxStaticText* U_LabelSave;
     wxBitmapButton        *I_ImageButtonShowTree;
-    wxMenu* Menu4;
     wxStaticText* I_LabelGroups;
     wxStaticText* T_StaticTextTitle3;
     wxStaticLine* S_LineC_1;
@@ -595,6 +602,7 @@ private:
     wxBitmapButton        *Sav_ImageButtonTxt;
     wxStaticText* T_LabelAdd;
     wxStaticText* S_StaticTextC_EmailsPerMonth;
+    wxPasswordEntryDialog* PasswordEntryDialog;
     wxStaticText* S_StaticTextT_SendersPos4;
     wxBitmapButton        *A_ImageButtonFolder;
     wxStaticText* N_StaticTextOption2;
@@ -629,6 +637,7 @@ private:
     wxStaticText* I_LabelDelete;
     wxBitmapButton        *M_ImageButtonStats;
     wxStaticText* S_StaticTextEPM_Title;
+    wxCheckBox* Set_CheckBoxDatabaseEncryption;
     wxBitmapButton        *U_ImageButtonSettings;
     wxStaticText* I_LabelSave;
     wxHtmlWindow* U_HtmlContent;
@@ -696,6 +705,7 @@ private:
     wxStaticText* I_LabelStats;
     wxStaticLine* S_LineC_2;
     wxStaticText* T_LabelFiles;
+    wxMenuItem* MenuItemEncryption;
     wxBitmapButton        *I_ImageButtonSettings;
     wxStaticBitmap* I_BitmapBackground;
     wxStaticText* S_StaticTextT_TitleReceivers;
@@ -716,6 +726,7 @@ private:
     wxHyperlinkCtrl* S_HyperLinkT_SendersPos3;
     wxHyperlinkCtrl* S_HyperLinkT_ReceiverPos2;
     wxBitmapButton        *G_ImageButtonMulTree;
+    wxMessageDialog* MessageDialogConfirmation;
     wxMenuItem* MenuItemExportTxt;
     wxStaticText* S_StaticTextC_Value4;
     wxStaticText* T_LabelLoad;
@@ -731,6 +742,7 @@ private:
     wxStaticText* G_LabelMulTree;
     wxStaticText* S_StaticTextC_Value1;
     wxBitmapButton        *G_ImageButtonStats;
+    wxMenu* Menu2;
     wxBitmapButton        *U_ImageButtonAdd;
     wxStaticText* U_StaticTextFromTo;
     wxStaticBox* U_StaticBoxInfo;

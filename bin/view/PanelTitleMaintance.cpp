@@ -251,6 +251,11 @@ void PanelTitleMaintance::SetDeleteConfirm (bool value)
     deleteConfirm = value;
 }
 
+void PanelTitleMaintance::SetDatabaseEncryption (bool value)
+{
+    databaseEncryption = value;
+}
+
 void PanelTitleMaintance::SetClickedAdd (void)
 {
     clickedAdd = !clickedAdd;
@@ -288,6 +293,11 @@ bool PanelTitleMaintance::GetRecursiveLoad (void)
 bool PanelTitleMaintance::GetDeleteConfirm (void)
 {
     return deleteConfirm;
+}
+
+bool PanelTitleMaintance::GetDatabaseEncryption (void)
+{
+    return databaseEncryption;
 }
 
 bool PanelTitleMaintance::GetClickedAdd (void)
@@ -430,28 +440,58 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
         Frame->I_ImageButtonAdd->SetBitmapLabel(path+imagePaths[16]+format);
         Frame->U_ImageButtonAdd->SetBitmapLabel(path+imagePaths[16]+format);
 
-        wxArrayString paths;
-        Frame->FileDialogDatabaseImport->GetPaths(paths);
+        if (Frame->MessageDialogConfirmation->ShowModal() == wxID_YES)
+        {
+            DbParameters importParameters;
+            bool passwordCorrect = false;
 
-        DbParameters importParameters;
-            //PK, dodaj prompt przed wczytaniem (usuwa obecną zawartość bazy)
-        Frame->database = Frame->iointerface->importDatabase((string)paths[0].mb_str(), &importParameters);     // po wczytaniu zmienia się wartość wskaźnika na bazę danych!
+            //TODO odkomentować bo dorobieniu funkcji sprawdzania czy plik jest zaszyfrowany hasłem
+            /*wxString password = _("");
+            if (   plik zaszyfrowany hasłem   )
+            {
+                do
+                {
+                    if (Frame->PasswordEntryDialog->ShowModal() == wxID_OK)
+                    {
+                        password = Frame->PasswordEntryDialog->GetValue();
+                        if (password != _(""))
+                        {
+                            importParameters.password = password.mb_str();
+                            importParameters.isPasswordProtected = true;
+                        }
+                        else
+                        {
+                            importParameters.password = "";
+                            importParameters.isPasswordProtected = false;
+                        }
+                    }
+                    else
+                    {
+                        wxMessageBox(_("Nie podano hasła!"));
+                    }
+                } while (
+            }*/
 
-        delete Frame->statistics;
-        Frame->statistics = new Statistics(Frame->database);
+            wxArrayString paths;
+            Frame->FileDialogDatabaseImport->GetPaths(paths);
+            Frame->database = Frame->iointerface->importDatabase((string)paths[0].mb_str(), &importParameters);     // po wczytaniu zmienia się wartość wskaźnika na bazę danych!
 
-        Frame->P_Inbox->SetEmails(Frame);               //załadowanie listy maili i usemberów z bazy
-        Frame->P_Usembers->SetUsembers(Frame);
+            delete Frame->statistics;
+            Frame->statistics = new Statistics(Frame->database);
 
-        if (GetNoData())
-            Frame->P_Title->SwitchIcons(Frame);
-        Frame->statistics->update();
-        if (Frame->P_Stats->GetIsUpdated())
-            Frame->P_Stats->SetIsUpdated();
+            Frame->P_Inbox->SetEmails(Frame);               //załadowanie listy maili i usemberów z bazy
+            Frame->P_Usembers->SetUsembers(Frame);
 
-        Frame->P_Notify->SetLabels(Frame, "Wczytywanie pliku bazy danych", "Status");
-        Frame->P_Notify->SetValues(Frame, "OK");
-        Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
+            if (GetNoData())
+                Frame->P_Title->SwitchIcons(Frame);
+            Frame->statistics->update();
+            if (Frame->P_Stats->GetIsUpdated())
+                Frame->P_Stats->SetIsUpdated();
+
+            Frame->P_Notify->SetLabels(Frame, "Wczytywanie pliku bazy danych", "Status");
+            Frame->P_Notify->SetValues(Frame, "OK");
+            Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
+        }
     }
 }
 
@@ -497,6 +537,25 @@ void PanelTitleMaintance::EventButtonTxtClick(AisdiRelationsFrame * Frame)
         wxMessageBox(_("Baza danych jest pusta."));
     else if (Frame->FileDialogDatabaseExport->ShowModal() == wxID_OK)      //uruchomienie panelu wybierania folderu
     {
+        DbParameters exportParameters;
+        wxString password = _("");
+        if (Frame->P_Title->GetDatabaseEncryption())
+        {
+            if (Frame->PasswordEntryDialog->ShowModal() == wxID_OK)
+            {
+                password = Frame->PasswordEntryDialog->GetValue();
+                if (password != _(""))
+                {
+                    exportParameters.password = password.mb_str();
+                    exportParameters.isPasswordProtected = true;
+                }
+                else
+                {
+                    exportParameters.password = "";
+                    exportParameters.isPasswordProtected = false;
+                }
+            }
+        }
         wxString path, filename;
         path = Frame->FileDialogDatabaseExport->GetPath();
         filename = Frame->FileDialogDatabaseExport->GetFilename();
@@ -513,7 +572,6 @@ void PanelTitleMaintance::EventButtonTxtClick(AisdiRelationsFrame * Frame)
                 strFilename = strFilename+".bin";
             }
 
-            DbParameters exportParameters;
             Frame->iointerface->exportDatabase(strPath, &exportParameters);
 
             Frame->P_Notify->SetLabels(Frame, "Zapisano plik bazy.", "Nazwa pliku: ");

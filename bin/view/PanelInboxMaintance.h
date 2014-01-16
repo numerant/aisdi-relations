@@ -8,7 +8,7 @@ class PanelInboxMaintance
     friend class AisdiRelationsFrame;
 
 private:
-    const static int COL_COUNT = 6;
+    const static int COL_COUNT = 5;
     bool panelEnabled = true;
     bool searchEnabled = false;
     bool addEnabled = false;

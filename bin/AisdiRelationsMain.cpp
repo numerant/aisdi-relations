@@ -312,6 +312,7 @@ const long AisdiRelationsFrame::ID_PANEL11 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICBOX5 = wxNewId();
 const long AisdiRelationsFrame::ID_CHECKBOX1 = wxNewId();
 const long AisdiRelationsFrame::ID_CHECKBOX2 = wxNewId();
+const long AisdiRelationsFrame::ID_CHECKBOX3 = wxNewId();
 const long AisdiRelationsFrame::ID_SLIDER1 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT110 = wxNewId();
 const long AisdiRelationsFrame::ID_PANEL10 = wxNewId();
@@ -340,6 +341,7 @@ const long AisdiRelationsFrame::idMenuExportBin = wxNewId();
 const long AisdiRelationsFrame::idMenuExportText = wxNewId();
 const long AisdiRelationsFrame::idMenuRecursive = wxNewId();
 const long AisdiRelationsFrame::idMenuDelConfirm = wxNewId();
+const long AisdiRelationsFrame::idMenuDatabaseEncryption = wxNewId();
 const long AisdiRelationsFrame::isMenuNTimeShort = wxNewId();
 const long AisdiRelationsFrame::isMenuNTimeNormal = wxNewId();
 const long AisdiRelationsFrame::isMenuNTimeLong = wxNewId();
@@ -347,6 +349,8 @@ const long AisdiRelationsFrame::ID_MENUITEM1 = wxNewId();
 const long AisdiRelationsFrame::idMenuAbout = wxNewId();
 const long AisdiRelationsFrame::idMenuHelp = wxNewId();
 const long AisdiRelationsFrame::ID_TIMER1 = wxNewId();
+const long AisdiRelationsFrame::ID_PASSWORDENTRYDIALOG1 = wxNewId();
+const long AisdiRelationsFrame::ID_MESSAGEDIALOG1 = wxNewId();
 //*)
 
 BEGIN_EVENT_TABLE(AisdiRelationsFrame,wxFrame)
@@ -358,10 +362,10 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
 {
     //(*Initialize(AisdiRelationsFrame)
     wxMenu* Menu1;
+    wxMenu* Menu4;
     wxMenuItem* MenuItemQuit;
     wxMenuBar* MenuBar1;
     wxMenuItem* MenuItemAbout;
-    wxMenu* Menu2;
 
     Create(parent, wxID_ANY, _("Analiza Relacji Biznesowych"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE|wxVSCROLL|wxHSCROLL, _T("wxID_ANY"));
     SetClientSize(wxSize(1366,750));
@@ -1080,12 +1084,12 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     N_StaticTextValue2->SetForegroundColour(wxColour(178,28,16));
     N_StaticTextValue3 = new wxStaticText(PanelNotify, ID_STATICTEXT130, _("0"), wxPoint(170,85), wxDefaultSize, wxALIGN_LEFT, _T("ID_STATICTEXT130"));
     N_StaticTextValue3->SetForegroundColour(wxColour(88,43,211));
-    PanelSettings = new wxPanel(PanelMain, ID_PANEL10, wxPoint(860,20), wxSize(300,160), wxTAB_TRAVERSAL, _T("ID_PANEL10"));
+    PanelSettings = new wxPanel(PanelMain, ID_PANEL10, wxPoint(860,20), wxSize(300,185), wxTAB_TRAVERSAL, _T("ID_PANEL10"));
     PanelSettings->Hide();
     PanelSettings->SetBackgroundColour(wxColour(50,50,50));
-    Set_Border = new wxStaticBox(PanelSettings, ID_STATICBOX5, wxEmptyString, wxPoint(0,-10), wxSize(300,170), 0, _T("ID_STATICBOX5"));
+    Set_Border = new wxStaticBox(PanelSettings, ID_STATICBOX5, wxEmptyString, wxPoint(0,-10), wxSize(300,195), 0, _T("ID_STATICBOX5"));
     Set_Border->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
-    Set_CheckBoxRecursive = new wxCheckBox(PanelSettings, ID_CHECKBOX1, _("Wczytywanie rekursywne folderów"), wxPoint(10,8), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX1"));
+    Set_CheckBoxRecursive = new wxCheckBox(PanelSettings, ID_CHECKBOX1, _("Wczytywanie rekursywne folderów"), wxPoint(10,10), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX1"));
     Set_CheckBoxRecursive->SetValue(false);
     Set_CheckBoxRecursive->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
     Set_CheckBoxRecursive->SetBackgroundColour(wxColour(160,160,160));
@@ -1097,12 +1101,18 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Set_CheckBoxDeleteConfirm->SetBackgroundColour(wxColour(160,160,160));
     wxFont Set_CheckBoxDeleteConfirmFont(11,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     Set_CheckBoxDeleteConfirm->SetFont(Set_CheckBoxDeleteConfirmFont);
-    Set_SliderNotifyTime = new wxSlider(PanelSettings, ID_SLIDER1, 3, 1, 10, wxPoint(20,85), wxSize(260,50), wxSL_HORIZONTAL|wxSL_AUTOTICKS|wxSL_LABELS, wxDefaultValidator, _T("ID_SLIDER1"));
+    Set_CheckBoxDatabaseEncryption = new wxCheckBox(PanelSettings, ID_CHECKBOX3, _("Szyfrowanie bazy danych"), wxPoint(10,60), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX3"));
+    Set_CheckBoxDatabaseEncryption->SetValue(false);
+    Set_CheckBoxDatabaseEncryption->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
+    Set_CheckBoxDatabaseEncryption->SetBackgroundColour(wxColour(160,160,160));
+    wxFont Set_CheckBoxDatabaseEncryptionFont(11,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
+    Set_CheckBoxDatabaseEncryption->SetFont(Set_CheckBoxDatabaseEncryptionFont);
+    Set_SliderNotifyTime = new wxSlider(PanelSettings, ID_SLIDER1, 3, 1, 10, wxPoint(20,110), wxSize(260,50), wxSL_HORIZONTAL|wxSL_AUTOTICKS|wxSL_LABELS, wxDefaultValidator, _T("ID_SLIDER1"));
     Set_SliderNotifyTime->SetLineSize(10);
     Set_SliderNotifyTime->SetThumbLength(10);
     Set_SliderNotifyTime->SetTick(1);
     Set_SliderNotifyTime->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
-    Set_LabelNotify = new wxStaticText(PanelSettings, ID_STATICTEXT110, _("Czas wyświetlania powiadomień [s]"), wxPoint(30,65), wxDefaultSize, 0, _T("ID_STATICTEXT110"));
+    Set_LabelNotify = new wxStaticText(PanelSettings, ID_STATICTEXT110, _("Czas wyświetlania powiadomień [s]"), wxPoint(30,90), wxDefaultSize, 0, _T("ID_STATICTEXT110"));
     Set_LabelNotify->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
     wxFont Set_LabelNotifyFont(11,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     Set_LabelNotify->SetFont(Set_LabelNotifyFont);
@@ -1155,21 +1165,23 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     MenuItemQuit = new wxMenuItem(Menu1, idMenuQuit, _("Quit\tAlt-F4"), _("Quit the application"), wxITEM_NORMAL);
     Menu1->Append(MenuItemQuit);
     MenuBar1->Append(Menu1, _("&File"));
+    Menu2 = new wxMenu();
+    MenuItemImportBin = new wxMenuItem(Menu2, idMenuImportBin, _("Import from binary"), _("Load database from a binary file"), wxITEM_NORMAL);
+    Menu2->Append(MenuItemImportBin);
+    Menu2->AppendSeparator();
+    MenuItemExportBin = new wxMenuItem(Menu2, idMenuExportBin, _("Export to bin"), _("Stores databse in a binary file"), wxITEM_NORMAL);
+    Menu2->Append(MenuItemExportBin);
+    MenuItemExportTxt = new wxMenuItem(Menu2, idMenuExportText, _("Export to text"), _("Copy database to a text file"), wxITEM_NORMAL);
+    Menu2->Append(MenuItemExportTxt);
+    MenuBar1->Append(Menu2, _("&Import/Export"));
     Menu3 = new wxMenu();
-    MenuItemImportBin = new wxMenuItem(Menu3, idMenuImportBin, _("Import from binary"), _("Load database from a binary file"), wxITEM_NORMAL);
-    Menu3->Append(MenuItemImportBin);
-    Menu3->AppendSeparator();
-    MenuItemExportBin = new wxMenuItem(Menu3, idMenuExportBin, _("Export to bin"), _("Stores databse in a binary file"), wxITEM_NORMAL);
-    Menu3->Append(MenuItemExportBin);
-    MenuItemExportTxt = new wxMenuItem(Menu3, idMenuExportText, _("Export to text"), _("Copy database to a text file"), wxITEM_NORMAL);
-    Menu3->Append(MenuItemExportTxt);
-    MenuBar1->Append(Menu3, _("&Import/Export"));
-    Menu4 = new wxMenu();
-    MenuItemRecursive = new wxMenuItem(Menu4, idMenuRecursive, _("Recursive loading\tCTRL+SHIFT+R"), _("On/off recursive folder loading"), wxITEM_CHECK);
-    Menu4->Append(MenuItemRecursive);
-    MenuItemConfirm = new wxMenuItem(Menu4, idMenuDelConfirm, _("Delete confirmation\tCTRL+SHIFT+C"), _("On/off confirmation prompt when trying to delete a record"), wxITEM_CHECK);
-    Menu4->Append(MenuItemConfirm);
+    MenuItemRecursive = new wxMenuItem(Menu3, idMenuRecursive, _("Recursive loading\tCTRL+SHIFT+R"), _("On/off recursive folder loading"), wxITEM_CHECK);
+    Menu3->Append(MenuItemRecursive);
+    MenuItemConfirm = new wxMenuItem(Menu3, idMenuDelConfirm, _("Delete confirmation\tCTRL+SHIFT+C"), _("On/off confirmation prompt when trying to delete a record"), wxITEM_CHECK);
+    Menu3->Append(MenuItemConfirm);
     MenuItemConfirm->Check(true);
+    MenuItemEncryption = new wxMenuItem(Menu3, idMenuDatabaseEncryption, _("Database encryption\tCTRL+SHIFT+E"), _("On/off database encyption"), wxITEM_CHECK);
+    Menu3->Append(MenuItemEncryption);
     MenuItem4 = new wxMenu();
     MenuItemNTimeShort = new wxMenuItem(MenuItem4, isMenuNTimeShort, _("Krótki (2s)"), wxEmptyString, wxITEM_RADIO);
     MenuItem4->Append(MenuItemNTimeShort);
@@ -1177,14 +1189,14 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     MenuItem4->Append(MenuItemNTimeNormal);
     MenuItemNTimeLong = new wxMenuItem(MenuItem4, isMenuNTimeLong, _("Długi (8s)"), wxEmptyString, wxITEM_RADIO);
     MenuItem4->Append(MenuItemNTimeLong);
-    Menu4->Append(ID_MENUITEM1, _("Czas trwania powiadomień"), MenuItem4, wxEmptyString);
-    MenuBar1->Append(Menu4, _("Properties"));
-    Menu2 = new wxMenu();
-    MenuItemAbout = new wxMenuItem(Menu2, idMenuAbout, _("About\tF1"), _("Show info about this application"), wxITEM_NORMAL);
-    Menu2->Append(MenuItemAbout);
-    MenuItemHelp = new wxMenuItem(Menu2, idMenuHelp, _("Help\tF2"), _("General application manual"), wxITEM_NORMAL);
-    Menu2->Append(MenuItemHelp);
-    MenuBar1->Append(Menu2, _("Help"));
+    Menu3->Append(ID_MENUITEM1, _("Czas trwania powiadomień"), MenuItem4, wxEmptyString);
+    MenuBar1->Append(Menu3, _("Properties"));
+    Menu4 = new wxMenu();
+    MenuItemAbout = new wxMenuItem(Menu4, idMenuAbout, _("About\tF1"), _("Show info about this application"), wxITEM_NORMAL);
+    Menu4->Append(MenuItemAbout);
+    MenuItemHelp = new wxMenuItem(Menu4, idMenuHelp, _("Help\tF2"), _("General application manual"), wxITEM_NORMAL);
+    Menu4->Append(MenuItemHelp);
+    MenuBar1->Append(Menu4, _("Help"));
     SetMenuBar(MenuBar1);
     DirDialog = new wxDirDialog(this, _("Wybierz folder"), _("./"), wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE, wxDefaultPosition, wxDefaultSize, _T("wxDirDialog"));
     FileDialog = new wxFileDialog(this, _("Wybierz pliki:"), _("~/"), wxEmptyString, _("*.eml"), wxFD_OPEN|wxFD_MULTIPLE|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
@@ -1192,6 +1204,8 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     FileDialogDatabaseImport = new wxFileDialog(this, _("Wybierz plik:"), _("~/"), wxEmptyString, _("*.bin"), wxFD_OPEN|wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
     FileDialogDatabaseExport = new wxFileDialog(this, _("Zapisz plik:"), _("./"), wxEmptyString, _("*.bin"), wxFD_SAVE|wxFD_OVERWRITE_PROMPT|wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
     FileDialogStatisticsExport = new wxFileDialog(this, _("Zapisz plik:"), _("./"), wxEmptyString, _("*.txt"), wxFD_SAVE|wxFD_OVERWRITE_PROMPT|wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
+    PasswordEntryDialog = new wxPasswordEntryDialog(this, _("Wpisz hasło [x-y znaków, a-z, A-Z, 0-9]"), _("Hasło do szyfracji bazy danych"), wxEmptyString, wxCANCEL|wxCENTRE|wxOK, wxDefaultPosition);
+    MessageDialogConfirmation = new wxMessageDialog(this, _("Dotychczasowe dane zostaną utracone. Czy chcesz kontynuować\?"), _("Potwierdzenie nadpisania bazy"), wxCANCEL|wxYES_NO|wxNO_DEFAULT|wxICON_EXCLAMATION, wxDefaultPosition);
     Center();
 
     Connect(ID_IMAGEBUTTON37,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonMulTreeClick);
@@ -1274,6 +1288,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_SEARCHCTRL1,wxEVT_COMMAND_TEXT_ENTER,(wxObjectEventFunction)&AisdiRelationsFrame::OnI_SearchCtrlTextEnter);
     Connect(ID_CHECKBOX1,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_CheckBoxRecursiveClick);
     Connect(ID_CHECKBOX2,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnSet_CheckBoxDeleteConfirmClick);
+    Connect(ID_CHECKBOX3,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnSet_CheckBoxDatabaseEncryptionClick);
     Connect(ID_SLIDER1,wxEVT_SCROLL_CHANGED,(wxObjectEventFunction)&AisdiRelationsFrame::OnSet_SliderNotifyTimeCmdScrollChanged);
     Connect(ID_IMAGEBUTTON57,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonFilesClick);
     Connect(ID_IMAGEBUTTON58,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonFolderClick);
@@ -1290,6 +1305,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Connect(idMenuExportText,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnSav_ImageButtonTxtClick);
     Connect(idMenuRecursive,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnMenuItemRecursiveSelected);
     Connect(idMenuDelConfirm,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnMenuItemConfirmSelected);
+    Connect(idMenuDatabaseEncryption,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnMenuItemEncryptionSelected);
     Connect(isMenuNTimeShort,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnMenuItemNTimeShortSelected);
     Connect(isMenuNTimeNormal,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnMenuItemNTimeNormalSelected);
     Connect(isMenuNTimeLong,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnMenuItemNTimeLongSelected);
@@ -1805,6 +1821,13 @@ void AisdiRelationsFrame::OnSet_CheckBoxDeleteConfirmClick(wxCommandEvent& event
         MenuItemConfirm->Check(Set_CheckBoxDeleteConfirm->GetValue());
 }
 
+void AisdiRelationsFrame::OnSet_CheckBoxDatabaseEncryptionClick(wxCommandEvent& event)
+{
+    P_Title->SetDatabaseEncryption(Set_CheckBoxDatabaseEncryption->GetValue());
+    if (MenuItemEncryption->IsCheckable())
+        MenuItemEncryption->Check(Set_CheckBoxDatabaseEncryption->GetValue());
+}
+
 /** ============= Event TXT ============= */
 void AisdiRelationsFrame::OnSav_ImageButtonTxtClick(wxCommandEvent& event)
 {
@@ -1835,6 +1858,13 @@ void AisdiRelationsFrame::OnMenuItemConfirmSelected(wxCommandEvent& event)
     if (MenuItemConfirm->IsCheckable())
         P_Title->SetDeleteConfirm(MenuItemConfirm->IsChecked());
     Set_CheckBoxDeleteConfirm->SetValue(MenuItemConfirm->IsChecked());
+}
+
+void AisdiRelationsFrame::OnMenuItemEncryptionSelected(wxCommandEvent& event)
+{
+    if (MenuItemEncryption->IsCheckable())
+        P_Title->SetDatabaseEncryption(MenuItemEncryption->IsChecked());
+    Set_CheckBoxDatabaseEncryption->SetValue(MenuItemEncryption->IsChecked());
 }
 
 void AisdiRelationsFrame::OnMenuItemNTimeShortSelected(wxCommandEvent& event)

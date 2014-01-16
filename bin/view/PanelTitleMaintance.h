@@ -14,6 +14,7 @@ private:
     bool noData = true;             //czy dane zostały już zaimportowane (wtedy nie pokazuje ikonek dodawania)
     bool recursiveLoad = false;		//wczytywanie rekursywne maili z podanego folderu
     bool deleteConfirm = true;      //prośba o potwierdzenie przy usuwaniu
+    bool databaseEncryption = false; //szyfrowanie danych bazy przy eksporcie do pliku
     bool clickedAdd = false;            //dostępność poszczególnych przycisków dodawania danych;
     bool clickedLoad = false;
     bool clickedImport = false;
@@ -40,6 +41,7 @@ public:
     void SetNoData (bool value);
     void SetRecursiveLoad (bool value);
     void SetDeleteConfirm (bool value);
+    void SetDatabaseEncryption (bool value);
     void SetClickedAdd (void);
     void SetClickedLoad (void);
     void SetClickedImport (void);
@@ -49,6 +51,7 @@ public:
     bool GetNoData (void);
     bool GetRecursiveLoad (void);
     bool GetDeleteConfirm (void);
+    bool GetDatabaseEncryption (void);
     bool GetClickedAdd (void);
     bool GetClickedLoad (void);
     bool GetClickedImport (void);
