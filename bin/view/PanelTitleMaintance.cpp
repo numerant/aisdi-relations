@@ -440,24 +440,29 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
         Frame->I_ImageButtonAdd->SetBitmapLabel(path+imagePaths[16]+format);
         Frame->U_ImageButtonAdd->SetBitmapLabel(path+imagePaths[16]+format);
 
-        if (Frame->MessageDialogConfirmation->ShowModal() == wxID_YES)
-        {
+        /*if (Frame->MessageDialogConfirmation->ShowModal() == wxID_YES)        //TODO Odkomentować
+        {*/
             DbParameters importParameters;
             bool passwordCorrect = false;
+            bool isPassword = true;
+            wxString password = _("");
 
-            //TODO odkomentować bo dorobieniu funkcji sprawdzania czy plik jest zaszyfrowany hasłem
-            /*wxString password = _("");
-            if (   plik zaszyfrowany hasłem   )
+            if ( isPassword)  /* Zamienić na sprawdzenie czy plik ma hasło*/
             {
                 do
                 {
                     if (Frame->PasswordEntryDialog->ShowModal() == wxID_OK)
                     {
                         password = Frame->PasswordEntryDialog->GetValue();
-                        if (password != _(""))
+                        if (password != _(""))      //TODO sprawdzenie poprawności hasła w kwestii znakowej
                         {
                             importParameters.password = password.mb_str();
                             importParameters.isPasswordProtected = true;
+
+                            //TODO Tutaj próba odczytu i deszyfracji
+                            //Na razie załóżmy że true
+
+                            passwordCorrect = true;
                         }
                         else
                         {
@@ -468,9 +473,10 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
                     else
                     {
                         wxMessageBox(_("Nie podano hasła!"));
+                        return;
                     }
-                } while (
-            }*/
+                } while (!passwordCorrect);
+            }
 
             wxArrayString paths;
             Frame->FileDialogDatabaseImport->GetPaths(paths);
@@ -491,7 +497,7 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
             Frame->P_Notify->SetLabels(Frame, "Wczytywanie pliku bazy danych", "Status");
             Frame->P_Notify->SetValues(Frame, "OK");
             Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
-        }
+        //}     //TODO odkomentować
     }
 }
 
