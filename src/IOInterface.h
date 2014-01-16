@@ -50,10 +50,11 @@ public:
     ImportStats getImportStats();
     void clearImportStats();
 
-    void exportDatabase (string filePath, DbParameters *parameters);            // opis klas MailParameters i DbParameters jest w Param.h
+    void xorStream(stringstream &inputStream, stringstream &outputStream, string key);  // szyfruje/deszyfruje strumień algorytmem XOR
+    void exportDatabase (string filePath, DbParameters *parameters);                    // opis klas MailParameters i DbParameters jest w Param.h
     Database* importDatabase (string filePath, DbParameters *parameters);
     void exportDatabaseReport (string path, Statistics* dbStatistics);
-    void exportDatabaseToTxt (string directoryPath);                            // w podanym katalogu tworzy pliki tekstowe z rekordami bazy danych, przystosowane do importu do np. Accessa
+    void exportDatabaseToTxt (string directoryPath);                                    // w podanym katalogu tworzy pliki tekstowe z rekordami bazy danych, przystosowane do importu do np. Accessa
 
     void setDatabasePointer (Database * db);
     string strSequenceReplace(const string& searched, const string& replaced, string subject);
