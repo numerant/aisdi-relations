@@ -454,6 +454,7 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
                     if (Frame->PasswordEntryDialog->ShowModal() == wxID_OK)
                     {
                         password = Frame->PasswordEntryDialog->GetValue();
+                        Frame->PasswordEntryDialog->SetValue(_(""));
                         if (password != _(""))      //TODO sprawdzenie poprawności hasła w kwestii znakowej
                         {
                             importParameters.password = password.mb_str();
@@ -561,6 +562,7 @@ void PanelTitleMaintance::EventButtonTxtClick(AisdiRelationsFrame * Frame)
                     exportParameters.isPasswordProtected = false;
                 }
             }
+            Frame->PasswordEntryDialog->SetValue(_(""));
         }
         wxString path, filename;
         path = Frame->FileDialogDatabaseExport->GetPath();
