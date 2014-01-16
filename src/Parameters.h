@@ -23,7 +23,7 @@ public:
 
 class DbParameters : public Parameters            // parametry importu / eksportu bazy danych
 {
-private:
+public:
     bool isPasswordProtected;
     string password;
 };
