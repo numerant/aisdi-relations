@@ -1,10 +1,52 @@
-Klasa IOInterface - odpowiedzialna wyłącznie za operacje wymagające dostępu do plików na dysku (typu import, eksport czy zapisywanie raportów do pliku). Nie uczestniczy jako pośrednik między interfejsem a bazą danych (np. przy wyświetlaniu raportów, statystyk i miliona innych rzeczy.
+ 
+//============================================================
+//
+// klasa:	IOInterface
+// autorzy:	Jakub Maleszewski, Krzysztof Lisocki
+// pliki:	IOInterface.cpp, IOInterface.h
+//
+//============================================================
 
+// opis:
+	Klasa IOInterface odpowiada za operacje, które wymagają dostępu do plików na dysku twardym komputera.
+	Do zadań, które realizuje, zalicza się między innymi import i eksport bazy danych, wczytywanie maili, szyfrowanie.
+	Ponadto metody tej klasy umożliwiają zapis statystyk i bazy danych do plików (zarówno binarnych, jak i tekstowych).
+	W celu efektywnej implementacji wykorzystane zostały funkcjonalności oferowane przez boost library, w tym: 
+	- regex 	- wykorzystanie w parserze, wyszukiwanie zadanych wyrażeń w plikach eml
+	- filesystem	- wczytywanie (również rekursywne) plików z katalogu
+	- string	- zaawansowane operacje na łańcuchach znaków
+	- text_iarchive - serializacja
+	- text_oarchive - serializacja
 
-	Metody:
-		- import - otrzymuje ścieżkę do katalogu/pliku i opcje wczytywania, zwraca obiekt klasy zagnieżdżonej zawierający statystyki importu. W przypadku otrzymania jako parametr ścieżki do katalogu, uruchamia parser dla każdego z zawartych tam plików. Możliwe przeszukiwanie rekursywne. Na podstawie tego, co zwróci analizator EML modyfikuje obiekt ze statystykami wczytywania. Korzysta z metod klasy Database do dodawania maili.
-		- parser EML - dostaje treść maila w formie stringa, analizuje go, jeśli jest OK, to kończy działanie. W przeciwnym wypadku rzuca wyjątek.
-		- zapis bazy - serializuje (przy użyciu biblioteki Boost lub libs11n) bazę danych wraz z zawartością do pliku, ewentualnie wywołując metodę szyfrującą
-		- wczytanie bazy - odczytuje zapisany wcześniej plik bazy danych (jeśli to konieczne, deszyfruje) i przywraca odpowiednią strukturę obiektów w pamięci
-		- (de)szyfrowanie - przy pomocy prostego algorytmu (XOR) (de)szyfruje bazę przed odczytem/zapisem używając podanego klucza
-		- zapisywanie raportów do pliku - dostaje obiekt klasy Report, w czytelnej i atrakcyjnej wizualnie formie eksportuje 
+// metody publiczne:
+	IOInterface();									konstruktor klasy
+	~IOInterface();									destruktor klasy
+	void importMail(MailParameters *parameters);					importuje mail do bazy danych
+	ImportStats getImportStats();							zapewnia dostęp do statystyk ze struktury ImportStats
+	void clearImportStats();							metoda odpowiedzialna za "wyczyszczenie" statystyk
+	void exportDatabase (string filePath, DbParameters *parameters);		eksport bazy danych (uwzględnia parametry podane przez użytkownika)
+	Database* importDatabase (string filePath, DbParameters *parameters);		import bazy danych (uwzględnia parametry podane przez użytkownika)
+	void exportDatabaseReport (string path, Statistics* dbStatistics);		eksport statystyk bazy danych do pliku
+	void exportDatabaseToTxt (string directoryPath);				eksport bazy danych do pliku tekstowego (CSV)
+	void setDatabasePointer (Database * db);					przypisanie adekwatnego wskaźnika
+	string strSequenceReplace(const string& searched, const string& replaced, string subject);	zastąpienie sekwencji w danym stringu
+	
+// metody prywatne:	
+	void importSingleMail(boost::filesystem::path path, ImportStats &stats);
+	Email* emlParser (string path);							parser, dokonuje podziału maila na odpowiednie pola zgodnie ze standardem eml
+	void encryptFile (string password);						odpowiada za szyfrowanie pliku
+	void decryptFile (string password);						odpowiada za odszyfrowanie pliku
+	
+// struktury danych, obiekty publiczne:
+	struct ImportStats								deklaracja struktury, która przechowuje statystyki importu
+	{
+	  ImportStats();								konstruktor
+	  void clearStats();								metoda odpowiedzialna za "wyczyszczenie" statystyk	
+	  unsigned int successCount;							licznik poprawnie wczytanych maili
+	  unsigned int failCount;							licznik niepoprawnie wczytanych maili
+	  unsigned int existingCount;							licznik maili istniejących w bazie
+	};
+	
+// struktury danych, obiekty prywatne:	
+	Database *database;								baza maili, tworzona w momencie uruchomienia programu
+        ImportStats stats;								struktura zawierająca statystyki importu na potrzeby programu

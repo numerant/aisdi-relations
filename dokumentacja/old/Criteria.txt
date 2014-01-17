@@ -1,0 +1,14 @@
+/*  Klasa Criteria - wektor obiektów tej klasy przechowywany jest w obiekcie klasy Query. Zawiera pojedyncze
+    kryterium wyszukiwania. Zwykle tylko część pól jest wypełniona, pozostałe mają wartości zero/null/default.
+    Być może dobrym pomysłem byłoby zrobienie kryterium jako szablonu klasy.
+    */
+    Klasa Criteria:
+    
+    pola:
+    - criteriaType      //pole, po którym wyszukujemy
+    - equals            //szukana wartość danego pola, w przypadku stringów może zawierać znaki * (dowolny znak)
+    - lessThan          //górna wartość przedziału spełniającego kryterium
+    - greaterThan       //dolna wartość przedziału spełniającego kryterium
+    
+    metody:
+    - settery i gettery do wszystkich pól klasy

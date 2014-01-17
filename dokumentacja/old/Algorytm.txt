@@ -1,0 +1,60 @@
+ALGORYTM GRUPOWANIA UŻYTKOWNIKÓW
+
+Mamy kilka pomysłów podejścia do problemu, które możliwe, że będzie można w jakiś sposób połączyć (mogą się okazać heurystykami do algorytmu (dział HEURYSTYKA)).
+
+-----------------------------------------------------------
+GŁÓWNE PODEJŚCIE
+-----------------------------------------------------------
+
+Tworzymy graf użytkowników bazy, gdzie krawędzie odzwierciedlają obecnośc wymiany koerspondencji między użytkownikami (wierzchołkami). 
+Będzie to graf nieskierowany, ale ważony, gdzie wagą krawędzi będzie liczba wiadomości wymienionych przez dwóch, połączonych daną krawędzią,
+użytkowników.
+
+Krok 1 (Przyporządkowanie najbliższego współpracownika):
+	Każdemu użytkownikowi przyporządkowujemy drugiego użytkownika, z którym to liczba wymienionych wiadomości była największa.
+	Spowoduje to powstanie wielu rozłącznych drzew, które z bardzo dużym prawdopodobieństwem będą zawierały 
+	użytkowników należących do tej samej grupy. 
+	(przekładając na język grafów pokolorujemy wierzchołki znalezionego drzewa na jeden kolor,
+	gdzie w każdym drzewie będzie inny kolor. Bardzo możliwe, że korzystniejsze okarze się wykorzystanie reprezentanta grupy (jak w algorytmie 
+	FIND UNION) zamiast koloru)
+	
+Krok 2 (Szukanie potencjalnego szefa):
+	W każdym z drzew szukamy jednego użytkownika, u którego obliczony "współczynnik szefostwa" jest najwyższy.
+	Współczynnik szefostwa obliczamy za pomocą dwóch głównych kryteriów:
+		- liczby użytkowników dla których "potencjalny szef" jest osobą, z którą najczęściej wymieniały wiadomości
+		  (przekładając na język grafów, jest to liczba krawędzi wychodzących z danego wierzchołka)
+		- liczby różnych ludzi, z innych grup, z którymi dany użytkownik wymieniał korespondencję
+		  (przekładając na język grafów, liczby (niestworzonych jeszcze) krawędzi łączących dany wierzchołek
+		   z wierzchołkami z innych grup)
+	Jeśli nie zostanie wybrany jednoznaczny szef (tj. "współczynnik szefostwa" nie będzie co najmniej dwukrotnie większy od każdego innego)
+	To dla wszystkich innych użytkowników, które mają współczynnik ten większy niż połowa największego w grupie stosujemy ostatnie kryterium:
+		- odwrotność ze standardowego odchylenia liczby wiadomości z innych grup (tj. standardowe odchylenie wykresu przedstawiającego n słupków
+		  gdzie n jest liczbą różnych grup, z którymi dany użytkownik wymieniał korespondencję, a wysokość słupka jest to liczba wiadomości 
+		  wymienionych z daną grupą)
+	Jeśli przy poszukiwaniach okaże się, że conajmniej 60% wiadomości wychodzących z danej grupy są to wiadomości do innej grupy, ponadto "potencjalny
+	szef" danej grupy będzie miał niski "współczynnik szefostwa", ustalamy że dana grupa jest w rzeczywistość podgrupą rzeczywistej i zostaje przyłączona
+	do tej grupy. (przekładając na język grafów, kolor wierzchołków tej grupy zostaje zmieniony na kolor drugiej grupy)
+
+Krok 3 (Przejście poziom wyżej w hierarchii):
+	Po znalezieniu szefów i ich grup tworzymy nowy graf, będący w rzeczywistości grafem nowopowstałych grup. Tzn. każda grupa staje się jednym wierzchołkiem,
+	a krawędzie między nimi są połączeniami dowolnych użytkowników danej grupy z użytkownikami innej. Wagi tych krawędzi są sumą różnych wiadomości.
+
+Krok 4 :Powtórzenie algorytmu od Kroku1
+
+Algorytm kończy działanie kiedy zostanie tylko jedna grupa, która zostanie mianowana zarządem, a szef danej grupy prezesem firmy.
+
+--------------------------------------------------------
+INNE PODEJŚCIE (POMYSŁ/ZARYS)
+--------------------------------------------------------
+Powstał równiez pomysł podejścia do problemu z innej strony.
+
+1: Po stworzeniu grafu wymiany korespondencji algorytmem przeszykiwania grafu w głąb (DFS) pokolei odejmujemy od wagi każdej krawędzi 1.
+2: Po pewnej liczbie iteracji krawędzie w pewnym momencie zaczną mieć wagę 0 (zostaną usunięte z grafu)
+3: Po otrzymaniu pewnego stanu za pomocą algorytmu wyszukiwania mostów w grafie znaleźć mosty w grafie : ), które będą połączeniem danej grupy
+   z innymi grupami, a wierzchołek, z którego most wychodzi zostanie mianowany szefem grupy.
+   
+---------------------------------------------------------
+HEURYSTYKA (OPCJONALNIE)
+---------------------------------------------------------
+
+Można założyć, że znalezienie w grafie podgrafu będącego grafem pełnym jest równoznaczne ze znalezieniem grupy lub podgrupy.

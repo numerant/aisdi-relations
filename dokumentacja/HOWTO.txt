@@ -1,0 +1,7 @@
+Dokumentacja:
+- cała dokumentacja do dnia 16.01.2014 przeniesiona została do folderu old
+- dla klasy tworzymy plik na podstawie template.txt
+- jako "wzór" IOInterface.txt (opisywanie wszystkiego, co zawarte jest w danej klasie prawdopodobnie nie jest wymagane, więc można
+  skoncentrować się jedynie na ważnych, nietrywialnych metodach, strukturach, ...)
+- mała sugestia: gdy dokumentacja będzie kompletna, sensownym wtdaje się wygenerowanie pdf'a 
+- mała sugestia II: w celu odnotowania, co udało się zrealizować na 3. sprint - proszę o wpis pod odpowiednim postem na grupie/wiadomość [M.Ż.]

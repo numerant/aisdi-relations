@@ -1,0 +1,46 @@
+>>>> PRAKTYCZNIE PRZY KAŻDYM ODŚWIEŻANIU STATÓW <<<<
+
+Conditional jump or move depends on uninitialised value(s)
+==6076==    at 0x421AE8: Date::compare(Date&) (Date.cpp:161)
+==6076==    by 0x451024: Statistics::updateEmailStatistics() (Statistics.cpp:148)
+==6076==    by 0x450941: Statistics::update() (Statistics.cpp:30)
+==6076==    by 0x47F560: PanelInboxMaintance::EventButtonDeleteClick(AisdiRelationsFrame*) (PanelInboxMaintance.cpp:355)
+==6076==    by 0x4765FB: AisdiRelationsFrame::OnI_ImageButtonDeleteClick(wxCommandEvent&) (AisdiRelationsMain.cpp:1543)
+==6076==    by 0x5A6ED34: wxEvtHandler::ProcessEventIfMatches(wxEventTableEntryBase const&, wxEvtHandler*, wxEvent&) (in /usr/lib/x86_64-linux-gnu/libwx_baseu-2.8.so.0.8.0)
+==6076==    by 0x5A6F0FE: wxEvtHandler::SearchDynamicEventTable(wxEvent&) (in /usr/lib/x86_64-linux-gnu/libwx_baseu-2.8.so.0.8.0)
+==6076==    by 0x5A6F1B1: wxEvtHandler::ProcessEvent(wxEvent&) (in /usr/lib/x86_64-linux-gnu/libwx_baseu-2.8.so.0.8.0)
+==6076==    by 0x566E9A8: wxWindowBase::TryParent(wxEvent&) (in /usr/lib/x86_64-linux-gnu/libwx_gtk2u_core-2.8.so.0.8.0)
+==6076==    by 0x566E9A8: wxWindowBase::TryParent(wxEvent&) (in /usr/lib/x86_64-linux-gnu/libwx_gtk2u_core-2.8.so.0.8.0)
+==6076==    by 0x566E9A8: wxWindowBase::TryParent(wxEvent&) (in /usr/lib/x86_64-linux-gnu/libwx_gtk2u_core-2.8.so.0.8.0)
+==6076==    by 0x55C9350: ??? (in /usr/lib/x86_64-linux-gnu/libwx_gtk2u_core-2.8.so.0.8.0)
+
+
+>>>> USUNIĘCIE MAILA I WYŚWIETLENIE USEMBERA, KTÓRY WYSŁAŁ/ODEBRAŁ TEGO MAILA  (SEGFAULT) <<<<
+
+==6129== Process terminating with default action of signal 11 (SIGSEGV)
+==6129==  Access not within mapped region at address 0x6200000018
+==6129==    at 0x69476A4: std::string::assign(std::string const&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.17)
+==6129==    by 0x421255: Date::Date(Date const&) (Date.cpp:14)
+==6129==    by 0x4220A4: Email::getDate() (Email.cpp:18)
+==6129==    by 0x4527E5: Usember::getEmailsReceivedInMonth(int) (Usember.cpp:95)
+==6129==    by 0x452AC0: Usember::getMaxEmailsInMonth() (Usember.cpp:121)
+==6129==    by 0x492A9D: PanelUsembersMaintance::EventPanelStatsPaint(AisdiRelationsFrame*) (PanelUsembersMaintance.cpp:714)
+==6129==    by 0x491294: PanelUsembersMaintance::EventListUsembersItemSelect(AisdiRelationsFrame*) (PanelUsembersMaintance.cpp:587)
+==6129==    by 0x476997: AisdiRelationsFrame::OnU_ListUsembersItemSelect(wxListEvent&) (AisdiRelationsMain.cpp:1649)
+
+
+>>>> ZAPIS BIN DO PLIKU (ALE CHYBA NIC Z TYM NIE ZROBIMY) <<<
+
+==6129== Conditional jump or move depends on uninitialised value(s)
+==6129==    at 0x691CE26: std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<long>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.17)
+==6129==    by 0x691D05C: std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.17)
+==6129==    by 0x691FF25: std::ostream& std::ostream::_M_insert<long>(long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.17)
+==6129==    by 0x4418B6: void boost::archive::basic_text_oprimitive<std::ostream>::save<int>(int const&) (basic_text_oprimitive.hpp:92)
+==6129==    by 0x44130E: void boost::archive::text_oarchive_impl<boost::archive::text_oarchive>::save<int>(int const&) (text_oarchive.hpp:61)
+==6129==    by 0x440E6F: void boost::archive::save_access::save_primitive<boost::archive::text_oarchive, int>(boost::archive::text_oarchive&, int const&) (oserializer.hpp:88)
+==6129==    by 0x440B73: void boost::archive::detail::save_non_pointer_type<boost::archive::text_oarchive>::save_primitive::invoke<int>(boost::archive::text_oarchive&, int const&) (oserializer.hpp:232)
+==6129==    by 0x440695: void boost::archive::detail::save_non_pointer_type<boost::archive::text_oarchive>::invoke<int>(boost::archive::text_oarchive&, int const&) (oserializer.hpp:308)
+==6129==    by 0x4402E8: void boost::archive::save<boost::archive::text_oarchive, int const>(boost::archive::text_oarchive&, int const&) (oserializer.hpp:525)
+==6129==    by 0x440029: void boost::archive::detail::common_oarchive<boost::archive::text_oarchive>::save_override<int const>(int const&, int) (common_oarchive.hpp:69)
+==6129==    by 0x43FAF0: void boost::archive::basic_text_oarchive<boost::archive::text_oarchive>::save_override<int const>(int const&, int) (basic_text_oarchive.hpp:80)
+==6129==    by 0x43F5A3: boost::archive::text_oarchive& boost::archive::detail::interface_oarchive<boost::archive::text_oarchive>::operator<< <int const>(int const&) (interface_oarchive.hpp:63)

@@ -1,0 +1,104 @@
+-------------------------------- TODO -------------------------------------------
+
+/* Jak ktoś ma coś na bieżąco do zanotowania to niech na lajcie edytuje ten plik i zapisuje pomysły na różne implementacje, podział zadań czy jakiekolwiek idee ogólne. Wszelkie sprawy w kokretnych miejscach kodu, proponuję notować za pomocą formułki  
+	//TODO co trzeba zrobić
+Code::Blocks to fajnie wyłapuje w jednym miejscu i nie trzeba szukać (jeśli ktoś używa, a zachęcam. Jak nie to i tak mu nie zaszkodzi). Proponuję kolejne punkty pisać nad poprzednimi, żeby nie przewijać całego pliku na sam dół, dziekuję, miłego czytania.	*/
+
+---------------------------------------------------------------------------------
+
+16.01.2014
+>>> Date - compare i return
+	- Program wywala się na porównywaniu i zwracaniu daty. Proponuję napisanie własnego 'komparatora', a przy zwracaniu daty zawsze sprawdzać wartość zwróconą przed jej dalszym opierdoleniem.
+
+>>> Boost:Archive
+	- Powoduje wycieki pamięci, ale nie wiem czy da radę coś z tym zrobić. Kuba zdajemy się na Ciebie.
+
+>>> Grupy
+	- Konieczny algorytm pozycjonujący grupy na canvasie. Dwie funkcje:
+		- Jedna zwraca pozycję (x, y) grupy/członka od numerze podanym w parametrze (wygenerowane przez inną funkcję i zapisane w jakimś vectorze pozycji)
+		- Druga zwraca wskaźnik na vector grup/członków, z którym dana/y grupa/członek korespondował/a (numer grupy/członka w parametrze).
+	Najlepiej, żeby funkcje przyjmowały dodatkowo parametr stopnia zagnieżdżenia w grupach tzn. dla 0/false będzie grupa szefów, dla 1/true będą widoczni członkowie grup szefów itd. (jeżeli stopni jest więcej).
+
+>>> Inbox/Usembers/Grupy
+	- Fajnie by było, gdyby nawet całe wektory danych trzymane były w wektorze odpowiedzialnym ze zwracanie wyników query w przypadku, gdy query nie ma. W ten sposób zawsze komponenty pobierałyby dane z jednego miejsca. Nie wiem, czy nie będzie to nadmiar użycia pamięci, ale we'll see.
+
+-------------------------------ARCHIVE-------------------------------------------
+15.12.2013
+>>> Parser - obsługa dziwacznych maili
+	- Zła kolejność pól: Temu można zaradzić wczytując całego stringa (maila), szukać jakiegoś regex'a, jeśli jest to zapisywać go i wywalać go z maila, szukać kolejnego itd. Na końcu zostaną same śmieci, które olewamy. Pytanie tylko jak odróżnić content od śmieci?
+	- Zły format daty: Trzeba koniecznie dodać sprawdzanie, czy np. nie uzyskaliśmy daty 37.15.3450 i nazwy dnia/miesiąca która nie istnieje.
+	- Nadmiarowe spacje/Brak spacji: Jak coś się jebnie i dostaniemy np. Sat,2Nov201216:45:21+0200 - wciąż poprawna data, to wypadałoby to i tak wczytać Proponowane rozwiązanie: zrobić drugą analizę maila z wyciętymi znakami spacji i nowego wiersza dla odpowiednio przygotowanego nowego zestawu regexów bez spacji (tam gdzie jest to możliwe).
+	- Regex'y dla kodowań maila: W ten sposób elegancko oddzielimy kodowanie od treści. A jak nie ma kodowania to chuj, nic się nie dzieje.
+
+>>> Parser - opierdalanie treści/tytułu/usemberów pod względem RE: oraz FWD:
+
+>>> Zbiór maili nadający się do analizy
+	- Proponowane rozwiązanie to generowanie losowego grafu firmy, przydział maili do usemberów i na tej podstawie odtwarzane będą w programie zależności
+
+>>> Analiza relacji
+	- Pomyślałem, że fajnie będzie podzielić algorytm analizy grup roboczych na 'podalgorytmy', które będą realizowały inne założenia wzajemnie się NIE wykluczające, a wręcz dążące do uzupełniania się. W ten sposób użytkownik może wybrać jak chce tworzyć zależności, a my możemy pokazać Zalewskiemu jak dany podalgorytm działa i co się wyświetla. Po drugie, podział prac będzie w ten sposób ułatwiony. Trzeba tylko wydzielić kolejność, które etapy idą najpierw, które później (efekt progresu na ekranie = max pkt. za analizę :D).
+
+>>> Zrobienie i wysłanie specyfikacji z uaktualnionym podziałem zadań odnośnie sprintu II
+
+09.12.2013
+>>> Exceptions
+	- Proponuję zachować konwencję JM: 
+		- Klasy wyjątków dla każdego działu (email, iointerface, usember itd.) o nazwach w stylu EmailException, IOException itp.
+		- Pochodne klas obsługujące konkretne wyjątki (np. EmlSyntaxIncorrect : public IOException).
+		- Wszystkie pliki wpierdzielić do osobnego katalogu 'exception'
+		- Pochodne klas trzymać w tym samym pliku, co klasa główna
+	JM: przeniosłem katalog Exception do src, bo to też jest kod źródłowy
+
+29.11.2013
+>>> Do ogarnięcia wg Zalewskiego
+	- Rodzina zbiorów rozłącznych
+	
+26.11.2013
+>>> Nowy przydział zadań - Update założeń - Nowe klasy
+	- Error/Exception (MS)
+		- Ogarnięcie klasy Exception z C++
+		- Zapisanie w jakimś pliku informacji o tym oraz jak to można podpiąć pod metody innych klas. W szczególności jakie dziedziczenia by nas interesowały oraz jakby to mogło współpracować z interfejsem WxWidgets.
+
+25.11.2013
+>>>	Przydział zadań
+	- Jako że zespół powiększył nam się ilościowo, oznacza to teoretycznie mniejszy nakład pracy na osobę, ale także ponowny podział zadań, biorąc pod uwagę nasze dotychczasowe dokonania.
+>>> Analiza klas
+	- Email
+		- Czy naprawdę potrzebujemy pola 'references' ? Czy to nie za dużo zagłębień? Tak jest w standardzie eml, ale pytanie czy jest to konieczne.
+	- Database
+		- Jak usuwamy email, jeżeli nie mamy jego ID? W sensie, czym różnią się metody 'deleteEmail' różniące się argumentami?
+		- Pomysł z tworzeniem nowej listy przy wywołaniu select jest niezły. Przypominałoby to selecta z sql'a. Mielibyśmy taką mini-bazkę maili i można by z nią kombinować.
+	- Group
+		- Michał z Jakubem proponują klasę 'Member', myślę że nie powinnyśmy powielać userów z bazy do osobnej klasy. Dla danej grupy można po prostu trzymać ID wszystkich userów i tyle. Wszelkie operacje wypisywania, dodawania itp. będą bazowały na ID i odnosiły się do pól bazy, taka jest moja koncepcja.
+	- Error
+		- Jak zasugerowali MŻ i JM, klasa error'ów nie byłaby takim złym pomysłem. Taka idea była chyba przedstawiona u spider-man'a.  (PK)
+>>> Interfejs graficzny (zmiana założeń)
+	- Jelon zaprezentował mi fajny interfejsik w Code::Blocksie - WxWidgets. Nie jest to pewnie jedyna jego implementacja, ale wygląda to fajnie (drag 'n drop, dodawanie eventów), działa płynnie i od razu mielibyśmy background pod rysowanie drzewa. Wrzucę do repo jakiś przykładowy kod, żebyśmy mogli się rozeznać i zdecydować, bo Krzychu siedzi i nic nie może robić biedny :D
+
+21.11.2013
+>>> Struktura programu - pliki/klasy (przydział zadań)
+	- main <PK>
+	- interface <KL>
+	- baza	}
+	- grupa	} <PŁ> & <MG>
+	- i/o	}
+	- email	} <MŻ> & <JM>
+	- drzewo <PK>
+
+	?	Piszemy szkielet pliku/klasy:
+		- komentarz do pliku (o co kaman)
+		- struktura klasy (ewentualnie jako szablon)
+		- pola
+		- metody
+		- operatory (jeśli wydają się sensowne)
+
+	?	Wybieramy swoje user stories z pliku 'sprinty.txt'
+	?	Jeśli się częściowo pokrywają lub można je scalić w jeden to to robimy, ale bez przesady
+	?	Zapisujemy w pliku 'specyfikacja.txt'
+		- numer sprintu/ów
+		- kto się tym zajmuje
+		- jakiś krótki tytuł sprintu (czego dotyczy)*
+		- specyfikacja
+	?	Oczywiście ten plik jest także dla laboranta, więc piszemy normalnym językiem, a nie "Tu trzeba opierdolić jakiegoś inta." :P
+	
+	*	Dlaczego nie edytować pliku 'sprinty.txt'? Chyba nie potrzebujemy takich długich opisów poszczególnych punktów, szczególnie ze zdaniami w stylu "Jako użytkownik...." :P Lepiej mieć to w innym miejscu, tak sądzę (PK).
