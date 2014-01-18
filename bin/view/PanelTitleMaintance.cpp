@@ -447,7 +447,7 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
             bool isPassword = true;
             wxString password = _("");
 
-            if ( isPassword)  /* Zamienić na sprawdzenie czy plik ma hasło*/
+            if ( isPassword)  /* TODO Zamienić na sprawdzenie czy plik ma hasło*/
             {
                 do
                 {

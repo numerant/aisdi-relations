@@ -2047,7 +2047,7 @@
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL2" variable="PanelInbox" member="yes">
-				<pos>1366,0</pos>
+				<pos>0,0</pos>
 				<size>1366,750</size>
 				<style>wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxVSCROLL|wxHSCROLL</style>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP1" variable="I_BitmapBackground" member="yes">
@@ -2525,6 +2525,278 @@
 					<fg>wxSYS_COLOUR_HIGHLIGHT</fg>
 					<style>wxTE_PROCESS_ENTER</style>
 					<handler function="OnI_SearchCtrlTextEnter" entry="EVT_TEXT_ENTER" />
+				</object>
+				<object class="wxPanel" name="ID_PANEL16" variable="I_PanelAdvSearch" member="yes">
+					<pos>670,113</pos>
+					<size>300,420</size>
+					<bg>#303030</bg>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE</style>
+					<object class="wxStaticBox" name="ID_STATICBOX12" variable="I_Adv_Border" member="yes">
+						<pos>0,-10</pos>
+						<size>300,430</size>
+						<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT138" variable="I_Adv_Title" member="yes">
+						<label>Wyszukiwanie zaawasowane</label>
+						<pos>42,10</pos>
+						<fg>#F0F0F0</fg>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT139" variable="I_Adv_LabelSubject" member="yes">
+						<label>Temat:</label>
+						<pos>10,40</pos>
+						<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT140" variable="I_Adv_LabelName" member="yes">
+						<label>Nazwa:</label>
+						<pos>10,75</pos>
+						<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT141" variable="I_Adv_LabelEmail" member="yes">
+						<label>Email:</label>
+						<pos>10,110</pos>
+						<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT142" variable="I_Adv_LabelContent" member="yes">
+						<label>Treść:</label>
+						<pos>10,145</pos>
+						<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT143" variable="I_Adv_LabelDay" member="yes">
+						<label>Dzień</label>
+						<pos>32,185</pos>
+						<fg>#E1E1E1</fg>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT144" variable="I_Adv_LabelMonth" member="yes">
+						<label>Miesiąc</label>
+						<pos>103,185</pos>
+						<fg>#E1E1E1</fg>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT145" variable="I_Adv_LabelYear" member="yes">
+						<label>Rok</label>
+						<pos>205,185</pos>
+						<fg>#E1E1E1</fg>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT146" variable="I_Adv_LabelDayTo" member="yes">
+						<label>Dzień</label>
+						<pos>32,280</pos>
+						<enabled>0</enabled>
+						<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT147" variable="I_Adv_LabelMonthTo" member="yes">
+						<label>Miesiąc</label>
+						<pos>103,280</pos>
+						<enabled>0</enabled>
+						<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT148" variable="I_Adv_LabelYearTo" member="yes">
+						<label>Rok</label>
+						<pos>205,280</pos>
+						<enabled>0</enabled>
+						<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					</object>
+					<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="I_Adv_TextCtrlSubject" member="yes">
+						<pos>80,37</pos>
+						<size>200,25</size>
+						<bg>#E6E6E6</bg>
+						<style>wxTE_NO_VSCROLL|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE</style>
+					</object>
+					<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="I_Adv_TextCtrlName" member="yes">
+						<pos>80,72</pos>
+						<size>200,25</size>
+						<bg>#E6E6E6</bg>
+						<style>wxTE_NO_VSCROLL|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE</style>
+					</object>
+					<object class="wxTextCtrl" name="ID_TEXTCTRL3" variable="I_Adv_TextCtrlEmail" member="yes">
+						<pos>80,107</pos>
+						<size>200,25</size>
+						<bg>#E6E6E6</bg>
+						<style>wxTE_NO_VSCROLL|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE</style>
+					</object>
+					<object class="wxTextCtrl" name="ID_TEXTCTRL4" variable="I_Adv_TextCtrlContent" member="yes">
+						<pos>80,142</pos>
+						<size>200,25</size>
+						<bg>#E6E6E6</bg>
+						<style>wxTE_NO_VSCROLL|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE</style>
+					</object>
+					<object class="wxChoice" name="ID_CHOICE1" variable="I_Adv_ChoiceDay" member="yes">
+						<content>
+							<item>01</item>
+							<item>02</item>
+							<item>03</item>
+							<item>04</item>
+							<item>05</item>
+							<item>06</item>
+							<item>07</item>
+							<item>08</item>
+							<item>09</item>
+							<item>10</item>
+							<item>11</item>
+							<item>12</item>
+							<item>13</item>
+							<item>14</item>
+							<item>15</item>
+							<item>16</item>
+							<item>17</item>
+							<item>18</item>
+							<item>19</item>
+							<item>20</item>
+							<item>21</item>
+							<item>22</item>
+							<item>23</item>
+							<item>24</item>
+							<item>25</item>
+							<item>26</item>
+							<item>27</item>
+							<item>28</item>
+							<item>29</item>
+							<item>30</item>
+							<item>31</item>
+						</content>
+						<pos>25,210</pos>
+						<size>60,30</size>
+						<fg>wxSYS_COLOUR_MENUTEXT</fg>
+						<bg>#E6E6E6</bg>
+						<style>wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE</style>
+					</object>
+					<object class="wxChoice" name="ID_CHOICE2" variable="I_Adv_ChoiceMonth" member="yes">
+						<content>
+							<item>Jan</item>
+							<item>Feb</item>
+							<item>Mar</item>
+							<item>Apr</item>
+							<item>May</item>
+							<item>Jun</item>
+							<item>Jul</item>
+							<item>Aug</item>
+							<item>Sep</item>
+							<item>Oct</item>
+							<item>Nov</item>
+							<item>Dec</item>
+						</content>
+						<pos>100,210</pos>
+						<size>60,30</size>
+						<fg>wxSYS_COLOUR_MENUTEXT</fg>
+						<bg>#E6E6E6</bg>
+						<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE</style>
+					</object>
+					<object class="wxChoice" name="ID_CHOICE3" variable="I_Adv_ChoiceYear" member="yes">
+						<content>
+							<item>2011</item>
+							<item>2012</item>
+							<item>2013</item>
+							<item>2014</item>
+						</content>
+						<pos>180,210</pos>
+						<size>90,30</size>
+						<fg>wxSYS_COLOUR_MENUTEXT</fg>
+						<bg>#E6E6E6</bg>
+						<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE</style>
+					</object>
+					<object class="wxChoice" name="ID_CHOICE4" variable="I_Adv_ChoiceDayTo" member="yes">
+						<content>
+							<item>01</item>
+							<item>02</item>
+							<item>03</item>
+							<item>04</item>
+							<item>05</item>
+							<item>06</item>
+							<item>07</item>
+							<item>08</item>
+							<item>09</item>
+							<item>10</item>
+							<item>11</item>
+							<item>12</item>
+							<item>13</item>
+							<item>14</item>
+							<item>15</item>
+							<item>16</item>
+							<item>17</item>
+							<item>18</item>
+							<item>19</item>
+							<item>20</item>
+							<item>21</item>
+							<item>22</item>
+							<item>23</item>
+							<item>24</item>
+							<item>25</item>
+							<item>26</item>
+							<item>27</item>
+							<item>28</item>
+							<item>29</item>
+							<item>30</item>
+							<item>31</item>
+						</content>
+						<pos>25,305</pos>
+						<size>60,30</size>
+						<enabled>0</enabled>
+						<fg>wxSYS_COLOUR_MENUTEXT</fg>
+						<bg>#E6E6E6</bg>
+						<style>wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE</style>
+					</object>
+					<object class="wxChoice" name="ID_CHOICE5" variable="I_Adv_ChoiceMonthTo" member="yes">
+						<content>
+							<item>Jan</item>
+							<item>Feb</item>
+							<item>Mar</item>
+							<item>Apr</item>
+							<item>May</item>
+							<item>Jun</item>
+							<item>Jul</item>
+							<item>Aug</item>
+							<item>Sep</item>
+							<item>Oct</item>
+							<item>Nov</item>
+							<item>Dec</item>
+						</content>
+						<pos>100,305</pos>
+						<size>60,30</size>
+						<enabled>0</enabled>
+						<fg>wxSYS_COLOUR_MENUTEXT</fg>
+						<bg>#E6E6E6</bg>
+						<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE</style>
+					</object>
+					<object class="wxChoice" name="ID_CHOICE6" variable="I_Adv_ChoiceYearTo" member="yes">
+						<content>
+							<item>2011</item>
+							<item>2012</item>
+							<item>2013</item>
+							<item>2014</item>
+						</content>
+						<pos>180,305</pos>
+						<size>90,30</size>
+						<enabled>0</enabled>
+						<fg>wxSYS_COLOUR_MENUTEXT</fg>
+						<bg>#E6E6E6</bg>
+						<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE</style>
+					</object>
+					<object class="wxRadioBox" name="ID_RADIOBOX1" variable="I_Adv_RadioBoxType" member="yes">
+						<label>                        Typ</label>
+						<content>
+							<item>Wszystkie</item>
+							<item>RE</item>
+							<item>FWD</item>
+						</content>
+						<default>-1</default>
+						<pos>35,360</pos>
+						<size>250,50</size>
+						<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+						<bg>wxSYS_COLOUR_BTNSHADOW</bg>
+						<font>
+							<size>12</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+						<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE</style>
+					</object>
+					<object class="wxCheckBox" name="ID_CHECKBOX4" variable="I_Adv_CheckBoxDate" member="yes">
+						<label>Wyszukiwanie &apos;Od Do&apos;</label>
+						<pos>50,245</pos>
+						<fg>wxSYS_COLOUR_SCROLLBAR</fg>
+						<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
+						<handler function="OnI_Adv_CheckBoxDateClick" entry="EVT_CHECKBOX" />
+					</object>
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL11" variable="PanelNotify" member="yes">

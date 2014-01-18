@@ -53,4 +53,5 @@ public:
     void EventButtonShowTreeClick (AisdiRelationsFrame * Frame);
     void EventSearchCtrlTextEnter (AisdiRelationsFrame * Frame);
     void EventListInboxColumnClick (AisdiRelationsFrame * Frame);
+    void EventCheckBoxDate (AisdiRelationsFrame * Frame, bool value);
 };

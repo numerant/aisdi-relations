@@ -238,7 +238,7 @@ void IOInterface::xorStream(stringstream &inputStream, stringstream &outputStrea
 Database* IOInterface::importDatabase(string filePath, DbParameters *parameters)
 {
     using namespace boost::iostreams;
-    delete database;                                        // potrzebny prompt!
+    delete database;                                    
 
     //temporary
     //parameters->isPasswordProtected = true;

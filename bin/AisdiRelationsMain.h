@@ -42,6 +42,9 @@ class PanelNotifyMaintance;
 #include <wx/statline.h>
 #include <wx/frame.h>
 #include <wx/stattext.h>
+#include <wx/textctrl.h>
+#include <wx/choice.h>
+#include <wx/radiobox.h>
 #include <wx/timer.h>
 #include <wx/statbmp.h>
 #include <wx/html/htmlwin.h>
@@ -165,6 +168,7 @@ private:
     void OnU_PanelStatsSetFocus(wxFocusEvent& event);
     void OnMenuItemEncryptionSelected(wxCommandEvent& event);
     void OnSet_CheckBoxDatabaseEncryptionClick(wxCommandEvent& event);
+    void OnI_Adv_CheckBoxDateClick(wxCommandEvent& event);
     //*)
 
     //(*Identifiers(AisdiRelationsFrame)
@@ -401,6 +405,31 @@ private:
     static const long ID_IMAGEBUTTON38;
     static const long ID_IMAGEBUTTON19;
     static const long ID_SEARCHCTRL1;
+    static const long ID_STATICBOX12;
+    static const long ID_STATICTEXT138;
+    static const long ID_STATICTEXT139;
+    static const long ID_STATICTEXT140;
+    static const long ID_STATICTEXT141;
+    static const long ID_STATICTEXT142;
+    static const long ID_STATICTEXT143;
+    static const long ID_STATICTEXT144;
+    static const long ID_STATICTEXT145;
+    static const long ID_STATICTEXT146;
+    static const long ID_STATICTEXT147;
+    static const long ID_STATICTEXT148;
+    static const long ID_TEXTCTRL1;
+    static const long ID_TEXTCTRL2;
+    static const long ID_TEXTCTRL3;
+    static const long ID_TEXTCTRL4;
+    static const long ID_CHOICE1;
+    static const long ID_CHOICE2;
+    static const long ID_CHOICE3;
+    static const long ID_CHOICE4;
+    static const long ID_CHOICE5;
+    static const long ID_CHOICE6;
+    static const long ID_RADIOBOX1;
+    static const long ID_CHECKBOX4;
+    static const long ID_PANEL16;
     static const long ID_PANEL2;
     static const long ID_STATICBOX6;
     static const long ID_STATICTEXT78;
@@ -477,6 +506,9 @@ private:
     wxStaticText* U_StaticTextSent;
     wxHyperlinkCtrl* S_HyperLinkT_SendersPos2;
     wxStaticText* S_LabelGroups;
+    wxRadioBox* I_Adv_RadioBoxType;
+    wxTextCtrl* I_Adv_TextCtrlContent;
+    wxTextCtrl* I_Adv_TextCtrlName;
     wxBitmapButton        *T_ImageButtonImport;
     wxStaticText* S_StaticTextC_Value10;
     wxFileDialog* FileDialog;
@@ -486,6 +518,7 @@ private:
     wxBitmapButton        *U_ImageButtonTitle;
     wxStaticText* S_StaticTextC_Value5;
     wxStaticText* I_LabelMulTree;
+    wxStaticText* I_Adv_LabelContent;
     wxStaticText* U_LabelSubject;
     wxPanel* U_PanelStats;
     wxStaticText* T_LabelSettings;
@@ -526,15 +559,18 @@ private:
     wxPanel* PanelGroups;
     wxStaticText* U_LabelGroup;
     wxBitmapButton        *T_ImageButtonGroups;
+    wxStaticText* I_Adv_LabelSubject;
     wxStaticBitmap* BitmapBackgroundStatistics;
     wxStaticLine* T_StaticLineAddV;
     wxStaticText* S_StaticTextT_ReceiversPos3;
     wxMenu* MenuItem4;
     wxStaticText* U_LabelDelete;
+    wxChoice* I_Adv_ChoiceMonth;
     wxStaticText* T_LabelTxt;
     wxStaticLine* U_LineContentSeparator;
     wxStaticLine* S_LineT_1;
     wxStaticText* S_StaticTextC_Replies;
+    wxStaticText* I_Adv_LabelDayTo;
     wxBitmapButton        *T_ImageButtonMulTree;
     wxStaticText* S_StaticTextC_MaxEmailsInMonth;
     wxMenuItem* MenuItemNew;
@@ -542,12 +578,15 @@ private:
     wxMenuItem* MenuItemRecursive;
     wxStaticText* I_LabelAdd;
     wxStaticText* S_StaticTextT_SendersPos3;
+    wxStaticText* I_Adv_LabelMonth;
     wxStaticText* T_LabelImport;
     wxStaticText* U_StaticTextGroup;
     wxBitmapButton        *T_ImageButtonLoad;
+    wxStaticText* I_Adv_LabelDay;
     wxStaticText* T_StaticTextTitle1;
     wxStaticText* S_StaticTextC_Value3;
     wxDirDialog* DirDialog;
+    wxStaticText* I_Adv_LabelName;
     wxBitmapButton        *I_ImageButtonUsembers;
     wxBitmapButton        *S_ImageButtonInbox;
     wxStaticText* N_StaticTextOption1;
@@ -567,6 +606,7 @@ private:
     wxStaticText* S_StaticTextT_TitleSenders;
     wxPanel* PanelAdd;
     wxStaticText* U_LabelTitle;
+    wxStaticText* I_Adv_Title;
     wxStaticText* S_StaticTextT_ReceiversPos5;
     wxStaticText* S_StaticTextC_Earliest;
     wxStaticText* U_LabelFromTo;
@@ -588,6 +628,7 @@ private:
     wxFileDialog* FileDialogDatabaseExport;
     wxStaticLine* I_LineContentSeparator;
     wxBitmapButton        *A_ImageButtonFiles;
+    wxPanel* I_PanelAdvSearch;
     wxBitmapButton        *T_ImageButtonBin;
     wxStaticText* T_LabelInbox;
     wxBitmapButton        *I_ImageButtonSearch;
@@ -597,18 +638,23 @@ private:
     wxMenuItem* MenuItemExportBin;
     wxStaticText* N_StaticTextValue3;
     wxStaticBitmap* BitmapBackgroundTitle;
+    wxStaticText* I_Adv_LabelMonthTo;
     wxStaticText* I_StaticTextSubject;
     wxStaticText* I_LabelTo;
     wxBitmapButton        *Sav_ImageButtonTxt;
     wxStaticText* T_LabelAdd;
     wxStaticText* S_StaticTextC_EmailsPerMonth;
     wxPasswordEntryDialog* PasswordEntryDialog;
+    wxCheckBox* I_Adv_CheckBoxDate;
     wxStaticText* S_StaticTextT_SendersPos4;
+    wxTextCtrl* I_Adv_TextCtrlSubject;
     wxBitmapButton        *A_ImageButtonFolder;
     wxStaticText* N_StaticTextOption2;
     wxStaticLine* S_LineC_3;
     wxStaticText* S_StaticTextC_Value8;
+    wxChoice* I_Adv_ChoiceYearTo;
     wxFileDialog* FileDialogDatabaseImport;
+    wxChoice* I_Adv_ChoiceYear;
     wxStaticText* S_StaticTextC_Value9;
     wxHyperlinkCtrl* S_HyperLinkT_ReceiverPos4;
     wxStaticBox* A_Border;
@@ -617,6 +663,7 @@ private:
     wxPanel* S_PanelTops;
     wxStaticBox* N_Border;
     wxPanel* S_PanelEmailPerMonth;
+    wxChoice* I_Adv_ChoiceDay;
     wxListCtrl* U_ListInbox;
     wxPanel* S_PanelCounters;
     wxStaticText* S_StaticTextC_Value13;
@@ -629,6 +676,7 @@ private:
     wxStaticText* S_StaticTextT_SendersPos2;
     wxPanel* PanelInbox;
     wxStaticText* I_StaticTextTo;
+    wxStaticText* I_Adv_LabelYearTo;
     wxStaticText* M_LabelTitle;
     wxStaticText* N_StaticTextOption3;
     wxStaticText* Sav_StaticTextTxt;
@@ -648,6 +696,7 @@ private:
     wxStaticText* S_StaticTextC_AverageEmailLength;
     wxHyperlinkCtrl* S_HyperLinkT_SendersPos1;
     wxSearchCtrl* I_SearchCtrl;
+    wxStaticBox* I_Adv_Border;
     wxBitmapButton        *U_ImageButtonDelete;
     wxBitmapButton        *T_ImageButtonFolder;
     wxHtmlWindow* I_HtmlEmailContent;
@@ -690,6 +739,7 @@ private:
     wxStaticText* S_StaticTextC_Value2;
     wxBitmapButton        *U_ImageButtonStats;
     wxStaticText* S_StaticTextT_ReceiversPos2;
+    wxStaticText* I_Adv_LabelEmail;
     wxStaticText* T_LabelStats;
     wxSearchCtrl* U_SearchCtrl;
     wxBitmapButton        *A_ImageButtonBin;
@@ -710,6 +760,7 @@ private:
     wxStaticBitmap* I_BitmapBackground;
     wxStaticText* S_StaticTextT_TitleReceivers;
     wxStaticText* T_LabelGroups;
+    wxChoice* I_Adv_ChoiceMonthTo;
     wxBitmapButton        *U_ImageButtonMulTree;
     wxStaticText* U_LabelAdd;
     wxMenuItem* MenuItemNTimeLong;
@@ -723,6 +774,7 @@ private:
     wxStaticText* S_StaticTextC_EmailsPerUsember;
     wxBitmapButton        *U_ImageButtonGroups;
     wxStaticText* S_StaticTextC_Latest;
+    wxChoice* I_Adv_ChoiceDayTo;
     wxHyperlinkCtrl* S_HyperLinkT_SendersPos3;
     wxHyperlinkCtrl* S_HyperLinkT_ReceiverPos2;
     wxBitmapButton        *G_ImageButtonMulTree;
@@ -734,6 +786,8 @@ private:
     wxMenuItem* MenuItemOpen;
     wxBitmapButton        *I_ImageButtonTitle;
     wxPanel* PanelMain;
+    wxTextCtrl* I_Adv_TextCtrlEmail;
+    wxStaticText* I_Adv_LabelYear;
     wxStaticBox* Set_Border;
     wxStaticText* U_LabelMulTree;
     wxBitmapButton        *I_ImageButtonReceiver;

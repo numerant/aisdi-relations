@@ -37,6 +37,7 @@ void PanelInboxMaintance::ShowPanel(AisdiRelationsFrame* Frame)
             SetSettingsEnabled();
 
         Frame->I_SearchCtrl->Hide();
+        Frame->I_PanelAdvSearch->Hide();
         if (GetSearchEnabled())
             SetSearchEnabled();
 
@@ -179,12 +180,14 @@ void PanelInboxMaintance::EventButtonSearchClick (AisdiRelationsFrame* Frame)
     if (Frame->P_Inbox->GetSearchEnabled())
     {
         Frame->I_SearchCtrl->Hide();
+        Frame->I_PanelAdvSearch->Hide();
         Frame->I_ImageButtonSearch->SetBitmapLabel(path+imagePaths[2]+format);
     }
     else
     {
         Frame->I_ImageButtonSearch->SetBitmapLabel(path+imagePaths[2]+formatNeg);
         Frame->I_SearchCtrl->Show();
+        Frame->I_PanelAdvSearch->Show();
         Frame->I_SearchCtrl->SetFocus();
         if (GetAddEnabled())
         {
@@ -272,6 +275,7 @@ void PanelInboxMaintance::EventButtonAddClick (AisdiRelationsFrame * Frame)
         {
             Frame->I_ImageButtonSearch->SetBitmapLabel(path+imagePaths[2]+format);
             Frame->I_SearchCtrl->Hide();     //...oraz pole Search
+            Frame->I_PanelAdvSearch->Hide();
             SetSearchEnabled();
         }
     }
@@ -305,6 +309,7 @@ void PanelInboxMaintance::EventButtonSaveClick (AisdiRelationsFrame * Frame)
         {
             Frame->I_ImageButtonSearch->SetBitmapLabel(path+imagePaths[2]+format);
             Frame->I_SearchCtrl->Hide();     //...oraz pole Search
+            Frame->I_PanelAdvSearch->Hide();
             SetSearchEnabled();
         }
     }
@@ -339,6 +344,7 @@ void PanelInboxMaintance::EventButtonSettingsClick (AisdiRelationsFrame * Frame)
         {
             Frame->I_ImageButtonSearch->SetBitmapLabel(path+imagePaths[2]+format);
             Frame->I_SearchCtrl->Hide();     //...oraz pole Search
+            Frame->I_PanelAdvSearch->Hide();
             SetSearchEnabled();
         }
     }
@@ -378,4 +384,26 @@ void PanelInboxMaintance::EventSearchCtrlTextEnter (AisdiRelationsFrame * Frame)
 void PanelInboxMaintance::EventListInboxColumnClick (AisdiRelationsFrame * Frame)
 {
 
+}
+
+void PanelInboxMaintance::EventCheckBoxDate (AisdiRelationsFrame * Frame, bool value)
+{
+    if (value)
+    {
+        Frame->I_Adv_ChoiceDayTo->Enable();
+        Frame->I_Adv_ChoiceMonthTo->Enable();
+        Frame->I_Adv_ChoiceYearTo->Enable();
+        Frame->I_Adv_LabelDayTo->Enable();
+        Frame->I_Adv_LabelMonthTo->Enable();
+        Frame->I_Adv_LabelYearTo->Enable();
+    }
+    else
+    {
+        Frame->I_Adv_ChoiceDayTo->Disable();
+        Frame->I_Adv_ChoiceMonthTo->Disable();
+        Frame->I_Adv_ChoiceYearTo->Disable();
+        Frame->I_Adv_LabelDayTo->Disable();
+        Frame->I_Adv_LabelMonthTo->Disable();
+        Frame->I_Adv_LabelYearTo->Disable();
+    }
 }
