@@ -40,6 +40,7 @@ public:
     void setDay(int newDay);
     string getMonth();
     void setMonth(string );
+    int getMonthInt();
     int getYear();
     void setYear(int );
     int getHour();
