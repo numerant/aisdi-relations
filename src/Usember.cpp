@@ -90,7 +90,7 @@ unsigned int Usember::getEmailsReceivedInMonth (int month)
 {
     unsigned int counter = 0;
 
-    for(int i = 0; i < receivedMails.size(); i++ )
+    for(unsigned int i = 0; i < receivedMails.size(); i++ )
     {
         if (receivedMails[i]->getDate().monthToInt(receivedMails[i]->getDate().getMonth()) == month)
             counter++;
@@ -103,7 +103,7 @@ unsigned int Usember::getEmailsSentInMonth (int month)
 {
     unsigned int counter = 0;
 
-    for(int i = 0; i < sentMails.size(); i++ )
+    for(unsigned int i = 0; i < sentMails.size(); i++ )
     {
         if (sentMails[i]->getDate().monthToInt(sentMails[i]->getDate().getMonth()) == month)
             counter++;

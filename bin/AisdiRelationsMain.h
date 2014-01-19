@@ -172,6 +172,9 @@ private:
     void OnI_Adv_ImageButtonSearchClick(wxCommandEvent& event);
     void OnI_ImageButtonRestoreClick(wxCommandEvent& event);
     void OnI_PanelAdvSearchKeyDown(wxKeyEvent& event);
+    void OnG_ImageButtonSettingsClick(wxCommandEvent& event);
+    void OnS_ImageButtonSettingsClick(wxCommandEvent& event);
+    void OnM_ImageButtonSettingsClick(wxCommandEvent& event);
     //*)
 
     //(*Identifiers(AisdiRelationsFrame)
@@ -214,10 +217,12 @@ private:
     static const long ID_PANEL3;
     static const long ID_STATICBITMAP6;
     static const long ID_STATICTEXT63;
+    static const long ID_STATICTEXT153;
     static const long ID_STATICTEXT69;
     static const long ID_STATICTEXT68;
     static const long ID_STATICTEXT67;
     static const long ID_STATICTEXT66;
+    static const long ID_IMAGEBUTTON66;
     static const long ID_IMAGEBUTTON46;
     static const long ID_IMAGEBUTTON45;
     static const long ID_IMAGEBUTTON44;
@@ -229,6 +234,7 @@ private:
     static const long ID_STATICTEXT76;
     static const long ID_STATICTEXT75;
     static const long ID_STATICTEXT74;
+    static const long ID_STATICTEXT152;
     static const long ID_STATICTEXT133;
     static const long ID_STATICTEXT124;
     static const long ID_STATICTEXT65;
@@ -236,6 +242,7 @@ private:
     static const long ID_IMAGEBUTTON53;
     static const long ID_IMAGEBUTTON52;
     static const long ID_IMAGEBUTTON51;
+    static const long ID_IMAGEBUTTON67;
     static const long ID_IMAGEBUTTON62;
     static const long ID_IMAGEBUTTON55;
     static const long ID_IMAGEBUTTON42;
@@ -301,11 +308,13 @@ private:
     static const long ID_PANEL14;
     static const long ID_PANEL5;
     static const long ID_STATICBITMAP5;
+    static const long ID_STATICTEXT151;
     static const long ID_STATICTEXT73;
     static const long ID_STATICTEXT72;
     static const long ID_STATICTEXT71;
     static const long ID_STATICTEXT70;
     static const long ID_STATICTEXT64;
+    static const long ID_IMAGEBUTTON65;
     static const long ID_IMAGEBUTTON50;
     static const long ID_IMAGEBUTTON49;
     static const long ID_IMAGEBUTTON48;
@@ -536,6 +545,7 @@ private:
     wxBitmapButton        *U_ImageButtonSwitchContent;
     wxBitmapButton        *S_ImageButtonRefresh;
     wxStaticText* S_StaticTextC_Forwards;
+    wxStaticText* S_LabelSettings;
     wxStaticText* T_LabelSwitch;
     wxStaticText* S_StaticTextC_Groups;
     wxStaticText* G_LabelStats;
@@ -616,6 +626,7 @@ private:
     wxBitmapButton        *M_ImageButtonUsembers;
     wxStaticText* S_StaticTextT_TitleSenders;
     wxPanel* PanelAdd;
+    wxBitmapButton        *G_ImageButtonSettings;
     wxStaticText* U_LabelTitle;
     wxStaticText* I_Adv_Title;
     wxStaticText* S_StaticTextT_ReceiversPos5;
@@ -773,6 +784,7 @@ private:
     wxStaticText* T_LabelGroups;
     wxChoice* I_Adv_ChoiceMonthTo;
     wxBitmapButton        *U_ImageButtonMulTree;
+    wxStaticText* G_LabelSettings;
     wxStaticText* U_LabelAdd;
     wxMenuItem* MenuItemNTimeLong;
     wxStaticText* U_LabelGroups;
@@ -780,6 +792,7 @@ private:
     wxListCtrl* I_ListInbox;
     wxStaticText* M_LabelInbox;
     wxStaticBox* Sav_Border;
+    wxBitmapButton        *S_ImageButtonSettings;
     wxCheckBox* Set_CheckBoxDeleteConfirm;
     wxBitmapButton        *Sav_ImageButtonBin;
     wxStaticText* S_StaticTextC_EmailsPerUsember;
@@ -794,6 +807,7 @@ private:
     wxStaticText* S_StaticTextC_Value4;
     wxStaticText* T_LabelLoad;
     wxPanel* U_PanelEmail;
+    wxStaticText* M_LabelSettings;
     wxMenuItem* MenuItemOpen;
     wxBitmapButton        *I_ImageButtonTitle;
     wxPanel* PanelMain;
@@ -804,6 +818,7 @@ private:
     wxBitmapButton        *I_ImageButtonReceiver;
     wxStaticText* I_LabelSearch;
     wxBitmapButton        *I_ImageButtonAdd;
+    wxBitmapButton        *M_ImageButtonSettings;
     wxStaticText* G_LabelMulTree;
     wxStaticText* S_StaticTextC_Value1;
     wxBitmapButton        *G_ImageButtonStats;

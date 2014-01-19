@@ -25,6 +25,12 @@ void PanelStatisticsMaintance::ShowPanel(AisdiRelationsFrame* Frame)
             Frame->P_Stats->SetIsUpdated();
         }
 
+        Frame->PanelSettings->Hide();
+        if (GetSettingsEnabled())
+            SetSettingsEnabled();
+
+        Frame->S_ImageButtonSettings->SetBitmapLabel(path+imagePaths[7]+format);
+
         Frame->PanelStatistics->Show();
     }
 }
@@ -41,11 +47,17 @@ void PanelStatisticsMaintance::SetIcons(AisdiRelationsFrame * Frame)
     Frame->S_ImageButtonMulTree->SetBitmapLabel(path+imagePaths[4]+format);
     Frame->S_ImageButtonRefresh->SetBitmapLabel(path+imagePaths[5]+format);
     Frame->S_ImageButtonSaveStats->SetBitmapLabel(path+imagePaths[6]+format);
+    Frame->S_ImageButtonSettings->SetBitmapLabel(path+imagePaths[7]+format);
 }
 
 void PanelStatisticsMaintance::SetIsUpdated()
 {
     isUpdated = !isUpdated;
+}
+
+void PanelStatisticsMaintance::SetSettingsEnabled()
+{
+    settingsEnabled = !settingsEnabled;
 }
 
 bool PanelStatisticsMaintance::GetPanelEnabled ()
@@ -56,6 +68,11 @@ bool PanelStatisticsMaintance::GetPanelEnabled ()
 bool PanelStatisticsMaintance::GetIsUpdated ()
 {
     return isUpdated;
+}
+
+bool PanelStatisticsMaintance::GetSettingsEnabled()
+{
+    return settingsEnabled;
 }
 
 void PanelStatisticsMaintance::EventPanelEmailPerMonthPaint (AisdiRelationsFrame * Frame)
@@ -290,14 +307,35 @@ void PanelStatisticsMaintance::EventHyperLinkClick(AisdiRelationsFrame * Frame, 
 
 void PanelStatisticsMaintance::EventButtonRefreshClick (AisdiRelationsFrame * Frame)
 {
-    Frame->statistics->update();
-    Frame->P_Stats->EventPanelEmailPerMonthPaint(Frame);
-    Frame->P_Stats->EventPanelCountersPaint(Frame);
-    Frame->P_Stats->EventPanelTopsPaint(Frame);
+    if (GetSettingsEnabled())
+    {
+        Frame->S_ImageButtonSettings->SetBitmapLabel(path+imagePaths[7]+format);
+        Frame->PanelSettings->Hide();
+        SetSettingsEnabled();
+    }
+    
+    if (Frame->database->countEmails() == 0)
+    {
+        wxMessageBox(_("Baza danych jest pusta."));
+    }
+    else
+    {
+        Frame->statistics->update();
+        Frame->P_Stats->EventPanelEmailPerMonthPaint(Frame);
+        Frame->P_Stats->EventPanelCountersPaint(Frame);
+        Frame->P_Stats->EventPanelTopsPaint(Frame);
+    }
 }
 
 void PanelStatisticsMaintance::EventButtonSaveStatsClick (AisdiRelationsFrame * Frame)
 {
+    if (GetSettingsEnabled())
+    {
+        Frame->S_ImageButtonSettings->SetBitmapLabel(path+imagePaths[7]+format);
+        Frame->PanelSettings->Hide();
+        SetSettingsEnabled();
+    }
+
     if (Frame->statistics->getEmails() == 0)
         wxMessageBox(_("Statystyki są puste."));
     else if (Frame->FileDialogStatisticsExport->ShowModal() == wxID_OK)      //uruchomienie panelu wybierania folderu
@@ -324,5 +362,21 @@ void PanelStatisticsMaintance::EventButtonSaveStatsClick (AisdiRelationsFrame * 
             Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
         }
     }
+}
+
+void PanelStatisticsMaintance::EventButtonSettingsClick (AisdiRelationsFrame * Frame)
+{
+    if (GetSettingsEnabled())
+    {
+        Frame->PanelSettings->Hide();
+        Frame->S_ImageButtonSettings->SetBitmapLabel(path+imagePaths[7]+format);
+    }
+    else
+    {
+        Frame->S_ImageButtonSettings->SetBitmapLabel(path+imagePaths[7]+formatNeg);
+        Frame->PanelSettings->SetPosition(wxPoint(280,100));
+        Frame->PanelSettings->Show();
+    }
+    SetSettingsEnabled();
 }
 

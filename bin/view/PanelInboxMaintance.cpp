@@ -150,7 +150,7 @@ void PanelInboxMaintance::SetEmails (AisdiRelationsFrame* Frame)
 
 void PanelInboxMaintance::SetAdvSearchDate (AisdiRelationsFrame* Frame)
 {
-    for (int i = 0; i < Frame->I_Adv_ChoiceYear->GetCount(); i++)
+    for (unsigned int i = 0; i < Frame->I_Adv_ChoiceYear->GetCount(); i++)
     {
         Frame->I_Adv_ChoiceYear->Delete(i);
         Frame->I_Adv_ChoiceYearTo->Delete(i);

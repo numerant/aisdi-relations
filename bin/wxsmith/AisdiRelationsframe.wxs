@@ -442,6 +442,19 @@
 					</font>
 					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
 				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT153" variable="M_LabelSettings" member="yes">
+					<label>Ustawienia</label>
+					<pos>94,70</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT69" variable="M_LabelInbox" member="yes">
 					<label>Skrzynka&#x0A;emaili</label>
 					<pos>910,70</pos>
@@ -493,6 +506,17 @@
 						<face>Ubuntu</face>
 					</font>
 					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON66" variable="M_ImageButtonSettings" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>100,10</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnM_ImageButtonSettingsClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON46" variable="M_ImageButtonInbox" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -609,6 +633,19 @@
 					</font>
 					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
 				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT152" variable="S_LabelSettings" member="yes">
+					<label>Ustawienia</label>
+					<pos>274,70</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT133" variable="S_LabelSaveStats" member="yes">
 					<label>Zapisz</label>
 					<pos>198,70</pos>
@@ -691,6 +728,17 @@
 					<size>60,60</size>
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
 					<handler function="OnS_ImageButtonInboxClick" entry="EVT_BUTTON" />
+				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON67" variable="S_ImageButtonSettings" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>280,10</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnS_ImageButtonSettingsClick" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON62" variable="S_ImageButtonSaveStats" member="yes">
 					<image_list>&lt;none&gt;</image_list>
@@ -1300,6 +1348,19 @@
 					<pos>0,0</pos>
 					<size>1366,768</size>
 				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT151" variable="G_LabelSettings" member="yes">
+					<label>Ustawienia</label>
+					<pos>94,70</pos>
+					<fg>wxSYS_COLOUR_INACTIVECAPTION</fg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
+				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT73" variable="G_LabelMulTree" member="yes">
 					<label>Drzewo&#x0A;Multicastowe</label>
 					<pos>1166,70</pos>
@@ -1365,6 +1426,17 @@
 					</font>
 					<style>wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW</style>
 				</object>
+				<object class="wxImageButton" name="ID_IMAGEBUTTON65" variable="G_ImageButtonSettings" member="yes">
+					<image_list>&lt;none&gt;</image_list>
+					<label_index>&lt;none&gt;</label_index>
+					<disabled_index>&lt;none&gt;</disabled_index>
+					<selected_index>&lt;none&gt;</selected_index>
+					<focus_index>&lt;none&gt;</focus_index>
+					<pos>100,10</pos>
+					<size>60,60</size>
+					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
+					<handler function="OnG_ImageButtonSettingsClick" entry="EVT_BUTTON" />
+				</object>
 				<object class="wxImageButton" name="ID_IMAGEBUTTON50" variable="G_ImageButtonMulTree" member="yes">
 					<image_list>&lt;none&gt;</image_list>
 					<label_index>&lt;none&gt;</label_index>
@@ -1422,7 +1494,7 @@
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL4" variable="PanelUsembers" member="yes">
-				<pos>0,0</pos>
+				<pos>1366,0</pos>
 				<size>1366,750</size>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP3" variable="BitmapBackgroundUsembers" member="yes">
 					<bitmap>resources/background.jpg</bitmap>
@@ -2047,7 +2119,7 @@
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL2" variable="PanelInbox" member="yes">
-				<pos>0,0</pos>
+				<pos>1366,0</pos>
 				<size>1366,750</size>
 				<style>wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxVSCROLL|wxHSCROLL</style>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP1" variable="I_BitmapBackground" member="yes">

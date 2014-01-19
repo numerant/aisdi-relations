@@ -221,7 +221,7 @@ void IOInterface::setDatabasePointer (Database * db)
 
 void IOInterface::xorStream(stringstream &inputStream, stringstream &outputStream, string key)
 {
-	int keyPosition = 0;
+	unsigned int keyPosition = 0;
 	int xorByte;
 
 	while( (xorByte = inputStream.get()) != EOF)
@@ -238,7 +238,7 @@ void IOInterface::xorStream(stringstream &inputStream, stringstream &outputStrea
 Database* IOInterface::importDatabase(string filePath, DbParameters *parameters)
 {
     using namespace boost::iostreams;
-    delete database;                                    
+    delete database;
 
     //temporary
     //parameters->isPasswordProtected = true;
