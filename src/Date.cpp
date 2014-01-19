@@ -15,6 +15,7 @@ Date::Date(const Date &date)
     fullDate = date.fullDate;
     day = date.day;
     month = date.month;
+    monthToInt(month);
     year = date.year;
     hour = date.hour;
     minute = date.minute;
@@ -98,6 +99,11 @@ string Date::getMonth()
 void Date::setMonth(string newMonth)
 {
     month = newMonth;
+}
+
+int Date::getMonthInt()
+{
+    return monthInt;
 }
 
 int Date::getYear()
