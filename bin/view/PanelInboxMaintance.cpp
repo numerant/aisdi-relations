@@ -82,6 +82,8 @@ void PanelInboxMaintance::SetIcons(AisdiRelationsFrame* Frame)
     Frame->I_ImageButtonReceiver->SetBitmapLabel(path+imagePaths[10]+format);
     Frame->I_ImageButtonShowTree->SetBitmapLabel(path+imagePaths[11]+format);
     Frame->I_ImageButtonTitle->SetBitmapLabel(path+imagePaths[12]+format);
+    Frame->I_Adv_ImageButtonSearch->SetBitmapLabel(path+imagePaths[13]+format);
+    Frame->I_ImageButtonRestore->SetBitmapLabel(path+imagePaths[14]+format);
 }
 
 void PanelInboxMaintance::SetEmails (AisdiRelationsFrame* Frame)
@@ -133,6 +135,89 @@ void PanelInboxMaintance::SetEmails (AisdiRelationsFrame* Frame)
             Frame->I_ListInbox->SetItem(i,3,wxto);
         }
     }
+    else
+    {
+        if (customSearch)
+        {
+            //TODO Wyświetl 'brak wyników wyszukiwania'
+        }
+        else
+        {
+            //TODO Wyświetl 'brak emaili'
+        }
+    }
+}
+
+void PanelInboxMaintance::SetAdvSearchDate (AisdiRelationsFrame* Frame)
+{
+    for (int i = 0; i < Frame->I_Adv_ChoiceYear->GetCount(); i++)
+    {
+        Frame->I_Adv_ChoiceYear->Delete(i);
+        Frame->I_Adv_ChoiceYearTo->Delete(i);
+    }
+
+    Date* dateL = Frame->statistics->getLatest();
+    Date* dateE = Frame->statistics->getEarliest();
+    ostringstream ss;
+
+    wxString empty = _("");
+    Frame->I_Adv_ChoiceYear->Append(empty);
+    Frame->I_Adv_ChoiceYearTo->Append(empty);
+    for (int i = dateE->getYear(); i <= dateL->getYear(); i++)
+    {
+         ss << i;
+         string str = ss.str();
+         ss.str("");
+         Frame->I_Adv_ChoiceYear->Append(wxString(str.c_str(), wxConvUTF8));
+         Frame->I_Adv_ChoiceYearTo->Append(wxString(str.c_str(), wxConvUTF8));
+    }
+}
+
+void PanelInboxMaintance::Search (AisdiRelationsFrame* Frame)
+{
+    wxString s = Frame->I_SearchCtrl->GetValue();
+    string strQuery = (string) s.mb_str();
+
+    //TODO zapytanie ogólne
+}
+
+void PanelInboxMaintance::AdvancedSearch (AisdiRelationsFrame* Frame)
+{
+    //TODO Obsługa przycisku DatabaseRestore
+    wxString field;
+    string name, subject, email, content, dayFrom, monthFrom, yearFrom;
+    name = subject = email = content = dayFrom = monthFrom = yearFrom = "";
+
+    name = Frame->I_Adv_TextCtrlName->GetValue().mb_str();    //Pola tekstowe
+    email = Frame->I_Adv_TextCtrlEmail->GetValue().mb_str();
+    content = Frame->I_Adv_TextCtrlContent->GetValue().mb_str();
+    subject = Frame->I_Adv_TextCtrlSubject->GetValue().mb_str();
+
+    int pos = Frame->I_Adv_ChoiceDay->GetSelection();   //Pola wyboru daty (pierwszej, 'od')
+    if (pos != wxNOT_FOUND)
+        dayFrom = Frame->I_Adv_ChoiceDay->GetString(pos).mb_str();
+
+    pos = Frame->I_Adv_ChoiceMonth->GetSelection();
+    if (pos != wxNOT_FOUND)
+        monthFrom = Frame->I_Adv_ChoiceMonth->GetString(pos).mb_str();
+
+    pos = Frame->I_Adv_ChoiceYear->GetSelection();
+    if (pos != wxNOT_FOUND)
+        yearFrom = Frame->I_Adv_ChoiceYear->GetString(pos).mb_str();
+
+    if (name == "" && subject == "" && email == "" && content == "" && dayFrom == "" && monthFrom == "" && yearFrom == "")
+    {
+        wxMessageBox(_("Niepoprawne kryteria wyszukiwania!"));
+    }
+    else
+    {
+        Frame->I_ImageButtonRestore->Show();
+        Frame->I_LabelRestore->Show();
+        if (! GetCustomSearch())
+            SetCustomSearch();
+        wxMessageBox(_("Zapytanko!"));
+         //TODO zrobić zapytanie
+    }
 }
 
 void PanelInboxMaintance::SetSearchEnabled()
@@ -155,6 +240,11 @@ void PanelInboxMaintance::SetSettingsEnabled()
     settingsEnabled = !settingsEnabled;
 }
 
+void PanelInboxMaintance::SetCustomSearch()
+{
+    customSearch = !customSearch;
+}
+
 bool PanelInboxMaintance::GetSearchEnabled()
 {
     return searchEnabled;
@@ -175,6 +265,11 @@ bool PanelInboxMaintance::GetSettingsEnabled()
     return settingsEnabled;
 }
 
+bool PanelInboxMaintance::GetCustomSearch()
+{
+    return customSearch;
+}
+
 void PanelInboxMaintance::EventButtonSearchClick (AisdiRelationsFrame* Frame)
 {
     if (Frame->P_Inbox->GetSearchEnabled())
@@ -189,6 +284,7 @@ void PanelInboxMaintance::EventButtonSearchClick (AisdiRelationsFrame* Frame)
         Frame->I_SearchCtrl->Show();
         Frame->I_PanelAdvSearch->Show();
         Frame->I_SearchCtrl->SetFocus();
+        //TODO wyczyscic pola wyszukiwania zaawansowanego
         if (GetAddEnabled())
         {
             Frame->I_ImageButtonAdd->SetBitmapLabel(path+imagePaths[0]+format);
@@ -213,6 +309,23 @@ void PanelInboxMaintance::EventButtonSearchClick (AisdiRelationsFrame* Frame)
 
 void PanelInboxMaintance::EventListInboxItemSelect (AisdiRelationsFrame* Frame)
 {
+    Frame->PanelAdd->Hide();
+    if (GetAddEnabled())
+        SetAddEnabled();
+
+    Frame->PanelSave->Hide();
+    if (GetSaveEnabled())
+        SetSaveEnabled();
+
+    Frame->PanelSettings->Hide();
+    if (GetSettingsEnabled())
+        SetSettingsEnabled();
+
+    Frame->I_SearchCtrl->Hide();
+    Frame->I_PanelAdvSearch->Hide();
+    if (GetSearchEnabled())
+        SetSearchEnabled();
+
     long itemIndex = -1;
     itemIndex = Frame->I_ListInbox->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
 
@@ -354,9 +467,12 @@ void PanelInboxMaintance::EventButtonSettingsClick (AisdiRelationsFrame * Frame)
 void PanelInboxMaintance::EventButtonDeleteClick (AisdiRelationsFrame * Frame)
 {
     //TODO dodać prompta o potwierdzenie
+    //TODO dodać sprawdzenie czy baza ma maile
+    //TODO dodąć sprawdzenie, czy emailIdSelected != ""
     Frame->database->deleteEmail(Frame->database->getEmail(Frame->database->findEmail(emailIdSelected)));
     Frame->P_Inbox->SetEmails(Frame);
     Frame->statistics->update();
+    Frame->P_Inbox->SetAdvSearchDate(Frame);
     if (Frame->P_Stats->GetIsUpdated())
         Frame->P_Stats->SetIsUpdated();
 }
@@ -372,11 +488,6 @@ void PanelInboxMaintance::EventButtonReceiverClick (AisdiRelationsFrame * Frame)
 }
 
 void PanelInboxMaintance::EventButtonShowTreeClick (AisdiRelationsFrame * Frame)
-{
-
-}
-
-void PanelInboxMaintance::EventSearchCtrlTextEnter (AisdiRelationsFrame * Frame)
 {
 
 }
@@ -406,4 +517,39 @@ void PanelInboxMaintance::EventCheckBoxDate (AisdiRelationsFrame * Frame, bool v
         Frame->I_Adv_LabelMonthTo->Disable();
         Frame->I_Adv_LabelYearTo->Disable();
     }
+}
+
+void PanelInboxMaintance::EventImageButtonRestoreClick (AisdiRelationsFrame* Frame)
+{
+    //TODO odkomentować
+    //Frame->database->restoreDatabase();
+
+    if (GetSaveEnabled())
+    {
+        Frame->I_ImageButtonSave->SetBitmapLabel(path+imagePaths[1]+format);
+        Frame->PanelSave->Hide();
+        SetSaveEnabled();
+    }
+    if (GetSettingsEnabled())
+    {
+        Frame->I_ImageButtonSettings->SetBitmapLabel(path+imagePaths[3]+format);
+        Frame->PanelSettings->Hide();
+        SetSettingsEnabled();
+    }
+    if (GetSearchEnabled())
+    {
+        Frame->I_ImageButtonSearch->SetBitmapLabel(path+imagePaths[2]+format);
+        Frame->I_SearchCtrl->Hide();
+        Frame->I_PanelAdvSearch->Hide();
+        SetSearchEnabled();
+    }
+    if (GetAddEnabled())
+    {
+        Frame->I_ImageButtonAdd->SetBitmapLabel(path+imagePaths[0]+format);
+        Frame->PanelAdd->Hide();
+        SetAddEnabled();
+    }
+
+    Frame->I_ImageButtonRestore->Hide();
+    Frame->I_LabelRestore->Hide();
 }

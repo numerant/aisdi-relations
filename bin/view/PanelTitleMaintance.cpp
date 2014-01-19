@@ -370,6 +370,7 @@ void PanelTitleMaintance::EventButtonFolderClick (AisdiRelationsFrame* Frame)
             Frame->P_Notify->SetValues(Frame, stats.successCount, stats.failCount, stats.existingCount);
             Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
             Frame->statistics->update();
+            Frame->P_Inbox->SetAdvSearchDate(Frame);
             if (Frame->P_Stats->GetIsUpdated())
                 Frame->P_Stats->SetIsUpdated();
         }
@@ -421,6 +422,7 @@ void PanelTitleMaintance::EventButtonFilesClick (AisdiRelationsFrame* Frame)
             Frame->P_Notify->SetValues(Frame, stats.successCount, stats.failCount, stats.existingCount);
             Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
             Frame->statistics->update();
+            Frame->P_Inbox->SetAdvSearchDate(Frame);
             if (Frame->P_Stats->GetIsUpdated())
                 Frame->P_Stats->SetIsUpdated();
         }
@@ -492,6 +494,7 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
             if (GetNoData())
                 Frame->P_Title->SwitchIcons(Frame);
             Frame->statistics->update();
+            Frame->P_Inbox->SetAdvSearchDate(Frame);
             if (Frame->P_Stats->GetIsUpdated())
                 Frame->P_Stats->SetIsUpdated();
 

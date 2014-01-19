@@ -52,9 +52,9 @@ class PanelNotifyMaintance;
 
 class AisdiRelationsFrame: public wxFrame
 {
+    friend class PanelInboxMaintance;
     friend class PanelTitleMaintance;
     friend class PanelGroupsMaintance;
-    friend class PanelInboxMaintance;
     friend class PanelMulTreeMaintance;
     friend class PanelStatisticsMaintance;
     friend class PanelUsembersMaintance;
@@ -169,6 +169,9 @@ private:
     void OnMenuItemEncryptionSelected(wxCommandEvent& event);
     void OnSet_CheckBoxDatabaseEncryptionClick(wxCommandEvent& event);
     void OnI_Adv_CheckBoxDateClick(wxCommandEvent& event);
+    void OnI_Adv_ImageButtonSearchClick(wxCommandEvent& event);
+    void OnI_ImageButtonRestoreClick(wxCommandEvent& event);
+    void OnI_PanelAdvSearchKeyDown(wxKeyEvent& event);
     //*)
 
     //(*Identifiers(AisdiRelationsFrame)
@@ -370,6 +373,7 @@ private:
     static const long ID_STATICTEXT34;
     static const long ID_STATICTEXT33;
     static const long ID_STATICTEXT32;
+    static const long ID_STATICTEXT150;
     static const long ID_STATICTEXT39;
     static const long ID_STATICTEXT38;
     static const long ID_STATICTEXT37;
@@ -400,6 +404,7 @@ private:
     static const long ID_IMAGEBUTTON23;
     static const long ID_IMAGEBUTTON22;
     static const long ID_IMAGEBUTTON30;
+    static const long ID_IMAGEBUTTON64;
     static const long ID_IMAGEBUTTON21;
     static const long ID_IMAGEBUTTON20;
     static const long ID_IMAGEBUTTON38;
@@ -429,6 +434,8 @@ private:
     static const long ID_CHOICE6;
     static const long ID_RADIOBOX1;
     static const long ID_CHECKBOX4;
+    static const long ID_STATICTEXT149;
+    static const long ID_IMAGEBUTTON63;
     static const long ID_PANEL16;
     static const long ID_PANEL2;
     static const long ID_STATICBOX6;
@@ -485,6 +492,7 @@ private:
     //*)
 
     //(*Declarations(AisdiRelationsFrame)
+    wxBitmapButton        *I_Adv_ImageButtonSearch;
     wxBitmapButton        *M_ImageButtonInbox;
     wxStaticText* N_StaticTextTitle;
     wxStaticBox* S_BorderT;
@@ -522,6 +530,7 @@ private:
     wxStaticText* U_LabelSubject;
     wxPanel* U_PanelStats;
     wxStaticText* T_LabelSettings;
+    wxStaticText* I_LabelRestore;
     wxStaticText* U_LabelEmail;
     wxStaticText* S_StaticTextT_ReceiversPos1;
     wxBitmapButton        *U_ImageButtonSwitchContent;
@@ -550,6 +559,7 @@ private:
     wxBitmapButton        *I_ImageButtonMulTree;
     wxStaticText* N_StaticTextValue2;
     wxBitmapButton        *U_ImageButtonSwitchList;
+    wxBitmapButton        *I_ImageButtonRestore;
     wxBitmapButton        *M_ImageButtonGroups;
     wxPanel* PanelSettings;
     wxStaticText* T_LabelBin;
@@ -557,6 +567,7 @@ private:
     wxBitmapButton        *U_ImageButtonSearch;
     wxPanel* PanelMulTree;
     wxPanel* PanelGroups;
+    wxStaticText* I_Adv_LabelSearch;
     wxStaticText* U_LabelGroup;
     wxBitmapButton        *T_ImageButtonGroups;
     wxStaticText* I_Adv_LabelSubject;
@@ -808,9 +819,9 @@ private:
     PanelGroupsMaintance * P_Groups;
     PanelInboxMaintance * P_Inbox;
     PanelMulTreeMaintance * P_MulTree;
-    PanelStatisticsMaintance * P_Stats ;
-    PanelUsembersMaintance * P_Usembers ;
-    PanelNotifyMaintance * P_Notify ;
+    PanelStatisticsMaintance * P_Stats;
+    PanelUsembersMaintance * P_Usembers;
+    PanelNotifyMaintance * P_Notify;
     Database * database;
     IOInterface * iointerface;
     Statistics * statistics;

@@ -2,6 +2,7 @@
 #include "../AisdiRelationsMain.h"
 #include "wx/msgdlg.h"
 #include <sstream>
+#include "PanelStatisticsMaintance.h"
 
 class PanelInboxMaintance
 {
@@ -14,16 +15,17 @@ private:
     bool addEnabled = false;
     bool saveEnabled = false;
     bool settingsEnabled = false;
+    bool customSearch = false;
     string emailIdSelected = "";
 
     wxString path = (_("resources/icons/icon"));
     wxString format =  (_(".png"));
     wxString formatNeg = (_("Negative.png"));
-    const wxString imagePaths[13] =
+    const wxString imagePaths[15] =
     {
         _("Add"),  _("Floppy"),  _("Search"),  _("Settings"),  _("Usember"),  _("Workgroups"),
         _("Statistics"),  _("Tree"),  _("Remove"),  _("Sender"),  _("Receiver"),  _("ShowTree"),
-        _("Title")
+        _("Title"), _("AdvSearch"), _("RestoreDatabase")
     };                               //ścieżki plików z grafikami do przycisków panelu
 
 public:
@@ -32,15 +34,20 @@ public:
     void SetLabels(AisdiRelationsFrame* Frame);
     void SetIcons(AisdiRelationsFrame* Frame);
     void SetEmails (AisdiRelationsFrame* Frame);
+    void SetAdvSearchDate (AisdiRelationsFrame* Frame);
+    void Search (AisdiRelationsFrame* Frame);
+    void AdvancedSearch (AisdiRelationsFrame* Frame);
     void SetSearchEnabled();
     void SetAddEnabled();
     void SetSaveEnabled();
     void SetSettingsEnabled();
+    void SetCustomSearch();
 
     bool GetSearchEnabled();
     bool GetAddEnabled();
     bool GetSaveEnabled();
     bool GetSettingsEnabled();
+    bool GetCustomSearch();
 
     void EventButtonSearchClick (AisdiRelationsFrame* Frame);
     void EventListInboxItemSelect (AisdiRelationsFrame* Frame);
@@ -51,7 +58,7 @@ public:
     void EventButtonSenderClick (AisdiRelationsFrame * Frame);
     void EventButtonReceiverClick (AisdiRelationsFrame * Frame);
     void EventButtonShowTreeClick (AisdiRelationsFrame * Frame);
-    void EventSearchCtrlTextEnter (AisdiRelationsFrame * Frame);
     void EventListInboxColumnClick (AisdiRelationsFrame * Frame);
     void EventCheckBoxDate (AisdiRelationsFrame * Frame, bool value);
+    void EventImageButtonRestoreClick (AisdiRelationsFrame* Frame);
 };
