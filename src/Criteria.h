@@ -4,7 +4,7 @@
 #include "Email.h"
 using namespace std;
 
-enum SearchKey {E_FROM, E_DATE, E_REPLY_TO, E_TO, E_ID, E_SUBJECT, G_ID, G_USEMBER, G_USEMBERS_NUMBER, U_NAME, U_DOMAIN};
+enum SearchKey {E_DATE, E_EMAIL, E_SUBJECT, E_CONTENT, U_NAME};
 
 class Criteria
 {
@@ -12,21 +12,6 @@ private:
     SearchKey searchKey;
 public:
     SearchKey getSearchKey();
-};
-
-class IntCriteria :
-	public Criteria
-{
-private:
-	int equals;         //wartosc, ktorej musi rownac sie dane pole, jesli wypelnione, nadpisuje dwa pozostale
-	int less;           //wartosc, od ktorej dane pole musi byc wieksze
-	int greater;        //wartosc, od ktorej dane pole musi byc mniejsze
-public:
-	IntCriteria();
-	~IntCriteria();
-	int getEquals();
-	int getLess();
-	int getGreater();
 };
 
 class StringCriteria :
