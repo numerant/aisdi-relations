@@ -234,6 +234,35 @@ void IOInterface::xorStream(stringstream &inputStream, stringstream &outputStrea
 	}
 }
 
+bool IOInterface::isImportedFileProtected (string filePath)
+{
+    char isPasswordProtected;
+
+    inputFile.open(filePath, ios_base::binary);
+    if (inputFile.fail())
+    {
+        inputFile.close();
+        throw UnableToOpenFile();
+    }
+
+    if (inputFile.get() != 48)
+    {
+        inputFile.close();
+        throw InvalidFile();
+    }
+
+    isPasswordProtected = inputFile.get();
+    if (isPasswordProtected == 0)
+        return false;
+    else if (isPasswordProtected == 1)
+        return true;
+    else
+    {
+        inputFile.close();
+        throw InvalidFile();
+    }
+    return 0;
+}
 
 Database* IOInterface::importDatabase(string filePath, DbParameters *parameters)
 {
@@ -245,12 +274,12 @@ Database* IOInterface::importDatabase(string filePath, DbParameters *parameters)
     //parameters->password = "qwertyuiop";
 
     stringstream decompressedData;
-    inputFile.open(filePath, ios_base::binary);
+    isImportedFileProtected(filePath);
     if (inputFile.fail())
         throw UnableToOpenFile();
 
-    inputFile.get();
-    inputFile.get();
+    //inputFile.get();
+    //inputFile.get();
 
     filtering_streambuf<input> decompressedStream;
     decompressedStream.push(zlib_decompressor());

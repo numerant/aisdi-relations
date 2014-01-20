@@ -46,11 +46,13 @@ public:
     IOInterface();                                                              // trzeba zadbać o wskaźnik na bazę danych
     ~IOInterface();
 
+
     void importMail(MailParameters *parameters);
     ImportStats getImportStats();
     void clearImportStats();
 
     void exportDatabase (string filePath, DbParameters *parameters);                    // opis klas MailParameters i DbParameters jest w Param.h
+    bool isImportedFileProtected (string filePath);
     Database* importDatabase (string filePath, DbParameters *parameters);
     void exportDatabaseReport (string path, Statistics* dbStatistics);
     void exportDatabaseToTxt (string directoryPath);                                    // w podanym katalogu tworzy pliki tekstowe z rekordami bazy danych, przystosowane do importu do np. Accessa

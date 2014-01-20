@@ -12,6 +12,7 @@
 class IOException : public std::exception {};
 
 class UnableToOpenFile : public IOException {};
+class InvalidFile : public IOException {};
 class EmlSyntaxIncorrect : public IOException {};
 
 
