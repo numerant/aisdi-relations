@@ -15,11 +15,14 @@ void Query::clear()
 
 }
 
-IntCriteria* Query::getIntCriteria(int position)
+bool Query::searchingForReplies()
 {
-    if(position>=0 && position< (int)intCriteriaVector.size())
-        return &intCriteriaVector[position];
-    return nullptr;
+    return replies;
+}
+
+bool Query::searchingForForwards()
+{
+    return forwards;
 }
 
 StringCriteria* Query::getStringCriteria(int position)
@@ -34,11 +37,6 @@ DateCriteria* Query::getDateCriteria(int position)
      if(position>=0 && position< (int)dateCriteriaVector.size())
         return &dateCriteriaVector[position];
     return nullptr;
-}
-
-int Query::getIntCriteriaVectorSize()
-{
-    return intCriteriaVector.size();
 }
 
 int Query::getStringCriteriaVectorSize()
@@ -61,16 +59,6 @@ EmailQuery::~EmailQuery()
 
 }
 
-GroupQuery::GroupQuery()
-{
-
-}
-
-GroupQuery::~GroupQuery()
-{
-
-}
-
 UsemberQuery::UsemberQuery()
 {
 
@@ -83,24 +71,12 @@ UsemberQuery::~UsemberQuery()
 
 void EmailQuery::clear()
 {
-    sortingOrder.clear();
-    intCriteriaVector.clear();
-    stringCriteriaVector.clear();
-    dateCriteriaVector.clear();
-}
-
-void GroupQuery::clear()
-{
-    sortingOrder.clear();
-    intCriteriaVector.clear();
     stringCriteriaVector.clear();
     dateCriteriaVector.clear();
 }
 
 void UsemberQuery::clear()
 {
-    sortingOrder.clear();
-    intCriteriaVector.clear();
     stringCriteriaVector.clear();
     dateCriteriaVector.clear();
 }
