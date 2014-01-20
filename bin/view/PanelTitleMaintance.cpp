@@ -488,32 +488,40 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
                     } while (!passwordCorrect);
                 }
                 Frame->database = Frame->iointerface->importDatabase(&importParameters);     // po wczytaniu zmienia się wartość wskaźnika na bazę danych!
+
+                delete Frame->statistics;
+                Frame->statistics = new Statistics(Frame->database);
+
+                Frame->P_Inbox->SetEmails(Frame);               //załadowanie listy maili i usemberów z bazy
+                Frame->P_Usembers->SetUsembers(Frame);
+
+                if (GetNoData())
+                    Frame->P_Title->SwitchIcons(Frame);
+                Frame->statistics->update();
+                Frame->P_Inbox->SetAdvSearchDate(Frame);
+                if (Frame->P_Stats->GetIsUpdated())
+                    Frame->P_Stats->SetIsUpdated();
+
+                Frame->P_Notify->SetLabels(Frame, "Wczytywanie pliku bazy danych", "Status");
+                Frame->P_Notify->SetValues(Frame, "OK");
+                Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
             }
             catch(UnableToOpenFile exception)
             {
-                /* napisać obsługę wyjątku */
+                wxMessageBox(_("Nie można otworzyć tego pliku!"));
+                Frame->P_Title->SwitchIcons(Frame);
             }
             catch(InvalidFile exception)
             {
-                /* napisać obsługę wyjątku */
-            }
-
-            delete Frame->statistics;
-            Frame->statistics = new Statistics(Frame->database);
-
-            Frame->P_Inbox->SetEmails(Frame);               //załadowanie listy maili i usemberów z bazy
-            Frame->P_Usembers->SetUsembers(Frame);
-
-            if (GetNoData())
+                wxMessageBox(_("Plik nie jest poprawny!"));
                 Frame->P_Title->SwitchIcons(Frame);
-            Frame->statistics->update();
-            Frame->P_Inbox->SetAdvSearchDate(Frame);
-            if (Frame->P_Stats->GetIsUpdated())
-                Frame->P_Stats->SetIsUpdated();
-
-            Frame->P_Notify->SetLabels(Frame, "Wczytywanie pliku bazy danych", "Status");
-            Frame->P_Notify->SetValues(Frame, "OK");
-            Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
+            }
+            catch(InvalidPassword exception)
+            {
+                /* tu można zrobić jakieś pytanie o hasło do skutku, ale nie wydaje się to konieczne */
+                wxMessageBox(_("Niepoprawne hasło!"));
+                Frame->P_Title->SwitchIcons(Frame);
+            }
         //}     //TODO odkomentować
     }
 }

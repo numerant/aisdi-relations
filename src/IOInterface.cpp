@@ -270,7 +270,6 @@ Database* IOInterface::importDatabase(DbParameters *parameters)
 
     if (inputFile.fail())
         throw UnableToOpenFile();
-    delete database;
 
     stringstream compressedData;
     stringstream decompressedData;
@@ -284,11 +283,18 @@ Database* IOInterface::importDatabase(DbParameters *parameters)
     }
     else
         decompressedStream.push(inputFile);
+    try
+    {
+        copy(decompressedStream, decompressedData);
 
-    copy(decompressedStream, decompressedData);
-
-    boost::archive::text_iarchive inputArchive(decompressedData);
-    inputArchive >> database;
+        delete database;
+        boost::archive::text_iarchive inputArchive(decompressedData);
+        inputArchive >> database;
+    }
+    catch(boost::iostreams::zlib_error exception)
+    {
+        throw InvalidPassword();
+    }
 
     inputFile.close();
     return database;
