@@ -30,9 +30,42 @@ void Usember::addEmailReceived (Email * email)
     receivedMails.push_back(email);
 }
 
-void Usember::removeMail(Email *email)				// usuwa list z wektora
+bool Usember::removeEmailSent(Email *email)				
 {
+    bool found = false;
+    for (unsigned i = 0; i < sentMails.size(); i++)
+    {
+        if (email == sentMails[i])
+        {
+            Email* temp = sentMails[sentMails.size()-1];
+            sentMails[sentMails.size()-1] = email;
+            sentMails[i] = temp;
+            sentMails.pop_back();
+            found = true;
+            break;
+        }
+    }
 
+    return found;
+}
+
+bool Usember::removeEmailReceived(Email *email)            
+{
+    bool found = false;
+    for (unsigned i = 0; i < receivedMails.size(); i++)
+    {
+        if (email == receivedMails[i])
+        {
+            Email* temp = receivedMails[receivedMails.size()-1];
+            receivedMails[receivedMails.size()-1] = email;
+            receivedMails[i] = temp;
+            receivedMails.pop_back();
+            found = true;
+            break;
+        }
+    }
+
+    return found;
 }
 
 void Usember::setGroup(Group *group)					// przydziela grupę usemberowi / używać także jako akutalizacji

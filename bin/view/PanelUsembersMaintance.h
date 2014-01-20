@@ -15,6 +15,7 @@ private:
     bool settingsEnabled = false;
     bool usembersListEnabled = true;
     bool emailContentEnabled = false;
+    bool customSearch = false;
     string emailIdSelected = "";
     string adressUsemberSelected = "";
 
@@ -42,6 +43,7 @@ public:
     void SwitchList(AisdiRelationsFrame * Frame);
     void SwitchContent(AisdiRelationsFrame * Frame);
     void SetIcons(AisdiRelationsFrame* Frame);
+    void ClearUsemberInfo (AisdiRelationsFrame * Frame);
 
     void SetSearchEnabled();
     void SetAddEnabled();

@@ -21,11 +21,11 @@ private:
     wxString path = (_("resources/icons/icon"));
     wxString format =  (_(".png"));
     wxString formatNeg = (_("Negative.png"));
-    const wxString imagePaths[15] =
+    const wxString imagePaths[16] =
     {
         _("Add"),  _("Floppy"),  _("Search"),  _("Settings"),  _("Usember"),  _("Workgroups"),
         _("Statistics"),  _("Tree"),  _("Remove"),  _("Sender"),  _("Receiver"),  _("ShowTree"),
-        _("Title"), _("AdvSearch"), _("RestoreDatabase")
+        _("Title"), _("AdvSearch"), _("RestoreDatabase"), _("ClearAll")
     };                               //ścieżki plików z grafikami do przycisków panelu
 
 public:
@@ -37,6 +37,7 @@ public:
     void SetAdvSearchDate (AisdiRelationsFrame* Frame);
     void Search (AisdiRelationsFrame* Frame);
     void AdvancedSearch (AisdiRelationsFrame* Frame);
+    void ResetSearchField (AisdiRelationsFrame* Frame);
     void SetSearchEnabled();
     void SetAddEnabled();
     void SetSaveEnabled();

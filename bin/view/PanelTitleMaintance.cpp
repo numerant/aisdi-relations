@@ -373,6 +373,15 @@ void PanelTitleMaintance::EventButtonFolderClick (AisdiRelationsFrame* Frame)
             Frame->P_Inbox->SetAdvSearchDate(Frame);
             if (Frame->P_Stats->GetIsUpdated())
                 Frame->P_Stats->SetIsUpdated();
+
+            if (! Frame->P_Usembers->GetUsembersListEnabled())
+                Frame->P_Usembers->SetUsembersListEnabled();
+
+            Frame->P_Usembers->SetEmails(Frame, -1);        //usuń maile From i To z komponentu
+            if (Frame->P_Usembers->GetEmailContentEnabled())
+                Frame->P_Usembers->SetEmailContentEnabled();
+
+            Frame->P_Usembers->ClearUsemberInfo(Frame);
         }
     }
 }
@@ -425,6 +434,15 @@ void PanelTitleMaintance::EventButtonFilesClick (AisdiRelationsFrame* Frame)
             Frame->P_Inbox->SetAdvSearchDate(Frame);
             if (Frame->P_Stats->GetIsUpdated())
                 Frame->P_Stats->SetIsUpdated();
+
+            if (! Frame->P_Usembers->GetUsembersListEnabled())
+                Frame->P_Usembers->SetUsembersListEnabled();
+
+            Frame->P_Usembers->SetEmails(Frame, -1);        //usuń maile From i To z komponentu
+            if (Frame->P_Usembers->GetEmailContentEnabled())
+                Frame->P_Usembers->SetEmailContentEnabled();
+
+            Frame->P_Usembers->ClearUsemberInfo(Frame);
         }
     }
 }
@@ -501,6 +519,15 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
                 Frame->P_Inbox->SetAdvSearchDate(Frame);
                 if (Frame->P_Stats->GetIsUpdated())
                     Frame->P_Stats->SetIsUpdated();
+
+                if (! Frame->P_Usembers->GetUsembersListEnabled())
+                    Frame->P_Usembers->SetUsembersListEnabled();
+
+                Frame->P_Usembers->SetEmails(Frame, -1);        //usuń maile From i To z komponentu
+                if (Frame->P_Usembers->GetEmailContentEnabled())
+                    Frame->P_Usembers->SetEmailContentEnabled();
+
+                Frame->P_Usembers->ClearUsemberInfo(Frame);
 
                 Frame->P_Notify->SetLabels(Frame, "Wczytywanie pliku bazy danych", "Status");
                 Frame->P_Notify->SetValues(Frame, "OK");

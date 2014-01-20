@@ -175,6 +175,7 @@ private:
     void OnG_ImageButtonSettingsClick(wxCommandEvent& event);
     void OnS_ImageButtonSettingsClick(wxCommandEvent& event);
     void OnM_ImageButtonSettingsClick(wxCommandEvent& event);
+    void OnI_Adv_ImageButtonResetClick(wxCommandEvent& event);
     //*)
 
     //(*Identifiers(AisdiRelationsFrame)
@@ -422,7 +423,6 @@ private:
     static const long ID_STATICBOX12;
     static const long ID_STATICTEXT138;
     static const long ID_STATICTEXT139;
-    static const long ID_STATICTEXT140;
     static const long ID_STATICTEXT141;
     static const long ID_STATICTEXT142;
     static const long ID_STATICTEXT143;
@@ -432,7 +432,6 @@ private:
     static const long ID_STATICTEXT147;
     static const long ID_STATICTEXT148;
     static const long ID_TEXTCTRL1;
-    static const long ID_TEXTCTRL2;
     static const long ID_TEXTCTRL3;
     static const long ID_TEXTCTRL4;
     static const long ID_CHOICE1;
@@ -444,7 +443,9 @@ private:
     static const long ID_RADIOBOX1;
     static const long ID_CHECKBOX4;
     static const long ID_STATICTEXT149;
+    static const long ID_STATICTEXT140;
     static const long ID_IMAGEBUTTON63;
+    static const long ID_IMAGEBUTTON68;
     static const long ID_PANEL16;
     static const long ID_PANEL2;
     static const long ID_STATICBOX6;
@@ -505,6 +506,7 @@ private:
     wxBitmapButton        *M_ImageButtonInbox;
     wxStaticText* N_StaticTextTitle;
     wxStaticBox* S_BorderT;
+    wxStaticText* StaticText1;
     wxBitmapButton        *I_ImageButtonSave;
     wxHyperlinkCtrl* S_HyperLinkT_ReceiverPos1;
     wxStaticText* U_LabelInbox;
@@ -525,7 +527,6 @@ private:
     wxStaticText* S_LabelGroups;
     wxRadioBox* I_Adv_RadioBoxType;
     wxTextCtrl* I_Adv_TextCtrlContent;
-    wxTextCtrl* I_Adv_TextCtrlName;
     wxBitmapButton        *T_ImageButtonImport;
     wxStaticText* S_StaticTextC_Value10;
     wxFileDialog* FileDialog;
@@ -607,7 +608,6 @@ private:
     wxStaticText* T_StaticTextTitle1;
     wxStaticText* S_StaticTextC_Value3;
     wxDirDialog* DirDialog;
-    wxStaticText* I_Adv_LabelName;
     wxBitmapButton        *I_ImageButtonUsembers;
     wxBitmapButton        *S_ImageButtonInbox;
     wxStaticText* N_StaticTextOption1;
@@ -819,6 +819,7 @@ private:
     wxStaticText* I_LabelSearch;
     wxBitmapButton        *I_ImageButtonAdd;
     wxBitmapButton        *M_ImageButtonSettings;
+    wxBitmapButton        *I_Adv_ImageButtonReset;
     wxStaticText* G_LabelMulTree;
     wxStaticText* S_StaticTextC_Value1;
     wxBitmapButton        *G_ImageButtonStats;

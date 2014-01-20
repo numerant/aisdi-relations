@@ -32,7 +32,8 @@ public:
     void addEmailSent (Email * email);             // dodaje list do odpowiedniego wektora
     void addEmailReceived (Email * email);
 
-    void removeMail(Email *email);					// usuwa list z wektora
+    bool removeEmailSent(Email *email);					// usuwa list z wektora
+    bool removeEmailReceived (Email* email);
     void setGroup(Group	*group);						// przydziela grupę usemberowi / używać także jako akutalizacji
     void setRealName(string rn);						// ustawia pole realName - działanie jak wyżej
 

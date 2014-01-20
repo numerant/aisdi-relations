@@ -62,7 +62,6 @@ void PanelUsembersMaintance::ShowPanel(AisdiRelationsFrame* Frame)
         {
             Frame->U_PanelEmail->Hide();
             Frame->U_PanelStats->Show();
-            //EventPanelStatsPaint(Frame);
         }
 
         Frame->PanelUsembers->SetPosition(wxPoint(0,0));
@@ -100,6 +99,8 @@ void PanelUsembersMaintance::SetLabels(AisdiRelationsFrame* Frame)
 
 void PanelUsembersMaintance::SetUsembers(AisdiRelationsFrame * Frame)
 {
+    ClearUsemberInfo(Frame);
+
     int counterU = Frame->database->countUsembers();
     if (counterU > 0)     //TODO Zmienić wyświetlanie za pomocą Query
     {
@@ -130,10 +131,25 @@ void PanelUsembersMaintance::SetUsembers(AisdiRelationsFrame * Frame)
             Frame->U_ListUsembers->SetItem(i,2,wxGroup);
         }
     }
+    else if (customSearch)
+    {
+        //TODO wyświetl 'brak wyników wyszukiwania'
+    }
+    else
+    {
+        //TODO wyświetl 'pusta baza'
+    }
 }
 
 void PanelUsembersMaintance::SetEmails (AisdiRelationsFrame * Frame, int pos)
 {
+    if (pos == -1)
+    {
+        Frame->U_ListInbox->DeleteAllItems();
+        Frame->U_ListOutbox->DeleteAllItems();
+        return;
+    }
+
     int counterU = Frame->database->countUsembers();
     if (counterU > 0)     //TODO Zmienić wyświetlanie za pomocą Query
     {
@@ -286,6 +302,17 @@ void PanelUsembersMaintance::SwitchContent(AisdiRelationsFrame* Frame)
         Frame->U_PanelStats->Hide();
     }
     emailContentEnabled = !emailContentEnabled;
+}
+
+void PanelUsembersMaintance::ClearUsemberInfo (AisdiRelationsFrame * Frame)
+{
+    Frame->U_StaticTextName->SetLabel(_("-"));
+    Frame->U_StaticTextEmail->SetLabel(_("-"));
+    Frame->U_StaticTextGroup->SetLabel(_("-"));
+    Frame->U_StaticTextDate->SetLabel(_("-"));
+    Frame->U_StaticTextSent->SetLabel(_("-"));
+    Frame->U_StaticTextReceived->SetLabel(_("-"));
+    Frame->U_StaticTextSubject->SetLabel(_("-"));
 }
 
 void PanelUsembersMaintance::SetSearchEnabled()

@@ -1,6 +1,7 @@
 #include "PanelInboxMaintance.h"
 #include "PanelNotifyMaintance.h"
 #include "PanelStatisticsMaintance.h"
+#include "PanelTitleMaintance.h"
 
 // TEMP - serializacja!
 #include <boost/archive/text_oarchive.hpp>
@@ -65,6 +66,7 @@ void PanelInboxMaintance::SetLabels(AisdiRelationsFrame* Frame)
         col.SetWidth(width[i]);
         Frame->I_ListInbox->InsertColumn(i, col);
     }
+    SetEmails(Frame);
 }
 
 void PanelInboxMaintance::SetIcons(AisdiRelationsFrame* Frame)
@@ -84,13 +86,15 @@ void PanelInboxMaintance::SetIcons(AisdiRelationsFrame* Frame)
     Frame->I_ImageButtonTitle->SetBitmapLabel(path+imagePaths[12]+format);
     Frame->I_Adv_ImageButtonSearch->SetBitmapLabel(path+imagePaths[13]+format);
     Frame->I_ImageButtonRestore->SetBitmapLabel(path+imagePaths[14]+format);
+    Frame->I_Adv_ImageButtonReset->SetBitmapLabel(path+imagePaths[15]+format);
 }
 
 void PanelInboxMaintance::SetEmails (AisdiRelationsFrame* Frame)
 {
+    Frame->I_ListInbox->DeleteAllItems();
+
     if (Frame->database->countEmails() > 0)     //TODO Zmienić wyświetlanie za pomocą Query
     {
-        Frame->I_ListInbox->DeleteAllItems();
         for (int i = 0; i < Frame->database->countEmails(); i++)
         {
             Email * email = Frame->database->getEmail(i);
@@ -139,11 +143,21 @@ void PanelInboxMaintance::SetEmails (AisdiRelationsFrame* Frame)
     {
         if (customSearch)
         {
-            //TODO Wyświetl 'brak wyników wyszukiwania'
+            wxListItem item;
+            item.SetId(0);
+            //item.SetTextColour(wxColor(200,200,200));
+            Frame->I_ListInbox->InsertItem( item );
+            wxString wxNoResults = _("brak wyników wyszukiwania...");
+            Frame->I_ListInbox->SetItem(0,1, wxNoResults);
         }
         else
         {
-            //TODO Wyświetl 'brak emaili'
+            wxListItem item;
+            item.SetId(0);
+            //item.SetTextColour(wxColor(200,200,200));
+            Frame->I_ListInbox->InsertItem( item );
+            wxString wxNoEmails = _("brak emaili w bazie danych...");
+            Frame->I_ListInbox->SetItem(0,1, wxNoEmails);
         }
     }
 }
@@ -176,9 +190,24 @@ void PanelInboxMaintance::SetAdvSearchDate (AisdiRelationsFrame* Frame)
 void PanelInboxMaintance::Search (AisdiRelationsFrame* Frame)
 {
     wxString s = Frame->I_SearchCtrl->GetValue();
-    string strQuery = (string) s.mb_str();
+    string strQuery = (string) s.mb_str();  //TODO może lepiej stringstreamem na wyrazy?
 
-    //TODO zapytanie ogólne
+    if (strQuery != "")
+    {
+        Frame->I_ImageButtonRestore->Show();
+        Frame->I_LabelRestore->Show();
+        if (! GetCustomSearch())
+            SetCustomSearch();
+
+        //TODO zapytanie ogólne
+        SetEmails(Frame);
+
+        //TODO powiadomienie o liczbie znalezionych wyników
+    }
+    else
+    {
+        wxMessageBox (_("Puste zapytanie."));
+    }
 }
 
 void PanelInboxMaintance::AdvancedSearch (AisdiRelationsFrame* Frame)
@@ -188,7 +217,7 @@ void PanelInboxMaintance::AdvancedSearch (AisdiRelationsFrame* Frame)
     string name, subject, email, content, dayFrom, monthFrom, yearFrom;
     name = subject = email = content = dayFrom = monthFrom = yearFrom = "";
 
-    name = Frame->I_Adv_TextCtrlName->GetValue().mb_str();    //Pola tekstowe
+    //Pola tekstowe
     email = Frame->I_Adv_TextCtrlEmail->GetValue().mb_str();
     content = Frame->I_Adv_TextCtrlContent->GetValue().mb_str();
     subject = Frame->I_Adv_TextCtrlSubject->GetValue().mb_str();
@@ -207,7 +236,9 @@ void PanelInboxMaintance::AdvancedSearch (AisdiRelationsFrame* Frame)
 
     if (name == "" && subject == "" && email == "" && content == "" && dayFrom == "" && monthFrom == "" && yearFrom == "")
     {
-        wxMessageBox(_("Niepoprawne kryteria wyszukiwania!"));
+        //TODO jeszcze dodać sprawdzenie, czy nie wpisano daty 'od' ale wpisano datę'do'
+        // Wtedy szukaj wszystkiego do daty 'do'
+        wxMessageBox(_("Puste kryteria wyszukiwania"));
     }
     else
     {
@@ -216,8 +247,36 @@ void PanelInboxMaintance::AdvancedSearch (AisdiRelationsFrame* Frame)
         if (! GetCustomSearch())
             SetCustomSearch();
         wxMessageBox(_("Zapytanko!"));
-         //TODO zrobić zapytanie
+
+        //TODO dodać obsługę daty 'od do'
+
+        //TODO zapytanie advanced
+        SetEmails(Frame);
+
+        //TODO powiadomienie o liczbie wyników
     }
+}
+
+void PanelInboxMaintance::ResetSearchField (AisdiRelationsFrame* Frame)
+{
+    Frame->I_SearchCtrl->SetValue(_(""));
+    Frame->I_Adv_TextCtrlContent->SetValue(_(""));
+    Frame->I_Adv_TextCtrlEmail->SetValue(_(""));
+    Frame->I_Adv_TextCtrlSubject->SetValue(_(""));
+    Frame->I_Adv_ChoiceDay->SetSelection(0);
+    Frame->I_Adv_ChoiceMonth->SetSelection(0);
+    Frame->I_Adv_ChoiceYear->SetSelection(0);
+    Frame->I_Adv_ChoiceDayTo->SetSelection(0);
+    Frame->I_Adv_ChoiceMonthTo->SetSelection(0);
+    Frame->I_Adv_ChoiceYearTo->SetSelection(0);
+    Frame->I_Adv_RadioBoxType->SetSelection(0);
+    Frame->I_Adv_CheckBoxDate->SetValue(false);
+    Frame->I_Adv_ChoiceDayTo->Disable();
+    Frame->I_Adv_ChoiceMonthTo->Disable();
+    Frame->I_Adv_ChoiceYearTo->Disable();
+    Frame->I_Adv_LabelDayTo->Disable();
+    Frame->I_Adv_LabelMonthTo->Disable();
+    Frame->I_Adv_LabelYearTo->Disable();
 }
 
 void PanelInboxMaintance::SetSearchEnabled()
@@ -280,6 +339,25 @@ void PanelInboxMaintance::EventButtonSearchClick (AisdiRelationsFrame* Frame)
     }
     else
     {
+        /* Wyczyść pola wyszukiwania, chyba że wyniki wyszukiwania nadal się wyświetlają */
+        if (! GetCustomSearch())
+        {
+            Frame->I_SearchCtrl->SetValue(_(""));
+            Frame->I_Adv_TextCtrlContent->SetValue(_(""));
+            Frame->I_Adv_TextCtrlEmail->SetValue(_(""));
+            Frame->I_Adv_TextCtrlSubject->SetValue(_(""));
+            Frame->I_Adv_ChoiceDay->SetSelection(0);
+            Frame->I_Adv_ChoiceMonth->SetSelection(0);
+            Frame->I_Adv_ChoiceYear->SetSelection(0);
+            Frame->I_Adv_ChoiceDayTo->SetSelection(0);
+            Frame->I_Adv_ChoiceMonthTo->SetSelection(0);
+            Frame->I_Adv_ChoiceYearTo->SetSelection(0);
+            Frame->I_Adv_RadioBoxType->SetSelection(0);
+            Frame->I_Adv_CheckBoxDate->SetValue(false);
+            Frame->I_Adv_ChoiceDayTo->Disable();
+            Frame->I_Adv_ChoiceMonthTo->Disable();
+            Frame->I_Adv_ChoiceYearTo->Disable();
+        }
         Frame->I_ImageButtonSearch->SetBitmapLabel(path+imagePaths[2]+formatNeg);
         Frame->I_SearchCtrl->Show();
         Frame->I_PanelAdvSearch->Show();
@@ -309,6 +387,10 @@ void PanelInboxMaintance::EventButtonSearchClick (AisdiRelationsFrame* Frame)
 
 void PanelInboxMaintance::EventListInboxItemSelect (AisdiRelationsFrame* Frame)
 {
+    unsigned int searchResults = 0; //TODO zmienić na właściwą liczbę
+    /*if (searchResults == 0)       //Odkomentować!!!
+        return;*/
+
     Frame->PanelAdd->Hide();
     if (GetAddEnabled())
         SetAddEnabled();
@@ -466,15 +548,66 @@ void PanelInboxMaintance::EventButtonSettingsClick (AisdiRelationsFrame * Frame)
 
 void PanelInboxMaintance::EventButtonDeleteClick (AisdiRelationsFrame * Frame)
 {
-    //TODO dodać prompta o potwierdzenie
-    //TODO dodać sprawdzenie czy baza ma maile
-    //TODO dodąć sprawdzenie, czy emailIdSelected != ""
-    Frame->database->deleteEmail(Frame->database->getEmail(Frame->database->findEmail(emailIdSelected)));
-    Frame->P_Inbox->SetEmails(Frame);
-    Frame->statistics->update();
-    Frame->P_Inbox->SetAdvSearchDate(Frame);
-    if (Frame->P_Stats->GetIsUpdated())
-        Frame->P_Stats->SetIsUpdated();
+    if (Frame->database->countEmails() == 0)
+        return;
+
+    if (emailIdSelected == "")
+        return;
+
+    bool deleteConfirm = false;
+    if (Frame->P_Title->GetDeleteConfirm())
+    {
+        wxMessageDialog * confirmPrompt = new wxMessageDialog(Frame, _("Dane zostaną bezpowrotnie usunięte z bazy. Czy chcesz kontynuować\?"), _("Potwierdzenie usunięcia"), wxCANCEL|wxYES_NO|wxNO_DEFAULT|wxICON_EXCLAMATION, wxDefaultPosition);
+        if (confirmPrompt->ShowModal() == wxID_YES)
+            deleteConfirm = true;
+        delete confirmPrompt;
+    }
+    else
+        deleteConfirm = true;
+
+    if (deleteConfirm)
+    {
+        //TODO usuwanie wielu plików. Zmiana emailIdSelected na vector tychże
+
+        Email* email = Frame->database->getEmail(Frame->database->findEmail(emailIdSelected));
+        Usember* uFrom = email->getFrom();
+        Usember* uTo = email->getTo();
+        bool deleteTo = uTo->removeEmailReceived(email);
+        bool deleteFrom = uFrom->removeEmailSent(email);
+
+        if (deleteTo && deleteFrom)
+        {
+            if ((uTo->sendMailCount() == 0) && (uTo->receiveMailCount() == 0))
+                Frame->database->deleteUsember(uTo);
+            if ((uFrom->sendMailCount() == 0) && (uFrom->receiveMailCount() ==0))
+                Frame->database->deleteUsember(uFrom);
+
+            Frame->database->deleteEmail(email);
+            Frame->P_Inbox->SetEmails(Frame);
+            Frame->statistics->update();
+            Frame->P_Inbox->SetAdvSearchDate(Frame);
+            if (Frame->P_Stats->GetIsUpdated())
+                Frame->P_Stats->SetIsUpdated();
+
+            Frame->P_Usembers->SetUsembers(Frame);
+            if (! Frame->P_Usembers->GetUsembersListEnabled())
+                Frame->P_Usembers->SetUsembersListEnabled();
+
+            Frame->P_Usembers->SetEmails(Frame, -1);        //usuń maile From i To z komponentu
+            if (Frame->P_Usembers->GetEmailContentEnabled())
+                Frame->P_Usembers->SetEmailContentEnabled();
+
+            Frame->P_Usembers->ClearUsemberInfo(Frame);
+
+            //TODO przeskanować grupy
+        }
+        else
+        {
+            //TODO rzuć wyjątkiem o ścianę
+        }
+    }
+    else
+        return;
 }
 
 void PanelInboxMaintance::EventButtonSenderClick (AisdiRelationsFrame * Frame)
@@ -550,6 +683,9 @@ void PanelInboxMaintance::EventImageButtonRestoreClick (AisdiRelationsFrame* Fra
         SetAddEnabled();
     }
 
+    if (GetCustomSearch())
+        SetCustomSearch();
+    SetEmails(Frame);
     Frame->I_ImageButtonRestore->Hide();
     Frame->I_LabelRestore->Hide();
 }
