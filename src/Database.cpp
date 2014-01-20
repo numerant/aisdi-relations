@@ -16,7 +16,6 @@ Database::~Database()
     groupVector.clear();
     usemberVector.clear();
     emailSearchResultVector.clear();
-    groupSearchResultVector.clear();
     usemberSearchResultVector.clear();
 }
 
@@ -101,47 +100,68 @@ void Database::deleteUsember(Usember* usember)
     sort (usemberVector.begin(), usemberVector.end(), Database::compareUsembers);
 }
 
-vector<Email*>& Database::select(EmailQuery& emailQuery)
+void Database::select(EmailQuery& emailQuery)
 {
-    for(int i=0; i< (int)emailVector.size(); ++i)
+    bool match=true;
+    emailSearchResultVector.clear();
+    for(int i=0; i<(int)emailVector.size(); ++i)
     {
-        if(emailQuery.getIntCriteriaVectorSize()>0)
+        if(emailQuery.getStringCriteriaVectorSize()>0)
         {
-            //for(int j=0; i<emailQuery.getIntCriteriaVectorSize(); ++j){
-            //   ;
-            //}
+            match=true;
+            for(unsigned int j=0; j<emailQuery.getStringCriteriaVectorSize(); ++j)
+            {
+                if(!matches(*emailVector[i], *emailQuery.getStringCriteria(j)))
+                {
+                    match=false;
+                    break;
+                }
+            }
         }
 
-        if(emailQuery.getStringCriteriaVectorSize()>0)
-           for(unsigned int j=0; i<emailQuery.getStringCriteriaVectorSize(); ++j)
-               if(matches(*emailVector[i], *emailQuery.getStringCriteria(j)))
-                  emailSearchResultVector.push_back(emailVector[j]);
-
-        if(emailQuery.getDateCriteriaVectorSize()>0)
-           for(unsigned int j=0; i<emailQuery.getDateCriteriaVectorSize(); ++j)
-               if(matches(*emailVector[i], *emailQuery.getDateCriteria(j)))
-                  emailSearchResultVector.push_back(emailVector[j]);
+        if(match && emailQuery.getDateCriteriaVectorSize()>0)
+        {
+            for(unsigned int j=0; j<emailQuery.getDateCriteriaVectorSize(); ++j)
+            {
+               if(!matches(*emailVector[i], *emailQuery.getDateCriteria(j)))
+               {
+                   match=false;
+                   break;
+               }
+            }
+        }
+        if(match)
+            emailSearchResultVector.push_back(emailVector[i]);
     }
     if(emailSearchResultVector.size()>1)
         sort(emailSearchResultVector.begin(), emailSearchResultVector.end());
-    return emailSearchResultVector;
 }
 
-vector<Group*>& Database::select(GroupQuery& groupQuery)
+void Database::select(UsemberQuery& usemberQuery)
 {
-    return groupSearchResultVector;
-}
-
-vector<Usember*>& Database::select(UsemberQuery& usemberQuery)
-{
-    return usemberSearchResultVector;
+    bool match=true;;
+    usemberSearchResultVector.clear();
+    for(int i=0; i<(int)usemberVector.size(); ++i)
+    {
+        if(usemberQuery.getStringCriteriaVectorSize()>0)
+        {
+            match=true;
+            for(unsigned int j=0; j<usemberQuery.getStringCriteriaVectorSize(); ++j)
+            {
+                if(!matches(*usemberVector[i], *usemberQuery.getStringCriteria(j)))
+                {
+                    match=false;
+                    break;
+                }
+            }
+        }
+        if(match)
+            usemberSearchResultVector.push_back(usemberVector[i]);
+    }
 }
 
 void Database::deleteQueryResults(Query* query)
 {
-    emailSearchResultVector.clear();
-    groupSearchResultVector.clear();
-    usemberSearchResultVector.clear();
     if(query!=nullptr)
     {
         query->clear();
@@ -154,7 +174,7 @@ int Database::findEmail(string messageId)
 	int low = 0, high = emailVector.size()-1, midpoint = 0;
 	while (low <= high)
 	{
-		midpoint = low + (high - low)/2;
+		midpoint = (high + low)/2;
 		if(messageId.compare(emailVector[midpoint]->getID())==0)
             return midpoint;
 		else if (messageId.compare(emailVector[midpoint]->getID())<0)
@@ -170,7 +190,7 @@ int Database::findGroup(int groupId)
  	int low = 0, high = groupVector.size()-1, midpoint = 0;
 	while (low <= high)
 	{
-		midpoint = low + (high - low)/2;
+		midpoint = (high + low)/2;
 		if(groupId==groupVector[midpoint]->getID())
             return midpoint;
 		else if (groupId<groupVector[midpoint]->getID())
@@ -186,7 +206,7 @@ int Database::findUsember(string name)
  	int low = 0, high = usemberVector.size()-1, midpoint = 0;
 	while (low <= high)
 	{
-		midpoint = low + (high - low)/2;
+		midpoint = (high + low)/2;
 		if(name.compare(usemberVector[midpoint]->getAddress())==0)
             return midpoint;
 		else if (name.compare(usemberVector[midpoint]->getAddress())<0)
@@ -212,34 +232,21 @@ void Database::clearUsembers()
     usemberVector.clear();
 }
 
-bool Database::matches(Email& email, IntCriteria& intCriteria)
-{
-    return false;
-}
-
 bool Database::matches(Email& email, StringCriteria& stringCriteria)
 {
     switch(stringCriteria.getSearchKey()){
-    case E_FROM:
+    case E_EMAIL:
         if(email.getFrom()->getAddress()==stringCriteria.getName())
-            return true;
-        return false;
-    case E_REPLY_TO:
-        if(email.getReplyTo()->getAddress()==stringCriteria.getName())
-            return true;
-        return false;
-    case E_TO:
-        if(email.getTo()->getAddress()==stringCriteria.getName())
-            return true;
-        return false;
-    case E_ID:
-         if(email.getID()==stringCriteria.getName())
             return true;
         return false;
     case E_SUBJECT:
         if(email.getSubject()==stringCriteria.getName())
             return true;
         return false;
+        case E_CONTENT:
+    if(email.getContent()==stringCriteria.getName())
+        return true;
+    return false;
     default:
         return false;
     }
@@ -262,6 +269,13 @@ bool Database::matches(Email& email, DateCriteria& dateCriteria)
             return false;
     }
     return true;
+}
+
+bool Database::matches(Usember& usember, StringCriteria& stringCriteria)
+{
+    if(usember.getAddress()==stringCriteria.getName())
+        return true;
+    return false;
 }
 
 void Database::swapEmails(int position1, int position2)
@@ -329,9 +343,19 @@ int Database::countUsembers()
     return usemberVector.size();
 }
 
+int Database::countResultEmails()
+{
+    return emailSearchResultVector.size();
+}
+
+int Database::countResultUsembers()
+{
+    return usemberSearchResultVector.size();
+}
+
 Email* Database::getEmail(int position)
 {
-    if(position<0 || position>= (int)emailVector.size())
+    if(position<0 || position>=(int)emailVector.size())
         return nullptr;
     else
         return emailVector[position];
@@ -339,7 +363,7 @@ Email* Database::getEmail(int position)
 
 Group* Database::getGroup(int position)
 {
-    if(position<0 || position>= (int)groupVector.size())
+    if(position<0 || position>=(int)groupVector.size())
         return nullptr;
     else
         return groupVector[position];
@@ -347,8 +371,24 @@ Group* Database::getGroup(int position)
 
 Usember* Database::getUsember(int position)
 {
-    if(position<0 || position>= (int)usemberVector.size())
+    if(position<0 || position>=(int)usemberVector.size())
         return nullptr;
     else
         return usemberVector[position];
+}
+
+Email* Database::getResultEmail(int position)
+{
+    if(position<0 || position>=(int)emailSearchResultVector.size())
+        return nullptr;
+    else
+        return emailSearchResultVector[position];
+}
+
+Usember* Database::getResultUsember(int position)
+{
+     if(position<0 || position>=(int)usemberSearchResultVector.size())
+        return nullptr;
+    else
+        return usemberSearchResultVector[position];
 }
