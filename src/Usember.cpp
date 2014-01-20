@@ -164,7 +164,7 @@ unsigned int Usember::getMaxEmailsInMonth ()
 
 unsigned int Usember::getEmailsCount (Database* database, int usemberIndex)
 {
-    Usember* tempU = database->getUsember(database->findUsember(usemberIndex));
+    Usember* tempU = database->getUsember(usemberIndex);
     if (tempU != nullptr)
     {
         unsigned int emailsSum = 0;
