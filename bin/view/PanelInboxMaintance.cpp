@@ -93,11 +93,20 @@ void PanelInboxMaintance::SetEmails (AisdiRelationsFrame* Frame)
 {
     Frame->I_ListInbox->DeleteAllItems();
 
-    if (Frame->database->countEmails() > 0)     //TODO Zmienić wyświetlanie za pomocą Query
+    int maxValue;
+    if(customSearch)
+        maxValue=Frame->database->countResultEmails();
+    else
+        maxValue=Frame->database->countEmails();
+    if (maxValue > 0)
     {
-        for (int i = 0; i < Frame->database->countEmails(); i++)
+        for (int i = 0; i < maxValue; i++)
         {
-            Email * email = Frame->database->getEmail(i);
+            Email * email;
+            if(customSearch)
+                email= Frame->database->getResultEmail(i);
+            else
+                email= Frame->database->getEmail(i);
             wxListItem item;
             item.SetId(i);
             if (i % 2 == 0)
