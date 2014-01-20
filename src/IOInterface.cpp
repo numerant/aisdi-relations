@@ -219,7 +219,7 @@ void IOInterface::setDatabasePointer (Database * db)
     this->database = db;
 }
 
-void IOInterface::xorStream(stringstream &inputStream, stringstream &outputStream, string key)
+void IOInterface::xorStream(istream &inputStream, ostream &outputStream, string key)
 {
 	unsigned int keyPosition = 0;
 	int xorByte;
@@ -272,29 +272,23 @@ Database* IOInterface::importDatabase(DbParameters *parameters)
         throw UnableToOpenFile();
     delete database;
 
+    stringstream compressedData;
     stringstream decompressedData;
-    //isImportedFileProtected(filePath);
-
     filtering_streambuf<input> decompressedStream;
     decompressedStream.push(zlib_decompressor());
-    decompressedStream.push(inputFile);
+
+    if (parameters->isPasswordProtected)
+    {
+        xorStream(inputFile, compressedData, parameters->password);
+        decompressedStream.push(compressedData);
+    }
+    else
+        decompressedStream.push(inputFile);
 
     copy(decompressedStream, decompressedData);
 
-    if (!(parameters->isPasswordProtected))
-    {
-        boost::archive::text_iarchive inputArchive(decompressedData);
-        inputArchive >> database;
-    }
-    else
-    {
-        stringstream decryptedData;
-
-        xorStream(decompressedData, decryptedData, parameters->password);
-
-        boost::archive::text_iarchive inputArchive(decryptedData);
-        inputArchive >> database;
-    }
+    boost::archive::text_iarchive inputArchive(decompressedData);
+    inputArchive >> database;
 
     inputFile.close();
     return database;
@@ -304,40 +298,33 @@ void IOInterface::exportDatabase(string filePath, DbParameters *parameters)
 {
     using namespace boost::iostreams;
 
-    //temporary
-    //parameters->isPasswordProtected = true;
-    //parameters->password = "qwertyuiop";
-
     stringstream dataToCompress;
     ofstream outputFile(filePath);
 
     if (outputFile.fail())
         throw UnableToOpenFile();
+    outputFile.put((char)48);       // oznaczenie pliku ARB
 
-    outputFile.put((char)48);
-
-    if (!(parameters->isPasswordProtected))
-    {
-        outputFile.put((char)0);
-        boost::archive::text_oarchive outputArchive(dataToCompress);
-        outputArchive << database;
-    }
-    else
-    {
-        outputFile.put((char)1);
-        stringstream dataToEncrypt;
-        boost::archive::text_oarchive outputArchive(dataToEncrypt);
-        outputArchive << database;
-
-        xorStream(dataToEncrypt, dataToCompress, parameters->password);
-    }
+    boost::archive::text_oarchive outputArchive(dataToCompress);
+    outputArchive << database;
 
     filtering_streambuf<input> compressedStream;
     compressedStream.push(zlib_compressor(zlib::best_compression));
     compressedStream.push(dataToCompress);
 
-    copy(compressedStream, outputFile);
+    if (parameters->isPasswordProtected)
+    {
+        outputFile.put((char)1);
+        stringstream dataToEncrypt;
+        copy(compressedStream, dataToEncrypt);
 
+        xorStream(dataToEncrypt, outputFile, parameters->password);
+    }
+    else
+    {
+        outputFile.put((char)0);
+        copy(compressedStream, outputFile);
+    }
 }
 
 void IOInterface::exportDatabaseToTxt (string directoryPath)

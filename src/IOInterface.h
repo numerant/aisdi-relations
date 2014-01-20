@@ -68,7 +68,7 @@ private:
     //vector<char> *binary_file;                // trzyma zserializowaną bazę danych w formie binarnej - chyba lepiej tworzyć lokalnie, wewnątrz metody
 
     // Methods:
-    void xorStream(stringstream &inputStream, stringstream &outputStream, string key);  // szyfruje/deszyfruje strumień algorytmem XOR
+    void xorStream(istream &inputStream, ostream &outputStream, string key);  // szyfruje/deszyfruje strumień algorytmem XOR
     void importSingleMail(boost::filesystem::path path, ImportStats &stats);
     Email* emlParser (string path);             //sprawdza poprawność maili
     void encryptFile (string password);
