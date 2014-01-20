@@ -264,22 +264,16 @@ bool IOInterface::isImportedFileProtected (string filePath)
     return 0;
 }
 
-Database* IOInterface::importDatabase(string filePath, DbParameters *parameters)
+Database* IOInterface::importDatabase(DbParameters *parameters)
 {
     using namespace boost::iostreams;
-    delete database;
 
-    //temporary
-    //parameters->isPasswordProtected = true;
-    //parameters->password = "qwertyuiop";
-
-    stringstream decompressedData;
-    isImportedFileProtected(filePath);
     if (inputFile.fail())
         throw UnableToOpenFile();
+    delete database;
 
-    //inputFile.get();
-    //inputFile.get();
+    stringstream decompressedData;
+    //isImportedFileProtected(filePath);
 
     filtering_streambuf<input> decompressedStream;
     decompressedStream.push(zlib_decompressor());

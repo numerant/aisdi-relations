@@ -445,11 +445,16 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
         /*if (Frame->MessageDialogConfirmation->ShowModal() == wxID_YES)        //TODO Odkomentować
         {*/
             DbParameters importParameters;
+            importParameters.password = "";
+            importParameters.isPasswordProtected = false;
+
             bool passwordCorrect = false;
-            bool isPassword = false;
             wxString password = _("");
 
-            if ( isPassword)  /* TODO Zamienić na sprawdzenie czy plik ma hasło*/
+            wxArrayString paths;
+            Frame->FileDialogDatabaseImport->GetPaths(paths);
+
+            if ( Frame->iointerface->isImportedFileProtected( (string)paths[0].mb_str() ) )
             {
                 do
                 {
@@ -481,9 +486,7 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
                 } while (!passwordCorrect);
             }
 
-            wxArrayString paths;
-            Frame->FileDialogDatabaseImport->GetPaths(paths);
-            Frame->database = Frame->iointerface->importDatabase((string)paths[0].mb_str(), &importParameters);     // po wczytaniu zmienia się wartość wskaźnika na bazę danych!
+            Frame->database = Frame->iointerface->importDatabase(&importParameters);     // po wczytaniu zmienia się wartość wskaźnika na bazę danych!
 
             delete Frame->statistics;
             Frame->statistics = new Statistics(Frame->database);
