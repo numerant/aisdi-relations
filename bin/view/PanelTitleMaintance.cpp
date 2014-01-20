@@ -454,39 +454,49 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
             wxArrayString paths;
             Frame->FileDialogDatabaseImport->GetPaths(paths);
 
-            if ( Frame->iointerface->isImportedFileProtected( (string)paths[0].mb_str() ) )
+            try
             {
-                do
+                if ( Frame->iointerface->isImportedFileProtected( (string)paths[0].mb_str() ) )
                 {
-                    if (Frame->PasswordEntryDialog->ShowModal() == wxID_OK)
+                    do
                     {
-                        password = Frame->PasswordEntryDialog->GetValue();
-                        Frame->PasswordEntryDialog->SetValue(_(""));
-                        if (password != _(""))      //TODO sprawdzenie poprawności hasła w kwestii znakowej
+                        if (Frame->PasswordEntryDialog->ShowModal() == wxID_OK)
                         {
-                            importParameters.password = password.mb_str();
-                            importParameters.isPasswordProtected = true;
+                            password = Frame->PasswordEntryDialog->GetValue();
+                            Frame->PasswordEntryDialog->SetValue(_(""));
+                            if (password != _(""))      //TODO sprawdzenie poprawności hasła w kwestii znakowej
+                            {
+                                importParameters.password = password.mb_str();
+                                importParameters.isPasswordProtected = true;
 
-                            //TODO Tutaj próba odczytu i deszyfracji
-                            //Na razie załóżmy że true
+                                //TODO Tutaj próba odczytu i deszyfracji
+                                //Na razie załóżmy że true
 
-                            passwordCorrect = true;
+                                passwordCorrect = true;
+                            }
+                            else
+                            {
+                                importParameters.password = "";
+                                importParameters.isPasswordProtected = false;
+                            }
                         }
                         else
                         {
-                            importParameters.password = "";
-                            importParameters.isPasswordProtected = false;
+                            wxMessageBox(_("Nie podano hasła!"));
+                            return;
                         }
-                    }
-                    else
-                    {
-                        wxMessageBox(_("Nie podano hasła!"));
-                        return;
-                    }
-                } while (!passwordCorrect);
+                    } while (!passwordCorrect);
+                }
+                Frame->database = Frame->iointerface->importDatabase(&importParameters);     // po wczytaniu zmienia się wartość wskaźnika na bazę danych!
             }
-
-            Frame->database = Frame->iointerface->importDatabase(&importParameters);     // po wczytaniu zmienia się wartość wskaźnika na bazę danych!
+            catch(UnableToOpenFile exception)
+            {
+                /* napisać obsługę wyjątku */
+            }
+            catch(InvalidFile exception)
+            {
+                /* napisać obsługę wyjątku */
+            }
 
             delete Frame->statistics;
             Frame->statistics = new Statistics(Frame->database);
