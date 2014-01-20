@@ -24,6 +24,7 @@ class PanelNotifyMaintance;
 #include "../src/IOInterface.h"
 #include "../src/Parameters.h"
 #include "../src/Statistics.h"
+#include "../src/Relation.h"
 
 //(*Headers(AisdiRelationsFrame)
 #include <wx/textdlg.h>

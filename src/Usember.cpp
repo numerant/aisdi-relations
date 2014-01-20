@@ -30,7 +30,7 @@ void Usember::addEmailReceived (Email * email)
     receivedMails.push_back(email);
 }
 
-bool Usember::removeEmailSent(Email *email)				
+bool Usember::removeEmailSent(Email *email)
 {
     bool found = false;
     for (unsigned i = 0; i < sentMails.size(); i++)
@@ -49,7 +49,7 @@ bool Usember::removeEmailSent(Email *email)
     return found;
 }
 
-bool Usember::removeEmailReceived(Email *email)            
+bool Usember::removeEmailReceived(Email *email)
 {
     bool found = false;
     for (unsigned i = 0; i < receivedMails.size(); i++)
@@ -162,4 +162,26 @@ unsigned int Usember::getMaxEmailsInMonth ()
     return maxSum;
 }
 
+unsigned int Usember::getEmailsCount (Database* database, int usemberIndex)
+{
+    Usember* tempU = database->getUsember(database->findUsember(usemberIndex));
+    if (tempU != nullptr)
+    {
+        unsigned int emailsSum = 0;
+        for (unsigned int i = 0; i < this->sendMailCount(); i++)
+        {
+            Email* tempE = this->sentMails[i];
+            if (tempE->getTo() == tempU)
+                emailsSum++;
+        }
 
+        for (unsigned int i = 0; i < this->receiveMailCount(); i++)
+        {
+            Email* tempE = this->receivedMails[i];
+            if (tempE->getFrom() == tempU)
+                emailsSum++;
+        }
+
+        return emailsSum;
+    }
+}

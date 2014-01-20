@@ -6,6 +6,7 @@
 #include "Group.h"
 #include "Email.h"
 #include "SerializationInit.h"
+#include "Database.h"
 
 /*
 	Klasa tożsamości wyodrębnionych z maili w polach od/do/dowielu/przekazanodalej.
@@ -48,6 +49,7 @@ public:
     unsigned int getEmailsReceivedInMonth (int month); // zwraca liczbę maili odebranych w danym miesiącu
     unsigned int getEmailsSentInMonth (int month);    // zwraca liczbę maili wysłanych w danym miesiącu
     unsigned int getMaxEmailsInMonth ();               // zwraca największą liczbę maili napisanych w ciągu danego miesiąca
+    unsigned int getEmailsCount (Database* database, int usemberIndex);
 
 private:
     // adres - email:

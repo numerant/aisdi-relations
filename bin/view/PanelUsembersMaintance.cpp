@@ -551,7 +551,24 @@ void PanelUsembersMaintance::EventButtonSettingsClick (AisdiRelationsFrame * Fra
 
 void PanelUsembersMaintance::EventButtonDeleteClick (AisdiRelationsFrame* Frame)
 {
+    if (adressUsemberSelected == "")
+        return;
+    if (Frame->database->countUsembers() == 0)
+        return;
 
+    Usember* usember = Frame->database->getUsember(Frame->database->findUsember(adressUsemberSelected));
+    if (usember == nullptr)
+    {
+        //TODO rzuć wyjątkiem o ścianę
+    }
+    else
+    {
+        //usun maile from
+        //usun maile to
+        //usun usembera
+
+        //albo najlepiej usuwaj maile przez funkcje panelu Inbox to usember sam sie usunie
+    }
 }
 
 void PanelUsembersMaintance::EventButtonShowGroupClick (AisdiRelationsFrame* Frame)
