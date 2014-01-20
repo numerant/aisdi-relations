@@ -245,7 +245,12 @@ Database* IOInterface::importDatabase(string filePath, DbParameters *parameters)
     //parameters->password = "qwertyuiop";
 
     stringstream decompressedData;
-    ifstream inputFile(filePath, ios_base::binary);         // dodać exception
+    inputFile.open(filePath, ios_base::binary);
+    if (inputFile.fail())
+        throw UnableToOpenFile();
+
+    inputFile.get();
+    inputFile.get();
 
     filtering_streambuf<input> decompressedStream;
     decompressedStream.push(zlib_decompressor());
@@ -268,7 +273,7 @@ Database* IOInterface::importDatabase(string filePath, DbParameters *parameters)
         inputArchive >> database;
     }
 
-
+    inputFile.close();
     return database;
 }
 
@@ -283,13 +288,20 @@ void IOInterface::exportDatabase(string filePath, DbParameters *parameters)
     stringstream dataToCompress;
     ofstream outputFile(filePath);
 
+    if (outputFile.fail())
+        throw UnableToOpenFile();
+
+    outputFile.put((char)48);
+
     if (!(parameters->isPasswordProtected))
     {
+        outputFile.put((char)0);
         boost::archive::text_oarchive outputArchive(dataToCompress);
         outputArchive << database;
     }
     else
     {
+        outputFile.put((char)1);
         stringstream dataToEncrypt;
         boost::archive::text_oarchive outputArchive(dataToEncrypt);
         outputArchive << database;

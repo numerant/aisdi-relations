@@ -50,7 +50,6 @@ public:
     ImportStats getImportStats();
     void clearImportStats();
 
-    void xorStream(stringstream &inputStream, stringstream &outputStream, string key);  // szyfruje/deszyfruje strumień algorytmem XOR
     void exportDatabase (string filePath, DbParameters *parameters);                    // opis klas MailParameters i DbParameters jest w Param.h
     Database* importDatabase (string filePath, DbParameters *parameters);
     void exportDatabaseReport (string path, Statistics* dbStatistics);
@@ -63,9 +62,11 @@ private:
     // Fields:
     Database *database;                         // baza tworzona w momencie uruchomienia programu
     ImportStats stats;
+    ifstream inputFile;
     //vector<char> *binary_file;                // trzyma zserializowaną bazę danych w formie binarnej - chyba lepiej tworzyć lokalnie, wewnątrz metody
 
     // Methods:
+    void xorStream(stringstream &inputStream, stringstream &outputStream, string key);  // szyfruje/deszyfruje strumień algorytmem XOR
     void importSingleMail(boost::filesystem::path path, ImportStats &stats);
     Email* emlParser (string path);             //sprawdza poprawność maili
     void encryptFile (string password);

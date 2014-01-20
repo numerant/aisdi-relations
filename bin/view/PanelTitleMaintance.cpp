@@ -446,7 +446,7 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
         {*/
             DbParameters importParameters;
             bool passwordCorrect = false;
-            bool isPassword = true;
+            bool isPassword = false;
             wxString password = _("");
 
             if ( isPassword)  /* TODO Zamienić na sprawdzenie czy plik ma hasło*/
