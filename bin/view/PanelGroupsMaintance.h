@@ -10,7 +10,7 @@ class PanelGroupsMaintance
 private:
     bool panelEnabled = true;
     bool settingsEnabled = false;
-    bool treeEnabled = false;
+    bool treeEnabled = false;           //TODO sprawdzić czy potrzebne
     wxTreeCtrl * Tree;
     vector <wxTreeItemId> treeNodes;
 
@@ -29,13 +29,9 @@ public:
     void SetIcons(AisdiRelationsFrame* Frame);
     void SetSettingsEnabled();
     void DrawGroups (AisdiRelationsFrame * Frame);
-    void AddNode (wxTreeItemId id);
-    void DeleteNodes(AisdiRelationsFrame * Frame);
 
     bool GetPanelEnabled ();
     bool GetSettingsEnabled();
-    wxTreeItemId GetNode (unsigned int position);
-    unsigned int GetTreeNodesSize();
 
     void EventButtonSettingsClick(AisdiRelationsFrame* Frame);
 };

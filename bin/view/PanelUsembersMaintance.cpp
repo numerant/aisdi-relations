@@ -133,11 +133,19 @@ void PanelUsembersMaintance::SetUsembers(AisdiRelationsFrame * Frame)
     }
     else if (customSearch)
     {
-        //TODO wyświetl 'brak wyników wyszukiwania'
+        wxListItem item;
+        item.SetId(0);
+        Frame->U_ListUsembers->InsertItem( item );
+        wxString wxNoResults = _("brak wyników wyszukiwania...");
+        Frame->U_ListUsembers->SetItem(0,1, wxNoResults);
     }
     else
     {
-        //TODO wyświetl 'pusta baza'
+        wxListItem item;
+        item.SetId(0);
+        Frame->U_ListUsembers->InsertItem( item );
+        wxString wxNoEmails = _("brak użytkowników w bazie...");
+        Frame->U_ListUsembers->SetItem(0,1, wxNoEmails);
     }
 }
 
@@ -145,8 +153,18 @@ void PanelUsembersMaintance::SetEmails (AisdiRelationsFrame * Frame, int pos)
 {
     if (pos == -1)
     {
-        Frame->U_ListInbox->DeleteAllItems();
+        Frame->U_ListInbox->DeleteAllItems();       //usuń elementy
         Frame->U_ListOutbox->DeleteAllItems();
+
+        wxListItem item;    //ustaw info o pustych listach
+        item.SetId(0);
+        Frame->U_ListOutbox->InsertItem( item );
+        Frame->U_ListInbox->InsertItem( item );
+        wxString wxNoResults = _("brak emaili wysłanych...");
+        Frame->U_ListOutbox->SetItem(0,1, wxNoResults);
+        wxNoResults = _("brak emaili odebranych...");
+        Frame->U_ListInbox->SetItem(0,1, wxNoResults);
+
         return;
     }
 
@@ -156,8 +174,11 @@ void PanelUsembersMaintance::SetEmails (AisdiRelationsFrame * Frame, int pos)
         Frame->U_ListInbox->DeleteAllItems();
         Frame->U_ListOutbox->DeleteAllItems();
         Usember * usember = Frame->database->getUsember(pos);
+
+        //Przeleć maile odebrane
         int counterIn =  usember->receiveMailCount();
         if (counterIn > 0)
+        {
             for (int i = 0; i < counterIn; i++)
             {
                 Email * email = usember->getEmailReceived(i);
@@ -201,9 +222,20 @@ void PanelUsembersMaintance::SetEmails (AisdiRelationsFrame * Frame, int pos)
                 wxString wxfrom(sourceString.c_str(), wxConvUTF8);
                 Frame->U_ListInbox->SetItem(i,2,wxfrom);
             }
+        }
+        else    //nie ma maili odebranych
+        {
+            wxListItem item;
+            item.SetId(0);
+            Frame->U_ListInbox->InsertItem( item );
+            wxString wxNoResults = _("brak emaili odebranych...");
+            Frame->U_ListInbox->SetItem(0,1, wxNoResults);
+        }
 
-         int counterOut = usember->sendMailCount();
-         if (counterOut  > 0)
+        //przeleć maile wysłane
+        int counterOut = usember->sendMailCount();
+        if (counterOut  > 0)
+        {
             for (int i = 0; i < counterOut; i++)
             {
                 Email * email = usember->getEmailSent(i);
@@ -247,7 +279,29 @@ void PanelUsembersMaintance::SetEmails (AisdiRelationsFrame * Frame, int pos)
                 wxString wxto (sourceString.c_str(), wxConvUTF8);
                 Frame->U_ListOutbox->SetItem(i,2,wxto);
             }
+        }
+        else    //nie ma maili wysłanych
+        {
+            wxListItem item;
+            item.SetId(0);
+            Frame->U_ListOutbox->InsertItem( item );
+            wxString wxNoResults = _("brak emaili wysłanych...");
+            Frame->U_ListOutbox->SetItem(0,1, wxNoResults);
+        }
     }
+    else
+    {
+        wxListItem item;
+        item.SetId(0);
+        Frame->U_ListOutbox->InsertItem( item );
+        Frame->U_ListInbox->InsertItem( item );
+        wxString wxNoResults = _("brak emaili wysłanych...");
+        Frame->U_ListOutbox->SetItem(0,1, wxNoResults);
+        wxNoResults = _("brak emaili odebranych...");
+        Frame->U_ListInbox->SetItem(0,1, wxNoResults);
+    }
+
+    //TODO Coś trzeba z tym zrobić, może jakiś Timer?
     EventPanelStatsPaint(Frame);
 }
 
@@ -588,6 +642,9 @@ void PanelUsembersMaintance::EventSearchCtrlTextEnter (AisdiRelationsFrame* Fram
 
 void PanelUsembersMaintance::EventListUsembersItemSelect (AisdiRelationsFrame* Frame)
 {
+    if (Frame->database->countUsembers() == 0)
+        return;
+
     long itemIndex = -1;
     itemIndex = Frame->U_ListUsembers->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
 
@@ -628,7 +685,6 @@ void PanelUsembersMaintance::EventListUsembersItemSelect (AisdiRelationsFrame* F
     Frame->U_StaticTextReceived->SetLabel(wxString(strReceived.c_str(),wxConvUTF8));
     Frame->U_StaticTextSent->SetLabel(wxString(strSent.c_str(),wxConvUTF8));
 
-   EventPanelStatsPaint(Frame);
    SetEmails(Frame, Frame->database->findUsember(adressUsemberSelected));
    if (GetUsembersListEnabled())
         SwitchList(Frame);
@@ -648,6 +704,7 @@ void PanelUsembersMaintance::EventListOutboxColumnClick (AisdiRelationsFrame* Fr
 
 void PanelUsembersMaintance::EventListOutboxItemSelect (AisdiRelationsFrame* Frame)
 {
+
     long itemIndex = -1;
     itemIndex = Frame->U_ListOutbox->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
 
@@ -664,6 +721,10 @@ void PanelUsembersMaintance::EventListOutboxItemSelect (AisdiRelationsFrame* Fra
         Frame->U_ListOutbox->GetItem( item );
         contents[i] = item.m_text;
     }
+
+    if (contents[0] == _(""))
+        return;
+
     Frame->U_StaticTextDate->SetLabel(contents[0]);
     Frame->U_StaticTextSubject->SetLabel(contents[1]);
     Frame->U_StaticTextFromTo->SetLabel(contents[2]);
@@ -701,6 +762,10 @@ void PanelUsembersMaintance::EventListInboxItemSelect (AisdiRelationsFrame* Fram
         Frame->U_ListInbox->GetItem( item );
         contents[i] = item.m_text;
     }
+
+    if (contents[0] == _(""))
+        return;
+
     Frame->U_StaticTextDate->SetLabel(contents[0]);
     Frame->U_StaticTextSubject->SetLabel(contents[1]);
     Frame->U_StaticTextFromTo->SetLabel(contents[2]);

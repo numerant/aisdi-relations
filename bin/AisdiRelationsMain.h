@@ -177,6 +177,8 @@ private:
     void OnS_ImageButtonSettingsClick(wxCommandEvent& event);
     void OnM_ImageButtonSettingsClick(wxCommandEvent& event);
     void OnI_Adv_ImageButtonResetClick(wxCommandEvent& event);
+    void OnG_ListGroupsItemSelect(wxListEvent& event);
+    void OnClose(wxCloseEvent& event);
     //*)
 
     //(*Identifiers(AisdiRelationsFrame)
@@ -322,6 +324,7 @@ private:
     static const long ID_IMAGEBUTTON48;
     static const long ID_IMAGEBUTTON47;
     static const long ID_IMAGEBUTTON41;
+    static const long ID_LISTCTRL5;
     static const long ID_PANEL6;
     static const long ID_STATICBITMAP3;
     static const long ID_STATICTEXT54;
@@ -519,6 +522,7 @@ private:
     wxStaticText* U_StaticTextReceived;
     wxStaticText* S_LabelUsembers;
     wxStaticText* U_LabelReceived;
+    wxListCtrl* G_ListGroups;
     wxBitmapButton        *S_ImageButtonGroups;
     wxBitmapButton        *S_ImageButtonTitle;
     wxTimer Timer1;
@@ -773,8 +777,8 @@ private:
     wxStaticBitmap* BitmapBackgroundTree;
     wxStaticText* S_StaticTextC_Duration;
     wxPanel* PanelTitle;
-    wxStaticText* U_LabelStats;
     wxStaticText* U_StaticTextEmail;
+    wxStaticText* U_LabelStats;
     wxStaticText* I_LabelStats;
     wxStaticLine* S_LineC_2;
     wxStaticText* T_LabelFiles;

@@ -236,6 +236,134 @@ void PanelTitleMaintance::UpdateLoadingIcons (AisdiRelationsFrame* Frame)
     }
 }
 
+void PanelTitleMaintance::NewProgramInstance (AisdiRelationsFrame* Frame)
+{
+    Frame->P_Title->ShowPanel(Frame);
+
+    delete Frame->iointerface;      //usuń stare dane
+    delete Frame->statistics;
+    delete Frame->relations;
+    delete Frame->database;
+
+    delete Frame->P_Groups;
+    delete Frame->P_Inbox;
+    delete Frame->P_MulTree;
+    delete Frame->P_Stats;
+    delete Frame->P_Usembers;
+    delete Frame->P_Notify;
+
+    Frame->database = new Database();      //zaalokuj nowe obiekty
+    Frame->iointerface = new IOInterface();
+    Frame->iointerface->setDatabasePointer(Frame->database);
+    Frame->statistics = new Statistics(Frame->database);
+    Frame->relations = new Relations(Frame->database);
+
+    Frame->P_Groups = new PanelGroupsMaintance();
+    Frame->P_Inbox = new PanelInboxMaintance();
+    Frame->P_MulTree = new PanelMulTreeMaintance();
+    Frame->P_Stats = new PanelStatisticsMaintance();
+    Frame->P_Usembers = new PanelUsembersMaintance();
+    Frame->P_Notify = new PanelNotifyMaintance();
+
+     //inicjalizacja ikon oraz etykiet w panelach
+    Frame->U_ListUsembers->DeleteAllItems();
+    Frame->U_ListInbox->DeleteAllItems();
+    Frame->U_ListOutbox->DeleteAllItems();
+    Frame->P_Usembers->ClearUsemberInfo(Frame);
+    Frame->P_Usembers->SetEmails(Frame, -1);
+    Frame->P_Usembers->SetUsembers(Frame);
+
+    Frame->I_ListInbox->DeleteAllItems();
+    Frame->P_Inbox->SetEmails(Frame);
+
+    Frame->PanelNotify->Hide();
+    Frame->PanelAdd->Hide();
+    Frame->PanelSave->Hide();
+    Frame->PanelSettings->Hide();
+
+    DeleteAutoSave(Frame);
+}
+
+void PanelTitleMaintance::AutoSave (AisdiRelationsFrame* Frame)
+{
+    DbParameters exportParameters;
+    if (Frame->database->countEmails() == 0)
+    {
+        Frame->P_Notify->SetLabels(Frame, "Baza jest pusta.");
+        Frame->P_Notify->SetValues(Frame, "");
+        Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
+        return;
+    }
+
+    exportParameters.password = "";
+    exportParameters.isPasswordProtected = false;
+
+    string strPath = "./sav_tmp.bin";
+
+    Frame->iointerface->exportDatabase(strPath, &exportParameters);
+
+    Frame->P_Notify->SetLabels(Frame, "Zapisano plik tymczasowy", "  Nazwa pliku:", "    sav_tmp.bin");
+    Frame->P_Notify->SetValues(Frame, "");
+    Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
+}
+
+void PanelTitleMaintance::LoadAutoSave (AisdiRelationsFrame* Frame)
+{
+    DbParameters importParameters;
+    importParameters.password = "";
+    importParameters.isPasswordProtected = false;
+    string strPath = "./sav_tmp.bin";
+
+    try
+    {
+        Frame->iointerface->isImportedFileProtected(strPath);
+        Frame->database = Frame->iointerface->importDatabase(&importParameters);     // po wczytaniu zmienia się wartość wskaźnika na bazę danych!
+
+        delete Frame->statistics;
+        Frame->statistics = new Statistics(Frame->database);
+
+        Frame->P_Inbox->SetEmails(Frame);               //załadowanie listy maili i usemberów z bazy
+        Frame->P_Usembers->SetUsembers(Frame);
+
+        if (GetNoData())
+            Frame->P_Title->SwitchIcons(Frame);
+        Frame->statistics->update();
+        Frame->P_Inbox->SetAdvSearchDate(Frame);
+        if (Frame->P_Stats->GetIsUpdated())
+            Frame->P_Stats->SetIsUpdated();
+
+        if (! Frame->P_Usembers->GetUsembersListEnabled())
+            Frame->P_Usembers->SetUsembersListEnabled();
+
+        Frame->P_Usembers->SetEmails(Frame, -1);        //usuń maile From i To z komponentu
+        if (Frame->P_Usembers->GetEmailContentEnabled())
+            Frame->P_Usembers->SetEmailContentEnabled();
+
+        Frame->P_Usembers->ClearUsemberInfo(Frame);
+
+        Frame->P_Notify->SetLabels(Frame, "Odzyskano plik zapisu", "Status:");
+        Frame->P_Notify->SetValues(Frame, "Wczytano");
+        Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
+    }
+    catch(UnableToOpenFile exception)
+    {
+        Frame->P_Notify->SetLabels(Frame, "Odzyskiwanie pliku zapisu", "Nie można otworzyć pliku!");
+        Frame->P_Notify->SetValues(Frame, "", "     Błąd!");
+        Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
+    }
+    catch(InvalidFile exception)
+    {
+        Frame->P_Notify->SetLabels(Frame, "Odzyskiwanie pliku zapisu", "Plik nie jest poprawny!");
+        Frame->P_Notify->SetValues(Frame, "", "     Błąd!");
+        Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
+    }
+}
+
+void PanelTitleMaintance::DeleteAutoSave (AisdiRelationsFrame* Frame)
+{
+    std::remove("sav_tmp.bin");
+}
+
 void PanelTitleMaintance::SetNoData (bool value)
 {
     noData = value;
@@ -451,7 +579,7 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
 {
     if (Frame->FileDialogDatabaseImport->ShowModal() == wxID_OK)
     {
-         /* Schowanie PanelAdd i zmiana grafik przycisków dodawania na domyślne */
+        /* Schowanie PanelAdd i zmiana grafik przycisków dodawania na domyślne */
         if (Frame->P_Inbox->GetAddEnabled())
             Frame->P_Inbox->SetAddEnabled();
         if (Frame->P_Usembers->GetAddEnabled())
@@ -460,13 +588,25 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
         Frame->I_ImageButtonAdd->SetBitmapLabel(path+imagePaths[16]+format);
         Frame->U_ImageButtonAdd->SetBitmapLabel(path+imagePaths[16]+format);
 
-        /*if (Frame->MessageDialogConfirmation->ShowModal() == wxID_YES)        //TODO Odkomentować
-        {*/
+        //potwierdzenie nadpisania bazy danych
+        bool deleteConfirm = false;
+        if (Frame->database->countEmails() == 0)    //nie ma maili, nie ma potwierdzenia
+            deleteConfirm = true;
+        else
+        {
+            wxMessageDialog * confirmPrompt = new wxMessageDialog(Frame, _("Bieżące dane zostaną utracone. Czy chcesz kontynuować\?"), _("Potwierdzenie nadpisania bazy danych"), wxCANCEL|wxYES_NO|wxNO_DEFAULT|wxICON_EXCLAMATION, wxDefaultPosition);
+            if (confirmPrompt->ShowModal() == wxID_YES)
+                deleteConfirm = true;
+            delete confirmPrompt;
+        }
+
+        if (deleteConfirm)
+        {
             DbParameters importParameters;
             importParameters.password = "";
             importParameters.isPasswordProtected = false;
 
-            bool passwordCorrect = false;
+            bool passWordEntry = false;
             wxString password = _("");
 
             wxArrayString paths;
@@ -482,15 +622,11 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
                         {
                             password = Frame->PasswordEntryDialog->GetValue();
                             Frame->PasswordEntryDialog->SetValue(_(""));
-                            if (password != _(""))      //TODO sprawdzenie poprawności hasła w kwestii znakowej
+                            if (password != _(""))
                             {
                                 importParameters.password = password.mb_str();
                                 importParameters.isPasswordProtected = true;
-
-                                //TODO Tutaj próba odczytu i deszyfracji
-                                //Na razie załóżmy że true
-
-                                passwordCorrect = true;
+                                passWordEntry = true;
                             }
                             else
                             {
@@ -503,7 +639,7 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
                             wxMessageBox(_("Nie podano hasła!"));
                             return;
                         }
-                    } while (!passwordCorrect);
+                    } while (!passWordEntry);
                 }
                 Frame->database = Frame->iointerface->importDatabase(&importParameters);     // po wczytaniu zmienia się wartość wskaźnika na bazę danych!
 
@@ -530,26 +666,28 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
                 Frame->P_Usembers->ClearUsemberInfo(Frame);
 
                 Frame->P_Notify->SetLabels(Frame, "Wczytywanie pliku bazy danych", "Status");
-                Frame->P_Notify->SetValues(Frame, "OK");
+                Frame->P_Notify->SetValues(Frame, "        OK");
                 Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
             }
             catch(UnableToOpenFile exception)
             {
-                wxMessageBox(_("Nie można otworzyć tego pliku!"));
-                Frame->P_Title->SwitchIcons(Frame);
+                Frame->P_Notify->SetLabels(Frame, "Wczytywanie pliku bazy danych", "Nie można otworzyć tego pliku!");
+                Frame->P_Notify->SetValues(Frame, "", "       Błąd!");
+                Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
             }
             catch(InvalidFile exception)
             {
-                wxMessageBox(_("Plik nie jest poprawny!"));
-                Frame->P_Title->SwitchIcons(Frame);
+                Frame->P_Notify->SetLabels(Frame, "Wczytywanie pliku bazy danych", "Plik nie jest poprawny!");
+                Frame->P_Notify->SetValues(Frame, "", "       Błąd!");
+                Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
             }
             catch(InvalidPassword exception)
             {
-                /* tu można zrobić jakieś pytanie o hasło do skutku, ale nie wydaje się to konieczne */
-                wxMessageBox(_("Niepoprawne hasło!"));
-                Frame->P_Title->SwitchIcons(Frame);
+                Frame->P_Notify->SetLabels(Frame, "Wczytywanie pliku bazy danych", "Niepoprawne hasło!");
+                Frame->P_Notify->SetValues(Frame, "", "       Błąd!");
+                Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
             }
-        //}     //TODO odkomentować
+        }
     }
 }
 
@@ -591,6 +729,7 @@ void PanelTitleMaintance::EventButtonSwitchClick (AisdiRelationsFrame * Frame)
 void PanelTitleMaintance::EventButtonTxtClick(AisdiRelationsFrame * Frame)
 {
     //Tak naprawdę jest to zapis pliku binarnego bazy
+
     if (Frame->database->countEmails() == 0)
         wxMessageBox(_("Baza danych jest pusta."));
     else if (Frame->FileDialogDatabaseExport->ShowModal() == wxID_OK)      //uruchomienie panelu wybierania folderu
@@ -615,6 +754,12 @@ void PanelTitleMaintance::EventButtonTxtClick(AisdiRelationsFrame * Frame)
             }
             Frame->PasswordEntryDialog->SetValue(_(""));
         }
+        else
+        {
+            exportParameters.password = "";
+            exportParameters.isPasswordProtected = false;
+        }
+
         wxString path, filename;
         path = Frame->FileDialogDatabaseExport->GetPath();
         filename = Frame->FileDialogDatabaseExport->GetFilename();
@@ -633,8 +778,8 @@ void PanelTitleMaintance::EventButtonTxtClick(AisdiRelationsFrame * Frame)
 
             Frame->iointerface->exportDatabase(strPath, &exportParameters);
 
-            Frame->P_Notify->SetLabels(Frame, "Zapisano plik bazy.", "Nazwa pliku: ");
-            Frame->P_Notify->SetValues(Frame, strFilename);
+            Frame->P_Notify->SetLabels(Frame, "Zapisano plik bazy.", "  Nazwa pliku: ", "    "+strFilename);
+            Frame->P_Notify->SetValues(Frame, "");
             Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
         }
     }
@@ -643,9 +788,10 @@ void PanelTitleMaintance::EventButtonTxtClick(AisdiRelationsFrame * Frame)
 void PanelTitleMaintance::EventButtonSavTxtClick(AisdiRelationsFrame * Frame)
 {
     //Zapisywanie bazy do pliku tekstowego
-     if (Frame->database->countEmails() == 0)
+
+    if (Frame->database->countEmails() == 0)
         wxMessageBox(_("Baza danych jest pusta."));
-     else if (Frame->DirDialog->ShowModal() == wxID_OK)		//uruchomienie panelu wybierania folderu
+    else if (Frame->DirDialog->ShowModal() == wxID_OK)		//uruchomienie panelu wybierania folderu
     {													//jeśli wybrano folder:
         wxString path;
         path = Frame->DirDialog->GetPath();

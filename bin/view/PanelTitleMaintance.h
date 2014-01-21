@@ -2,8 +2,11 @@
 #include "../AisdiRelationsMain.h"
 #include <wx/msgdlg.h>
 #include "PanelInboxMaintance.h"
+#include "PanelUsembersMaintance.h"
 #include "PanelNotifyMaintance.h"
 #include "PanelStatisticsMaintance.h"
+#include "PanelMulTreeMaintance.h"
+#include "PanelGroupsMaintance.h"
 
 class PanelTitleMaintance
 {
@@ -37,6 +40,10 @@ public:
     void SetIcons(AisdiRelationsFrame* Frame);
     void SwitchIcons (AisdiRelationsFrame* Frame);
     void UpdateLoadingIcons (AisdiRelationsFrame* Frame);
+    void NewProgramInstance (AisdiRelationsFrame* Frame);
+    void AutoSave (AisdiRelationsFrame* Frame);
+    void LoadAutoSave (AisdiRelationsFrame* Frame);
+    void DeleteAutoSave (AisdiRelationsFrame* Frame);
 
     void SetNoData (bool value);
     void SetRecursiveLoad (bool value);

@@ -357,8 +357,14 @@ void PanelStatisticsMaintance::EventButtonSaveStatsClick (AisdiRelationsFrame * 
             }
 
             Frame->iointerface->exportDatabaseReport(strPath, Frame->statistics);
-            Frame->P_Notify->SetLabels(Frame, "Zapisano statystyki.", "Nazwa pliku: ");
-            Frame->P_Notify->SetValues(Frame, strFilename);
+            Frame->P_Notify->SetLabels(Frame, "Zapisano statystyki.", "  Nazwa pliku:", "    "+strFilename);
+            Frame->P_Notify->SetValues(Frame, "        OK");
+            Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
+        }
+        else
+        {
+            Frame->P_Notify->SetLabels(Frame, "Zapisywanie statystyk", "Błąd lokalizacji zapisu!");
+            Frame->P_Notify->SetValues(Frame, "        Błąd!");
             Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
         }
     }

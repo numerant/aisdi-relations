@@ -14,6 +14,7 @@
 		</font>
 		<id_arg>0</id_arg>
 		<style>wxDEFAULT_FRAME_STYLE|wxVSCROLL|wxHSCROLL</style>
+		<handler function="OnClose" entry="EVT_CLOSE" />
 		<object class="wxPanel" name="ID_PANEL1" variable="PanelMain" member="yes">
 			<pos>0,0</pos>
 			<bg>#000000</bg>
@@ -1493,6 +1494,21 @@
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
 					<handler function="OnG_ImageButtonTitleClick" entry="EVT_BUTTON" />
 				</object>
+				<object class="wxListCtrl" name="ID_LISTCTRL5" variable="G_ListGroups" member="yes">
+					<pos>25,130</pos>
+					<size>630,570</size>
+					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+					<bg>#141414</bg>
+					<font>
+						<size>10</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<style>wxLC_REPORT</style>
+					<handler function="OnG_ListGroupsItemSelect" entry="EVT_LIST_ITEM_SELECTED" />
+				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL4" variable="PanelUsembers" member="yes">
 				<pos>1366,0</pos>
@@ -2932,13 +2948,13 @@
 			</object>
 			<object class="wxPanel" name="ID_PANEL11" variable="PanelNotify" member="yes">
 				<pos>10,10</pos>
-				<size>250,120</size>
+				<size>350,120</size>
 				<hidden>1</hidden>
 				<bg>#303030</bg>
 				<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL</style>
 				<object class="wxStaticBox" name="ID_STATICBOX6" variable="N_Border" member="yes">
 					<pos>0,-10</pos>
-					<size>250,130</size>
+					<size>350,130</size>
 					<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT78" variable="N_StaticTextTitle" member="yes">
@@ -2991,20 +3007,20 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT83" variable="N_StaticTextValue1" member="yes">
 					<label>0</label>
-					<pos>170,35</pos>
+					<pos>270,35</pos>
 					<fg>#10B21F</fg>
 					<style>wxALIGN_LEFT</style>
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT82" variable="N_StaticTextValue2" member="yes">
 					<label>0</label>
-					<pos>170,60</pos>
-					<fg>#B21C10</fg>
+					<pos>270,60</pos>
+					<fg>#FF1200</fg>
 					<style>wxALIGN_LEFT</style>
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT130" variable="N_StaticTextValue3" member="yes">
 					<label>0</label>
-					<pos>170,85</pos>
-					<fg>#582BD3</fg>
+					<pos>270,85</pos>
+					<fg>#7B4BFE</fg>
 					<style>wxALIGN_LEFT</style>
 				</object>
 			</object>
@@ -3311,19 +3327,19 @@
 					<checkable>1</checkable>
 				</object>
 				<object class="wxMenu" name="ID_MENUITEM1" variable="MenuItem4" member="yes">
-					<label>Czas trwania powiadomień</label>
+					<label>Notification time</label>
 					<object class="wxMenuItem" name="isMenuNTimeShort" variable="MenuItemNTimeShort" member="yes">
-						<label>Krótki (2s)</label>
+						<label>Short (2s)</label>
 						<handler function="OnMenuItemNTimeShortSelected" entry="EVT_MENU" />
 						<radio>1</radio>
 					</object>
 					<object class="wxMenuItem" name="isMenuNTimeNormal" variable="MenuItemNTimeNormal" member="yes">
-						<label>Normalny (5s)</label>
+						<label>Normal (5s)</label>
 						<handler function="OnMenuItemNTimeNormalSelected" entry="EVT_MENU" />
 						<radio>1</radio>
 					</object>
 					<object class="wxMenuItem" name="isMenuNTimeLong" variable="MenuItemNTimeLong" member="yes">
-						<label>Długi (8s)</label>
+						<label>Long (8s)</label>
 						<handler function="OnMenuItemNTimeLongSelected" entry="EVT_MENU" />
 						<radio>1</radio>
 					</object>
