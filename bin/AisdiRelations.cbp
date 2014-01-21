@@ -59,6 +59,8 @@
 		<Unit filename="../src/GroupQuery.h" />
 		<Unit filename="../src/IOInterface.cpp" />
 		<Unit filename="../src/IOInterface.h" />
+		<Unit filename="../src/MulticastTree.cpp" />
+		<Unit filename="../src/MulticastTree.h" />
 		<Unit filename="../src/Parameters.cpp" />
 		<Unit filename="../src/Parameters.h" />
 		<Unit filename="../src/Query.cpp" />

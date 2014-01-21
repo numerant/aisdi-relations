@@ -1,11 +1,11 @@
 /* Klasa Drzewo (nazwa robocza) tworząca strukturę 'drzewa multicastowego', które odtwarza drogę jednego maila. Interfejs graficzny będzie również korzystał z tej klasy to reprezentacji wizualnej zawartości tej klasy. */
 ----------------------------------------------------------------------
 Założenia:
-	- Drzewo tworzone jest na podstawie FORWARDU maili. Każdy obiekt tej klasy trzyma odpowiednie wskazanie obiekt klasy Email, gdyż Usember może w trakcie FORWARDU zmieniać treść (dopisywać, podkreślać pewne elementy) w stylu: "Zobacz co napisał mi Usember 369: <treść>"
-	- Jeżeli wystąpi cykl, czyli Usember1 prześle do Usembera2, ten do Usembera3, a ten spowrotem do Usembera1, ostatni FORWARD jest pomijany i rozpatrywany jako brak przesłania dalej dla Usembera3 (chyba, że wysłał innym, wtedy rozpatrujemy). Jest to konieczne, by było to drzewo a nie graf. Po drugie, Usember1 już kiedyś miał tego maila. Treść się nie zmienia, więc nie potrzebuje kolejnej jego kopii.
+	- Drzewo tworzone jest na podstawie FORWARDU maili. Każdy obiekt tej klasy trzyma odpowiednie wskazanie na obiekt klasy Email, gdyż Usember może w trakcie FORWARDU zmieniać treść (dopisywać, podkreślać pewne elementy) w stylu: "Zobacz co napisał mi Usember 369: <treść>"
+	- Jeżeli wystąpi cykl, czyli Usember1 prześle do Usembera2, ten do Usembera3, a ten z powrotem do Usembera1, ostatni FORWARD jest pomijany i rozpatrywany jako brak przesłania dalej dla Usembera3 (chyba, że wysłał innym, wtedy rozpatrujemy). Jest to konieczne, by było to drzewo a nie graf.
 
 Uwagi ogólne:
-	- Jedna klasa drzewo zawiera vektor wskazań na węzły, a każda z nich zawiera vector wskazań na odbiorców i wskazanie na nadawcę
+	- Jedna klasa drzewo zawiera vektor wskazań na węzły, a każdy z nich zawiera vector wskazań na odbiorców i wskazanie na nadawcę
 	- Jeżeli obiektów będzie b. dużo, możliwe jest wypisanie tego (dodatkowo) w formie tekstowej z "wcięciami" jako potwierdzenie działania
 ----------------------------------------------------------------------
 >>> Class MulticastTree
