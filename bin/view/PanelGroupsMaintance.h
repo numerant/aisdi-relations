@@ -11,8 +11,7 @@ private:
     bool panelEnabled = true;
     bool settingsEnabled = false;
     bool treeEnabled = false;           //TODO sprawdzić czy potrzebne
-    wxTreeCtrl * Tree;
-    vector <wxTreeItemId> treeNodes;
+    int groupSelectedId = -1; 
 
     wxString path = (_("resources/icons/icon"));
     wxString format =  (_(".png"));
@@ -27,8 +26,10 @@ public:
     PanelGroupsMaintance ();
     void ShowPanel(AisdiRelationsFrame* Frame);
     void SetIcons(AisdiRelationsFrame* Frame);
+    void SetLabels(AisdiRelationsFrame* Frame);
+    void SetGroups (AisdiRelationsFrame * Frame);
     void SetSettingsEnabled();
-    void DrawGroups (AisdiRelationsFrame * Frame);
+   
 
     bool GetPanelEnabled ();
     bool GetSettingsEnabled();

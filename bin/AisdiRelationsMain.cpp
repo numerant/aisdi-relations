@@ -1590,6 +1590,8 @@ void AisdiRelationsFrame::ShowTitle (void )
     P_Inbox->SetIcons(this);
     P_Inbox->SetLabels(this);
     P_Groups->SetIcons(this);
+    P_Groups->SetLabels(this);
+    P_Groups->SetGroups(this);
     P_Stats->SetIcons(this);
     P_MulTree->SetIcons(this);
     PanelNotify->Hide();

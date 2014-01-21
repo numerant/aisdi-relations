@@ -22,7 +22,7 @@ void PanelGroupsMaintance::ShowPanel(AisdiRelationsFrame* Frame)
         Frame->G_ImageButtonSettings->SetBitmapLabel(path+imagePaths[5]+format);
 
         Frame->relations->runAlgorithm();  //TODO podpiąć to pod dodawanie emaili
-        DrawGroups(Frame);
+        SetGroups(Frame);
 
         Frame->PanelGroups->SetPosition(wxPoint(0,0));
         Frame->PanelGroups->Show();
@@ -39,15 +39,61 @@ void PanelGroupsMaintance::SetIcons(AisdiRelationsFrame * Frame)
     Frame->G_ImageButtonSettings->SetBitmapLabel(path+imagePaths[5]+format);
 }
 
+void PanelGroupsMaintance::SetLabels(AisdiRelationsFrame* Frame)
+{
+    wxListItem col;     //obiekt reprezentujący etykietę
+
+    col.SetId(0);       //tylko jedna kolumna
+    col.SetText(_(""));
+    col.SetWidth(630);
+    Frame->G_ListGroups->InsertColumn(0, col);
+
+    SetGroups(Frame);
+}
+
+void PanelGroupsMaintance::SetGroups (AisdiRelationsFrame * Frame)
+{
+    vector<int> levels = {0,1,2,3,1,2,1};
+    vector<string> labels = {"G1","G1_1","C1", "Lol", "Lol2","LOl3","ROFL"};
+
+    Frame->G_ListGroups->DeleteAllItems();
+    //Jeżeli grupy są już wygenerowane algorytmem
+    //if (Frame->database->countGroups() != 0)
+    if (1)      //TODO zmienić warunek
+    {
+        int groupCount = 7;     //temp <- zmień na rzeczywistą liczbę grup (równą liczbie pól wektorów przy okazji)
+        for (int i = 0; i < groupCount; i++)
+        {
+            //wstawienie elementu
+            wxListItem item;
+            item.SetId(i);
+            if (levels[i] % 2 == 0)
+                item.SetTextColour(wxColor(200,200,200));
+            Frame->G_ListGroups->InsertItem( item );
+
+            //zmiane jego wartości
+            string nazwa = "";
+            for (int k = 0; k < levels[i]; k++)
+                nazwa+="         ";
+
+            nazwa+=labels[i];
+            wxString nazwaWx (nazwa.c_str(), wxConvUTF8);
+            Frame->G_ListGroups->SetItem(i,0, nazwaWx);
+        }
+    }
+    else
+    {
+        wxListItem item;
+        item.SetId(0);
+        Frame->G_ListGroups->InsertItem( item );
+        wxString wxNoResults = _("brak grup roboczych...");
+        Frame->G_ListGroups->SetItem(0,1, wxNoResults);
+    }
+}
+
 void PanelGroupsMaintance::SetSettingsEnabled()
 {
     settingsEnabled = !settingsEnabled;
-}
-
-void PanelGroupsMaintance::DrawGroups (AisdiRelationsFrame* Frame)
-{
-    //Dostęp do relacji  Frame->relations->
-    //Dostęp do bazy  Frame->database->
 }
 
 bool PanelGroupsMaintance::GetPanelEnabled ()
