@@ -1341,12 +1341,13 @@
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL6" variable="PanelGroups" member="yes">
-				<pos>1366,0</pos>
+				<pos>0,0</pos>
 				<size>1366,750</size>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP5" variable="BitmapBackgroundGroups" member="yes">
 					<bitmap>resources/background.jpg</bitmap>
 					<pos>0,0</pos>
 					<size>1366,768</size>
+					<style>wxSIMPLE_BORDER|wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE</style>
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT151" variable="G_LabelSettings" member="yes">
 					<label>Ustawienia</label>
@@ -1494,7 +1495,7 @@
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL4" variable="PanelUsembers" member="yes">
-				<pos>0,0</pos>
+				<pos>1366,0</pos>
 				<size>1366,750</size>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP3" variable="BitmapBackgroundUsembers" member="yes">
 					<bitmap>resources/background.jpg</bitmap>
