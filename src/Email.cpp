@@ -83,11 +83,6 @@ void Email::setContent(string newContent)
     content = newContent;
 }
 
-vector<string>& Email::getForwards()
-{
-    return forwards;
-}
-
 int Email::getReferences()
 {
     return references;

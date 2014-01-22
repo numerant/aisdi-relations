@@ -2,6 +2,7 @@
 #include "Usember.h"
 #include "Date.h"
 #include "SerializationInit.h"
+#include "MulticastTree.h"
 #include <string>
 #include <boost/serialization/base_object.hpp>
 
@@ -25,10 +26,7 @@ private:
     Usember *to;	    	//przechowujące adres e-mail odbiorcy
     string subject = "";	//przechowujące temat wiadomości
     string content = "";		//przechowujące treść wiadomości
-    vector<string> forwards;	//przechowujace ID forwardow tej wiadomosci
-    //opcjonalne pole przechowujące ID wiadomości, na którą dana wiadomość jest odpowiedzią oraz
-    //ID wiadomości, na którą odpowiedzią jest wiadomość, na którą dana wiadomość jest odpowiedzią
-    //tzn. ID1->ID2->ID3 (gdzie ID3 to ID danej wiadomośći, pole to przechowuje ID2 oraz ID1)
+
     int references;
 
 	bool isForwarded = false;	// czy ta wiadomość jest Forwardem
@@ -53,7 +51,6 @@ public:
     void setSubject(string newSubject);
     string getContent();
     void setContent(string newContent);
-    vector<string>& getForwards();
     int getReferences();
     void setReferences( int newReferences);
 	void setIsForwarded( bool newIsForwarded);
