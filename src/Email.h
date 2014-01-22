@@ -17,28 +17,21 @@ class Email
     template<class Archive> friend void  boost::serialization::serialize(Archive &, Email &, const unsigned int);  //potrzebne do serializacji
 
 private:
-    //przechowujące adres e-mail nadawcy
-    Usember *from;
-    //przechowujące datę nadania
-    Date date;
-    //przechowujące adres e-mail, na który ma zostać wysłana odpowiedź do danego maila
-    Usember *replyTo;
-    //przechowujące ID wiadomości, na którą dana wiadomość jest odpowiedzią
-    string inReplyTo = "";
-    //przechowujące ID wiadomości nadane przez bazę danych
-    string messageID = "";
-    //przechowujące adres e-mail odbiorcy
-    Usember *to;
-    //przechowujące temat wiadomości
-    string subject = "";
-    //przechowujące treść wiadomości
-    string content ="";
-    //przechowujace ID forwardow tej wiadomosci
-    vector<string> forwards;
+    Usember *from;		//przechowujące adres e-mail nadawcy
+    Date date;			//przechowujące datę nadania
+    Usember *replyTo;	//przechowujące adres e-mail, na który ma zostać wysłana odpowiedź do danego maila
+    string inReplyTo = "";	//przechowujące ID wiadomości, na którą dana wiadomość jest odpowiedzią
+    string messageID = "";	//przechowujące ID wiadomości nadane przez bazę danych
+    Usember *to;	    	//przechowujące adres e-mail odbiorcy
+    string subject = "";	//przechowujące temat wiadomości
+    string content = "";		//przechowujące treść wiadomości
+    vector<string> forwards;	//przechowujace ID forwardow tej wiadomosci
     //opcjonalne pole przechowujące ID wiadomości, na którą dana wiadomość jest odpowiedzią oraz
     //ID wiadomości, na którą odpowiedzią jest wiadomość, na którą dana wiadomość jest odpowiedzią
     //tzn. ID1->ID2->ID3 (gdzie ID3 to ID danej wiadomośći, pole to przechowuje ID2 oraz ID1)
     int references;
+	
+	bool isForwarded = false;	// czy ta wiadomość jest Forwardem
 
 public:
     Email();
@@ -63,4 +56,5 @@ public:
     vector<string>& getForwards();
     int getReferences();
     void setReferences( int newReferences);
+	void setIsForwarded( bool newIsForwarded);
 };

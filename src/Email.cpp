@@ -97,3 +97,8 @@ void Email::setReferences( int newReferences)
 {
     references = newReferences;
 }
+
+void Email::setIsForwarded( bool newIsForwarded)
+{
+	isForwarded = newIsForwarded;
+}
