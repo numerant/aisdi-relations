@@ -100,16 +100,29 @@ void Database::deleteUsember(Usember* usember)
     sort (usemberVector.begin(), usemberVector.end(), Database::compareUsembers);
 }
 
+void Database::simpleSelect(string phrase)
+{
+    emailSearchResultVector.clear();
+    for(int i=0; i<(int)emailVector.size(); ++i)
+        if(emailVector[i]->getSubject().find(phrase)!=string::npos || emailVector[i]->getContent().find(phrase)!=string::npos)
+            emailSearchResultVector.push_back(emailVector[i]);
+}
+
 void Database::select(EmailQuery& emailQuery)
 {
-    bool match=true;
+    bool match;
     emailSearchResultVector.clear();
     for(int i=0; i<(int)emailVector.size(); ++i)
     {
+        match=true;
+        if(emailQuery.searchingForReplies() && findEmail(emailVector[i]->getInReplyTo())==-1)
+            match=false;
+        if(emailQuery.searchingForForwards() && emailVector[i]->getIsForwarded())
+            match=false;
         if(emailQuery.getStringCriteriaVectorSize()>0)
         {
             match=true;
-            for(int j=0; j<emailQuery.getStringCriteriaVectorSize(); ++j)
+            for(unsigned int j=0; j<emailQuery.getStringCriteriaVectorSize(); ++j)
             {
                 if(!matches(*emailVector[i], *emailQuery.getStringCriteria(j)))
                 {
@@ -121,7 +134,7 @@ void Database::select(EmailQuery& emailQuery)
 
         if(match && emailQuery.getDateCriteriaVectorSize()>0)
         {
-            for(int j=0; j<emailQuery.getDateCriteriaVectorSize(); ++j)
+            for(unsigned int j=0; j<emailQuery.getDateCriteriaVectorSize(); ++j)
             {
                if(!matches(*emailVector[i], *emailQuery.getDateCriteria(j)))
                {
@@ -133,8 +146,6 @@ void Database::select(EmailQuery& emailQuery)
         if(match)
             emailSearchResultVector.push_back(emailVector[i]);
     }
-    if(emailSearchResultVector.size()>1)
-        sort(emailSearchResultVector.begin(), emailSearchResultVector.end());
 }
 
 void Database::select(UsemberQuery& usemberQuery)
@@ -146,7 +157,7 @@ void Database::select(UsemberQuery& usemberQuery)
         if(usemberQuery.getStringCriteriaVectorSize()>0)
         {
             match=true;
-            for(int j=0; j<usemberQuery.getStringCriteriaVectorSize(); ++j)
+            for(unsigned int j=0; j<usemberQuery.getStringCriteriaVectorSize(); ++j)
             {
                 if(!matches(*usemberVector[i], *usemberQuery.getStringCriteria(j)))
                 {
@@ -236,17 +247,17 @@ bool Database::matches(Email& email, StringCriteria& stringCriteria)
 {
     switch(stringCriteria.getSearchKey()){
     case E_EMAIL:
-        if(email.getFrom()->getAddress()==stringCriteria.getName())
+        if(email.getFrom()->getAddress().find(stringCriteria.getName())!=string::npos || email.getTo()->getAddress().find(stringCriteria.getName())!=string::npos)
             return true;
         return false;
     case E_SUBJECT:
-        if(email.getSubject()==stringCriteria.getName())
+        if(email.getSubject().find(stringCriteria.getName())!=string::npos)
             return true;
         return false;
-        case E_CONTENT:
-    if(email.getContent()==stringCriteria.getName())
-        return true;
-    return false;
+    case E_CONTENT:
+        if(email.getContent().find(stringCriteria.getName())!=string::npos)
+            return true;
+        return false;
     default:
         return false;
     }
@@ -255,17 +266,17 @@ bool Database::matches(Email& email, StringCriteria& stringCriteria)
 bool Database::matches(Email& email, DateCriteria& dateCriteria)
 {
     if(dateCriteria.getEquals()!=nullptr){
-        if(email.getDate().compare(*dateCriteria.getEquals())==0)
+        if(email.getDate().compare(*dateCriteria.getEquals())==0)      //mozna zrobic w Date wersje compare porownujaca tylko lata, miesiace i dni i dac ja tutaj
             return true;
         else
             return false;
     }
     if(dateCriteria.getLess()!=nullptr){
-        if(email.getDate().compare(*dateCriteria.getLess())>=0)
+        if(email.getDate().compare(*dateCriteria.getLess())<0)
             return false;
     }
     if(dateCriteria.getGreater()!=nullptr){
-        if(email.getDate().compare(*dateCriteria.getGreater())<=0)
+        if(email.getDate().compare(*dateCriteria.getGreater())>0)
             return false;
     }
     return true;
@@ -273,7 +284,7 @@ bool Database::matches(Email& email, DateCriteria& dateCriteria)
 
 bool Database::matches(Usember& usember, StringCriteria& stringCriteria)
 {
-    if(usember.getAddress()==stringCriteria.getName())
+    if(usember.getAddress().find(stringCriteria.getName())!=string::npos)
         return true;
     return false;
 }
