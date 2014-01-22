@@ -31,6 +31,7 @@ public:
     Date();
     Date(const Date &date);
     Date (string newDate);
+    Date (int day, string month, int year);
     ~Date();
 
 	string getFullDate();
