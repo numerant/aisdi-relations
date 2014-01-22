@@ -242,7 +242,12 @@ void PanelTitleMaintance::NewProgramInstance (AisdiRelationsFrame* Frame)
 
     delete Frame->iointerface;      //usuń stare dane
     delete Frame->statistics;
-    delete Frame->relations;
+    if (Frame->relations != nullptr)
+    {
+        delete Frame->relations;
+        Frame->P_Groups->SetRelationsConstructed(false);
+        Frame->relations = nullptr;
+    }
     delete Frame->database;
 
     delete Frame->P_Groups;
@@ -256,7 +261,6 @@ void PanelTitleMaintance::NewProgramInstance (AisdiRelationsFrame* Frame)
     Frame->iointerface = new IOInterface();
     Frame->iointerface->setDatabasePointer(Frame->database);
     Frame->statistics = new Statistics(Frame->database);
-    Frame->relations = new Relations(Frame->database);
 
     Frame->P_Groups = new PanelGroupsMaintance();
     Frame->P_Inbox = new PanelInboxMaintance();
@@ -494,6 +498,7 @@ void PanelTitleMaintance::EventButtonFolderClick (AisdiRelationsFrame* Frame)
 
             if (GetNoData())
                 Frame->P_Title->SwitchIcons(Frame);
+
             Frame->P_Notify->SetLabels(Frame, "Zakończono wczytywanie!", "Wczytano poprawnie:", "Niepoprawne emaile:", "Powtórzone rekordy:");
             Frame->P_Notify->SetValues(Frame, stats.successCount, stats.failCount, stats.existingCount);
             Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());

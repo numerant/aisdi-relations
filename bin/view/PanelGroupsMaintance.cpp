@@ -31,7 +31,9 @@ void PanelGroupsMaintance::ShowPanel(AisdiRelationsFrame* Frame)
 
             relationsConstructed = true;
         }
-        //Frame->relations->runAlgorithm();  //TODO podpiąć to pod dodawanie emaili
+        if (Frame->relations != nullptr)
+            Frame->relations->runAlgorithm();  //TODO podpiąć to pod dodawanie emaili
+
         SetGroups(Frame);
 
         Frame->PanelGroups->SetPosition(wxPoint(0,0));
@@ -71,7 +73,7 @@ void PanelGroupsMaintance::SetGroups (AisdiRelationsFrame * Frame)
         wxListItem item;
         item.SetId(0);
         Frame->G_ListGroups->InsertItem( item );
-        wxString wxNoResults = _("brak grup roboczych...");
+        wxString wxNoResults = _("            brak grup roboczych...");
         Frame->G_ListGroups->SetItem(0,0, wxNoResults);
         return;
     }
@@ -83,10 +85,20 @@ void PanelGroupsMaintance::SetGroups (AisdiRelationsFrame * Frame)
     //string s = to_string(Frame->database->countGroups());
     vector<string> labels; //= {s,"G1_1","C1", "Lol", "Lol2","LOl3","ROFL"};
 
-    for(int i = 0; i < Frame->relations->getFinalGroupsSize(); i++)
+    for(int i = Frame->relations->getFinalGroupsSize()-1; i >= 0; i--)
     {
-        levels.push_back(Frame->relations->getGroup(i)->getLevel());
-        labels.push_back(Frame->relations->getGroup(i)->getLeader()->getRealName());
+        Group* grupa = Frame->relations->getGroup(i);
+        int lvl = Frame->relations->level - grupa->getLevel();
+        levels.push_back(lvl);
+        labels.push_back(grupa->getLeader()->getRealName());
+        if(grupa->getLevel() == 0)
+        {
+            for(int j = 0; j < grupa->getUsemberCount(); j++)
+            {
+                levels.push_back(lvl+1);
+                labels.push_back(grupa->getUsember(j)->getRealName());
+            }
+        }
     }
 
     Frame->G_ListGroups->DeleteAllItems();
@@ -95,7 +107,7 @@ void PanelGroupsMaintance::SetGroups (AisdiRelationsFrame * Frame)
     if (Frame->relations->getFinalGroupsSize() != 0)//Frame->database->countGroups() != 0)      //TODO zmienić warunek
     {
         int groupCount = Frame->relations->getFinalGroupsSize();     //temp <- zmień na rzeczywistą liczbę grup (równą liczbie pól wektorów przy okazji)
-        for (int i = 0; i < groupCount; i++)
+        for (unsigned int i = 0; i < levels.size(); i++)
         {
             //wstawienie elementu
             wxListItem item;
@@ -119,9 +131,14 @@ void PanelGroupsMaintance::SetGroups (AisdiRelationsFrame * Frame)
         wxListItem item;
         item.SetId(0);
         Frame->G_ListGroups->InsertItem( item );
-        wxString wxNoResults = _("brak grup roboczych...");
+        wxString wxNoResults = _("            brak grup roboczych...");
         Frame->G_ListGroups->SetItem(0,0, wxNoResults);
     }
+}
+
+void PanelGroupsMaintance::SetRelationsConstructed (bool value)
+{
+    relationsConstructed = value;
 }
 
 void PanelGroupsMaintance::SetSettingsEnabled()

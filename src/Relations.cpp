@@ -80,7 +80,7 @@ void Relations::runAlgorithm()
 
 void Relations::setClosestAssociates()
 {
-	for(int i = 0; i < userCount; i++)
+	for (int i = 0; i < userCount; i++)
 	{
 		closestAssociate.push_back(make_pair(i, 0));
 		for(unsigned int j = 0; j < adjacents[i].size(); j++)

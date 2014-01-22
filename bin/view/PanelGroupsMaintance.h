@@ -29,6 +29,7 @@ public:
     void SetIcons(AisdiRelationsFrame* Frame);
     void SetLabels(AisdiRelationsFrame* Frame);
     void SetGroups (AisdiRelationsFrame * Frame);
+    void SetRelationsConstructed (bool value);
     void SetSettingsEnabled();
 
 

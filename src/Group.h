@@ -33,7 +33,7 @@ public:
 	Usember* getLeader();
 	int getLeaderIndex();
 	int getLevel();
-	Usember* getUsember();
+	Usember* getUsember(int i);
 	Group* getHigherGroup();
 	int getHigherGroupID();
 };

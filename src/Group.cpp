@@ -58,6 +58,11 @@ Usember* Group::getLeader()
 	return leader;
 }
 
+Usember* Group::getUsember(int i)
+{
+    return usembers[i];
+}
+
 int Group::getLeaderIndex()
 {
 	return leaderIndex;

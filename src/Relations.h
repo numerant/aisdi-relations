@@ -23,14 +23,14 @@ public:
 	void saveGroupsInDatabase();
 	int getFinalGroupsSize();
 	Group* getGroup(int i);
+	static int level;
 	vector<pair<int, int> > countStandardDeviation(vector<pair<int, int> > vect);
 
 private:
 	static const int MAX_EMAILS = 10000;
 	Database *database;
-	int firstUserCount;
-	int userCount;
-	static int level;
+	int firstUserCount = 0;
+	int userCount = 0;
 	vector< pair<int, int> > adjacents[MAX_EMAILS];
 	vector< pair<int, int> > closestAssociate;
 	vector<int> realIndex;	//prawdziwy index u¿ytkownika w bazie
