@@ -1,4 +1,5 @@
 #include "PanelGroupsMaintance.h"
+#include <cstdlib>
 
 PanelGroupsMaintance::PanelGroupsMaintance()
 {
@@ -21,11 +22,21 @@ void PanelGroupsMaintance::ShowPanel(AisdiRelationsFrame* Frame)
 
         Frame->G_ImageButtonSettings->SetBitmapLabel(path+imagePaths[5]+format);
 
-        Frame->relations->runAlgorithm();  //TODO podpiąć to pod dodawanie emaili
+        if (!relationsConstructed && Frame->database->countEmails() != 0)
+        {
+            if (Frame->relations != nullptr)
+                delete Frame->relations;
+            else
+                Frame->relations = new Relations(Frame->database);
+
+            relationsConstructed = true;
+        }
+        //Frame->relations->runAlgorithm();  //TODO podpiąć to pod dodawanie emaili
         SetGroups(Frame);
 
         Frame->PanelGroups->SetPosition(wxPoint(0,0));
         Frame->PanelGroups->Show();
+
     }
 }
 
@@ -44,7 +55,7 @@ void PanelGroupsMaintance::SetLabels(AisdiRelationsFrame* Frame)
     wxListItem col;     //obiekt reprezentujący etykietę
 
     col.SetId(0);       //tylko jedna kolumna
-    col.SetText(_(""));
+    col.SetText(_("Grupy robocze"));
     col.SetWidth(630);
     Frame->G_ListGroups->InsertColumn(0, col);
 
@@ -53,15 +64,37 @@ void PanelGroupsMaintance::SetLabels(AisdiRelationsFrame* Frame)
 
 void PanelGroupsMaintance::SetGroups (AisdiRelationsFrame * Frame)
 {
-    vector<int> levels = {0,1,2,3,1,2,1};
-    vector<string> labels = {"G1","G1_1","C1", "Lol", "Lol2","LOl3","ROFL"};
+    Frame->G_ListGroups->DeleteAllItems();
+
+    if (Frame->database->countEmails() == 0)
+    {
+        wxListItem item;
+        item.SetId(0);
+        Frame->G_ListGroups->InsertItem( item );
+        wxString wxNoResults = _("brak grup roboczych...");
+        Frame->G_ListGroups->SetItem(0,0, wxNoResults);
+        return;
+    }
+
+    //Frame->relations->saveGroupsInDatabase();
+    vector<int> levels;//= {0,1,2,3,1,2,1};
+    //char* tmp;
+    //sprintf(tmp, "%d", Frame->database->countGroups());
+    //string s = to_string(Frame->database->countGroups());
+    vector<string> labels; //= {s,"G1_1","C1", "Lol", "Lol2","LOl3","ROFL"};
+
+    for(int i = 0; i < Frame->relations->getFinalGroupsSize(); i++)
+    {
+        levels.push_back(Frame->relations->getGroup(i)->getLevel());
+        labels.push_back(Frame->relations->getGroup(i)->getLeader()->getRealName());
+    }
 
     Frame->G_ListGroups->DeleteAllItems();
     //Jeżeli grupy są już wygenerowane algorytmem
     //if (Frame->database->countGroups() != 0)
-    if (1)      //TODO zmienić warunek
+    if (Frame->relations->getFinalGroupsSize() != 0)//Frame->database->countGroups() != 0)      //TODO zmienić warunek
     {
-        int groupCount = 7;     //temp <- zmień na rzeczywistą liczbę grup (równą liczbie pól wektorów przy okazji)
+        int groupCount = Frame->relations->getFinalGroupsSize();     //temp <- zmień na rzeczywistą liczbę grup (równą liczbie pól wektorów przy okazji)
         for (int i = 0; i < groupCount; i++)
         {
             //wstawienie elementu
@@ -87,7 +120,7 @@ void PanelGroupsMaintance::SetGroups (AisdiRelationsFrame * Frame)
         item.SetId(0);
         Frame->G_ListGroups->InsertItem( item );
         wxString wxNoResults = _("brak grup roboczych...");
-        Frame->G_ListGroups->SetItem(0,1, wxNoResults);
+        Frame->G_ListGroups->SetItem(0,0, wxNoResults);
     }
 }
 

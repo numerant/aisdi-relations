@@ -38,6 +38,11 @@ void Group::setLeaderIndex(int index)
 	leaderIndex = index;
 }
 
+void Group::setLevel(int newLevel)
+{
+    level = newLevel;
+}
+
 int Group::getUsemberCount()
 {
 	return usembers.size();
@@ -56,4 +61,9 @@ Usember* Group::getLeader()
 int Group::getLeaderIndex()
 {
 	return leaderIndex;
+}
+
+int Group::getLevel()
+{
+    return level;
 }

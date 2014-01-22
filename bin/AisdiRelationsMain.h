@@ -836,17 +836,17 @@ private:
 
 
     /** Wskaźniki na obiekty paneli, bazy oraz IO */
-    PanelTitleMaintance* P_Title;
-    PanelGroupsMaintance * P_Groups;
-    PanelInboxMaintance * P_Inbox;
-    PanelMulTreeMaintance * P_MulTree;
-    PanelStatisticsMaintance * P_Stats;
-    PanelUsembersMaintance * P_Usembers;
-    PanelNotifyMaintance * P_Notify;
-    Database * database;
-    IOInterface * iointerface;
-    Statistics * statistics;
-    Relations * relations;
+    PanelTitleMaintance* P_Title = nullptr;
+    PanelGroupsMaintance * P_Groups = nullptr;
+    PanelInboxMaintance * P_Inbox = nullptr;
+    PanelMulTreeMaintance * P_MulTree = nullptr;
+    PanelStatisticsMaintance * P_Stats = nullptr;
+    PanelUsembersMaintance * P_Usembers = nullptr;
+    PanelNotifyMaintance * P_Notify = nullptr;
+    Database * database = nullptr;
+    IOInterface * iointerface = nullptr;
+    Statistics * statistics = nullptr;
+    Relations * relations = nullptr;
     DECLARE_EVENT_TABLE()
 };
 

@@ -3,10 +3,13 @@
 
 Relations::Relations(Database *existingDatabase)
 {
+    level = 0;
 	database = existingDatabase;
 	userCount = database->countUsembers();
 	firstUserCount  = userCount;
-	Usember *tempUsember = database->getUsember(0);
+	Usember *tempUsember;
+	if (userCount > 0)
+        tempUsember = database->getUsember(0);
 
 	for( int i = 0; i < userCount; i++)
 	{
@@ -40,7 +43,6 @@ Relations::Relations(Database *existingDatabase)
 		representant.push_back(i);
 	}
 }
-
 
 Relations::~Relations(void)
 {
@@ -250,6 +252,8 @@ vector<pair<int, int> > Relations::countStandardDeviation(vector<pair<int, int> 
 	return vertexGroups;
 }
 
+int Relations::level(0);
+
 void Relations::makeGroups()
 {
 	for(unsigned int i = 0; i < groups.size(); i++)
@@ -261,6 +265,7 @@ void Relations::makeGroups()
 		group->setLeaderIndex(realIndex[groups[i]]);
 		group->addUsember(group->getLeader());
 		group->addIndex(realIndex[groups[i]]);
+        group->setLevel(level);
 
 		for(int j = 0; j < userCount; j++)
 		{
@@ -281,6 +286,7 @@ void Relations::makeGroups()
 		cout<<endl<<endl;
 		finalGroups.push_back(group);
 	}
+	level++;
 }
 
 void Relations::goToAnotherDimension()
@@ -387,4 +393,22 @@ void Relations::goToAnotherDimension()
 		otherGroupEmails.push_back(0);
 		bossCoefficient.push_back(0);
 	}
+}
+
+int Relations::getFinalGroupsSize()
+{
+    return finalGroups.size();
+}
+
+Group* Relations::getGroup(int i)
+{
+    return finalGroups[i];
+}
+
+void Relations::saveGroupsInDatabase()
+{
+    for(unsigned int i = 0; i < finalGroups.size() ; i++)
+    {
+        database->addGroup(finalGroups[i]);
+    }
 }

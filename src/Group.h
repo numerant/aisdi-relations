@@ -16,6 +16,7 @@ private:
 	vector <int> indexes;
 	Usember* leader;
 	int leaderIndex;
+	int level;
 
 public:
     Group();
@@ -25,11 +26,13 @@ public:
 	int getID();
 	void setLeader(Usember* usember);
 	void setLeaderIndex(int index);
+	void setLevel(int newLevel);
 
 	int getUsemberCount();
 	int getIndexOf(int usember);
 	Usember* getLeader();
 	int getLeaderIndex();
+	int getLevel();
 	Usember* getUsember();
 	Group* getHigherGroup();
 	int getHigherGroupID();

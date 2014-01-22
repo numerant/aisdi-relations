@@ -1572,7 +1572,6 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     iointerface = new IOInterface();
     iointerface->setDatabasePointer(database);
     statistics = new Statistics(database);
-    relations = new Relations(database);
 
     ShowTitle();
 }
@@ -1686,19 +1685,20 @@ void AisdiRelationsFrame::OnClose(wxCloseEvent& event)
     P_Title->DeleteAutoSave(this);
 
     /** Zwolnienie pamięci obiektów obsługujących panele */
-    delete (P_Groups);
     delete (P_Inbox);
     delete (P_MulTree);
     delete (P_Stats);
     delete (P_Title);
     delete (P_Usembers);
     delete (P_Notify);
+    delete (P_Groups);
 
     /** Zwolnienie obiektów klas projektu */
     delete iointerface;
     delete statistics;
     delete database;
-    delete relations;
+    if (relations != nullptr)
+        delete relations;
 
     Close();
 }

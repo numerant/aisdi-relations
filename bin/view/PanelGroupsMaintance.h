@@ -11,7 +11,8 @@ private:
     bool panelEnabled = true;
     bool settingsEnabled = false;
     bool treeEnabled = false;           //TODO sprawdzić czy potrzebne
-    int groupSelectedId = -1; 
+    bool relationsConstructed = false;
+    int groupSelectedId = -1;
 
     wxString path = (_("resources/icons/icon"));
     wxString format =  (_(".png"));
@@ -29,7 +30,7 @@ public:
     void SetLabels(AisdiRelationsFrame* Frame);
     void SetGroups (AisdiRelationsFrame * Frame);
     void SetSettingsEnabled();
-   
+
 
     bool GetPanelEnabled ();
     bool GetSettingsEnabled();
