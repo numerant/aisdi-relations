@@ -102,3 +102,8 @@ void Email::setIsForwarded( bool newIsForwarded)
 {
 	isForwarded = newIsForwarded;
 }
+
+void Email::getIsForwarded()
+{
+	return isForwarded;
+}

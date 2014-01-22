@@ -185,3 +185,21 @@ unsigned int Usember::getEmailsCount (Database* database, int usemberIndex)
         return emailsSum;
     }
 }
+
+Email* Usember::searchBackward(Email* email)
+{
+	if (email->getIsForwarded() == false)
+		return nullptr;
+		
+	string subject = email->getSubject();
+	subject->substr(5, subject->size()-5);
+	
+	Email* tempE;
+	for (unsigned int i = 0; i < this->sendMailCount(); i++)
+    {
+		tempE = this->sentMails[i];
+        if (tempE->getSubject() == subject)
+			return tempE;
+    }
+	return nullptr;
+}

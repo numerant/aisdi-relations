@@ -57,4 +57,5 @@ public:
     int getReferences();
     void setReferences( int newReferences);
 	void setIsForwarded( bool newIsForwarded);
+	void getIsForwarded();
 };

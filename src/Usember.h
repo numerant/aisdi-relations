@@ -50,6 +50,11 @@ public:
     unsigned int getEmailsSentInMonth (int month);    // zwraca liczbę maili wysłanych w danym miesiącu
     unsigned int getMaxEmailsInMonth ();               // zwraca największą liczbę maili napisanych w ciągu danego miesiąca
     unsigned int getEmailsCount (Database* database, int usemberIndex);
+	
+	Email* searchBackward(Email* email);	// szuka dla tego usembera maila który był forward wyżej
+											// czyli np: mamy FWD: FWD: abcdefg
+											// oraz			  FWD: abcdefg
+											// metoda dla pierwszego maila ma zwrócić mail drugi
 
 private:
     // adres - email:
