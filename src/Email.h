@@ -30,7 +30,7 @@ private:
     //ID wiadomości, na którą odpowiedzią jest wiadomość, na którą dana wiadomość jest odpowiedzią
     //tzn. ID1->ID2->ID3 (gdzie ID3 to ID danej wiadomośći, pole to przechowuje ID2 oraz ID1)
     int references;
-	
+
 	bool isForwarded = false;	// czy ta wiadomość jest Forwardem
 
 public:
@@ -57,5 +57,5 @@ public:
     int getReferences();
     void setReferences( int newReferences);
 	void setIsForwarded( bool newIsForwarded);
-	void getIsForwarded();
+	bool getIsForwarded();
 };
