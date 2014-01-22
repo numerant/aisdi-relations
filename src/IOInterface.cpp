@@ -208,10 +208,10 @@ Email* IOInterface::emlParser (string path)
         mail->setDate(newDate);
         mail->setID(MID);
         mail->setInReplyTo(IRT);
-		
-		if ( (subject->compare(0, 4, "Fwd:") == 0 ) 
-			|| (subject->compare(0, 4, "fwd:") == 0 ) 
-			|| (subject->compare(0, 4, "FWD:") == 0 )
+
+		if ( (subject.compare(0, 4, "Fwd:") == 0 )
+			|| (subject.compare(0, 4, "fwd:") == 0 )
+			|| (subject.compare(0, 4, "FWD:") == 0 )
 			)
 			mail->setIsForwarded(true);
 
