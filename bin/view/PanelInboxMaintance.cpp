@@ -9,6 +9,8 @@
 #include <boost/archive/tmpdir.hpp>
 #include <fstream>
 #include "../../src/Serialization.h"
+#include "../../src/Criteria.h"
+#include <string>
 
 PanelInboxMaintance::PanelInboxMaintance()
 {
@@ -207,11 +209,12 @@ void PanelInboxMaintance::Search (AisdiRelationsFrame* Frame)
         Frame->I_LabelRestore->Show();
         if (! GetCustomSearch())
             SetCustomSearch();
-
-        //TODO zapytanie ogólne
+        Frame->database->simpleSelect(strQuery);
         SetEmails(Frame);
-
-        //TODO powiadomienie o liczbie znalezionych wyników
+        if(Frame->database->countResultEmails()==0)
+            wxMessageBox(_("Brak wynikow!"));
+        else
+            wxMessageBox(_("Wyszukiwanie zakonczone"));
     }
     else
     {
@@ -223,8 +226,8 @@ void PanelInboxMaintance::AdvancedSearch (AisdiRelationsFrame* Frame)
 {
     //TODO Obsługa przycisku DatabaseRestore
     wxString field;
-    string name, subject, email, content, dayFrom, monthFrom, yearFrom;
-    name = subject = email = content = dayFrom = monthFrom = yearFrom = "";
+    string subject, email, content, dayFrom, monthFrom, yearFrom, dayTo, monthTo, yearTo;
+    subject = email = content = dayFrom = monthFrom = yearFrom = dayTo = monthTo = yearTo = "";
 
     //Pola tekstowe
     email = Frame->I_Adv_TextCtrlEmail->GetValue().mb_str();
@@ -243,7 +246,8 @@ void PanelInboxMaintance::AdvancedSearch (AisdiRelationsFrame* Frame)
     if (pos != wxNOT_FOUND)
         yearFrom = Frame->I_Adv_ChoiceYear->GetString(pos).mb_str();
 
-    if (name == "" && subject == "" && email == "" && content == "" && dayFrom == "" && monthFrom == "" && yearFrom == "")
+    if (subject == "" && email == "" && content == ""
+        && dayFrom == "" && monthFrom == "" && yearFrom == "" && dayTo == "" && monthTo == "" && yearTo == "")
     {
         //TODO jeszcze dodać sprawdzenie, czy nie wpisano daty 'od' ale wpisano datę'do'
         // Wtedy szukaj wszystkiego do daty 'do'
@@ -251,11 +255,82 @@ void PanelInboxMaintance::AdvancedSearch (AisdiRelationsFrame* Frame)
     }
     else
     {
+        bool replies=false;         //TODO -tu maja byc info z checkbuttonow o tym czy szukac replajow lub forwardow oraz czy szukac daty od do
+        bool forwards=false;
+        bool searchFromTo=true;
+        int dayFromInt, yearFromInt, dayToInt, yearToInt;
+        EmailQuery emailQuery(replies, forwards);
+        if(email!="")
+        {
+            StringCriteria stringCriteria1(E_EMAIL, email);
+            emailQuery.addStringCriteria(stringCriteria1);
+        }
+        if(subject!="")
+        {
+            StringCriteria stringCriteria2(E_SUBJECT, subject);
+            emailQuery.addStringCriteria(stringCriteria2);
+        }
+        if(content!="")
+        {
+            StringCriteria stringCriteria3(E_CONTENT, content);
+            emailQuery.addStringCriteria(stringCriteria3);
+        }
+        if(dayFrom!="" && monthFrom!="" && yearFrom!="")
+        {
+            istringstream iss(dayFrom);
+            istringstream iss2(yearFrom);
+            iss>>dayFromInt;
+            iss2>>yearFromInt;
+        }
+        if(dayTo!="" && monthTo!="" && yearTo!="")
+        {
+            istringstream iss3(dayTo);
+            istringstream iss4(yearTo);
+            iss3>>dayToInt;
+            iss4>>yearToInt;
+        }
+        else
+        {
+            dayToInt=0;
+            yearToInt=0;
+        }
+        if(searchFromTo)
+        {
+            Date date1(0, "Jan", 0);
+            Date date2((int)dayFromInt, (string)monthFrom, (int)yearFromInt);      //TODO na razie jak widze jest tylko from
+            Date date3((int)dayToInt, (string)monthTo, (int)yearToInt);
+            DateCriteria dateCriteria(date1, date2, date3);
+            emailQuery.addDateCriteria(dateCriteria);
+        }
+        else
+        {
+            Date date1((int)dayFromInt, (string)monthFrom, (int)yearFromInt);      //TODO na razie jak widze jest tylko from
+            Date date2(0, "Jan", 0);
+            Date date3(0, "Jan", 0);
+            DateCriteria dateCriteria(date1, date2, date3);
+            emailQuery.addDateCriteria(dateCriteria);
+        }
+
+        Frame->database->select(emailQuery);
+
+        if(Frame->database->countResultEmails()==0)
+            wxMessageBox(_("Brak wynikow!"));
+        else
+            wxMessageBox(_("Wyszukiwanie zakonczone"));
+
         Frame->I_ImageButtonRestore->Show();
         Frame->I_LabelRestore->Show();
         if (! GetCustomSearch())
             SetCustomSearch();
-        wxMessageBox(_("Zapytanko!"));
+        Frame->database->select(emailQuery);
+        //TODO zapytanie ogólne
+        SetEmails(Frame);
+
+        Frame->I_ImageButtonRestore->Show();
+        Frame->I_LabelRestore->Show();
+        if (! GetCustomSearch())
+            SetCustomSearch();
+
 
         //TODO dodać obsługę daty 'od do'
 
