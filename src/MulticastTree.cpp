@@ -7,11 +7,14 @@ MulticastTree::MulticastTree()
 
 MulticastTree::MulticastTree(Email* startEmail)
 {
-	Node* temp = new Node;
-	//dodaj temp'a do vectore
-	temp->emailTo= startEmail;
-	//wywołaj w pętli findRoot(temp->email)
-	//wywołuj rekurencyjnie createNode(temp)
+	HEAD = findRoot (startEmail);
+	if (HEAD != nullptr)
+	{
+		
+		createNode(HEAD);
+		Node* tempNode = new Node;
+		tempNode->usember = startEmail->getTo();
+	}
 }
 
 MulticastTree::~MulticastTree()
@@ -30,7 +33,23 @@ Node* MulticastTree::createNode (Node* parent)
 
 Node* MulticastTree::findRoot (Email* email)
 {
-	//idź w górę kierując się flagą forwarded_from i znajdź korzeń
+	Node* returnNode = nullptr;
+	Usember * tempUsember = email->getFrom();
+	Email* nextEmail = tempUsember->searchBackward(email);
+	if (nextEmail != nullptr)
+	{
+		if (nextEmail->getIsForwarded())
+			returnNode = findRoot (nextEmail);
+		return returnNode;
+	}
+	else
+	{
+		returnNode = new Node;
+		returnNode->emailTo = email;
+		returnNode->usember = tempUsember;
+		returnNode->parent = nullptr;
+		return returnNode;
+	}
 }
 
 Node* MulticastTree::findNodeByEmail (Email* email)

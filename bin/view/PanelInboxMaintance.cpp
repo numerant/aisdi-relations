@@ -156,7 +156,6 @@ void PanelInboxMaintance::SetEmails (AisdiRelationsFrame* Frame)
         {
             wxListItem item;
             item.SetId(0);
-            //item.SetTextColour(wxColor(200,200,200));
             Frame->I_ListInbox->InsertItem( item );
             wxString wxNoResults = _("brak wyników wyszukiwania...");
             Frame->I_ListInbox->SetItem(0,1, wxNoResults);
@@ -165,7 +164,6 @@ void PanelInboxMaintance::SetEmails (AisdiRelationsFrame* Frame)
         {
             wxListItem item;
             item.SetId(0);
-            //item.SetTextColour(wxColor(200,200,200));
             Frame->I_ListInbox->InsertItem( item );
             wxString wxNoEmails = _("brak emaili w bazie danych...");
             Frame->I_ListInbox->SetItem(0,1, wxNoEmails);
@@ -209,16 +207,17 @@ void PanelInboxMaintance::Search (AisdiRelationsFrame* Frame)
         Frame->I_LabelRestore->Show();
         if (! GetCustomSearch())
             SetCustomSearch();
+
         Frame->database->simpleSelect(strQuery);
         SetEmails(Frame);
-        if(Frame->database->countResultEmails()==0)
+       /* if(Frame->database->countResultEmails()==0)   //TODO Zmienić to na wyświetlanie powiadomienia
             wxMessageBox(_("Brak wynikow!"));
         else
-            wxMessageBox(_("Wyszukiwanie zakonczone"));
+            wxMessageBox(_("Wyszukiwanie zakonczone"));*/
     }
     else
     {
-        wxMessageBox (_("Puste zapytanie."));
+        //wxMessageBox (_("Puste zapytanie."));
     }
 }
 
@@ -228,6 +227,7 @@ void PanelInboxMaintance::AdvancedSearch (AisdiRelationsFrame* Frame)
     wxString field;
     string subject, email, content, dayFrom, monthFrom, yearFrom, dayTo, monthTo, yearTo;
     subject = email = content = dayFrom = monthFrom = yearFrom = dayTo = monthTo = yearTo = "";
+    bool searchFromTo = false;
 
     //Pola tekstowe
     email = Frame->I_Adv_TextCtrlEmail->GetValue().mb_str();
@@ -246,20 +246,40 @@ void PanelInboxMaintance::AdvancedSearch (AisdiRelationsFrame* Frame)
     if (pos != wxNOT_FOUND)
         yearFrom = Frame->I_Adv_ChoiceYear->GetString(pos).mb_str();
 
+    if (Frame->I_Adv_CheckBoxDate->GetValue())
+    {
+        searchFromTo = true;
+        int pos = Frame->I_Adv_ChoiceDayTo->GetSelection();   //Pola wyboru daty (drugiej, 'do')
+        if (pos != wxNOT_FOUND)
+            dayTo = Frame->I_Adv_ChoiceDayTo->GetString(pos).mb_str();
+
+        pos = Frame->I_Adv_ChoiceMonthTo->GetSelection();
+        if (pos != wxNOT_FOUND)
+            monthTo = Frame->I_Adv_ChoiceMonthTo->GetString(pos).mb_str();
+
+        pos = Frame->I_Adv_ChoiceYearTo->GetSelection();
+        if (pos != wxNOT_FOUND)
+            yearTo = Frame->I_Adv_ChoiceYearTo->GetString(pos).mb_str();
+    }
+
     if (subject == "" && email == "" && content == ""
         && dayFrom == "" && monthFrom == "" && yearFrom == "" && dayTo == "" && monthTo == "" && yearTo == "")
     {
-        //TODO jeszcze dodać sprawdzenie, czy nie wpisano daty 'od' ale wpisano datę'do'
-        // Wtedy szukaj wszystkiego do daty 'do'
+       //TODO Powiadomienie zamiast tego
         wxMessageBox(_("Puste kryteria wyszukiwania"));
     }
     else
     {
         bool replies=false;         //TODO -tu maja byc info z checkbuttonow o tym czy szukac replajow lub forwardow oraz czy szukac daty od do
         bool forwards=false;
-        bool searchFromTo=true;
+        if (Frame->I_Adv_RadioBoxType->GetSelection() == 1)
+            replies = true;
+        else if (Frame->I_Adv_RadioBoxType->GetSelection() == 2)
+            forwards = true;
+
         int dayFromInt, yearFromInt, dayToInt, yearToInt;
-        EmailQuery emailQuery(replies, forwards);
+        //EmailQuery emailQuery(replies, forwards);     //TODO naprawić
+        EmailQuery emailQuery();        //temp
         if(email!="")
         {
             StringCriteria stringCriteria1(E_EMAIL, email);
@@ -314,7 +334,7 @@ void PanelInboxMaintance::AdvancedSearch (AisdiRelationsFrame* Frame)
         Frame->database->select(emailQuery);
 
         if(Frame->database->countResultEmails()==0)
-            wxMessageBox(_("Brak wynikow!"));
+            wxMessageBox(_("Brak wynikow!"));               //TODO powiadomienie o liczbie wyników
         else
             wxMessageBox(_("Wyszukiwanie zakonczone"));
 
@@ -323,7 +343,7 @@ void PanelInboxMaintance::AdvancedSearch (AisdiRelationsFrame* Frame)
         if (! GetCustomSearch())
             SetCustomSearch();
         Frame->database->select(emailQuery);
-        //TODO zapytanie ogólne
+
         SetEmails(Frame);
 
         Frame->I_ImageButtonRestore->Show();
@@ -332,12 +352,6 @@ void PanelInboxMaintance::AdvancedSearch (AisdiRelationsFrame* Frame)
             SetCustomSearch();
 
 
-        //TODO dodać obsługę daty 'od do'
-
-        //TODO zapytanie advanced
-        SetEmails(Frame);
-
-        //TODO powiadomienie o liczbie wyników
     }
 }
 

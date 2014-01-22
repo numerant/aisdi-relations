@@ -33,4 +33,6 @@ public:
 	Node* findNodeByEmail (Email* email);	//zwraca węzeł dla podanego emaila
 	Node* deleteNode (Node* node);			//usuwa węzeł (tylko jeżeli jest liściem) i zwraca wskazanie na rodzica
 											//w.p.p. zwraca nullptr
+
+    void addEmail (Email* email);
 };

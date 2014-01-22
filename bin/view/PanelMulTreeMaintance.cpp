@@ -41,6 +41,14 @@ void PanelMulTreeMaintance::SetSettingsEnabled()
     settingsEnabled = !settingsEnabled;
 }
 
+void PanelMulTreeMaintance::SetTree (Email* emailFWD)
+{
+    if (! emailFWD->getIsForwarded())   //nie jest to email typu FWD
+        return;
+
+    tree = new MulticastTree (emailFWD);
+}
+
 bool PanelMulTreeMaintance::GetPanelEnabled ()
 {
     return panelEnabled;

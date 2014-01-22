@@ -1,11 +1,13 @@
 #pragma once
 #include "../AisdiRelationsMain.h"
+#include "../../src/MulticastTree.h"
 
 class PanelMulTreeMaintance
 {
     friend class AisdiRelationsFrame;
 
 private:
+    MulticastTree * tree = nullptr;
     bool panelEnabled = true;
     bool settingsEnabled = false;
 
@@ -23,6 +25,7 @@ public:
     void ShowPanel(AisdiRelationsFrame* Frame);
     void SetIcons(AisdiRelationsFrame* Frame);
     void SetSettingsEnabled();
+    void SetTree (Email* emailFWD);
 
     bool GetPanelEnabled ();
     bool GetSettingsEnabled();
