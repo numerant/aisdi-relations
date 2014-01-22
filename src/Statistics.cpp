@@ -185,7 +185,8 @@ void Statistics::updateEmailStatistics()
 
         int forwards=0;
         for(int i=0; i<database->countEmails(); ++i)
-            forwards+=database->getEmail(i)->getForwards().size();
+            if(database->getEmail(i)->getIsForwarded())
+                ++forwards;
         forwardCount=forwards;
 
         int month=1;
