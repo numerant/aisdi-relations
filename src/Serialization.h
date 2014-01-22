@@ -45,7 +45,7 @@ namespace boost
             archive & email.to;
             archive & email.subject;
             archive & email.content;
-            archive & email.forwards;
+            archive & email.isForwarded;
             archive & email.references;
         }
 
