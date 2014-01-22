@@ -138,7 +138,7 @@ Email* IOInterface::emlParser (string path)
         if ( plik.eof() )
 			throw EmlSyntaxIncorrect();
 		else
-            subject = wynik[1];
+			subject = wynik[1];
 
         // wczytanie MID
         do
@@ -208,6 +208,9 @@ Email* IOInterface::emlParser (string path)
         mail->setDate(newDate);
         mail->setID(MID);
         mail->setInReplyTo(IRT);
+		
+		if ( subject.compare(0, 4, "Fwd:") == 0 )
+			mail->setIsForwarded(true);
 
         return mail;
     }
