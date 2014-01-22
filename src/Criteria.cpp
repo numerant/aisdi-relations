@@ -1,13 +1,9 @@
 #include "Criteria.h"
 
-SearchKey Criteria::getSearchKey()
+StringCriteria::StringCriteria(SearchKey searchKey, string name)
 {
-    return searchKey;
-}
-
-StringCriteria::StringCriteria()
-{
-
+    this->searchKey=searchKey;
+    this->name=name;
 }
 
 StringCriteria::~StringCriteria()
@@ -15,9 +11,11 @@ StringCriteria::~StringCriteria()
 
 }
 
-DateCriteria::DateCriteria()
+DateCriteria::DateCriteria(Date equals, Date less, Date greater)
 {
-
+    this->equals=equals;
+    this->less=less;
+    this->greater=greater;
 }
 
 DateCriteria::~DateCriteria()
@@ -28,6 +26,11 @@ DateCriteria::~DateCriteria()
 string StringCriteria::getName()
 {
     return name;
+}
+
+SearchKey StringCriteria::getSearchKey()
+{
+    return searchKey;
 }
 
 Date* DateCriteria::getEquals()
