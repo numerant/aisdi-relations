@@ -4,25 +4,25 @@
 #include "Email.h"
 using namespace std;
 
-enum SearchKey {E_DATE, E_EMAIL, E_SUBJECT, E_CONTENT, U_NAME};
+enum SearchKey {E_EMAIL, E_SUBJECT, E_CONTENT, E_NAME};
 
 class Criteria
 {
-private:
-    SearchKey searchKey;
-public:
-    SearchKey getSearchKey();
+
 };
 
 class StringCriteria :
 	public Criteria
 {
 private:
+    SearchKey searchKey;
 	string name;         //poszukiwany ciag znakow
 public:
-	StringCriteria();
+	StringCriteria(SearchKey searchKey, string name);
 	~StringCriteria();
+	SearchKey getSearchKey();
 	string getName();
+
 };
 
 class DateCriteria :
@@ -32,7 +32,7 @@ class DateCriteria :
 	Date less;
 	Date greater;
 public:
-	DateCriteria();
+	DateCriteria(Date equals, Date less, Date greater);
 	~DateCriteria();
 	Date* getEquals();
 	Date* getLess();
