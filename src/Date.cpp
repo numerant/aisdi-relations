@@ -64,6 +64,21 @@ Date::Date (string newDate)
     stream>>timeZone;
 }
 
+Date::Date (int day, string month, int year)
+{
+    this->day=day;
+    this->month=month;
+    this->monthInt=monthToInt(month);
+    this->year=year;
+
+    fullDate="";
+    weekDay="";
+    hour=0;
+    minute=0;
+    second=0;
+    timeZone="";
+}
+
 Date::~Date() {}
 
 string Date::getFullDate()
