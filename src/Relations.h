@@ -21,6 +21,7 @@ public:
 	void goToAnotherDimension();
 	void makeGroups();
 	void saveGroupsInDatabase();
+	void prepareForPrint(vector<int>* levels, vector<string>* labels, Group* group);
 	int getFinalGroupsSize();
 	Group* getGroup(int i);
 	static int level;
@@ -33,7 +34,7 @@ private:
 	int userCount = 0;
 	vector< pair<int, int> > adjacents[MAX_EMAILS];
 	vector< pair<int, int> > closestAssociate;
-	vector<int> realIndex;	//prawdziwy index u¿ytkownika w bazie
+	vector<int> realIndex;	//prawdziwy index uÂ¿ytkownika w bazie
 	vector<int> tmpIndex;	//tymczasowy index
 	vector<int> vertexDegree;
 	vector<int> otherGroupEmails;
