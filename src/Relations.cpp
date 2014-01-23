@@ -419,6 +419,7 @@ void Relations::prepareForPrint(vector<int>* levels, vector<string> *labels, Gro
         {
             for(int i = 0; i < grupa->getUsemberCount(); i++)
             {
+            	grupa->getUsember(i)->setGroup(grupa);
                 levels->push_back(lvl+1);
                 labels->push_back(grupa->getUsember(i)->getRealName());
             }
