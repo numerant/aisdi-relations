@@ -21,7 +21,7 @@ public:
 	void goToAnotherDimension();
 	void makeGroups();
 	void saveGroupsInDatabase();
-	void prepareForPrint(vector<int>* levels, vector<string>* labels, Group* group);
+	void prepareForPrint(vector<int>* levels, vector<string>* labels, vector<int>* ids, vector<string>* addresses, Group* group);
 	int getFinalGroupsSize();
 	Group* getGroup(int i);
 	static int level;
