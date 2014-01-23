@@ -117,7 +117,7 @@ void Database::select(EmailQuery& emailQuery)
         match=true;
         if(emailQuery.searchingForReplies() && findEmail(emailVector[i]->getInReplyTo())==-1)
             match=false;
-        if(emailQuery.searchingForForwards() && !emailVector[i]->getIsForwarded())
+        if(match && emailQuery.searchingForForwards() && !emailVector[i]->getIsForwarded())
             match=false;
         if(match && emailQuery.getStringCriteriaVectorSize()>0)
         {
@@ -266,17 +266,17 @@ bool Database::matches(Email& email, StringCriteria& stringCriteria)
 bool Database::matches(Email& email, DateCriteria& dateCriteria)
 {
     if(dateCriteria.getEquals()!=nullptr){
-        if(email.getDate().compare(*dateCriteria.getEquals())==0)      //mozna zrobic w Date wersje compare porownujaca tylko lata, miesiace i dni i dac ja tutaj
+        if(email.getDate().compareByDay(*dateCriteria.getEquals())==0) 
             return true;
         else
             return false;
     }
     if(dateCriteria.getLess()!=nullptr){
-        if(email.getDate().compare(*dateCriteria.getLess())<0)
+        if(email.getDate().compareByDay(*dateCriteria.getLess())<0)
             return false;
     }
     if(dateCriteria.getGreater()!=nullptr){
-        if(email.getDate().compare(*dateCriteria.getGreater())>0)
+        if(email.getDate().compareByDay(*dateCriteria.getGreater())>0)
             return false;
     }
     return true;
