@@ -35,12 +35,19 @@ void IOInterface::importMail(MailParameters *parameters)        // dodać wyjąt
 {
     if (parameters->isDirectory)
     {
-        if (parameters->recursiveImport)
-            for (boost::filesystem::recursive_directory_iterator iter(parameters->path), end; iter != end; ++iter)      // przejechanie iteratorem po katalogu
-                importSingleMail( iter->path(), stats);                                                                // import do bazy maila, na który wskazuje iterator
-        else
-            for (boost::filesystem::directory_iterator iter(parameters->path), end; iter != end; ++iter)                // jak wyżej, tylko bez rekursji
-                importSingleMail( iter->path(), stats );
+        try
+        {
+            if (parameters->recursiveImport)
+                for (boost::filesystem::recursive_directory_iterator iter(parameters->path), end; iter != end; ++iter)      // przejechanie iteratorem po katalogu
+                    importSingleMail( iter->path(), stats);                                                                // import do bazy maila, na który wskazuje iterator
+            else
+                for (boost::filesystem::directory_iterator iter(parameters->path), end; iter != end; ++iter)                // jak wyżej, tylko bez rekursji
+                    importSingleMail( iter->path(), stats );
+        }
+        catch(boost::filesystem::filesystem_error exception)
+        {
+            throw UnableToOpenDirectory();
+        }
     }
     else
         importSingleMail(parameters->path, stats);
