@@ -1,0 +1,42 @@
+/============================================================
+//
+// klasa:        Group
+// autorzy:        Patryk Łucka
+// pliki:        Group.h, Group.cpp
+//
+//============================================================
+
+// opis:
+	Klasa Grup użytkowników. wykorzystywana w algorytmie przyporządkowania użytkowników do grup.
+
+// metody, struktury danych:
+static unsigned long long globalId;	//następny identyfikator do przypisania	
+	unsigned int id;		//unikalny identyfikator grupy
+	vector <Usember*> usembers;
+	vector <int> indexes;		//indeksy użytkowników w bazie danych
+	Usember* leader;
+	int leaderIndex;
+	int level;			//stopień/poziom grupy
+
+public:
+	void addUsember(Usember* usember);
+		Dodaje użytkownika do grupy.
+	void addIndex(int index);
+		Dodaje index użytkownika do grupy.
+	int getID();
+	void setLeader(Usember* usember);
+	void setLeaderIndex(int index);
+	void setLevel(int newLevel);
+	int color;			
+	//Zmienna informująca o kolorze grupy (przy wypisywaniu grup wykorzystywany jest algorytm przeszukiwania grafu w głąb)
+
+	int getUsemberCount();
+	int getEmailsCount(Database *database);
+		Zwraca liczbę emaili wymienioną między członkami grupy.
+	int getIndexOf(int usember);
+	Usember* getLeader();
+	int getLeaderIndex();
+	int getLevel();
+	Usember* getUsember(int i);
+	Group* getHigherGroup();
+	int getHigherGroupID();
