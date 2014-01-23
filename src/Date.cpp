@@ -198,6 +198,23 @@ int Date::compare(Date &date2)
     return 0;
 }
 
+int Date::compareByDay(Date &date2)
+{
+    if(year > date2.year)
+        return 1;
+    if(year < date2.year)
+        return -1;
+    if(monthInt > date2.monthInt)
+        return 1;
+    if(monthInt < date2.monthInt)
+        return -1;
+    if(day > date2.day)
+        return 1;
+    if(day < date2.day)
+        return -1;
+    return 0;
+}
+
 int Date::monthToInt(string stringMonth)
 {
     if(stringMonth == "Jan")
