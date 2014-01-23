@@ -36,7 +36,8 @@ void Group::setLeader(Usember* usember)
 
 string Group::getName()
 {
-	return leader->getRealName();
+	name = leader->getRealName() + " grupa";
+	return name;
 }
 
 void Group::setLeaderIndex(int index)
