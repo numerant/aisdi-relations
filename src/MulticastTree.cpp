@@ -1,4 +1,5 @@
 #include "MulticastTree.h"
+#include "wx/msgdlg.h"
 
 MulticastTree::MulticastTree()
 {
@@ -7,28 +8,89 @@ MulticastTree::MulticastTree()
 
 MulticastTree::MulticastTree(Email* startEmail)
 {
-	HEAD = findRoot (startEmail);
-	if (HEAD != nullptr)
+	//TODO dodaj wyjątek na całość
+	Node* root = findRoot (startEmail);
+	if (root != nullptr)
 	{
-		
-		createNode(HEAD);
-		Node* tempNode = new Node;
-		tempNode->usember = startEmail->getTo();
+		if (createNodes(HEAD) == nullptr)
+			//TODO rzuć wyjątkiem, usuń box'a
+			wxMessageBox(_("Nie zrobiło się..."));
 	}
+
 }
 
 MulticastTree::~MulticastTree()
 {
-	//rekurencyjnie dochodź do liści
-	//wywołuj deleteNode (node);
-	//i pop_back() wskazanie z vectora
+	deleteNodes(HEAD);
 }
 
-Node* MulticastTree::createNode (Node* parent)
+Node* MulticastTree::createNodes (Node* parent)
 {
-	//przechodź pętli po wszystkich mailach wysłanych Usembera.
-	//jeśli nam pasuje, czyli FORWARD emaila wskazuje na aktualnie rozważanego Usembera
-	//to dodawaj go jako nowy węzeł. W.p.p. zwracaj nullptr;
+    int childCount = 0;
+    Email* newEmail = nullptr;
+	Node * temp = nullptr;
+	if (parent == HEAD)
+	{
+		Email* emailToRecognize = parent->emailTo;
+		if (emailToRecognize == nullptr)
+			return nullptr;
+
+        //TODO odkomentować
+		//childCount= parent->usember->getForwardsCount(emailToRecognize);
+		for (int i = 0; i < childCount-1; i++)
+		{
+		    //TODO odkomentować
+            //newEmail= parent->usember->getForward(i);
+			temp = new Node;
+			temp->usember = newEmail->getTo();
+			temp->parent = parent;
+			parent->childs.push_back(temp);
+			parent->forwards.push_back(newEmail);
+
+			Node* returnNode = createNodes (temp);
+			if (returnNode = nullptr)
+			{
+				temp->childs.push_back(nullptr);
+				temp->forwards.push_back(nullptr);
+			}
+		}
+		return temp;
+	}
+	else
+	{
+		Email* emailToRecognize;
+		if (parent->emailTo != nullptr)
+			emailToRecognize = parent->emailTo;
+		else
+			emailToRecognize = parent->forwards[0];
+
+		if (emailToRecognize == nullptr)
+			return nullptr;
+
+        //TODO odkomentować
+		//childCount = parent->usember->getForwardsCount(emailToRecognize);
+		if (parent->emailTo != nullptr)
+			childCount -= 1;
+
+		for (int i = 0; i < childCount; i++)
+		{
+			//TODO odkomentować
+			//newEmail = parent->usember->getForward (i);
+			temp = new Node;
+			temp->usember = newEmail->getTo();
+			temp->parent = parent;
+			parent->childs.push_back(temp);
+			parent->forwards.push_back(newEmail);
+
+			Node* returnNode = createNodes (temp);
+			if (returnNode = nullptr)
+			{
+				temp->childs.push_back(nullptr);
+				temp->forwards.push_back(nullptr);
+			}
+		}
+		return temp;
+	}
 }
 
 Node* MulticastTree::findRoot (Email* email)
@@ -40,11 +102,18 @@ Node* MulticastTree::findRoot (Email* email)
 	{
 		if (nextEmail->getIsForwarded())
 			returnNode = findRoot (nextEmail);
-		return returnNode;
+		Node* temp = new Node;
+		temp->emailTo = email;
+		temp->usember = tempUsember;
+		temp->parent = returnNode;
+		temp->parent->childs.push_back(temp);
+		temp->parent->forwards.push_back(temp->parent->emailTo);
+		return temp;
 	}
 	else
 	{
 		returnNode = new Node;
+		HEAD = returnNode;
 		returnNode->emailTo = email;
 		returnNode->usember = tempUsember;
 		returnNode->parent = nullptr;
@@ -59,10 +128,28 @@ Node* MulticastTree::findNodeByEmail (Email* email)
 	//w.p.p. zwracaj nullptr aż do korzenia
 }
 
-Node* MulticastTree::deleteNode (Node* node)
+Node* MulticastTree::deleteNodes (Node* node)
 {
-	//sprawdź czy węzeł jest liściem
-	//jeśli tak, zapamiętaj parenta
-	//usuń liść
-	//usuń dowiązanie do tego liścia u parenta
+	if (node->childs[0] == nullptr)		//węzeł jest liściem
+	{
+		return node->parent;
+	}
+	else
+	{
+		for (unsigned int i = node->childs.size()-1 ; i >=0 ; i--)
+		{
+			Node * returnNode = deleteNodes (node->childs[i]);
+			if (returnNode != node)		//TODO może rzucenie wyjątkiem?
+				break;					//zwrócenie wartości innej niż oczekiwana, bląd
+			else
+			{
+				delete node->childs[i];
+				node->childs[i].pop_back();
+				node->forwards.pop_back();
+				node->emailTo = nullptr;
+			}
+
+			return node->parent;
+		}
+	}
 }

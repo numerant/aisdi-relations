@@ -11,10 +11,11 @@ using namespace std;
 
 typedef struct Node
 {
-    Email* emailTo;         //treści emaila podanego dalej
-    Usember* usember;       //użytkownik jako właściwy węzeł drzewa
-    Node* parent;           //węzeł poprzedzający
-    vector<Node*> childs;   //potomkowie
+    Email* emailTo = nullptr;             //email zapamiętany, żeby znaleźć ścieżkę do pierwotnego
+    Usember* usember = nullptr;           //użytkownik jako właściwy węzeł drzewa
+    Node* parent = nullptr;               //węzeł poprzedzający
+    vector<Node*> childs;       //potomkowie
+    vector<Email*> forwards;   //vector forwardów (bo może być do wielu)
 } Node;
 
 class MulticastTree
@@ -28,10 +29,10 @@ public:
     MulticastTree(Email* startEmail);	//tworzy obiekt drzewa od razu z węzłami
 	~MulticastTree();
 
-	Node* createNode (Node* parent);		//szuka wszystkich możliwych potomków i tworzy je
+	Node* createNodes (Node* parent);		//szuka wszystkich możliwych potomków i tworzy je
 	Node* findRoot (Email* email);			//rozpoczyna generowanie drzewa
 	Node* findNodeByEmail (Email* email);	//zwraca węzeł dla podanego emaila
-	Node* deleteNode (Node* node);			//usuwa węzeł (tylko jeżeli jest liściem) i zwraca wskazanie na rodzica
+	Node* deleteNodes (Node* node);			//usuwa węzeł (tylko jeżeli jest liściem) i zwraca wskazanie na rodzica
 											//w.p.p. zwraca nullptr
 
     void addEmail (Email* email);
