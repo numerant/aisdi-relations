@@ -22,15 +22,14 @@ void PanelGroupsMaintance::ShowPanel(AisdiRelationsFrame* Frame)
 
         Frame->G_ImageButtonSettings->SetBitmapLabel(path+imagePaths[5]+format);
 
-        if (!relationsConstructed && Frame->database->countEmails() != 0)
-        {
+       
             if (Frame->relations != nullptr)
                 delete Frame->relations;
-            else
-                Frame->relations = new Relations(Frame->database);
+          
+            Frame->relations = new Relations(Frame->database);
 
-            relationsConstructed = true;
-        }
+        //    relationsConstructed = true;
+        
         if (Frame->relations != nullptr)
             Frame->relations->runAlgorithm();  //TODO podpiąć to pod dodawanie emaili
 
