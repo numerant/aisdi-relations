@@ -2,6 +2,7 @@
 #include <boost/serialization/base_object.hpp>
 #include "Usember.h"
 #include "Database.h"
+#include <string>
 #include <vector>
 
 using namespace std;
@@ -19,6 +20,7 @@ private:
 	Usember* leader;
 	int leaderIndex;
 	int level;
+	string name;
 
 public:
     Group();
@@ -32,6 +34,7 @@ public:
 	int color;
 
 	int getUsemberCount();
+	string getName();
 	int getEmailsCount(Database *database);
 	int getIndexOf(int usember);
 	Usember* getLeader();
