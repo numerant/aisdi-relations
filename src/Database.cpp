@@ -117,9 +117,9 @@ void Database::select(EmailQuery& emailQuery)
         match=true;
         if(emailQuery.searchingForReplies() && findEmail(emailVector[i]->getInReplyTo())==-1)
             match=false;
-        if(emailQuery.searchingForForwards() && emailVector[i]->getIsForwarded())
+        if(emailQuery.searchingForForwards() && !emailVector[i]->getIsForwarded())
             match=false;
-        if(emailQuery.getStringCriteriaVectorSize()>0)
+        if(match && emailQuery.getStringCriteriaVectorSize()>0)
         {
             match=true;
             for(unsigned int j=0; j<emailQuery.getStringCriteriaVectorSize(); ++j)

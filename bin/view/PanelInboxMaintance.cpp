@@ -262,8 +262,10 @@ void PanelInboxMaintance::AdvancedSearch (AisdiRelationsFrame* Frame)
             yearTo = Frame->I_Adv_ChoiceYearTo->GetString(pos).mb_str();
     }
 
+    int type = Frame->I_Adv_RadioBoxType->GetSelection();
+
     if (subject == "" && email == "" && content == ""
-        && dayFrom == "" && monthFrom == "" && yearFrom == "" && dayTo == "" && monthTo == "" && yearTo == "")
+        && dayFrom == "" && monthFrom == "" && yearFrom == "" && dayTo == "" && monthTo == "" && yearTo == "" && type==0)
     {
        //TODO Powiadomienie zamiast tego
         wxMessageBox(_("Puste kryteria wyszukiwania"));
@@ -273,13 +275,15 @@ void PanelInboxMaintance::AdvancedSearch (AisdiRelationsFrame* Frame)
         bool replies=false;         //TODO -tu maja byc info z checkbuttonow o tym czy szukac replajow lub forwardow oraz czy szukac daty od do
         bool forwards=false;
         if (Frame->I_Adv_RadioBoxType->GetSelection() == 1)
+        {
+            wxMessageBox(_("bleble"));
             replies = true;
+        }
         else if (Frame->I_Adv_RadioBoxType->GetSelection() == 2)
             forwards = true;
 
         int dayFromInt, yearFromInt, dayToInt, yearToInt;
-        //EmailQuery emailQuery(replies, forwards);     //TODO naprawić
-        EmailQuery emailQuery();        //temp
+        EmailQuery emailQuery(replies, forwards);
         if(email!="")
         {
             StringCriteria stringCriteria1(E_EMAIL, email);

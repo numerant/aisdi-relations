@@ -15,12 +15,12 @@ void Query::clear()
 
 }
 
-bool Query::searchingForReplies()
+bool EmailQuery::searchingForReplies()
 {
     return replies;
 }
 
-bool Query::searchingForForwards()
+bool EmailQuery::searchingForForwards()
 {
     return forwards;
 }
@@ -49,9 +49,21 @@ int Query::getDateCriteriaVectorSize()
     return dateCriteriaVector.size();
 }
 
-EmailQuery::EmailQuery()
+void Query::addStringCriteria(StringCriteria stringCriteria)
 {
+    stringCriteriaVector.push_back(stringCriteria);
+}
 
+void Query::addDateCriteria(DateCriteria dateCriteria)
+{
+    dateCriteriaVector.push_back(dateCriteria);
+}
+
+
+EmailQuery::EmailQuery(bool replies, bool forwards)
+{
+    this->replies=replies;
+    this->forwards=forwards;
 }
 
 EmailQuery::~EmailQuery()

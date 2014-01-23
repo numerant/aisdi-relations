@@ -52,11 +52,9 @@
 		<Unit filename="../src/Date.h" />
 		<Unit filename="../src/Email.cpp" />
 		<Unit filename="../src/Email.h" />
-		<Unit filename="../src/EmailQuery.h" />
 		<Unit filename="../src/Exception/IOException.h" />
 		<Unit filename="../src/Group.cpp" />
 		<Unit filename="../src/Group.h" />
-		<Unit filename="../src/GroupQuery.h" />
 		<Unit filename="../src/IOInterface.cpp" />
 		<Unit filename="../src/IOInterface.h" />
 		<Unit filename="../src/MulticastTree.cpp" />
@@ -75,8 +73,6 @@
 		<Unit filename="../src/Statistics.h" />
 		<Unit filename="../src/Usember.cpp" />
 		<Unit filename="../src/Usember.h" />
-		<Unit filename="../src/UsemberQuery.h" />
-		<Unit filename="../src/WorkgroupQuery.h" />
 		<Unit filename="AisdiRelationsApp.cpp" />
 		<Unit filename="AisdiRelationsApp.h" />
 		<Unit filename="AisdiRelationsMain.cpp" />

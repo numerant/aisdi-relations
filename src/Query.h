@@ -17,8 +17,6 @@ class Query
 protected:
     vector<StringCriteria> stringCriteriaVector;    //1. pozycji, w przypadku elementow o takiej samej wartosci danego pola - wg klucza na 2. pozycji itd.
     vector<DateCriteria> dateCriteriaVector;        //wektory kryteriow wyszukiwania
-    bool replies;
-    bool forwards;
 
 public:
     Query();
@@ -28,17 +26,23 @@ public:
     DateCriteria* getDateCriteria(int position);    //
     int getStringCriteriaVectorSize();               //metody zwracajace rozmiar danego wektora
     int getDateCriteriaVectorSize();                //
-    bool searchingForReplies();
-    bool searchingForForwards();
+    void addStringCriteria(StringCriteria stringCriteria);
+    void addDateCriteria(DateCriteria dateCriteria);
+
 };
 
 class EmailQuery :
     public Query
 {
+    bool replies;
+    bool forwards;
+
 public:
-    EmailQuery();
+    EmailQuery(bool replies, bool forwards);
     ~EmailQuery();
     void clear();
+    bool searchingForReplies();
+    bool searchingForForwards();
 };
 
 class UsemberQuery :

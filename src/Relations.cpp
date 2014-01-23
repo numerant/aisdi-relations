@@ -66,7 +66,7 @@ void Relations::runAlgorithm()
 		findBosses();
 		if(groups.size() > 1)
 		{
-			cout<<"GROUPS: "<<groups.size()<<endl<<endl;
+			//cout<<"GROUPS: "<<groups.size()<<endl<<endl;
 			goToAnotherDimension();
 		}
 		else
@@ -277,13 +277,13 @@ void Relations::makeGroups()
 			}
 		}
 
-		cout<<"Stworzono grupe!"<<endl<<"Lider: "<<group->getLeaderIndex()+1<<endl<<"Czlonkowie:"<<endl;
-		cout<<endl;
+		//cout<<"Stworzono grupe!"<<endl<<"Lider: "<<group->getLeaderIndex()+1<<endl<<"Czlonkowie:"<<endl;
+		//cout<<endl;
 		for(int i = 0; i < group->getUsemberCount(); i++)
 		{
-			cout<<"\tUzytkownik numer "<<group->getIndexOf(i)+1<<endl;
+			//cout<<"\tUzytkownik numer "<<group->getIndexOf(i)+1<<endl;
 		}
-		cout<<endl<<endl;
+		//cout<<endl<<endl;
 		finalGroups.push_back(group);
 	}
 	level++;
