@@ -98,7 +98,7 @@ Email* IOInterface::emlParser (string path)
         string wiersz, fromRN, fromLOGIN, fromDOMAIN, toRN, toLOGIN, toDOMAIN, subject, MID, IRT, date, content;
         boost::regex regFrom("From:\\s+(\"(.+)\")?\\s*<(.+)@(.+)>");
         boost::regex regTo("To:\\s+(\"(.+)\")?\\s*<(.+)@(.+)>");
-        boost::regex regSubject("Subject:\\s+(.*)");
+        boost::regex regSubject("Subject:\\s*(.*)");
         boost::regex regMID("Message-ID:\\s+<(.+)>");
 		boost::regex regIRT("In-Reply-To:\\s+<(.+)>");
         boost::regex regDate("Date:\\s+(\\u\\l{2},\\s+\\d{1,2}\\s+\\u\\l+\\s+\\d{4}\\s+\\d{2}:\\d{2}:\\d{2}\\s+\\+\\d{4})");
