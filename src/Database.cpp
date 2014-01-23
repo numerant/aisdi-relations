@@ -403,3 +403,13 @@ Usember* Database::getResultUsember(int position)
     else
         return usemberSearchResultVector[position];
 }
+
+string Database::getAutoImportPath()
+{
+    return autoImportPath;
+}
+
+void Database::setAutoImportPath(string path)
+{
+    autoImportPath = path;
+}

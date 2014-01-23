@@ -648,6 +648,20 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
                 }
                 Frame->database = Frame->iointerface->importDatabase(&importParameters);     // po wczytaniu zmienia się wartość wskaźnika na bazę danych!
 
+                IOInterface::ImportStats stats;					//statystyki wczytania
+                Frame->database->setAutoImportPath("/home/kuba/Programowanie/aisdi-relations/CreateEMLfile/Mails temp");
+                if (Frame->database->getAutoImportPath() != "")
+                {
+                    MailParameters parameters;
+                    parameters.isDirectory = true;
+                    parameters.path = Frame->database->getAutoImportPath();
+                    parameters.recursiveImport = GetRecursiveLoad();
+                    Frame->iointerface->importMail(&parameters);        //try! ścieżka może być zła
+
+                    stats = Frame->iointerface->getImportStats();
+                    Frame->iointerface->clearImportStats();
+                }
+
                 delete Frame->statistics;
                 Frame->statistics = new Statistics(Frame->database);
 
@@ -670,9 +684,19 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
 
                 Frame->P_Usembers->ClearUsemberInfo(Frame);
 
-                Frame->P_Notify->SetLabels(Frame, "Wczytywanie pliku bazy danych", "Status");
-                Frame->P_Notify->SetValues(Frame, "        OK");
-                Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
+                if (stats.successCount > 0)
+                {
+                    Frame->P_Notify->SetLabels(Frame, "Wczytano plik bazy danych", "Nowe maile:");          //PK popraw to bo nie umiem P_Notify
+                    Frame->P_Notify->SetValues(Frame, "        OK");                                        // tu dodać pokazywanie stats.successCount
+                    Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
+                }
+                else
+                {
+                    Frame->P_Notify->SetLabels(Frame, "Wczytywanie pliku bazy danych", "Status");
+                    Frame->P_Notify->SetValues(Frame, "        OK");
+                    Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
+                }
+
             }
             catch(UnableToOpenFile exception)
             {
