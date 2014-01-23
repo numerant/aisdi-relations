@@ -2,7 +2,6 @@
 #include "Usember.h"
 #include "Date.h"
 #include "SerializationInit.h"
-#include "MulticastTree.h"
 #include <string>
 #include <boost/serialization/base_object.hpp>
 
