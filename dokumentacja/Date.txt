@@ -1,0 +1,47 @@
+//============================================================
+//
+// klasa:        Date
+// autorzy:        Patryk Łucka
+// pliki:        Date.h, Date.cpp
+//
+//============================================================
+
+// opis:
+	Klasa obsługująca strukturę daty w programie.
+
+// metody, struktury danych:
+
+	string fullDate;
+	string weekDay;
+	int day;
+	string month;
+	int monthInt;
+	int year;
+	int hour;
+	int minute;
+	int second;
+	string timeZone;
+
+    
+	string getFullDate();
+	void setWeekDay(string );
+	string getWeekDate(void);
+	int getDay();
+	void setDay(int newDay);
+	string getMonth();
+	void setMonth(string );
+	int getMonthInt();
+	int getYear();
+	void setYear(int );
+	int getHour();
+	void setHour(int );
+	int getMinute();
+	void setMinute(int );
+	int getSecond();
+	void setSecond(int );
+	string getTimeZone();
+	void setTimeZone(string );
+	int compare(Date &);
+		Funkcja porównuje dwie daty poprzez porównanie kolejnych coraz mniej znaczących elementów daty (rok,miesiąc,dzień itd.)
+	int monthToInt(string );
+		Funkcja konwertuje miesiąc w formie słownej na liczbę.

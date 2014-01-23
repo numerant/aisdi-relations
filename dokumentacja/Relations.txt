@@ -1,0 +1,67 @@
+//============================================================
+//
+// klasa:        Relations
+// autorzy:        Patryk Łucka
+// pliki:        Relations.h, Relations.cpp
+//
+//============================================================
+
+// opis:
+        Klasa jest realizacją algorytmu przyporządkowania użytkoników do grup.
+
+// metody, struktury danych:
+
+	int findRepresentantOf(int element);
+		Funkcja szuka reprezentanta zbioru, w którym użytkonik się znajduje, a następnie aktualizuje wartość reprezentanta dla danego użytkownika (jeśli się zmienił)
+
+	void runAlgorithm();
+		Funkcja obsługująca kolejne kroki algorytmu.
+
+	void setClosestAssociates();
+		Funkcja przyporządkowuje każdemu użytkownikowi jednego innego użytkownika, z którym wymienił największą liczbę maili
+
+	void countBossCoefficient();
+		Funkcja oblicza dla wszystkich użytkowników współczynnik szefostwa. Dokładniej opisane w pliku Algorytm.txt
+
+	void setGroups();
+		Funkcja tworzy tymczasowe zbiory użytkowników.
+
+	void addGroup(int representant);
+		Funkcja dodaje do tymczasowych zbiór o podanym reprezentancie.
+
+	void findBosses();
+		Funkcja odnajduje w każdej grupie użytkownika z najwyższym współczynnikiem szefostwa.
+
+	void goToAnotherDimension();
+		Ostatni krok algorytmu, umożliwia kontynuowanie algorytmu na wyższym stopniu grup (np. przejście z grupy menadżerskiej do grupy zarządu)
+
+	void makeGroups();
+		Funkcja zapisuje odnalezione grupy w wektorze z ostateczną listą grup.
+
+	void saveGroupsInDatabase();
+		Funkcja zapisuje grupy w bazie danych.
+
+	void prepareForPrint(vector<int>* levels, vector<string>* labels, Group* group);
+		Funkcja w odpowiedni sposób zapisuje dane z grup do wektorów levels i labels, aby możliwe było łatwe i skuteczne wyświetlenie grup w programie.
+
+	int getFinalGroupsSize();
+	Group* getGroup(int i);
+	static int level;	//poziom stopień/poziom grup
+	vector<pair<int, int> > countStandardDeviation(vector<pair<int, int> > vect);
+		Funkcja oblicza standardowe odchylenie w sposób podobny do tego opisanego w pliku Algorytm.txt
+
+	static const int MAX_EMAILS = 10000;
+	Database *database;
+	int firstUserCount = 0;
+	int userCount = 0;
+	vector< pair<int, int> > adjacents[MAX_EMAILS];
+	vector< pair<int, int> > closestAssociate;
+	vector<int> realIndex;	//prawdziwy index u¿ytkownika w bazie
+	vector<int> tmpIndex;	//tymczasowy index
+	vector<int> vertexDegree;	//stopień wierzechołków w grafie
+	vector<int> otherGroupEmails;
+	vector<int> bossCoefficient;
+	vector<pair<int, int> > finalBosses;	//first: index ; second: group
+	vector<int> representant;
+	vector<int> groups;
+	vector<Group*> finalGroups;
