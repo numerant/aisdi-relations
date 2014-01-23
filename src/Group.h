@@ -1,10 +1,12 @@
 #pragma once
 #include <boost/serialization/base_object.hpp>
 #include "Usember.h"
+#include "Database.h"
 #include <vector>
 
 using namespace std;
 class Usember;
+class Database;
 
 class Group
 {
@@ -27,8 +29,10 @@ public:
 	void setLeader(Usember* usember);
 	void setLeaderIndex(int index);
 	void setLevel(int newLevel);
+	int color;
 
 	int getUsemberCount();
+	int getEmailsCount(Database *database);
 	int getIndexOf(int usember);
 	Usember* getLeader();
 	int getLeaderIndex();
