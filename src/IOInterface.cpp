@@ -360,8 +360,8 @@ void IOInterface::exportDatabaseToTxt (string directoryPath)
         record << tempEmail->getFrom()->getAddress() << "\t";
         record << tempEmail->getTo()->getAddress() << "\t";         // TODO JM: dodać obsługę replyTo
         //record << tempEmail->getReplyTo()->getAddress() << "\t";  //replyTo chyba nie działa (?)
-        //record << tempEmail->getInReplyTo() << "\t";              //na razie puste
-            // dopisać forwards
+        record << tempEmail->getInReplyTo() << "\t";              //na razie puste
+
         record << tempEmail->getDate().getFullDate() << "\t";       // getDate nie zwraca wskażnika (?)
         record << tempEmail->getSubject() << "\t";
 
@@ -374,7 +374,7 @@ void IOInterface::exportDatabaseToTxt (string directoryPath)
     file.close();
 
         //wektor usemberów
-    filePath = directoryPath + "/usembers.txt";             // sprawdzić, czy / jest potrzebne
+    filePath = directoryPath + "/usembers.txt";
     file.open(filePath);
 
     Usember* tempUsember;
@@ -386,7 +386,7 @@ void IOInterface::exportDatabaseToTxt (string directoryPath)
         record.clear();
         record << tempUsember->getAddress() << "\t";
         record << tempUsember->getRealName() << "\t";
-        //record << tempUsember->getGroup()->getID();   // grupy nie działają
+        //record << tempUsember->getGroup()->getID();       // TODO JM: odkomentować gdy Patryk poprawi setID
         record << "\n";
         file << record.rdbuf();
     }
@@ -403,9 +403,9 @@ void IOInterface::exportDatabaseToTxt (string directoryPath)
         if (tempGroup == nullptr) break;
 
         record.clear();
-                                                            // TODO JM: dodać obsługę grup
-        // grupy nie działają, nie ma nic
 
+        record << tempGroup->getID() << "\t";
+        record << tempGroup->getLeader()->getRealName() << "\t";
         record << "\n";
         file << record.rdbuf();
     }
