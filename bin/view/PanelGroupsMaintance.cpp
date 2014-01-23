@@ -85,21 +85,7 @@ void PanelGroupsMaintance::SetGroups (AisdiRelationsFrame * Frame)
     //string s = to_string(Frame->database->countGroups());
     vector<string> labels; //= {s,"G1_1","C1", "Lol", "Lol2","LOl3","ROFL"};
 
-    for(int i = Frame->relations->getFinalGroupsSize()-1; i >= 0; i--)
-    {
-        Group* grupa = Frame->relations->getGroup(i);
-        int lvl = Frame->relations->level - grupa->getLevel();
-        levels.push_back(lvl);
-        labels.push_back(grupa->getLeader()->getRealName());
-        if(grupa->getLevel() == 0)
-        {
-            for(int j = 0; j < grupa->getUsemberCount(); j++)
-            {
-                levels.push_back(lvl+1);
-                labels.push_back(grupa->getUsember(j)->getRealName());
-            }
-        }
-    }
+    Frame->relations->prepareForPrint(&levels, &labels, Frame->relations->getGroup(Frame->relations->getFinalGroupsSize()-1));
 
     Frame->G_ListGroups->DeleteAllItems();
     //Jeżeli grupy są już wygenerowane algorytmem
