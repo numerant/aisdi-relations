@@ -29,9 +29,7 @@ namespace boost
             archive & database.emailVector;
             //archive & database.groupVector;                    //zakomentowane - grupy chyba jeszcze nie działają?
             archive & database.usemberVector;                  //usember nie jest jeszcze dodawany
-            //archive & database.emailSearchResultVector;
-            //archive & database.groupSearchResultVector;        //to chyba są wektory tymczasowe?
-            //archive & database.usemberSearchResultVector;
+            archive & database.autoImportPath;
         }
 
             //Email

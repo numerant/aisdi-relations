@@ -34,6 +34,7 @@ private:
     vector<Usember*> usemberVector;             //wektor przechowujący wszystkich nadawców i odbiorców emaili, czyli Usemberów
     vector<Email*> emailSearchResultVector;     //
     vector<Usember*> usemberSearchResultVector; //wektory wynikow wyszukiwania w bazie danych
+    string autoImportPath;                      //ścieżka z której wczytujemy maile przy włączonym autoimporcie
 public:
     Database();
     ~Database();
@@ -61,8 +62,10 @@ public:
     int countEmails();                                          //metoda zwracajaca ilosc maili w wektorze
     int countGroups();                                          //metoda zwracajaca ilosc grup w wektorze
     int countUsembers();                                        //metoda zwracajaca ilosc usemberow w wektorze
-    int countResultEmails();                                          //metoda zwracajaca ilosc maili w wektorze wynikow wyszukiwania
-    int countResultUsembers();                                        //metoda zwracajaca ilosc usemberow w wektorze wynikow wyszukiwania
+    int countResultEmails();                                    //metoda zwracajaca ilosc maili w wektorze wynikow wyszukiwania
+    int countResultUsembers();                                  //metoda zwracajaca ilosc usemberow w wektorze wynikow wyszukiwania
+    string getAutoImportPath();
+    void setAutoImportPath(string path);
 private:
     bool matches(Email& email, StringCriteria& stringCriteria); //metody sprawdzajace, czy podany mail spelnia podane kryterium
     bool matches(Email& email, DateCriteria& dateCriteria);     //

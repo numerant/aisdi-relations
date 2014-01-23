@@ -31,7 +31,7 @@ void IOInterface::ImportStats::clearStats()
     existingCount = 0;
 }
 
-void IOInterface::importMail(MailParameters *parameters)
+void IOInterface::importMail(MailParameters *parameters)        // dodać wyjątki
 {
     if (parameters->isDirectory)
     {
