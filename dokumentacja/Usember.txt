@@ -1,3 +1,12 @@
+﻿ 
+//============================================================
+//
+// klasa:	Usember
+// autorzy:	Krzysztof Lisocki
+// pliki:	Usember.cpp, Usember.h
+//
+//============================================================
+
 Usember (user/member)
 
 Klasa usember - obiekty reprezentują wychwycone wszelkie tożsamości w polach od/do/dowielu/przekazanodalej. W momencie wczytywania nowego maila do bazy, sprawdzane są wszelkie adresy z tych pól, przeszukiwana jest baza usemberów i jeśli występuje już nasz kontakt to tylko jest akutalizowany w przeciwnym razie tworzymy nowy kontakt.
@@ -6,26 +15,38 @@ Klasa usember - obiekty reprezentują wychwycone wszelkie tożsamości w polach 
 ### Pola ###
 
 Dwa najważniejsze pola będące wypełnione zawsze, czyli adres mailowy rozmontowany na czynniki:
-- usembername - czyli to co jest przed @ w adresie
-- domain - czyli to co jest po @ w adresie (wykorzystamy do np przydziału do grup)
+- usembername 	- czyli to co jest przed @ w adresie
+- domain		- czyli to co jest po @ w adresie (wykorzystamy do np przydziału do grup)
 
 Kolejne opcjonalnie uzupełniane pola (domyślnie puste):
-- realName - czyli na ogół powinno być to prawdziwe imie i nazwisko usembera (wychwytywane z pola Od - jeśli zostało zdefiniowane)
-- group - wskaźnik na grupę - wypełniany po analizie maili
+- realName 	- czyli na ogół powinno być to prawdziwe imie i nazwisko usembera (wychwytywane z pola Od - jeśli zostało zdefiniowane)
+- group 	- wskaźnik na grupę -> wypełniany po analizie maili
 
-I przechowywanie maili związanym z tym usemberem (referencje pod ręką)
-- sentMails - wektor wskaźników na maile wysłane przez tego usembera
-- receivedMails - wektor wspaźników na maile które otrzymał ten usember
+I przechowywanie maili związanym z tym usemberem (referencje pod ręką):
+- sentMails 	- wektor wskaźników na maile wysłane przez tego usembera
+- receivedMails - wektor wskaźników na maile które otrzymał ten usember
 
 
 
 
 ### Metody ###
 
+
 - addMail(Email *, type [send/receive/forward...]) - dodaje list do odpowiedniego wektora
-- removeMail(Email *) - usuwa list z wektora (nie wiem czy potrzebne, ale może lepiej zaimplementować - w praniu wyjdzie)
-- setGroup(Group *) - przydziela grupę - może działać ciągle, nie ważne czy już jest ustawiona -> tzn działać jako aktualizacja/czyszczenie pola
-- setRealName(string) - ustawia pole realName - działa jak powyżej
-- getAdress() - zwraca ciąg zawierający pełen adres email: [usembername]@[domain]
-- sendMailCount() - zwraca liczbę maili wysłanych przez tego usembera
-- receiveMailCount() - zwraca liczbę maili otrzymanych przez tego usembera
+- removeMail(Email *) 	- usuwa list z wektora (nie wiem czy potrzebne, ale może lepiej zaimplementować - w praniu wyjdzie)
+- setGroup(Group *) 	- przydziela grupę - może działać ciągle, nie ważne czy już jest ustawiona -> tzn działać jako aktualizacja/czyszczenie pola
+- setRealName(string) 	- ustawia pole realName - działa jak powyżej
+- getAdress() 			- zwraca ciąg zawierający pełen adres email: [usembername]@[domain
+- getGroup() 			- zwraca wskazanie na grupę
+- getEmailReceived(int position)	- zwraca wskazanie na danego maila (z otrzymanych)
+- getEmailSent(int position) 		- zwraca wskazanie na danego maila (z wysłanych)
+- searchBackward(Email* email) 		- szuka dla tego usembera maila który był forward wyżej
+
+
+Metody wykorzystywane do statystyk:
+- sendMailCount() 		- zwraca liczbę maili wysłanych przez tego usembera
+- receiveMailCount() 	- zwraca liczbę maili otrzymanych przez tego usembera
+- getEmailsReceivedInMonth (int month) 	- zwraca liczbę maili odebranych w danym miesiącu
+- getEmailsSentInMonth (int month) 		- zwraca liczbę maili wysłanych w danym miesiącu
+- getMaxEmailsInMonth() 				- zwraca największą liczbę maili napisanych w ciągu danego miesiąca
+- getEmailsCount (Database* database, int usemberIndex) - zwraca liczbę maili wymienionych z zadanym usemberem

@@ -26,35 +26,35 @@ class Usember
 {
     template<class Archive> friend void  boost::serialization::serialize(Archive &, Usember &, const unsigned int);  //potrzebne do serializacji
 public:
-    Usember();                                      //potrzebne do serializacji
+    Usember();								//potrzebne do serializacji
     Usember(string usemberName, string domain, string realName);
     ~Usember();
 
-    void addEmailSent (Email * email);             // dodaje list do odpowiedniego wektora
+    void addEmailSent (Email * email);		// dodaje list do odpowiedniego wektora
     void addEmailReceived (Email * email);
 
-    bool removeEmailSent(Email *email);					// usuwa list z wektora
+    bool removeEmailSent(Email *email);		// usuwa list z wektora
     bool removeEmailReceived (Email* email);
-    void setGroup(Group	*group);						// przydziela grupę usemberowi / używać także jako akutalizacji
-    void setRealName(string rn);						// ustawia pole realName - działanie jak wyżej
+    void setGroup(Group	*group);			// przydziela grupę usemberowi / używać także jako akutalizacji
+    void setRealName(string rn);			// ustawia pole realName - działanie jak wyżej
 
-	string getRealName();								// zwraca string z realName
+	string getRealName();					// zwraca string z realName
     string getAddress();					// zwraca ciąg pełnego maila [usemberName]@[domain]
 	Group* getGroup();						// zwraca wskazanie na grupę
 	Email* getEmailReceived(int position);	// zwraca wskazanie na danego maila (z otrzymanych)
 	Email* getEmailSent(int position);		// zwraca wskazanie na danego maila (z wysłanych)
-
-    unsigned int sendMailCount();				// zwraca liczbę maili wysłanych przez tego usembera
-    unsigned int receiveMailCount();				// zwraca liczbę maili odebranych przez tego usembera
-    unsigned int getEmailsReceivedInMonth (int month); // zwraca liczbę maili odebranych w danym miesiącu
-    unsigned int getEmailsSentInMonth (int month);    // zwraca liczbę maili wysłanych w danym miesiącu
-    unsigned int getMaxEmailsInMonth ();               // zwraca największą liczbę maili napisanych w ciągu danego miesiąca
-    unsigned int getEmailsCount (Database* database, int usemberIndex);
-	
 	Email* searchBackward(Email* email);	// szuka dla tego usembera maila który był forward wyżej
 											// czyli np: mamy FWD: FWD: abcdefg
 											// oraz			  FWD: abcdefg
 											// metoda dla pierwszego maila ma zwrócić mail drugi
+											
+    unsigned int sendMailCount();			// zwraca liczbę maili wysłanych przez tego usembera
+    unsigned int receiveMailCount();		// zwraca liczbę maili odebranych przez tego usembera
+    unsigned int getEmailsReceivedInMonth (int month);	// zwraca liczbę maili odebranych w danym miesiącu
+    unsigned int getEmailsSentInMonth (int month);		// zwraca liczbę maili wysłanych w danym miesiącu
+    unsigned int getMaxEmailsInMonth ();	// zwraca największą liczbę maili napisanych w ciągu danego miesiąca
+    unsigned int getEmailsCount (Database* database, int usemberIndex);		// zwraca liczbę maili wymienionych z zadanym usemberem
+	
 
 private:
     // adres - email:
