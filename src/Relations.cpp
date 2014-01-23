@@ -147,10 +147,10 @@ void Relations::findBosses()
 {
 	vector<pair<int, int> > bosses;			//first: coefficient, second: index
 	int highest;
-	//Dla ka¿dej grupy
+	//Dla kaÂ¿dej grupy
 	for(unsigned int i = 0; i < groups.size(); i++)
 	{
-		//szukamy cz³onków danej grupy (których reprezentant jest reprezentantem danej grupy)
+		//szukamy czÂ³onkÃ³w danej grupy (ktÃ³rych reprezentant jest reprezentantem danej grupy)
 		for(int j = 0; j < userCount; j++)
 		{
 			if(findRepresentantOf(j) == groups[i])
@@ -158,14 +158,14 @@ void Relations::findBosses()
 		}
 		sort(bosses.begin(), bosses.end(), cmp);
 
-		//cz³onek z najwy¿szym wspó³czynnikiem szefostwa
+		//czÂ³onek z najwyÂ¿szym wspÃ³Â³czynnikiem szefostwa
 		highest = bosses[bosses.size()-1].first;
 
 		int k = 1;
 		vector<pair<int, int> > potential;
 		potential.push_back(bosses[bosses.size()-1]);
 
-		//szukamy potencjalnych szefów
+		//szukamy potencjalnych szefÃ³w
 		int sajz = bosses.size();
 		while((sajz-k-1) >= 0)
 		{
@@ -186,7 +186,7 @@ void Relations::findBosses()
 		{
 			vector<pair<int, int> > counts = countStandardDeviation(potential);
 
-		//obliczamy ich wspó³czynnik dodatkowy
+		//obliczamy ich wspÃ³Â³czynnik dodatkowy
 			for(unsigned int j = 0; j < potential.size(); j ++)
 			{
 				double tmpCoefficient;
@@ -196,7 +196,7 @@ void Relations::findBosses()
 				coefficient.push_back(tmpCoefficient);
 			}
 
-			//szukamy u¿ytkownika z najwy¿szym wspó³czynnikiem dodatkowym
+			//szukamy uÂ¿ytkownika z najwyÂ¿szym wspÃ³Â³czynnikiem dodatkowym
 			for(unsigned int j = 0; j < potential.size(); j ++)
 			{
 				if(coefficient[j] > bossCoefficient)
@@ -217,12 +217,12 @@ void Relations::findBosses()
 
 vector<pair<int, int> > Relations::countStandardDeviation(vector<pair<int, int> > vect)
 {
-	vector<pair<int, int> > vertexGroups; //i-ty u¿ytkownik ma (first) korespondentów z innych grup i (second) wiadomoœci z nimi
+	vector<pair<int, int> > vertexGroups; //i-ty uÂ¿ytkownik ma (first) korespondentÃ³w z innych grup i (second) wiadomoÅ“ci z nimi
 	for(unsigned int ii = 0; ii < vect.size(); ii++)
 	{
 		vertexGroups.push_back(make_pair(0,0));
 
-		vector<int> groupsFound; // ju¿ znalezione grupy
+		vector<int> groupsFound; // juÂ¿ znalezione grupy
 		for(unsigned int i = 0 ; i < adjacents[vect[ii].second].size(); i++)
 		{
 			bool b = 0;
@@ -277,13 +277,12 @@ void Relations::makeGroups()
 			}
 		}
 
-		//cout<<"Stworzono grupe!"<<endl<<"Lider: "<<group->getLeaderIndex()+1<<endl<<"Czlonkowie:"<<endl;
-		//cout<<endl;
+		/*cout<<"Lider: "<<group->getLeaderIndex()+1<<endl<<"Czlonkowie:"<<endl;
+		cout<<endl;
 		for(int i = 0; i < group->getUsemberCount(); i++)
 		{
-			//cout<<"\tUzytkownik numer "<<group->getIndexOf(i)+1<<endl;
-		}
-		//cout<<endl<<endl;
+			cout<<"\tUzytkownik numer "<<group->getIndexOf(i)+1<<endl;
+		}*/
 		finalGroups.push_back(group);
 	}
 	level++;
@@ -296,31 +295,31 @@ void Relations::goToAnotherDimension()
 
 	makeGroups();
 
-	//czyœcimy dla nowego poziomy
+	//czyÅ“cimy dla nowego poziomy
 	for( int i = 0; i < userCount; i++)
 		vertexDegree[i] = 0;
 
 	tmpIndex.resize(firstUserCount,0);
 
-	//Dla ka¿dej grupy
+	//Dla kaÂ¿dej grupy
 	for(unsigned int i = 0; i < groups.size(); i++)
 	{
 		Group *group = finalGroups[i];
 		newRealIndex.push_back(realIndex[groups[i]]);
 
-		//Dla ka¿dego u¿ytkownika z grupy
+		//Dla kaÂ¿dego uÂ¿ytkownika z grupy
 		for(int j = 0; j < group->getUsemberCount(); j++)
 		{
 			tmpIndex[group->getIndexOf(j)] = i;
 
-			// Przegl¹damy jego s¹siadów w celu okreœlenia wagi miêdzy nowymi wierzcho³kami (grupami)
+			// PrzeglÂ¹damy jego sÂ¹siadÃ³w w celu okreÅ“lenia wagi miÃªdzy nowymi wierzchoÂ³kami (grupami)
 			for(unsigned int k = 0; k < adjacents[group->getIndexOf(j)].size(); k++)
 			{
 				bool isThere = 0;
-				//Przeszukujemy ju¿ dodane nowe wierzcho³ki (aby zwiêkszyæ wagê krawêdzi miêdzy nimi)
+				//Przeszukujemy juÂ¿ dodane nowe wierzchoÂ³ki (aby zwiÃªkszyÃ¦ wagÃª krawÃªdzi miÃªdzy nimi)
 				for(unsigned int l = 0; l < tempAdj[i].size(); l++)
 				{
-					//znaleziono ju¿ istniej¹cego s¹siada, wiêc zwiêkszamy wagê
+					//znaleziono juÂ¿ istniejÂ¹cego sÂ¹siada, wiÃªc zwiÃªkszamy wagÃª
 					if(tempAdj[i][l].first == findRepresentantOf(adjacents[group->getIndexOf(j)][k].first))
 					{
 						tempAdj[i][l].second += adjacents[group->getIndexOf(j)][k].second;
@@ -339,7 +338,7 @@ void Relations::goToAnotherDimension()
 					if(findRepresentantOf(adjacents[group->getIndexOf(j)][k].first) != group->getLeaderIndex())
 					{
 						vertexDegree[i]++;
-						//nie ma jeszcze danej grupy w s¹siedztwie naszego wierzcho³ka - dodajemy
+						//nie ma jeszcze danej grupy w sÂ¹siedztwie naszego wierzchoÂ³ka - dodajemy
 						tempAdj[i].push_back(make_pair(findRepresentantOf(adjacents[group->getIndexOf(j)][k].first),
 						adjacents[group->getIndexOf(j)][k].second));
 					}
@@ -358,7 +357,7 @@ void Relations::goToAnotherDimension()
 		cout<<"Grupa "<<groups[i]<<" jest teraz "<<i<<endl;
 	}
 	*/
-	//podmieniamy s¹siadów ( mamy stworzony nowy graf )
+	//podmieniamy sÂ¹siadÃ³w ( mamy stworzony nowy graf )
 
 	realIndex = newRealIndex;
 
@@ -403,6 +402,43 @@ int Relations::getFinalGroupsSize()
 Group* Relations::getGroup(int i)
 {
     return finalGroups[i];
+}
+
+void Relations::prepareForPrint(vector<int>* levels, vector<string> *labels, Group * grupa)
+{
+    //cout<<"Emails count = "<<grupa->getEmailsCount(database)<<endl;
+
+    if(!grupa->color)
+    {
+        grupa->color = 1;
+        int lvl = level - grupa->getLevel();
+        levels->push_back(lvl);
+        string s = grupa->getLeader()->getRealName() + " grupa" + to_string(lvl);
+        labels->push_back(s);
+        if(grupa->getLevel() == 0)
+        {
+            for(int i = 0; i < grupa->getUsemberCount(); i++)
+            {
+                levels->push_back(lvl+1);
+                labels->push_back(grupa->getUsember(i)->getRealName());
+            }
+            grupa->color = 2;
+        }
+        else
+        {
+            for(int i = 0; i < grupa->getUsemberCount(); i++)
+            {
+                for(int j = finalGroups.size() - 1; j >= 0; j--)
+                {
+                    if(grupa->getIndexOf(i) == finalGroups[j]->getLeaderIndex() && !finalGroups[j]->color)
+                    {
+                        prepareForPrint(levels,labels,finalGroups[j]);
+                    }
+                }
+            }
+            grupa->color = 2;
+        }
+    }
 }
 
 void Relations::saveGroupsInDatabase()
