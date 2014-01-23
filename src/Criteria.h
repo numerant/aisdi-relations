@@ -4,6 +4,8 @@
 #include "Email.h"
 using namespace std;
 
+/*  Klasa Criteria - czyli pojedyncze kryterium zapytania do bazy danych. Kryteria moga byc typu StringCriteria badz DateCriteria   */
+
 enum SearchKey {E_EMAIL, E_SUBJECT, E_CONTENT, E_NAME};
 
 class Criteria
@@ -28,7 +30,7 @@ public:
 class DateCriteria :
 	public Criteria
 {
-	Date equals;        //jak przy intCriteria
+	Date equals;        //data, ktorej data w szukanym mailu mailu musi byc odpowiednio rowna, mniejsza od niej lub wieksza
 	Date less;
 	Date greater;
 public:
