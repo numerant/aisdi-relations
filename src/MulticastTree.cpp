@@ -144,7 +144,7 @@ Node* MulticastTree::deleteNodes (Node* node)
 			else
 			{
 				delete node->childs[i];
-				node->childs[i].pop_back();
+				node->childs.pop_back();
 				node->forwards.pop_back();
 				node->emailTo = nullptr;
 			}
