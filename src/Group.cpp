@@ -9,6 +9,7 @@ int Group::getID()
 
 Group::Group()
 {
+    color = 0;
 	id = globalId;
 	globalId++;
 }
@@ -41,6 +42,20 @@ void Group::setLeaderIndex(int index)
 void Group::setLevel(int newLevel)
 {
     level = newLevel;
+}
+
+int Group::getEmailsCount(Database *database)
+{
+    int sum = 0;
+    for(int i = 0; i < getUsemberCount(); i++)
+    {
+        for(int j = i+1; j < getUsemberCount(); j++)
+        {
+            sum+= getUsember(i)->getEmailsCount(database, getIndexOf(j));
+        }
+    }
+
+    return sum;
 }
 
 int Group::getUsemberCount()
