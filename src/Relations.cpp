@@ -46,6 +46,10 @@ Relations::Relations(Database *existingDatabase)
 
 Relations::~Relations(void)
 {
+    for(int i = 0; i < finalGroups.size(); i++)
+    {
+        delete finalGroups[i];
+    }
 }
 
 int Relations::findRepresentantOf(int element)
