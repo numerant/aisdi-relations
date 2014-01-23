@@ -408,7 +408,7 @@ Group* Relations::getGroup(int i)
     return finalGroups[i];
 }
 
-void Relations::prepareForPrint(vector<int>* levels, vector<string> *labels, Group * grupa)
+void Relations::prepareForPrint(vector<int>* levels, vector<string> *labels, vector<int>*ids, vector<string>*addresses, Group * grupa)
 {
     //cout<<"Emails count = "<<grupa->getEmailsCount(database)<<endl;
 
@@ -419,6 +419,8 @@ void Relations::prepareForPrint(vector<int>* levels, vector<string> *labels, Gro
         levels->push_back(lvl);
         string s = grupa->getLeader()->getRealName() + " grupa" + to_string(lvl);
         labels->push_back(s);
+        ids->push_back(0);
+        addresses->push_back("brak");
         if(grupa->getLevel() == 0)
         {
             for(int i = 0; i < grupa->getUsemberCount(); i++)
@@ -426,6 +428,8 @@ void Relations::prepareForPrint(vector<int>* levels, vector<string> *labels, Gro
             	grupa->getUsember(i)->setGroup(grupa);
                 levels->push_back(lvl+1);
                 labels->push_back(grupa->getUsember(i)->getRealName());
+                ids->push_back(grupa->getID());
+                addresses->push_back(grupa->getUsember(i)->getAddress());
             }
             grupa->color = 2;
         }
@@ -437,19 +441,19 @@ void Relations::prepareForPrint(vector<int>* levels, vector<string> *labels, Gro
                 {
                     if(grupa->getIndexOf(i) == finalGroups[j]->getLeaderIndex() && !finalGroups[j]->color)
                     {
-                        prepareForPrint(levels,labels,finalGroups[j]);
+                        prepareForPrint(levels,labels,ids, addresses,finalGroups[j]);
                     }
                 }
             }
             grupa->color = 2;
         }
     }
-
-    if(grupa->getID() == finalGroups[0]->getID())
+/*
+    if(grupa == finalGroups[0])
     {
         for(unsigned int i = 0; i < finalGroups.size(); i++)
             finalGroups[i]->color = 0;
-    }
+    }*/
 }
 
 void Relations::saveGroupsInDatabase()

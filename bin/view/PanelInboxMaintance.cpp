@@ -199,7 +199,7 @@ void PanelInboxMaintance::SetAdvSearchDate (AisdiRelationsFrame* Frame)
 void PanelInboxMaintance::Search (AisdiRelationsFrame* Frame)
 {
     wxString s = Frame->I_SearchCtrl->GetValue();
-    string strQuery = (string) s.mb_str();  //TODO może lepiej stringstreamem na wyrazy?
+    string strQuery = (string) s.mb_str();
 
     if (strQuery != "")
     {
@@ -210,14 +210,14 @@ void PanelInboxMaintance::Search (AisdiRelationsFrame* Frame)
 
         Frame->database->simpleSelect(strQuery);
         SetEmails(Frame);
-       /* if(Frame->database->countResultEmails()==0)   //TODO Zmienić to na wyświetlanie powiadomienia
+       if(Frame->database->countResultEmails()==0)
             wxMessageBox(_("Brak wynikow!"));
         else
-            wxMessageBox(_("Wyszukiwanie zakonczone"));*/
+            wxMessageBox(_("Wyszukiwanie zakonczone"));
     }
     else
     {
-        //wxMessageBox (_("Puste zapytanie."));
+        wxMessageBox (_("Wpisz fraze do wyszukania."));
     }
 }
 
@@ -267,18 +267,14 @@ void PanelInboxMaintance::AdvancedSearch (AisdiRelationsFrame* Frame)
     if (subject == "" && email == "" && content == ""
         && dayFrom == "" && monthFrom == "" && yearFrom == "" && dayTo == "" && monthTo == "" && yearTo == "" && type==0)
     {
-       //TODO Powiadomienie zamiast tego
         wxMessageBox(_("Puste kryteria wyszukiwania"));
     }
     else
     {
-        bool replies=false;         //TODO -tu maja byc info z checkbuttonow o tym czy szukac replajow lub forwardow oraz czy szukac daty od do
+        bool replies=false;
         bool forwards=false;
         if (Frame->I_Adv_RadioBoxType->GetSelection() == 1)
-        {
-            wxMessageBox(_("bleble"));
             replies = true;
-        }
         else if (Frame->I_Adv_RadioBoxType->GetSelection() == 2)
             forwards = true;
 
@@ -305,6 +301,7 @@ void PanelInboxMaintance::AdvancedSearch (AisdiRelationsFrame* Frame)
             istringstream iss2(yearFrom);
             iss>>dayFromInt;
             iss2>>yearFromInt;
+
         }
         if(dayTo!="" && monthTo!="" && yearTo!="")
         {
@@ -318,21 +315,35 @@ void PanelInboxMaintance::AdvancedSearch (AisdiRelationsFrame* Frame)
             dayToInt=0;
             yearToInt=0;
         }
-        if(searchFromTo)
+
+        if((dayFrom!="" && monthFrom!="" && yearFrom!="") || (dayTo!="" && monthTo!="" && yearTo!=""))
         {
-            Date date1(0, "Jan", 0);
-            Date date2((int)dayFromInt, (string)monthFrom, (int)yearFromInt);      //TODO na razie jak widze jest tylko from
-            Date date3((int)dayToInt, (string)monthTo, (int)yearToInt);
-            DateCriteria dateCriteria(date1, date2, date3);
-            emailQuery.addDateCriteria(dateCriteria);
-        }
-        else
-        {
-            Date date1((int)dayFromInt, (string)monthFrom, (int)yearFromInt);      //TODO na razie jak widze jest tylko from
-            Date date2(0, "Jan", 0);
-            Date date3(0, "Jan", 0);
-            DateCriteria dateCriteria(date1, date2, date3);
-            emailQuery.addDateCriteria(dateCriteria);
+            if(searchFromTo)
+            {
+                Date date1(0, "Jan", 0);
+                Date date2((int)dayFromInt, (string)monthFrom, (int)yearFromInt);
+                Date date3((int)dayToInt, (string)monthTo, (int)yearToInt);
+                if(dayFrom=="" || monthFrom=="" || yearFrom=="")
+                {
+                    date2.setDay(0);
+                    date2.setYear(0);
+                }
+                if(dayTo=="" || monthTo=="" || yearTo=="")
+                {
+                    date3.setDay(0);
+                    date3.setYear(0);
+                }
+                DateCriteria dateCriteria(date1, date2, date3);
+                emailQuery.addDateCriteria(dateCriteria);
+            }
+            else
+            {
+                Date date1((int)dayFromInt, (string)monthFrom, (int)yearFromInt);
+                Date date2(0, "Jan", 0);
+                Date date3(0, "Jan", 0);
+                DateCriteria dateCriteria(date1, date2, date3);
+                emailQuery.addDateCriteria(dateCriteria);
+            }
         }
 
         Frame->database->select(emailQuery);
@@ -464,7 +475,7 @@ void PanelInboxMaintance::EventButtonSearchClick (AisdiRelationsFrame* Frame)
         Frame->I_SearchCtrl->Show();
         Frame->I_PanelAdvSearch->Show();
         Frame->I_SearchCtrl->SetFocus();
-        //TODO wyczyscic pola wyszukiwania zaawansowanego
+
         if (GetAddEnabled())
         {
             Frame->I_ImageButtonAdd->SetBitmapLabel(path+imagePaths[0]+format);
@@ -489,9 +500,8 @@ void PanelInboxMaintance::EventButtonSearchClick (AisdiRelationsFrame* Frame)
 
 void PanelInboxMaintance::EventListInboxItemSelect (AisdiRelationsFrame* Frame)
 {
-    unsigned int searchResults = 0; //TODO zmienić na właściwą liczbę
-    /*if (searchResults == 0)       //Odkomentować!!!
-        return;*/
+    if (customSearch && searchResults == 0)
+        return;
 
     Frame->PanelAdd->Hide();
     if (GetAddEnabled())
@@ -756,8 +766,7 @@ void PanelInboxMaintance::EventCheckBoxDate (AisdiRelationsFrame * Frame, bool v
 
 void PanelInboxMaintance::EventImageButtonRestoreClick (AisdiRelationsFrame* Frame)
 {
-    //TODO odkomentować
-    //Frame->database->restoreDatabase();
+    //Frame->database->restoreDatabase();   TODO
 
     if (GetSaveEnabled())
     {

@@ -22,14 +22,15 @@ void PanelGroupsMaintance::ShowPanel(AisdiRelationsFrame* Frame)
 
         Frame->G_ImageButtonSettings->SetBitmapLabel(path+imagePaths[5]+format);
 
-       
+        //if (!relationsConstructed && Frame->database->countEmails() != 0)
+        //{
             if (Frame->relations != nullptr)
                 delete Frame->relations;
-          
+
             Frame->relations = new Relations(Frame->database);
 
-        //    relationsConstructed = true;
-        
+          //  relationsConstructed = true;
+        //}
         if (Frame->relations != nullptr)
             Frame->relations->runAlgorithm();  //TODO podpiąć to pod dodawanie emaili
 
@@ -96,12 +97,14 @@ void PanelGroupsMaintance::SetGroups (AisdiRelationsFrame * Frame)
     groupSelectedId = 0;
 
     vector<int> levels;
+    vector<int> ids;
     //char* tmp;
     //sprintf(tmp, "%d", Frame->database->countGroups());
     //string s = to_string(Frame->database->countGroups());
     vector<string> labels;
+    vector<string> addresses;
 
-    Frame->relations->prepareForPrint(&levels, &labels, Frame->relations->getGroup(Frame->relations->getFinalGroupsSize()-1));
+    Frame->relations->prepareForPrint(&levels, &labels, &ids, &addresses, Frame->relations->getGroup(Frame->relations->getFinalGroupsSize()-1));
 
     Frame->G_ListGroups->DeleteAllItems();
     //Jeżeli grupy są już wygenerowane algorytmem
@@ -128,15 +131,21 @@ void PanelGroupsMaintance::SetGroups (AisdiRelationsFrame * Frame)
             Frame->G_ListGroups->SetItem(i,0, nazwaWx);
 
             //nadanie id do pola
-            int id = 0;     //TODO <- zamień na pobranie odpowiedniego id
+            if(addresses[i] == "brak")
+            {
+            int id = ids[i];     //TODO <- zamień na pobranie odpowiedniego id
                             //jeżeli to członek, a nie grupa.....
             ostringstream ss;
             ss << id;
             string strID = ss.str();
             wxString idWx (strID.c_str(), wxConvUTF8);
             Frame->G_ListGroups->SetItem(i,1, idWx);
-
-                            //.... to wklep do stringa adress usembera
+            }
+            else
+            {
+            wxString idWx (addresses[i].c_str(), wxConvUTF8);
+            Frame->G_ListGroups->SetItem(i,1, idWx);
+             }               //.... to wklep do stringa adress usembera
                             //przekonwertuj na wxString
                             //wrzuć zamiast idWx
         }

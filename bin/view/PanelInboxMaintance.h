@@ -17,6 +17,7 @@ private:
     bool settingsEnabled = false;
     bool customSearch = false;
     string emailIdSelected = "";
+    int searchResults = 0;
 
     wxString path = (_("resources/icons/icon"));
     wxString format =  (_(".png"));
