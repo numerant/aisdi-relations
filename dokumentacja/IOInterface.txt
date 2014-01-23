@@ -10,50 +10,39 @@
 ### Opis ###
 
 	Klasa IOInterface odpowiada za operacje, które wymagają dostępu do plików na dysku twardym komputera.
-	Do zadań, które realizuje, zalicza się między innymi import i eksport bazy danych, wczytywanie maili, szyfrowanie.
+	Do zadań, które realizuje, zalicza się między innymi wczytywanie bazy danych, import maili, szyfrowanie oraz kompresja.
 	Ponadto metody tej klasy umożliwiają zapis statystyk i bazy danych do plików (zarówno binarnych, jak i tekstowych).
-	W celu efektywnej implementacji wykorzystane zostały funkcjonalności oferowane przez boost library, w tym: 
+	W celu efektywnej implementacji wykorzystane zostały funkcjonalności oferowane przez biblioteki Boost, w tym: 
 		- regex 	- wykorzystanie w parserze, wyszukiwanie zadanych wyrażeń w plikach eml
 		- filesystem	- wczytywanie (również rekursywne) plików z katalogu
-		- string	- zaawansowane operacje na łańcuchach znaków
-		- text_iarchive - serializacja
-		- text_oarchive - serializacja
+		- algorithm	- zaawansowane operacje na łańcuchach znaków
+		- serialization - wczytywanie i zapis bazy danych do pliku binarnego
+		- iostreams	- zaawansowane operacje na strumieniach danych, np. kompresja
 
 		
 ### Pola ###
 
 	Obiekty publiczne:
-		struct ImportStats								deklaracja struktury, która przechowuje statystyki importu
-		{
-		  ImportStats();								konstruktor
-		  void clearStats();								metoda odpowiedzialna za "wyczyszczenie" statystyk	
-		  unsigned int successCount;							licznik poprawnie wczytanych maili
-		  unsigned int failCount;							licznik niepoprawnie wczytanych maili
-		  unsigned int existingCount;							licznik maili istniejących w bazie
-		};
-	
+		struct ImportStats								deklaracja struktury przechowującej statystyki importu, zawiera pola odwzorowujące ilość poprawnie oraz niepoprawnie wczytanych wiadomości
+
 	Obiekty prywatne:	
-		- Database *database;								baza maili, tworzona w momencie uruchomienia programu
-        - ImportStats stats;								struktura zawierająca statystyki importu na potrzeby programu
+		- Database *database;								wskazanie na bazę danych na której operujemy
+		- ImportStats stats;								struktura zawierająca statystyki importu na potrzeby programu
 
 		
 ### Metody  ###
 
-	Metody publiczne:
-		- IOInterface();									konstruktor klasy
-		- ~IOInterface();									destruktor klasy
-		- void importMail(MailParameters *parameters);					importuje mail do bazy danych
-		- ImportStats getImportStats();							zapewnia dostęp do statystyk ze struktury ImportStats
-		- void clearImportStats();							metoda odpowiedzialna za "wyczyszczenie" statystyk
-		- void exportDatabase (string filePath, DbParameters *parameters);		eksport bazy danych (uwzględnia parametry podane przez użytkownika)
-		- Database* importDatabase (string filePath, DbParameters *parameters);		import bazy danych (uwzględnia parametry podane przez użytkownika)
+	Metody publiczne (nietrywialne):
+		- void importMail(MailParameters *parameters);					odpowiada za import wiadomości do bazy danych - wybiera odpowiedni sposób działania w zależności od tego, czy należy wczytać cały folder (rekursywnie bądź nie), czy pojedynczą wiadomość
+		- ImportStats getImportStats();							zapewnia interfejsowi dostęp do statystyk ze struktury ImportStats
+		- void exportDatabase (string filePath, DbParameters *parameters);		zapis bazy danych do pliku binarnego z kompresją oraz opcjonalnym szyfrowaniem (wedle życzenia użytkownika)
+		- bool isImportedFileProtected (string filePath);				wykrywanie, czy plik bazy danych, który chcemy wczytać jest zaszyfrowany (bądź nie) oraz poprawny i przygotowanie go do pobrania danych
+		- Database* importDatabase (DbParameters *parameters);				import bazy danych, dekompresja oraz ewentualne deszyfrowanie
 		- void exportDatabaseReport (string path, Statistics* dbStatistics);		eksport statystyk bazy danych do pliku
-		- void exportDatabaseToTxt (string directoryPath);				eksport bazy danych do pliku tekstowego (CSV)
-		- void setDatabasePointer (Database * db);					przypisanie adekwatnego wskaźnika
-		- string strSequenceReplace(const string& searched, const string& replaced, string subject);	zastąpienie sekwencji w danym stringu
+		- void exportDatabaseToTxt (string directoryPath);				eksport bazy danych do plików tekstowych (osobnych dla usemberów, wiadomości oraz grup), które można zaimportować do innej aplikacji
+		- string strSequenceReplace( ... );						zastąpienie sekwencji w danym stringu
 	
 	Metody prywatne:	
-		- void importSingleMail(boost::filesystem::path path, ImportStats &stats);
-		- Email* emlParser (string path);							parser, dokonuje podziału maila na odpowiednie pola zgodnie ze standardem eml
-		- void encryptFile (string password);						odpowiada za szyfrowanie pliku
-		- void decryptFile (string password);						odpowiada za odszyfrowanie pliku
+		- void importSingleMail(boost::filesystem::path path, ImportStats &stats);	wywoływana przez importMail metoda odpowiadająca za wczytanie pojedynczej wiadomości do bazy danych
+		- void xorStream(istream &inputStream, ostream &outputStream, string key);	szyfruje / deszyfruje wskazany strumień algorytmem XOR
+		- Email* emlParser (string path);						wywoływany przez importSingleMail parser, dokonujący sprawdzenia poprawności oraz podziału maila na odpowiednie pola zgodnie ze standardem eml
