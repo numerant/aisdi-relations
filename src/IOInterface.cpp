@@ -358,7 +358,7 @@ void IOInterface::exportDatabaseToTxt (string directoryPath)
         record.clear();
         record << tempEmail->getID() << "\t";
         record << tempEmail->getFrom()->getAddress() << "\t";
-        record << tempEmail->getTo()->getAddress() << "\t";
+        record << tempEmail->getTo()->getAddress() << "\t";         // TODO JM: dodać obsługę replyTo
         //record << tempEmail->getReplyTo()->getAddress() << "\t";  //replyTo chyba nie działa (?)
         //record << tempEmail->getInReplyTo() << "\t";              //na razie puste
             // dopisać forwards
@@ -403,7 +403,7 @@ void IOInterface::exportDatabaseToTxt (string directoryPath)
         if (tempGroup == nullptr) break;
 
         record.clear();
-
+                                                            // TODO JM: dodać obsługę grup
         // grupy nie działają, nie ma nic
 
         record << "\n";

@@ -71,6 +71,4 @@ private:
     void xorStream(istream &inputStream, ostream &outputStream, string key);  // szyfruje/deszyfruje strumień algorytmem XOR
     void importSingleMail(boost::filesystem::path path, ImportStats &stats);
     Email* emlParser (string path);             //sprawdza poprawność maili
-    void encryptFile (string password);
-    void decryptFile (string password);
 };
