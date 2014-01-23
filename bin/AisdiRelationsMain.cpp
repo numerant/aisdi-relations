@@ -398,6 +398,7 @@ const long AisdiRelationsFrame::idMenuHelp = wxNewId();
 const long AisdiRelationsFrame::ID_TIMER1 = wxNewId();
 const long AisdiRelationsFrame::ID_PASSWORDENTRYDIALOG1 = wxNewId();
 const long AisdiRelationsFrame::ID_MESSAGEDIALOG1 = wxNewId();
+const long AisdiRelationsFrame::ID_TIMER2 = wxNewId();
 //*)
 
 BEGIN_EVENT_TABLE(AisdiRelationsFrame,wxFrame)
@@ -874,7 +875,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     G_ListMembers->SetBackgroundColour(wxColour(20,20,20));
     wxFont G_ListMembersFont(10,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     G_ListMembers->SetFont(G_ListMembersFont);
-    PanelUsembers = new wxPanel(PanelMain, ID_PANEL4, wxPoint(1366,0), wxSize(1366,750), wxTAB_TRAVERSAL, _T("ID_PANEL4"));
+    PanelUsembers = new wxPanel(PanelMain, ID_PANEL4, wxPoint(0,0), wxSize(1366,750), wxTAB_TRAVERSAL, _T("ID_PANEL4"));
     BitmapBackgroundUsembers = new wxStaticBitmap(PanelUsembers, ID_STATICBITMAP3, wxBitmap(wxImage(_T("resources/background.jpg"))), wxPoint(0,0), wxDefaultSize, wxSIMPLE_BORDER, _T("ID_STATICBITMAP3"));
     U_LabelSwitchContent = new wxStaticText(PanelUsembers, ID_STATICTEXT54, _("Przełącz\nzawartość"), wxPoint(1188,685), wxDefaultSize, wxALIGN_CENTRE|wxNO_BORDER|wxTRANSPARENT_WINDOW, _T("ID_STATICTEXT54"));
     U_LabelSwitchContent->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
@@ -983,7 +984,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     U_LabelSubject->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
     wxFont U_LabelSubjectFont(13,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     U_LabelSubject->SetFont(U_LabelSubjectFont);
-    U_StaticTextSubject = new wxStaticText(U_PanelEmail, ID_STATICTEXT23, wxEmptyString, wxPoint(75,35), wxDefaultSize, 0, _T("ID_STATICTEXT23"));
+    U_StaticTextSubject = new wxStaticText(U_PanelEmail, ID_STATICTEXT23, wxEmptyString, wxPoint(75,35), wxSize(420,-1), 0, _T("ID_STATICTEXT23"));
     U_StaticTextSubject->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVEBORDER));
     wxFont U_StaticTextSubjectFont(13,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     U_StaticTextSubject->SetFont(U_StaticTextSubjectFont);
@@ -1135,7 +1136,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     I_HtmlEmailContent->SetBackgroundColour(wxColour(20,20,20));
     wxFont I_HtmlEmailContentFont(10,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     I_HtmlEmailContent->SetFont(I_HtmlEmailContentFont);
-    I_StaticTextSubject = new wxStaticText(PanelInbox, ID_STATICTEXT6, wxEmptyString, wxPoint(785,180), wxDefaultSize, 0, _T("ID_STATICTEXT6"));
+    I_StaticTextSubject = new wxStaticText(PanelInbox, ID_STATICTEXT6, wxEmptyString, wxPoint(785,180), wxSize(450,-1), 0, _T("ID_STATICTEXT6"));
     I_StaticTextSubject->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_BACKGROUND));
     wxFont I_StaticTextSubjectFont(13,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     I_StaticTextSubject->SetFont(I_StaticTextSubjectFont);
@@ -1491,6 +1492,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     FileDialogStatisticsExport = new wxFileDialog(this, _("Zapisz plik:"), _("./"), wxEmptyString, _("*.txt"), wxFD_SAVE|wxFD_OVERWRITE_PROMPT|wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
     PasswordEntryDialog = new wxPasswordEntryDialog(this, _("Wpisz hasło [x-y znaków, a-z, A-Z, 0-9]"), _("Hasło do szyfracji bazy danych"), wxEmptyString, wxCANCEL|wxCENTRE|wxOK, wxDefaultPosition);
     MessageDialogConfirmation = new wxMessageDialog(this, _("Dotychczasowe dane zostaną utracone. Czy chcesz kontynuować\?"), _("Potwierdzenie nadpisania bazy"), wxCANCEL|wxYES_NO|wxNO_DEFAULT|wxICON_EXCLAMATION, wxDefaultPosition);
+    TimerRepaint.SetOwner(this, ID_TIMER2);
     Center();
 
     Connect(ID_IMAGEBUTTON37,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonMulTreeClick);
@@ -1608,7 +1610,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnAbout);
     Connect(idMenuHelp,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnMenuItemHelpSelected);
     Connect(ID_TIMER1,wxEVT_TIMER,(wxObjectEventFunction)&AisdiRelationsFrame::OnTimer1Trigger);
-    Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&AisdiRelationsFrame::OnClose);
+    Connect(ID_TIMER2,wxEVT_TIMER,(wxObjectEventFunction)&AisdiRelationsFrame::OnTimerRepaintTrigger);
     //*)
 
     /** Alokacja pamięci dla obiektów zarządzających panelami */
@@ -2263,4 +2265,9 @@ void AisdiRelationsFrame::OnI_Adv_ImageButtonResetClick(wxCommandEvent& event)
 void AisdiRelationsFrame::OnG_ListGroupsItemSelect(wxListEvent& event)
 {
     P_Groups->EventListGroupsItemSelect (this);
+}
+
+void AisdiRelationsFrame::OnTimerRepaintTrigger(wxTimerEvent& event)
+{
+    P_Usembers->EventPanelStatsPaint(this);
 }

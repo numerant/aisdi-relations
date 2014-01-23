@@ -179,6 +179,7 @@ private:
     void OnI_Adv_ImageButtonResetClick(wxCommandEvent& event);
     void OnG_ListGroupsItemSelect(wxListEvent& event);
     void OnClose(wxCloseEvent& event);
+    void OnTimerRepaintTrigger(wxTimerEvent& event);
     //*)
 
     //(*Identifiers(AisdiRelationsFrame)
@@ -514,6 +515,7 @@ private:
     static const long ID_TIMER1;
     static const long ID_PASSWORDENTRYDIALOG1;
     static const long ID_MESSAGEDIALOG1;
+    static const long ID_TIMER2;
     //*)
 
     //(*Declarations(AisdiRelationsFrame)
@@ -837,6 +839,7 @@ private:
     wxStaticText* M_LabelStats;
     wxStaticText* T_StaticTextTitle1;
     wxStaticText* G_LabelStats;
+    wxTimer TimerRepaint;
     wxStaticText* G_StaticTextName;
     wxBitmapButton        *T_ImageButtonImport;
     wxStaticText* U_LabelDelete;

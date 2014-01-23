@@ -338,8 +338,10 @@ void PanelUsembersMaintance::SwitchList(AisdiRelationsFrame * Frame)
         Frame->U_ListInbox->Hide();
         Frame->U_ListOutbox->Hide();
         Frame->U_StaticBoxUsembers->SetLabel(_("  Usembers  "));
+        SwitchContent(Frame);
     }
     usembersListEnabled = !usembersListEnabled;
+    Frame->TimerRepaint.Start(100, wxTIMER_ONE_SHOT);
 }
 
 void PanelUsembersMaintance::SwitchContent(AisdiRelationsFrame* Frame)
@@ -685,9 +687,8 @@ void PanelUsembersMaintance::EventListUsembersItemSelect (AisdiRelationsFrame* F
     Frame->U_StaticTextReceived->SetLabel(wxString(strReceived.c_str(),wxConvUTF8));
     Frame->U_StaticTextSent->SetLabel(wxString(strSent.c_str(),wxConvUTF8));
 
-   SetEmails(Frame, Frame->database->findUsember(adressUsemberSelected));
-   if (GetUsembersListEnabled())
-        SwitchList(Frame);
+    SetEmails(Frame, Frame->database->findUsember(adressUsemberSelected));
+
     if (GetEmailContentEnabled())
         SwitchContent(Frame);
 }
@@ -810,15 +811,18 @@ void PanelUsembersMaintance::EventPanelStatsPaint (AisdiRelationsFrame * Frame)
 
     wxPaintDC dc(Frame->U_PanelStats);
 
+    Usember * usember = Frame->database->getUsember(Frame->database->findUsember(adressUsemberSelected));
+
     dc.SetBrush(wxBrush(colorBackground));
     dc.SetPen(wxPen(colorBackground));
-    dc.DrawRectangle(wxPoint(5,32),wxSize(width-10,height-28-5));       //wyczyszczenie canvasu
+    if (usember != nullptr)
+        dc.DrawRectangle(wxPoint(5,32),wxSize(width-10,height-28-5));       //wyczyszczenie canvasu
 
     dc.SetTextForeground(colorText);
     dc.SetFont(wxFont(11, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, _("Ubuntu")));
 
     int maxEmails = 0, prevX = 32, prevYS = height+deltaY, prevYR = height+deltaY;
-    Usember * usember = Frame->database->getUsember(Frame->database->findUsember(adressUsemberSelected));
+
     if (usember != nullptr)
         maxEmails =  usember->getMaxEmailsInMonth();
 
