@@ -53,5 +53,6 @@ public:
     string getTimeZone();
     void setTimeZone(string );
     int compare(Date &);
+    int compareByDay(Date &);
     int monthToInt(string );
 };
