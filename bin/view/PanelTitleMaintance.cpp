@@ -322,6 +322,20 @@ void PanelTitleMaintance::LoadAutoSave (AisdiRelationsFrame* Frame)
     {
         Frame->iointerface->isImportedFileProtected(strPath);
         Frame->database = Frame->iointerface->importDatabase(&importParameters);     // po wczytaniu zmienia się wartość wskaźnika na bazę danych!
+        /* TODO */
+//        IOInterface::ImportStats stats;					//statystyki wczytania
+//                Frame->database->setAutoImportPath("/home/kuba/Programowanie/aisdi-relations/CreateEMLfile/Mails temp");
+//                if (Frame->database->getAutoImportPath() != "")
+//                {
+//                    MailParameters parameters;
+//                    parameters.isDirectory = true;
+//                    parameters.path = Frame->database->getAutoImportPath();
+//                    parameters.recursiveImport = GetRecursiveLoad();
+//                    Frame->iointerface->importMail(&parameters);        //try! ścieżka może być zła
+//
+//                    stats = Frame->iointerface->getImportStats();
+//                    Frame->iointerface->clearImportStats();
+//                }
 
         delete Frame->statistics;
         Frame->statistics = new Statistics(Frame->database);
@@ -686,8 +700,12 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
 
                 if (stats.successCount > 0)
                 {
+                    ostringstream ss;
+                    ss<<stats.successCount;
+                    string strSuccess = ss.str();
+
                     Frame->P_Notify->SetLabels(Frame, "Wczytano plik bazy danych", "Nowe maile:");          //PK popraw to bo nie umiem P_Notify
-                    Frame->P_Notify->SetValues(Frame, "        OK");                                        // tu dodać pokazywanie stats.successCount
+                    Frame->P_Notify->SetValues(Frame, strSuccess);                                        // tu dodać pokazywanie stats.successCount
                     Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
                 }
                 else
