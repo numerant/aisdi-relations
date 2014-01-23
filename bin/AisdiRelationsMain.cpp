@@ -1730,7 +1730,7 @@ void AisdiRelationsFrame::OnQuit(wxCommandEvent& event)
     delete database;
     delete relations;
 
-    Close();
+    Destroy();
 }
 
 void AisdiRelationsFrame::OnClose(wxCloseEvent& event)
@@ -1753,7 +1753,7 @@ void AisdiRelationsFrame::OnClose(wxCloseEvent& event)
     if (relations != nullptr)
         delete relations;
 
-    Close();
+    Destroy();
 }
 
 /** Informacje o autorach i wersji aplikacji */
