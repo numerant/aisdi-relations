@@ -439,10 +439,10 @@ void Relations::prepareForPrint(vector<int>* levels, vector<string> *labels, Gro
             grupa->color = 2;
         }
     }
-    
+
     if(grupa->getID() == finalGroups[0]->getID())
     {
-        for(int i = 0; i < finalGroups.size(); i++)
+        for(unsigned int i = 0; i < finalGroups.size(); i++)
             finalGroups[i]->color = 0;
     }
 }

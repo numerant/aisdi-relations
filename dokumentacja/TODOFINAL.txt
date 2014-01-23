@@ -1,6 +1,5 @@
 - naprawa AutoLoad
 - parser - opierdalanie realname
-- boole - replies, forwards
 - opierdalanie grup
 - opierdalanie drzewa
 - opierdalanie autoimportu

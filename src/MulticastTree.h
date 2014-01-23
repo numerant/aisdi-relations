@@ -14,6 +14,7 @@ typedef struct Node
     Email* emailTo = nullptr;             //email zapamiętany, żeby znaleźć ścieżkę do pierwotnego
     Usember* usember = nullptr;           //użytkownik jako właściwy węzeł drzewa
     Node* parent = nullptr;               //węzeł poprzedzający
+    unsigned long id = 0;
     vector<Node*> childs;       //potomkowie
     vector<Email*> forwards;   //vector forwardów (bo może być do wielu)
 } Node;
@@ -22,7 +23,8 @@ class MulticastTree
 {
 private:
     Node* HEAD = nullptr;		//wskazanie na korzeń
-    vector<Node*> Nodes;		//Na razie nie jest konieczny chyba
+    unsigned long globalId = 0;
+    vector<Node*> Nodes;		//TODO Na razie nie jest konieczny chyba
 
 public:
     MulticastTree();					//puste drzewo

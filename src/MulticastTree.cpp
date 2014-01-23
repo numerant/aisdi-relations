@@ -35,17 +35,21 @@ Node* MulticastTree::createNodes (Node* parent)
 		if (emailToRecognize == nullptr)
 			return nullptr;
 
-        //TODO odkomentować
-		//childCount= parent->usember->getForwardsCount(emailToRecognize);
-		for (int i = 0; i < childCount-1; i++)
+		childCount= parent->usember->getForwardsCount(emailToRecognize, false);
+		for (int i = 0; i < childCount; i++)
 		{
-		    //TODO odkomentować
-            //newEmail= parent->usember->getForward(i);
+            newEmail= parent->usember->getForward(i, emailToRecognize, false);
+            if (newEmail == emailToRecognize)
+            	continue;
+            if (newEmail == nullptr)
+            	break;
 			temp = new Node;
 			temp->usember = newEmail->getTo();
 			temp->parent = parent;
 			parent->childs.push_back(temp);
 			parent->forwards.push_back(newEmail);
+			temp->id = globalId;
+			globalId++;
 
 			Node* returnNode = createNodes (temp);
 			if (returnNode = nullptr)
@@ -59,28 +63,50 @@ Node* MulticastTree::createNodes (Node* parent)
 	else
 	{
 		Email* emailToRecognize;
+		bool nullParent = true;
 		if (parent->emailTo != nullptr)
+			nullParent = false;
+
+		if (! nullParent)
 			emailToRecognize = parent->emailTo;
 		else
-			emailToRecognize = parent->forwards[0];
+			emailToRecognize = parent->parent->forwards[0];
 
 		if (emailToRecognize == nullptr)
 			return nullptr;
 
-        //TODO odkomentować
-		//childCount = parent->usember->getForwardsCount(emailToRecognize);
-		if (parent->emailTo != nullptr)
-			childCount -= 1;
+     	if (! nullParent)
+			childCount = parent->usember->getForwardsCount(emailToRecognize, false);
+		else
+			childCount = parent->usember->getForwardsCount(emailToRecognize, true);
 
 		for (int i = 0; i < childCount; i++)
 		{
-			//TODO odkomentować
-			//newEmail = parent->usember->getForward (i);
+			if (! nullParent)
+			{
+				newEmail = parent->usember->getForward (i, emailToRecognize, false);
+				if (newEmail == emailToRecognize)
+            		continue;
+				if (newEmail == nullptr)
+            		break;
+			}
+			else
+			{
+				newEmail = parent->usember->getForward (i, emailToRecognize, false);
+				string subject = newEmail->getSubject();
+				if (subject.substr(5, subject.size()-5) == emailToRecognize->getSubject())
+            		continue;
+				if (newEmail == nullptr)
+            		break;
+			}
+
 			temp = new Node;
 			temp->usember = newEmail->getTo();
 			temp->parent = parent;
 			parent->childs.push_back(temp);
 			parent->forwards.push_back(newEmail);
+			temp->id = globalId;
+			globalId++;
 
 			Node* returnNode = createNodes (temp);
 			if (returnNode = nullptr)
@@ -108,6 +134,8 @@ Node* MulticastTree::findRoot (Email* email)
 		temp->parent = returnNode;
 		temp->parent->childs.push_back(temp);
 		temp->parent->forwards.push_back(temp->parent->emailTo);
+		temp->id = globalId;
+		globalId++;
 		return temp;
 	}
 	else
@@ -117,6 +145,8 @@ Node* MulticastTree::findRoot (Email* email)
 		returnNode->emailTo = email;
 		returnNode->usember = tempUsember;
 		returnNode->parent = nullptr;
+		returnNode->id = globalId;
+		globalId++;
 		return returnNode;
 	}
 }
@@ -136,14 +166,14 @@ Node* MulticastTree::deleteNodes (Node* node)
 	}
 	else
 	{
-		for (unsigned int i = node->childs.size()-1 ; i >=0 ; i--)
+		for (unsigned int i = node->childs.size(); i >0 ; i--)
 		{
-			Node * returnNode = deleteNodes (node->childs[i]);
+			Node * returnNode = deleteNodes (node->childs[i-1]);
 			if (returnNode != node)		//TODO może rzucenie wyjątkiem?
 				break;					//zwrócenie wartości innej niż oczekiwana, bląd
 			else
 			{
-				delete node->childs[i];
+				delete node->childs[i-1];
 				node->childs.pop_back();
 				node->forwards.pop_back();
 				node->emailTo = nullptr;
@@ -152,4 +182,5 @@ Node* MulticastTree::deleteNodes (Node* node)
 			return node->parent;
 		}
 	}
+	globalId = 0;
 }
