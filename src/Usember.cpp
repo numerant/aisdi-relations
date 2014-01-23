@@ -218,6 +218,17 @@ Email* Usember::searchBackward(Email* email)
 
 Email*  Usember::getForward(unsigned int position, Email* email)
 {
-
+	unsigned int emailsSum = 0;
+	Email* tempE;
+	for (unsigned int i = 0; i < this->sendMailCount(); i++)
+	{
+		tempE = this->sentMails[i];
+		if ( tempE->getSubject() == email->getSubject() )
+		{
+			if ( emailsSum == position)
+				return tempE;
+			emailsSum++;
+		}
+	}
 	return nullptr;
 }
