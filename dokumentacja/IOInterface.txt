@@ -7,46 +7,53 @@
 //
 //============================================================
 
-// opis:
+### Opis ###
+
 	Klasa IOInterface odpowiada za operacje, które wymagają dostępu do plików na dysku twardym komputera.
 	Do zadań, które realizuje, zalicza się między innymi import i eksport bazy danych, wczytywanie maili, szyfrowanie.
 	Ponadto metody tej klasy umożliwiają zapis statystyk i bazy danych do plików (zarówno binarnych, jak i tekstowych).
 	W celu efektywnej implementacji wykorzystane zostały funkcjonalności oferowane przez boost library, w tym: 
-	- regex 	- wykorzystanie w parserze, wyszukiwanie zadanych wyrażeń w plikach eml
-	- filesystem	- wczytywanie (również rekursywne) plików z katalogu
-	- string	- zaawansowane operacje na łańcuchach znaków
-	- text_iarchive - serializacja
-	- text_oarchive - serializacja
+		- regex 	- wykorzystanie w parserze, wyszukiwanie zadanych wyrażeń w plikach eml
+		- filesystem	- wczytywanie (również rekursywne) plików z katalogu
+		- string	- zaawansowane operacje na łańcuchach znaków
+		- text_iarchive - serializacja
+		- text_oarchive - serializacja
 
-// metody publiczne:
-	IOInterface();									konstruktor klasy
-	~IOInterface();									destruktor klasy
-	void importMail(MailParameters *parameters);					importuje mail do bazy danych
-	ImportStats getImportStats();							zapewnia dostęp do statystyk ze struktury ImportStats
-	void clearImportStats();							metoda odpowiedzialna za "wyczyszczenie" statystyk
-	void exportDatabase (string filePath, DbParameters *parameters);		eksport bazy danych (uwzględnia parametry podane przez użytkownika)
-	Database* importDatabase (string filePath, DbParameters *parameters);		import bazy danych (uwzględnia parametry podane przez użytkownika)
-	void exportDatabaseReport (string path, Statistics* dbStatistics);		eksport statystyk bazy danych do pliku
-	void exportDatabaseToTxt (string directoryPath);				eksport bazy danych do pliku tekstowego (CSV)
-	void setDatabasePointer (Database * db);					przypisanie adekwatnego wskaźnika
-	string strSequenceReplace(const string& searched, const string& replaced, string subject);	zastąpienie sekwencji w danym stringu
+		
+### Pola ###
+
+	Obiekty publiczne:
+		struct ImportStats								deklaracja struktury, która przechowuje statystyki importu
+		{
+		  ImportStats();								konstruktor
+		  void clearStats();								metoda odpowiedzialna za "wyczyszczenie" statystyk	
+		  unsigned int successCount;							licznik poprawnie wczytanych maili
+		  unsigned int failCount;							licznik niepoprawnie wczytanych maili
+		  unsigned int existingCount;							licznik maili istniejących w bazie
+		};
 	
-// metody prywatne:	
-	void importSingleMail(boost::filesystem::path path, ImportStats &stats);
-	Email* emlParser (string path);							parser, dokonuje podziału maila na odpowiednie pola zgodnie ze standardem eml
-	void encryptFile (string password);						odpowiada za szyfrowanie pliku
-	void decryptFile (string password);						odpowiada za odszyfrowanie pliku
+	Obiekty prywatne:	
+		- Database *database;								baza maili, tworzona w momencie uruchomienia programu
+        - ImportStats stats;								struktura zawierająca statystyki importu na potrzeby programu
+
+		
+### Metody  ###
+
+	Metody publiczne:
+		- IOInterface();									konstruktor klasy
+		- ~IOInterface();									destruktor klasy
+		- void importMail(MailParameters *parameters);					importuje mail do bazy danych
+		- ImportStats getImportStats();							zapewnia dostęp do statystyk ze struktury ImportStats
+		- void clearImportStats();							metoda odpowiedzialna za "wyczyszczenie" statystyk
+		- void exportDatabase (string filePath, DbParameters *parameters);		eksport bazy danych (uwzględnia parametry podane przez użytkownika)
+		- Database* importDatabase (string filePath, DbParameters *parameters);		import bazy danych (uwzględnia parametry podane przez użytkownika)
+		- void exportDatabaseReport (string path, Statistics* dbStatistics);		eksport statystyk bazy danych do pliku
+		- void exportDatabaseToTxt (string directoryPath);				eksport bazy danych do pliku tekstowego (CSV)
+		- void setDatabasePointer (Database * db);					przypisanie adekwatnego wskaźnika
+		- string strSequenceReplace(const string& searched, const string& replaced, string subject);	zastąpienie sekwencji w danym stringu
 	
-// struktury danych, obiekty publiczne:
-	struct ImportStats								deklaracja struktury, która przechowuje statystyki importu
-	{
-	  ImportStats();								konstruktor
-	  void clearStats();								metoda odpowiedzialna za "wyczyszczenie" statystyk	
-	  unsigned int successCount;							licznik poprawnie wczytanych maili
-	  unsigned int failCount;							licznik niepoprawnie wczytanych maili
-	  unsigned int existingCount;							licznik maili istniejących w bazie
-	};
-	
-// struktury danych, obiekty prywatne:	
-	Database *database;								baza maili, tworzona w momencie uruchomienia programu
-        ImportStats stats;								struktura zawierająca statystyki importu na potrzeby programu
+	Metody prywatne:	
+		- void importSingleMail(boost::filesystem::path path, ImportStats &stats);
+		- Email* emlParser (string path);							parser, dokonuje podziału maila na odpowiednie pola zgodnie ze standardem eml
+		- void encryptFile (string password);						odpowiada za szyfrowanie pliku
+		- void decryptFile (string password);						odpowiada za odszyfrowanie pliku
