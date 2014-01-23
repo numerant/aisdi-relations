@@ -1494,9 +1494,37 @@
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
 					<handler function="OnG_ImageButtonTitleClick" entry="EVT_BUTTON" />
 				</object>
+				<object class="wxStaticBox" name="ID_STATICBOX13" variable="G_BorderList" member="yes">
+					<label>   Grupy   </label>
+					<pos>15,100</pos>
+					<size>620,610</size>
+					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+					<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
+					<font>
+						<size>16</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+				</object>
+				<object class="wxStaticBox" name="ID_STATICBOX14" variable="G_BorderInfo" member="yes">
+					<label>   Info   </label>
+					<pos>670,100</pos>
+					<size>620,610</size>
+					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+					<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
+					<font>
+						<size>16</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+				</object>
 				<object class="wxListCtrl" name="ID_LISTCTRL5" variable="G_ListGroups" member="yes">
 					<pos>25,130</pos>
-					<size>630,570</size>
+					<size>600,570</size>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<bg>#141414</bg>
 					<font>
@@ -1506,8 +1534,103 @@
 						<underlined>0</underlined>
 						<face>Ubuntu</face>
 					</font>
-					<style>wxLC_REPORT</style>
+					<style>wxLC_REPORT|wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE</style>
 					<handler function="OnG_ListGroupsItemSelect" entry="EVT_LIST_ITEM_SELECTED" />
+				</object>
+				<object class="wxPanel" name="ID_PANEL18" variable="G_PanelInfo" member="yes">
+					<pos>680,128</pos>
+					<size>600,570</size>
+					<bg>#202020</bg>
+					<object class="wxStaticText" name="ID_STATICTEXT154" variable="G_LabelEmailCount" member="yes">
+						<label>Ilość maili: </label>
+						<pos>450,15</pos>
+						<fg>wxSYS_COLOUR_SCROLLBAR</fg>
+						<font>
+							<size>12</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT156" variable="G_LabelName" member="yes">
+						<label>Nazwa grupy: </label>
+						<pos>15,15</pos>
+						<fg>wxSYS_COLOUR_SCROLLBAR</fg>
+						<font>
+							<size>12</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT155" variable="G_LabelBoss" member="yes">
+						<label>Szef grupy: </label>
+						<pos>15,40</pos>
+						<fg>wxSYS_COLOUR_SCROLLBAR</fg>
+						<font>
+							<size>12</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT157" variable="G_StaticTextCount" member="yes">
+						<label> - </label>
+						<pos>530,15</pos>
+						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+						<font>
+							<size>12</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT159" variable="G_StaticTextName" member="yes">
+						<label> - </label>
+						<pos>120,15</pos>
+						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+						<font>
+							<size>12</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+					</object>
+					<object class="wxStaticText" name="ID_STATICTEXT158" variable="G_StaticTextBoss" member="yes">
+						<label> - </label>
+						<pos>120,40</pos>
+						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+						<font>
+							<size>12</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+					</object>
+					<object class="wxStaticLine" name="ID_STATICLINE11" variable="StaticLine1" member="yes">
+						<pos>10,70</pos>
+						<size>580,-1</size>
+					</object>
+					<object class="wxListCtrl" name="ID_LISTCTRL6" variable="G_ListMembers" member="yes">
+						<pos>10,100</pos>
+						<size>580,460</size>
+						<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+						<bg>#141414</bg>
+						<font>
+							<size>10</size>
+							<style>normal</style>
+							<weight>normal</weight>
+							<underlined>0</underlined>
+							<face>Ubuntu</face>
+						</font>
+						<style>wxLC_REPORT|wxNO_BORDER|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE</style>
+					</object>
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL4" variable="PanelUsembers" member="yes">

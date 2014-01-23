@@ -13,6 +13,7 @@ private:
     bool treeEnabled = false;           //TODO sprawdzić czy potrzebne
     bool relationsConstructed = false;
     int groupSelectedId = -1;
+    string usemberSelectedAdress = "";
 
     wxString path = (_("resources/icons/icon"));
     wxString format =  (_(".png"));
@@ -29,12 +30,13 @@ public:
     void SetIcons(AisdiRelationsFrame* Frame);
     void SetLabels(AisdiRelationsFrame* Frame);
     void SetGroups (AisdiRelationsFrame * Frame);
+    void SetMembers (AisdiRelationsFrame* Frame);
     void SetRelationsConstructed (bool value);
     void SetSettingsEnabled();
-
 
     bool GetPanelEnabled ();
     bool GetSettingsEnabled();
 
     void EventButtonSettingsClick(AisdiRelationsFrame* Frame);
+    void EventListGroupsItemSelect(AisdiRelationsFrame* Frame);
 };
