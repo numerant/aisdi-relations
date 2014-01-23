@@ -1,7 +1,5 @@
 ALGORYTM GRUPOWANIA UŻYTKOWNIKÓW
 
-Mamy kilka pomysłów podejścia do problemu, które możliwe, że będzie można w jakiś sposób połączyć (mogą się okazać heurystykami do algorytmu (dział HEURYSTYKA)).
-
 -----------------------------------------------------------
 GŁÓWNE PODEJŚCIE
 -----------------------------------------------------------
@@ -30,10 +28,8 @@ Krok 2 (Szukanie potencjalnego szefa):
 	To dla wszystkich innych użytkowników, które mają współczynnik ten większy niż połowa największego w grupie stosujemy ostatnie kryterium:
 		- odwrotność ze standardowego odchylenia liczby wiadomości z innych grup (tj. standardowe odchylenie wykresu przedstawiającego n słupków
 		  gdzie n jest liczbą różnych grup, z którymi dany użytkownik wymieniał korespondencję, a wysokość słupka jest to liczba wiadomości 
-		  wymienionych z daną grupą)
-	Jeśli przy poszukiwaniach okaże się, że conajmniej 60% wiadomości wychodzących z danej grupy są to wiadomości do innej grupy, ponadto "potencjalny
-	szef" danej grupy będzie miał niski "współczynnik szefostwa", ustalamy że dana grupa jest w rzeczywistość podgrupą rzeczywistej i zostaje przyłączona
-	do tej grupy. (przekładając na język grafów, kolor wierzchołków tej grupy zostaje zmieniony na kolor drugiej grupy)
+		  wymienionych z daną grupą)(AD w programie nie jest obliczane faktyczne standardowe odchylenie, a współczynnik informujący o podobnych 
+		  włąściwościach zbioru, co standardowe odchylenie)
 
 Krok 3 (Przejście poziom wyżej w hierarchii):
 	Po znalezieniu szefów i ich grup tworzymy nowy graf, będący w rzeczywistości grafem nowopowstałych grup. Tzn. każda grupa staje się jednym wierzchołkiem,
@@ -42,19 +38,3 @@ Krok 3 (Przejście poziom wyżej w hierarchii):
 Krok 4 :Powtórzenie algorytmu od Kroku1
 
 Algorytm kończy działanie kiedy zostanie tylko jedna grupa, która zostanie mianowana zarządem, a szef danej grupy prezesem firmy.
-
---------------------------------------------------------
-INNE PODEJŚCIE (POMYSŁ/ZARYS)
---------------------------------------------------------
-Powstał równiez pomysł podejścia do problemu z innej strony.
-
-1: Po stworzeniu grafu wymiany korespondencji algorytmem przeszykiwania grafu w głąb (DFS) pokolei odejmujemy od wagi każdej krawędzi 1.
-2: Po pewnej liczbie iteracji krawędzie w pewnym momencie zaczną mieć wagę 0 (zostaną usunięte z grafu)
-3: Po otrzymaniu pewnego stanu za pomocą algorytmu wyszukiwania mostów w grafie znaleźć mosty w grafie : ), które będą połączeniem danej grupy
-   z innymi grupami, a wierzchołek, z którego most wychodzi zostanie mianowany szefem grupy.
-   
----------------------------------------------------------
-HEURYSTYKA (OPCJONALNIE)
----------------------------------------------------------
-
-Można założyć, że znalezienie w grafie podgrafu będącego grafem pełnym jest równoznaczne ze znalezieniem grupy lub podgrupy.
