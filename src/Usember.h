@@ -54,6 +54,7 @@ public:
     unsigned int getEmailsSentInMonth (int month);		// zwraca liczbę maili wysłanych w danym miesiącu
     unsigned int getMaxEmailsInMonth ();	// zwraca największą liczbę maili napisanych w ciągu danego miesiąca
     unsigned int getEmailsCount (Database* database, int usemberIndex);		// zwraca liczbę maili wymienionych z zadanym usemberem
+	unsigned int getForwardsCount(Email* email);		// zwraca liczbę maili wysłanych, które są fwd i mają taki sam temat z podanym w argumencie
 	
 
 private:
