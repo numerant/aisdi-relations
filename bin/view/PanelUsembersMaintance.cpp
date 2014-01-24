@@ -129,8 +129,8 @@ void PanelUsembersMaintance::SetUsembers(AisdiRelationsFrame * Frame)
             wxString wxAdress (sourceString.c_str(), wxConvUTF8);
             Frame->U_ListUsembers->SetItem(i,1, wxAdress );
 
-            //Group * group = usember->getGroup();      //TODO odkomentować po zrobieniu grup
-            int iGroup = i;                        //group->getID();
+            Group * group = usember->getGroup();      //TODO odkomentować po zrobieniu grup
+            int iGroup = group->getID();
             ostringstream ssGroup;
             ssGroup << iGroup;
             sourceString = ssGroup.str();

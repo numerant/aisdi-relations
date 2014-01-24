@@ -521,6 +521,12 @@ void PanelTitleMaintance::EventButtonFolderClick (AisdiRelationsFrame* Frame)
 
         if (stats.successCount > 0)
         {
+            if (Frame->relations != nullptr)
+                    delete Frame->relations;
+                Frame->relations = new Relations(Frame->database);
+                if (Frame->relations != nullptr)
+                    Frame->relations->runAlgorithm();
+
             Frame->P_Inbox->SetEmails(Frame);               //załadowanie listy maili i usemberów z bazy
             Frame->P_Usembers->SetUsembers(Frame);
 
@@ -583,6 +589,12 @@ void PanelTitleMaintance::EventButtonFilesClick (AisdiRelationsFrame* Frame)
 
         if (stats.successCount > 0)
         {
+            if (Frame->relations != nullptr)
+                    delete Frame->relations;
+                Frame->relations = new Relations(Frame->database);
+                if (Frame->relations != nullptr)
+                    Frame->relations->runAlgorithm();
+
             Frame->P_Inbox->SetEmails(Frame);               //załadowanie listy maili i usemberów z bazy
             Frame->P_Usembers->SetUsembers(Frame);
 
@@ -676,8 +688,7 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
                 }
                 Frame->database = Frame->iointerface->importDatabase(&importParameters);     // po wczytaniu zmienia się wartość wskaźnika na bazę danych!
 
-                IOInterface::ImportStats stats;					//statystyki wczytania
-                //Frame->database->setAutoImportPath("/home/kuba/Programowanie/aisdi-relations/CteEMLfile/Mails temp"); //TODO PK: dodać setAutoImportPath do interfejsu
+                IOInterface::ImportStats stats;					                             // statystyki wczytania
                 try
                 {
 
@@ -719,6 +730,12 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
                     Frame->P_Notify->SetValues(Frame, "       OK", "", "       Błąd!");
                     Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
                 }
+
+                if (Frame->relations != nullptr)
+                    delete Frame->relations;
+                Frame->relations = new Relations(Frame->database);
+                if (Frame->relations != nullptr)
+                    Frame->relations->runAlgorithm();
 
 
                 delete Frame->statistics;
