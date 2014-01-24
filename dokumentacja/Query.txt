@@ -8,8 +8,7 @@ Pola:
     vector<DateCriteria> dateCriteriaVector;        //
 
 Metody publiczne:
-    Query();
-    ~Query();
+
     virtual void clear();                                   //metoda czyszczaca zapytanie
     StringCriteria* getStringCriteria(int position);        //metody zwracajace pojedynczy element danego wektora
     DateCriteria* getDateCriteria(int position);            //
@@ -18,30 +17,20 @@ Metody publiczne:
     void addStringCriteria(StringCriteria stringCriteria);  //metody dodajace kryteria do zapytania
     void addDateCriteria(DateCriteria dateCriteria);        //
 
-};
+Klasa EmailQuery:
 
-class EmailQuery :
-    public Query
-{
+Pola:
     bool replies;
     bool forwards;
 
-public:
-    EmailQuery(bool replies, bool forwards);
-    ~EmailQuery();
+Metody publiczne:
     void clear();
     bool searchingForReplies();
     bool searchingForForwards();
-};
 
-class UsemberQuery :
-    public Query
-{
-public:
-    UsemberQuery();
-    ~UsemberQuery();
+Klasa UsemberQuery:
+
+Metody publiczne:
     void clear();
-};
-
 
 
