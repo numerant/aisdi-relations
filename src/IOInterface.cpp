@@ -250,6 +250,7 @@ void IOInterface::xorStream(istream &inputStream, ostream &outputStream, string 
 bool IOInterface::isImportedFileProtected (string filePath)
 {
     char isPasswordProtected;
+    inputFile.close();
 
     inputFile.open(filePath, ios_base::binary);
     if (inputFile.fail())
