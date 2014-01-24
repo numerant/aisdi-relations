@@ -83,7 +83,7 @@ void Database::deleteEmail(Email* email)
 void Database::deleteGroup(Group* group)
 {
     int position=findGroup(group->getID());
-    //delete groupVector[position];		//wyrzucamy to w innym miejscu
+    delete groupVector[position];
     if(position!=-1)
         swapGroups(position, groupVector.size()-1);
     groupVector.pop_back();
@@ -168,6 +168,25 @@ void Database::select(UsemberQuery& usemberQuery)
         }
         if(match)
             usemberSearchResultVector.push_back(usemberVector[i]);
+    }
+}
+
+void Database::sortResultEmails(int key) 
+{
+    switch(key)
+    {
+    case 0:
+        sort (emailSearchResultVector.begin(), emailSearchResultVector.end(), Database::compareEmailsByDate);
+        break;
+    case 1:
+        sort (emailSearchResultVector.begin(), emailSearchResultVector.end(), Database::compareEmailsBySubject);
+        break;
+    case 2:
+        sort (emailSearchResultVector.begin(), emailSearchResultVector.end(), Database::compareEmailsBySender);
+        break;
+    case 3:
+        sort (emailSearchResultVector.begin(), emailSearchResultVector.end(), Database::compareEmailsByReceiver);
+        break;
     }
 }
 
@@ -266,7 +285,7 @@ bool Database::matches(Email& email, StringCriteria& stringCriteria)
 bool Database::matches(Email& email, DateCriteria& dateCriteria)
 {
     if(dateCriteria.getEquals()!=nullptr){
-        if(email.getDate().compareByDay(*dateCriteria.getEquals())==0) 
+        if(email.getDate().compareByDay(*dateCriteria.getEquals())==0)
             return true;
         else
             return false;
@@ -334,6 +353,39 @@ bool Database::compareGroups(Group* group1, Group* group2)
 bool Database::compareUsembers(Usember* usember1, Usember* usember2)
 {
     if(usember1->getAddress().compare(usember2->getAddress())<=0)
+        return true;
+    else
+        return false;
+}
+
+bool Database::compareEmailsByDate(Email* email1, Email* email2)
+{
+    Date date(email2->getDate());
+    if(email1->getDate().compare(date)<=0)
+        return true;
+    else
+        return false;
+}
+
+bool Database::compareEmailsBySubject(Email* email1, Email* email2)
+{
+    if(email1->getSubject().compare(email2->getSubject())<=0)
+        return true;
+    else
+        return false;
+}
+
+bool Database::compareEmailsBySender(Email* email1, Email* email2)
+{
+    if(email1->getFrom()->getAddress().compare(email2->getFrom()->getAddress())<=0)
+        return true;
+    else
+        return false;
+}
+
+bool Database::compareEmailsByReceiver(Email* email1, Email* email2)
+{
+    if(email1->getTo()->getAddress().compare(email2->getTo()->getAddress())<=0)
         return true;
     else
         return false;

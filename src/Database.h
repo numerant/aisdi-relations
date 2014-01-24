@@ -47,6 +47,7 @@ public:
     void simpleSelect(string phrase);                           //proste wyszukiwanie w bazie na podstawie zadanej frazy, ktora moze wystapic w temacie badz w tresci
     void select(EmailQuery& emailQuery);                        //metody, które przeszukują bazę danych na podstawie danego obiektu klasy Query
     void select(UsemberQuery& usemberQuery);                    //i na tej podstawie tworza wektor wskaźników na maile/grupy/usemberów pasujących do kryteriów zapytania                                                       //i zwracają referencję do niego
+    void sortResultEmails(int key);
     void deleteQueryResults(Query* query);                      //metoda usuwająca zapytanie utworzone przez metodę select, wywoływana zaraz po niej
     int findEmail(string messageId);                            //metoda wyszukujące email w bazie
     int findGroup(int groupId);                                 //metoda wyszukujące grupę w bazie
@@ -76,4 +77,8 @@ private:
     static bool compareEmails(Email* email1, Email* email2);    //metoda porownujaca 2 maile wg id, uzywana do sortowania
     static bool compareGroups(Group* group1, Group* group2);    //metoda porownujaca 2 grupy wg id, uzywana do sortowania
     static bool compareUsembers(Usember* usember1, Usember* usember2);  //metoda porownujaca 2 usemberow wg nazwy/imienia, uzywana do sortowania
+    static bool compareEmailsByDate(Email* email1, Email* email2);    //metoda porownujaca 2 maile wg dat
+    static bool compareEmailsBySubject(Email* email1, Email* email2);    //metoda porownujaca 2 maile wg tematow
+    static bool compareEmailsBySender(Email* email1, Email* email2);    //metoda porownujaca 2 maile wg nadawcow
+    static bool compareEmailsByReceiver(Email* email1, Email* email2);    //metoda porownujaca 2 maile wg odbiorcow
 };

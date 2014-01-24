@@ -322,20 +322,23 @@ void PanelTitleMaintance::LoadAutoSave (AisdiRelationsFrame* Frame)
     {
         Frame->iointerface->isImportedFileProtected(strPath);
         Frame->database = Frame->iointerface->importDatabase(&importParameters);     // po wczytaniu zmienia się wartość wskaźnika na bazę danych!
-        /* TODO */
-//        IOInterface::ImportStats stats;					//statystyki wczytania
-//                Frame->database->setAutoImportPath("/home/kuba/Programowanie/aisdi-relations/CreateEMLfile/Mails temp");
-//                if (Frame->database->getAutoImportPath() != "")
-//                {
-//                    MailParameters parameters;
-//                    parameters.isDirectory = true;
-//                    parameters.path = Frame->database->getAutoImportPath();
-//                    parameters.recursiveImport = GetRecursiveLoad();
-//                    Frame->iointerface->importMail(&parameters);        //try! ścieżka może być zła
-//
-//                    stats = Frame->iointerface->getImportStats();
-//                    Frame->iointerface->clearImportStats();
-//                }
+
+        // TODO autoimport przy ładowaniu autosave - chyba zrobiony
+        IOInterface::ImportStats stats;					//statystyki wczytania
+        if (Frame->database->getAutoImportPath() != "")
+        {
+            MailParameters parameters;
+            parameters.isDirectory = true;
+            parameters.path = Frame->database->getAutoImportPath();
+            parameters.recursiveImport = GetRecursiveLoad();
+            Frame->iointerface->importMail(&parameters);        //try! ścieżka może być zła
+
+            stats = Frame->iointerface->getImportStats();
+            Frame->iointerface->clearImportStats();
+            Frame->P_Title->SetAutoUpdate(true);
+        }
+        else
+            Frame->P_Title->SetAutoUpdate(false);
 
         delete Frame->statistics;
         Frame->statistics = new Statistics(Frame->database);
@@ -358,6 +361,7 @@ void PanelTitleMaintance::LoadAutoSave (AisdiRelationsFrame* Frame)
             Frame->P_Usembers->SetEmailContentEnabled();
 
         Frame->P_Usembers->ClearUsemberInfo(Frame);
+        Frame->Set_CheckBoxAutoUpdate->SetValue(Frame->P_Title->GetAutoUpdate());
 
         Frame->P_Notify->SetLabels(Frame, "Odzyskano plik zapisu", "Status:");
         Frame->P_Notify->SetValues(Frame, "Wczytano");
@@ -683,7 +687,7 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
                         parameters.isDirectory = true;
                         parameters.path = Frame->database->getAutoImportPath();
                         parameters.recursiveImport = GetRecursiveLoad();
-                        Frame->iointerface->importMail(&parameters);        //try! ścieżka może być zła
+                        Frame->iointerface->importMail(&parameters);
 
                         stats = Frame->iointerface->getImportStats();
                         Frame->iointerface->clearImportStats();
@@ -698,8 +702,8 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
                         ss<<stats.successCount;
                         string strSuccess = ss.str();
 
-                        Frame->P_Notify->SetLabels(Frame, "Wczytano plik bazy danych", "Nowe maile:");          //PK popraw to bo nie umiem P_Notify
-                        Frame->P_Notify->SetValues(Frame, strSuccess);                                        // tu dodać pokazywanie stats.successCount
+                        Frame->P_Notify->SetLabels(Frame, "Wczytano plik bazy danych", "Nowe maile:");
+                        Frame->P_Notify->SetValues(Frame, strSuccess);
                         Frame->P_Notify->ShowPanel(Frame, Frame->GetNotifyTime());
                     }
                     else

@@ -211,20 +211,9 @@ void PanelInboxMaintance::Search (AisdiRelationsFrame* Frame)
         Frame->database->simpleSelect(strQuery);
         SetEmails(Frame);
        if(Frame->database->countResultEmails()==0)
-        {
-             Frame->P_Notify->SetLabels(Frame, "Wyszukiwanie zakończone.", "Liczba pasujących wyników:");
-             Frame->P_Notify->SetValues(Frame, "", "0", "");
-             Frame->P_Notify->ShowPanel(Frame, 3);
-        }
+            wxMessageBox(_("Brak wynikow!"));
         else
-        {
-             Frame->P_Notify->SetLabels(Frame, "Wyszukiwanie zakończone.", "Liczba pasujących wyników:");
-             stringstream ss;
-             ss << Frame->database->countResultEmails();
-             string strCount = ss.str();
-             Frame->P_Notify->SetValues(Frame, strCount);
-            Frame->P_Notify->ShowPanel(Frame, 3);
-        }
+            wxMessageBox(_("Wyszukiwanie zakonczone"));
     }
     else
     {
@@ -234,6 +223,7 @@ void PanelInboxMaintance::Search (AisdiRelationsFrame* Frame)
 
 void PanelInboxMaintance::AdvancedSearch (AisdiRelationsFrame* Frame)
 {
+    //TODO Obsługa przycisku DatabaseRestore
     wxString field;
     string subject, email, content, dayFrom, monthFrom, yearFrom, dayTo, monthTo, yearTo;
     subject = email = content = dayFrom = monthFrom = yearFrom = dayTo = monthTo = yearTo = "";
@@ -358,22 +348,10 @@ void PanelInboxMaintance::AdvancedSearch (AisdiRelationsFrame* Frame)
 
         Frame->database->select(emailQuery);
 
-
         if(Frame->database->countResultEmails()==0)
-        {
-             Frame->P_Notify->SetLabels(Frame, "Wyszukiwanie zakończone.", "Liczba pasujących wyników:");
-             Frame->P_Notify->SetValues(Frame, "", "0", "");
-             Frame->P_Notify->ShowPanel(Frame, 3);
-        }
+            wxMessageBox(_("Brak wynikow!"));               //TODO powiadomienie o liczbie wyników
         else
-        {
-             Frame->P_Notify->SetLabels(Frame, "Wyszukiwanie zakończone.", "Liczba pasujących wyników:");
-             stringstream ss;
-             ss << Frame->database->countResultEmails();
-             string strCount = ss.str();
-             Frame->P_Notify->SetValues(Frame, strCount);
-            Frame->P_Notify->ShowPanel(Frame, 3);
-        }
+            wxMessageBox(_("Wyszukiwanie zakonczone"));
 
         Frame->I_ImageButtonRestore->Show();
         Frame->I_LabelRestore->Show();
@@ -701,6 +679,8 @@ void PanelInboxMaintance::EventButtonDeleteClick (AisdiRelationsFrame * Frame)
 
     if (deleteConfirm)
     {
+        //TODO usuwanie wielu plików. Zmiana emailIdSelected na vector tychże
+
         Email* email = Frame->database->getEmail(Frame->database->findEmail(emailIdSelected));
         Usember* uFrom = email->getFrom();
         Usember* uTo = email->getTo();
@@ -730,6 +710,8 @@ void PanelInboxMaintance::EventButtonDeleteClick (AisdiRelationsFrame * Frame)
                 Frame->P_Usembers->SetEmailContentEnabled();
 
             Frame->P_Usembers->ClearUsemberInfo(Frame);
+
+            //TODO przeskanować grupy
         }
         else
         {
@@ -757,7 +739,11 @@ void PanelInboxMaintance::EventButtonShowTreeClick (AisdiRelationsFrame * Frame)
 
 void PanelInboxMaintance::EventListInboxColumnClick (AisdiRelationsFrame * Frame)
 {
-
+    int columnClicked=0;       //0 - date, 1 - subject, 2 - sender, 3 - receiver
+    if(Frame->database->countResultEmails()>1){
+        Frame->database->sortResultEmails(columnClicked);
+        SetEmails(Frame);
+    }
 }
 
 void PanelInboxMaintance::EventCheckBoxDate (AisdiRelationsFrame * Frame, bool value)
