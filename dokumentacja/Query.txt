@@ -1,18 +1,47 @@
-/*  Klasa Query - czyli zapytanie wysyłane do bazy danych. Zawiera informacje na temat tego, po jakich kryteriach 
-    chcemy wyszukiwać elementy (emaile, grupy bądź usemberów) oraz jak (według kolejno jakich pól) mają być 
-    posortowane wyniki. Kryteria mogą zawierać dokładną wartość danego pola, przedział, a także znaki * 
-    (dowolne znaki w nazwie). Na jej podstawie baza tworzy wektor wyników wyszukiwania. 
-    
-    */
-    
-    Klasa Query:
-    
-    pola:
-    - enum dataType     //Email, Workgroup bądź Usember
-    - Vector<enum> sortMethod   //wektor przechowujący kolejne pola, według których mają być posortowane wyniki
-                                //np. wektor [From, Data] oznacza, że wyniki zapytania (emaile) posortowane zostaną
-                                //według nadawcy, a te, które mają tego samego nadawcę - dodatkowo według daty wysłania
-    - Vector<Criteria>          //wektor obiektów klasy Criteria, oznaczających poszczególne kryteria wyszukiwania
-    
-    metody:
-    - settery i gettery dla wszystkich pól klasy
+    Klasa Query - czyli zapytanie wysyłane do bazy danych. Zawiera informacje na temat tego, po jakich kryteriach
+    chcemy wyszukiwać elementy (emaile, grupy bądź usemberów) oraz jak (według kolejno jakich pól) mają być
+    posortowane wyniki. Kryteria mogą zawierać dokładną wartość danego pola badz w przypadku intow i dat przedział, a w przypadku stringow znaki *
+    (dowolne znaki w nazwie). Na jej podstawie baza tworzy wektor wyników wyszukiwania.							 */
+
+Pola:
+    vector<StringCriteria> stringCriteriaVector;    //wektory kryteriow wyszukiwania
+    vector<DateCriteria> dateCriteriaVector;        //
+
+Metody publiczne:
+    Query();
+    ~Query();
+    virtual void clear();                                   //metoda czyszczaca zapytanie
+    StringCriteria* getStringCriteria(int position);        //metody zwracajace pojedynczy element danego wektora
+    DateCriteria* getDateCriteria(int position);            //
+    int getStringCriteriaVectorSize();                      //metody zwracajace rozmiar danego wektora
+    int getDateCriteriaVectorSize();                        //
+    void addStringCriteria(StringCriteria stringCriteria);  //metody dodajace kryteria do zapytania
+    void addDateCriteria(DateCriteria dateCriteria);        //
+
+};
+
+class EmailQuery :
+    public Query
+{
+    bool replies;
+    bool forwards;
+
+public:
+    EmailQuery(bool replies, bool forwards);
+    ~EmailQuery();
+    void clear();
+    bool searchingForReplies();
+    bool searchingForForwards();
+};
+
+class UsemberQuery :
+    public Query
+{
+public:
+    UsemberQuery();
+    ~UsemberQuery();
+    void clear();
+};
+
+
+
