@@ -11,7 +11,7 @@ Klasa Statistics, przechowujaca zestaw statystyk z bazy, udostepnianych GUI, kto
 Do uaktualnienia danych sluzy metoda update(), ktora pobiera odpowiednie dane z bazy, przetwarza je i zastepuje poprzednie wartosci poszczegolnych pol.
 
 Pola:
-    const unsigned int TOP_USEMBERS_COUNT=5;
+    const unsigned int TOP_USEMBERS_COUNT=5;    //ilosc usemberow o najwyzszych statystykach wysylania/odbierania maili, ktorzy beda wyswietlani
     Database* database;
     int emails;                         //
     int groups;                         //ilosc maili, grup i usemberow w bazie
@@ -31,8 +31,6 @@ Pola:
     vector<Usember*> topReceivers;      //jw, tyle ze odebranych
 
 Metody publiczne:
-    Statistics(Database* database);
-    ~Statistics();
     void update();                      //podbiera z bazy danych wartosci odpowiednich pol i natej podstawie uaktualnia statystyki
     int getEmails();
     int getGroups();
