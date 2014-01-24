@@ -1,0 +1,53 @@
+Klasa Statistics, przechowujaca zestaw statystyk z bazy, udostepnianych GUI, ktory bedzie wyswietlal je w formie tabel, wykresow, itp.
+Do uaktualnienia danych sluzy metoda update(), ktora pobiera odpowiednie dane z bazy, przetwarza je i zastepuje poprzednie wartosci poszczegolnych pol.
+
+Pola:
+    const unsigned int TOP_USEMBERS_COUNT=5;
+    Database* database;
+    int emails;                         //
+    int groups;                         //ilosc maili, grup i usemberow w bazie
+    int usembers;                       //
+    double emailsPerMonth;              //
+    double emailsPerDay;                //statystyki wysylania maili na miesiac, dzien
+    double emailsPerUser;               //ilosc maili przypadajacych srednio na 1 uzytkownika
+    double averageEmailLength;          //srednia dlugosc maila
+    int emailsCountInMonth[12];         //
+    int maxEmailsInMonth;               //statystyki maili wyslanych w poszczeg. miesiacach
+    int forwardCount;                   //ilosc maili bedacych forwardami innych maili
+    int replyCount;                     //ilosc maili bedacych odpowiedziami na inne maile w bazie
+    Date earliestDate;                  //najwczesniej wyslany mail w bazie
+    Date latestDate;                    //najpozniej wyslany mail w bazie
+    int duration;                       //roznica pomiedzy ww. datami
+    vector<Usember*> topSenders;        //powiedzmy, pieciu usemberow, ktorzy maja najwiecej wyslanych maili, mozna na wykresie pokazac dla kazdego ile maili wyslal
+    vector<Usember*> topReceivers;      //jw, tyle ze odebranych
+
+Metody publiczne:
+    Statistics(Database* database);
+    ~Statistics();
+    void update();                      //podbiera z bazy danych wartosci odpowiednich pol i natej podstawie uaktualnia statystyki
+    int getEmails();
+    int getGroups();
+    int getUsembers();
+    double getEmailsPerMonth();
+    double getEmailsPerDay();
+    double getEmailsPerUser();
+    double getAverageEmailLength();
+    int getEmailsCountInMonth(int month);
+    int getMaxEmailsInMonth();
+    int getForwards();
+    int getReplies();
+    Date* getEarliest();
+    Date* getLatest();
+    int getDuration();
+    Usember* getTopSender(int position);
+    Usember* getTopReceiver(int position);
+
+Metody prywatne:
+    void updateVectorSizes();
+    void updateEmailStatistics();
+    void updateTopUsembers();
+    int getDateDifferenceInMonths(Date* date1, Date* date2);
+    int getDateDifferenceInDays(Date* date1, Date* date2);
+    static bool compareUsembersSentEmails(Usember* usember1, Usember* usember2);
+    static bool compareUsembersReceivedEmails(Usember* usember1, Usember* usember2);
+};
