@@ -8,8 +8,6 @@ Database::~Database()
 {
     for(int i=0; i<(int)emailVector.size(); ++i)
         delete emailVector[i];
-    for(int i=0; i<(int)groupVector.size(); ++i)
-        delete groupVector[i];
     for(int i=0; i<(int)usemberVector.size(); ++i)
         delete usemberVector[i];
     emailVector.clear();
@@ -171,7 +169,7 @@ void Database::select(UsemberQuery& usemberQuery)
     }
 }
 
-void Database::sortResultEmails(int key) 
+void Database::sortResultEmails(int key)
 {
     switch(key)
     {
