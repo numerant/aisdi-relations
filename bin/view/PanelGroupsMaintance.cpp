@@ -6,6 +6,7 @@ PanelGroupsMaintance::PanelGroupsMaintance()
 
 }
 
+
 void PanelGroupsMaintance::ShowPanel(AisdiRelationsFrame* Frame)
 {
     if (panelEnabled)
@@ -231,7 +232,8 @@ void PanelGroupsMaintance::EventListGroupsItemSelect(AisdiRelationsFrame * Frame
         {
             groupSelectedId = -1;
             usemberSelectedAdress = usember->getAddress();
-            Frame->G_StaticTextName->SetLabel(wxString(usember->getGroup()->getName().c_str(), wxConvUTF8));
+            string s(usember->getGroup()->getName() + to_string(Frame->relations->level - usember->getGroup()->getLevel()));
+            Frame->G_StaticTextName->SetLabel(wxString(s.c_str(), wxConvUTF8));
             Frame->G_StaticTextBoss->SetLabel(wxString(usember->getRealName().c_str(), wxConvUTF8));
             int emailCount = usember->sendMailCount() + usember->receiveMailCount();
             ostringstream ss;
@@ -256,8 +258,8 @@ void PanelGroupsMaintance::EventListGroupsItemSelect(AisdiRelationsFrame * Frame
         }
         else
             return;
-
-        Frame->G_StaticTextName->SetLabel(wxString(group->getName().c_str(), wxConvUTF8));
+        string s(group->getName() + to_string(Frame->relations->level - group->getLevel()));
+        Frame->G_StaticTextName->SetLabel(wxString(s.c_str(), wxConvUTF8));
         Frame->G_StaticTextBoss->SetLabel(wxString(group->getLeader()->getRealName().c_str(), wxConvUTF8));
         int count = group->getEmailsCount(Frame->database);
         ss.str("");
