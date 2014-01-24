@@ -422,7 +422,7 @@
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL7" variable="PanelMulTree" member="yes">
-				<pos>1366,0</pos>
+				<pos>0,0</pos>
 				<size>1366,750</size>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP6" variable="BitmapBackgroundTree" member="yes">
 					<bitmap>resources/background.jpg</bitmap>
@@ -573,9 +573,42 @@
 					<style>wxNO_BORDER|wxTRANSPARENT_WINDOW|wxFULL_REPAINT_ON_RESIZE</style>
 					<handler function="OnM_ImageButtonTitleClick" entry="EVT_BUTTON" />
 				</object>
+				<object class="wxStaticBox" name="ID_STATICBOX16" variable="M_BorderInfo" member="yes">
+					<label>   Dane   </label>
+					<pos>870,100</pos>
+					<size>420,610</size>
+					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+					<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
+					<font>
+						<size>16</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+				</object>
+				<object class="wxStaticBox" name="ID_STATICBOX15" variable="M_BorderTree" member="yes">
+					<label>   Drzewo Multicastowe   </label>
+					<pos>15,100</pos>
+					<size>820,610</size>
+					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+					<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
+					<font>
+						<size>16</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+				</object>
+				<object class="wxPanel" name="ID_PANEL19" variable="M_PanelDraw" member="yes">
+					<pos>25,130</pos>
+					<size>800,570</size>
+					<bg>#141414</bg>
+				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL5" variable="PanelStatistics" member="yes">
-				<pos>0,0</pos>
+				<pos>1366,0</pos>
 				<size>1366,750</size>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP4" variable="BitmapBackgroundStatistics" member="yes">
 					<bitmap>resources/background.jpg</bitmap>
@@ -1341,7 +1374,7 @@
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL6" variable="PanelGroups" member="yes">
-				<pos>0,0</pos>
+				<pos>1366,0</pos>
 				<size>1366,750</size>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP5" variable="BitmapBackgroundGroups" member="yes">
 					<bitmap>resources/background.jpg</bitmap>
@@ -1633,7 +1666,7 @@
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL4" variable="PanelUsembers" member="yes">
-				<pos>0,0</pos>
+				<pos>1366,0</pos>
 				<size>1366,750</size>
 				<object class="wxStaticBitmap" name="ID_STATICBITMAP3" variable="BitmapBackgroundUsembers" member="yes">
 					<bitmap>resources/background.jpg</bitmap>

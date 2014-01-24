@@ -21,6 +21,8 @@ void PanelMulTreeMaintance::ShowPanel(AisdiRelationsFrame* Frame)
 
         Frame->M_ImageButtonSettings->SetBitmapLabel(path+imagePaths[5]+format);
 
+        DrawTree (Frame);
+
         Frame->PanelMulTree->SetPosition(wxPoint(0,0));
         Frame->PanelMulTree->Show();
     }
@@ -43,10 +45,18 @@ void PanelMulTreeMaintance::SetSettingsEnabled()
 
 void PanelMulTreeMaintance::SetTree (Email* emailFWD)
 {
+    //TODO dodać obsługę emaila
+    //TODO button disable if not fwd
+    //Frame->
     if (! emailFWD->getIsForwarded())   //nie jest to email typu FWD
         return;
 
     tree = new MulticastTree (emailFWD);
+}
+
+void PanelMulTreeMaintance::DrawTree (AisdiRelationsFrame* Frame)
+{
+   wxMessageBox (_("Draw"));
 }
 
 bool PanelMulTreeMaintance::GetPanelEnabled ()

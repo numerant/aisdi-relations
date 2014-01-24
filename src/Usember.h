@@ -7,6 +7,7 @@
 #include "Email.h"
 #include "SerializationInit.h"
 #include "Database.h"
+#include <wx/msgdlg.h>
 
 /*
 	Klasa tożsamości wyodrębnionych z maili w polach od/do/dowielu/przekazanodalej.
@@ -48,7 +49,7 @@ public:
 											// oraz			  FWD: abcdefg
 											// metoda dla pierwszego maila ma zwrócić mail drugi
 	Email* getForward(unsigned int position, Email* email, bool mode); //
-											
+
     unsigned int sendMailCount();			// zwraca liczbę maili wysłanych przez tego usembera
     unsigned int receiveMailCount();		// zwraca liczbę maili odebranych przez tego usembera
     unsigned int getEmailsReceivedInMonth (int month);	// zwraca liczbę maili odebranych w danym miesiącu
@@ -56,7 +57,7 @@ public:
     unsigned int getMaxEmailsInMonth ();	// zwraca największą liczbę maili napisanych w ciągu danego miesiąca
     unsigned int getEmailsCount (Database* database, int usemberIndex);		// zwraca liczbę maili wymienionych z zadanym usemberem
 	unsigned int getForwardsCount(Email* email, bool mode);		// zwraca liczbę maili wysłanych, które są fwd i mają taki sam temat z podanym w argumencie
-	
+
 
 private:
     // adres - email:

@@ -196,7 +196,7 @@ unsigned int  Usember::getForwardsCount(Email* email, bool mode)
 		tempE = this->sentMails[i];
 		subject = tempE->getSubject();
 		if (mode)
-			subject.substr(5, subject.size()-5);
+			subject = subject.substr(5, subject.size()-5);
 		if ( (subject == email->getSubject()) && (tempE->getIsForwarded()) )
 			emailsSum++;
 	}
@@ -207,14 +207,14 @@ Email* Usember::searchBackward(Email* email)
 {
 	if (email->getIsForwarded() == false)
 		return nullptr;
-		
+
 	string subject = email->getSubject();
-	subject.substr(5, subject.size()-5);
-	
+	subject = subject.substr(5, subject.size()-5);
+
 	Email* tempE;
-	for (unsigned int i = 0; i < this->sendMailCount(); i++)
+	for (unsigned int i = 0; i < this->receiveMailCount(); i++)
     {
-		tempE = this->sentMails[i];
+		tempE = this->receivedMails[i];
         if (tempE->getSubject() == subject)
 			return tempE;
     }
@@ -231,7 +231,7 @@ Email*  Usember::getForward(unsigned int position, Email* email, bool mode)
 		tempE = this->sentMails[i];
 		subject = tempE->getSubject();
 		if (mode)
-			subject.substr(5, subject.size()-5);
+			subject = subject.substr(5, subject.size()-5);
 		if ( subject == email->getSubject() )
 		{
 			if ( emailsSum == position)

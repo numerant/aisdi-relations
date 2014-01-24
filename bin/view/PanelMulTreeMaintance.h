@@ -26,6 +26,7 @@ public:
     void SetIcons(AisdiRelationsFrame* Frame);
     void SetSettingsEnabled();
     void SetTree (Email* emailFWD);
+    void DrawTree (AisdiRelationsFrame* Frame);
 
     bool GetPanelEnabled ();
     bool GetSettingsEnabled();

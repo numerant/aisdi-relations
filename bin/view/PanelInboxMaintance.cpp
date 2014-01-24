@@ -734,7 +734,11 @@ void PanelInboxMaintance::EventButtonReceiverClick (AisdiRelationsFrame * Frame)
 
 void PanelInboxMaintance::EventButtonShowTreeClick (AisdiRelationsFrame * Frame)
 {
-
+    Email * FWD = Frame->database->getEmail(Frame->database->findEmail(emailIdSelected));
+    if (FWD->getIsForwarded())
+        Frame->P_MulTree->SetTree(FWD);
+    else
+        wxMessageBox (_("To nie jest mail typu FWD !"));
 }
 
 void PanelInboxMaintance::EventListInboxColumnClick (AisdiRelationsFrame * Frame)

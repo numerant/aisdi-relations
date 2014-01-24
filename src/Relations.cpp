@@ -45,7 +45,7 @@ Relations::Relations(Database *existingDatabase)
 
 Relations::~Relations(void)
 {
-    for(int i = 0; i < finalGroups.size(); i++)
+    for(unsigned int i = 0; i < finalGroups.size(); i++)
     {
         delete finalGroups[i];
     }
@@ -77,7 +77,7 @@ void Relations::runAlgorithm()
 			break;
 		}
 	}
-	
+
 	saveGroupsInDatabase();
 }
 

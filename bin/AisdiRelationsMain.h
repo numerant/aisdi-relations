@@ -235,6 +235,9 @@ private:
     static const long ID_IMAGEBUTTON44;
     static const long ID_IMAGEBUTTON43;
     static const long ID_IMAGEBUTTON40;
+    static const long ID_STATICBOX16;
+    static const long ID_STATICBOX15;
+    static const long ID_PANEL19;
     static const long ID_PANEL7;
     static const long ID_STATICBITMAP4;
     static const long ID_STATICTEXT77;
@@ -562,8 +565,8 @@ private:
     wxStaticText* U_LabelSave;
     wxStaticText* T_LabelStats;
     wxStaticBitmap* I_BitmapBackground;
-    wxPanel* U_PanelStats;
     wxFileDialog* FileDialog;
+    wxPanel* U_PanelStats;
     wxStaticLine* T_StaticLineAddH;
     wxBitmapButton        *T_ImageButtonLoad;
     wxStaticText* I_LabelStats;
@@ -610,6 +613,7 @@ private:
     wxBitmapButton        *G_ImageButtonTitle;
     wxSearchCtrl* I_SearchCtrl;
     wxStaticBox* Sav_Border;
+    wxPanel* M_PanelDraw;
     wxStaticText* I_LabelTo;
     wxStaticLine* S_LineC_1;
     wxStaticBitmap* BitmapBackgroundTree;
@@ -686,6 +690,7 @@ private:
     wxChoice* I_Adv_ChoiceMonth;
     wxStaticText* N_StaticTextValue2;
     wxStaticText* S_LabelGroups;
+    wxStaticBox* M_BorderTree;
     wxStaticText* U_LabelMulTree;
     wxStaticBitmap* BitmapBackgroundTitle;
     wxBitmapButton        *Sav_ImageButtonTxt;
@@ -851,6 +856,7 @@ private:
     wxStaticText* I_Adv_LabelMonthTo;
     wxSearchCtrl* U_SearchCtrl;
     wxStaticText* S_StaticTextC_Value5;
+    wxStaticBox* M_BorderInfo;
     wxStaticText* S_StaticTextC_Earliest;
     wxChoice* I_Adv_ChoiceYear;
     wxCheckBox* I_Adv_CheckBoxDate;

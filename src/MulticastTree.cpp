@@ -29,6 +29,7 @@ Node* MulticastTree::createNodes (Node* parent)
     int childCount = 0;
     Email* newEmail = nullptr;
 	Node * temp = nullptr;
+	Node * returnNode = nullptr;
 	if (parent == HEAD)
 	{
 		Email* emailToRecognize = parent->emailTo;
@@ -36,28 +37,33 @@ Node* MulticastTree::createNodes (Node* parent)
 			return nullptr;
 
 		childCount= parent->usember->getForwardsCount(emailToRecognize, false);
-		for (int i = 0; i < childCount; i++)
-		{
-            newEmail= parent->usember->getForward(i, emailToRecognize, false);
-            if (newEmail == emailToRecognize)
-            	continue;
-            if (newEmail == nullptr)
-            	break;
-			temp = new Node;
-			temp->usember = newEmail->getTo();
-			temp->parent = parent;
-			parent->childs.push_back(temp);
-			parent->forwards.push_back(newEmail);
-			temp->id = globalId;
-			globalId++;
+		if (childCount == 1)
+            temp = createNodes(parent->childs[0]);
+        else
+        {
+            for (int i = 0; i < childCount; i++)
+            {
+                newEmail= parent->usember->getForward(i, emailToRecognize, false);
+                if (newEmail == emailToRecognize)
+                    continue;
+                if (newEmail == nullptr)
+                    break;
+                temp = new Node;
+                temp->usember = newEmail->getTo();
+                temp->parent = parent;
+                parent->childs.push_back(temp);
+                parent->forwards.push_back(newEmail);
+                temp->id = globalId;
+                globalId++;
 
-			Node* returnNode = createNodes (temp);
-			if (returnNode = nullptr)
-			{
-				temp->childs.push_back(nullptr);
-				temp->forwards.push_back(nullptr);
-			}
-		}
+               returnNode = createNodes (temp);
+                if (returnNode = nullptr)
+                {
+                    temp->childs.push_back(nullptr);
+                    temp->forwards.push_back(nullptr);
+                }
+            }
+        }
 		return temp;
 	}
 	else
@@ -128,6 +134,16 @@ Node* MulticastTree::findRoot (Email* email)
 	{
 		if (nextEmail->getIsForwarded())
 			returnNode = findRoot (nextEmail);
+        else
+        {
+            returnNode = new Node;
+            HEAD = returnNode;
+            returnNode->emailTo = nextEmail;
+            returnNode->usember = nextEmail->getFrom();
+            returnNode->parent = nullptr;
+            returnNode->id = globalId;
+            globalId++;
+        }
 		Node* temp = new Node;
 		temp->emailTo = email;
 		temp->usember = tempUsember;
