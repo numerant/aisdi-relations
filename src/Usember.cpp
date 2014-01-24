@@ -151,10 +151,10 @@ unsigned int Usember::getMaxEmailsInMonth ()
 
     for (int i = 0; i < 12; i++)
     {
-        temp = getEmailsReceivedInMonth(i);
+        temp = getEmailsReceivedInMonth(i+1);
         if (temp > maxSum)
             maxSum = temp;
-        temp = getEmailsSentInMonth(i);
+        temp = getEmailsSentInMonth(i+1);
         if (temp > maxSum)
             maxSum = temp;
 

@@ -342,7 +342,6 @@ private:
     static const long ID_STATICTEXT54;
     static const long ID_STATICTEXT55;
     static const long ID_STATICTEXT53;
-    static const long ID_STATICTEXT52;
     static const long ID_STATICTEXT51;
     static const long ID_STATICTEXT50;
     static const long ID_STATICTEXT49;
@@ -381,7 +380,6 @@ private:
     static const long ID_IMAGEBUTTON10;
     static const long ID_IMAGEBUTTON11;
     static const long ID_IMAGEBUTTON9;
-    static const long ID_IMAGEBUTTON8;
     static const long ID_IMAGEBUTTON7;
     static const long ID_IMAGEBUTTON6;
     static const long ID_IMAGEBUTTON5;
@@ -637,8 +635,8 @@ private:
     wxBitmapButton        *S_ImageButtonInbox;
     wxStaticText* M_LabelTitle;
     wxBitmapButton        *G_ImageButtonMulTree;
-    wxTimer Timer1;
     wxStaticBitmap* BitmapBackgroundUsembers;
+    wxTimer Timer1;
     wxStaticText* I_LabelSave;
     wxStaticText* U_LabelDate;
     wxMenuItem* MenuItemNTimeLong;
@@ -761,7 +759,6 @@ private:
     wxPanel* S_PanelTops;
     wxMenuItem* MenuItemSave;
     wxStaticBox* S_BorderEPM;
-    wxBitmapButton        *U_ImageButtonDelete;
     wxBitmapButton        *U_ImageButtonSearch;
     wxStaticText* U_LabelSearch;
     wxBitmapButton        *U_ImageButtonStats;
@@ -842,7 +839,6 @@ private:
     wxTimer TimerRepaint;
     wxStaticText* G_StaticTextName;
     wxBitmapButton        *T_ImageButtonImport;
-    wxStaticText* U_LabelDelete;
     wxStaticText* I_Adv_Title;
     wxStaticText* S_LabelRefresh;
     wxStaticText* G_LabelTitle;

@@ -6,7 +6,6 @@ PanelGroupsMaintance::PanelGroupsMaintance()
 
 }
 
-
 void PanelGroupsMaintance::ShowPanel(AisdiRelationsFrame* Frame)
 {
     if (panelEnabled)
@@ -59,7 +58,7 @@ void PanelGroupsMaintance::SetLabels(AisdiRelationsFrame* Frame)
 
     col.SetId(0);       //tylko jedna kolumna
     col.SetText(_("Grupy robocze"));
-    col.SetWidth(620);
+    col.SetWidth(600);
     Frame->G_ListGroups->InsertColumn(0, col);
 
     col.SetId(1);
@@ -92,6 +91,7 @@ void PanelGroupsMaintance::SetGroups (AisdiRelationsFrame * Frame)
         wxString wxNoResults = _("            brak grup roboczych...");
         Frame->G_ListGroups->SetItem(0,0, wxNoResults);
         groupSelectedId = -1;
+        usemberSelectedAdress = "";
         return;
     }
 
@@ -159,6 +159,7 @@ void PanelGroupsMaintance::SetGroups (AisdiRelationsFrame * Frame)
         wxString wxNoResults = _("            brak grup roboczych...");
         Frame->G_ListGroups->SetItem(0,0, wxNoResults);
         groupSelectedId = -1;
+        usemberSelectedAdress = "";
     }
 }
 
@@ -205,7 +206,7 @@ void PanelGroupsMaintance::EventButtonSettingsClick(AisdiRelationsFrame* Frame)
 
 void PanelGroupsMaintance::EventListGroupsItemSelect(AisdiRelationsFrame * Frame)
 {
-    if (groupSelectedId == -1)
+    if (groupSelectedId == -1 && usemberSelectedAdress == "")
         return;
 
     Frame->PanelSettings->Hide();
@@ -258,6 +259,7 @@ void PanelGroupsMaintance::EventListGroupsItemSelect(AisdiRelationsFrame * Frame
         }
         else
             return;
+
         string s(group->getName() + to_string(Frame->relations->level - group->getLevel()));
         Frame->G_StaticTextName->SetLabel(wxString(s.c_str(), wxConvUTF8));
         Frame->G_StaticTextBoss->SetLabel(wxString(group->getLeader()->getRealName().c_str(), wxConvUTF8));

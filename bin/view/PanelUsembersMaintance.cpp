@@ -315,7 +315,6 @@ void PanelUsembersMaintance::SetIcons(AisdiRelationsFrame* Frame)
     Frame->U_ImageButtonGroups->SetBitmapLabel(path+imagePaths[5]+format);
     Frame->U_ImageButtonStats->SetBitmapLabel(path+imagePaths[6]+format);
     Frame->U_ImageButtonMulTree->SetBitmapLabel(path+imagePaths[7]+format);
-    Frame->U_ImageButtonDelete->SetBitmapLabel(path+imagePaths[8]+format);
     Frame->U_ImageButtonShowGroup->SetBitmapLabel(path+imagePaths[9]+format);
     Frame->U_ImageButtonSwitchContent->SetBitmapLabel(path+imagePaths[10]+format);
     Frame->U_ImageButtonSwitchList->SetBitmapLabel(path+imagePaths[11]+format);
@@ -437,7 +436,7 @@ void PanelUsembersMaintance::SetUsemberViewed(AisdiRelationsFrame * Frame, const
     if (GetEmailContentEnabled())
         SwitchContent(Frame);
     ShowPanel(Frame);
-    EventPanelStatsPaint(Frame);
+    Frame->TimerRepaint.Start(100, wxTIMER_ONE_SHOT);
 
 }
 

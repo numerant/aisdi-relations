@@ -14,6 +14,4 @@
 - Inbox: Przyciski Pokaż Od/Do
 - Inbox: Przycisk drzewa domyślnie nieaktywny, aktywny gdy mail ma flagę is forwarded
 - Usember: usunięcie przycisku usuwania i dodanie wyświetlania grup.
-
-
-- poprawa wyświetlanie wykresów maili dla danego Usembera
+- Usember: Wartość grupy w liście usemberów
