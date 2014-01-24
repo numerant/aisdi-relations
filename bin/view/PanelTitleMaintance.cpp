@@ -323,7 +323,7 @@ void PanelTitleMaintance::LoadAutoSave (AisdiRelationsFrame* Frame)
         Frame->iointerface->isImportedFileProtected(strPath);
         Frame->database = Frame->iointerface->importDatabase(&importParameters);     // po wczytaniu zmienia się wartość wskaźnika na bazę danych!
 
-        // TODO autoimport przy ładowaniu autosave - chyba zrobiony
+        //TODO autoimport przy ładowaniu autosave - chyba zrobiony
         IOInterface::ImportStats stats;					//statystyki wczytania
         if (Frame->database->getAutoImportPath() != "")
         {
@@ -339,6 +339,13 @@ void PanelTitleMaintance::LoadAutoSave (AisdiRelationsFrame* Frame)
         }
         else
             Frame->P_Title->SetAutoUpdate(false);
+
+
+         if (Frame->relations != nullptr)
+            delete Frame->relations;
+        Frame->relations = new Relations(Frame->database);
+        if (Frame->relations != nullptr)
+            Frame->relations->runAlgorithm();
 
         delete Frame->statistics;
         Frame->statistics = new Statistics(Frame->database);
@@ -549,6 +556,16 @@ void PanelTitleMaintance::EventButtonFolderClick (AisdiRelationsFrame* Frame)
                 Frame->P_Usembers->SetEmailContentEnabled();
 
             Frame->P_Usembers->ClearUsemberInfo(Frame);
+
+            if (Frame->relations != nullptr)
+                delete Frame->relations;
+
+            Frame->relations = new Relations(Frame->database);
+       
+            if (Frame->relations != nullptr)
+                Frame->relations->runAlgorithm();
+
+            Frame->P_Groups->SetGroups(Frame);  
         }
     }
 }
@@ -616,6 +633,16 @@ void PanelTitleMaintance::EventButtonFilesClick (AisdiRelationsFrame* Frame)
                 Frame->P_Usembers->SetEmailContentEnabled();
 
             Frame->P_Usembers->ClearUsemberInfo(Frame);
+
+            if (Frame->relations != nullptr)
+                delete Frame->relations;
+
+            Frame->relations = new Relations(Frame->database);
+       
+            if (Frame->relations != nullptr)
+                Frame->relations->runAlgorithm();
+
+            Frame->P_Groups->SetGroups(Frame);    
         }
     }
 }
@@ -760,6 +787,16 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
 
                 Frame->P_Usembers->ClearUsemberInfo(Frame);
                 Frame->Set_CheckBoxAutoUpdate->SetValue(Frame->P_Title->GetAutoUpdate());
+
+                if (Frame->relations != nullptr)
+                    delete Frame->relations;
+
+                 Frame->relations = new Relations(Frame->database);
+   
+                if (Frame->relations != nullptr)
+                    Frame->relations->runAlgorithm();  
+
+                Frame->P_Groups->SetGroups(Frame);  
 
             }
             catch(UnableToOpenFile exception)

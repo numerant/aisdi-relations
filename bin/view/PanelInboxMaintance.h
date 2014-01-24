@@ -60,7 +60,7 @@ public:
     void EventButtonSenderClick (AisdiRelationsFrame * Frame);
     void EventButtonReceiverClick (AisdiRelationsFrame * Frame);
     void EventButtonShowTreeClick (AisdiRelationsFrame * Frame);
-    void EventListInboxColumnClick (AisdiRelationsFrame * Frame);
+    void EventListInboxColumnClick (AisdiRelationsFrame * Frame, int number);
     void EventCheckBoxDate (AisdiRelationsFrame * Frame, bool value);
     void EventImageButtonRestoreClick (AisdiRelationsFrame* Frame);
 };

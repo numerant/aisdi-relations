@@ -1,4 +1,5 @@
 #include "PanelUsembersMaintance.h"
+#include "PanelGroupsMaintance.h"
 #include <wx/msgdlg.h>
 #include <wx/dcclient.h>
 
@@ -612,31 +613,36 @@ void PanelUsembersMaintance::EventButtonSettingsClick (AisdiRelationsFrame * Fra
     SetSettingsEnabled();
 }
 
-void PanelUsembersMaintance::EventButtonDeleteClick (AisdiRelationsFrame* Frame)
-{
-    if (adressUsemberSelected == "")
-        return;
-    if (Frame->database->countUsembers() == 0)
-        return;
-
-    Usember* usember = Frame->database->getUsember(Frame->database->findUsember(adressUsemberSelected));
-    if (usember == nullptr)
-    {
-        //TODO rzuć wyjątkiem o ścianę
-    }
-    else
-    {
-        //usun maile from
-        //usun maile to
-        //usun usembera
-
-        //albo najlepiej usuwaj maile przez funkcje panelu Inbox to usember sam sie usunie
-    }
-}
-
 void PanelUsembersMaintance::EventButtonShowGroupClick (AisdiRelationsFrame* Frame)
 {
+    Usember* usember = Frame->database->getUsember(Frame->database->findUsember(adressUsemberSelected));
+    Frame->P_Groups->SetGroupId(usember->getGroup()->getID());
+    Frame->P_Groups->EventListGroupsItemSelect(Frame);
 
+    Frame->PanelUsembers->Hide();
+    Frame->PanelTitle->Hide();
+    Frame->PanelInbox->Hide();
+    Frame->PanelStatistics->Hide();
+    Frame->PanelMulTree->Hide();
+
+    Frame->PanelSettings->Hide();
+    if (GetSettingsEnabled())
+        SetSettingsEnabled();
+
+    Frame->G_ImageButtonSettings->SetBitmapLabel(path+imagePaths[5]+format);
+
+    if (Frame->relations != nullptr)
+        delete Frame->relations;
+
+    Frame->relations = new Relations(Frame->database);
+
+    if (Frame->relations != nullptr)
+        Frame->relations->runAlgorithm();
+
+    //Frame->P_Groups->SetMembers(Frame);
+
+    Frame->PanelGroups->SetPosition(wxPoint(0,0));
+    Frame->PanelGroups->Show();
 }
 
 void PanelUsembersMaintance::EventButtonSwitchContentClick (AisdiRelationsFrame* Frame)
@@ -650,13 +656,11 @@ void PanelUsembersMaintance::EventSearchCtrlTextEnter (AisdiRelationsFrame* Fram
     string strQuery = (string) s.mb_str();
     if (strQuery != "")
     {
-        wxMessageBox(_("OK!"));
         Frame->I_ImageButtonRestore->Show();
         Frame->I_LabelRestore->Show();
 
         if (customSearch)
         {
-            wxMessageBox(_("OK2!"));
             UsemberQuery usemberQuery;
             StringCriteria stringCriteria(E_NAME, strQuery);
             usemberQuery.addStringCriteria(stringCriteria);
@@ -664,8 +668,6 @@ void PanelUsembersMaintance::EventSearchCtrlTextEnter (AisdiRelationsFrame* Fram
             SetUsembers(Frame);
             if(Frame->database->countResultUsembers()==0)
                 wxMessageBox(_("Brak wynikow!"));
-            else
-                wxMessageBox(_("Wyszukiwanie zakonczone"));
         }
     }
     else
@@ -720,8 +722,6 @@ void PanelUsembersMaintance::EventListUsembersItemSelect (AisdiRelationsFrame* F
     Frame->U_StaticTextSent->SetLabel(wxString(strSent.c_str(),wxConvUTF8));
 
    SetEmails(Frame, Frame->database->findUsember(adressUsemberSelected));
-   if (GetUsembersListEnabled())
-        SwitchList(Frame);
     if (GetEmailContentEnabled())
         SwitchContent(Frame);
 }

@@ -1940,7 +1940,7 @@ void AisdiRelationsFrame::OnI_SearchCtrlTextEnter(wxCommandEvent& event)
 
 void AisdiRelationsFrame::OnI_ListInboxColumnClick(wxListEvent& event)
 {
-    P_Inbox->EventListInboxColumnClick(this);
+    P_Inbox->EventListInboxColumnClick(this, event.m_col);
 }
 
 /** ============= Eventy panelu USEMBERS ============= */
@@ -1992,11 +1992,6 @@ void AisdiRelationsFrame::OnU_ImageButtonGroupsClick(wxCommandEvent& event)
 void AisdiRelationsFrame::OnU_ImageButtonInboxClick(wxCommandEvent& event)
 {
     P_Inbox->ShowPanel(this);
-}
-
-void AisdiRelationsFrame::OnU_ImageButtonDeleteClick(wxCommandEvent& event)
-{
-    P_Usembers->EventButtonDeleteClick(this);
 }
 
 void AisdiRelationsFrame::OnU_ImageButtonShowGroupClick(wxCommandEvent& event)

@@ -377,6 +377,10 @@ bool Database::compareEmailsBySubject(Email* email1, Email* email2)
 
 bool Database::compareEmailsBySender(Email* email1, Email* email2)
 {
+    if (email1 == nullptr || email2 == nullptr)
+        return false;
+    if (email1->getFrom() == nullptr || email2->getFrom() == nullptr)
+        return false;
     if(email1->getFrom()->getAddress().compare(email2->getFrom()->getAddress())<=0)
         return true;
     else
@@ -385,6 +389,10 @@ bool Database::compareEmailsBySender(Email* email1, Email* email2)
 
 bool Database::compareEmailsByReceiver(Email* email1, Email* email2)
 {
+    if (email1 == nullptr || email2 == nullptr)
+        return false;
+    if (email1->getTo() == nullptr || email2->getTo() == nullptr)
+        return false;
     if(email1->getTo()->getAddress().compare(email2->getTo()->getAddress())<=0)
         return true;
     else

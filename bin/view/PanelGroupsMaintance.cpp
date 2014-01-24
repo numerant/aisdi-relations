@@ -21,14 +21,11 @@ void PanelGroupsMaintance::ShowPanel(AisdiRelationsFrame* Frame)
             SetSettingsEnabled();
 
         Frame->G_ImageButtonSettings->SetBitmapLabel(path+imagePaths[5]+format);
+        if (Frame->relations != nullptr)
+            delete Frame->relations;
 
-       
-            if (Frame->relations != nullptr)
-                delete Frame->relations;
-
-            Frame->relations = new Relations(Frame->database);
-
-          
+        Frame->relations = new Relations(Frame->database);
+   
         if (Frame->relations != nullptr)
             Frame->relations->runAlgorithm();  
 
@@ -160,6 +157,8 @@ void PanelGroupsMaintance::SetMembers (AisdiRelationsFrame* Frame)
     Frame->G_ListMembers->DeleteAllItems();
 
     Group* group = Frame->database->getGroup(Frame->database->findGroup(groupSelectedId));
+    if (group == nullptr)
+        return;
 
         for(int i = 0; i < group->getUsemberCount(); i++)
         {
@@ -185,6 +184,11 @@ void PanelGroupsMaintance::SetSettingsEnabled()
     settingsEnabled = !settingsEnabled;
 }
 
+void PanelGroupsMaintance::SetGroupId (int id)
+{
+    groupSelectedId = id;
+}
+
 bool PanelGroupsMaintance::GetPanelEnabled ()
 {
     return panelEnabled;
@@ -193,6 +197,11 @@ bool PanelGroupsMaintance::GetPanelEnabled ()
 bool PanelGroupsMaintance::GetSettingsEnabled()
 {
     return settingsEnabled;
+}
+
+int PanelGroupsMaintance::GetGroupId()
+{
+    return groupSelectedId;
 }
 
 void PanelGroupsMaintance::EventButtonSettingsClick(AisdiRelationsFrame* Frame)
@@ -235,6 +244,7 @@ void PanelGroupsMaintance::EventListGroupsItemSelect(AisdiRelationsFrame * Frame
     if (pattern.find(idStr[0]) == std::string::npos)
     {
         //znaleziono adres usembera
+        Frame->G_ListMembers->DeleteAllItems();
         Usember * usember = Frame->database->getUsember(Frame->database->findUsember(idStr));
         if (usember != nullptr)
         {

@@ -3,7 +3,6 @@
 #include "PanelStatisticsMaintance.h"
 #include "PanelTitleMaintance.h"
 
-// TEMP - serializacja!
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/archive/text_iarchive.hpp>
 #include <boost/archive/tmpdir.hpp>
@@ -211,9 +210,20 @@ void PanelInboxMaintance::Search (AisdiRelationsFrame* Frame)
         Frame->database->simpleSelect(strQuery);
         SetEmails(Frame);
        if(Frame->database->countResultEmails()==0)
-            wxMessageBox(_("Brak wynikow!"));
+        {
+             Frame->P_Notify->SetLabels(Frame, "Wyszukiwanie zakończone.", "Liczba pasujących wyników:");
+             Frame->P_Notify->SetValues(Frame, "", "0", "");
+             Frame->P_Notify->ShowPanel(Frame, 3);
+        }
         else
-            wxMessageBox(_("Wyszukiwanie zakonczone"));
+        {
+             Frame->P_Notify->SetLabels(Frame, "Wyszukiwanie zakończone.", "Liczba pasujących wyników:");
+             stringstream ss;
+             ss << Frame->database->countResultEmails();
+             string strCount = ss.str();
+             Frame->P_Notify->SetValues(Frame, strCount);
+            Frame->P_Notify->ShowPanel(Frame, 3);
+        }
     }
     else
     {
@@ -349,9 +359,20 @@ void PanelInboxMaintance::AdvancedSearch (AisdiRelationsFrame* Frame)
         Frame->database->select(emailQuery);
 
         if(Frame->database->countResultEmails()==0)
-            wxMessageBox(_("Brak wynikow!"));               //TODO powiadomienie o liczbie wyników
+        {
+             Frame->P_Notify->SetLabels(Frame, "Wyszukiwanie zakończone.", "Liczba pasujących wyników:");
+             Frame->P_Notify->SetValues(Frame, "", "0", "");
+             Frame->P_Notify->ShowPanel(Frame, 3);
+        }
         else
-            wxMessageBox(_("Wyszukiwanie zakonczone"));
+        {
+             Frame->P_Notify->SetLabels(Frame, "Wyszukiwanie zakończone.", "Liczba pasujących wyników:");
+             stringstream ss;
+             ss << Frame->database->countResultEmails();
+             string strCount = ss.str();
+             Frame->P_Notify->SetValues(Frame, strCount);
+            Frame->P_Notify->ShowPanel(Frame, 3);
+        }
 
         Frame->I_ImageButtonRestore->Show();
         Frame->I_LabelRestore->Show();
@@ -711,11 +732,10 @@ void PanelInboxMaintance::EventButtonDeleteClick (AisdiRelationsFrame * Frame)
 
             Frame->P_Usembers->ClearUsemberInfo(Frame);
 
-            //TODO przeskanować grupy
         }
         else
         {
-            //TODO rzuć wyjątkiem o ścianę
+            return;
         }
     }
     else
@@ -741,9 +761,9 @@ void PanelInboxMaintance::EventButtonShowTreeClick (AisdiRelationsFrame * Frame)
         wxMessageBox (_("To nie jest mail typu FWD !"));
 }
 
-void PanelInboxMaintance::EventListInboxColumnClick (AisdiRelationsFrame * Frame)
+void PanelInboxMaintance::EventListInboxColumnClick (AisdiRelationsFrame * Frame, int number)
 {
-    int columnClicked=0;       //0 - date, 1 - subject, 2 - sender, 3 - receiver
+    int columnClicked= number;       //0 - date, 1 - subject, 2 - sender, 3 - receiver
     if(Frame->database->countResultEmails()>1){
         Frame->database->sortResultEmails(columnClicked);
         SetEmails(Frame);

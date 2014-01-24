@@ -33,9 +33,11 @@ public:
     void SetMembers (AisdiRelationsFrame* Frame);
     void SetRelationsConstructed (bool value);
     void SetSettingsEnabled();
+    void SetGroupId (int id);
 
     bool GetPanelEnabled ();
     bool GetSettingsEnabled();
+    int GetGroupId ();
 
     void EventButtonSettingsClick(AisdiRelationsFrame* Frame);
     void EventListGroupsItemSelect(AisdiRelationsFrame* Frame);

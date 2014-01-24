@@ -64,7 +64,6 @@ public:
     void EventButtonAddClick (AisdiRelationsFrame* Frame);
     void EventButtonSaveClick (AisdiRelationsFrame* Frame);
     void EventButtonSettingsClick (AisdiRelationsFrame* Frame);
-    void EventButtonDeleteClick (AisdiRelationsFrame* Frame);
     void EventButtonShowGroupClick (AisdiRelationsFrame* Frame);
     void EventButtonSwitchContentClick (AisdiRelationsFrame* Frame);
     void EventSearchCtrlTextEnter (AisdiRelationsFrame* Frame);
