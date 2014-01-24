@@ -259,7 +259,7 @@ void PanelGroupsMaintance::EventListGroupsItemSelect(AisdiRelationsFrame * Frame
         ss.str("");
         ss << count;
         string strCount = ss.str();
-        Frame->G_StaticTextCount->SetLabel(wxString(strCount.c_str(), wxConvUTF8));
+        Frame->G_StaticTextCount->SetLabel(wxString(to_string(count).c_str(), wxConvUTF8));
         SetMembers(Frame);
     }
 }
