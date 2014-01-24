@@ -3507,12 +3507,6 @@
 					<help>Show info about this application</help>
 					<handler function="OnAbout" entry="EVT_MENU" />
 				</object>
-				<object class="wxMenuItem" name="idMenuHelp" variable="MenuItemHelp" member="yes">
-					<label>Pomoc</label>
-					<accel>F2</accel>
-					<help>General application manual</help>
-					<handler function="OnMenuItemHelpSelected" entry="EVT_MENU" />
-				</object>
 			</object>
 		</object>
 		<object class="wxDirDialog" variable="DirDialog" member="yes">

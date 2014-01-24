@@ -516,7 +516,6 @@ private:
     static const long isMenuNTimeLong;
     static const long ID_MENUITEM1;
     static const long idMenuAbout;
-    static const long idMenuHelp;
     static const long ID_TIMER1;
     static const long ID_PASSWORDENTRYDIALOG1;
     static const long ID_MESSAGEDIALOG1;
@@ -543,7 +542,6 @@ private:
     wxBitmapButton        *I_ImageButtonRestore;
     wxStaticText* S_StaticTextC_Value7;
     wxStaticText* U_StaticTextDate;
-    wxMenuItem* MenuItemHelp;
     wxStaticText* N_StaticTextOption2;
     wxMenuItem* MenuItemConfirm;
     wxStaticText* S_StaticTextC_Value3;
@@ -645,8 +643,8 @@ private:
     wxBitmapButton        *S_ImageButtonInbox;
     wxStaticText* M_LabelTitle;
     wxBitmapButton        *G_ImageButtonMulTree;
-    wxTimer Timer1;
     wxStaticBitmap* BitmapBackgroundUsembers;
+    wxTimer Timer1;
     wxStaticText* I_LabelSave;
     wxStaticText* U_LabelDate;
     wxMenuItem* MenuItemNTimeLong;

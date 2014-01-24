@@ -264,6 +264,7 @@ void Relations::makeGroups()
 		group->setLeader(database->getUsember(realIndex[groups[i]]));
 		group->setLeaderIndex(realIndex[groups[i]]);
 		group->addUsember(group->getLeader());
+		group->getLeader()->setGroup(group);
 		group->addIndex(realIndex[groups[i]]);
         group->setLevel(level);
 
@@ -272,6 +273,7 @@ void Relations::makeGroups()
 			if(realIndex[findRepresentantOf(j)] == group->getLeaderIndex() && j != findRepresentantOf(j))
 			{
 				group->addUsember(database->getUsember(realIndex[j]));
+				database->getUsember(realIndex[j])->setGroup(group);
 				group->addIndex(realIndex[j]);
 			}
 		}
