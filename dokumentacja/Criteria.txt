@@ -1,14 +1,22 @@
-/*  Klasa Criteria - wektor obiektów tej klasy przechowywany jest w obiekcie klasy Query. Zawiera pojedyncze
-    kryterium wyszukiwania. Zwykle tylko część pól jest wypełniona, pozostałe mają wartości zero/null/default.
-    Być może dobrym pomysłem byłoby zrobienie kryterium jako szablonu klasy.
-    */
-    Klasa Criteria:
-    
-    pola:
-    - criteriaType      //pole, po którym wyszukujemy
-    - equals            //szukana wartość danego pola, w przypadku stringów może zawierać znaki * (dowolny znak)
-    - lessThan          //górna wartość przedziału spełniającego kryterium
-    - greaterThan       //dolna wartość przedziału spełniającego kryterium
-    
-    metody:
-    - settery i gettery do wszystkich pól klasy
+Klasa Criteria - czyli pojedyncze kryterium zapytania do bazy danych. Kryteria moga byc typu StringCriteria badz DateCriteria   */
+
+
+Klasa StringCriteria:
+
+Pola:
+    SearchKey searchKey;    //{E_EMAIL, E_SUBJECT, E_CONTENT} Klucz wyszukiwania - odpowiednio adres email nadawcy/odbiorcy, temat i tresc wiadomosci
+    string name;            //poszukiwany ciag znakow
+Metody publiczne:
+	SearchKey getSearchKey();
+	string getName();
+
+Klasa DateCriteria:
+
+Pola:
+	Date equals;            //
+	Date less;              //data, ktorej data w szukanym mailu mailu musi byc odpowiednio rowna, mniejsza od niej lub wieksza
+	Date greater;           //
+Metody publiczne:
+	Date* getEquals();
+	Date* getLess();
+	Date* getGreater();
