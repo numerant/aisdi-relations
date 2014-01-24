@@ -35,7 +35,6 @@ Relations::Relations(Database *existingDatabase)
 			}
 		}
 
-		//tempUsember = database->getUsember(i);
 	}
 
 	for(int i = 0; i < userCount; i++)
@@ -70,7 +69,6 @@ void Relations::runAlgorithm()
 		findBosses();
 		if(groups.size() > 1)
 		{
-			//cout<<"GROUPS: "<<groups.size()<<endl<<endl;
 			goToAnotherDimension();
 		}
 		else
@@ -79,7 +77,8 @@ void Relations::runAlgorithm()
 			break;
 		}
 	}
-
+	
+	saveGroupsInDatabase();
 }
 
 void Relations::setClosestAssociates()
@@ -107,7 +106,6 @@ void Relations::countBossCoefficient()
 	{
 		for(unsigned int j = 0; j < adjacents[i].size(); j++)
 		{
-			//if(findRepresentantOf(i) != findRepresentantOf(j))
 			if(representant[i] != representant[tmpIndex[adjacents[i][j].first]])
 				otherGroupEmails[i]++;
 		}
@@ -131,12 +129,10 @@ void Relations::addGroup(int representant)
 	{
 		if(representant2 == groups[i])
 		{
-			//cout<<realIndex[representant]<<" jest u "<<realIndex[groups[i]]<<endl;
 			return;
 		}
 	}
 	groups.push_back(representant2);
-	//cout<<realIndex[representant]<<" jest u "<<realIndex[representant2]<<endl;
 }
 
 bool cmp(pair<int, int> a, pair<int, int> b)
@@ -273,7 +269,6 @@ void Relations::makeGroups()
 
 		for(int j = 0; j < userCount; j++)
 		{
-			//cout<<realIndex[j]<<" ma "<<realIndex[findRepresentantOf(j)]<<endl;
 			if(realIndex[findRepresentantOf(j)] == group->getLeaderIndex() && j != findRepresentantOf(j))
 			{
 				group->addUsember(database->getUsember(realIndex[j]));
@@ -351,16 +346,7 @@ void Relations::goToAnotherDimension()
 			}
 		}
 	}
-	/*
-	for(int i = 0; i < groups.size(); i++)
-	{
-		for(int j = 0; j < tempAdj[i].size(); j++)
-		{
-			cout<<" miedzy "<<groups[i]<<" i "<<tempAdj[i][j].first<<" jest waga"<<tempAdj[i][j].second<<endl;
-		}
-		cout<<"Grupa "<<groups[i]<<" jest teraz "<<i<<endl;
-	}
-	*/
+
 	//podmieniamy s¹siadów ( mamy stworzony nowy graf )
 
 	realIndex = newRealIndex;
@@ -410,7 +396,6 @@ Group* Relations::getGroup(int i)
 
 void Relations::prepareForPrint(vector<int>* levels, vector<string> *labels, vector<int>*ids, vector<string>*addresses, Group * grupa)
 {
-    //cout<<"Emails count = "<<grupa->getEmailsCount(database)<<endl;
 
     if(!grupa->color)
     {
@@ -419,7 +404,7 @@ void Relations::prepareForPrint(vector<int>* levels, vector<string> *labels, vec
         levels->push_back(lvl);
         string s = grupa->getLeader()->getRealName() + " grupa" + to_string(lvl);
         labels->push_back(s);
-        ids->push_back(0);
+        ids->push_back(grupa->getID());
         addresses->push_back("brak");
         if(grupa->getLevel() == 0)
         {
@@ -448,12 +433,6 @@ void Relations::prepareForPrint(vector<int>* levels, vector<string> *labels, vec
             grupa->color = 2;
         }
     }
-/*
-    if(grupa == finalGroups[0])
-    {
-        for(unsigned int i = 0; i < finalGroups.size(); i++)
-            finalGroups[i]->color = 0;
-    }*/
 }
 
 void Relations::saveGroupsInDatabase()
