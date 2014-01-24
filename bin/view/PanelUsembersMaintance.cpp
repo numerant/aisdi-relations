@@ -638,7 +638,30 @@ void PanelUsembersMaintance::EventButtonSwitchContentClick (AisdiRelationsFrame*
 
 void PanelUsembersMaintance::EventSearchCtrlTextEnter (AisdiRelationsFrame* Frame)
 {
+    wxString s = Frame->U_SearchCtrl->GetValue();
+    string strQuery = (string) s.mb_str();
 
+    if (strQuery != "")
+    {
+        Frame->I_ImageButtonRestore->Show();
+        Frame->I_LabelRestore->Show();
+        if (customSearch)
+        {
+        UsemberQuery usemberQuery;
+        StringCriteria stringCriteria(E_NAME, strQuery);
+        usemberQuery.addStringCriteria(stringCriteria);
+        Frame->database->select(usemberQuery);
+        SetUsembers(Frame);
+        if(Frame->database->countResultUsembers()==0)
+            wxMessageBox(_("Brak wynikow!"));
+        else
+            wxMessageBox(_("Wyszukiwanie zakonczone"));
+        }
+    }
+    else
+    {
+        wxMessageBox (_("Wpisz fraze do wyszukania."));
+    }
 }
 
 void PanelUsembersMaintance::EventListUsembersItemSelect (AisdiRelationsFrame* Frame)
