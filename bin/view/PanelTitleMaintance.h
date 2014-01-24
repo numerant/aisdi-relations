@@ -18,6 +18,7 @@ private:
     bool recursiveLoad = false;		//wczytywanie rekursywne maili z podanego folderu
     bool deleteConfirm = true;      //prośba o potwierdzenie przy usuwaniu
     bool databaseEncryption = false; //szyfrowanie danych bazy przy eksporcie do pliku
+    bool autoUpdate = false; //szyfrowanie danych bazy przy eksporcie do pliku
     bool clickedAdd = false;            //dostępność poszczególnych przycisków dodawania danych;
     bool clickedLoad = false;
     bool clickedImport = false;
@@ -49,6 +50,7 @@ public:
     void SetRecursiveLoad (bool value);
     void SetDeleteConfirm (bool value);
     void SetDatabaseEncryption (bool value);
+    void SetAutoUpdate (bool value);
     void SetClickedAdd (void);
     void SetClickedLoad (void);
     void SetClickedImport (void);
@@ -59,6 +61,7 @@ public:
     bool GetRecursiveLoad (void);
     bool GetDeleteConfirm (void);
     bool GetDatabaseEncryption (void);
+    bool GetAutoUpdate (void);
     bool GetClickedAdd (void);
     bool GetClickedLoad (void);
     bool GetClickedImport (void);

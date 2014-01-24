@@ -3126,12 +3126,12 @@
 			</object>
 			<object class="wxPanel" name="ID_PANEL10" variable="PanelSettings" member="yes">
 				<pos>860,20</pos>
-				<size>300,185</size>
+				<size>300,210</size>
 				<hidden>1</hidden>
 				<bg>#323232</bg>
 				<object class="wxStaticBox" name="ID_STATICBOX5" variable="Set_Border" member="yes">
 					<pos>0,-10</pos>
-					<size>300,195</size>
+					<size>300,220</size>
 					<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
 				</object>
 				<object class="wxCheckBox" name="ID_CHECKBOX1" variable="Set_CheckBoxRecursive" member="yes">
@@ -3177,6 +3177,20 @@
 					</font>
 					<handler function="OnSet_CheckBoxDatabaseEncryptionClick" entry="EVT_CHECKBOX" />
 				</object>
+				<object class="wxCheckBox" name="ID_CHECKBOX5" variable="Set_CheckBoxAutoUpdate" member="yes">
+					<label>Autoaktualizacja z katalogu</label>
+					<pos>10,85</pos>
+					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
+					<bg>#A0A0A0</bg>
+					<font>
+						<size>11</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<face>Ubuntu</face>
+					</font>
+					<handler function="OnSet_CheckBoxAutoUpdateClick" entry="EVT_CHECKBOX" />
+				</object>
 				<object class="wxSlider" name="ID_SLIDER1" variable="Set_SliderNotifyTime" member="yes">
 					<value>3</value>
 					<min>1</min>
@@ -3184,7 +3198,7 @@
 					<linesize>10</linesize>
 					<thumb>10</thumb>
 					<tick>1</tick>
-					<pos>20,110</pos>
+					<pos>20,135</pos>
 					<size>260,50</size>
 					<fg>wxSYS_COLOUR_SCROLLBAR</fg>
 					<style>wxSL_HORIZONTAL|wxSL_AUTOTICKS|wxSL_LABELS</style>
@@ -3192,7 +3206,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT110" variable="Set_LabelNotify" member="yes">
 					<label>Czas wyświetlania powiadomień [s]</label>
-					<pos>30,90</pos>
+					<pos>30,115</pos>
 					<fg>wxSYS_COLOUR_ACTIVECAPTION</fg>
 					<font>
 						<size>11</size>
@@ -3348,71 +3362,71 @@
 		</object>
 		<object class="wxMenuBar" variable="MenuBar1" member="no">
 			<object class="wxMenu" variable="Menu1" member="no">
-				<label>&amp;File</label>
+				<label>&amp;Plik</label>
 				<object class="wxMenuItem" name="idMenuNew" variable="MenuItemNew" member="yes">
-					<label>New</label>
+					<label>Nowy</label>
 					<accel>CTRL+N</accel>
 					<help>Creates an empty database</help>
 					<handler function="OnMenuItemNewSelected" entry="EVT_MENU" />
 				</object>
 				<object class="separator" />
 				<object class="wxMenuItem" name="idMenuOpen" variable="MenuItemOpen" member="yes">
-					<label>Open files</label>
+					<label>Otwórz pliki</label>
 					<accel>CTRL+O</accel>
 					<help>Open file/s</help>
 					<handler function="OnT_ImageButtonFilesClick" entry="EVT_MENU" />
 				</object>
 				<object class="wxMenuItem" name="idMenuOpenFolder" variable="MenuItemOpenFolder" member="yes">
-					<label>Open folder</label>
+					<label>Otwórz folder</label>
 					<accel>CTRL+SHIFT+O</accel>
 					<help>Open all files in a folder</help>
 					<handler function="OnT_ImageButtonFolderClick" entry="EVT_MENU" />
 				</object>
 				<object class="separator" />
 				<object class="wxMenuItem" name="idMenuSave" variable="MenuItemSave" member="yes">
-					<label>Save</label>
+					<label>Zapisz</label>
 					<accel>CTRL+S</accel>
 					<help>Save your work</help>
 					<handler function="OnMenuItemSaveSelected" entry="EVT_MENU" />
 				</object>
 				<object class="separator" />
 				<object class="wxMenuItem" name="idMenuQuit" variable="MenuItemQuit" member="no">
-					<label>Quit</label>
+					<label>Zamknij</label>
 					<accel>Alt-F4</accel>
 					<help>Quit the application</help>
 					<handler function="OnQuit" entry="EVT_MENU" />
 				</object>
 			</object>
 			<object class="wxMenu" variable="Menu2" member="yes">
-				<label>&amp;Import/Export</label>
+				<label>&amp;Import/Eksport</label>
 				<object class="wxMenuItem" name="idMenuImportBin" variable="MenuItemImportBin" member="yes">
-					<label>Import from binary</label>
+					<label>Import pliku binarnego</label>
 					<help>Load database from a binary file</help>
 					<handler function="OnT_ImageButtonBinClick" entry="EVT_MENU" />
 				</object>
 				<object class="separator" />
 				<object class="wxMenuItem" name="idMenuExportBin" variable="MenuItemExportBin" member="yes">
-					<label>Export to bin</label>
+					<label>Eksport do pliku binarnego</label>
 					<help>Stores databse in a binary file</help>
 					<handler function="OnT_ImageButtonTxtClick" entry="EVT_MENU" />
 				</object>
 				<object class="wxMenuItem" name="idMenuExportText" variable="MenuItemExportTxt" member="yes">
-					<label>Export to text</label>
+					<label>Eksport do plików tekstowych</label>
 					<help>Copy database to a text file</help>
 					<handler function="OnSav_ImageButtonTxtClick" entry="EVT_MENU" />
 				</object>
 			</object>
 			<object class="wxMenu" variable="Menu3" member="yes">
-				<label>Properties</label>
+				<label>Ustawienia</label>
 				<object class="wxMenuItem" name="idMenuRecursive" variable="MenuItemRecursive" member="yes">
-					<label>Recursive loading</label>
+					<label>Wczytywanie rekursywne</label>
 					<accel>CTRL+SHIFT+R</accel>
 					<help>On/off recursive folder loading</help>
 					<handler function="OnMenuItemRecursiveSelected" entry="EVT_MENU" />
 					<checkable>1</checkable>
 				</object>
 				<object class="wxMenuItem" name="idMenuDelConfirm" variable="MenuItemConfirm" member="yes">
-					<label>Delete confirmation</label>
+					<label>Potwierdzenia usuwania</label>
 					<accel>CTRL+SHIFT+C</accel>
 					<help>On/off confirmation prompt when trying to delete a record</help>
 					<checked>1</checked>
@@ -3420,41 +3434,48 @@
 					<checkable>1</checkable>
 				</object>
 				<object class="wxMenuItem" name="idMenuDatabaseEncryption" variable="MenuItemEncryption" member="yes">
-					<label>Database encryption</label>
+					<label>Szyfrowanie bazy danych</label>
 					<accel>CTRL+SHIFT+E</accel>
 					<help>On/off database encyption</help>
 					<handler function="OnMenuItemEncryptionSelected" entry="EVT_MENU" />
 					<checkable>1</checkable>
 				</object>
+				<object class="wxMenuItem" name="idMenuAutoUpdate" variable="MenuItemAutoUpdate" member="yes">
+					<label>Autoaktualizacja z katalogu</label>
+					<accel>CTRL+SHIFT+A</accel>
+					<help>On/off auto update</help>
+					<handler function="OnMenuItemAutoUpdateSelected" entry="EVT_MENU" />
+					<checkable>1</checkable>
+				</object>
 				<object class="wxMenu" name="ID_MENUITEM1" variable="MenuItem4" member="yes">
-					<label>Notification time</label>
+					<label>Czas trwania powiadomień</label>
 					<object class="wxMenuItem" name="isMenuNTimeShort" variable="MenuItemNTimeShort" member="yes">
-						<label>Short (2s)</label>
+						<label>Krótki (2s)</label>
 						<handler function="OnMenuItemNTimeShortSelected" entry="EVT_MENU" />
 						<radio>1</radio>
 					</object>
 					<object class="wxMenuItem" name="isMenuNTimeNormal" variable="MenuItemNTimeNormal" member="yes">
-						<label>Normal (5s)</label>
+						<label>Normalny (5s)</label>
 						<handler function="OnMenuItemNTimeNormalSelected" entry="EVT_MENU" />
 						<radio>1</radio>
 					</object>
 					<object class="wxMenuItem" name="isMenuNTimeLong" variable="MenuItemNTimeLong" member="yes">
-						<label>Long (8s)</label>
+						<label>Długi (8s)</label>
 						<handler function="OnMenuItemNTimeLongSelected" entry="EVT_MENU" />
 						<radio>1</radio>
 					</object>
 				</object>
 			</object>
 			<object class="wxMenu" variable="Menu4" member="no">
-				<label>Help</label>
+				<label>Pomoc</label>
 				<object class="wxMenuItem" name="idMenuAbout" variable="MenuItemAbout" member="no">
-					<label>About</label>
+					<label>O programie</label>
 					<accel>F1</accel>
 					<help>Show info about this application</help>
 					<handler function="OnAbout" entry="EVT_MENU" />
 				</object>
 				<object class="wxMenuItem" name="idMenuHelp" variable="MenuItemHelp" member="yes">
-					<label>Help</label>
+					<label>Pomoc</label>
 					<accel>F2</accel>
 					<help>General application manual</help>
 					<handler function="OnMenuItemHelpSelected" entry="EVT_MENU" />

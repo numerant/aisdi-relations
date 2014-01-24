@@ -402,6 +402,11 @@ void PanelTitleMaintance::SetDatabaseEncryption (bool value)
     databaseEncryption = value;
 }
 
+void PanelTitleMaintance::SetAutoUpdate (bool value)
+{
+    autoUpdate = value;
+}
+
 void PanelTitleMaintance::SetClickedAdd (void)
 {
     clickedAdd = !clickedAdd;
@@ -444,6 +449,11 @@ bool PanelTitleMaintance::GetDeleteConfirm (void)
 bool PanelTitleMaintance::GetDatabaseEncryption (void)
 {
     return databaseEncryption;
+}
+
+bool PanelTitleMaintance::GetAutoUpdate (void)
+{
+    return autoUpdate;
 }
 
 bool PanelTitleMaintance::GetClickedAdd (void)

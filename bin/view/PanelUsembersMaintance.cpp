@@ -322,7 +322,6 @@ void PanelUsembersMaintance::SetIcons(AisdiRelationsFrame* Frame)
     Frame->U_ImageButtonGroups->SetBitmapLabel(path+imagePaths[5]+format);
     Frame->U_ImageButtonStats->SetBitmapLabel(path+imagePaths[6]+format);
     Frame->U_ImageButtonMulTree->SetBitmapLabel(path+imagePaths[7]+format);
-    Frame->U_ImageButtonDelete->SetBitmapLabel(path+imagePaths[8]+format);
     Frame->U_ImageButtonShowGroup->SetBitmapLabel(path+imagePaths[9]+format);
     Frame->U_ImageButtonSwitchContent->SetBitmapLabel(path+imagePaths[10]+format);
     Frame->U_ImageButtonSwitchList->SetBitmapLabel(path+imagePaths[11]+format);
@@ -345,6 +344,8 @@ void PanelUsembersMaintance::SwitchList(AisdiRelationsFrame * Frame)
         Frame->U_ListInbox->Hide();
         Frame->U_ListOutbox->Hide();
         Frame->U_StaticBoxUsembers->SetLabel(_("  Usembers  "));
+        SwitchContent(Frame);
+        Frame->TimerRepaint.Start(100, wxTIMER_ONE_SHOT);
     }
     usembersListEnabled = !usembersListEnabled;
 }
@@ -443,7 +444,7 @@ void PanelUsembersMaintance::SetUsemberViewed(AisdiRelationsFrame * Frame, const
         SwitchContent(Frame);
     ShowPanel(Frame);
     EventPanelStatsPaint(Frame);
-
+    Frame->TimerRepaint.Start(100, wxTIMER_ONE_SHOT);
 }
 
 bool PanelUsembersMaintance::GetSearchEnabled()

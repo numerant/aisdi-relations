@@ -180,6 +180,8 @@ private:
     void OnG_ListGroupsItemSelect(wxListEvent& event);
     void OnClose(wxCloseEvent& event);
     void OnTimerRepaintTrigger(wxTimerEvent& event);
+    void OnSet_CheckBoxAutoUpdateClick(wxCommandEvent& event);
+    void OnMenuItemAutoUpdateSelected(wxCommandEvent& event);
     //*)
 
     //(*Identifiers(AisdiRelationsFrame)
@@ -475,6 +477,7 @@ private:
     static const long ID_CHECKBOX1;
     static const long ID_CHECKBOX2;
     static const long ID_CHECKBOX3;
+    static const long ID_CHECKBOX5;
     static const long ID_SLIDER1;
     static const long ID_STATICTEXT110;
     static const long ID_PANEL10;
@@ -504,6 +507,7 @@ private:
     static const long idMenuRecursive;
     static const long idMenuDelConfirm;
     static const long idMenuDatabaseEncryption;
+    static const long idMenuAutoUpdate;
     static const long isMenuNTimeShort;
     static const long isMenuNTimeNormal;
     static const long isMenuNTimeLong;
@@ -541,6 +545,7 @@ private:
     wxMenuItem* MenuItemConfirm;
     wxStaticText* S_StaticTextC_Value3;
     wxBitmapButton        *I_ImageButtonTitle;
+    wxMenuItem* MenuItemAutoUpdate;
     wxTextCtrl* I_Adv_TextCtrlContent;
     wxBitmapButton        *U_ImageButtonSwitchList;
     wxStaticText* G_LabelMulTree;
@@ -589,6 +594,7 @@ private:
     wxBitmapButton        *T_ImageButtonFiles;
     wxPanel* S_PanelEmailPerMonth;
     wxMenu* Menu2;
+    wxCheckBox* Set_CheckBoxAutoUpdate;
     wxBitmapButton        *G_ImageButtonInbox;
     wxStaticText* I_Adv_LabelYear;
     wxStaticText* S_StaticTextT_SendersPos4;
@@ -635,8 +641,8 @@ private:
     wxBitmapButton        *S_ImageButtonInbox;
     wxStaticText* M_LabelTitle;
     wxBitmapButton        *G_ImageButtonMulTree;
-    wxStaticBitmap* BitmapBackgroundUsembers;
     wxTimer Timer1;
+    wxStaticBitmap* BitmapBackgroundUsembers;
     wxStaticText* I_LabelSave;
     wxStaticText* U_LabelDate;
     wxMenuItem* MenuItemNTimeLong;

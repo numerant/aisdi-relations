@@ -358,6 +358,7 @@ const long AisdiRelationsFrame::ID_STATICBOX5 = wxNewId();
 const long AisdiRelationsFrame::ID_CHECKBOX1 = wxNewId();
 const long AisdiRelationsFrame::ID_CHECKBOX2 = wxNewId();
 const long AisdiRelationsFrame::ID_CHECKBOX3 = wxNewId();
+const long AisdiRelationsFrame::ID_CHECKBOX5 = wxNewId();
 const long AisdiRelationsFrame::ID_SLIDER1 = wxNewId();
 const long AisdiRelationsFrame::ID_STATICTEXT110 = wxNewId();
 const long AisdiRelationsFrame::ID_PANEL10 = wxNewId();
@@ -387,6 +388,7 @@ const long AisdiRelationsFrame::idMenuExportText = wxNewId();
 const long AisdiRelationsFrame::idMenuRecursive = wxNewId();
 const long AisdiRelationsFrame::idMenuDelConfirm = wxNewId();
 const long AisdiRelationsFrame::idMenuDatabaseEncryption = wxNewId();
+const long AisdiRelationsFrame::idMenuAutoUpdate = wxNewId();
 const long AisdiRelationsFrame::isMenuNTimeShort = wxNewId();
 const long AisdiRelationsFrame::isMenuNTimeNormal = wxNewId();
 const long AisdiRelationsFrame::isMenuNTimeLong = wxNewId();
@@ -1363,10 +1365,10 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     N_StaticTextValue2->SetForegroundColour(wxColour(255,18,0));
     N_StaticTextValue3 = new wxStaticText(PanelNotify, ID_STATICTEXT130, _("0"), wxPoint(270,85), wxDefaultSize, wxALIGN_LEFT, _T("ID_STATICTEXT130"));
     N_StaticTextValue3->SetForegroundColour(wxColour(123,75,254));
-    PanelSettings = new wxPanel(PanelMain, ID_PANEL10, wxPoint(860,20), wxSize(300,185), wxTAB_TRAVERSAL, _T("ID_PANEL10"));
+    PanelSettings = new wxPanel(PanelMain, ID_PANEL10, wxPoint(860,20), wxSize(300,210), wxTAB_TRAVERSAL, _T("ID_PANEL10"));
     PanelSettings->Hide();
     PanelSettings->SetBackgroundColour(wxColour(50,50,50));
-    Set_Border = new wxStaticBox(PanelSettings, ID_STATICBOX5, wxEmptyString, wxPoint(0,-10), wxSize(300,195), 0, _T("ID_STATICBOX5"));
+    Set_Border = new wxStaticBox(PanelSettings, ID_STATICBOX5, wxEmptyString, wxPoint(0,-10), wxSize(300,220), 0, _T("ID_STATICBOX5"));
     Set_Border->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
     Set_CheckBoxRecursive = new wxCheckBox(PanelSettings, ID_CHECKBOX1, _("Wczytywanie rekursywne folderów"), wxPoint(10,10), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX1"));
     Set_CheckBoxRecursive->SetValue(false);
@@ -1386,12 +1388,18 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Set_CheckBoxDatabaseEncryption->SetBackgroundColour(wxColour(160,160,160));
     wxFont Set_CheckBoxDatabaseEncryptionFont(11,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     Set_CheckBoxDatabaseEncryption->SetFont(Set_CheckBoxDatabaseEncryptionFont);
-    Set_SliderNotifyTime = new wxSlider(PanelSettings, ID_SLIDER1, 3, 1, 10, wxPoint(20,110), wxSize(260,50), wxSL_HORIZONTAL|wxSL_AUTOTICKS|wxSL_LABELS, wxDefaultValidator, _T("ID_SLIDER1"));
+    Set_CheckBoxAutoUpdate = new wxCheckBox(PanelSettings, ID_CHECKBOX5, _("Autoaktualizacja z katalogu"), wxPoint(10,85), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX5"));
+    Set_CheckBoxAutoUpdate->SetValue(false);
+    Set_CheckBoxAutoUpdate->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
+    Set_CheckBoxAutoUpdate->SetBackgroundColour(wxColour(160,160,160));
+    wxFont Set_CheckBoxAutoUpdateFont(11,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
+    Set_CheckBoxAutoUpdate->SetFont(Set_CheckBoxAutoUpdateFont);
+    Set_SliderNotifyTime = new wxSlider(PanelSettings, ID_SLIDER1, 3, 1, 10, wxPoint(20,135), wxSize(260,50), wxSL_HORIZONTAL|wxSL_AUTOTICKS|wxSL_LABELS, wxDefaultValidator, _T("ID_SLIDER1"));
     Set_SliderNotifyTime->SetLineSize(10);
     Set_SliderNotifyTime->SetThumbLength(10);
     Set_SliderNotifyTime->SetTick(1);
     Set_SliderNotifyTime->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
-    Set_LabelNotify = new wxStaticText(PanelSettings, ID_STATICTEXT110, _("Czas wyświetlania powiadomień [s]"), wxPoint(30,90), wxDefaultSize, 0, _T("ID_STATICTEXT110"));
+    Set_LabelNotify = new wxStaticText(PanelSettings, ID_STATICTEXT110, _("Czas wyświetlania powiadomień [s]"), wxPoint(30,115), wxDefaultSize, 0, _T("ID_STATICTEXT110"));
     Set_LabelNotify->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVECAPTION));
     wxFont Set_LabelNotifyFont(11,wxDEFAULT,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Ubuntu"),wxFONTENCODING_DEFAULT);
     Set_LabelNotify->SetFont(Set_LabelNotifyFont);
@@ -1430,52 +1438,54 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Sav_StaticTextTxt->SetFont(Sav_StaticTextTxtFont);
     MenuBar1 = new wxMenuBar();
     Menu1 = new wxMenu();
-    MenuItemNew = new wxMenuItem(Menu1, idMenuNew, _("New\tCTRL+N"), _("Creates an empty database"), wxITEM_NORMAL);
+    MenuItemNew = new wxMenuItem(Menu1, idMenuNew, _("Nowy\tCTRL+N"), _("Creates an empty database"), wxITEM_NORMAL);
     Menu1->Append(MenuItemNew);
     Menu1->AppendSeparator();
-    MenuItemOpen = new wxMenuItem(Menu1, idMenuOpen, _("Open files\tCTRL+O"), _("Open file/s"), wxITEM_NORMAL);
+    MenuItemOpen = new wxMenuItem(Menu1, idMenuOpen, _("Otwórz pliki\tCTRL+O"), _("Open file/s"), wxITEM_NORMAL);
     Menu1->Append(MenuItemOpen);
-    MenuItemOpenFolder = new wxMenuItem(Menu1, idMenuOpenFolder, _("Open folder\tCTRL+SHIFT+O"), _("Open all files in a folder"), wxITEM_NORMAL);
+    MenuItemOpenFolder = new wxMenuItem(Menu1, idMenuOpenFolder, _("Otwórz folder\tCTRL+SHIFT+O"), _("Open all files in a folder"), wxITEM_NORMAL);
     Menu1->Append(MenuItemOpenFolder);
     Menu1->AppendSeparator();
-    MenuItemSave = new wxMenuItem(Menu1, idMenuSave, _("Save\tCTRL+S"), _("Save your work"), wxITEM_NORMAL);
+    MenuItemSave = new wxMenuItem(Menu1, idMenuSave, _("Zapisz\tCTRL+S"), _("Save your work"), wxITEM_NORMAL);
     Menu1->Append(MenuItemSave);
     Menu1->AppendSeparator();
-    MenuItemQuit = new wxMenuItem(Menu1, idMenuQuit, _("Quit\tAlt-F4"), _("Quit the application"), wxITEM_NORMAL);
+    MenuItemQuit = new wxMenuItem(Menu1, idMenuQuit, _("Zamknij\tAlt-F4"), _("Quit the application"), wxITEM_NORMAL);
     Menu1->Append(MenuItemQuit);
-    MenuBar1->Append(Menu1, _("&File"));
+    MenuBar1->Append(Menu1, _("&Plik"));
     Menu2 = new wxMenu();
-    MenuItemImportBin = new wxMenuItem(Menu2, idMenuImportBin, _("Import from binary"), _("Load database from a binary file"), wxITEM_NORMAL);
+    MenuItemImportBin = new wxMenuItem(Menu2, idMenuImportBin, _("Import pliku binarnego"), _("Load database from a binary file"), wxITEM_NORMAL);
     Menu2->Append(MenuItemImportBin);
     Menu2->AppendSeparator();
-    MenuItemExportBin = new wxMenuItem(Menu2, idMenuExportBin, _("Export to bin"), _("Stores databse in a binary file"), wxITEM_NORMAL);
+    MenuItemExportBin = new wxMenuItem(Menu2, idMenuExportBin, _("Eksport do pliku binarnego"), _("Stores databse in a binary file"), wxITEM_NORMAL);
     Menu2->Append(MenuItemExportBin);
-    MenuItemExportTxt = new wxMenuItem(Menu2, idMenuExportText, _("Export to text"), _("Copy database to a text file"), wxITEM_NORMAL);
+    MenuItemExportTxt = new wxMenuItem(Menu2, idMenuExportText, _("Eksport do plików tekstowych"), _("Copy database to a text file"), wxITEM_NORMAL);
     Menu2->Append(MenuItemExportTxt);
-    MenuBar1->Append(Menu2, _("&Import/Export"));
+    MenuBar1->Append(Menu2, _("&Import/Eksport"));
     Menu3 = new wxMenu();
-    MenuItemRecursive = new wxMenuItem(Menu3, idMenuRecursive, _("Recursive loading\tCTRL+SHIFT+R"), _("On/off recursive folder loading"), wxITEM_CHECK);
+    MenuItemRecursive = new wxMenuItem(Menu3, idMenuRecursive, _("Wczytywanie rekursywne\tCTRL+SHIFT+R"), _("On/off recursive folder loading"), wxITEM_CHECK);
     Menu3->Append(MenuItemRecursive);
-    MenuItemConfirm = new wxMenuItem(Menu3, idMenuDelConfirm, _("Delete confirmation\tCTRL+SHIFT+C"), _("On/off confirmation prompt when trying to delete a record"), wxITEM_CHECK);
+    MenuItemConfirm = new wxMenuItem(Menu3, idMenuDelConfirm, _("Potwierdzenia usuwania\tCTRL+SHIFT+C"), _("On/off confirmation prompt when trying to delete a record"), wxITEM_CHECK);
     Menu3->Append(MenuItemConfirm);
     MenuItemConfirm->Check(true);
-    MenuItemEncryption = new wxMenuItem(Menu3, idMenuDatabaseEncryption, _("Database encryption\tCTRL+SHIFT+E"), _("On/off database encyption"), wxITEM_CHECK);
+    MenuItemEncryption = new wxMenuItem(Menu3, idMenuDatabaseEncryption, _("Szyfrowanie bazy danych\tCTRL+SHIFT+E"), _("On/off database encyption"), wxITEM_CHECK);
     Menu3->Append(MenuItemEncryption);
+    MenuItemAutoUpdate = new wxMenuItem(Menu3, idMenuAutoUpdate, _("Autoaktualizacja z katalogu\tCTRL+SHIFT+A"), _("On/off auto update"), wxITEM_CHECK);
+    Menu3->Append(MenuItemAutoUpdate);
     MenuItem4 = new wxMenu();
-    MenuItemNTimeShort = new wxMenuItem(MenuItem4, isMenuNTimeShort, _("Short (2s)"), wxEmptyString, wxITEM_RADIO);
+    MenuItemNTimeShort = new wxMenuItem(MenuItem4, isMenuNTimeShort, _("Krótki (2s)"), wxEmptyString, wxITEM_RADIO);
     MenuItem4->Append(MenuItemNTimeShort);
-    MenuItemNTimeNormal = new wxMenuItem(MenuItem4, isMenuNTimeNormal, _("Normal (5s)"), wxEmptyString, wxITEM_RADIO);
+    MenuItemNTimeNormal = new wxMenuItem(MenuItem4, isMenuNTimeNormal, _("Normalny (5s)"), wxEmptyString, wxITEM_RADIO);
     MenuItem4->Append(MenuItemNTimeNormal);
-    MenuItemNTimeLong = new wxMenuItem(MenuItem4, isMenuNTimeLong, _("Long (8s)"), wxEmptyString, wxITEM_RADIO);
+    MenuItemNTimeLong = new wxMenuItem(MenuItem4, isMenuNTimeLong, _("Długi (8s)"), wxEmptyString, wxITEM_RADIO);
     MenuItem4->Append(MenuItemNTimeLong);
-    Menu3->Append(ID_MENUITEM1, _("Notification time"), MenuItem4, wxEmptyString);
-    MenuBar1->Append(Menu3, _("Properties"));
+    Menu3->Append(ID_MENUITEM1, _("Czas trwania powiadomień"), MenuItem4, wxEmptyString);
+    MenuBar1->Append(Menu3, _("Ustawienia"));
     Menu4 = new wxMenu();
-    MenuItemAbout = new wxMenuItem(Menu4, idMenuAbout, _("About\tF1"), _("Show info about this application"), wxITEM_NORMAL);
+    MenuItemAbout = new wxMenuItem(Menu4, idMenuAbout, _("O programie\tF1"), _("Show info about this application"), wxITEM_NORMAL);
     Menu4->Append(MenuItemAbout);
-    MenuItemHelp = new wxMenuItem(Menu4, idMenuHelp, _("Help\tF2"), _("General application manual"), wxITEM_NORMAL);
+    MenuItemHelp = new wxMenuItem(Menu4, idMenuHelp, _("Pomoc\tF2"), _("General application manual"), wxITEM_NORMAL);
     Menu4->Append(MenuItemHelp);
-    MenuBar1->Append(Menu4, _("Help"));
+    MenuBar1->Append(Menu4, _("Pomoc"));
     SetMenuBar(MenuBar1);
     DirDialog = new wxDirDialog(this, _("Wybierz folder"), _("./"), wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE, wxDefaultPosition, wxDefaultSize, _T("wxDirDialog"));
     FileDialog = new wxFileDialog(this, _("Wybierz pliki:"), _("~/"), wxEmptyString, _("*.eml"), wxFD_OPEN|wxFD_MULTIPLE|wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
@@ -1579,6 +1589,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_CHECKBOX1,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_CheckBoxRecursiveClick);
     Connect(ID_CHECKBOX2,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnSet_CheckBoxDeleteConfirmClick);
     Connect(ID_CHECKBOX3,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnSet_CheckBoxDatabaseEncryptionClick);
+    Connect(ID_CHECKBOX5,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnSet_CheckBoxAutoUpdateClick);
     Connect(ID_SLIDER1,wxEVT_SCROLL_CHANGED,(wxObjectEventFunction)&AisdiRelationsFrame::OnSet_SliderNotifyTimeCmdScrollChanged);
     Connect(ID_IMAGEBUTTON57,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonFilesClick);
     Connect(ID_IMAGEBUTTON58,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AisdiRelationsFrame::OnT_ImageButtonFolderClick);
@@ -1596,6 +1607,7 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Connect(idMenuRecursive,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnMenuItemRecursiveSelected);
     Connect(idMenuDelConfirm,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnMenuItemConfirmSelected);
     Connect(idMenuDatabaseEncryption,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnMenuItemEncryptionSelected);
+    Connect(idMenuAutoUpdate,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnMenuItemAutoUpdateSelected);
     Connect(isMenuNTimeShort,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnMenuItemNTimeShortSelected);
     Connect(isMenuNTimeNormal,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnMenuItemNTimeNormalSelected);
     Connect(isMenuNTimeLong,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnMenuItemNTimeLongSelected);
@@ -1907,7 +1919,7 @@ void AisdiRelationsFrame::OnI_ImageButtonShowTreeClick(wxCommandEvent& event)
 
 void AisdiRelationsFrame::OnI_ListInboxItemSelect(wxListEvent& event)
 {
-    P_Inbox->EventListInboxItemSelect(this);    //TODO w funkcji dodać sprawdzenie, czy w ogóle jakieś maile są
+    P_Inbox->EventListInboxItemSelect(this);
 }
 
 void AisdiRelationsFrame::OnI_SearchCtrlTextEnter(wxCommandEvent& event)
@@ -2262,4 +2274,18 @@ void AisdiRelationsFrame::OnG_ListGroupsItemSelect(wxListEvent& event)
 void AisdiRelationsFrame::OnTimerRepaintTrigger(wxTimerEvent& event)
 {
     P_Usembers->EventPanelStatsPaint(this);
+}
+
+void AisdiRelationsFrame::OnSet_CheckBoxAutoUpdateClick(wxCommandEvent& event)
+{
+    P_Title->SetAutoUpdate(Set_CheckBoxAutoUpdate->GetValue());
+    if (MenuItemAutoUpdate->IsCheckable())
+        MenuItemAutoUpdate->Check(Set_CheckBoxAutoUpdate->GetValue());
+}
+
+void AisdiRelationsFrame::OnMenuItemAutoUpdateSelected(wxCommandEvent& event)
+{
+    if (MenuItemAutoUpdate->IsCheckable())
+        P_Title->SetAutoUpdate(MenuItemAutoUpdate->IsChecked());
+    Set_CheckBoxAutoUpdate->SetValue(MenuItemAutoUpdate->IsChecked());
 }
