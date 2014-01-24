@@ -1,3 +1,11 @@
+//============================================================
+//
+// klasy: Criteria, StringCriteria, DateCriteria
+// autor: Maciej Ganko
+// pliki: Criteria.cpp, Criteria.h
+//
+//============================================================
+
 Klasa Criteria - czyli pojedyncze kryterium zapytania do bazy danych. Kryteria moga byc typu StringCriteria badz DateCriteria   */
 
 
