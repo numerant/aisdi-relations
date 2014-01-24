@@ -157,7 +157,22 @@ void PanelGroupsMaintance::SetGroups (AisdiRelationsFrame * Frame)
 
 void PanelGroupsMaintance::SetMembers (AisdiRelationsFrame* Frame)
 {
+    Frame->G_ListMembers->DeleteAllItems();
 
+    Group* group = Frame->database->getGroup(Frame->database->findGroup(groupSelectedId));
+
+        for(int i = 0; i < group->getUsemberCount(); i++)
+        {
+            wxListItem item;
+            item.SetId(i);
+            if (i % 2 == 0)
+                item.SetTextColour(wxColor(200,200,200));
+            Frame->G_ListMembers->InsertItem( item );
+            string s = group->getUsember(i)->getRealName();
+            cout<<s<<endl;
+            wxString idWx (s.c_str(), wxConvUTF8);
+            Frame->G_ListMembers->SetItem(i,0, idWx);
+        }
 }
 
 void PanelGroupsMaintance::SetRelationsConstructed (bool value)
