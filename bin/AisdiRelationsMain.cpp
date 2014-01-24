@@ -2279,8 +2279,35 @@ void AisdiRelationsFrame::OnTimerRepaintTrigger(wxTimerEvent& event)
 void AisdiRelationsFrame::OnSet_CheckBoxAutoUpdateClick(wxCommandEvent& event)
 {
     P_Title->SetAutoUpdate(Set_CheckBoxAutoUpdate->GetValue());
+
+
+    if (P_Title->GetAutoUpdate() == true)
+    {
+        if (DirDialog->ShowModal() == wxID_OK)
+        {
+            wxString path;
+            path = DirDialog->GetPath();
+
+            string strPath;
+            strPath = path.mb_str();
+
+            database->setAutoImportPath(strPath);
+            P_Notify->SetLabels(this, "Ustawiono katalog autozapisu", "Lokalizacja:", strPath);
+            P_Notify->SetValues(this, "");
+            P_Notify->ShowPanel(this, GetNotifyTime());
+        }
+        else
+        {
+            Set_CheckBoxAutoUpdate->SetValue(false);
+            P_Title->SetAutoUpdate(false);
+        }
+    }
+    else
+        database->setAutoImportPath("");
+
     if (MenuItemAutoUpdate->IsCheckable())
         MenuItemAutoUpdate->Check(Set_CheckBoxAutoUpdate->GetValue());
+
 }
 
 void AisdiRelationsFrame::OnMenuItemAutoUpdateSelected(wxCommandEvent& event)
