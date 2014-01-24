@@ -22,17 +22,15 @@ void PanelGroupsMaintance::ShowPanel(AisdiRelationsFrame* Frame)
 
         Frame->G_ImageButtonSettings->SetBitmapLabel(path+imagePaths[5]+format);
 
-        //if (!relationsConstructed && Frame->database->countEmails() != 0)
-        //{
+       
             if (Frame->relations != nullptr)
                 delete Frame->relations;
 
             Frame->relations = new Relations(Frame->database);
 
-          //  relationsConstructed = true;
-        //}
+          
         if (Frame->relations != nullptr)
-            Frame->relations->runAlgorithm();  //TODO podpiąć to pod dodawanie emaili
+            Frame->relations->runAlgorithm();  
 
         SetGroups(Frame);
 
@@ -99,20 +97,17 @@ void PanelGroupsMaintance::SetGroups (AisdiRelationsFrame * Frame)
 
     vector<int> levels;
     vector<int> ids;
-    //char* tmp;
-    //sprintf(tmp, "%d", Frame->database->countGroups());
-    //string s = to_string(Frame->database->countGroups());
+    
     vector<string> labels;
     vector<string> addresses;
 
     Frame->relations->prepareForPrint(&levels, &labels, &ids, &addresses, Frame->relations->getGroup(Frame->relations->getFinalGroupsSize()-1));
 
     Frame->G_ListGroups->DeleteAllItems();
-    //Jeżeli grupy są już wygenerowane algorytmem
-    //if (Frame->database->countGroups() != 0)
-    if (Frame->relations->getFinalGroupsSize() != 0)//Frame->database->countGroups() != 0)      //TODO zmienić warunek
+    
+    if (Frame->relations->getFinalGroupsSize() != 0)
     {
-        int groupCount = Frame->relations->getFinalGroupsSize();     //temp <- zmień na rzeczywistą liczbę grup (równą liczbie pól wektorów przy okazji)
+        int groupCount = Frame->relations->getFinalGroupsSize();
         for (unsigned int i = 0; i < levels.size(); i++)
         {
             //wstawienie elementu
@@ -134,8 +129,7 @@ void PanelGroupsMaintance::SetGroups (AisdiRelationsFrame * Frame)
             //nadanie id do pola
             if(addresses[i] == "brak")
             {
-            int id = ids[i];     //TODO <- zamień na pobranie odpowiedniego id
-                            //jeżeli to członek, a nie grupa.....
+            int id = ids[i];     
             ostringstream ss;
             ss << id;
             string strID = ss.str();
@@ -146,9 +140,7 @@ void PanelGroupsMaintance::SetGroups (AisdiRelationsFrame * Frame)
             {
             wxString idWx (addresses[i].c_str(), wxConvUTF8);
             Frame->G_ListGroups->SetItem(i,1, idWx);
-             }               //.... to wklep do stringa adress usembera
-                            //przekonwertuj na wxString
-                            //wrzuć zamiast idWx
+             }               
         }
     }
     else
