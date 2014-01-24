@@ -828,7 +828,7 @@ void PanelUsembersMaintance::EventPanelStatsPaint (AisdiRelationsFrame * Frame)
 
     if (maxEmails)  //jeżeli jakikolwiek mail wczytany
     {
-         for (int i = 0; i < 12; i++)    //Wypisanie nazw miesięcy u dołu
+        for (int i = 0; i < 12; i++)
         {
             int posCorrection = 0, labelCorrection = 0, radiusCorrection = 0;
             if (i == 6)
@@ -839,8 +839,8 @@ void PanelUsembersMaintance::EventPanelStatsPaint (AisdiRelationsFrame * Frame)
 
             dc.SetFont(wxFont(11, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, _("Ubuntu")));
             int monthSent = 0, monthReceived = 0;
-            monthSent =  usember->getEmailsSentInMonth(i);  //pobranie wartości z danego miesiąca
-            monthReceived = usember->getEmailsReceivedInMonth(i);
+            monthSent =  usember->getEmailsSentInMonth(i+1);  //pobranie wartości z danego miesiąca
+            monthReceived = usember->getEmailsReceivedInMonth(i+1);
 
             if (monthSent >= 100)           //zabawa mailami wysłanymi
             {
@@ -867,7 +867,8 @@ void PanelUsembersMaintance::EventPanelStatsPaint (AisdiRelationsFrame * Frame)
                 currentPointHeight = (int)(d_pointHeight/10);
             }
             dc.DrawEllipse(wxPoint(32+i*pointSpace-radiusGreen-radiusCorrection,height+deltaY-currentPointHeight-radiusGreen-radiusCorrection),wxSize(2*radiusGreen+2*radiusCorrection, 2*radiusGreen+2*radiusCorrection));
-            dc.DrawLine(wxPoint(prevX,prevYS),wxPoint(32+i*pointSpace,height+deltaY-currentPointHeight));
+            if (i != 0)
+                dc.DrawLine(wxPoint(prevX,prevYS),wxPoint(32+i*pointSpace,height+deltaY-currentPointHeight));
             prevYS = height+deltaY-currentPointHeight;
             dc.SetTextForeground(ColorSentL);
             dc.DrawText(wxString(strMonthSent.c_str(), wxConvUTF8), wxPoint(34+i*pointSpace+radiusGreen+radiusCorrection, (int)(valueLabelCorrection+pointHeight-currentPointHeight-radiusGreen-radiusCorrection)));
@@ -898,7 +899,8 @@ void PanelUsembersMaintance::EventPanelStatsPaint (AisdiRelationsFrame * Frame)
                 currentPointHeight = (int)(d_pointHeight/10);
             }
             dc.DrawEllipse(wxPoint(32+i*pointSpace-radiusBlue-radiusCorrection,height+deltaY-currentPointHeight-radiusBlue-radiusCorrection),wxSize(2*radiusBlue+2*radiusCorrection, 2*radiusBlue+2*radiusCorrection));
-            dc.DrawLine(wxPoint(prevX,prevYR),wxPoint(32+i*pointSpace,height+deltaY-currentPointHeight));
+            if (i != 0)
+                dc.DrawLine(wxPoint(prevX,prevYR),wxPoint(32+i*pointSpace,height+deltaY-currentPointHeight));
             prevYR = height+deltaY-currentPointHeight;
             prevX = 32+i*pointSpace;
             dc.SetTextForeground(ColorReceivedL);
