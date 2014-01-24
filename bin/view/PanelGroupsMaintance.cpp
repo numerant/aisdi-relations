@@ -171,7 +171,7 @@ void PanelGroupsMaintance::SetMembers (AisdiRelationsFrame* Frame)
             string s = group->getUsember(i)->getRealName();
             cout<<s<<endl;
             wxString idWx (s.c_str(), wxConvUTF8);
-            Frame->G_ListMembers->SetItem(i,1, idWx);
+            Frame->G_ListMembers->SetItem(i,0, idWx);
         }
 }
 

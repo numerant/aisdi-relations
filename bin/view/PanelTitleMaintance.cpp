@@ -687,7 +687,11 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
 
                         stats = Frame->iointerface->getImportStats();
                         Frame->iointerface->clearImportStats();
+                        Frame->P_Title->SetAutoUpdate(true);
                     }
+                    else
+                        Frame->P_Title->SetAutoUpdate(false);
+
                     if (stats.successCount > 0)
                     {
                         ostringstream ss;
@@ -734,8 +738,7 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
                     Frame->P_Usembers->SetEmailContentEnabled();
 
                 Frame->P_Usembers->ClearUsemberInfo(Frame);
-
-
+                Frame->Set_CheckBoxAutoUpdate->SetValue(Frame->P_Title->GetAutoUpdate());
 
             }
             catch(UnableToOpenFile exception)
