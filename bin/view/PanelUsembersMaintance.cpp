@@ -100,14 +100,21 @@ void PanelUsembersMaintance::SetLabels(AisdiRelationsFrame* Frame)
 void PanelUsembersMaintance::SetUsembers(AisdiRelationsFrame * Frame)
 {
     ClearUsemberInfo(Frame);
-
-    int counterU = Frame->database->countUsembers();
+    int counterU;
+    if(customSearch)
+        counterU = Frame->database->countResultUsembers();
+    else
+        counterU = Frame->database->countUsembers();
     if (counterU > 0)     //TODO Zmienić wyświetlanie za pomocą Query
     {
         Frame->U_ListUsembers->DeleteAllItems();
         for (int i = 0; i < counterU; i++)
         {
-            Usember * usember = Frame->database->getUsember(i);
+            Usember* usember;
+            if(customSearch)
+                usember = Frame->database->getResultUsember(i);
+            else
+                usember = Frame->database->getUsember(i);
             wxListItem item;
             item.SetId(i);
             if (i % 2 == 0)
@@ -315,6 +322,7 @@ void PanelUsembersMaintance::SetIcons(AisdiRelationsFrame* Frame)
     Frame->U_ImageButtonGroups->SetBitmapLabel(path+imagePaths[5]+format);
     Frame->U_ImageButtonStats->SetBitmapLabel(path+imagePaths[6]+format);
     Frame->U_ImageButtonMulTree->SetBitmapLabel(path+imagePaths[7]+format);
+    Frame->U_ImageButtonDelete->SetBitmapLabel(path+imagePaths[8]+format);
     Frame->U_ImageButtonShowGroup->SetBitmapLabel(path+imagePaths[9]+format);
     Frame->U_ImageButtonSwitchContent->SetBitmapLabel(path+imagePaths[10]+format);
     Frame->U_ImageButtonSwitchList->SetBitmapLabel(path+imagePaths[11]+format);
@@ -337,10 +345,8 @@ void PanelUsembersMaintance::SwitchList(AisdiRelationsFrame * Frame)
         Frame->U_ListInbox->Hide();
         Frame->U_ListOutbox->Hide();
         Frame->U_StaticBoxUsembers->SetLabel(_("  Usembers  "));
-        SwitchContent(Frame);
     }
     usembersListEnabled = !usembersListEnabled;
-    Frame->TimerRepaint.Start(100, wxTIMER_ONE_SHOT);
 }
 
 void PanelUsembersMaintance::SwitchContent(AisdiRelationsFrame* Frame)
@@ -436,7 +442,7 @@ void PanelUsembersMaintance::SetUsemberViewed(AisdiRelationsFrame * Frame, const
     if (GetEmailContentEnabled())
         SwitchContent(Frame);
     ShowPanel(Frame);
-    Frame->TimerRepaint.Start(100, wxTIMER_ONE_SHOT);
+    EventPanelStatsPaint(Frame);
 
 }
 
@@ -482,6 +488,7 @@ void PanelUsembersMaintance::EventButtonSearchClick (AisdiRelationsFrame* Frame)
         Frame->U_ImageButtonSearch->SetBitmapLabel(path+imagePaths[2]+formatNeg);
         Frame->U_SearchCtrl->SetFocus();
         Frame->U_SearchCtrl->Show();
+        customSearch=true;
         if (GetAddEnabled())
         {
             Frame->U_ImageButtonAdd->SetBitmapLabel(path+imagePaths[0]+format);
@@ -640,22 +647,24 @@ void PanelUsembersMaintance::EventSearchCtrlTextEnter (AisdiRelationsFrame* Fram
 {
     wxString s = Frame->U_SearchCtrl->GetValue();
     string strQuery = (string) s.mb_str();
-
     if (strQuery != "")
     {
+        wxMessageBox(_("OK!"));
         Frame->I_ImageButtonRestore->Show();
         Frame->I_LabelRestore->Show();
+
         if (customSearch)
         {
-        UsemberQuery usemberQuery;
-        StringCriteria stringCriteria(E_NAME, strQuery);
-        usemberQuery.addStringCriteria(stringCriteria);
-        Frame->database->select(usemberQuery);
-        SetUsembers(Frame);
-        if(Frame->database->countResultUsembers()==0)
-            wxMessageBox(_("Brak wynikow!"));
-        else
-            wxMessageBox(_("Wyszukiwanie zakonczone"));
+            wxMessageBox(_("OK2!"));
+            UsemberQuery usemberQuery;
+            StringCriteria stringCriteria(E_NAME, strQuery);
+            usemberQuery.addStringCriteria(stringCriteria);
+            Frame->database->select(usemberQuery);
+            SetUsembers(Frame);
+            if(Frame->database->countResultUsembers()==0)
+                wxMessageBox(_("Brak wynikow!"));
+            else
+                wxMessageBox(_("Wyszukiwanie zakonczone"));
         }
     }
     else
@@ -709,8 +718,9 @@ void PanelUsembersMaintance::EventListUsembersItemSelect (AisdiRelationsFrame* F
     Frame->U_StaticTextReceived->SetLabel(wxString(strReceived.c_str(),wxConvUTF8));
     Frame->U_StaticTextSent->SetLabel(wxString(strSent.c_str(),wxConvUTF8));
 
-    SetEmails(Frame, Frame->database->findUsember(adressUsemberSelected));
-
+   SetEmails(Frame, Frame->database->findUsember(adressUsemberSelected));
+   if (GetUsembersListEnabled())
+        SwitchList(Frame);
     if (GetEmailContentEnabled())
         SwitchContent(Frame);
 }
@@ -833,24 +843,21 @@ void PanelUsembersMaintance::EventPanelStatsPaint (AisdiRelationsFrame * Frame)
 
     wxPaintDC dc(Frame->U_PanelStats);
 
-    Usember * usember = Frame->database->getUsember(Frame->database->findUsember(adressUsemberSelected));
-
     dc.SetBrush(wxBrush(colorBackground));
     dc.SetPen(wxPen(colorBackground));
-    if (usember != nullptr)
-        dc.DrawRectangle(wxPoint(5,32),wxSize(width-10,height-28-5));       //wyczyszczenie canvasu
+    dc.DrawRectangle(wxPoint(5,32),wxSize(width-10,height-28-5));       //wyczyszczenie canvasu
 
     dc.SetTextForeground(colorText);
     dc.SetFont(wxFont(11, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, _("Ubuntu")));
 
     int maxEmails = 0, prevX = 32, prevYS = height+deltaY, prevYR = height+deltaY;
-
+    Usember * usember = Frame->database->getUsember(Frame->database->findUsember(adressUsemberSelected));
     if (usember != nullptr)
         maxEmails =  usember->getMaxEmailsInMonth();
 
     if (maxEmails)  //jeżeli jakikolwiek mail wczytany
     {
-        for (int i = 0; i < 12; i++)
+         for (int i = 0; i < 12; i++)    //Wypisanie nazw miesięcy u dołu
         {
             int posCorrection = 0, labelCorrection = 0, radiusCorrection = 0;
             if (i == 6)
@@ -861,8 +868,8 @@ void PanelUsembersMaintance::EventPanelStatsPaint (AisdiRelationsFrame * Frame)
 
             dc.SetFont(wxFont(11, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, _("Ubuntu")));
             int monthSent = 0, monthReceived = 0;
-            monthSent =  usember->getEmailsSentInMonth(i+1);  //pobranie wartości z danego miesiąca
-            monthReceived = usember->getEmailsReceivedInMonth(i+1);
+            monthSent =  usember->getEmailsSentInMonth(i);  //pobranie wartości z danego miesiąca
+            monthReceived = usember->getEmailsReceivedInMonth(i);
 
             if (monthSent >= 100)           //zabawa mailami wysłanymi
             {
@@ -889,8 +896,7 @@ void PanelUsembersMaintance::EventPanelStatsPaint (AisdiRelationsFrame * Frame)
                 currentPointHeight = (int)(d_pointHeight/10);
             }
             dc.DrawEllipse(wxPoint(32+i*pointSpace-radiusGreen-radiusCorrection,height+deltaY-currentPointHeight-radiusGreen-radiusCorrection),wxSize(2*radiusGreen+2*radiusCorrection, 2*radiusGreen+2*radiusCorrection));
-            if (i != 0)
-                dc.DrawLine(wxPoint(prevX,prevYS),wxPoint(32+i*pointSpace,height+deltaY-currentPointHeight));
+            dc.DrawLine(wxPoint(prevX,prevYS),wxPoint(32+i*pointSpace,height+deltaY-currentPointHeight));
             prevYS = height+deltaY-currentPointHeight;
             dc.SetTextForeground(ColorSentL);
             dc.DrawText(wxString(strMonthSent.c_str(), wxConvUTF8), wxPoint(34+i*pointSpace+radiusGreen+radiusCorrection, (int)(valueLabelCorrection+pointHeight-currentPointHeight-radiusGreen-radiusCorrection)));
@@ -921,8 +927,7 @@ void PanelUsembersMaintance::EventPanelStatsPaint (AisdiRelationsFrame * Frame)
                 currentPointHeight = (int)(d_pointHeight/10);
             }
             dc.DrawEllipse(wxPoint(32+i*pointSpace-radiusBlue-radiusCorrection,height+deltaY-currentPointHeight-radiusBlue-radiusCorrection),wxSize(2*radiusBlue+2*radiusCorrection, 2*radiusBlue+2*radiusCorrection));
-            if (i != 0)
-                dc.DrawLine(wxPoint(prevX,prevYR),wxPoint(32+i*pointSpace,height+deltaY-currentPointHeight));
+            dc.DrawLine(wxPoint(prevX,prevYR),wxPoint(32+i*pointSpace,height+deltaY-currentPointHeight));
             prevYR = height+deltaY-currentPointHeight;
             prevX = 32+i*pointSpace;
             dc.SetTextForeground(ColorReceivedL);
