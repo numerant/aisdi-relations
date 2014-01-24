@@ -1,3 +1,11 @@
+//============================================================
+//
+// klasa:        Database
+// autor:        Maciej Ganko
+// pliki:        Database.cpp, Database.h
+//
+//============================================================
+
 Klasa Database, przechowująca dane dotyczące grup, maili oraz użytkowników oraz udostępniająca
 odpowiednie operacje na nich.
 
