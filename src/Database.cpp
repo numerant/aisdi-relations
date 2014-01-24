@@ -83,7 +83,7 @@ void Database::deleteEmail(Email* email)
 void Database::deleteGroup(Group* group)
 {
     int position=findGroup(group->getID());
-    delete groupVector[position];
+    //delete groupVector[position];		//wyrzucamy to w innym miejscu
     if(position!=-1)
         swapGroups(position, groupVector.size()-1);
     groupVector.pop_back();
