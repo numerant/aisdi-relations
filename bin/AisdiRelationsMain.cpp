@@ -394,7 +394,6 @@ const long AisdiRelationsFrame::isMenuNTimeNormal = wxNewId();
 const long AisdiRelationsFrame::isMenuNTimeLong = wxNewId();
 const long AisdiRelationsFrame::ID_MENUITEM1 = wxNewId();
 const long AisdiRelationsFrame::idMenuAbout = wxNewId();
-const long AisdiRelationsFrame::idMenuHelp = wxNewId();
 const long AisdiRelationsFrame::ID_TIMER1 = wxNewId();
 const long AisdiRelationsFrame::ID_PASSWORDENTRYDIALOG1 = wxNewId();
 const long AisdiRelationsFrame::ID_MESSAGEDIALOG1 = wxNewId();
@@ -1483,8 +1482,6 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Menu4 = new wxMenu();
     MenuItemAbout = new wxMenuItem(Menu4, idMenuAbout, _("O programie\tF1"), _("Show info about this application"), wxITEM_NORMAL);
     Menu4->Append(MenuItemAbout);
-    MenuItemHelp = new wxMenuItem(Menu4, idMenuHelp, _("Pomoc\tF2"), _("General application manual"), wxITEM_NORMAL);
-    Menu4->Append(MenuItemHelp);
     MenuBar1->Append(Menu4, _("Pomoc"));
     SetMenuBar(MenuBar1);
     DirDialog = new wxDirDialog(this, _("Wybierz folder"), _("./"), wxTRANSPARENT_WINDOW|wxTAB_TRAVERSAL|wxNO_FULL_REPAINT_ON_RESIZE, wxDefaultPosition, wxDefaultSize, _T("wxDirDialog"));
@@ -1612,7 +1609,6 @@ AisdiRelationsFrame::AisdiRelationsFrame(wxWindow* parent,wxWindowID id)
     Connect(isMenuNTimeNormal,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnMenuItemNTimeNormalSelected);
     Connect(isMenuNTimeLong,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnMenuItemNTimeLongSelected);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnAbout);
-    Connect(idMenuHelp,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&AisdiRelationsFrame::OnMenuItemHelpSelected);
     Connect(ID_TIMER1,wxEVT_TIMER,(wxObjectEventFunction)&AisdiRelationsFrame::OnTimer1Trigger);
     Connect(ID_TIMER2,wxEVT_TIMER,(wxObjectEventFunction)&AisdiRelationsFrame::OnTimerRepaintTrigger);
     //*)
@@ -2240,10 +2236,6 @@ void AisdiRelationsFrame::OnMenuItemNTimeLongSelected(wxCommandEvent& event)
     Set_SliderNotifyTime->SetValue(notifyTime);
 }
 
-void AisdiRelationsFrame::OnMenuItemHelpSelected(wxCommandEvent& event)
-{
-    //TODO dodać wyświetlanie HELP'a
-}
 
 /** ============= Eventy INBOX ADV. SEARCH ============= */
 void AisdiRelationsFrame::OnI_Adv_CheckBoxDateClick(wxCommandEvent& event)
