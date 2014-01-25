@@ -37,13 +37,13 @@ public:
     {
         ImportStats();
         void clearStats();
-        unsigned int successCount;                                              // niech ktoś mądry się wypowie czy tak jest OK, czy lepiej bawić się w set/get
+        unsigned int successCount;                                              
         unsigned int failCount;
         unsigned int existingCount;                                             // maile, które już istniały w bazie
     };
 
     // Methods:
-    IOInterface();                                                              // trzeba zadbać o wskaźnik na bazę danych
+    IOInterface();                                                             
     ~IOInterface();
 
 

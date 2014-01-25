@@ -173,13 +173,11 @@ Email* IOInterface::emlParser (string path)
             date = wynik[1];
 
         // wczytanie treści
-        // #### rozwiązanie tymczasowe - przejście 5 lini
         getline(plik, wiersz); // przejście do treści
         getline(plik, wiersz);
         getline(plik, wiersz);
         getline(plik, wiersz);
         getline(plik, wiersz);
-        // #### rozwiązanie tymczasowe
 
         while ( !plik.eof() ) // wczytanie tego co zostało jako treść
         {
@@ -207,7 +205,7 @@ Email* IOInterface::emlParser (string path)
             usemberTo = database->getUsember(database->findUsember(toLOGIN+"@"+toDOMAIN));
         }
 
-        Date* newDate = new Date(date);     //wyciek pamięci!
+        Date* newDate = new Date(date);
         mail->setFrom( usemberFrom );
         mail->setTo( usemberTo );
         mail->setSubject( subject );

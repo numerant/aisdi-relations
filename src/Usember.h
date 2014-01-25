@@ -48,7 +48,8 @@ public:
 											// czyli np: mamy FWD: FWD: abcdefg
 											// oraz			  FWD: abcdefg
 											// metoda dla pierwszego maila ma zwrócić mail drugi
-	Email* getForward(unsigned int position, Email* email, bool mode); //
+	Email* getForward(unsigned int position, Email* email, bool mode); // zwraca kolejnego maila forward (w przechodzeniu drzewa)
+
 
     unsigned int sendMailCount();			// zwraca liczbę maili wysłanych przez tego usembera
     unsigned int receiveMailCount();		// zwraca liczbę maili odebranych przez tego usembera
