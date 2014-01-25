@@ -65,8 +65,6 @@
 		<Unit filename="../src/Query.h" />
 		<Unit filename="../src/Relations.cpp" />
 		<Unit filename="../src/Relations.h" />
-		<Unit filename="../src/Report.cpp" />
-		<Unit filename="../src/Report.h" />
 		<Unit filename="../src/Serialization.h" />
 		<Unit filename="../src/SerializationInit.h" />
 		<Unit filename="../src/Statistics.cpp" />

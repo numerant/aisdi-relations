@@ -323,7 +323,6 @@ void PanelTitleMaintance::LoadAutoSave (AisdiRelationsFrame* Frame)
         Frame->iointerface->isImportedFileProtected(strPath);
         Frame->database = Frame->iointerface->importDatabase(&importParameters);     // po wczytaniu zmienia się wartość wskaźnika na bazę danych!
 
-        //TODO autoimport przy ładowaniu autosave - chyba zrobiony
         IOInterface::ImportStats stats;					//statystyki wczytania
         if (Frame->database->getAutoImportPath() != "")
         {
@@ -561,11 +560,11 @@ void PanelTitleMaintance::EventButtonFolderClick (AisdiRelationsFrame* Frame)
                 delete Frame->relations;
 
             Frame->relations = new Relations(Frame->database);
-       
+
             if (Frame->relations != nullptr)
                 Frame->relations->runAlgorithm();
 
-            Frame->P_Groups->SetGroups(Frame);  
+            Frame->P_Groups->SetGroups(Frame);
         }
     }
 }
@@ -638,11 +637,11 @@ void PanelTitleMaintance::EventButtonFilesClick (AisdiRelationsFrame* Frame)
                 delete Frame->relations;
 
             Frame->relations = new Relations(Frame->database);
-       
+
             if (Frame->relations != nullptr)
                 Frame->relations->runAlgorithm();
 
-            Frame->P_Groups->SetGroups(Frame);    
+            Frame->P_Groups->SetGroups(Frame);
         }
     }
 }
@@ -792,11 +791,11 @@ void PanelTitleMaintance::EventButtonBinClick(AisdiRelationsFrame* Frame)
                     delete Frame->relations;
 
                  Frame->relations = new Relations(Frame->database);
-   
-                if (Frame->relations != nullptr)
-                    Frame->relations->runAlgorithm();  
 
-                Frame->P_Groups->SetGroups(Frame);  
+                if (Frame->relations != nullptr)
+                    Frame->relations->runAlgorithm();
+
+                Frame->P_Groups->SetGroups(Frame);
 
             }
             catch(UnableToOpenFile exception)

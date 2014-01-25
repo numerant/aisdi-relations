@@ -31,15 +31,15 @@ void IOInterface::ImportStats::clearStats()
     existingCount = 0;
 }
 
-void IOInterface::importMail(MailParameters *parameters)        // dodać wyjątki
+void IOInterface::importMail(MailParameters *parameters)
 {
     if (parameters->isDirectory)
     {
         try
         {
             if (parameters->recursiveImport)
-                for (boost::filesystem::recursive_directory_iterator iter(parameters->path), end; iter != end; ++iter)      // przejechanie iteratorem po katalogu
-                    importSingleMail( iter->path(), stats);                                                                // import do bazy maila, na który wskazuje iterator
+                for (boost::filesystem::recursive_directory_iterator iter(parameters->path), end; iter != end; ++iter)      // przejście iteratorem po katalogu
+                    importSingleMail( iter->path(), stats);                                                                 // import do bazy maila, na który wskazuje iterator
             else
                 for (boost::filesystem::directory_iterator iter(parameters->path), end; iter != end; ++iter)                // jak wyżej, tylko bez rekursji
                     importSingleMail( iter->path(), stats );
@@ -80,7 +80,6 @@ void IOInterface::importSingleMail(boost::filesystem::path path, ImportStats &st
             stats.failCount++;
         }
     }
-    //delete tempEmail;
 }
 
 IOInterface::ImportStats IOInterface::getImportStats()
@@ -352,7 +351,7 @@ void IOInterface::exportDatabaseToTxt (string directoryPath)
     ofstream file;
 
         //wektor maili
-    filePath = directoryPath + "/emails.txt";             // sprawdzić, czy / jest potrzebne
+    filePath = directoryPath + "/emails.txt";
     file.open(filePath);
 
     Email* tempEmail;
@@ -364,11 +363,9 @@ void IOInterface::exportDatabaseToTxt (string directoryPath)
         record.clear();
         record << tempEmail->getID() << "\t";
         record << tempEmail->getFrom()->getAddress() << "\t";
-        record << tempEmail->getTo()->getAddress() << "\t";         // TODO JM: dodać obsługę replyTo
-        //record << tempEmail->getReplyTo()->getAddress() << "\t";  //replyTo chyba nie działa (?)
-        record << tempEmail->getInReplyTo() << "\t";              //na razie puste
-
-        record << tempEmail->getDate().getFullDate() << "\t";       // getDate nie zwraca wskażnika (?)
+        record << tempEmail->getTo()->getAddress() << "\t";
+        record << tempEmail->getInReplyTo() << "\t";
+        record << tempEmail->getDate().getFullDate() << "\t";
         record << tempEmail->getSubject() << "\t";
 
         string emailContent(tempEmail->getContent() );
@@ -392,26 +389,7 @@ void IOInterface::exportDatabaseToTxt (string directoryPath)
         record.clear();
         record << tempUsember->getAddress() << "\t";
         record << tempUsember->getRealName() << "\t";
-        //record << tempUsember->getGroup()->getID();       // TODO JM: odkomentować gdy Patryk poprawi setID
-        record << "\n";
-        file << record.rdbuf();
-    }
-    file.close();
-
-            //wektor grup
-    filePath = directoryPath + "/groups.txt";             // sprawdzić, czy / jest potrzebne
-    file.open(filePath);
-
-    Group* tempGroup;
-    for(int i=0; ; i++)
-    {
-        tempGroup = database->getGroup(i);
-        if (tempGroup == nullptr) break;
-
-        record.clear();
-
-        record << tempGroup->getID() << "\t";
-        record << tempGroup->getLeader()->getRealName() << "\t";
+        record << tempUsember->getGroup()->getID();
         record << "\n";
         file << record.rdbuf();
     }
@@ -434,7 +412,7 @@ void IOInterface::exportDatabaseReport (string path, Statistics* dbStatistics)
     outputFile << "Najwięcej maili w miesiącu:\t" << dbStatistics->getMaxEmailsInMonth() << "\n";
     outputFile << "Liczba forwardów:\t" << dbStatistics->getForwards() << "\n";
     outputFile << "Liczba odpowiedzi:\t" << dbStatistics->getReplies() << "\n\n";
-    outputFile << "Najwcześniejszy mail:\t" << dbStatistics->getEarliest()->getFullDate() << "\n";        // tu i w następnym przydałaby się funkcja wypisująca datę w uproszczonej formie
+    outputFile << "Najwcześniejszy mail:\t" << dbStatistics->getEarliest()->getFullDate() << "\n";
     outputFile << "Najpóźniejszy mail:\t" << dbStatistics->getLatest()->getFullDate() << "\n";
     outputFile << "Okres trwania korespondencji:\t" << dbStatistics->getDuration() << "\n\n";
 

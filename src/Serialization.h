@@ -27,8 +27,7 @@ namespace boost
         template<class Archive> void serialize(Archive &archive, Database &database, const unsigned int version)
         {
             archive & database.emailVector;
-            //archive & database.groupVector;                    //zakomentowane - grupy chyba jeszcze nie działają?
-            archive & database.usemberVector;                  //usember nie jest jeszcze dodawany
+            archive & database.usemberVector;
             archive & database.autoImportPath;
         }
 
@@ -37,7 +36,6 @@ namespace boost
         {
             archive & email.from;
             archive & email.date;
-            //archive & email.replyTo;
             archive & email.inReplyTo;
             archive & email.messageID;
             archive & email.to;
@@ -52,8 +50,7 @@ namespace boost
         {
             archive & usember.usemberName;
             archive & usember.domain;
-            archive & usember.realName;         //czy to czasem nie jest puste?
-            //archive & usember.group;			// grupy nie działają - koment
+            archive & usember.realName;
             archive & usember.sentMails;
             archive & usember.receivedMails;
         }
