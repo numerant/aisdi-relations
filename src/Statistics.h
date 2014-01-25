@@ -15,22 +15,22 @@ class Statistics
 private:
     const unsigned int TOP_USEMBERS_COUNT=5;
     Database* database;
-    int emails;                         //
-    int groups;                         //ile maili, grup, usemberow w bazie
-    int usembers;                       //
+    int emails;                         
+    int groups;                         //ilosc maili, grup, usemberow w bazie
+    int usembers;                       
     double emailsPerMonth;
-    double emailsPerDay;
-    double emailsPerUser;
-    double averageEmailLength;
-    int emailsCountInMonth[12];
+    double emailsPerDay;                //ilosc maili wyslanych na miesiac i dzien
+    double emailsPerUser;               //ilosc maili przypadajacych na 1 uzytkownika
+    double averageEmailLength;          //srednia dlugosc maila
+    int emailsCountInMonth[12];         //ilosc maili wyslanych w poszczegolnych miesiacach
     int maxEmailsInMonth;
-    int forwardCount;
-    int replyCount;
-    Date earliestDate;
-    Date latestDate;
-    int duration;
-    vector<Usember*> topSenders;        //powiedzmy, pieciu usemberow, ktorzy maja najwiecej wyslanych maili, mozna na wykresie pokazac dla kazdego ile maili wyslal
-    vector<Usember*> topReceivers;      //jw, tyle ze odebranych
+    int forwardCount;                   //ilosc maili bedacych forwardwami innych maili bazie
+    int replyCount;                     //ilosc maili bedacych odpowiedziami na inne maile w bazie
+    Date earliestDate;                  //najwczesniejsza data wyslania maila
+    Date latestDate;                    //najpozniejsza data wyslania maila
+    int duration;                       //roznica w nidach pomiedzy ww. datami
+    vector<Usember*> topSenders;        //pieciu usemberow, ktorzy maja najwiecej wyslanych maili
+    vector<Usember*> topReceivers;      //pieciu usemberow, ktorzy maja najwiecej odebrnych maili
 
 public:
     Statistics(Database* database);
