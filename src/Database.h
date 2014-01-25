@@ -47,7 +47,7 @@ public:
     void simpleSelect(string phrase);                           //proste wyszukiwanie w bazie na podstawie zadanej frazy, ktora moze wystapic w temacie badz w tresci
     void select(EmailQuery& emailQuery);                        //metody, które przeszukują bazę danych na podstawie danego obiektu klasy Query
     void select(UsemberQuery& usemberQuery);                    //i na tej podstawie tworza wektor wskaźników na maile/grupy/usemberów pasujących do kryteriów zapytania                                                       //i zwracają referencję do niego
-    void sortResultEmails(int key);
+    void sortResultEmails(int key);                             //metoda sortujaca wyniki ostatniego wyszukiwania wg zadanego klucza
     void deleteQueryResults(Query* query);                      //metoda usuwająca zapytanie utworzone przez metodę select, wywoływana zaraz po niej
     int findEmail(string messageId);                            //metoda wyszukujące email w bazie
     int findGroup(int groupId);                                 //metoda wyszukujące grupę w bazie
