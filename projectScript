@@ -13,5 +13,5 @@ cp bin/resources/icons/* project/resources/icons/
 cp bin/resources/iconsBig/* project/resources/iconsBig/
 
 touch project/valgrindTest
-echo '#!/bin/sh\nvalgrind ./AisdiRelations --tool=mem-check --leak-check=full --track-origins=yes 2> logs/valgrind_out' > project/valgrindTest
+echo '#!/bin/sh\nvalgrind ./AisdiRelations --tool=mem-check --leak-check=full --track-origins=yes' > project/valgrindTest
 chmod 755 project/valgrindTest

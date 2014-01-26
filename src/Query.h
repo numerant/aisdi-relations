@@ -4,8 +4,10 @@
 
 using namespace std;
 
-/*  Klasa Query - czyli zapytanie wysyłane do bazy danych. Zawiera informacje na temat tego, po jakich kryteriach
-    chcemy wyszukiwać elementy (emaile  bądź usemberów). Na jej podstawie baza tworzy wektor wyników wyszukiwania.							 */
+/*  
+    Klasa Query - czyli zapytanie wysyłane do bazy danych. Zawiera informacje na temat tego, po jakich kryteriach
+    chcemy wyszukiwać elementy (emaile  bądź usemberów). Na jej podstawie baza tworzy wektor wyników wyszukiwania.							 
+*/
 
 class StringCriteria;
 class DateCriteria;

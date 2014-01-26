@@ -1,15 +1,4 @@
 #include "PanelInboxMaintance.h"
-#include "PanelNotifyMaintance.h"
-#include "PanelStatisticsMaintance.h"
-#include "PanelTitleMaintance.h"
-
-#include <boost/archive/text_oarchive.hpp>
-#include <boost/archive/text_iarchive.hpp>
-#include <boost/archive/tmpdir.hpp>
-#include <fstream>
-#include "../../src/Serialization.h"
-#include "../../src/Criteria.h"
-#include <string>
 
 PanelInboxMaintance::PanelInboxMaintance()
 {
@@ -58,7 +47,7 @@ void PanelInboxMaintance::SetLabels(AisdiRelationsFrame* Frame)
     wxListItem col;     //obiekt reprezentujący etykietę
 
     wxString labels[COL_COUNT] = {_("Data:"), _("Temat:"), _("Od:"), _("Do:"), _("ID")};      //etykiety
-    int width[COL_COUNT] = {90, 220, 160, 160, 1};      //szerokości kolumn, sumuje się do 630px
+    int width[COL_COUNT] = {90, 220, 160, 160, 1};      //szerokości kolumn, sumuje się do szerokości komponentu I_ListInbox
 
     for (int i = 0; i < COL_COUNT; i++)         //przypisujemy w pętli etykiety do kolumn listy
     {
@@ -233,7 +222,6 @@ void PanelInboxMaintance::Search (AisdiRelationsFrame* Frame)
 
 void PanelInboxMaintance::AdvancedSearch (AisdiRelationsFrame* Frame)
 {
-    //TODO Obsługa przycisku DatabaseRestore
     wxString field;
     string subject, email, content, dayFrom, monthFrom, yearFrom, dayTo, monthTo, yearTo;
     subject = email = content = dayFrom = monthFrom = yearFrom = dayTo = monthTo = yearTo = "";
@@ -700,8 +688,6 @@ void PanelInboxMaintance::EventButtonDeleteClick (AisdiRelationsFrame * Frame)
 
     if (deleteConfirm)
     {
-        //TODO usuwanie wielu plików. Zmiana emailIdSelected na vector tychże
-
         Email* email = Frame->database->getEmail(Frame->database->findEmail(emailIdSelected));
         Usember* uFrom = email->getFrom();
         Usember* uTo = email->getTo();
@@ -734,9 +720,7 @@ void PanelInboxMaintance::EventButtonDeleteClick (AisdiRelationsFrame * Frame)
 
         }
         else
-        {
             return;
-        }
     }
     else
         return;
@@ -794,8 +778,6 @@ void PanelInboxMaintance::EventCheckBoxDate (AisdiRelationsFrame * Frame, bool v
 
 void PanelInboxMaintance::EventImageButtonRestoreClick (AisdiRelationsFrame* Frame)
 {
-    //Frame->database->restoreDatabase();   TODO
-
     if (GetSaveEnabled())
     {
         Frame->I_ImageButtonSave->SetBitmapLabel(path+imagePaths[1]+format);

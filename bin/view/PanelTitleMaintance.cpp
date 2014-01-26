@@ -1,12 +1,4 @@
 #include "PanelTitleMaintance.h"
-#include "PanelUsembersMaintance.h"
-
-// TEMP - serializacja!
-#include <boost/archive/text_oarchive.hpp>
-#include <boost/archive/text_iarchive.hpp>
-#include <boost/archive/tmpdir.hpp>
-#include <fstream>
-#include "../../src/Serialization.h"
 
 PanelTitleMaintance::PanelTitleMaintance ()
 {
@@ -25,6 +17,7 @@ void PanelTitleMaintance::ShowPanel(AisdiRelationsFrame* Frame)
 
         if (GetClickedSettings())
             SetClickedSettings();
+
         Frame->PanelSettings->Hide();	//ukrycie panelu opcji
         Frame->T_ImageButtonSettings->SetBitmapLabel(path+imagePaths[7]+format);  //przywrócenie prawidłowej grafiki przyciskowi settings
 
@@ -330,7 +323,7 @@ void PanelTitleMaintance::LoadAutoSave (AisdiRelationsFrame* Frame)
             parameters.isDirectory = true;
             parameters.path = Frame->database->getAutoImportPath();
             parameters.recursiveImport = GetRecursiveLoad();
-            Frame->iointerface->importMail(&parameters);        //try! ścieżka może być zła
+            Frame->iointerface->importMail(&parameters);       
 
             stats = Frame->iointerface->getImportStats();
             Frame->iointerface->clearImportStats();
@@ -857,8 +850,7 @@ void PanelTitleMaintance::EventButtonSwitchClick (AisdiRelationsFrame * Frame)
 
 void PanelTitleMaintance::EventButtonTxtClick(AisdiRelationsFrame * Frame)
 {
-    //Tak naprawdę jest to zapis pliku binarnego bazy
-
+    //Tak naprawdę jest to zapis pliku binarnego bazy (nieopłacalność zmiany nazwy i przepinania zdarzeń)
     if (Frame->database->countEmails() == 0)
         wxMessageBox(_("Baza danych jest pusta."));
     else if (Frame->FileDialogDatabaseExport->ShowModal() == wxID_OK)      //uruchomienie panelu wybierania folderu
@@ -917,7 +909,6 @@ void PanelTitleMaintance::EventButtonTxtClick(AisdiRelationsFrame * Frame)
 void PanelTitleMaintance::EventButtonSavTxtClick(AisdiRelationsFrame * Frame)
 {
     //Zapisywanie bazy do pliku tekstowego
-
     if (Frame->database->countEmails() == 0)
         wxMessageBox(_("Baza danych jest pusta."));
     else if (Frame->DirDialog->ShowModal() == wxID_OK)		//uruchomienie panelu wybierania folderu

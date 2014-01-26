@@ -31,7 +31,7 @@ Metody publiczne:
     void deleteUsember(Usember* usember);                       //metoda usuwająca podanego usembera z wektora
     void simpleSelect(string phrase);                           //proste wyszukiwanie w bazie na podstawie zadanej frazy, ktora moze wystapic w temacie badz w tresci
     void select(EmailQuery& emailQuery);                        //metody, które przeszukują bazę danych na podstawie danego obiektu klasy Query
-    void select(UsemberQuery& usemberQuery);                    //i na tej podstawie tworza wektor wskaźników na maile/grupy/usemberów pasujących do kryteriów zapytania                                                       //i zwracają referencję do niego
+    void select(UsemberQuery& usemberQuery);                    //i na tej podstawie tworza wektor wskaźników na maile/grupy/usemberów pasujących do kryteriów zapytania                                         //i zwracają referencję do niego
     void deleteQueryResults(Query* query);                      //metoda usuwająca zapytanie utworzone przez metodę select, wywoływana zaraz po niej
     int findEmail(string messageId);                            //metoda wyszukujące email w bazie
     int findGroup(int groupId);                                 //metoda wyszukujące grupę w bazie
@@ -49,17 +49,17 @@ Metody publiczne:
     int countUsembers();                                        //metoda zwracajaca ilosc usemberow w wektorze
     int countResultEmails();                                    //metoda zwracajaca ilosc maili w wektorze wynikow wyszukiwania
     int countResultUsembers();                                  //metoda zwracajaca ilosc usemberow w wektorze wynikow wyszukiwania
-    string getAutoImportPath();					//metody odpowiednio pobierajace i ustawiajace sciezke dostepu
-    void setAutoImportPath(string path);			//do maili do autoaktualizacji bazy
+    string getAutoImportPath();					                //metody odpowiednio pobierajace i ustawiajace sciezke dostepu
+    void setAutoImportPath(string path);			            //do maili do autoaktualizacji bazy
 
 Metody prywatne:
-    bool matches(Email& email, StringCriteria& stringCriteria); //metody sprawdzajace, czy podany mail spelnia podane kryterium
-    bool matches(Email& email, DateCriteria& dateCriteria);     //
-    bool matches(Usember& usember, StringCriteria& stringCriteria);
-    void swapEmails(int position1, int position2);              //metoda zamieniająca dwa maile w wektorze
-    void swapGroups(int position1, int position2);              //metoda zamieniająca dwie grupy w wektorze
-    void swapUsembers(int position1, int position2);            //metoda zamieniająca dwóch usemberów w wektorze
-    static bool compareEmails(Email* email1, Email* email2);    //metoda porownujaca 2 maile wg id, uzywana do sortowania
-    static bool compareGroups(Group* group1, Group* group2);    //metoda porownujaca 2 grupy wg id, uzywana do sortowania
+    bool matches(Email& email, StringCriteria& stringCriteria);         //metody sprawdzajace, czy podany mail spelnia podane kryterium
+    bool matches(Email& email, DateCriteria& dateCriteria);             //
+    bool matches(Usember& usember, StringCriteria& stringCriteria);     //
+    void swapEmails(int position1, int position2);                      //metoda zamieniająca dwa maile w wektorze
+    void swapGroups(int position1, int position2);                      //metoda zamieniająca dwie grupy w wektorze
+    void swapUsembers(int position1, int position2);                    //metoda zamieniająca dwóch usemberów w wektorze
+    static bool compareEmails(Email* email1, Email* email2);            //metoda porownujaca 2 maile wg id, uzywana do sortowania
+    static bool compareGroups(Group* group1, Group* group2);            //metoda porownujaca 2 grupy wg id, uzywana do sortowania
     static bool compareUsembers(Usember* usember1, Usember* usember2);  //metoda porownujaca 2 usemberow wg nazwy/imienia, uzywana do sortowania
 };

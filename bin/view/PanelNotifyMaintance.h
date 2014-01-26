@@ -1,5 +1,6 @@
 #pragma once
 #include "../AisdiRelationsMain.h"
+#include <sstream>
 
 class PanelNotifyMaintance
 {

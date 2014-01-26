@@ -1,8 +1,17 @@
 #pragma once
 #include "../AisdiRelationsMain.h"
+#include "../../src/Serialization.h"
+#include "../../src/Criteria.h"
 #include "wx/msgdlg.h"
 #include <sstream>
+#include <string>
+#include <fstream>
+#include "PanelNotifyMaintance.h"
 #include "PanelStatisticsMaintance.h"
+#include "PanelTitleMaintance.h"
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/archive/tmpdir.hpp>
 
 class PanelInboxMaintance
 {

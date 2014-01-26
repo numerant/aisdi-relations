@@ -45,18 +45,18 @@ void PanelMulTreeMaintance::SetSettingsEnabled()
 
 void PanelMulTreeMaintance::SetTree (Email* emailFWD)
 {
-    //TODO dodać obsługę emaila
-    //TODO button disable if not fwd
-    //Frame->
     if (! emailFWD->getIsForwarded())   //nie jest to email typu FWD
         return;
 
-    tree = new MulticastTree (emailFWD);
+    if (treeImplemented)
+        tree = new MulticastTree (emailFWD);
+    else
+        wxMessageBox(_("Wyświetlanie drzewa multicastowego nie jest zaimplementowane w tej wersji programu."));
 }
 
 void PanelMulTreeMaintance::DrawTree (AisdiRelationsFrame* Frame)
 {
-   wxMessageBox (_("Draw"));
+
 }
 
 bool PanelMulTreeMaintance::GetPanelEnabled ()

@@ -126,18 +126,18 @@ void PanelGroupsMaintance::SetGroups (AisdiRelationsFrame * Frame)
             //nadanie id do pola
             if(addresses[i] == "brak")
             {
-            int id = ids[i];     
-            ostringstream ss;
-            ss << id;
-            string strID = ss.str();
-            wxString idWx (strID.c_str(), wxConvUTF8);
-            Frame->G_ListGroups->SetItem(i,1, idWx);
+                int id = ids[i];     
+                ostringstream ss;
+                ss << id;
+                string strID = ss.str();
+                wxString idWx (strID.c_str(), wxConvUTF8);
+                Frame->G_ListGroups->SetItem(i,1, idWx);
             }
             else
             {
-            wxString idWx (addresses[i].c_str(), wxConvUTF8);
-            Frame->G_ListGroups->SetItem(i,1, idWx);
-             }               
+                wxString idWx (addresses[i].c_str(), wxConvUTF8);
+                Frame->G_ListGroups->SetItem(i,1, idWx);
+            }               
         }
     }
     else

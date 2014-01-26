@@ -10,7 +10,6 @@ class PanelGroupsMaintance
 private:
     bool panelEnabled = true;
     bool settingsEnabled = false;
-    bool treeEnabled = false;           //TODO sprawdzić czy potrzebne
     bool relationsConstructed = false;
     int groupSelectedId = -1;
     string usemberSelectedAdress = "";

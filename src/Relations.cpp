@@ -147,10 +147,10 @@ void Relations::findBosses()
 {
 	vector<pair<int, int> > bosses;			//first: coefficient, second: index
 	int highest;
-	//Dla ka¿dej grupy
+	//Dla każdej grupy
 	for(unsigned int i = 0; i < groups.size(); i++)
 	{
-		//szukamy cz³onków danej grupy (których reprezentant jest reprezentantem danej grupy)
+		//szukamy członków danej grupy (których reprezentant jest reprezentantem danej grupy)
 		for(int j = 0; j < userCount; j++)
 		{
 			if(findRepresentantOf(j) == groups[i])
@@ -158,7 +158,7 @@ void Relations::findBosses()
 		}
 		sort(bosses.begin(), bosses.end(), cmp);
 
-		//cz³onek z najwy¿szym wspó³czynnikiem szefostwa
+		//członek z najwyższym współczynnikiem szefostwa
 		highest = bosses[bosses.size()-1].first;
 
 		int k = 1;
@@ -186,7 +186,7 @@ void Relations::findBosses()
 		{
 			vector<pair<int, int> > counts = countStandardDeviation(potential);
 
-		//obliczamy ich wspó³czynnik dodatkowy
+		//obliczamy ich współczynnik dodatkowy
 			for(unsigned int j = 0; j < potential.size(); j ++)
 			{
 				double tmpCoefficient;
@@ -196,7 +196,7 @@ void Relations::findBosses()
 				coefficient.push_back(tmpCoefficient);
 			}
 
-			//szukamy u¿ytkownika z najwy¿szym wspó³czynnikiem dodatkowym
+			//szukamy u¿ytkownika z najwyższym współczynnikiem dodatkowym
 			for(unsigned int j = 0; j < potential.size(); j ++)
 			{
 				if(coefficient[j] > bossCoefficient)
@@ -217,12 +217,12 @@ void Relations::findBosses()
 
 vector<pair<int, int> > Relations::countStandardDeviation(vector<pair<int, int> > vect)
 {
-	vector<pair<int, int> > vertexGroups; //i-ty u¿ytkownik ma (first) korespondentów z innych grup i (second) wiadomoœci z nimi
+	vector<pair<int, int> > vertexGroups; //i-ty użytkownik ma (first) korespondentów z innych grup i (second) wiadomości z nimi
 	for(unsigned int ii = 0; ii < vect.size(); ii++)
 	{
 		vertexGroups.push_back(make_pair(0,0));
 
-		vector<int> groupsFound; // ju¿ znalezione grupy
+		vector<int> groupsFound; // już znalezione grupy
 		for(unsigned int i = 0 ; i < adjacents[vect[ii].second].size(); i++)
 		{
 			bool b = 0;
@@ -278,12 +278,6 @@ void Relations::makeGroups()
 			}
 		}
 
-		/*cout<<"Lider: "<<group->getLeaderIndex()+1<<endl<<"Czlonkowie:"<<endl;
-		cout<<endl;
-		for(int i = 0; i < group->getUsemberCount(); i++)
-		{
-			cout<<"\tUzytkownik numer "<<group->getIndexOf(i)+1<<endl;
-		}*/
 		finalGroups.push_back(group);
 	}
 	level++;
@@ -296,31 +290,31 @@ void Relations::goToAnotherDimension()
 
 	makeGroups();
 
-	//czyœcimy dla nowego poziomy
+	//czyścimy dla nowego poziomy
 	for( int i = 0; i < userCount; i++)
 		vertexDegree[i] = 0;
 
 	tmpIndex.resize(firstUserCount,0);
 
-	//Dla ka¿dej grupy
+	//Dla każdej grupy
 	for(unsigned int i = 0; i < groups.size(); i++)
 	{
 		Group *group = finalGroups[i];
 		newRealIndex.push_back(realIndex[groups[i]]);
 
-		//Dla ka¿dego u¿ytkownika z grupy
+		//Dla każdego użytkownika z grupy
 		for(int j = 0; j < group->getUsemberCount(); j++)
 		{
 			tmpIndex[group->getIndexOf(j)] = i;
 
-			// Przegl¹damy jego s¹siadów w celu okreœlenia wagi miêdzy nowymi wierzcho³kami (grupami)
+			// Przeglądamy jego sąsiadów w celu określenia wagi między nowymi wierzchołkami (grupami)
 			for(unsigned int k = 0; k < adjacents[group->getIndexOf(j)].size(); k++)
 			{
 				bool isThere = 0;
-				//Przeszukujemy ju¿ dodane nowe wierzcho³ki (aby zwiêkszyæ wagê krawêdzi miêdzy nimi)
+				//Przeszukujemy już dodane nowe wierzchołki (aby zwiększyć wagę krawędzi między nimi)
 				for(unsigned int l = 0; l < tempAdj[i].size(); l++)
 				{
-					//znaleziono ju¿ istniej¹cego s¹siada, wiêc zwiêkszamy wagê
+					//znaleziono już istniejącego sąsiada, więc zwiększamy wagę
 					if(tempAdj[i][l].first == findRepresentantOf(adjacents[group->getIndexOf(j)][k].first))
 					{
 						tempAdj[i][l].second += adjacents[group->getIndexOf(j)][k].second;
@@ -339,7 +333,7 @@ void Relations::goToAnotherDimension()
 					if(findRepresentantOf(adjacents[group->getIndexOf(j)][k].first) != group->getLeaderIndex())
 					{
 						vertexDegree[i]++;
-						//nie ma jeszcze danej grupy w s¹siedztwie naszego wierzcho³ka - dodajemy
+						//nie ma jeszcze danej grupy w sąsiedztwie naszego wierzchołka - dodajemy
 						tempAdj[i].push_back(make_pair(findRepresentantOf(adjacents[group->getIndexOf(j)][k].first),
 						adjacents[group->getIndexOf(j)][k].second));
 					}
@@ -349,7 +343,7 @@ void Relations::goToAnotherDimension()
 		}
 	}
 
-	//podmieniamy s¹siadów ( mamy stworzony nowy graf )
+	//podmieniamy sąsiadów ( mamy stworzony nowy graf )
 
 	realIndex = newRealIndex;
 

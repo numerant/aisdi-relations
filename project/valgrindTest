@@ -1,0 +1,2 @@
+#!/bin/sh
+valgrind ./AisdiRelations --tool=mem-check --leak-check=full --track-origins=yes

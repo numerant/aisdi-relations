@@ -100,7 +100,7 @@ void PanelStatisticsMaintance::EventPanelEmailPerMonthPaint (AisdiRelationsFrame
     int maxMonth = Frame->statistics->getMaxEmailsInMonth();
     if (maxMonth)  //jeżeli jakikolwiek mail wczytany
     {
-         for (int i = 0; i < 12; i++)    //Wypisanie nazw miesięcy u dołu
+         for (int i = 0; i < 12; i++)    
         {
             int posCorrection = 0;
             int labelCorrection = 0;
@@ -214,13 +214,13 @@ void PanelStatisticsMaintance::EventPanelCountersPaint (AisdiRelationsFrame * Fr
         ss.str("");
 
         /** === Tekstowe === */
-        date = Frame->statistics->getEarliest();
+        date = Frame->statistics->getEarliest();        //najwcześniejsza data
         ss << date->getDay() << "-" << date->getMonth() << "-" << date->getYear();
         sCounter = ss.str();
         Frame->S_StaticTextC_Value11->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));
         ss.str("");
 
-        date= Frame->statistics->getLatest();
+        date= Frame->statistics->getLatest();            //najpóźniejsza data
         ss << date->getDay() << "-" << date->getMonth() << "-" << date->getYear();
         sCounter = ss.str();
         Frame->S_StaticTextC_Value12->SetLabel(wxString(sCounter.c_str(), wxConvUTF8));

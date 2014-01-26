@@ -120,7 +120,7 @@ void Database::select(EmailQuery& emailQuery)
         if(match && emailQuery.getStringCriteriaVectorSize()>0)
         {
             match=true;
-            for(unsigned int j=0; j<emailQuery.getStringCriteriaVectorSize(); ++j)
+            for(int j=0; j<emailQuery.getStringCriteriaVectorSize(); ++j)
             {
                 if(!matches(*emailVector[i], *emailQuery.getStringCriteria(j)))
                 {
@@ -132,7 +132,7 @@ void Database::select(EmailQuery& emailQuery)
 
         if(match && emailQuery.getDateCriteriaVectorSize()>0)
         {
-            for(unsigned int j=0; j<emailQuery.getDateCriteriaVectorSize(); ++j)
+            for( int j=0; j<emailQuery.getDateCriteriaVectorSize(); ++j)
             {
                if(!matches(*emailVector[i], *emailQuery.getDateCriteria(j)))
                {
@@ -155,7 +155,7 @@ void Database::select(UsemberQuery& usemberQuery)
         if(usemberQuery.getStringCriteriaVectorSize()>0)
         {
             match=true;
-            for(unsigned int j=0; j<usemberQuery.getStringCriteriaVectorSize(); ++j)
+            for( int j=0; j<usemberQuery.getStringCriteriaVectorSize(); ++j)
             {
                 if(!matches(*usemberVector[i], *usemberQuery.getStringCriteria(j)))
                 {

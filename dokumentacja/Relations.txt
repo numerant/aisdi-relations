@@ -1,7 +1,7 @@
 //============================================================
 //
 // klasa:        Relations
-// autorzy:        Patryk Łucka
+// autorzy:       Patryk Łucka
 // pliki:        Relations.h, Relations.cpp
 //
 //============================================================

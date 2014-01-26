@@ -1,5 +1,4 @@
 #include "PanelNotifyMaintance.h"
-#include <sstream>
 
 PanelNotifyMaintance::PanelNotifyMaintance()
 {
@@ -8,9 +7,9 @@ PanelNotifyMaintance::PanelNotifyMaintance()
 
 void PanelNotifyMaintance::ShowPanel(AisdiRelationsFrame* Frame, int time)
 {
-        Frame->PanelNotify->SetPosition(wxPoint(20,20));
-        Frame->PanelNotify->Show();
-        Frame->Timer1.Start(time*1000, wxTIMER_ONE_SHOT);
+    Frame->PanelNotify->SetPosition(wxPoint(20,20));
+    Frame->PanelNotify->Show();
+    Frame->Timer1.Start(time*1000, wxTIMER_ONE_SHOT);
 }
 
  void PanelNotifyMaintance::SetLabels (AisdiRelationsFrame * Frame, string title, string option1, string option2, string option3)

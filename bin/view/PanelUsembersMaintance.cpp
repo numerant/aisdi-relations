@@ -106,7 +106,8 @@ void PanelUsembersMaintance::SetUsembers(AisdiRelationsFrame * Frame)
         counterU = Frame->database->countResultUsembers();
     else
         counterU = Frame->database->countUsembers();
-    if (counterU > 0)     //TODO Zmienić wyświetlanie za pomocą Query
+
+    if (counterU > 0)
     {
         Frame->U_ListUsembers->DeleteAllItems();
         for (int i = 0; i < counterU; i++)
@@ -117,6 +118,7 @@ void PanelUsembersMaintance::SetUsembers(AisdiRelationsFrame * Frame)
             else
                 usember = Frame->database->getUsember(i);
             wxListItem item;
+
             item.SetId(i);
             if (i % 2 == 0)
                 item.SetTextColour(wxColor(200,200,200));
@@ -130,7 +132,7 @@ void PanelUsembersMaintance::SetUsembers(AisdiRelationsFrame * Frame)
             wxString wxAdress (sourceString.c_str(), wxConvUTF8);
             Frame->U_ListUsembers->SetItem(i,1, wxAdress );
 
-            Group * group = usember->getGroup();      //TODO odkomentować po zrobieniu grup
+            Group * group = usember->getGroup();
             int iGroup = group->getID();
             ostringstream ssGroup;
             ssGroup << iGroup;
@@ -177,13 +179,13 @@ void PanelUsembersMaintance::SetEmails (AisdiRelationsFrame * Frame, int pos)
     }
 
     int counterU = Frame->database->countUsembers();
-    if (counterU > 0)     //TODO Zmienić wyświetlanie za pomocą Query
+    if (counterU > 0)
     {
         Frame->U_ListInbox->DeleteAllItems();
         Frame->U_ListOutbox->DeleteAllItems();
         Usember * usember = Frame->database->getUsember(pos);
 
-        //Przeleć maile odebrane
+        //Przejrzyj maile odebrane
         int counterIn =  usember->receiveMailCount();
         if (counterIn > 0)
         {
@@ -240,7 +242,7 @@ void PanelUsembersMaintance::SetEmails (AisdiRelationsFrame * Frame, int pos)
             Frame->U_ListInbox->SetItem(0,1, wxNoResults);
         }
 
-        //przeleć maile wysłane
+        //przejrzyj maile wysłane
         int counterOut = usember->sendMailCount();
         if (counterOut  > 0)
         {
@@ -308,9 +310,6 @@ void PanelUsembersMaintance::SetEmails (AisdiRelationsFrame * Frame, int pos)
         wxNoResults = _("brak emaili odebranych...");
         Frame->U_ListInbox->SetItem(0,1, wxNoResults);
     }
-
-    //TODO Coś trzeba z tym zrobić, może jakiś Timer?
-    EventPanelStatsPaint(Frame);
 }
 
 void PanelUsembersMaintance::SetIcons(AisdiRelationsFrame* Frame)
@@ -341,6 +340,8 @@ void PanelUsembersMaintance::SwitchList(AisdiRelationsFrame * Frame)
     }
     else
     {
+        customSearch = false;
+        SetUsembers(Frame);
         Frame->U_ListUsembers->Show();
         Frame->U_ListInbox->Hide();
         Frame->U_ListOutbox->Hide();
@@ -436,7 +437,7 @@ void PanelUsembersMaintance::SetUsemberViewed(AisdiRelationsFrame * Frame, const
     string name = usemberPtr->getRealName();
     Frame->U_StaticTextName->SetLabel(wxString(name.c_str(),wxConvUTF8));
     Frame->U_StaticTextEmail->SetLabel(wxString(adressUsemberSelected.c_str(), wxConvUTF8));
-    Frame->U_StaticTextGroup->SetLabel(_("temporary unavailable"));     //TODO dodać wyswietlanie grupy
+    Frame->U_StaticTextGroup->SetLabel(_("temporary unavailable"));
 
     SetEmails(Frame, Frame->database->findUsember(adressUsemberSelected));
     if (GetUsembersListEnabled())
@@ -639,8 +640,6 @@ void PanelUsembersMaintance::EventButtonShowGroupClick (AisdiRelationsFrame* Fra
     if (Frame->relations != nullptr)
         Frame->relations->runAlgorithm();
 
-    //Frame->P_Groups->SetMembers(Frame);
-
     Frame->PanelGroups->SetPosition(wxPoint(0,0));
     Frame->PanelGroups->Show();
 }
@@ -721,9 +720,10 @@ void PanelUsembersMaintance::EventListUsembersItemSelect (AisdiRelationsFrame* F
     Frame->U_StaticTextReceived->SetLabel(wxString(strReceived.c_str(),wxConvUTF8));
     Frame->U_StaticTextSent->SetLabel(wxString(strSent.c_str(),wxConvUTF8));
 
-   SetEmails(Frame, Frame->database->findUsember(adressUsemberSelected));
+    SetEmails(Frame, Frame->database->findUsember(adressUsemberSelected));
     if (GetEmailContentEnabled())
         SwitchContent(Frame);
+    Frame->TimerRepaint.Start(100, wxTIMER_ONE_SHOT);
 }
 
 void PanelUsembersMaintance::EventListUsembersColumnClick (AisdiRelationsFrame* Frame)
@@ -869,8 +869,8 @@ void PanelUsembersMaintance::EventPanelStatsPaint (AisdiRelationsFrame * Frame)
 
             dc.SetFont(wxFont(11, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, _("Ubuntu")));
             int monthSent = 0, monthReceived = 0;
-            monthSent =  usember->getEmailsSentInMonth(i);  //pobranie wartości z danego miesiąca
-            monthReceived = usember->getEmailsReceivedInMonth(i);
+            monthSent =  usember->getEmailsSentInMonth(i+1);          //pobranie wartości z danego miesiąca
+            monthReceived = usember->getEmailsReceivedInMonth(i+1);
 
             if (monthSent >= 100)           //zabawa mailami wysłanymi
             {
@@ -897,7 +897,8 @@ void PanelUsembersMaintance::EventPanelStatsPaint (AisdiRelationsFrame * Frame)
                 currentPointHeight = (int)(d_pointHeight/10);
             }
             dc.DrawEllipse(wxPoint(32+i*pointSpace-radiusGreen-radiusCorrection,height+deltaY-currentPointHeight-radiusGreen-radiusCorrection),wxSize(2*radiusGreen+2*radiusCorrection, 2*radiusGreen+2*radiusCorrection));
-            dc.DrawLine(wxPoint(prevX,prevYS),wxPoint(32+i*pointSpace,height+deltaY-currentPointHeight));
+            if (i != 0)
+                dc.DrawLine(wxPoint(prevX,prevYS),wxPoint(32+i*pointSpace,height+deltaY-currentPointHeight));
             prevYS = height+deltaY-currentPointHeight;
             dc.SetTextForeground(ColorSentL);
             dc.DrawText(wxString(strMonthSent.c_str(), wxConvUTF8), wxPoint(34+i*pointSpace+radiusGreen+radiusCorrection, (int)(valueLabelCorrection+pointHeight-currentPointHeight-radiusGreen-radiusCorrection)));
@@ -913,8 +914,7 @@ void PanelUsembersMaintance::EventPanelStatsPaint (AisdiRelationsFrame * Frame)
                 radiusCorrection = 10;
             }
 
-            //konwersja int -> string -> wxString
-            ss.str("");
+            ss.str("");             //konwersja int -> string -> wxString
             ss << monthReceived;
             string strMonthReceived= ss.str();
 
@@ -928,7 +928,8 @@ void PanelUsembersMaintance::EventPanelStatsPaint (AisdiRelationsFrame * Frame)
                 currentPointHeight = (int)(d_pointHeight/10);
             }
             dc.DrawEllipse(wxPoint(32+i*pointSpace-radiusBlue-radiusCorrection,height+deltaY-currentPointHeight-radiusBlue-radiusCorrection),wxSize(2*radiusBlue+2*radiusCorrection, 2*radiusBlue+2*radiusCorrection));
-            dc.DrawLine(wxPoint(prevX,prevYR),wxPoint(32+i*pointSpace,height+deltaY-currentPointHeight));
+            if (i != 0)
+                dc.DrawLine(wxPoint(prevX,prevYR),wxPoint(32+i*pointSpace,height+deltaY-currentPointHeight));
             prevYR = height+deltaY-currentPointHeight;
             prevX = 32+i*pointSpace;
             dc.SetTextForeground(ColorReceivedL);

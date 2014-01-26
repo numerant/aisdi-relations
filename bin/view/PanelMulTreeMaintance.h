@@ -7,9 +7,10 @@ class PanelMulTreeMaintance
     friend class AisdiRelationsFrame;
 
 private:
-    MulticastTree * tree = nullptr;
+    MulticastTree * tree = nullptr;     //wskaźnij na obiekt drzewa multicastowego
     bool panelEnabled = true;
     bool settingsEnabled = false;
+    bool treeImplemented = false;
 
     wxString path = (_("resources/icons/icon"));
     wxString format =  (_(".png"));
@@ -19,7 +20,7 @@ private:
         _("Title"),  _("Mailbox"),  _("Usember"),  _("Workgroups"),  _("Statistics"),
         _("Settings")
     };              //ścieżki plików z grafikami do przycisków panelu
-                     
+
 public:
     PanelMulTreeMaintance ();
     void ShowPanel(AisdiRelationsFrame* Frame);

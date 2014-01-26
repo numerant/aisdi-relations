@@ -6,7 +6,9 @@
 using namespace std;
 
 /*
-
+    Klasa przechowująca strukturę maili 'forwardowanych' przez wielu użytkowników. Dal wybranego maila typu FWD, obiekt wyszukuje korzeń (findRoot),
+    następnie rekurencyjnie tworzy wierzchołki potomne, a potem wracając do góry, przelicza współczynniki takie jak wysokość czy liczba liści
+    (potrzebne szczególnie do późniejszego rysowania). Wierzchołki (czyli usemberzy) są reprezentowani strukturą Node.
 */
 
 typedef struct Node
@@ -24,7 +26,7 @@ class MulticastTree
 private:
     Node* HEAD = nullptr;		//wskazanie na korzeń
     unsigned long globalId = 0;
-    vector<Node*> Nodes;		//TODO Na razie nie jest konieczny chyba
+    vector<Node*> Nodes;
 
 public:
     MulticastTree();					//puste drzewo
@@ -36,6 +38,4 @@ public:
 	Node* findNodeByEmail (Email* email);	//zwraca węzeł dla podanego emaila
 	Node* deleteNodes (Node* node);			//usuwa węzeł (tylko jeżeli jest liściem) i zwraca wskazanie na rodzica
 											//w.p.p. zwraca nullptr
-
-    void addEmail (Email* email);
 };

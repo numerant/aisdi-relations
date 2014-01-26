@@ -11,8 +11,6 @@
 #include "Group.h"
 #include "Date.h"
 
-//class Database;
-
 /*
     Serialization.cpp - rozszerzenie przestrzeni nazw boost::serialization o funkcje
     pozwalające na serializację klas używanych w aplikacji. Takie rozwiązanie sprawia,

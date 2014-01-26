@@ -1,6 +1,11 @@
 #pragma once
 #include "../AisdiRelationsMain.h"
+#include "../../src/Serialization.h"
+#include <fstream>
 #include <wx/msgdlg.h>
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/archive/tmpdir.hpp>
 #include "PanelInboxMaintance.h"
 #include "PanelUsembersMaintance.h"
 #include "PanelNotifyMaintance.h"
@@ -18,8 +23,8 @@ private:
     bool recursiveLoad = false;		//wczytywanie rekursywne maili z podanego folderu
     bool deleteConfirm = true;      //prośba o potwierdzenie przy usuwaniu
     bool databaseEncryption = false; //szyfrowanie danych bazy przy eksporcie do pliku
-    bool autoUpdate = false; //szyfrowanie danych bazy przy eksporcie do pliku
-    bool clickedAdd = false;            //dostępność poszczególnych przycisków dodawania danych;
+    bool autoUpdate = false;            //szyfrowanie danych bazy przy eksporcie do pliku
+    bool clickedAdd = false;            //dostępność poszczególnych przycisków dodawania/zapisywania danych;
     bool clickedLoad = false;
     bool clickedImport = false;
     bool clickedSettings = false;

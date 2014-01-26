@@ -8,15 +8,12 @@ MulticastTree::MulticastTree()
 
 MulticastTree::MulticastTree(Email* startEmail)
 {
-	//TODO dodaj wyjątek na całość
 	Node* root = findRoot (startEmail);
 	if (root != nullptr)
 	{
 		if (createNodes(HEAD) == nullptr)
-			//TODO rzuć wyjątkiem, usuń box'a
-			wxMessageBox(_("Nie zrobiło się..."));
+			wxMessageBox(_("Nie udało się stworzyć drzewa..."));
 	}
-
 }
 
 MulticastTree::~MulticastTree()
@@ -185,7 +182,7 @@ Node* MulticastTree::deleteNodes (Node* node)
 		for (unsigned int i = node->childs.size(); i >0 ; i--)
 		{
 			Node * returnNode = deleteNodes (node->childs[i-1]);
-			if (returnNode != node)		//TODO może rzucenie wyjątkiem?
+			if (returnNode != node)
 				break;					//zwrócenie wartości innej niż oczekiwana, bląd
 			else
 			{

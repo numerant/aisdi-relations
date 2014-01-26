@@ -16,7 +16,7 @@ public:
 	void setClosestAssociates();
 	void countBossCoefficient();
 	void setGroups();
-	void addGroup(int representant);		//not FINAL!
+	void addGroup(int representant);
 	void findBosses();
 	void goToAnotherDimension();
 	void makeGroups();
